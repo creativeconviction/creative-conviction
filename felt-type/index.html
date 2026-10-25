@@ -96,7 +96,7 @@ button:focus-visible, .w:focus-visible { outline: 2px solid var(--ink); outline-
 
 /* passages */
 .books { margin-top: clamp(110px, 18vh, 200px); display: grid; gap: clamp(72px, 12vh, 130px); }
-.books-head { display: grid; gap: 6px; margin-bottom: calc(-1 * clamp(40px, 8vh, 90px)); }
+.books-head { margin-bottom: calc(-1 * clamp(44px, 9vh, 100px)); }
 .books-head h2 { margin: 0; font: inherit; color: var(--ink); }
 .passage { display: grid; gap: 22px; }
 .source { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; padding-top: 14px; border-top: 1px solid var(--ink); }
@@ -116,9 +116,9 @@ button:focus-visible, .w:focus-visible { outline: 2px solid var(--ink); outline-
 
 .w { cursor: pointer; border-radius: 2px; }
 .w.felt-word:hover, .w.sel { outline: 1px dashed var(--faint); outline-offset: 0.14em; }
-.passage .w:not(.felt-word):hover .fx { text-decoration: underline dotted var(--faint); text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
+.passage .w:not(.felt-word):hover .fx, .composer.done .w:not(.felt-word):hover .fx { text-decoration: underline dotted var(--faint); text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
 .composer .w:not(.felt-word) { cursor: text; }
-.composer.done .w:not(.felt-word) { cursor: default; }
+.composer.done .w:not(.felt-word) { cursor: pointer; }
 
 .fx, .l {
   transition: transform .6s var(--soft), font-size .6s var(--soft), letter-spacing .6s var(--soft),
@@ -230,18 +230,17 @@ button:focus-visible, .w:focus-visible { outline: 2px solid var(--ink); outline-
     <h1 class="felt">Felt Type</h1>
   </header>
 
-  <section class="write" aria-labelledby="write-label">
+  <section class="write" aria-label="Your writing">
     <div class="source" id="mine-head" hidden>
       <h3>Your writing</h3>
       <span class="end">
         <button class="link" id="edit">Edit</button>
         <button class="link" data-export="live" data-format="png">Export PNG</button>
-        <button class="link" data-export="live" data-format="gif" hidden>Export GIF</button>
+        <button class="link" data-export="live" data-format="gif">Export GIF</button>
       </span>
     </div>
-    <p class="label" id="write-label">Write here. Words with a feeling move as you type them.</p>
     <div class="composer" id="composer">
-      <textarea id="src" class="ghost-input" spellcheck="false" aria-labelledby="write-label"></textarea>
+      <textarea id="src" class="ghost-input" spellcheck="false" aria-label="Your writing"></textarea>
       <div class="piece" id="live"></div>
     </div>
     <div class="actions" id="write-actions">
@@ -250,14 +249,12 @@ button:focus-visible, .w:focus-visible { outline: 2px solid var(--ink); outline-
         <button>fall</button><button>tremble</button><button>louder</button><button>rain</button><button>whisper</button><button>heavy</button>
       </span>
     </div>
-    <p class="label" id="done-help" hidden>Hover a moving word to feel more of it. Click it to try another way of the same feeling.</p>
     <p class="status" id="status" role="status"></p>
   </section>
 
   <main class="books" id="books">
     <div class="books-head">
       <h2>From the books</h2>
-      <p class="label">Hover a moving word to feel more of it. Click it to try another way of the same feeling.</p>
     </div>
   </main>
 </div>
@@ -296,6 +293,8 @@ const PASSAGES = [
     text: 'Call me Ishmael. Some years ago—never mind how {long|long|3} precisely—having {little|shrink|2} or no money in my purse, and {nothing|fade|2} particular to interest me on shore, I thought I would sail about a little and see the {watery|flow|2} part of the {world|open|2}.' },
   { id: 'curiouser', book: 'Alice’s Adventures in Wonderland', author: 'Lewis Carroll', year: 1865,
     text: '“{Curiouser|grow.1|1} and {curiouser|grow.1|2}!” cried Alice (she was so much surprised, that for the moment she quite forgot how to speak good English); “now I’m {opening out|long|3} like the {largest|grow|3} telescope that ever was! Good-bye, {feet|shrink.3|3}!”' },
+  { id: 'ulysses', book: 'Ulysses', author: 'James Joyce', year: 1922,
+    text: '{Stately|heavy|1}, {plump|grow.2|1} Buck Mulligan came from the stairhead, bearing a bowl of {lather|flow.1|2} on which a {mirror|back|2} and a {razor|harsh|1} lay {crossed|twist|1}. A yellow dressinggown, {ungirdled|open|1}, was sustained {gently|rise.1|2} behind him on the mild morning air.' },
   { id: 'raven', book: 'The Raven', author: 'Edgar Allan Poe', year: 1845,
     text: 'And the lamp-light o’er him {streaming|rain.1|2} throws his {shadow|dark.1|2} on the floor;\nAnd my soul from out that shadow that lies {floating|rise.1|2} on the floor\nShall be {lifted|rise.2|2}—{nevermore|echo|3}!' },
 ];
@@ -746,42 +745,58 @@ const FEELINGS = Object.keys(FEEL);
 
 // ---------- a small feeling list for your own text ----------
 const LEXICON = {
-  'fall': 'fall fell fallen drop dropped plunge plummet tumble collapse',
-  'fall.3': 'down beneath under deep descend',
-  'sink': 'sink sank sunk sad sadness sorrow grief despair worst weary tired dread gloom depressed',
-  'heavy': 'heavy heavier weight burden fortune power powerful strong fearless iron stone',
-  'grow': 'grow grew big large huge vast loud louder great greater giant swell everything',
-  'shrink': 'small smaller little tiny shrink less fewer diminish quiet quieter',
-  'squeeze': 'tight press pressed compress crowd crowded narrow trap trapped squeeze cramped',
-  'open': 'wide open opened opening universal free freedom space world sky',
-  'long': 'long longer endless forever stretch slow slowly waiting',
-  'break': 'scatter scattered break broke broken shatter chaos mad madness wild foolish',
-  'tremble': 'tremble trembling shake shook shiver fear afraid nervous convulsive cold',
-  'pulse': 'breathe breath breathed heart pulse alive beat beating',
-  'fade': 'fade faded forget forgot past gone vanish dying died burnt whisper memory remember nothing',
-  'light': 'light bright shine shining illuminate glow sun morning dawn',
-  'dark': 'dark darkness night black shadow shadows midnight',
-  'back': 'back reverse mirror return returned contradict backward',
-  'echo': 'echo again repeat ceaseless always never nevermore multitude multitudes many',
-  'flow': 'water sea wave waves current river ocean watery sail flow drift tide',
-  'rise': 'rise rose up fly flew lift soar heaven best hope float',
-  'alone': 'alone single lonely only isolated apart end',
-  'split': 'split half divide divided torn cut',
-  'flicker': 'flicker glimmer candle flame spark blink',
-  'rain': 'rain raining drip tears cry cried weep wept',
-  'harsh': 'harsh sharp anger angry rage pain scream shout cruel',
-  'against': 'against resist push lean wind',
-  'twist': 'twist turn turned spin spiral dizzy confused',
-  'pull': 'magnet attract pull drawn love want desire',
-  'empty': 'empty hollow absence void words',
+  'fall': 'fall fell fallen falling drop dropped plunge plummet tumble collapse slip slipped crash crashed fail failed',
+  'fall.3': 'down beneath under deep descend below bottom',
+  'sink': 'sink sank sunk sad sadness sorrow grief grieve mourn despair worst weary tired exhausted dread gloom depressed low sigh heartbreak',
+  'heavy': 'heavy heavier weight weigh burden fortune power powerful strong fearless iron stone rock solid mountain duty',
+  'heavy.1': 'made make build built ground',
+  'grow': 'grow grew growing big bigger large huge vast loud louder great greater giant swell everything more most enormous bloom whole',
+  'shrink': 'small smaller little tiny shrink less least fewer diminish quiet quieter shy humble',
+  'squeeze': 'tight press pressed pressure compress crowd crowded narrow trap trapped squeeze cramped tense stress stuck choke anxious anxiety',
+  'open': 'wide open opened opening universal free freedom space world earth universe everywhere possible explore',
+  'long': 'long longer longing endless forever stretch slow slowly waiting ago eternal eternity patience',
+  'break': 'scatter scattered break broke broken shatter shattered crack cracked chaos mad madness wild foolish crazy mess explode',
+  'tremble': 'tremble trembling shake shook shiver fear afraid scared fright terror panic nervous convulsive cold freezing',
+  'pulse.1': 'love loved loves loving lover heart heartbeat kiss',
+  'pulse': 'breathe breath breathed pulse alive life living beat beating',
+  'fade': 'fade faded fading forget forgot forgotten past gone vanish dying died burnt whisper memory memories goodbye ghost mist fog silence silent faint',
+  'light': 'light bright shine shining illuminate glow sun sunlight star stars warm joy happy smile smiled',
+  'dark': 'dark darkness night black shadow shadows midnight death dead grave evil',
+  'back': 'back reverse mirror reflect reflection return returned contradict backward undo',
+  'echo': 'echo again repeat ceaseless always never nevermore multitude multitudes many every voices',
+  'flow': 'water sea wave waves current river ocean watery sail flow drift tide swim dance danced music song sing sang',
+  'rise': 'rise rose up fly flying flew lift soar heaven best hope float high wings bird',
+  'rise.1': 'dream dreams dreaming',
+  'alone': 'alone single lonely only isolated apart end solitude',
+  'split': 'split half divide divided torn cut separate between',
+  'flicker': 'flicker glimmer candle flame spark blink maybe perhaps doubt',
+  'rain': 'rain raining drip tears cry cried crying weep wept storm',
+  'harsh': 'harsh sharp anger angry rage hate pain scream shout cruel fight war',
+  'against': 'against resist push lean wind struggle',
+  'twist': 'twist turn turned spin spiral dizzy confused think thinking thought mind strange',
+  'pull': 'magnet attract pull drawn want wanted desire need crave',
+  'empty': 'empty hollow absence void words nothing nobody none missing',
 };
 const LEX = {};
 for (const [fx, words] of Object.entries(LEXICON)) for (const w of words.split(' ')) LEX[w] = fx;
 function suggest(core) {
   const w = core.toLowerCase();
   if (LEX[w]) return LEX[w];
+  if (STOP.has(w)) return null;
   for (const key in LEX) if (key.length >= 4 && w.length > key.length && w.startsWith(key)) return LEX[key];
+  if (w.length >= 5) for (const key in LEX) if (key.length >= 5 && nearly(w, key)) return LEX[key];
   return null;
+}
+// Everyday words that only look like feeling words.
+const STOP = new Set('the and but for with from into onto this that these those there their they them then than what when where which while whom whose could would should shall might must about after before over said says just also very have were been being here your yours ours itself because'.split(' '));
+// One letter off, or two letters swapped: "wrold" still means world.
+function nearly(a, b) {
+  if (Math.abs(a.length - b.length) > 1 || b.length < 4) return false;
+  let i = 0;
+  while (i < a.length && a[i] === b[i]) i++;
+  if (i === a.length && i === b.length) return true;
+  const rest = (x, y) => a.slice(x) === b.slice(y);
+  return rest(i + 1, i + 1) || rest(i + 1, i) || rest(i, i + 1) || (a[i] === b[i + 1] && a[i + 1] === b[i] && rest(i + 2, i + 2));
 }
 function setFeel(t, spec) {
   if (!spec) { t.fx = null; return; }
@@ -861,7 +876,7 @@ function wordEl(t, i, scope, caretAt = -1) {
   const w = el('span', 'w');
   w.dataset.i = i; w.dataset.scope = scope;
   if (t.fx) { w.classList.add('felt-word'); w.tabIndex = 0; w.setAttribute('role', 'button'); }
-  else if (scope !== 'live') { w.tabIndex = 0; w.setAttribute('role', 'button'); }
+  else if (scope !== 'live' || state.done) { w.tabIndex = 0; w.setAttribute('role', 'button'); }
   const c = buildCore(t.core, t.fx, t.v, t.n, seedFor(scope, i));
   const sel = state.sel && state.sel.scope === scope && state.sel.i === i;
   if (sel) { w.classList.add('sel'); if (t.fx) paint(c, boosted(t.n)); }
@@ -876,8 +891,8 @@ function wordEl(t, i, scope, caretAt = -1) {
   w.append(...parts.filter(x => x !== ''));
   return w;
 }
-function enter(w, delay = 0) {
-  if (reduced()) return;
+function enter(w, delay = 0, force = false) {
+  if (reduced() && !force) return;
   const c = w.querySelector('.fx[data-fx]');
   if (!c) return;
   const opts = { duration: 720, delay, easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'backwards' };
@@ -997,8 +1012,6 @@ function setDone(done) {
   src.readOnly = done;
   $('composer').classList.toggle('done', done);
   $('mine-head').hidden = !done;
-  $('done-help').hidden = !done;
-  $('write-label').hidden = done;
   $('write-actions').hidden = done;
   $('status').textContent = '';
   closeSheet(true);
@@ -1011,7 +1024,7 @@ src.addEventListener('focus', renderLive);
 src.addEventListener('blur', renderLive);
 document.addEventListener('selectionchange', () => { if (document.activeElement === src) renderLive(); });
 $('composer').addEventListener('click', e => {
-  const w = e.target.closest('.w.felt-word');
+  const w = e.target.closest(state.done ? '.w' : '.w.felt-word');
   if (w && (src.value || state.done)) { openSheet('live', +w.dataset.i); return; }
   if (state.done) return;
   src.focus();
@@ -1059,6 +1072,7 @@ function rerender(scope) {
 }
 function commit(scope, t) {
   if (scope === 'live') overrides[t.core.toLowerCase()] = { fx: t.fx, v: t.v, n: t.n };
+  else PASSAGES.find(p => p.id === scope).edited = true;
   rerender(scope);
 }
 function openSheet(scope, i) {
@@ -1137,7 +1151,7 @@ $('books').addEventListener('click', e => {
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') { closeSheet(); return; }
   const w = e.target.closest && e.target.closest('.w');
-  if (w && (e.key === 'Enter' || e.key === ' ') && (w.dataset.scope !== 'live' || w.classList.contains('felt-word'))) {
+  if (w && (e.key === 'Enter' || e.key === ' ') && (w.dataset.scope !== 'live' || state.done || w.classList.contains('felt-word'))) {
     e.preventDefault(); openSheet(w.dataset.scope, +w.dataset.i);
   }
 });
@@ -1329,8 +1343,6 @@ function makePNG(root, caption) {
 
 // GIF: step the page's own animations frame by frame, draw each still, and encode.
 // Everything is ink on paper, so the palette is a 128-step ramp between the two.
-const MOTION = '.anim, .breathe, .beat, .quake, .flick, .dim, .drip';
-const moves = root => !reduced() && !!root.querySelector(MOTION);
 function gifWriter(w, h, palette, delayCs) {
   const parts = [];
   let buf = [];
@@ -1380,18 +1392,23 @@ function gifWriter(w, h, palette, delayCs) {
 }
 const rgbOf = s => (s.match(/[\d.]+/g) || [0, 0, 0]).slice(0, 3).map(Number);
 async function makeGIF(root, caption, progress) {
-  const FRAMES = 48, STEP = 60;
+  const FRAMES = 60, STEP = 60;
+  root.getAnimations({ subtree: true }).forEach(a => { if (!(a instanceof CSSAnimation)) a.finish(); });
+  const words = [...root.querySelectorAll('.felt-word')];
+  const gap = Math.min(110, 1100 / Math.max(1, words.length));
+  words.forEach((w, k) => enter(w, 150 + k * gap, true));
   const anims = root.getAnimations({ subtree: true });
-  anims.forEach(a => { if (a instanceof CSSAnimation) a.pause(); else a.finish(); });
-  const start = anims.map(a => +a.currentTime || 0);
+  anims.forEach(a => a.pause());
+  const css = a => a instanceof CSSAnimation;
+  const start = anims.map(a => (css(a) ? +a.currentTime || 0 : 0));
   const snaps = [];
   try {
     for (let f = 0; f < FRAMES; f++) {
-      anims.forEach((a, k) => { if (a instanceof CSSAnimation) a.currentTime = start[k] + f * STEP; });
+      anims.forEach((a, k) => { a.currentTime = start[k] + f * STEP; });
       snaps.push(snapshot(root));
     }
   } finally {
-    anims.forEach((a, k) => { if (a instanceof CSSAnimation) { a.currentTime = start[k]; try { a.play(); } catch (e) {} } });
+    anims.forEach((a, k) => { if (css(a)) { a.currentTime = start[k]; try { a.play(); } catch (e) {} } else a.finish(); });
   }
   const box = snaps.reduce((u, s) => ({ x0: Math.min(u.x0, s.box.x0), y0: Math.min(u.y0, s.box.y0), x1: Math.max(u.x1, s.box.x1), y1: Math.max(u.y1, s.box.y1) }), { ...snaps[0].box });
   const { W, H } = sizeFor(box);
@@ -1435,11 +1452,12 @@ async function saveBlob(blob, filename) {
   return 'Saved.';
 }
 function syncGifButtons() {
-  document.querySelectorAll('[data-format="gif"]').forEach(b => {
-    const id = b.dataset.export;
-    const root = id === 'live' ? $('live') : PASSAGES.find(p => p.id === id).el;
-    if (root) b.hidden = !moves(root);
-  });
+  for (const p of PASSAGES) {
+    const end = p.el && p.el.parentElement.querySelector('.source .end');
+    if (end) end.hidden = !p.edited;
+  }
+  const gif = document.querySelector('[data-export="live"][data-format="gif"]');
+  if (gif) gif.hidden = !$('live').querySelector('.fx[data-fx]');
 }
 let exporting = false;
 document.addEventListener('click', async e => {
@@ -1467,6 +1485,12 @@ document.addEventListener('click', async e => {
   exporting = false;
   setTimeout(() => { b.textContent = label; }, 2200);
 });
+
+// ---------- the felt mark fizzes ----------
+if (!reduced()) {
+  const turb = ['fibres', 'hair', 'grain'].map(r => document.querySelector(`#felt feTurbulence[result="${r}"]`));
+  setInterval(() => { if (!document.hidden) turb.forEach(t => t.setAttribute('seed', 1 + Math.floor(Math.random() * 400))); }, 120);
+}
 
 // ---------- start ----------
 src.value = store.get('felt-type:draft') || '';
