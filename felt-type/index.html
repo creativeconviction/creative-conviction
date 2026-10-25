@@ -95,9 +95,23 @@ button:focus-visible, .w:focus-visible { outline: 2px solid var(--ink); outline-
 .status { color: var(--mute); }
 
 /* passages */
-.books { margin-top: clamp(110px, 18vh, 200px); display: grid; gap: clamp(72px, 12vh, 130px); }
-.books-head { margin-bottom: calc(-1 * clamp(44px, 9vh, 100px)); }
-.books-head h2 { margin: 0; font: inherit; color: var(--ink); }
+.books { margin-top: clamp(100px, 16vh, 180px); }
+.books > h2, .saves > h2 { margin: 0 0 16px; font: inherit; color: var(--ink); }
+.book-list { display: grid; gap: clamp(72px, 12vh, 130px); }
+.lede { margin: 12px 0 0; color: var(--mute); max-width: 56ch; }
+
+/* your saves */
+.saves { margin-top: clamp(90px, 14vh, 150px); }
+.saves-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 22px 16px; }
+.save { margin: 0; display: grid; gap: 8px; min-width: 0; }
+.save-open { display: block; border: 1px solid var(--faint); border-radius: 2px; background: var(--paper); }
+.save-open:hover { border-color: var(--ink); }
+.save img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: contain; }
+.save figcaption { display: grid; gap: 2px; min-width: 0; }
+.save .cap { color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.save .meta { color: var(--mute); }
+.save-acts { display: flex; gap: 16px; margin-top: 4px; }
+.picked { background: var(--faint); }
 .passage { display: grid; gap: 22px; }
 .source { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; padding-top: 14px; border-top: 1px solid var(--ink); }
 .source h3 { margin: 0; font: 650 clamp(17px, 1.6vw, 21px)/1.25 var(--display); letter-spacing: -0.005em; text-wrap: balance; }
@@ -162,6 +176,12 @@ button:focus-visible, .w:focus-visible { outline: 2px solid var(--ink); outline-
   100% { transform: none; opacity: 1; }
 }
 @keyframes blink { 50% { opacity: 0; } }
+@keyframes spinY { to { transform: rotateY(-360deg); } }
+@keyframes spinZ { to { transform: rotate(360deg); } }
+.globe { transform-style: preserve-3d; isolation: auto; }
+.globe .l { position: absolute; left: 50%; top: 0; transform-origin: 0 0; backface-visibility: hidden; }
+.orbit { vertical-align: middle; }
+.orbit .l { position: absolute; left: 50%; top: 50%; transform-origin: 0 0; line-height: 1; }
 @media (prefers-reduced-motion: no-preference) {
   .anim .l { animation: swing var(--d, 1s) var(--ease, ease-in-out) var(--dl, 0s) infinite alternate; }
   .breathe { animation: breathe 2.6s ease-in-out infinite alternate; }
@@ -171,6 +191,8 @@ button:focus-visible, .w:focus-visible { outline: 2px solid var(--ink); outline-
   .dim { animation: dim 2.4s ease-in-out infinite alternate; }
   .drip .l { animation: drip var(--d, 3s) ease-in var(--dl, 0s) infinite; }
   .caret { animation: blink 1s steps(1) infinite; }
+  .globe { animation: spinY var(--d, 8s) linear infinite; }
+  .orbit { animation: spinZ var(--d, 12s) linear infinite; }
 }
 @media (prefers-reduced-motion: reduce) {
   .fx, .l { transition: none; }
@@ -228,6 +250,7 @@ button:focus-visible, .w:focus-visible { outline: 2px solid var(--ink); outline-
 <div class="page">
   <header>
     <h1 class="felt">Felt Type</h1>
+    <p class="lede">Not all of us can make words mean things. Type something perfectly ordinary and the letters will overreact on your behalf.</p>
   </header>
 
   <section class="write" aria-label="Your writing">
@@ -252,10 +275,14 @@ button:focus-visible, .w:focus-visible { outline: 2px solid var(--ink); outline-
     <p class="status" id="status" role="status"></p>
   </section>
 
+  <section class="saves" id="saves" hidden aria-labelledby="saves-h">
+    <h2 id="saves-h">Your saves</h2>
+    <div class="saves-grid" id="saves-grid"></div>
+  </section>
+
   <main class="books" id="books">
-    <div class="books-head">
-      <h2>From the books</h2>
-    </div>
+    <h2>From the books</h2>
+    <div class="book-list" id="book-list"></div>
   </main>
 </div>
 
@@ -290,7 +317,7 @@ const PASSAGES = [
   { id: 'dickinson', book: '“Hope” is the thing with feathers', author: 'Emily Dickinson', year: 1891,
     text: '“{Hope|rise|2}” is the thing with {feathers|break|1} –\nThat perches in the soul –\nAnd sings the {tune|flow|2} without the {words|empty|2} –\nAnd {never stops|echo.1|2} – {at all|shrink|3} –' },
   { id: 'moby-dick', book: 'Moby-Dick', author: 'Herman Melville', year: 1851,
-    text: 'Call me Ishmael. Some years ago—never mind how {long|long|3} precisely—having {little|shrink|2} or no money in my purse, and {nothing|fade|2} particular to interest me on shore, I thought I would sail about a little and see the {watery|flow|2} part of the {world|open|2}.' },
+    text: 'Call me Ishmael. Some years ago—never mind how {long|long|3} precisely—having {little|shrink|2} or no money in my purse, and {nothing|fade|2} particular to interest me on shore, I thought I would sail about a little and see the {watery|flow|2} part of the {world|spin|2}.' },
   { id: 'curiouser', book: 'Alice’s Adventures in Wonderland', author: 'Lewis Carroll', year: 1865,
     text: '“{Curiouser|grow.1|1} and {curiouser|grow.1|2}!” cried Alice (she was so much surprised, that for the moment she quite forgot how to speak good English); “now I’m {opening out|long|3} like the {largest|grow|3} telescope that ever was! Good-bye, {feet|shrink.3|3}!”' },
   { id: 'ulysses', book: 'Ulysses', author: 'James Joyce', year: 1922,
@@ -740,6 +767,29 @@ const FEEL = {
       });
     }],
   ],
+  spin: [
+    ['globe', (c, L, n) => {
+      // Letters wrapped round a turning globe: readable on the near side, gone on the far side.
+      // The word goes round twice, so one copy always faces you.
+      c.classList.add('globe');
+      const ring = [...L, null];
+      L.forEach(l => { const s = extra(c, el('span', 'l')); s.textContent = l.textContent; ring.push(s); });
+      ring.push(null);
+      const R = (ring.length * 0.6) / (2 * Math.PI);
+      const step = (2 * Math.PI) / ring.length;
+      c.style.width = `${2 * R}em`;
+      c.style.setProperty('--d', `${Math.max(3, 14 - 2.6 * n)}s`);
+      ring.forEach((s, k) => { if (s) s.style.transform = `rotateY(${(k - (L.length - 1) / 2) * step}rad) translateZ(${R}em) translateX(-50%)`; });
+      extra(c, el('span')).textContent = '\u200b';
+    }],
+    ['orbit', (c, L, n) => {
+      c.classList.add('orbit');
+      const R = Math.max(0.75, (L.length * 0.62) / (2 * Math.PI));
+      c.style.width = c.style.height = `${2 * R + 1}em`;
+      c.style.setProperty('--d', `${Math.max(3, 16 - 3 * n)}s`);
+      L.forEach((s, i) => { s.style.transform = `rotate(${(i / L.length) * 360}deg) translateY(${-R - 0.5}em) translateX(-50%)`; });
+    }],
+  ],
 };
 const FEELINGS = Object.keys(FEEL);
 
@@ -753,7 +803,9 @@ const LEXICON = {
   'grow': 'grow grew growing big bigger large huge vast loud louder great greater giant swell everything more most enormous bloom whole',
   'shrink': 'small smaller little tiny shrink less least fewer diminish quiet quieter shy humble',
   'squeeze': 'tight press pressed pressure compress crowd crowded narrow trap trapped squeeze cramped tense stress stuck choke anxious anxiety',
-  'open': 'wide open opened opening universal free freedom space world earth universe everywhere possible explore',
+  'open': 'wide open opened opening universal free freedom space everywhere possible explore',
+  'spin': 'world worlds earth globe planet universe',
+  'spin.1': 'spin spinning orbit revolve wheel circle round around',
   'long': 'long longer longing endless forever stretch slow slowly waiting ago eternal eternity patience',
   'break': 'scatter scattered break broke broken shatter shattered crack cracked chaos mad madness wild foolish crazy mess explode',
   'tremble': 'tremble trembling shake shook shiver fear afraid scared fright terror panic nervous convulsive cold freezing',
@@ -773,7 +825,7 @@ const LEXICON = {
   'rain': 'rain raining drip tears cry cried crying weep wept storm',
   'harsh': 'harsh sharp anger angry rage hate pain scream shout cruel fight war',
   'against': 'against resist push lean wind struggle',
-  'twist': 'twist turn turned spin spiral dizzy confused think thinking thought mind strange',
+  'twist': 'twist turn turned spiral dizzy confused think thinking thought mind strange',
   'pull': 'magnet attract pull drawn want wanted desire need crave',
   'empty': 'empty hollow absence void words nothing nobody none missing',
 };
@@ -912,12 +964,12 @@ function renderPassage(p) {
   syncGifButtons();
 }
 function buildBooks() {
-  const books = $('books');
+  const books = $('book-list');
   for (const p of PASSAGES) {
     const a = el('article', 'passage'); a.id = p.id;
     const src = el('header', 'source');
     const h = el('h3'); h.textContent = p.book;
-    const by = el('p'); by.textContent = `${p.author} · ${p.year}`;
+    const by = el('p'); by.textContent = `${p.author}, ${p.year}`;
     const end = el('span', 'end');
     for (const f of ['png', 'gif']) {
       const ex = el('button', 'link'); ex.textContent = `Export ${f.toUpperCase()}`;
@@ -970,10 +1022,11 @@ function renderLive() {
   // An empty box shows its own invitation, already moving.
   const showing = text || focused ? text : PLACEHOLDER;
   state.live = parseLive(showing);
-  const p = focused ? src.selectionEnd : -1;
+  const a = focused ? src.selectionStart : -1, p = focused ? src.selectionEnd : -1;
+  const ranged = focused && a !== p;
   const nodes = [], counts = {}, fresh = [];
   const next = new Map();
-  let placed = !focused;
+  let placed = !focused || ranged;
   state.live.forEach((t, i) => {
     if (!placed && p <= t.s) { nodes.push(caret); placed = true; }
     const inside = !placed && p > t.s && p < t.e;
@@ -992,6 +1045,7 @@ function renderLive() {
         if (t.type === 'word' && t.fx && state.liveDrawn) fresh.push(node);
       }
       if (node.dataset) node.dataset.i = i;
+      if (node.classList) node.classList.toggle('picked', ranged && t.s < p && t.e > a);
       next.set(key, node);
     }
     nodes.push(node);
@@ -1023,12 +1077,25 @@ src.addEventListener('input', () => { store.set('felt-type:draft', src.value); r
 src.addEventListener('focus', renderLive);
 src.addEventListener('blur', renderLive);
 document.addEventListener('selectionchange', () => { if (document.activeElement === src) renderLive(); });
+// Highlighting words with the mouse selects them in your text, ready to delete or type over.
+$('composer').addEventListener('mouseup', () => {
+  const sel = getSelection();
+  if (state.done || sel.isCollapsed || !$('live').contains(sel.anchorNode)) return;
+  const toks = [...$('live').querySelectorAll('.w')].filter(w => sel.containsNode(w, true)).map(w => state.live[+w.dataset.i]);
+  if (!toks.length) return;
+  sel.removeAllRanges();
+  src.focus();
+  src.setSelectionRange(Math.min(...toks.map(t => t.s)), Math.max(...toks.map(t => t.e)));
+  state.dragged = true;
+  renderLive();
+});
 $('composer').addEventListener('click', e => {
+  if (state.dragged) { state.dragged = false; return; }
   const w = e.target.closest(state.done ? '.w' : '.w.felt-word');
   if (w && (src.value || state.done)) { openSheet('live', +w.dataset.i); return; }
   if (state.done) return;
   src.focus();
-  if (!e.target.closest('.w')) src.setSelectionRange(src.value.length, src.value.length);
+  if (!e.target.closest('.w') || src.selectionStart !== src.selectionEnd) src.setSelectionRange(src.value.length, src.value.length);
   renderLive();
 });
 $('try').addEventListener('click', e => {
@@ -1256,16 +1323,19 @@ function paintSnap(ctx, root, snap, box, scale, caption) {
   ctx.fillStyle = page.backgroundColor; ctx.fillRect(0, 0, W, H);
   ctx.translate(PAD - box.x0, PAD - box.y0);
 
-  const applyT = e => {
+  const matOf = e => {
     const { m, ox, oy, r } = info.get(e);
     const X = r.left + ox, Y = r.top + oy;
-    ctx.translate(X, Y); ctx.transform(m.a, m.b, m.c, m.d, m.e, m.f); ctx.translate(-X, -Y);
+    return new DOMMatrix().translate(X, Y).multiply(m).translate(-X, -Y);
   };
   const chain = (e, fn) => {
-    ctx.save();
+    let M = new DOMMatrix();
     const fx = e.closest('.fx[data-fx]');
-    if (fx && fx !== e && info.has(fx)) applyT(fx);
-    if (info.has(e)) applyT(e);
+    if (fx && fx !== e && info.has(fx)) M = M.multiply(matOf(fx));
+    if (info.has(e)) M = M.multiply(matOf(e));
+    if (M.m33 < 0 && e.closest('.globe')) return;
+    ctx.save();
+    ctx.transform(M.a, M.b, M.c, M.d, M.e, M.f);
     fn();
     ctx.restore();
   };
@@ -1338,7 +1408,7 @@ function makePNG(root, caption) {
   const canvas = document.createElement('canvas');
   canvas.width = W * scale; canvas.height = H * scale;
   paintSnap(canvas.getContext('2d'), root, snap, snap.box, scale, caption);
-  return new Promise(res => canvas.toBlob(res, 'image/png'));
+  return new Promise(res => canvas.toBlob(blob => res({ blob, canvas }), 'image/png'));
 }
 
 // GIF: step the page's own animations frame by frame, draw each still, and encode.
@@ -1435,7 +1505,7 @@ async function makeGIF(root, caption, progress) {
     progress(Math.round(((f + 1) / FRAMES) * 100));
     await new Promise(r => setTimeout(r, 0));
   }
-  return gif.end();
+  return { blob: gif.end(), canvas };
 }
 
 const downloadsReady = window.claude?.use ? window.claude.use('downloads').catch(() => null) : Promise.resolve(undefined);
@@ -1475,8 +1545,14 @@ document.addEventListener('click', async e => {
   $('status').textContent = '';
   try {
     await document.fonts.ready;
-    const blob = gif ? await makeGIF(root, caption, n => { b.textContent = `Making GIF… ${n}%`; }) : await makePNG(root, caption);
+    const { blob, canvas } = gif ? await makeGIF(root, caption, n => { b.textContent = `Making GIF… ${n}%`; }) : await makePNG(root, caption);
     const msg = await saveBlob(blob, `felt-type-${id === 'live' ? 'my-writing' : id}.${gif ? 'gif' : 'png'}`);
+    if (msg === 'Saved.') recordSave({
+      scope: id, format: gif ? 'gif' : 'png', caption, at: Date.now(), thumb: thumbOf(canvas),
+      ...(id === 'live'
+        ? { text: src.value, overrides: { ...overrides } }
+        : { feelings: p.tokens.map((t, i) => (t.type === 'word' ? [i, t.fx, t.v, t.n] : null)).filter(Boolean) }),
+    });
     b.textContent = msg === 'Saved.' ? 'Saved' : msg ? 'Not saved' : label;
     if (msg && msg !== 'Saved.') b.title = msg;
   } catch (err) {
@@ -1484,6 +1560,92 @@ document.addEventListener('click', async e => {
   }
   exporting = false;
   setTimeout(() => { b.textContent = label; }, 2200);
+});
+
+// ---------- your saves ----------
+// Kept privately for each signed-in person; in a plain browser, in this browser only.
+const SAVES_KEY = 'felt-type:saves';
+const savesReady = (async () => {
+  if (!window.claude?.use) return null;
+  try {
+    const [db, user] = await Promise.all([window.claude.use('db'), window.claude.use('user')]);
+    const me = user ? await user.id() : null;
+    return db && me ? db.collection(`data/users/${me}/saves`) : null;
+  } catch (e) { return null; }
+})();
+let savesList = [];
+const localSaves = () => { try { return JSON.parse(localStorage.getItem(SAVES_KEY) || '[]'); } catch (e) { return []; } };
+const keepLocal = () => { try { localStorage.setItem(SAVES_KEY, JSON.stringify(savesList.slice(0, 40))); } catch (e) {} };
+function thumbOf(canvas) {
+  const w = 400, h = Math.round((canvas.height * w) / canvas.width);
+  const t = document.createElement('canvas'); t.width = w; t.height = h;
+  t.getContext('2d').drawImage(canvas, 0, 0, w, h);
+  return t.toDataURL('image/jpeg', 0.78);
+}
+async function startSaves() {
+  const col = await savesReady;
+  if (col) col.orderBy('at', 'desc').limit(60).onSnapshot(snap => { savesList = snap.docs.map(d => ({ id: d.id, ...d.data() })); drawSaves(); }, () => {});
+  else { savesList = localSaves(); drawSaves(); }
+}
+async function recordSave(entry) {
+  const col = await savesReady;
+  if (col) { try { await col.add(entry); } catch (e) {} return; }
+  savesList = [{ id: 'l' + Date.now(), ...entry }, ...savesList];
+  keepLocal(); drawSaves();
+}
+async function forgetSave(id) {
+  const col = await savesReady;
+  if (col) { try { await col.doc(id).delete(); } catch (e) {} return; }
+  savesList = savesList.filter(x => x.id !== id);
+  keepLocal(); drawSaves();
+}
+function openSave(s) {
+  if (s.scope === 'live') {
+    src.value = s.text || '';
+    store.set('felt-type:draft', src.value);
+    for (const k in overrides) delete overrides[k];
+    Object.assign(overrides, s.overrides || {});
+    setDone(true);
+    $('composer').scrollIntoView({ block: 'center', behavior: 'smooth' });
+    return;
+  }
+  const p = PASSAGES.find(x => x.id === s.scope);
+  if (!p) return;
+  for (const [i, fx, v, n] of s.feelings || []) {
+    const t = p.tokens[i];
+    if (t && t.type === 'word') { t.fx = fx; t.v = v; t.n = n; }
+  }
+  p.edited = true;
+  renderPassage(p);
+  document.getElementById(p.id).scrollIntoView({ block: 'start', behavior: 'smooth' });
+}
+const DATE = new Intl.DateTimeFormat(undefined, { day: 'numeric', month: 'short', year: 'numeric' });
+function drawSaves() {
+  $('saves').hidden = !savesList.length;
+  $('saves-grid').replaceChildren(...savesList.map(s => {
+    const fig = el('figure', 'save');
+    const open = el('button', 'save-open'); open.dataset.open = s.id;
+    const img = el('img'); img.src = s.thumb; img.alt = `${s.caption}, saved as ${s.format}`;
+    open.append(img);
+    const cap = el('figcaption');
+    const name = el('span', 'cap'); name.textContent = s.caption;
+    const meta = el('span', 'meta'); meta.textContent = `${(s.format || '').toUpperCase()} · ${DATE.format(new Date(s.at))}`;
+    const acts = el('span', 'save-acts');
+    const reopen = el('button', 'link'); reopen.textContent = 'Open'; reopen.dataset.open = s.id;
+    const del = el('button', 'link'); del.textContent = 'Delete'; del.dataset.forget = s.id;
+    acts.append(reopen, del);
+    cap.append(name, meta, acts);
+    fig.append(open, cap);
+    return fig;
+  }));
+}
+$('saves-grid').addEventListener('click', e => {
+  const o = e.target.closest('[data-open]');
+  if (o) { const s = savesList.find(x => x.id === o.dataset.open); if (s) openSave(s); return; }
+  const d = e.target.closest('[data-forget]');
+  if (!d) return;
+  if (d.dataset.sure) forgetSave(d.dataset.forget);
+  else { d.dataset.sure = '1'; d.textContent = 'Delete for good?'; setTimeout(() => { if (d.isConnected) { delete d.dataset.sure; d.textContent = 'Delete'; } }, 3000); }
 });
 
 // ---------- the felt mark fizzes ----------
@@ -1496,5 +1658,6 @@ if (!reduced()) {
 src.value = store.get('felt-type:draft') || '';
 buildBooks();
 renderLive();
+startSaves();
 if (location.hash) document.getElementById(location.hash.slice(1))?.scrollIntoView();
 </script>
