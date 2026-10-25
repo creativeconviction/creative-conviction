@@ -1,0 +1,1670 @@
+<title>Felt Type</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: felt mark top left, a writing box that becomes your piece, then the passages stacked below, each with its source. */
+:root {
+  --paper: #ffffff;
+  --ink: #0b0b0c;
+  --mute: #75747a;
+  --faint: #dcdbe0;
+  --panel: #ffffff;
+  --display: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --type: 'American Typewriter', 'Courier Prime', 'Courier New', monospace;
+  --soft: cubic-bezier(.2, .8, .2, 1);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0d0d0e; --ink: #f0efeb; --mute: #918f96; --faint: #2b2a2e; --panel: #141416;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0d0d0e; --ink: #f0efeb; --mute: #918f96; --faint: #2b2a2e; --panel: #141416;
+  color-scheme: dark;
+}
+
+[hidden] { display: none !important; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font: 13px/1.5 var(--type);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.piece, .sheet-word, .source h3 { text-transform: none; }
+button { font: inherit; letter-spacing: inherit; text-transform: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+button:focus-visible, .w:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+.page {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 24px 140px;
+  overflow-x: clip;
+}
+
+/* felt mark */
+.felt {
+  font-family: var(--display);
+  font-weight: 800;
+  font-stretch: 112%;
+  font-size: clamp(30px, 3.4vw, 42px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  margin: 0;
+  filter: url(#felt);
+}
+
+.label { color: var(--mute); margin: 0; }
+.btn { border: 1px solid var(--ink); border-radius: 2px; padding: 9px 16px; }
+.btn.solid { background: var(--ink); color: var(--paper); }
+.btn:hover { background: var(--ink); color: var(--paper); }
+.btn.solid:hover { opacity: 0.85; }
+.link { color: var(--mute); }
+.link:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+
+/* writing */
+.write { margin-top: clamp(56px, 10vh, 110px); display: grid; gap: 14px; }
+.composer {
+  position: relative;
+  cursor: text;
+  min-height: 5.2em;
+  padding: 18px 22px 26px;
+  border: 1px solid var(--faint);
+  border-radius: 2px;
+  transition: border-color .2s;
+}
+.composer:hover { border-color: var(--mute); }
+.composer.focused { border-color: var(--ink); }
+.composer .piece { font-size: clamp(26px, 3.8vw, 50px); max-width: none; }
+.composer.done { border-color: transparent; padding: 0; cursor: default; min-height: 0; }
+.ghost-input {
+  position: absolute; left: 0; top: 0; width: 1px; height: 1px;
+  opacity: 0; resize: none; border: 0; padding: 0; font-size: 16px; pointer-events: none;
+}
+.placeholder { color: var(--mute); }
+.caret { display: inline-block; width: 2px; height: 0.95em; background: var(--ink); vertical-align: -0.14em; margin: 0 1px; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px; }
+.try { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; color: var(--mute); }
+.try button:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+.status { color: var(--mute); }
+
+/* passages */
+.books { margin-top: clamp(100px, 16vh, 180px); }
+.books > h2, .saves > h2 { margin: 0 0 16px; font: inherit; color: var(--ink); }
+.book-list { display: grid; gap: clamp(72px, 12vh, 130px); }
+.lede { margin: 12px 0 0; color: var(--mute); text-transform: none; letter-spacing: 0; font-size: 15px; }
+
+/* your saves */
+.saves { margin-top: clamp(90px, 14vh, 150px); }
+.saves-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 22px 16px; }
+.save { margin: 0; display: grid; gap: 8px; min-width: 0; }
+.save-open { display: block; border: 1px solid var(--faint); border-radius: 2px; background: var(--paper); }
+.save-open:hover { border-color: var(--ink); }
+.save img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: contain; }
+.save figcaption { display: grid; gap: 2px; min-width: 0; }
+.save .cap { color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.save .meta { color: var(--mute); }
+.save-acts { display: flex; gap: 16px; margin-top: 4px; }
+.picked { background: var(--faint); }
+.passage { display: grid; gap: 22px; }
+.source { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; padding-top: 14px; border-top: 0.5px solid var(--mute); }
+#mine-head { border-top: 0; padding-top: 0; }
+.source h3 { margin: 0; font: 650 clamp(17px, 1.6vw, 21px)/1.25 var(--display); letter-spacing: -0.005em; text-wrap: balance; }
+.source p { margin: 0; color: var(--mute); }
+.source .end { margin-left: auto; display: flex; gap: 18px; }
+
+.piece {
+  font-family: var(--display);
+  font-size: clamp(23px, 3.3vw, 42px);
+  line-height: 1.6;
+  letter-spacing: -0.012em;
+  font-weight: 400;
+  max-width: 22em;
+  min-width: 0;
+}
+
+.w { cursor: pointer; border-radius: 2px; }
+.w.felt-word:hover, .w.sel { outline: 1px dashed var(--faint); outline-offset: 0.14em; }
+.passage .w:not(.felt-word):hover .fx, .composer.done .w:not(.felt-word):hover .fx { text-decoration: underline dotted var(--faint); text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
+.composer .w:not(.felt-word) { cursor: text; }
+.composer.done .w:not(.felt-word) { cursor: pointer; }
+
+.fx, .l {
+  transition: transform .6s var(--soft), font-size .6s var(--soft), letter-spacing .6s var(--soft),
+    margin .6s var(--soft), opacity .6s var(--soft), font-weight .6s var(--soft), font-stretch .6s var(--soft);
+}
+.fx { display: inline-block; position: relative; white-space: nowrap; isolation: isolate; }
+.l { display: inline-block; white-space: pre; transform-origin: 50% 70%; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+.hollow { color: transparent; -webkit-text-stroke: max(1px, 0.024em) var(--ink); font-weight: 700; }
+.dark { background: var(--ink); color: var(--paper); padding: 0 0.2em 0.04em; font-weight: 800; }
+.extrude { color: var(--paper); -webkit-text-stroke: max(1px, 0.022em) var(--ink); font-weight: 800; }
+.stack { display: inline-flex; flex-direction: column; align-items: center; vertical-align: text-top; }
+.knock { position: relative; z-index: 1; -webkit-text-stroke: 0.09em var(--paper); paint-order: stroke fill; }
+.echo { position: absolute; left: 0; top: 0; z-index: -1; white-space: pre; pointer-events: none; color: transparent; -webkit-text-stroke: max(1px, 0.02em) var(--ink); }
+.echo.solid { color: var(--ink); -webkit-text-stroke: 0; }
+.half { position: absolute; left: 0; top: 0; white-space: pre; pointer-events: none; clip-path: inset(50% -0.2em -0.6em -0.2em); }
+.ray { position: absolute; bottom: calc(100% + 0.08em); width: max(1px, 0.03em); background: var(--ink); transform-origin: 50% 100%; }
+.tail { display: inline-block; height: max(1px, 0.04em); background: var(--ink); vertical-align: 0.3em; margin-left: 0.1em; }
+
+/* export reads the untransformed layout for a moment */
+.measuring .fx, .measuring .l, .measuring .echo, .measuring .half, .measuring .ray, .measuring .tail,
+.notrans .fx, .notrans .l { transition: none !important; }
+.measuring .fx, .measuring .l, .measuring .echo, .measuring .half, .measuring .ray, .measuring .tail { transform: none !important; }
+
+/* motion: a still resting pose first, movement only when allowed */
+.anim .l { transform: var(--ts, var(--t0)); }
+@keyframes swing { from { transform: var(--t0); } to { transform: var(--t1); } }
+@keyframes breathe { from { transform: scale(1); } to { transform: scale(var(--s, 1.12)); } }
+@keyframes beat { 0%, 45%, 100% { transform: scale(1); } 10%, 30% { transform: scale(var(--s, 1.15)); } 20% { transform: scale(1.02); } }
+@keyframes quake {
+  0%, 100% { transform: translate(0, 0); } 25% { transform: translate(calc(var(--q) * -1), var(--q)); }
+  50% { transform: translate(var(--q), 0); } 75% { transform: translate(0, calc(var(--q) * -1)); }
+}
+@keyframes flicker { 0%, 40%, 44%, 69%, 74%, 100% { opacity: 1; } 42% { opacity: 0.12; } 71% { opacity: 0.3; } }
+@keyframes dim { from { opacity: 1; } to { opacity: var(--o, 0.25); } }
+@keyframes drip {
+  0%, 55% { transform: none; opacity: 1; }
+  80% { transform: translateY(var(--y, 0.5em)); opacity: 0; }
+  81% { transform: translateY(-0.3em); opacity: 0; }
+  100% { transform: none; opacity: 1; }
+}
+@keyframes blink { 50% { opacity: 0; } }
+@keyframes spinY { to { transform: rotateY(-360deg); } }
+@keyframes spinZ { to { transform: rotate(360deg); } }
+.globe { transform-style: preserve-3d; isolation: auto; }
+.globe .l { position: absolute; left: 50%; top: 0; transform-origin: 0 0; backface-visibility: hidden; }
+.orbit { vertical-align: middle; }
+.orbit .l { position: absolute; left: 50%; top: 50%; transform-origin: 0 0; line-height: 1; }
+@media (prefers-reduced-motion: no-preference) {
+  .anim .l { animation: swing var(--d, 1s) var(--ease, ease-in-out) var(--dl, 0s) infinite alternate; }
+  .breathe { animation: breathe 2.6s ease-in-out infinite alternate; }
+  .beat { animation: beat 1.3s ease-out infinite; }
+  .quake { animation: quake 0.28s steps(4) infinite; }
+  .flick .l { animation: flicker var(--d, 2s) linear var(--dl, 0s) infinite; }
+  .dim { animation: dim 2.4s ease-in-out infinite alternate; }
+  .drip .l { animation: drip var(--d, 3s) ease-in var(--dl, 0s) infinite; }
+  .caret { animation: blink 1s steps(1) infinite; }
+  .globe { animation: spinY var(--d, 8s) linear infinite; }
+  .orbit { animation: spinZ var(--d, 12s) linear infinite; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fx, .l { transition: none; }
+}
+
+/* choosing another way of the same feeling */
+.sheet {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  background: var(--panel);
+  border-top: 1px solid var(--ink);
+  max-height: 52vh; overflow-y: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-top: 14px;
+  padding-bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+}
+.sheet-head { display: flex; flex-wrap: wrap; gap: 10px 22px; align-items: baseline; margin-bottom: 14px; }
+.sheet-word { font: 700 22px var(--display); letter-spacing: 0; }
+.sheet-feel { color: var(--mute); margin-right: auto; }
+.chips { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+.chip {
+  display: grid; grid-template-rows: 1fr auto; place-items: center;
+  height: 112px; overflow: hidden;
+  border: 1px solid var(--faint); border-radius: 2px; padding: 6px 4px;
+}
+.chip:hover { border-color: var(--mute); }
+.chip[aria-pressed="true"] { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+.chip-prev { font: 400 24px/1.3 var(--display); letter-spacing: 0; text-transform: none; max-width: 100%; overflow: hidden; padding-top: 6px; }
+.chip-name { color: var(--mute); font-size: 11px; }
+.feelings { display: flex; flex-wrap: wrap; gap: 10px 20px; }
+.feelings button { font-size: 15px; }
+.feelings button:hover { text-decoration: underline; text-underline-offset: 5px; }
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <filter id="felt" x="-8%" y="-20%" width="116%" height="140%" color-interpolation-filters="sRGB">
+    <!-- soft cut edge -->
+    <feTurbulence type="fractalNoise" baseFrequency="1.6" numOctaves="3" seed="7" result="fibres"/>
+    <feDisplacementMap in="SourceGraphic" in2="fibres" scale="2.6" xChannelSelector="R" yChannelSelector="G" result="fuzz"/>
+    <feGaussianBlur in="fuzz" stdDeviation="0.35" result="soft"/>
+    <!-- stray fibres standing off the edge -->
+    <feTurbulence type="fractalNoise" baseFrequency="3.2" numOctaves="2" seed="4" result="hair"/>
+    <feDisplacementMap in="SourceGraphic" in2="hair" scale="5" xChannelSelector="R" yChannelSelector="G" result="stray"/>
+    <feComponentTransfer in="stray" result="halo"><feFuncA type="linear" slope="0.35"/></feComponentTransfer>
+    <!-- mottled nap across the face -->
+    <feTurbulence type="fractalNoise" baseFrequency="1.3 0.9" numOctaves="3" seed="11" result="grain"/>
+    <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -1.5 0 0 0 0.85" result="mottle"/>
+    <feFlood style="flood-color: var(--paper)" result="paper"/>
+    <feComposite in="paper" in2="mottle" operator="in" result="paperMottle"/>
+    <feComposite in="paperMottle" in2="soft" operator="in" result="nap"/>
+    <feMerge><feMergeNode in="halo"/><feMergeNode in="soft"/><feMergeNode in="nap"/></feMerge>
+  </filter>
+</svg>
+
+<div class="page">
+  <header>
+    <h1 class="felt">Felt Type</h1>
+    <p class="lede">Not all of us can make words mean things.<br>Type something perfectly ordinary and the letters will overreact on your behalf.</p>
+  </header>
+
+  <section class="write" aria-label="Your writing">
+    <div class="source" id="mine-head" hidden>
+      <h3>Your writing</h3>
+      <span class="end">
+        <button class="link" id="edit">Edit</button>
+        <button class="link" data-export="live" data-format="png">Export PNG</button>
+        <button class="link" data-export="live" data-format="gif">Export GIF</button>
+      </span>
+    </div>
+    <div class="composer" id="composer">
+      <textarea id="src" class="ghost-input" spellcheck="false" aria-label="Your writing"></textarea>
+      <div class="piece" id="live"></div>
+    </div>
+    <div class="actions" id="write-actions">
+      <button class="btn solid" id="done">Done</button>
+    </div>
+    <p class="status" id="status" role="status"></p>
+  </section>
+
+  <section class="saves" id="saves" hidden aria-labelledby="saves-h">
+    <h2 id="saves-h">Your saves</h2>
+    <div class="saves-grid" id="saves-grid"></div>
+  </section>
+
+  <main class="books" id="books">
+    <h2>From the books</h2>
+    <div class="book-list" id="book-list"></div>
+  </main>
+</div>
+
+<div class="sheet" id="sheet" hidden role="dialog" aria-label="Choose a way">
+  <div class="sheet-head">
+    <span class="sheet-word" id="sheet-word"></span>
+    <span class="sheet-feel" id="sheet-feel"></span>
+    <button class="link" id="sheet-remove">Remove feeling</button>
+    <button class="link" id="sheet-close">Close</button>
+  </div>
+  <div class="chips" id="chips"></div>
+  <div class="feelings" id="feelings"></div>
+</div>
+
+<script>
+// Passages are public domain. {word|feeling|strength} or {word|feeling.variant|strength}; \n breaks a line.
+const PASSAGES = [
+  { id: 'alice', book: 'Alice’s Adventures in Wonderland', author: 'Lewis Carroll', year: 1865,
+    text: '{Down|fall|1}, {down|fall|2}, {down|fall|3}. Would the {fall|fall.3|2} never come to an {end|alone|2}? “I wonder how many miles I’ve {fallen|fall.1|1} by this time?” she said aloud.' },
+  { id: 'two-cities', book: 'A Tale of Two Cities', author: 'Charles Dickens', year: 1859,
+    text: 'It was the {best|rise|2} of times, it was the {worst|sink|2} of times, it was the age of wisdom, it was the age of {foolishness|break|1}, it was the epoch of belief, it was the epoch of incredulity, it was the season of {Light|light|2}, it was the season of {Darkness|dark|2}, it was the spring of {hope|rise.1|2}, it was the winter of {despair|sink.2|3}, we had {everything|grow|1} before us, we had {nothing|empty|2} before us…' },
+  { id: 'gatsby', book: 'The Great Gatsby', author: 'F. Scott Fitzgerald', year: 1925,
+    text: 'So we {beat|pulse.1|2} on, boats {against|against|2} the {current|flow|2}, borne {back|back|2} {ceaselessly|echo|3} into the {past|fade|3}.' },
+  { id: 'tell-tale', book: 'The Tell-Tale Heart', author: 'Edgar Allan Poe', year: 1843,
+    text: 'Oh God! what could I do? I {foamed|tremble|2}—I {raved|harsh|2}—I swore! … It grew {louder|grow|1}—{louder|grow|2}—{louder|grow|3}! And still the men chatted {pleasantly|flow.1|1}, and smiled.' },
+  { id: 'pride', book: 'Pride and Prejudice', author: 'Jane Austen', year: 1813,
+    text: 'It is a truth {universally|open|2} acknowledged, that a {single|alone|2} man in possession of a good {fortune|heavy|2}, must be in {want|pull|2} of a wife.' },
+  { id: 'frankenstein', book: 'Frankenstein', author: 'Mary Shelley', year: 1818,
+    text: 'It was already one in the morning; the rain {pattered|rain|2} dismally against the panes, and my candle was nearly {burnt out|fade|3}, when, by the {glimmer|flicker|2} of the {half-extinguished|split.1|2} light, I saw the dull yellow eye of the creature {open|open.1|2}; it breathed hard, and a {convulsive|tremble.2|2} motion agitated its limbs.' },
+  { id: 'whitman', book: 'Song of Myself', author: 'Walt Whitman', year: 1892,
+    text: 'Do I {contradict|back|1} myself?\nVery well then I {contradict|back.2|2} myself,\n(I am {large|grow|3}, I contain {multitudes|echo|3}.)' },
+  { id: 'dickinson', book: '“Hope” is the thing with feathers', author: 'Emily Dickinson', year: 1891,
+    text: '“{Hope|rise|2}” is the thing with {feathers|break|1} –\nThat perches in the soul –\nAnd sings the {tune|flow|2} without the {words|empty|2} –\nAnd {never stops|echo.1|2} – {at all|shrink|3} –' },
+  { id: 'moby-dick', book: 'Moby-Dick', author: 'Herman Melville', year: 1851,
+    text: 'Call me Ishmael. Some years ago—never mind how {long|long|3} precisely—having {little|shrink|2} or no money in my purse, and {nothing|fade|2} particular to interest me on shore, I thought I would sail about a little and see the {watery|flow|2} part of the {world|spin|2}.' },
+  { id: 'curiouser', book: 'Alice’s Adventures in Wonderland', author: 'Lewis Carroll', year: 1865,
+    text: '“{Curiouser|grow.1|1} and {curiouser|grow.1|2}!” cried Alice (she was so much surprised, that for the moment she quite forgot how to speak good English); “now I’m {opening out|long|3} like the {largest|grow|3} telescope that ever was! Good-bye, {feet|shrink.3|3}!”' },
+  { id: 'ulysses', book: 'Ulysses', author: 'James Joyce', year: 1922,
+    text: '{Stately|heavy|1}, {plump|grow.2|1} Buck Mulligan came from the stairhead, bearing a bowl of {lather|flow.1|2} on which a {mirror|back|2} and a {razor|harsh|1} lay {crossed|twist|1}. A yellow dressinggown, {ungirdled|open|1}, was sustained {gently|rise.1|2} behind him on the mild morning air.' },
+  { id: 'raven', book: 'The Raven', author: 'Edgar Allan Poe', year: 1845,
+    text: 'And the lamp-light o’er him {streaming|rain.1|2} throws his {shadow|dark.1|2} on the floor;\nAnd my soul from out that shadow that lies {floating|rise.1|2} on the floor\nShall be {lifted|rise.2|2}—{nevermore|echo|3}!' },
+];
+
+
+// ---------- helpers ----------
+const $ = id => document.getElementById(id);
+const el = (tag, cls) => { const e = document.createElement(tag); if (cls) e.className = cls; return e; };
+const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+function rng(seed) {
+  let a = seed >>> 0;
+  return () => { a = (a + 0x6D2B79F5) >>> 0; let t = a; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+}
+const pos = (i, L) => (L.length > 1 ? i / (L.length - 1) : 0);
+const signed = r => (r() < 0.5 ? -1 : 1);
+const extra = (c, node) => { node.dataset.extra = ''; node.setAttribute('aria-hidden', 'true'); c.append(node); return node; };
+const anim = (s, vars) => { for (const k in vars) s.style.setProperty('--' + k, vars[k]); };
+
+// ---------- feelings, each with its own ways of being shown ----------
+// Every variant gets the word wrapper (c), its letters (L), a strength (n, 1–3, more on hover), a seeded random (r).
+const FEEL = {
+  fall: [
+    ['tumble', (c, L, n, r) => {
+      const dir = signed(r);
+      L.forEach((s, i) => {
+        const t = pos(i, L);
+        s.style.transform = `translateY(${Math.pow(t, 1.7) * 0.55 * n}em) rotate(${dir * Math.pow(t, 1.4) * (18 + 14 * r()) * n * 0.6 + (r() - 0.5) * 8 * t}deg)`;
+      });
+      c.style.marginBottom = `${0.55 * n + 0.1}em`;
+    }],
+    ['drop', (c, L, n) => {
+      L.forEach((s, i) => { const t = pos(i, L); s.style.transform = `translateY(${t * t * 0.7 * n}em)`; });
+      c.style.marginBottom = `${0.7 * n}em`;
+    }],
+    ['crumble', (c, L, n, r) => {
+      const k = Math.floor(L.length * (0.35 + r() * 0.3));
+      L.forEach((s, i) => {
+        if (i < k) return;
+        const d = (i - k + 1) / (L.length - k);
+        s.style.transform = `translate(${(r() - 0.3) * 0.25 * n}em, ${(0.2 + d * 0.45) * n}em) rotate(${(r() - 0.5) * 45 * n}deg)`;
+      });
+      c.style.marginBottom = `${0.65 * n}em`;
+    }],
+    ['hang', (c, L, n) => {
+      c.classList.add('stack');
+      c.style.fontWeight = Math.round(400 + 110 * Math.min(n, 3));
+      c.style.lineHeight = 0.62 + 0.12 * n;
+    }],
+  ],
+  rise: [
+    ['ascend', (c, L, n, r) => {
+      c.style.fontWeight = 300;
+      L.forEach((s, i) => { s.style.transform = `translateY(${-Math.pow(pos(i, L), 1.2) * 0.42 * n}em) rotate(${(r() - 0.5) * 10}deg)`; });
+      c.style.marginTop = `${0.42 * n}em`;
+    }],
+    ['float', (c, L, n, r) => {
+      c.classList.add('anim'); c.style.fontWeight = 250;
+      L.forEach((s, i) => {
+        const y = -(0.08 + pos(i, L) * 0.25) * n;
+        anim(s, { t0: `translateY(${y}em)`, t1: `translateY(${y - 0.08 * n}em)`, d: `${1.8 + r()}s`, dl: `${-r() * 2}s` });
+      });
+      c.style.marginTop = `${0.42 * n}em`;
+    }],
+    ['lift off', (c, L, n, r) => {
+      const k = Math.ceil(L.length / 2);
+      L.forEach((s, i) => {
+        if (i < k) return;
+        const d = (i - k + 1) / (L.length - k + 1);
+        s.style.transform = `translateY(${-d * 0.55 * n}em) rotate(${(r() - 0.5) * 20}deg)`;
+        s.style.opacity = Math.max(0.15, 1 - d * 0.15 * n);
+      });
+      c.style.marginTop = `${0.55 * n}em`;
+    }],
+  ],
+  sink: [
+    ['sag', (c, L, n) => {
+      c.style.fontWeight = 800; c.style.fontStretch = '82%';
+      L.forEach((s, i) => { s.style.transform = `translateY(${Math.sin(Math.PI * pos(i, L)) * 0.28 * n}em)`; });
+      c.style.marginBottom = `${0.28 * n}em`;
+    }],
+    ['slump', (c, L, n) => {
+      c.style.fontWeight = 800;
+      L.forEach((s, i) => {
+        const t = pos(i, L);
+        s.style.transformOrigin = '50% 100%';
+        s.style.transform = `translateY(${t * 0.3 * n}em) scaleY(${1 - t * 0.14 * n})`;
+      });
+      c.style.marginBottom = `${0.3 * n}em`;
+    }],
+    ['drown', (c, L, n) => {
+      L.forEach((s, i) => {
+        const t = pos(i, L);
+        s.style.transform = `translateY(${Math.pow(t, 1.5) * 0.45 * n}em)`;
+        s.style.opacity = Math.max(0.08, 1 - t * 0.27 * n);
+      });
+      c.style.marginBottom = `${0.45 * n}em`;
+    }],
+  ],
+  grow: [
+    ['swell', (c, L, n) => {
+      c.style.fontSize = `${1 + 0.5 * n}em`;
+      c.style.fontWeight = Math.round(Math.min(900, 500 + 130 * n));
+      c.style.lineHeight = 1; c.style.letterSpacing = '-0.025em';
+    }],
+    ['crescendo', (c, L, n) => {
+      c.style.lineHeight = 1;
+      L.forEach((s, i) => {
+        const t = pos(i, L);
+        s.style.fontSize = `${1 + t * 0.6 * n}em`;
+        s.style.fontWeight = Math.round(400 + t * 500);
+      });
+    }],
+    ['burst', (c, L, n) => {
+      c.style.fontSize = `${1 + 0.6 * n}em`; c.style.fontStretch = '125%';
+      c.style.fontWeight = 900; c.style.lineHeight = 1; c.style.letterSpacing = '0.01em';
+    }],
+  ],
+  shrink: [
+    ['diminish', (c, L, n) => {
+      L.forEach((s, i) => { s.style.fontSize = `${Math.max(0.18, 1 - pos(i, L) * 0.26 * n)}em`; });
+    }],
+    ['recede', (c, L, n) => {
+      L.forEach((s, i) => {
+        const t = pos(i, L);
+        s.style.fontSize = `${Math.max(0.18, 1 - t * 0.22 * n)}em`;
+        s.style.opacity = Math.max(0.12, 1 - t * 0.22 * n);
+        s.style.fontWeight = Math.round(400 - t * 200);
+      });
+    }],
+    ['pinch', (c, L, n) => {
+      c.style.fontSize = `${Math.max(0.25, 1 - 0.2 * n)}em`;
+      c.style.fontWeight = 600; c.style.letterSpacing = '-0.03em'; c.style.verticalAlign = 'middle';
+    }],
+    ['distance', (c, L, n) => {
+      L.forEach((s, i) => {
+        const t = pos(i, L);
+        s.style.fontSize = `${Math.max(0.18, 1 - t * 0.24 * n)}em`;
+        s.style.transform = `translateY(${-t * 0.5 * n}em)`;
+      });
+    }],
+  ],
+  squeeze: [
+    ['squeeze', (c, L, n) => {
+      c.style.fontStretch = '62%'; c.style.fontWeight = 800; c.style.letterSpacing = `${-0.035 * n}em`;
+    }],
+    ['crush', (c, L, n) => {
+      c.style.fontStretch = '125%'; c.style.fontWeight = 900;
+      L.forEach(s => { s.style.transformOrigin = '50% 100%'; s.style.transform = `scaleY(${Math.max(0.3, 1 - 0.15 * n)})`; });
+    }],
+    ['crowd', (c, L, n) => {
+      c.style.fontWeight = 700;
+      L.forEach(s => { s.classList.add('knock'); s.style.marginRight = `${-0.07 * n}em`; });
+    }],
+  ],
+  open: [
+    ['spread', (c, L, n) => {
+      c.style.fontStretch = '125%'; c.style.fontWeight = 300; c.style.letterSpacing = `${0.16 * n}em`;
+    }],
+    ['part', (c, L, n) => {
+      c.style.fontWeight = 300;
+      const mid = Math.floor(L.length / 2);
+      if (L[mid]) L[mid].style.marginLeft = `${0.35 * n}em`;
+    }],
+  ],
+  long: [
+    ['slow down', (c, L, n) => {
+      c.style.fontStretch = '125%'; c.style.fontWeight = 300;
+      L.forEach((s, i) => { const t = pos(i, L); s.style.marginRight = `${t * t * 0.38 * n}em`; });
+    }],
+    ['drawn out', (c, L, n) => {
+      c.style.fontStretch = '125%'; c.style.fontWeight = 300;
+      extra(c, el('span', 'tail')).style.width = `${0.7 * n}em`;
+    }],
+  ],
+  heavy: [
+    ['weighted', (c, L, n) => {
+      c.style.fontWeight = 900; c.style.fontStretch = '115%'; c.style.letterSpacing = '-0.03em';
+      L.forEach(s => { s.style.transformOrigin = '50% 100%'; s.style.transform = `scaleY(${Math.max(0.4, 1 - 0.09 * n)})`; });
+    }],
+    ['settle', (c, L, n, r) => {
+      c.style.fontWeight = 900;
+      L.forEach(s => { s.style.transform = `translateY(${(0.03 + r() * 0.05) * n}em) rotate(${(r() - 0.5) * 4 * n}deg)`; });
+      c.style.marginBottom = `${0.08 * n}em`;
+    }],
+  ],
+  fade: [
+    ['dissolve', (c, L, n) => {
+      c.style.fontWeight = 250;
+      L.forEach((s, i) => { s.style.opacity = Math.max(0.05, 1 - pos(i, L) * 0.31 * n); });
+    }],
+    ['ghost', (c, L, n) => {
+      c.style.fontWeight = 200; c.style.opacity = Math.max(0.1, 0.62 - 0.13 * n);
+    }],
+    ['erode', (c, L, n, r) => {
+      c.style.fontWeight = 300;
+      L.forEach(s => { if (r() < 0.17 * n) s.style.opacity = 0.07; });
+    }],
+  ],
+  empty: [
+    ['outline', (c, L, n) => { c.classList.add('hollow'); c.style.letterSpacing = `${0.03 * n}em`; }],
+    ['hollowed', (c, L, n) => {
+      c.style.letterSpacing = `${0.03 * n}em`;
+      L.forEach((s, i) => { if (i > 0 && i < L.length - 1) s.classList.add('hollow'); });
+    }],
+  ],
+  light: [
+    ['radiate', (c, L, n, r) => {
+      c.classList.add('hollow');
+      const count = Math.round(3 + n * 2);
+      for (let k = 0; k < count; k++) {
+        const t = count > 1 ? k / (count - 1) : 0.5;
+        const ray = extra(c, el('span', 'ray'));
+        ray.style.left = `${8 + t * 84}%`;
+        ray.style.height = `${0.3 + r() * 0.3 + 0.1 * n}em`;
+        ray.style.transform = `rotate(${(t - 0.5) * 70}deg)`;
+      }
+      c.style.marginTop = `${0.4 + 0.12 * n}em`;
+    }],
+    ['glow', (c, L, n) => {
+      c.style.fontWeight = 200; c.style.letterSpacing = `${0.04 * n}em`;
+      c.style.textShadow = `0 0 ${0.08 * n}em var(--ink), 0 0 ${0.25 * n}em var(--ink)`;
+    }],
+  ],
+  dark: [
+    ['block', (c, L, n) => {
+      c.classList.add('dark');
+      L.forEach((s, i) => { s.style.transform = `translateY(${pos(i, L) * 0.05 * n}em)`; });
+    }],
+    ['deep shadow', (c, L, n) => {
+      c.classList.add('extrude');
+      const steps = Math.round(4 * n), sh = [];
+      for (let k = 1; k <= steps; k++) sh.push(`${k * 0.014}em ${k * 0.014}em 0 var(--ink)`);
+      c.style.textShadow = sh.join(',');
+    }],
+  ],
+  break: [
+    ['scatter', (c, L, n, r) => {
+      L.forEach(s => { s.style.transform = `translate(${(r() - 0.5) * 0.22 * n}em, ${(r() - 0.5) * 0.5 * n}em) rotate(${(r() - 0.5) * 45 * n}deg)`; });
+      c.style.margin = `${0.2 * n}em 0.05em`;
+    }],
+    ['shatter', (c, L, n, r) => {
+      const cuts = [Math.round(L.length / 3), Math.round((2 * L.length) / 3)];
+      const parts = [0, 1, 2].map(() => ({ y: (r() - 0.5) * 0.3, a: (r() - 0.5) * 14 }));
+      L.forEach((s, i) => {
+        const p = i < cuts[0] ? 0 : i < cuts[1] ? 1 : 2;
+        s.style.transform = `translate(${p * 0.12 * n}em, ${parts[p].y * n}em) rotate(${parts[p].a * n}deg)`;
+      });
+      c.style.margin = `${0.15 * n}em ${0.25 * n}em ${0.15 * n}em 0`;
+    }],
+    ['burst', (c, L, n, r) => {
+      L.forEach((s, i) => {
+        const t = pos(i, L) - 0.5;
+        s.style.transform = `translate(${t * 0.5 * n}em, ${(r() - 0.5) * 0.4 * n}em) rotate(${t * 40 * n}deg)`;
+      });
+      c.style.margin = `${0.2 * n}em ${0.25 * n}em`;
+    }],
+  ],
+  tremble: [
+    ['tremble', (c, L, n, r) => {
+      c.classList.add('anim'); c.style.fontWeight = 600;
+      const a = 0.05 * n, d = 3 * n;
+      const pose = () => `translate(${(r() - 0.5) * a}em, ${(r() - 0.5) * a}em) rotate(${(r() - 0.5) * d}deg)`;
+      L.forEach(s => anim(s, { t0: pose(), t1: pose(), d: `${0.07 + r() * 0.08}s`, ease: 'steps(2, end)' }));
+    }],
+    ['shiver', (c, L, n, r) => {
+      c.classList.add('anim'); c.style.fontWeight = 300;
+      L.forEach(s => anim(s, { t0: `translateX(${-0.012 * n}em)`, t1: `translateX(${0.012 * n}em)`, d: `${0.04 + r() * 0.03}s`, ease: 'linear' }));
+    }],
+    ['quake', (c, L, n, r) => {
+      c.classList.add('quake'); c.style.fontWeight = 800;
+      c.style.setProperty('--q', `${0.02 * n}em`);
+      L.forEach(s => { s.style.transform = `rotate(${(r() - 0.5) * 8 * n}deg)`; });
+    }],
+  ],
+  harsh: [
+    ['zigzag', (c, L, n, r) => {
+      c.style.fontWeight = 900; c.style.fontStretch = '70%';
+      const d = signed(r);
+      L.forEach((s, i) => {
+        const g = i % 2 ? d : -d;
+        s.style.transform = `translateY(${g * 0.05 * n}em) rotate(${g * (8 + 6 * n)}deg)`;
+      });
+    }],
+    ['spiked', (c, L, n) => {
+      c.style.fontWeight = 900; c.style.fontStretch = '62%';
+      L.forEach((s, i) => {
+        s.style.transformOrigin = '50% 100%';
+        s.style.transform = `skewX(${(i % 2 ? 1 : -1) * (10 + 6 * n)}deg) scaleY(${1 + 0.06 * n})`;
+      });
+    }],
+  ],
+  pulse: [
+    ['breathe', (c, L, n) => { c.classList.add('breathe'); c.style.fontWeight = 600; c.style.setProperty('--s', 1 + 0.08 * n); }],
+    ['heartbeat', (c, L, n) => { c.classList.add('beat'); c.style.fontWeight = 700; c.style.setProperty('--s', 1 + 0.07 * n); }],
+  ],
+  flow: [
+    ['wave', (c, L, n) => {
+      c.classList.add('anim');
+      const a = 0.08 * n;
+      L.forEach((s, i) => anim(s, { t0: `translateY(${a}em)`, t1: `translateY(${-a}em)`, ts: `translateY(${Math.sin(i * 0.9) * a}em)`, d: '1.1s', dl: `${-i * 0.17}s` }));
+      c.style.margin = `${a}em 0`;
+    }],
+    ['ripple', (c, L, n) => {
+      L.forEach((s, i) => { s.style.transform = `translateY(${Math.sin(i * 0.8) * 0.12 * n}em) rotate(${Math.cos(i * 0.8) * 9 * n}deg)`; });
+      c.style.margin = `${0.12 * n}em 0`;
+    }],
+    ['drift', (c, L, n) => {
+      c.classList.add('anim'); c.style.fontWeight = 300;
+      L.forEach((s, i) => anim(s, { t0: 'translateX(0)', t1: `translateX(${pos(i, L) * 0.3 * n}em)`, d: '2.6s' }));
+      c.style.marginRight = `${0.3 * n}em`;
+    }],
+  ],
+  rain: [
+    ['drip', (c, L, n, r) => {
+      c.classList.add('drip');
+      L.forEach(s => anim(s, { y: `${0.3 + 0.15 * n}em`, d: `${2.2 + r() * 2.4}s`, dl: `${-r() * 4}s` }));
+    }],
+    ['drizzle', (c, L, n, r) => {
+      c.classList.add('drip'); c.style.fontWeight = 300;
+      L.forEach(s => { if (r() < 0.5) anim(s, { y: `${0.2 + 0.1 * n}em`, d: `${3.5 + r() * 3}s`, dl: `${-r() * 6}s` }); else s.style.animation = 'none'; });
+    }],
+  ],
+  flicker: [
+    ['flicker', (c, L, n, r) => {
+      c.classList.add('flick'); c.style.fontWeight = 300;
+      L.forEach(s => {
+        anim(s, { d: `${1.2 + r() * Math.max(0.5, 4 - n)}s`, dl: `${-r() * 3}s` });
+        if (r() < 0.12 * n) s.style.opacity = 0.35;
+      });
+    }],
+    ['gutter', (c, L, n) => {
+      c.classList.add('dim'); c.style.fontWeight = 300;
+      c.style.setProperty('--o', Math.max(0.08, 0.5 - 0.12 * n));
+    }],
+  ],
+  echo: [
+    ['echo', (c, L, n, r, text) => {
+      const k = Math.round(1 + n);
+      for (let i = 1; i <= k; i++) {
+        const e = extra(c, el('span', 'echo'));
+        e.textContent = text;
+        e.style.transform = `translate(${i * 0.13}em, ${-i * 0.09}em)`;
+        e.style.opacity = 0.7 / i;
+      }
+      c.style.marginRight = `${k * 0.13}em`; c.style.marginTop = `${k * 0.09}em`;
+    }],
+    ['stutter', (c, L, n) => {
+      const k = Math.round(n);
+      for (let i = k; i >= 1; i--) {
+        const s = el('span', 'l'); s.textContent = L[0].textContent;
+        s.style.opacity = 0.15 + 0.6 * (1 - i / (k + 1));
+        s.style.marginRight = '0.08em';
+        s.dataset.extra = ''; s.setAttribute('aria-hidden', 'true');
+        c.prepend(s);
+      }
+    }],
+    ['trail', (c, L, n, r, text) => {
+      const k = Math.round(2 + n);
+      for (let i = 1; i <= k; i++) {
+        const e = extra(c, el('span', 'echo solid'));
+        e.textContent = text;
+        e.style.transform = `translateX(${-i * 0.09}em)`;
+        e.style.opacity = 0.35 / i;
+      }
+      c.style.marginLeft = `${k * 0.09}em`;
+    }],
+  ],
+  back: [
+    ['reverse', (c, L, n) => { c.style.transform = `scaleX(-1) rotate(${(n - 1) * 3}deg)`; c.style.fontWeight = 500; }],
+    ['upside down', (c, L, n) => { c.style.transform = `scale(-1, -1) rotate(${(n - 1) * 3}deg)`; c.style.fontWeight = 500; }],
+    ['each letter', (c, L, n) => { L.forEach((s, i) => { s.style.transform = `scaleX(-1) rotate(${(i % 2 ? 1 : -1) * (n - 1) * 4}deg)`; }); }],
+  ],
+  twist: [
+    ['twist', (c, L, n) => {
+      L.forEach((s, i) => { const t = pos(i, L); s.style.transform = `translateY(${-Math.sin(t * Math.PI) * 0.2 * n}em) rotate(${t * 60 * n}deg)`; });
+      c.style.margin = `${0.2 * n}em 0.1em`;
+    }],
+    ['spiral', (c, L, n) => {
+      L.forEach((s, i) => {
+        const t = pos(i, L);
+        s.style.fontSize = `${1 - t * 0.35}em`;
+        s.style.transform = `translateY(${-Math.sin(t * Math.PI * 2) * 0.25 * n}em) rotate(${t * 120 * n}deg)`;
+      });
+      c.style.margin = `${0.25 * n}em 0.1em`;
+    }],
+  ],
+  against: [
+    ['lean', (c, L, n) => {
+      c.style.fontWeight = 600; c.style.letterSpacing = '-0.02em';
+      L.forEach((s, i) => { s.style.transformOrigin = '50% 100%'; s.style.transform = `skewX(${-(4 + pos(i, L) * 12) * n}deg)`; });
+    }],
+    ['push', (c, L, n) => {
+      c.style.fontWeight = 700;
+      L.forEach((s, i) => {
+        s.classList.add('knock');
+        s.style.transformOrigin = '50% 100%';
+        s.style.marginRight = `${-pos(i, L) * 0.09 * n}em`;
+        s.style.transform = `skewX(${-8 * n}deg)`;
+      });
+    }],
+  ],
+  split: [
+    ['split', (c, L, n, r) => {
+      const half = Math.ceil(L.length / 2);
+      L.forEach((s, i) => {
+        s.style.transform = i < half ? `translateY(${-0.04 * n}em)` : `translate(${0.06 * n}em, ${0.2 * n}em) rotate(${3 + r() * 4}deg)`;
+      });
+      c.style.marginBottom = `${0.2 * n}em`;
+    }],
+    ['torn', (c, L, n, r, text) => {
+      L.forEach(s => { s.style.clipPath = 'inset(-0.6em -0.2em 50% -0.2em)'; });
+      const low = extra(c, el('span', 'half'));
+      low.textContent = text;
+      low.style.transform = `translate(${0.06 * n}em, ${0.1 * n}em)`;
+      c.style.marginBottom = `${0.1 * n}em`; c.style.marginRight = `${0.06 * n}em`;
+    }],
+  ],
+  alone: [
+    ['apart', (c, L, n) => { c.style.margin = `0 ${0.8 * n}em`; c.style.fontWeight = 300; c.style.letterSpacing = '0.05em'; }],
+    ['distant', (c, L, n) => { c.style.margin = `0 ${0.8 * n}em`; c.style.fontSize = '0.7em'; c.style.fontWeight = 200; c.style.opacity = 0.75; }],
+  ],
+  pull: [
+    ['magnet', (c, L, n, r, text) => {
+      const g = /^\p{Lu}/u.test(text) ? 0 : Math.min(L.length - 1, Math.max(0, Math.round((L.length - 1) * (0.3 + r() * 0.4))));
+      L.forEach((s, i) => {
+        if (i === g) {
+          s.style.fontSize = `${2.3 + 0.7 * n}em`;
+          s.style.fontWeight = 800; s.style.lineHeight = 0.82; s.style.letterSpacing = '-0.04em';
+        } else {
+          s.classList.add('knock');
+          s.style.transform = `translateY(${0.04 + r() * 0.25}em) rotate(${(r() - 0.5) * 44}deg)`;
+          if (i === g - 1) s.style.marginRight = '-0.3em';
+          if (i === g + 1) s.style.marginLeft = '-0.3em';
+        }
+      });
+    }],
+    ['converge', (c, L, n, r) => {
+      L.forEach((s, i) => {
+        if (i === 0) { s.style.fontWeight = 900; return; }
+        s.classList.add('knock');
+        s.style.marginLeft = `${-0.06 * n}em`;
+        s.style.transform = `translateX(${-i * 0.04 * n}em) rotate(${(r() - 0.5) * 20}deg)`;
+      });
+    }],
+  ],
+  spin: [
+    ['globe', (c, L, n) => {
+      // Letters wrapped round a turning globe: readable on the near side, gone on the far side.
+      // The word goes round twice, so one copy always faces you.
+      c.classList.add('globe');
+      const ring = [...L, null];
+      L.forEach(l => { const s = extra(c, el('span', 'l')); s.textContent = l.textContent; ring.push(s); });
+      ring.push(null);
+      const R = (ring.length * 0.6) / (2 * Math.PI);
+      const step = (2 * Math.PI) / ring.length;
+      c.style.width = `${2 * R}em`;
+      c.style.setProperty('--d', `${Math.max(3, 14 - 2.6 * n)}s`);
+      ring.forEach((s, k) => { if (s) s.style.transform = `rotateY(${(k - (L.length - 1) / 2) * step}rad) translateZ(${R}em) translateX(-50%)`; });
+      extra(c, el('span')).textContent = '\u200b';
+    }],
+    ['orbit', (c, L, n) => {
+      c.classList.add('orbit');
+      const R = Math.max(0.75, (L.length * 0.62) / (2 * Math.PI));
+      c.style.width = c.style.height = `${2 * R + 1}em`;
+      c.style.setProperty('--d', `${Math.max(3, 16 - 3 * n)}s`);
+      L.forEach((s, i) => { s.style.transform = `rotate(${(i / L.length) * 360}deg) translateY(${-R - 0.5}em) translateX(-50%)`; });
+    }],
+  ],
+};
+const FEELINGS = Object.keys(FEEL);
+
+// ---------- a small feeling list for your own text ----------
+const LEXICON = {
+  'fall': 'fall fell fallen falling drop dropped plunge plummet tumble collapse slip slipped crash crashed fail failed',
+  'fall.3': 'down beneath under deep descend below bottom',
+  'sink': 'sink sank sunk sad sadness sorrow grief grieve mourn despair worst weary tired exhausted dread gloom depressed low sigh heartbreak',
+  'heavy': 'heavy heavier weight weigh burden fortune power powerful strong fearless iron stone rock solid mountain duty',
+  'heavy.1': 'made make build built ground',
+  'grow': 'grow grew growing big bigger large huge vast loud louder great greater giant swell everything more most enormous bloom whole',
+  'shrink': 'small smaller little tiny shrink less least fewer diminish quiet quieter shy humble',
+  'squeeze': 'tight press pressed pressure compress crowd crowded narrow trap trapped squeeze cramped tense stress stuck choke anxious anxiety',
+  'open': 'wide open opened opening universal free freedom space everywhere possible explore',
+  'spin': 'world worlds earth globe planet universe',
+  'spin.1': 'spin spinning orbit revolve wheel circle round around',
+  'long': 'long longer longing endless forever stretch slow slowly waiting ago eternal eternity patience',
+  'break': 'scatter scattered break broke broken shatter shattered crack cracked chaos mad madness wild foolish crazy mess explode',
+  'tremble': 'tremble trembling shake shook shiver fear afraid scared fright terror panic nervous convulsive cold freezing',
+  'pulse.1': 'love loved loves loving lover heart heartbeat kiss',
+  'pulse': 'breathe breath breathed pulse alive life living beat beating',
+  'fade': 'fade faded fading forget forgot forgotten past gone vanish dying died burnt whisper memory memories goodbye ghost mist fog silence silent faint',
+  'light': 'light bright shine shining illuminate glow sun sunlight star stars warm joy happy smile smiled',
+  'dark': 'dark darkness night black shadow shadows midnight death dead grave evil',
+  'back': 'back reverse mirror reflect reflection return returned contradict backward undo',
+  'echo': 'echo again repeat ceaseless always never nevermore multitude multitudes many every voices',
+  'flow': 'water sea wave waves current river ocean watery sail flow drift tide swim dance danced music song sing sang',
+  'rise': 'rise rose up fly flying flew lift soar heaven best hope float high wings bird',
+  'rise.1': 'dream dreams dreaming',
+  'alone': 'alone single lonely only isolated apart end solitude',
+  'split': 'split half divide divided torn cut separate between',
+  'flicker': 'flicker glimmer candle flame spark blink maybe perhaps doubt',
+  'rain': 'rain raining drip tears cry cried crying weep wept storm',
+  'harsh': 'harsh sharp anger angry rage hate pain scream shout cruel fight war',
+  'against': 'against resist push lean wind struggle',
+  'twist': 'twist turn turned spiral dizzy confused think thinking thought mind strange',
+  'pull': 'magnet attract pull drawn want wanted desire need crave',
+  'empty': 'empty hollow absence void words nothing nobody none missing',
+};
+const LEX = {};
+for (const [fx, words] of Object.entries(LEXICON)) for (const w of words.split(' ')) LEX[w] = fx;
+function suggest(core) {
+  const w = core.toLowerCase();
+  if (LEX[w]) return LEX[w];
+  if (STOP.has(w)) return null;
+  for (const key in LEX) if (key.length >= 4 && w.length > key.length && w.startsWith(key)) return LEX[key];
+  if (w.length >= 5) for (const key in LEX) if (key.length >= 5 && nearly(w, key)) return LEX[key];
+  return null;
+}
+// Everyday words that only look like feeling words.
+const STOP = new Set('the and but for with from into onto this that these those there their they them then than what when where which while whom whose could would should shall might must about after before over said says just also very have were been being here your yours ours itself because'.split(' '));
+// One letter off, or two letters swapped: "wrold" still means world.
+function nearly(a, b) {
+  if (Math.abs(a.length - b.length) > 1 || b.length < 4) return false;
+  let i = 0;
+  while (i < a.length && a[i] === b[i]) i++;
+  if (i === a.length && i === b.length) return true;
+  const rest = (x, y) => a.slice(x) === b.slice(y);
+  return rest(i + 1, i + 1) || rest(i + 1, i) || rest(i, i + 1) || (a[i] === b[i + 1] && a[i + 1] === b[i] && rest(i + 2, i + 2));
+}
+function setFeel(t, spec) {
+  if (!spec) { t.fx = null; return; }
+  const [fx, v] = spec.split('.');
+  t.fx = FEEL[fx] ? fx : null; t.v = +(v || 0);
+}
+
+// ---------- parsing ----------
+function tokenizePlain(str, out, base = 0) {
+  let off = base;
+  for (const part of str.split(/(\n|[ \t]+|—)/)) {
+    if (!part) continue;
+    const s = off; off += part.length;
+    if (part === '\n') out.push({ type: 'br', s, e: off });
+    else if (/^[ \t]+$/.test(part)) out.push({ type: 'space', s, e: off });
+    else {
+      const m = part.match(/^([^\p{L}\p{N}]*)([\s\S]*?)([^\p{L}\p{N}]*)$/u);
+      if (!m[2]) out.push({ type: 'punct', text: part, s, e: off });
+      else out.push({ type: 'word', lead: m[1], core: m[2], trail: m[3], fx: null, v: 0, n: 2, s, e: off });
+    }
+  }
+}
+function parseMarked(str) {
+  const out = [], re = /\{([^|}]+)\|([a-z.0-9]+)(?:\|(\d))?\}/g;
+  let last = 0, m;
+  while ((m = re.exec(str))) {
+    tokenizePlain(str.slice(last, m.index), out);
+    const t = { type: 'word', lead: '', core: m[1], trail: '', n: +(m[3] || 2) };
+    setFeel(t, m[2]);
+    out.push(t);
+    last = re.lastIndex;
+  }
+  tokenizePlain(str.slice(last), out);
+  return out;
+}
+
+
+// ---------- state ----------
+const state = { sel: null, seed: 1, hover: null, live: [], liveDrawn: false, done: false };
+const overrides = {};   // your own text: choices made per word, e.g. { rain: { fx: 'rain', v: 1, n: 2 } }
+const liveCache = new Map();
+const caret = el('span', 'caret');
+caret.setAttribute('aria-hidden', 'true');
+PASSAGES.forEach(p => { p.tokens = parseMarked(p.text); });
+const scopeTokens = scope => (scope === 'live' ? state.live : PASSAGES.find(p => p.id === scope).tokens);
+const seedFor = (scope, i) => ((scope === 'live' ? 97 : PASSAGES.findIndex(p => p.id === scope) * 131) + i * 104729 + state.seed * 7919) >>> 0;
+
+// ---------- drawing a word ----------
+function paint(c, n) {
+  const s = c._s;
+  c.removeAttribute('style');
+  c.className = 'fx';
+  c.querySelectorAll('[data-extra]').forEach(x => x.remove());
+  c._L.forEach(l => { l.removeAttribute('style'); l.className = 'l'; });
+  const variant = FEEL[s.fx][s.v] || FEEL[s.fx][0];
+  variant[1](c, c._L, n, rng(s.seed), s.text);
+}
+function buildCore(text, fx, v, n, seed) {
+  const c = el('span', 'fx');
+  if (!fx || !FEEL[fx]) { c.textContent = text; return c; }
+  c.dataset.fx = fx;
+  c._L = Array.from(text).map(ch => {
+    const s = el('span', 'l'); s.textContent = ch === ' ' ? ' ' : ch; s.setAttribute('aria-hidden', 'true');
+    c.append(s); return s;
+  });
+  const sr = el('span', 'sr'); sr.textContent = text; c.append(sr);
+  c._s = { text, fx, v, n, seed };
+  paint(c, n);
+  return c;
+}
+const boosted = n => Math.min(n + 1.5, 4.5);
+function wordEl(t, i, scope, caretAt = -1) {
+  const w = el('span', 'w');
+  w.dataset.i = i; w.dataset.scope = scope;
+  if (t.fx) { w.classList.add('felt-word'); w.tabIndex = 0; w.setAttribute('role', 'button'); }
+  else if (scope !== 'live' || state.done) { w.tabIndex = 0; w.setAttribute('role', 'button'); }
+  const c = buildCore(t.core, t.fx, t.v, t.n, seedFor(scope, i));
+  const sel = state.sel && state.sel.scope === scope && state.sel.i === i;
+  if (sel) { w.classList.add('sel'); if (t.fx) paint(c, boosted(t.n)); }
+  const parts = [t.lead, c, t.trail];
+  if (caretAt >= 0) {
+    const k = caretAt, a = t.lead.length, b = a + t.core.length;
+    if (k <= a) parts.splice(0, 1, t.lead.slice(0, k), caret, t.lead.slice(k));
+    else if (k >= b) parts.splice(2, 1, t.trail.slice(0, k - b), caret, t.trail.slice(k - b));
+    else if (t.fx) c._L[k - a - 1].after(caret);
+    else c.replaceChildren(t.core.slice(0, k - a), caret, t.core.slice(k - a));
+  }
+  w.append(...parts.filter(x => x !== ''));
+  return w;
+}
+function enter(w, delay = 0, force = false) {
+  if (reduced() && !force) return;
+  const c = w.querySelector('.fx[data-fx]');
+  if (!c) return;
+  const opts = { duration: 720, delay, easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'backwards' };
+  c.animate([{ offset: 0, fontSize: '1em', letterSpacing: '-0.012em', fontWeight: 400, opacity: 1 }], opts);
+  c._L.forEach((s, k) => s.animate([{ offset: 0, transform: 'none', fontSize: '1em', opacity: 1, marginRight: '0em', marginLeft: '0em' }], { ...opts, delay: delay + k * 28 }));
+}
+function nodeFor(t, i, scope) {
+  if (t.type === 'space') return document.createTextNode(' ');
+  if (t.type === 'br') return el('br');
+  if (t.type === 'punct') return document.createTextNode(t.text);
+  return wordEl(t, i, scope);
+}
+
+// ---------- passages ----------
+function renderPassage(p) {
+  p.el.replaceChildren(...p.tokens.map((t, i) => nodeFor(t, i, p.id)));
+  syncGifButtons();
+}
+function buildBooks() {
+  const books = $('book-list');
+  for (const p of PASSAGES) {
+    const a = el('article', 'passage'); a.id = p.id;
+    const src = el('header', 'source');
+    const h = el('h3'); h.textContent = p.book;
+    const by = el('p'); by.textContent = `${p.author}, ${p.year}`;
+    const end = el('span', 'end');
+    for (const f of ['png', 'gif']) {
+      const ex = el('button', 'link'); ex.textContent = `Export ${f.toUpperCase()}`;
+      ex.dataset.export = p.id; ex.dataset.format = f;
+      end.append(ex);
+    }
+    src.append(h, by, end);
+    p.el = el('div', 'piece');
+    a.append(src, p.el);
+    books.append(a);
+    renderPassage(p);
+  }
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(entries => {
+      for (const e of entries) {
+        if (!e.isIntersecting) continue;
+        io.unobserve(e.target);
+        e.target.querySelectorAll('.felt-word').forEach((w, k) => enter(w, k * 140));
+      }
+    }, { threshold: 0.4 });
+    PASSAGES.forEach(p => io.observe(p.el));
+  }
+}
+
+// ---------- live typing ----------
+const src = $('src');
+const PLACEHOLDER = 'Click here and write. Words that fall, tremble or rain will move.';
+function parseLive(text) {
+  const out = [];
+  tokenizePlain(text, out);
+  for (const t of out) {
+    if (t.type !== 'word') continue;
+    const o = overrides[t.core.toLowerCase()];
+    if (o) { t.fx = o.fx; t.v = o.v; t.n = o.n; }
+    else setFeel(t, suggest(t.core));
+  }
+  return out;
+}
+function reconcile(parent, nodes) {
+  let cur = parent.firstChild;
+  for (const n of nodes) {
+    if (cur === n) { cur = cur.nextSibling; continue; }
+    parent.insertBefore(n, cur);
+  }
+  while (cur) { const nx = cur.nextSibling; cur.remove(); cur = nx; }
+}
+function renderLive() {
+  const text = src.value;
+  const focused = document.activeElement === src && !state.done;
+  // An empty box shows its own invitation, already moving.
+  const showing = text || focused ? text : PLACEHOLDER;
+  state.live = parseLive(showing);
+  const a = focused ? src.selectionStart : -1, p = focused ? src.selectionEnd : -1;
+  const ranged = focused && a !== p;
+  const nodes = [], counts = {}, fresh = [];
+  const next = new Map();
+  let placed = !focused || ranged;
+  state.live.forEach((t, i) => {
+    if (!placed && p <= t.s) { nodes.push(caret); placed = true; }
+    const inside = !placed && p > t.s && p < t.e;
+    let node;
+    if (inside && t.type === 'word') {
+      node = wordEl(t, i, 'live', p - t.s);
+      placed = true;
+    } else {
+      const sel = state.sel && state.sel.scope === 'live' && state.sel.i === i;
+      const sig = t.type === 'word' ? `w:${t.lead}${t.core}${t.trail}:${t.fx}:${t.v}:${t.n}:${sel}` : t.type === 'punct' ? 'p:' + t.text : t.type;
+      counts[sig] = (counts[sig] || 0) + 1;
+      const key = sig + '#' + counts[sig];
+      node = liveCache.get(key);
+      if (!node) {
+        node = nodeFor(t, i, 'live');
+        if (t.type === 'word' && t.fx && state.liveDrawn) fresh.push(node);
+      }
+      if (node.dataset) node.dataset.i = i;
+      if (node.classList) node.classList.toggle('picked', ranged && t.s < p && t.e > a);
+      next.set(key, node);
+    }
+    nodes.push(node);
+    if (inside && t.type !== 'word') { nodes.push(caret); placed = true; }
+  });
+  if (!placed) nodes.push(caret);
+  liveCache.clear();
+  next.forEach((v, k) => liveCache.set(k, v));
+  reconcile($('live'), nodes);
+  fresh.forEach(w => enter(w));
+  state.liveDrawn = true;
+  $('live').classList.toggle('placeholder', !text && !focused);
+  $('composer').classList.toggle('focused', focused);
+  syncGifButtons();
+}
+function setDone(done) {
+  state.done = done;
+  src.readOnly = done;
+  $('composer').classList.toggle('done', done);
+  $('mine-head').hidden = !done;
+  $('write-actions').hidden = done;
+  $('status').textContent = '';
+  closeSheet(true);
+  if (done) src.blur();
+  else { src.focus(); src.setSelectionRange(src.value.length, src.value.length); }
+  liveCache.clear(); renderLive();
+}
+src.addEventListener('input', renderLive);
+src.addEventListener('focus', renderLive);
+src.addEventListener('blur', renderLive);
+document.addEventListener('selectionchange', () => { if (document.activeElement === src) renderLive(); });
+// Highlighting words with the mouse selects them in your text, ready to delete or type over.
+$('composer').addEventListener('mouseup', () => {
+  const sel = getSelection();
+  if (state.done || sel.isCollapsed || !$('live').contains(sel.anchorNode)) return;
+  const toks = [...$('live').querySelectorAll('.w')].filter(w => sel.containsNode(w, true)).map(w => state.live[+w.dataset.i]);
+  if (!toks.length) return;
+  sel.removeAllRanges();
+  src.focus();
+  src.setSelectionRange(Math.min(...toks.map(t => t.s)), Math.max(...toks.map(t => t.e)));
+  state.dragged = true;
+  renderLive();
+});
+$('composer').addEventListener('click', e => {
+  if (state.dragged) { state.dragged = false; return; }
+  if (state.done) {
+    const w = e.target.closest('.w');
+    if (w) openSheet('live', +w.dataset.i);
+    return;
+  }
+  const at = src.value ? caretFromPoint(e) : -1;
+  src.focus();
+  const pos = at >= 0 ? at : src.value.length;
+  src.setSelectionRange(pos, pos);
+  renderLive();
+});
+// Where in your text a click landed: between two letters of a moving word, or inside a plain one.
+function caretFromPoint(e) {
+  const w = e.target.closest('#live .w');
+  if (!w) return -1;
+  const t = state.live[+w.dataset.i];
+  if (!t || t.type !== 'word') return -1;
+  const l = e.target.closest('.l');
+  const c = w.querySelector('.fx');
+  if (l && c && c._L) {
+    const k = c._L.indexOf(l);
+    if (k < 0) return t.e - t.trail.length;
+    const r = l.getBoundingClientRect();
+    return t.s + t.lead.length + k + (e.clientX > r.left + r.width / 2 ? 1 : 0);
+  }
+  let node = null, off = 0;
+  if (document.caretPositionFromPoint) { const cp = document.caretPositionFromPoint(e.clientX, e.clientY); if (cp) { node = cp.offsetNode; off = cp.offset; } }
+  else if (document.caretRangeFromPoint) { const cr = document.caretRangeFromPoint(e.clientX, e.clientY); if (cr) { node = cr.startContainer; off = cr.startOffset; } }
+  if (!node || node.nodeType !== 3 || !w.contains(node)) return t.e - t.trail.length;
+  let before = 0;
+  const walker = document.createTreeWalker(w, NodeFilter.SHOW_TEXT);
+  for (let n = walker.nextNode(); n && n !== node; n = walker.nextNode()) before += n.data.length;
+  return Math.min(t.e, t.s + before + off);
+}
+$('done').addEventListener('click', () => {
+  if (!src.value.trim()) { src.focus(); renderLive(); return; }
+  setDone(true);
+});
+$('edit').addEventListener('click', () => setDone(false));
+
+// ---------- hover: feel more ----------
+function amplify(w, on) {
+  const c = w && w.querySelector('.fx[data-fx]');
+  if (!c || w.classList.contains('sel')) return;
+  paint(c, on ? boosted(c._s.n) : c._s.n);
+}
+document.addEventListener('pointerover', e => {
+  if (e.pointerType === 'touch') return;
+  const w = e.target.closest('.w.felt-word');
+  if (w === state.hover) return;
+  amplify(state.hover, false);
+  state.hover = w;
+  amplify(w, true);
+});
+document.addEventListener('focusin', e => { if (e.target.matches('.w.felt-word')) amplify(e.target, true); });
+document.addEventListener('focusout', e => { if (e.target.matches('.w.felt-word')) amplify(e.target, false); });
+
+// ---------- choosing another way of the same feeling ----------
+function rerender(scope) {
+  if (scope === 'live') { liveCache.clear(); renderLive(); }
+  else renderPassage(PASSAGES.find(p => p.id === scope));
+}
+function commit(scope, t) {
+  if (scope === 'live') overrides[t.core.toLowerCase()] = { fx: t.fx, v: t.v, n: t.n };
+  else PASSAGES.find(p => p.id === scope).edited = true;
+  rerender(scope);
+}
+function openSheet(scope, i) {
+  state.sel = { scope, i };
+  state.hover = null;
+  rerender(scope);
+  fillSheet();
+  $('sheet').hidden = false;
+}
+function fillSheet() {
+  const { scope, i } = state.sel;
+  const t = scopeTokens(scope)[i];
+  $('sheet-word').textContent = `“${t.core}”`;
+  const chips = $('chips'), feelings = $('feelings');
+  chips.replaceChildren(); feelings.replaceChildren();
+  const felt = !!t.fx;
+  $('sheet-remove').hidden = chips.hidden = !felt;
+  feelings.hidden = felt;
+  if (felt) {
+    $('sheet-feel').textContent = `Feels like ${t.fx}. Pick a way.`;
+    FEEL[t.fx].forEach(([name], v) => {
+      const b = el('button', 'chip');
+      b.dataset.v = v;
+      b.setAttribute('aria-pressed', t.v === v);
+      const prev = el('span', 'chip-prev');
+      prev.append(buildCore(t.core, t.fx, v, t.n, seedFor(scope, i)));
+      const label = el('span', 'chip-name'); label.textContent = name;
+      b.append(prev, label);
+      chips.append(b);
+    });
+  } else {
+    $('sheet-feel').textContent = 'What does it feel like?';
+    for (const f of FEELINGS) {
+      const b = el('button'); b.dataset.f = f; b.textContent = f;
+      feelings.append(b);
+    }
+  }
+}
+function closeSheet(silent) {
+  if ($('sheet').hidden) return;
+  $('sheet').hidden = true;
+  const sel = state.sel;
+  state.sel = null;
+  if (silent || !sel) return;
+  rerender(sel.scope);
+  if (sel.scope === 'live' && !state.done) src.focus();
+  else document.querySelector(`.w[data-scope="${sel.scope}"][data-i="${sel.i}"]`)?.focus();
+}
+$('chips').addEventListener('click', e => {
+  const b = e.target.closest('.chip');
+  if (!b || !state.sel) return;
+  const t = scopeTokens(state.sel.scope)[state.sel.i];
+  t.v = +b.dataset.v;
+  $('chips').querySelectorAll('.chip').forEach(x => x.setAttribute('aria-pressed', x === b));
+  commit(state.sel.scope, t);
+});
+$('feelings').addEventListener('click', e => {
+  const b = e.target.closest('button');
+  if (!b || !state.sel) return;
+  const t = scopeTokens(state.sel.scope)[state.sel.i];
+  t.fx = b.dataset.f; t.v = 0;
+  commit(state.sel.scope, t);
+  fillSheet();
+});
+$('sheet-remove').addEventListener('click', () => {
+  const t = scopeTokens(state.sel.scope)[state.sel.i];
+  t.fx = null;
+  commit(state.sel.scope, t);
+  fillSheet();
+});
+$('sheet-close').addEventListener('click', () => closeSheet());
+$('books').addEventListener('click', e => {
+  const w = e.target.closest('.w');
+  if (w) openSheet(w.dataset.scope, +w.dataset.i);
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeSheet(); return; }
+  const w = e.target.closest && e.target.closest('.w');
+  if (w && (e.key === 'Enter' || e.key === ' ') && (w.dataset.scope !== 'live' || state.done || w.classList.contains('felt-word'))) {
+    e.preventDefault(); openSheet(w.dataset.scope, +w.dataset.i);
+  }
+});
+
+// ---------- export as PNG or GIF ----------
+// Redraws the piece on a canvas from its own layout: each letter at its place, with its transform, weight, outline and shade.
+const STRETCH = [[50, 'ultra-condensed'], [62.5, 'extra-condensed'], [75, 'condensed'], [87.5, 'semi-condensed'], [100, 'normal'], [112.5, 'semi-expanded'], [125, 'expanded'], [150, 'extra-expanded']];
+function stretchWord(v) {
+  const p = parseFloat(v);
+  if (isNaN(p)) return v || 'normal';
+  return STRETCH.reduce((a, b) => (Math.abs(b[0] - p) < Math.abs(a[0] - p) ? b : a))[1];
+}
+const canvasFont = cs => `${cs.fontStyle} ${cs.fontWeight} ${stretchWord(cs.fontStretch)} ${cs.fontSize} ${cs.fontFamily}`;
+const clear = c => !c || c === 'transparent' || /rgba\([^)]*,\s*0\)$/.test(c);
+function shadowsOf(v) {
+  if (!v || v === 'none') return [];
+  const parts = []; let depth = 0, cur = '';
+  for (const ch of v) {
+    if (ch === '(') depth++;
+    if (ch === ')') depth--;
+    if (ch === ',' && !depth) { parts.push(cur); cur = ''; } else cur += ch;
+  }
+  parts.push(cur);
+  return parts.map(p => {
+    const color = (p.match(/rgba?\([^)]*\)/) || ['#000'])[0];
+    const nums = p.replace(color, '').trim().split(/\s+/).map(parseFloat);
+    return { color, x: nums[0] || 0, y: nums[1] || 0, blur: nums[2] || 0 };
+  });
+}
+function clipOf(cs, r) {
+  const m = cs.clipPath && cs.clipPath.match(/^inset\(([^)]*)\)/);
+  if (!m) return null;
+  const fs = parseFloat(cs.fontSize);
+  const v = m[1].trim().split(/\s+/);
+  const len = (s, size) => (s.endsWith('%') ? (parseFloat(s) / 100) * size : s.endsWith('em') ? parseFloat(s) * fs : parseFloat(s) || 0);
+  const [t, ri, b, l] = [len(v[0], r.height), len(v[1] ?? v[0], r.width), len(v[2] ?? v[0], r.height), len(v[3] ?? v[1] ?? v[0], r.width)];
+  return { x: r.left + l, y: r.top + t, w: r.width - l - ri, h: r.height - t - b };
+}
+function alphaOf(node, root) {
+  let a = 1;
+  for (let e = node; e && e !== root.parentElement; e = e.parentElement) a *= +getComputedStyle(e).opacity;
+  return a;
+}
+
+// One still of the piece as it is right now: every letter's transform, its untransformed box, and the bounds of it all.
+function snapshot(root) {
+  const items = [...root.querySelectorAll('.fx[data-fx], .fx[data-fx] .l, .echo, .half, .ray, .tail')];
+  const info = new Map();
+  const rr = root.getBoundingClientRect();
+  const box = { x0: rr.left, y0: rr.top, x1: rr.right, y1: rr.bottom };
+  const grow = b => { box.x0 = Math.min(box.x0, b.left); box.y0 = Math.min(box.y0, b.top); box.x1 = Math.max(box.x1, b.right); box.y1 = Math.max(box.y1, b.bottom); };
+  for (const e of items) {
+    const cs = getComputedStyle(e);
+    const o = cs.transformOrigin.split(' ').map(parseFloat);
+    info.set(e, { m: cs.transform === 'none' ? new DOMMatrix() : new DOMMatrix(cs.transform), ox: o[0] || 0, oy: o[1] || 0, cs: {} });
+    grow(e.getBoundingClientRect());
+  }
+  // Opacity and colour can be animated (flicker, drip), so read them per still.
+  const styles = new Map();
+  const styleOf = e => {
+    if (!styles.has(e)) {
+      const cs = getComputedStyle(e);
+      styles.set(e, {
+        font: canvasFont(cs), fontSize: cs.fontSize, letterSpacing: cs.letterSpacing, color: cs.color,
+        strokeW: cs.webkitTextStrokeWidth, strokeC: cs.webkitTextStrokeColor, paintOrder: cs.paintOrder,
+        textShadow: cs.textShadow, clipPath: cs.clipPath, backgroundColor: cs.backgroundColor, alpha: alphaOf(e, root),
+      });
+    }
+    return styles.get(e);
+  };
+  for (const e of items) styleOf(e);
+  root.classList.add('measuring');
+  for (const e of items) info.get(e).r = e.getBoundingClientRect();
+  const glyphs = new Map();
+  const range = document.createRange();
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+  for (let n = walker.nextNode(); n; n = walker.nextNode()) {
+    if (n.parentElement.closest('.l, .echo, .half, .sr, .caret')) continue;
+    const list = [];
+    for (let i = 0; i < n.data.length; i++) {
+      if (/\s/.test(n.data[i])) continue;
+      range.setStart(n, i); range.setEnd(n, i + 1);
+      const r = range.getBoundingClientRect();
+      if (r.width) { list.push({ ch: n.data[i], r }); grow(r); }
+    }
+    if (list.length) { glyphs.set(n, list); styleOf(n.parentElement); }
+  }
+  root.classList.replace('measuring', 'notrans');
+  void root.offsetWidth;
+  root.classList.remove('notrans');
+  return { info, glyphs, box, styles };
+}
+
+const PAD = 64, FOOT = 56;
+const sizeFor = box => ({ W: Math.ceil(box.x1 - box.x0 + PAD * 2), H: Math.ceil(box.y1 - box.y0 + PAD * 2 + FOOT) });
+function paintSnap(ctx, root, snap, box, scale, caption) {
+  const { info, glyphs, styles } = snap;
+  const { W, H } = sizeFor(box);
+  const page = getComputedStyle(document.body);
+  ctx.setTransform(scale, 0, 0, scale, 0, 0);
+  ctx.globalAlpha = 1;
+  ctx.fillStyle = page.backgroundColor; ctx.fillRect(0, 0, W, H);
+  ctx.translate(PAD - box.x0, PAD - box.y0);
+
+  const matOf = e => {
+    const { m, ox, oy, r } = info.get(e);
+    const X = r.left + ox, Y = r.top + oy;
+    return new DOMMatrix().translate(X, Y).multiply(m).translate(-X, -Y);
+  };
+  const chain = (e, fn) => {
+    let M = new DOMMatrix();
+    const fx = e.closest('.fx[data-fx]');
+    if (fx && fx !== e && info.has(fx)) M = M.multiply(matOf(fx));
+    if (info.has(e)) M = M.multiply(matOf(e));
+    if (M.m33 < 0 && e.closest('.globe')) return;
+    ctx.save();
+    ctx.transform(M.a, M.b, M.c, M.d, M.e, M.f);
+    fn();
+    ctx.restore();
+  };
+  const text = (str, r, st) => {
+    ctx.font = st.font;
+    if ('letterSpacing' in ctx) ctx.letterSpacing = st.letterSpacing === 'normal' ? '0px' : st.letterSpacing;
+    const mt = ctx.measureText(str);
+    const fs = parseFloat(st.fontSize);
+    const A = mt.fontBoundingBoxAscent ?? fs * 0.8, D = mt.fontBoundingBoxDescent ?? fs * 0.2;
+    const x = r.left, y = r.top + (r.height - (A + D)) / 2 + A;
+    ctx.globalAlpha = st.alpha;
+    const clip = clipOf({ clipPath: st.clipPath, fontSize: st.fontSize }, r);
+    if (clip) { ctx.beginPath(); ctx.rect(clip.x, clip.y, clip.w, clip.h); ctx.clip(); }
+    for (const s of shadowsOf(st.textShadow).reverse()) {
+      ctx.save();
+      ctx.fillStyle = s.color;
+      if (s.blur) { ctx.shadowColor = s.color; ctx.shadowBlur = s.blur * scale; }
+      ctx.fillText(str, x + s.x, y + s.y);
+      ctx.restore();
+    }
+    const sw = parseFloat(st.strokeW) || 0;
+    const stroke = () => { if (sw && !clear(st.strokeC)) { ctx.lineWidth = sw; ctx.lineJoin = 'round'; ctx.strokeStyle = st.strokeC; ctx.strokeText(str, x, y); } };
+    const fill = () => { if (!clear(st.color)) { ctx.fillStyle = st.color; ctx.fillText(str, x, y); } };
+    if ((st.paintOrder || '').startsWith('stroke')) { stroke(); fill(); } else { fill(); stroke(); }
+  };
+  const drawEl = e => {
+    const st = styles.get(e);
+    const r = info.get(e).r;
+    if (e.matches('.ray, .tail')) {
+      chain(e, () => { ctx.globalAlpha = st.alpha; ctx.fillStyle = st.backgroundColor; ctx.fillRect(r.left, r.top, r.width, r.height); });
+    } else if (e.matches('.fx')) {
+      if (!clear(st.backgroundColor)) chain(e, () => { ctx.globalAlpha = st.alpha; ctx.fillStyle = st.backgroundColor; ctx.fillRect(r.left, r.top, r.width, r.height); });
+    } else {
+      chain(e, () => text(e.textContent, r, st));
+    }
+  };
+
+  const done = new Set();
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_TEXT);
+  for (let n = walker.nextNode(); n; n = walker.nextNode()) {
+    if (n.nodeType === 3) {
+      const list = glyphs.get(n);
+      if (!list) continue;
+      const st = styles.get(n.parentElement);
+      for (const g of list) { ctx.save(); text(g.ch, g.r, st); ctx.restore(); }
+      continue;
+    }
+    if (!info.has(n) || done.has(n)) continue;
+    drawEl(n); done.add(n);
+    if (n.matches('.fx')) n.querySelectorAll(':scope > .echo').forEach(e => { drawEl(e); done.add(e); });
+  }
+
+  ctx.setTransform(scale, 0, 0, scale, 0, 0);
+  ctx.globalAlpha = 1;
+  ctx.font = `400 12px ${page.fontFamily}`;
+  if ('letterSpacing' in ctx) ctx.letterSpacing = '0.08em';
+  ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--mute').trim() || '#777';
+  ctx.textAlign = 'left';
+  ctx.fillText(caption.toUpperCase(), PAD, H - PAD / 1.6);
+  ctx.textAlign = 'right';
+  ctx.fillText('FELT TYPE', W - PAD, H - PAD / 1.6);
+  ctx.textAlign = 'left';
+}
+function makePNG(root, caption) {
+  const anims = root.getAnimations({ subtree: true });
+  anims.forEach(a => a.pause());
+  let snap;
+  try { snap = snapshot(root); } finally { anims.forEach(a => { try { a.play(); } catch (e) {} }); }
+  const scale = 2, { W, H } = sizeFor(snap.box);
+  const canvas = document.createElement('canvas');
+  canvas.width = W * scale; canvas.height = H * scale;
+  paintSnap(canvas.getContext('2d'), root, snap, snap.box, scale, caption);
+  return new Promise(res => canvas.toBlob(blob => res({ blob, canvas }), 'image/png'));
+}
+
+// GIF: step the page's own animations frame by frame, draw each still, and encode.
+// Everything is ink on paper, so the palette is a 128-step ramp between the two.
+function gifWriter(w, h, palette, delayCs) {
+  const parts = [];
+  let buf = [];
+  const flush = () => { if (buf.length) { parts.push(new Uint8Array(buf)); buf = []; } };
+  const b = v => { buf.push(v & 255); };
+  const w16 = v => { b(v); b(v >> 8); };
+  const str = s => { for (const c of s) b(c.charCodeAt(0)); };
+  const minBits = 7;
+  str('GIF89a'); w16(w); w16(h);
+  b(0x80 | ((minBits - 1) << 4) | (minBits - 1)); b(0); b(0);
+  for (const [r, g, bl] of palette) { b(r); b(g); b(bl); }
+  b(0x21); b(0xff); b(11); str('NETSCAPE2.0'); b(3); b(1); w16(0); b(0);
+  return {
+    frame(px) {
+      b(0x21); b(0xf9); b(4); b(0); w16(delayCs); b(0); b(0);
+      b(0x2c); w16(0); w16(0); w16(w); w16(h); b(0);
+      b(minBits);
+      const clearCode = 1 << minBits, eoi = clearCode + 1;
+      let size = minBits + 1, next = eoi + 1, dict = new Map();
+      let cur = 0, bits = 0, block = [];
+      const emit = code => {
+        cur |= code << bits; bits += size;
+        while (bits >= 8) {
+          block.push(cur & 255); cur >>>= 8; bits -= 8;
+          if (block.length === 255) { b(255); for (const x of block) b(x); block = []; }
+        }
+      };
+      emit(clearCode);
+      let prefix = px[0];
+      for (let i = 1; i < px.length; i++) {
+        const k = px[i], key = (prefix << 8) | k;
+        const hit = dict.get(key);
+        if (hit !== undefined) { prefix = hit; continue; }
+        emit(prefix);
+        if (next === 4096) { emit(clearCode); dict = new Map(); next = eoi + 1; size = minBits + 1; }
+        else { if (next >= 1 << size) size++; dict.set(key, next++); }
+        prefix = k;
+      }
+      emit(prefix); emit(eoi);
+      if (bits > 0) block.push(cur & 255);
+      if (block.length) { b(block.length); for (const x of block) b(x); }
+      b(0);
+      flush();
+    },
+    end() { b(0x3b); flush(); return new Blob(parts, { type: 'image/gif' }); },
+  };
+}
+const rgbOf = s => (s.match(/[\d.]+/g) || [0, 0, 0]).slice(0, 3).map(Number);
+async function makeGIF(root, caption, progress) {
+  const FRAMES = 60, STEP = 60;
+  root.getAnimations({ subtree: true }).forEach(a => { if (!(a instanceof CSSAnimation)) a.finish(); });
+  const words = [...root.querySelectorAll('.felt-word')];
+  const gap = Math.min(110, 1100 / Math.max(1, words.length));
+  words.forEach((w, k) => enter(w, 150 + k * gap, true));
+  const anims = root.getAnimations({ subtree: true });
+  anims.forEach(a => a.pause());
+  const css = a => a instanceof CSSAnimation;
+  const start = anims.map(a => (css(a) ? +a.currentTime || 0 : 0));
+  const snaps = [];
+  try {
+    for (let f = 0; f < FRAMES; f++) {
+      anims.forEach((a, k) => { a.currentTime = start[k] + f * STEP; });
+      snaps.push(snapshot(root));
+    }
+  } finally {
+    anims.forEach((a, k) => { if (css(a)) { a.currentTime = start[k]; try { a.play(); } catch (e) {} } else a.finish(); });
+  }
+  const box = snaps.reduce((u, s) => ({ x0: Math.min(u.x0, s.box.x0), y0: Math.min(u.y0, s.box.y0), x1: Math.max(u.x1, s.box.x1), y1: Math.max(u.y1, s.box.y1) }), { ...snaps[0].box });
+  const { W, H } = sizeFor(box);
+  const scale = Math.min(1.2, 1200 / W);
+  const cw = Math.round(W * scale), ch = Math.round(H * scale);
+  const canvas = document.createElement('canvas');
+  canvas.width = cw; canvas.height = ch;
+  const ctx = canvas.getContext('2d', { willReadFrequently: true });
+  const bg = rgbOf(getComputedStyle(document.body).backgroundColor);
+  const ink = rgbOf(getComputedStyle(root).color);
+  const d = [ink[0] - bg[0], ink[1] - bg[1], ink[2] - bg[2]];
+  const len2 = d[0] * d[0] + d[1] * d[1] + d[2] * d[2] || 1;
+  const palette = Array.from({ length: 128 }, (_, i) => bg.map((c, j) => Math.round(c + (d[j] * i) / 127)));
+  const gif = gifWriter(cw, ch, palette, Math.round(STEP / 10));
+  const px = new Uint8Array(cw * ch);
+  for (let f = 0; f < FRAMES; f++) {
+    paintSnap(ctx, root, snaps[f], box, scale, caption);
+    const data = ctx.getImageData(0, 0, cw, ch).data;
+    for (let i = 0, j = 0; j < px.length; i += 4, j++) {
+      const t = ((data[i] - bg[0]) * d[0] + (data[i + 1] - bg[1]) * d[1] + (data[i + 2] - bg[2]) * d[2]) / len2;
+      px[j] = t <= 0 ? 0 : t >= 1 ? 127 : Math.round(t * 127);
+    }
+    gif.frame(px);
+    progress(Math.round(((f + 1) / FRAMES) * 100));
+    await new Promise(r => setTimeout(r, 0));
+  }
+  return { blob: gif.end(), canvas };
+}
+
+const downloadsReady = window.claude?.use ? window.claude.use('downloads').catch(() => null) : Promise.resolve(undefined);
+async function saveBlob(blob, filename) {
+  const downloads = await downloadsReady;
+  if (downloads) {
+    try { await downloads.save({ filename, data: blob }); return 'Saved.'; }
+    catch (e) { return e && e.code === 'declined' ? '' : 'The file could not be saved here.'; }
+  }
+  if (downloads === null) return 'Saving files is not available in this view.';
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = filename; a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+  return 'Saved.';
+}
+function syncGifButtons() {
+  for (const p of PASSAGES) {
+    const end = p.el && p.el.parentElement.querySelector('.source .end');
+    if (end) end.hidden = !p.edited;
+  }
+  const gif = document.querySelector('[data-export="live"][data-format="gif"]');
+  if (gif) gif.hidden = !$('live').querySelector('.fx[data-fx]');
+}
+let exporting = false;
+document.addEventListener('click', async e => {
+  const b = e.target.closest('[data-export]');
+  if (!b || exporting) return;
+  exporting = true;
+  const id = b.dataset.export, gif = b.dataset.format === 'gif';
+  const p = PASSAGES.find(x => x.id === id);
+  const root = id === 'live' ? $('live') : p.el;
+  const caption = id === 'live' ? 'Your writing' : `${p.book} — ${p.author}, ${p.year}`;
+  closeSheet(true);
+  amplify(state.hover, false); state.hover = null;
+  const label = b.textContent;
+  b.textContent = gif ? 'Making GIF… 0%' : 'Exporting…';
+  $('status').textContent = '';
+  try {
+    await document.fonts.ready;
+    const { blob, canvas } = gif ? await makeGIF(root, caption, n => { b.textContent = `Making GIF… ${n}%`; }) : await makePNG(root, caption);
+    const msg = await saveBlob(blob, `felt-type-${id === 'live' ? 'my-writing' : id}.${gif ? 'gif' : 'png'}`);
+    if (msg === 'Saved.') recordSave({
+      scope: id, format: gif ? 'gif' : 'png', caption, at: Date.now(), thumb: thumbOf(canvas),
+      ...(id === 'live'
+        ? { text: src.value, overrides: { ...overrides } }
+        : { feelings: p.tokens.map((t, i) => (t.type === 'word' ? [i, t.fx, t.v, t.n] : null)).filter(Boolean) }),
+    });
+    b.textContent = msg === 'Saved.' ? 'Saved' : msg ? 'Not saved' : label;
+    if (msg && msg !== 'Saved.') b.title = msg;
+  } catch (err) {
+    b.textContent = 'Not saved';
+  }
+  exporting = false;
+  setTimeout(() => { b.textContent = label; }, 2200);
+});
+
+// ---------- your saves ----------
+// Kept privately for each signed-in person in Claude. Elsewhere they last only while the page is open:
+// nothing anyone writes is stored in their browser.
+const savesReady = (async () => {
+  if (!window.claude?.use) return null;
+  try {
+    const [db, user] = await Promise.all([window.claude.use('db'), window.claude.use('user')]);
+    const me = user ? await user.id() : null;
+    return db && me ? db.collection(`data/users/${me}/saves`) : null;
+  } catch (e) { return null; }
+})();
+let savesList = [];
+function thumbOf(canvas) {
+  const w = 400, h = Math.round((canvas.height * w) / canvas.width);
+  const t = document.createElement('canvas'); t.width = w; t.height = h;
+  t.getContext('2d').drawImage(canvas, 0, 0, w, h);
+  return t.toDataURL('image/jpeg', 0.78);
+}
+async function startSaves() {
+  const col = await savesReady;
+  if (col) col.orderBy('at', 'desc').limit(60).onSnapshot(snap => { savesList = snap.docs.map(d => ({ id: d.id, ...d.data() })); drawSaves(); }, () => {});
+  else drawSaves();
+}
+async function recordSave(entry) {
+  const col = await savesReady;
+  if (col) { try { await col.add(entry); } catch (e) {} return; }
+  savesList = [{ id: 'l' + Date.now(), ...entry }, ...savesList];
+  drawSaves();
+}
+async function forgetSave(id) {
+  const col = await savesReady;
+  if (col) { try { await col.doc(id).delete(); } catch (e) {} return; }
+  savesList = savesList.filter(x => x.id !== id);
+  drawSaves();
+}
+function openSave(s) {
+  if (s.scope === 'live') {
+    src.value = s.text || '';
+    for (const k in overrides) delete overrides[k];
+    Object.assign(overrides, s.overrides || {});
+    setDone(true);
+    $('composer').scrollIntoView({ block: 'center', behavior: 'smooth' });
+    return;
+  }
+  const p = PASSAGES.find(x => x.id === s.scope);
+  if (!p) return;
+  for (const [i, fx, v, n] of s.feelings || []) {
+    const t = p.tokens[i];
+    if (t && t.type === 'word') { t.fx = fx; t.v = v; t.n = n; }
+  }
+  p.edited = true;
+  renderPassage(p);
+  document.getElementById(p.id).scrollIntoView({ block: 'start', behavior: 'smooth' });
+}
+const DATE = new Intl.DateTimeFormat(undefined, { day: 'numeric', month: 'short', year: 'numeric' });
+function drawSaves() {
+  $('saves').hidden = !savesList.length;
+  $('saves-grid').replaceChildren(...savesList.map(s => {
+    const fig = el('figure', 'save');
+    const open = el('button', 'save-open'); open.dataset.open = s.id;
+    const img = el('img'); img.src = s.thumb; img.alt = `${s.caption}, saved as ${s.format}`;
+    open.append(img);
+    const cap = el('figcaption');
+    const name = el('span', 'cap'); name.textContent = s.caption;
+    const meta = el('span', 'meta'); meta.textContent = `${(s.format || '').toUpperCase()} · ${DATE.format(new Date(s.at))}`;
+    const acts = el('span', 'save-acts');
+    const reopen = el('button', 'link'); reopen.textContent = 'Open'; reopen.dataset.open = s.id;
+    const del = el('button', 'link'); del.textContent = 'Delete'; del.dataset.forget = s.id;
+    acts.append(reopen, del);
+    cap.append(name, meta, acts);
+    fig.append(open, cap);
+    return fig;
+  }));
+}
+$('saves-grid').addEventListener('click', e => {
+  const o = e.target.closest('[data-open]');
+  if (o) { const s = savesList.find(x => x.id === o.dataset.open); if (s) openSave(s); return; }
+  const d = e.target.closest('[data-forget]');
+  if (!d) return;
+  if (d.dataset.sure) forgetSave(d.dataset.forget);
+  else { d.dataset.sure = '1'; d.textContent = 'Delete for good?'; setTimeout(() => { if (d.isConnected) { delete d.dataset.sure; d.textContent = 'Delete'; } }, 3000); }
+});
+
+// ---------- the felt mark fizzes ----------
+if (!reduced()) {
+  const turb = ['fibres', 'hair', 'grain'].map(r => document.querySelector(`#felt feTurbulence[result="${r}"]`));
+  setInterval(() => { if (!document.hidden) turb.forEach(t => t.setAttribute('seed', 1 + Math.floor(Math.random() * 400))); }, 120);
+}
+
+// ---------- start ----------
+src.value = '';
+buildBooks();
+renderLive();
+startSaves();
+if (location.hash) document.getElementById(location.hash.slice(1))?.scrollIntoView();
+</script>
