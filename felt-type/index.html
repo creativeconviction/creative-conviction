@@ -98,7 +98,7 @@ button:focus-visible, .w:focus-visible { outline: 2px solid var(--ink); outline-
 .books { margin-top: clamp(100px, 16vh, 180px); }
 .books > h2, .saves > h2 { margin: 0 0 16px; font: inherit; color: var(--ink); }
 .book-list { display: grid; gap: clamp(72px, 12vh, 130px); }
-.lede { margin: 12px 0 0; color: var(--mute); max-width: 56ch; }
+.lede { margin: 12px 0 0; color: var(--mute); text-transform: none; letter-spacing: 0; font-size: 15px; }
 
 /* your saves */
 .saves { margin-top: clamp(90px, 14vh, 150px); }
@@ -250,7 +250,7 @@ button:focus-visible, .w:focus-visible { outline: 2px solid var(--ink); outline-
 <div class="page">
   <header>
     <h1 class="felt">Felt Type</h1>
-    <p class="lede">Not all of us can make words mean things. Type something perfectly ordinary and the letters will overreact on your behalf.</p>
+    <p class="lede">Not all of us can make words mean things.<br>Type something perfectly ordinary and the letters will overreact on your behalf.</p>
   </header>
 
   <section class="write" aria-label="Your writing">
@@ -268,9 +268,6 @@ button:focus-visible, .w:focus-visible { outline: 2px solid var(--ink); outline-
     </div>
     <div class="actions" id="write-actions">
       <button class="btn solid" id="done">Done</button>
-      <span class="try" id="try">Try:
-        <button>fall</button><button>tremble</button><button>louder</button><button>rain</button><button>whisper</button><button>heavy</button>
-      </span>
     </div>
     <p class="status" id="status" role="status"></p>
   </section>
@@ -1098,7 +1095,7 @@ $('composer').addEventListener('click', e => {
   if (!e.target.closest('.w') || src.selectionStart !== src.selectionEnd) src.setSelectionRange(src.value.length, src.value.length);
   renderLive();
 });
-$('try').addEventListener('click', e => {
+$('try')?.addEventListener('click', e => {
   const b = e.target.closest('button');
   if (!b) return;
   const word = b.textContent.toLowerCase();
