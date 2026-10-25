@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-+HtBa5F22J2SIBRCFVPJ+03y9JYV+HVDfl/ACqa3YXA='; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-spR8v8LuSfvTIkMH7PoJ7W8dH8D5MHngi43/tZbYqXU='; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Type something perfectly ordinary and the letters will overreact on your behalf.">
@@ -808,7 +808,7 @@ const LEXICON = {
   'fall.3': 'down beneath under deep descend below bottom',
   'sink': 'sink sank sunk sad sadness sorrow grief grieve mourn despair worst weary tired exhausted dread gloom depressed low sigh heartbreak',
   'heavy': 'heavy heavier weight weigh burden fortune power powerful strong fearless iron stone rock solid mountain duty',
-  'heavy.1': 'made make build built ground',
+  'heavy.1': 'made build built ground',
   'grow': 'grow grew growing big bigger large huge vast loud louder great greater giant swell everything more most enormous bloom whole',
   'shrink': 'small smaller little tiny shrink less least fewer diminish quiet quieter shy humble',
   'squeeze': 'tight press pressed pressure compress crowd crowded narrow trap trapped squeeze cramped tense stress stuck choke anxious anxiety',
@@ -838,8 +838,46 @@ const LEXICON = {
   'pull': 'magnet attract pull drawn want wanted desire need crave',
   'empty': 'empty hollow absence void words nothing nobody none missing',
 };
+// A second, wider list: everyday words for feelings, weather, motion and time.
+const LEXICON_MORE = {
+  'fall': 'fate doom ruin ruined downfall topple toppled stumble stumbled trip tripped sag slump plunged dive dived descent landslide avalanche gravity',
+  'fall.3': 'basement underground buried bury burial abyss pit cellar',
+  'sink': 'suffer suffering sorrowful sadly unhappy miserable misery gloomy bleak hopeless helpless defeated defeat regret regrets disappointed disappointment drained hurt hurts ache aching mourning melancholy blue numb heavyhearted lament',
+  'heavy': 'massive dense thick anchor anchored chain chains concrete steel monument mighty strength sturdy bold brave courage courageous certain determined stubborn serious',
+  'heavy.1': 'alright settled settle steady stable grounded calm safe secure rest resting sure',
+  'grow': 'increase increasing rising expanding swelling grand grandest tremendous immense colossal thriving thrive flourish blooming blossom abundant overflow overflowing triumph victory proud pride yell roar boom',
+  'shrink': 'smallest lessen minimal miniature petite slight slightly meek timid fragile delicate frail shrinking reduce reduced scarce barely hardly whispering murmur mumble',
+  'squeeze': 'suffocate suffocating smother crushed crushing crammed packed jammed squashed squished cornered caged prison prisoner restrained restricted confined claustrophobic overwhelmed overwhelm deadline worried worry worries',
+  'open': 'vastness horizon horizons possibility possibilities opportunity welcome welcoming embrace generous liberty liberated release released relief relieved unlocked unbound limitless boundless infinite clear clearing expand spacious',
+  'spin': 'globes planets cosmos galaxy galaxies continent continents nations global',
+  'spin.1': 'rotate rotating revolving whirl whirling twirl twirling cycle cycles loop loops wheels carousel roundabout',
+  'long': 'future tomorrow someday eventually later linger lingering wait waited await yearning yearn distance distant faraway lifetime centuries century decades generations journey road path marathon',
+  'break': 'splinter splintered smash smashed crumble crumbling fracture fractured burst bursting explosion destroy destroyed destruction frenzy hysteria hysterical riot havoc disaster catastrophe',
+  'tremble': 'terrified horrified horror dreading nervously jittery jitters shudder shuddered quiver quivering quake earthquake chill chills shivering uneasy startled alarm alarmed frightened',
+  'tremble.2': 'rumble thunder thundering stomp crashing pound pounding',
+  'pulse': 'live lives lived breathing throb throbbing vital vibrant energy energetic awake wake woke rhythm',
+  'pulse.1': 'adore adored darling dear beloved affection tender romance romantic crush passion passionate',
+  'fade': 'ignorance ignorant unaware oblivion oblivious vanished vanishing disappear disappeared disappearing erase erased forgetting fleeting temporary dissolve dissolving evaporate haze hazy blur blurry dim dimming hush quietly unknown',
+  'light': 'joyful joyous delight delighted happiness glad cheerful bliss blissful sunshine sunny brighter brilliant radiant gleam glitter sparkle sparkling dazzling luminous lantern lamp grateful thankful laugh laughter',
+  'light.1': 'warmth glowing soft softly gentle gently peace peaceful serene',
+  'dark': 'darker darkest dusk shade shady murky blackness eclipse nightmare nightmares sin sinister wicked haunted haunting grim',
+  'back': 'remind reminded reminder remember remembered backwards rewind recall retreat regress reversed rethink revisit mirrored opposite upside',
+  'echo': 'repeated repeating repetition endlessly constant constantly everyday routine habit habits chant chorus crowds infinity',
+  'flow': 'flowing flowed stream streams waterfall rivers lake lakes pond splash wavy ripple ripples breeze drifting drifted wander wandering sway swaying glide gliding melody melodies tune humming liquid',
+  'rise': 'rises risen ascend ascending climb climbing upward uplift uplifted elevate elevated soaring flight hover hovering balloon cloud clouds angel angels spirit heavenly optimistic optimism hopeful',
+  'rise.1': 'imagine imagined imagination wish wishes wishing daydream fantasy weightless',
+  'alone': 'isolation isolate lonesome loneliness solitary separated abandoned abandon outsider stranger estranged singular exile',
+  'split': 'halves division heartbroken breakup divorce part parted parting farewell rift gap',
+  'flicker': 'unsure uncertain hesitant hesitate hesitation waver wavering doubtful flash flashing twinkle twinkling candlelight firefly fireflies glimpse',
+  'rain': 'raindrops drizzle downpour pour pouring shower showers tear teardrop sob sobbing weeping grieving drown drowning drench drenched soaked',
+  'harsh': 'rough brutal violent violence fury furious raging hostile bitter resent resentment spite spiteful jagged spike spikes thorn thorns knife blade razor screaming yelled',
+  'against': 'oppose opposed opposition rebel rebellion resisting defy defiant headwind upstream struggling persist persevere endure endured pushing',
+  'twist': 'twisted twisting tangled tangle knot knotted complicated complex puzzle puzzled bewildered baffled lost overthink overthinking wonder wondering curious curiosity question questions',
+  'pull': 'attracted attraction magnetic tempted temptation lure craving hunger hungry addicted addiction obsessed obsession gravitate',
+  'empty': 'emptiness hollowness vacant blank nothingness absent lack lacking hollowed bare barren deserted',
+};
 const LEX = {};
-for (const [fx, words] of Object.entries(LEXICON)) for (const w of words.split(' ')) LEX[w] = fx;
+for (const [fx, words] of [...Object.entries(LEXICON_MORE), ...Object.entries(LEXICON)]) for (const w of words.split(' ')) LEX[w] = fx;
 function suggest(core) {
   const w = core.toLowerCase();
   if (LEX[w]) return LEX[w];
@@ -849,7 +887,7 @@ function suggest(core) {
   return null;
 }
 // Everyday words that only look like feeling words.
-const STOP = new Set('the and but for with from into onto this that these those there their they them then than what when where which while whom whose could would should shall might must about after before over said says just also very have were been being here your yours ours itself because'.split(' '));
+const STOP = new Set('thank thanks the and but for with from into onto this that these those there their they them then than what when where which while whom whose could would should shall might must about after before over said says just also very have were been being here your yours ours itself because'.split(' '));
 // One letter off, or two letters swapped: "wrold" still means world.
 function nearly(a, b) {
   if (Math.abs(a.length - b.length) > 1 || b.length < 4) return false;
