@@ -235,7 +235,8 @@ button:focus-visible, .w:focus-visible { outline: 2px solid var(--ink); outline-
       <h3>Your writing</h3>
       <span class="end">
         <button class="link" id="edit">Edit</button>
-        <button class="link" data-export="live">Export PNG</button>
+        <button class="link" data-export="live" data-format="png">Export PNG</button>
+        <button class="link" data-export="live" data-format="gif" hidden>Export GIF</button>
       </span>
     </div>
     <p class="label" id="write-label">Write here. Words with a feeling move as you type them.</p>
@@ -295,8 +296,8 @@ const PASSAGES = [
     text: 'Call me Ishmael. Some years ago—never mind how {long|long|3} precisely—having {little|shrink|2} or no money in my purse, and {nothing|fade|2} particular to interest me on shore, I thought I would sail about a little and see the {watery|flow|2} part of the {world|open|2}.' },
   { id: 'curiouser', book: 'Alice’s Adventures in Wonderland', author: 'Lewis Carroll', year: 1865,
     text: '“{Curiouser|grow.1|1} and {curiouser|grow.1|2}!” cried Alice (she was so much surprised, that for the moment she quite forgot how to speak good English); “now I’m {opening out|long|3} like the {largest|grow|3} telescope that ever was! Good-bye, {feet|shrink.3|3}!”' },
-  { id: 'ulysses', book: 'Ulysses', author: 'James Joyce', year: 1922,
-    text: '…and first I put my arms around him yes and drew him {down|fall|1} to me so he could feel my breasts all perfume yes and his {heart|pulse.1|2} was going like {mad|break|3} and {yes|grow|1} I said {yes|grow|2} I will {Yes|pull|3}.' },
+  { id: 'raven', book: 'The Raven', author: 'Edgar Allan Poe', year: 1845,
+    text: 'And the lamp-light o’er him {streaming|rain.1|2} throws his {shadow|dark.1|2} on the floor;\nAnd my soul from out that shadow that lies {floating|rise.1|2} on the floor\nShall be {lifted|rise.2|2}—{nevermore|echo|3}!' },
 ];
 
 
@@ -893,6 +894,7 @@ function nodeFor(t, i, scope) {
 // ---------- passages ----------
 function renderPassage(p) {
   p.el.replaceChildren(...p.tokens.map((t, i) => nodeFor(t, i, p.id)));
+  syncGifButtons();
 }
 function buildBooks() {
   const books = $('books');
@@ -902,8 +904,11 @@ function buildBooks() {
     const h = el('h3'); h.textContent = p.book;
     const by = el('p'); by.textContent = `${p.author} · ${p.year}`;
     const end = el('span', 'end');
-    const ex = el('button', 'link'); ex.textContent = 'Export PNG'; ex.dataset.export = p.id;
-    end.append(ex);
+    for (const f of ['png', 'gif']) {
+      const ex = el('button', 'link'); ex.textContent = `Export ${f.toUpperCase()}`;
+      ex.dataset.export = p.id; ex.dataset.format = f;
+      end.append(ex);
+    }
     src.append(h, by, end);
     p.el = el('div', 'piece');
     a.append(src, p.el);
@@ -985,6 +990,7 @@ function renderLive() {
   state.liveDrawn = true;
   $('live').classList.toggle('placeholder', !text && !focused);
   $('composer').classList.toggle('focused', focused);
+  syncGifButtons();
 }
 function setDone(done) {
   state.done = done;
@@ -1136,7 +1142,7 @@ document.addEventListener('keydown', e => {
   }
 });
 
-// ---------- export as PNG ----------
+// ---------- export as PNG or GIF ----------
 // Redraws the piece on a canvas from its own layout: each letter at its place, with its transform, weight, outline and shade.
 const STRETCH = [[50, 'ultra-condensed'], [62.5, 'extra-condensed'], [75, 'condensed'], [87.5, 'semi-condensed'], [100, 'normal'], [112.5, 'semi-expanded'], [125, 'expanded'], [150, 'extra-expanded']];
 function stretchWord(v) {
@@ -1175,9 +1181,9 @@ function alphaOf(node, root) {
   for (let e = node; e && e !== root.parentElement; e = e.parentElement) a *= +getComputedStyle(e).opacity;
   return a;
 }
-function renderPiece(root) {
-  const anims = root.getAnimations({ subtree: true });
-  anims.forEach(a => a.pause());
+
+// One still of the piece as it is right now: every letter's transform, its untransformed box, and the bounds of it all.
+function snapshot(root) {
   const items = [...root.querySelectorAll('.fx[data-fx], .fx[data-fx] .l, .echo, .half, .ray, .tail')];
   const info = new Map();
   const rr = root.getBoundingClientRect();
@@ -1186,9 +1192,23 @@ function renderPiece(root) {
   for (const e of items) {
     const cs = getComputedStyle(e);
     const o = cs.transformOrigin.split(' ').map(parseFloat);
-    info.set(e, { m: cs.transform === 'none' ? new DOMMatrix() : new DOMMatrix(cs.transform), ox: o[0] || 0, oy: o[1] || 0 });
+    info.set(e, { m: cs.transform === 'none' ? new DOMMatrix() : new DOMMatrix(cs.transform), ox: o[0] || 0, oy: o[1] || 0, cs: {} });
     grow(e.getBoundingClientRect());
   }
+  // Opacity and colour can be animated (flicker, drip), so read them per still.
+  const styles = new Map();
+  const styleOf = e => {
+    if (!styles.has(e)) {
+      const cs = getComputedStyle(e);
+      styles.set(e, {
+        font: canvasFont(cs), fontSize: cs.fontSize, letterSpacing: cs.letterSpacing, color: cs.color,
+        strokeW: cs.webkitTextStrokeWidth, strokeC: cs.webkitTextStrokeColor, paintOrder: cs.paintOrder,
+        textShadow: cs.textShadow, clipPath: cs.clipPath, backgroundColor: cs.backgroundColor, alpha: alphaOf(e, root),
+      });
+    }
+    return styles.get(e);
+  };
+  for (const e of items) styleOf(e);
   root.classList.add('measuring');
   for (const e of items) info.get(e).r = e.getBoundingClientRect();
   const glyphs = new Map();
@@ -1203,25 +1223,24 @@ function renderPiece(root) {
       const r = range.getBoundingClientRect();
       if (r.width) { list.push({ ch: n.data[i], r }); grow(r); }
     }
-    glyphs.set(n, list);
+    if (list.length) { glyphs.set(n, list); styleOf(n.parentElement); }
   }
   root.classList.replace('measuring', 'notrans');
   void root.offsetWidth;
   root.classList.remove('notrans');
-  anims.forEach(a => { try { a.play(); } catch (e) {} });
-  return { info, glyphs, box };
+  return { info, glyphs, box, styles };
 }
-function drawPiece(root, caption) {
-  const { info, glyphs, box } = renderPiece(root);
-  const pad = 64, foot = 56, scale = 2;
-  const W = Math.ceil(box.x1 - box.x0 + pad * 2), H = Math.ceil(box.y1 - box.y0 + pad * 2 + foot);
-  const canvas = document.createElement('canvas');
-  canvas.width = W * scale; canvas.height = H * scale;
-  const ctx = canvas.getContext('2d');
+
+const PAD = 64, FOOT = 56;
+const sizeFor = box => ({ W: Math.ceil(box.x1 - box.x0 + PAD * 2), H: Math.ceil(box.y1 - box.y0 + PAD * 2 + FOOT) });
+function paintSnap(ctx, root, snap, box, scale, caption) {
+  const { info, glyphs, styles } = snap;
+  const { W, H } = sizeFor(box);
   const page = getComputedStyle(document.body);
-  ctx.scale(scale, scale);
+  ctx.setTransform(scale, 0, 0, scale, 0, 0);
+  ctx.globalAlpha = 1;
   ctx.fillStyle = page.backgroundColor; ctx.fillRect(0, 0, W, H);
-  ctx.translate(pad - box.x0, pad - box.y0);
+  ctx.translate(PAD - box.x0, PAD - box.y0);
 
   const applyT = e => {
     const { m, ox, oy, r } = info.get(e);
@@ -1236,36 +1255,37 @@ function drawPiece(root, caption) {
     fn();
     ctx.restore();
   };
-  const text = (str, r, cs, from) => {
-    ctx.font = canvasFont(cs);
-    if ('letterSpacing' in ctx) ctx.letterSpacing = cs.letterSpacing === 'normal' ? '0px' : cs.letterSpacing;
+  const text = (str, r, st) => {
+    ctx.font = st.font;
+    if ('letterSpacing' in ctx) ctx.letterSpacing = st.letterSpacing === 'normal' ? '0px' : st.letterSpacing;
     const mt = ctx.measureText(str);
-    const A = mt.fontBoundingBoxAscent ?? parseFloat(cs.fontSize) * 0.8, D = mt.fontBoundingBoxDescent ?? parseFloat(cs.fontSize) * 0.2;
+    const fs = parseFloat(st.fontSize);
+    const A = mt.fontBoundingBoxAscent ?? fs * 0.8, D = mt.fontBoundingBoxDescent ?? fs * 0.2;
     const x = r.left, y = r.top + (r.height - (A + D)) / 2 + A;
-    ctx.globalAlpha = alphaOf(from, root);
-    const clip = clipOf(cs, r);
+    ctx.globalAlpha = st.alpha;
+    const clip = clipOf({ clipPath: st.clipPath, fontSize: st.fontSize }, r);
     if (clip) { ctx.beginPath(); ctx.rect(clip.x, clip.y, clip.w, clip.h); ctx.clip(); }
-    for (const s of shadowsOf(cs.textShadow).reverse()) {
+    for (const s of shadowsOf(st.textShadow).reverse()) {
       ctx.save();
       ctx.fillStyle = s.color;
       if (s.blur) { ctx.shadowColor = s.color; ctx.shadowBlur = s.blur * scale; }
       ctx.fillText(str, x + s.x, y + s.y);
       ctx.restore();
     }
-    const sw = parseFloat(cs.webkitTextStrokeWidth) || 0;
-    const stroke = () => { if (sw && !clear(cs.webkitTextStrokeColor)) { ctx.lineWidth = sw; ctx.lineJoin = 'round'; ctx.strokeStyle = cs.webkitTextStrokeColor; ctx.strokeText(str, x, y); } };
-    const fill = () => { if (!clear(cs.color)) { ctx.fillStyle = cs.color; ctx.fillText(str, x, y); } };
-    if ((cs.paintOrder || '').startsWith('stroke')) { stroke(); fill(); } else { fill(); stroke(); }
+    const sw = parseFloat(st.strokeW) || 0;
+    const stroke = () => { if (sw && !clear(st.strokeC)) { ctx.lineWidth = sw; ctx.lineJoin = 'round'; ctx.strokeStyle = st.strokeC; ctx.strokeText(str, x, y); } };
+    const fill = () => { if (!clear(st.color)) { ctx.fillStyle = st.color; ctx.fillText(str, x, y); } };
+    if ((st.paintOrder || '').startsWith('stroke')) { stroke(); fill(); } else { fill(); stroke(); }
   };
   const drawEl = e => {
-    const cs = getComputedStyle(e);
+    const st = styles.get(e);
     const r = info.get(e).r;
     if (e.matches('.ray, .tail')) {
-      chain(e, () => { ctx.globalAlpha = alphaOf(e, root); ctx.fillStyle = cs.backgroundColor; ctx.fillRect(r.left, r.top, r.width, r.height); });
+      chain(e, () => { ctx.globalAlpha = st.alpha; ctx.fillStyle = st.backgroundColor; ctx.fillRect(r.left, r.top, r.width, r.height); });
     } else if (e.matches('.fx')) {
-      if (!clear(cs.backgroundColor)) chain(e, () => { ctx.globalAlpha = alphaOf(e, root); ctx.fillStyle = cs.backgroundColor; ctx.fillRect(r.left, r.top, r.width, r.height); });
+      if (!clear(st.backgroundColor)) chain(e, () => { ctx.globalAlpha = st.alpha; ctx.fillStyle = st.backgroundColor; ctx.fillRect(r.left, r.top, r.width, r.height); });
     } else {
-      chain(e, () => text(e.textContent, r, cs, e));
+      chain(e, () => text(e.textContent, r, st));
     }
   };
 
@@ -1274,9 +1294,9 @@ function drawPiece(root, caption) {
   for (let n = walker.nextNode(); n; n = walker.nextNode()) {
     if (n.nodeType === 3) {
       const list = glyphs.get(n);
-      if (!list || !list.length) continue;
-      const cs = getComputedStyle(n.parentElement);
-      for (const g of list) { ctx.save(); text(g.ch, g.r, cs, n.parentElement); ctx.restore(); }
+      if (!list) continue;
+      const st = styles.get(n.parentElement);
+      for (const g of list) { ctx.save(); text(g.ch, g.r, st); ctx.restore(); }
       continue;
     }
     if (!info.has(n) || done.has(n)) continue;
@@ -1290,10 +1310,115 @@ function drawPiece(root, caption) {
   if ('letterSpacing' in ctx) ctx.letterSpacing = '0.08em';
   ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--mute').trim() || '#777';
   ctx.textAlign = 'left';
-  ctx.fillText(caption.toUpperCase(), pad, H - pad / 1.6);
+  ctx.fillText(caption.toUpperCase(), PAD, H - PAD / 1.6);
   ctx.textAlign = 'right';
-  ctx.fillText('FELT TYPE', W - pad, H - pad / 1.6);
-  return canvas;
+  ctx.fillText('FELT TYPE', W - PAD, H - PAD / 1.6);
+  ctx.textAlign = 'left';
+}
+function makePNG(root, caption) {
+  const anims = root.getAnimations({ subtree: true });
+  anims.forEach(a => a.pause());
+  let snap;
+  try { snap = snapshot(root); } finally { anims.forEach(a => { try { a.play(); } catch (e) {} }); }
+  const scale = 2, { W, H } = sizeFor(snap.box);
+  const canvas = document.createElement('canvas');
+  canvas.width = W * scale; canvas.height = H * scale;
+  paintSnap(canvas.getContext('2d'), root, snap, snap.box, scale, caption);
+  return new Promise(res => canvas.toBlob(res, 'image/png'));
+}
+
+// GIF: step the page's own animations frame by frame, draw each still, and encode.
+// Everything is ink on paper, so the palette is a 128-step ramp between the two.
+const MOTION = '.anim, .breathe, .beat, .quake, .flick, .dim, .drip';
+const moves = root => !reduced() && !!root.querySelector(MOTION);
+function gifWriter(w, h, palette, delayCs) {
+  const parts = [];
+  let buf = [];
+  const flush = () => { if (buf.length) { parts.push(new Uint8Array(buf)); buf = []; } };
+  const b = v => { buf.push(v & 255); };
+  const w16 = v => { b(v); b(v >> 8); };
+  const str = s => { for (const c of s) b(c.charCodeAt(0)); };
+  const minBits = 7;
+  str('GIF89a'); w16(w); w16(h);
+  b(0x80 | ((minBits - 1) << 4) | (minBits - 1)); b(0); b(0);
+  for (const [r, g, bl] of palette) { b(r); b(g); b(bl); }
+  b(0x21); b(0xff); b(11); str('NETSCAPE2.0'); b(3); b(1); w16(0); b(0);
+  return {
+    frame(px) {
+      b(0x21); b(0xf9); b(4); b(0); w16(delayCs); b(0); b(0);
+      b(0x2c); w16(0); w16(0); w16(w); w16(h); b(0);
+      b(minBits);
+      const clearCode = 1 << minBits, eoi = clearCode + 1;
+      let size = minBits + 1, next = eoi + 1, dict = new Map();
+      let cur = 0, bits = 0, block = [];
+      const emit = code => {
+        cur |= code << bits; bits += size;
+        while (bits >= 8) {
+          block.push(cur & 255); cur >>>= 8; bits -= 8;
+          if (block.length === 255) { b(255); for (const x of block) b(x); block = []; }
+        }
+      };
+      emit(clearCode);
+      let prefix = px[0];
+      for (let i = 1; i < px.length; i++) {
+        const k = px[i], key = (prefix << 8) | k;
+        const hit = dict.get(key);
+        if (hit !== undefined) { prefix = hit; continue; }
+        emit(prefix);
+        if (next === 4096) { emit(clearCode); dict = new Map(); next = eoi + 1; size = minBits + 1; }
+        else { if (next >= 1 << size) size++; dict.set(key, next++); }
+        prefix = k;
+      }
+      emit(prefix); emit(eoi);
+      if (bits > 0) block.push(cur & 255);
+      if (block.length) { b(block.length); for (const x of block) b(x); }
+      b(0);
+      flush();
+    },
+    end() { b(0x3b); flush(); return new Blob(parts, { type: 'image/gif' }); },
+  };
+}
+const rgbOf = s => (s.match(/[\d.]+/g) || [0, 0, 0]).slice(0, 3).map(Number);
+async function makeGIF(root, caption, progress) {
+  const FRAMES = 48, STEP = 60;
+  const anims = root.getAnimations({ subtree: true });
+  anims.forEach(a => { if (a instanceof CSSAnimation) a.pause(); else a.finish(); });
+  const start = anims.map(a => +a.currentTime || 0);
+  const snaps = [];
+  try {
+    for (let f = 0; f < FRAMES; f++) {
+      anims.forEach((a, k) => { if (a instanceof CSSAnimation) a.currentTime = start[k] + f * STEP; });
+      snaps.push(snapshot(root));
+    }
+  } finally {
+    anims.forEach((a, k) => { if (a instanceof CSSAnimation) { a.currentTime = start[k]; try { a.play(); } catch (e) {} } });
+  }
+  const box = snaps.reduce((u, s) => ({ x0: Math.min(u.x0, s.box.x0), y0: Math.min(u.y0, s.box.y0), x1: Math.max(u.x1, s.box.x1), y1: Math.max(u.y1, s.box.y1) }), { ...snaps[0].box });
+  const { W, H } = sizeFor(box);
+  const scale = Math.min(1.2, 1200 / W);
+  const cw = Math.round(W * scale), ch = Math.round(H * scale);
+  const canvas = document.createElement('canvas');
+  canvas.width = cw; canvas.height = ch;
+  const ctx = canvas.getContext('2d', { willReadFrequently: true });
+  const bg = rgbOf(getComputedStyle(document.body).backgroundColor);
+  const ink = rgbOf(getComputedStyle(root).color);
+  const d = [ink[0] - bg[0], ink[1] - bg[1], ink[2] - bg[2]];
+  const len2 = d[0] * d[0] + d[1] * d[1] + d[2] * d[2] || 1;
+  const palette = Array.from({ length: 128 }, (_, i) => bg.map((c, j) => Math.round(c + (d[j] * i) / 127)));
+  const gif = gifWriter(cw, ch, palette, Math.round(STEP / 10));
+  const px = new Uint8Array(cw * ch);
+  for (let f = 0; f < FRAMES; f++) {
+    paintSnap(ctx, root, snaps[f], box, scale, caption);
+    const data = ctx.getImageData(0, 0, cw, ch).data;
+    for (let i = 0, j = 0; j < px.length; i += 4, j++) {
+      const t = ((data[i] - bg[0]) * d[0] + (data[i + 1] - bg[1]) * d[1] + (data[i + 2] - bg[2]) * d[2]) / len2;
+      px[j] = t <= 0 ? 0 : t >= 1 ? 127 : Math.round(t * 127);
+    }
+    gif.frame(px);
+    progress(Math.round(((f + 1) / FRAMES) * 100));
+    await new Promise(r => setTimeout(r, 0));
+  }
+  return gif.end();
 }
 
 const downloadsReady = window.claude?.use ? window.claude.use('downloads').catch(() => null) : Promise.resolve(undefined);
@@ -1301,32 +1426,46 @@ async function saveBlob(blob, filename) {
   const downloads = await downloadsReady;
   if (downloads) {
     try { await downloads.save({ filename, data: blob }); return 'Saved.'; }
-    catch (e) { return e && e.code === 'declined' ? '' : 'The image could not be saved here.'; }
+    catch (e) { return e && e.code === 'declined' ? '' : 'The file could not be saved here.'; }
   }
-  if (downloads === null) return 'Saving images is not available in this view.';
+  if (downloads === null) return 'Saving files is not available in this view.';
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob); a.download = filename; a.click();
   setTimeout(() => URL.revokeObjectURL(a.href), 4000);
   return 'Saved.';
 }
+function syncGifButtons() {
+  document.querySelectorAll('[data-format="gif"]').forEach(b => {
+    const id = b.dataset.export;
+    const root = id === 'live' ? $('live') : PASSAGES.find(p => p.id === id).el;
+    if (root) b.hidden = !moves(root);
+  });
+}
+let exporting = false;
 document.addEventListener('click', async e => {
   const b = e.target.closest('[data-export]');
-  if (!b) return;
-  const id = b.dataset.export;
+  if (!b || exporting) return;
+  exporting = true;
+  const id = b.dataset.export, gif = b.dataset.format === 'gif';
   const p = PASSAGES.find(x => x.id === id);
   const root = id === 'live' ? $('live') : p.el;
   const caption = id === 'live' ? 'Your writing' : `${p.book} — ${p.author}, ${p.year}`;
-  closeSheet(true); rerender(id);
+  closeSheet(true);
   amplify(state.hover, false); state.hover = null;
   const label = b.textContent;
-  b.textContent = 'Exporting…';
-  await document.fonts.ready;
-  const canvas = drawPiece(root, caption);
-  const blob = await new Promise(res => canvas.toBlob(res, 'image/png'));
-  const msg = await saveBlob(blob, `felt-type-${id === 'live' ? 'my-writing' : id}.png`);
-  b.textContent = msg === 'Saved.' ? 'Saved' : label;
-  if (msg && msg !== 'Saved.') $('status').textContent = msg;
-  setTimeout(() => { b.textContent = label; }, 2000);
+  b.textContent = gif ? 'Making GIF… 0%' : 'Exporting…';
+  $('status').textContent = '';
+  try {
+    await document.fonts.ready;
+    const blob = gif ? await makeGIF(root, caption, n => { b.textContent = `Making GIF… ${n}%`; }) : await makePNG(root, caption);
+    const msg = await saveBlob(blob, `felt-type-${id === 'live' ? 'my-writing' : id}.${gif ? 'gif' : 'png'}`);
+    b.textContent = msg === 'Saved.' ? 'Saved' : msg ? 'Not saved' : label;
+    if (msg && msg !== 'Saved.') b.title = msg;
+  } catch (err) {
+    b.textContent = 'Not saved';
+  }
+  exporting = false;
+  setTimeout(() => { b.textContent = label; }, 2200);
 });
 
 // ---------- start ----------
