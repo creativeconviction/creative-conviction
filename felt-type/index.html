@@ -4,7 +4,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-/* Layout: one passage set large on a bare sheet; quiet mono chrome pinned to the edges */
+/* Layout: one long sheet. Felt title and a live typing line on top, then the passages stacked below, each with its source. */
 :root {
   --paper: #ffffff;
   --ink: #0b0b0c;
@@ -13,6 +13,7 @@
   --panel: #ffffff;
   --display: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --mono: 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
+  --soft: cubic-bezier(.2, .8, .2, 1);
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
@@ -26,219 +27,245 @@
 }
 
 [hidden] { display: none !important; }
-html, body { height: 100%; }
 body {
   background: var(--paper);
   color: var(--ink);
   font: 13px/1.5 var(--mono);
 }
-button {
-  font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer;
-}
-button:focus-visible, .w:focus-visible, textarea:focus-visible {
-  outline: 2px solid var(--ink); outline-offset: 3px;
-}
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+button:focus-visible, .w:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 
-.app {
-  min-height: 100%;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
+.page {
+  max-width: 1180px;
+  margin: 0 auto;
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
-  padding-block: 20px 28px;
+  padding-block: 28px 120px;
   overflow-x: clip;
 }
 
-/* chrome */
-.bar, .foot {
-  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between;
-  gap: 12px 24px;
+/* felt title */
+.felt {
+  font-family: var(--display);
+  font-weight: 800;
+  font-stretch: 112%;
+  font-size: clamp(64px, 14vw, 176px);
+  line-height: 0.9;
+  letter-spacing: -0.025em;
+  margin: 0;
+  filter: url(#felt);
 }
-.mark { font-family: var(--display); font-weight: 800; font-size: 15px; letter-spacing: -0.01em; }
-.mark span { display: inline-block; }
-.mark span:nth-child(n+6) { font-weight: 300; transform: translateY(0.12em) rotate(6deg); }
-.modes { display: flex; gap: 18px; }
-.tab { color: var(--mute); text-transform: lowercase; }
-.tab[aria-pressed="true"] { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
-.tab:hover { color: var(--ink); }
+.lede { color: var(--mute); max-width: 52ch; margin: 18px 0 0; }
 
-.foot { align-items: center; }
-.cite { color: var(--mute); max-width: 60ch; }
-.cite em { font-style: normal; color: var(--ink); }
-.ctrl { display: flex; align-items: center; gap: 16px; }
-.ctrl .count { font-variant-numeric: tabular-nums; color: var(--mute); min-width: 5ch; text-align: center; }
-.ctrl button { padding: 6px 2px; }
-.ctrl button:hover, .sheet button:hover { text-decoration: underline; text-underline-offset: 4px; }
-.arrow { font-size: 16px; }
-
-/* the sheet of type */
-.stage {
-  display: flex; flex-direction: column; justify-content: center;
-  padding-block: clamp(40px, 9vh, 120px);
-  min-width: 0;
+/* live typing */
+.composer {
+  position: relative;
+  margin-top: clamp(36px, 7vh, 72px);
+  cursor: text;
+  min-height: 4.2em;
+  padding-block: 0.3em 0.6em;
+  border-bottom: 1px solid var(--faint);
 }
+.composer.focused { border-bottom-color: var(--ink); }
+.composer .piece { font-size: clamp(26px, 4vw, 52px); max-width: none; }
+.ghost-input {
+  position: absolute; left: 0; top: 0; width: 1px; height: 1px;
+  opacity: 0; resize: none; border: 0; padding: 0; font-size: 16px; pointer-events: none;
+}
+.placeholder { color: var(--mute); font-weight: 300; }
+.caret { display: inline-block; width: 2px; height: 0.95em; background: var(--ink); vertical-align: -0.14em; margin: 0 1px; }
+.tools { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 12px; color: var(--mute); }
+.tools button:hover, .sheet button:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+.tools button[aria-pressed="true"] { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+
+/* passages */
+.books { margin-top: clamp(80px, 14vh, 160px); display: grid; gap: clamp(72px, 12vh, 140px); }
+.books-label { color: var(--mute); margin: 0; }
+.passage { display: grid; gap: 22px; }
+.source { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; padding-top: 14px; border-top: 1px solid var(--ink); }
+.source h3 { margin: 0; font: 650 clamp(17px, 1.6vw, 21px)/1.25 var(--display); letter-spacing: -0.005em; text-wrap: balance; }
+.source p { margin: 0; color: var(--mute); }
+
 .piece {
   font-family: var(--display);
-  font-size: clamp(24px, 3.5vw, 46px);
+  font-size: clamp(23px, 3.3vw, 42px);
   line-height: 1.6;
   letter-spacing: -0.012em;
   font-weight: 400;
-  max-width: 21em;
+  max-width: 22em;
   min-width: 0;
 }
-.hint { margin-top: 2.2em; color: var(--mute); }
 
 .w { cursor: pointer; border-radius: 2px; }
-.w:hover .fx:not([data-fx]) { text-decoration: underline dotted var(--mute); text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
-.w.sel { outline: 1px dashed var(--mute); outline-offset: 0.12em; }
+.w.felt-word:hover, .w.sel { outline: 1px dashed var(--faint); outline-offset: 0.14em; }
+.passage .w:not(.felt-word):hover .fx { text-decoration: underline dotted var(--faint); text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
+.composer .w:not(.felt-word) { cursor: text; }
 
+.fx, .l {
+  transition: transform .6s var(--soft), font-size .6s var(--soft), letter-spacing .6s var(--soft),
+    margin .6s var(--soft), opacity .6s var(--soft), font-weight .6s var(--soft), font-stretch .6s var(--soft);
+}
 .fx { display: inline-block; position: relative; white-space: nowrap; isolation: isolate; }
 .l { display: inline-block; white-space: pre; transform-origin: 50% 70%; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
 .hollow { color: transparent; -webkit-text-stroke: max(1px, 0.024em) var(--ink); font-weight: 700; }
 .dark { background: var(--ink); color: var(--paper); padding: 0 0.2em 0.04em; font-weight: 800; }
-.stack { display: inline-flex; flex-direction: column; align-items: center; vertical-align: text-top; line-height: 0.8; }
+.extrude { color: var(--paper); -webkit-text-stroke: max(1px, 0.022em) var(--ink); font-weight: 800; }
+.stack { display: inline-flex; flex-direction: column; align-items: center; vertical-align: text-top; }
 .knock { position: relative; z-index: 1; -webkit-text-stroke: 0.09em var(--paper); paint-order: stroke fill; }
-.echo {
-  position: absolute; left: 0; top: 0; z-index: -1; white-space: pre; pointer-events: none;
-  color: transparent; -webkit-text-stroke: max(1px, 0.02em) var(--ink);
-}
+.echo { position: absolute; left: 0; top: 0; z-index: -1; white-space: pre; pointer-events: none; color: transparent; -webkit-text-stroke: max(1px, 0.02em) var(--ink); }
+.echo.solid { color: var(--ink); -webkit-text-stroke: 0; }
+.half { position: absolute; left: 0; top: 0; white-space: pre; pointer-events: none; clip-path: inset(50% -0.2em -0.6em -0.2em); }
 .ray { position: absolute; bottom: calc(100% + 0.08em); width: max(1px, 0.03em); background: var(--ink); transform-origin: 50% 100%; }
+.tail { display: inline-block; height: max(1px, 0.04em); background: var(--ink); vertical-align: 0.3em; margin-left: 0.1em; }
 
-/* motion: static resting pose first, movement only when allowed */
+/* motion: a still resting pose first, movement only when allowed */
 .anim .l { transform: var(--ts, var(--t0)); }
 @keyframes swing { from { transform: var(--t0); } to { transform: var(--t1); } }
 @keyframes breathe { from { transform: scale(1); } to { transform: scale(var(--s, 1.12)); } }
+@keyframes beat { 0%, 45%, 100% { transform: scale(1); } 10%, 30% { transform: scale(var(--s, 1.15)); } 20% { transform: scale(1.02); } }
+@keyframes quake {
+  0%, 100% { transform: translate(0, 0); } 25% { transform: translate(calc(var(--q) * -1), var(--q)); }
+  50% { transform: translate(var(--q), 0); } 75% { transform: translate(0, calc(var(--q) * -1)); }
+}
 @keyframes flicker { 0%, 40%, 44%, 69%, 74%, 100% { opacity: 1; } 42% { opacity: 0.12; } 71% { opacity: 0.3; } }
+@keyframes dim { from { opacity: 1; } to { opacity: var(--o, 0.25); } }
 @keyframes drip {
   0%, 55% { transform: none; opacity: 1; }
   80% { transform: translateY(var(--y, 0.5em)); opacity: 0; }
   81% { transform: translateY(-0.3em); opacity: 0; }
   100% { transform: none; opacity: 1; }
 }
+@keyframes blink { 50% { opacity: 0; } }
 @media (prefers-reduced-motion: no-preference) {
   .anim .l { animation: swing var(--d, 1s) var(--ease, ease-in-out) var(--dl, 0s) infinite alternate; }
   .breathe { animation: breathe 2.6s ease-in-out infinite alternate; }
+  .beat { animation: beat 1.3s ease-out infinite; }
+  .quake { animation: quake 0.28s steps(4) infinite; }
   .flick .l { animation: flicker var(--d, 2s) linear var(--dl, 0s) infinite; }
+  .dim { animation: dim 2.4s ease-in-out infinite alternate; }
   .drip .l { animation: drip var(--d, 3s) ease-in var(--dl, 0s) infinite; }
+  .caret { animation: blink 1s steps(1) infinite; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fx, .l { transition: none; }
 }
 
-/* writing your own */
-.writer { display: grid; gap: 14px; align-content: center; max-width: 46rem; padding-block: 40px; }
-.writer label { color: var(--mute); }
-.writer textarea {
-  width: 100%; min-height: 14em; resize: vertical;
-  font: 400 clamp(17px, 2vw, 21px)/1.5 var(--display);
-  color: var(--ink); background: var(--paper);
-  border: 1px solid var(--faint); border-radius: 2px; padding: 14px 16px;
-}
-.writer .row { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
-.btn { border: 1px solid var(--ink); padding: 8px 16px; border-radius: 2px; }
-.btn.solid { background: var(--ink); color: var(--paper); }
-
-/* effect picker */
+/* shaping a word */
 .sheet {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
   background: var(--panel);
   border-top: 1px solid var(--ink);
-  max-height: 58vh; overflow-y: auto;
+  max-height: 52vh; overflow-y: auto;
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
   padding-top: 14px;
   padding-bottom: calc(18px + env(safe-area-inset-bottom, 0px));
 }
 .sheet-head { display: flex; flex-wrap: wrap; gap: 10px 22px; align-items: baseline; margin-bottom: 14px; }
-.sheet-word { font: 700 20px var(--display); margin-right: auto; }
+.sheet-word { font: 700 20px var(--display); }
+.sheet-feel { color: var(--mute); margin-right: auto; }
 .lvl { display: flex; gap: 6px; align-items: baseline; color: var(--mute); }
 .lvl button { width: 26px; height: 26px; border: 1px solid var(--faint); border-radius: 2px; color: var(--ink); }
 .lvl button[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: var(--paper); }
-.chips { display: grid; grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); gap: 8px; }
+.sheet-act { color: var(--mute); }
+.chips { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
 .chip {
   display: grid; grid-template-rows: 1fr auto; place-items: center;
-  height: 104px; overflow: hidden;
+  height: 112px; overflow: hidden;
   border: 1px solid var(--faint); border-radius: 2px; padding: 6px 4px;
 }
 .chip:hover { border-color: var(--mute); }
 .chip[aria-pressed="true"] { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
-.chip-prev { font: 400 21px/1.3 var(--display); max-width: 100%; overflow: hidden; padding-top: 6px; }
+.chip-prev { font: 400 24px/1.3 var(--display); max-width: 100%; overflow: hidden; padding-top: 6px; }
 .chip-name { color: var(--mute); font-size: 11px; }
+.feelings { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+.feelings button { font: 400 20px/1.4 var(--display); }
+.feelings button:hover { text-decoration: underline; text-underline-offset: 5px; }
 </style>
 
-<div class="app">
-  <header class="bar">
-    <div class="mark" aria-label="Felt Type"><span>F</span><span>e</span><span>l</span><span>t</span><span>&nbsp;</span><span>t</span><span>y</span><span>p</span><span>e</span></div>
-    <nav class="modes" aria-label="Mode">
-      <button class="tab" id="tab-read" aria-pressed="true">passages</button>
-      <button class="tab" id="tab-mine" aria-pressed="false">your text</button>
-      <button class="tab" id="tab-plain" aria-pressed="false">plain</button>
-    </nav>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <filter id="felt" x="-6%" y="-12%" width="112%" height="124%" color-interpolation-filters="sRGB">
+    <!-- soft cut edge -->
+    <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="7" result="fibres"/>
+    <feDisplacementMap in="SourceGraphic" in2="fibres" scale="5" xChannelSelector="R" yChannelSelector="G" result="fuzz"/>
+    <feGaussianBlur in="fuzz" stdDeviation="0.7" result="soft"/>
+    <!-- stray fibres standing off the edge -->
+    <feTurbulence type="fractalNoise" baseFrequency="2.4" numOctaves="2" seed="4" result="hair"/>
+    <feDisplacementMap in="SourceGraphic" in2="hair" scale="12" xChannelSelector="R" yChannelSelector="G" result="stray"/>
+    <feComponentTransfer in="stray" result="halo"><feFuncA type="linear" slope="0.28"/></feComponentTransfer>
+    <!-- mottled nap across the face -->
+    <feTurbulence type="fractalNoise" baseFrequency="0.9 0.6" numOctaves="3" seed="11" result="grain"/>
+    <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -1.5 0 0 0 0.85" result="mottle"/>
+    <feFlood style="flood-color: var(--paper)" result="paper"/>
+    <feComposite in="paper" in2="mottle" operator="in" result="paperMottle"/>
+    <feComposite in="paperMottle" in2="soft" operator="in" result="nap"/>
+    <feMerge><feMergeNode in="halo"/><feMergeNode in="soft"/><feMergeNode in="nap"/></feMerge>
+  </filter>
+</svg>
+
+<div class="page">
+  <header>
+    <h1 class="felt">Felt Type</h1>
+    <p class="lede">Type below. Words that carry a feeling start to move as you finish them. Hover a moving word to feel more of it, or click it to try other ways of showing the same feeling.</p>
   </header>
 
-  <main class="stage" id="stage">
-    <div class="piece" id="piece" aria-live="polite"></div>
-    <p class="hint">Click any word to choose how it feels.</p>
-  </main>
-
-  <section class="writer" id="writer" hidden>
-    <label for="src">Paste an excerpt or write a few lines. Words that carry a feeling get a first suggestion, which you can change.</label>
-    <textarea id="src" spellcheck="false"></textarea>
-    <div class="row">
-      <button class="btn solid" id="compose">Set the type</button>
-      <button id="cancel" class="tab">back to passages</button>
-    </div>
+  <section class="composer" id="composer" aria-label="Your text">
+    <textarea id="src" class="ghost-input" spellcheck="false" aria-label="Your text"></textarea>
+    <div class="piece" id="live"></div>
   </section>
+  <div class="tools">
+    <button id="clear">clear</button>
+    <button id="plain" aria-pressed="false">plain</button>
+  </div>
 
-  <footer class="foot" id="foot">
-    <div class="cite" id="cite"></div>
-    <div class="ctrl">
-      <button id="prev" class="arrow" aria-label="Previous passage">←</button>
-      <span class="count" id="count"></span>
-      <button id="next" class="arrow" aria-label="Next passage">→</button>
-      <button id="shuffle">shuffle</button>
-      <button id="edit" hidden>edit text</button>
-    </div>
-  </footer>
+  <main class="books" id="books">
+    <p class="books-label">From the books</p>
+  </main>
 </div>
 
-<div class="sheet" id="sheet" hidden role="dialog" aria-label="Choose an effect">
+<div class="sheet" id="sheet" hidden role="dialog" aria-label="Shape this word">
   <div class="sheet-head">
     <span class="sheet-word" id="sheet-word"></span>
+    <span class="sheet-feel" id="sheet-feel"></span>
     <span class="lvl" id="lvl">strength
       <button data-n="1" aria-pressed="false">1</button>
       <button data-n="2" aria-pressed="true">2</button>
       <button data-n="3" aria-pressed="false">3</button>
     </span>
-    <button id="sheet-close">close</button>
+    <button class="sheet-act" id="sheet-remove">remove feeling</button>
+    <button class="sheet-act" id="sheet-close">close</button>
   </div>
   <div class="chips" id="chips"></div>
+  <div class="feelings" id="feelings"></div>
 </div>
 
 <script>
-// Passages are public domain. {word|effect|strength} marks a word; \n breaks a line.
+// Passages are public domain. {word|feeling|strength} or {word|feeling.variant|strength}; \n breaks a line.
 const PASSAGES = [
   { id: 'alice', book: 'Alice’s Adventures in Wonderland', author: 'Lewis Carroll', year: 1865,
-    text: '{Down|fall|1}, {down|fall|2}, {down|fall|3}. Would the {fall|stack|2} never come to an {end|isolate|2}? “I wonder how many miles I’ve {fallen|fall|1} by this time?” she said aloud.' },
+    text: '{Down|fall|1}, {down|fall|2}, {down|fall|3}. Would the {fall|fall.3|2} never come to an {end|alone|2}? “I wonder how many miles I’ve {fallen|fall.1|1} by this time?” she said aloud.' },
   { id: 'two-cities', book: 'A Tale of Two Cities', author: 'Charles Dickens', year: 1859,
-    text: 'It was the {best|rise|2} of times, it was the {worst|sink|2} of times, it was the age of wisdom, it was the age of {foolishness|scatter|1}, it was the epoch of belief, it was the epoch of incredulity, it was the season of {Light|radiate|2}, it was the season of {Darkness|dark|2}, it was the spring of {hope|rise|1}, it was the winter of {despair|sink|3}, we had {everything|grow|1} before us, we had {nothing|hollow|2} before us…' },
+    text: 'It was the {best|rise|2} of times, it was the {worst|sink|2} of times, it was the age of wisdom, it was the age of {foolishness|break|1}, it was the epoch of belief, it was the epoch of incredulity, it was the season of {Light|light|2}, it was the season of {Darkness|dark|2}, it was the spring of {hope|rise.1|2}, it was the winter of {despair|sink.2|3}, we had {everything|grow|1} before us, we had {nothing|empty|2} before us…' },
   { id: 'gatsby', book: 'The Great Gatsby', author: 'F. Scott Fitzgerald', year: 1925,
-    text: 'So we {beat|breathe|2} on, boats {against|lean|2} the {current|wave|2}, borne {back|mirror|2} {ceaselessly|echo|3} into the {past|fade|3}.' },
+    text: 'So we {beat|pulse.1|2} on, boats {against|against|2} the {current|flow|2}, borne {back|back|2} {ceaselessly|echo|3} into the {past|fade|3}.' },
   { id: 'tell-tale', book: 'The Tell-Tale Heart', author: 'Edgar Allan Poe', year: 1843,
-    text: 'Oh God! what could I do? I {foamed|tremble|2}—I {raved|jagged|2}—I swore! … It grew {louder|grow|1}—{louder|grow|2}—{louder|grow|3}! And still the men chatted {pleasantly|wave|1}, and smiled.' },
+    text: 'Oh God! what could I do? I {foamed|tremble|2}—I {raved|harsh|2}—I swore! … It grew {louder|grow|1}—{louder|grow|2}—{louder|grow|3}! And still the men chatted {pleasantly|flow.1|1}, and smiled.' },
   { id: 'pride', book: 'Pride and Prejudice', author: 'Jane Austen', year: 1813,
-    text: 'It is a truth {universally|expand|2} acknowledged, that a {single|isolate|2} man in possession of a good {fortune|heavy|2}, must be in {want|magnet|2} of a wife.' },
+    text: 'It is a truth {universally|open|2} acknowledged, that a {single|alone|2} man in possession of a good {fortune|heavy|2}, must be in {want|pull|2} of a wife.' },
   { id: 'frankenstein', book: 'Frankenstein', author: 'Mary Shelley', year: 1818,
-    text: 'It was already one in the morning; the rain {pattered|rain|2} dismally against the panes, and my candle was nearly {burnt out|fade|3}, when, by the {glimmer|flicker|2} of the {half-extinguished|split|2} light, I saw the dull yellow eye of the creature {open|expand|2}; it breathed hard, and a {convulsive|tremble|3} motion agitated its limbs.' },
+    text: 'It was already one in the morning; the rain {pattered|rain|2} dismally against the panes, and my candle was nearly {burnt out|fade|3}, when, by the {glimmer|flicker|2} of the {half-extinguished|split.1|2} light, I saw the dull yellow eye of the creature {open|open.1|2}; it breathed hard, and a {convulsive|tremble.2|2} motion agitated its limbs.' },
   { id: 'whitman', book: 'Song of Myself', author: 'Walt Whitman', year: 1892,
-    text: 'Do I {contradict|mirror|1} myself?\nVery well then I {contradict|twist|2} myself,\n(I am {large|grow|3}, I contain {multitudes|echo|3}.)' },
+    text: 'Do I {contradict|back|1} myself?\nVery well then I {contradict|back.2|2} myself,\n(I am {large|grow|3}, I contain {multitudes|echo|3}.)' },
   { id: 'dickinson', book: '“Hope” is the thing with feathers', author: 'Emily Dickinson', year: 1891,
-    text: '“{Hope|rise|2}” is the thing with {feathers|scatter|1} –\nThat {perches|stack|1} in the soul –\nAnd sings the {tune|wave|2} without the {words|hollow|2} –\nAnd {never stops|echo|2} – {at all|shrink|3} –' },
+    text: '“{Hope|rise|2}” is the thing with {feathers|break|1} –\nThat perches in the soul –\nAnd sings the {tune|flow|2} without the {words|empty|2} –\nAnd {never stops|echo.1|2} – {at all|shrink|3} –' },
   { id: 'moby-dick', book: 'Moby-Dick', author: 'Herman Melville', year: 1851,
-    text: 'Call me Ishmael. Some years ago—never mind how {long|stretch|3} precisely—having {little|shrink|2} or no money in my purse, and {nothing|fade|2} particular to interest me on shore, I thought I would sail about a little and see the {watery|wave|2} part of the {world|expand|2}.' },
+    text: 'Call me Ishmael. Some years ago—never mind how {long|long|3} precisely—having {little|shrink|2} or no money in my purse, and {nothing|fade|2} particular to interest me on shore, I thought I would sail about a little and see the {watery|flow|2} part of the {world|open|2}.' },
   { id: 'curiouser', book: 'Alice’s Adventures in Wonderland', author: 'Lewis Carroll', year: 1865,
-    text: '“{Curiouser|grow|1} and {curiouser|grow|2}!” cried Alice (she was so much surprised, that for the moment she quite forgot how to speak good English); “now I’m {opening out|stretch|3} like the {largest|grow|3} telescope that ever was! Good-bye, {feet|shrink|3}!”' },
+    text: '“{Curiouser|grow.1|1} and {curiouser|grow.1|2}!” cried Alice (she was so much surprised, that for the moment she quite forgot how to speak good English); “now I’m {opening out|long|3} like the {largest|grow|3} telescope that ever was! Good-bye, {feet|shrink.3|3}!”' },
   { id: 'ulysses', book: 'Ulysses', author: 'James Joyce', year: 1922,
-    text: '…and first I put my arms around him yes and drew him {down|fall|1} to me so he could feel my breasts all perfume yes and his {heart|breathe|2} was going like {mad|scatter|3} and {yes|grow|1} I said {yes|grow|2} I will {Yes|magnet|3}.' },
+    text: '…and first I put my arms around him yes and drew him {down|fall|1} to me so he could feel my breasts all perfume yes and his {heart|pulse.1|2} was going like {mad|break|3} and {yes|grow|1} I said {yes|grow|2} I will {Yes|pull|3}.' },
 ];
 
 const SAMPLE = 'I kept the letter for years. Every time I opened it the words looked smaller, and the room felt heavier, until one morning in the rain I let it fall.';
@@ -246,236 +273,476 @@ const SAMPLE = 'I kept the letter for years. Every time I opened it the words lo
 // ---------- helpers ----------
 const $ = id => document.getElementById(id);
 const el = (tag, cls) => { const e = document.createElement(tag); if (cls) e.className = cls; return e; };
+const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 function rng(seed) {
   let a = seed >>> 0;
   return () => { a = (a + 0x6D2B79F5) >>> 0; let t = a; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
 }
 const pos = (i, L) => (L.length > 1 ? i / (L.length - 1) : 0);
 const signed = r => (r() < 0.5 ? -1 : 1);
+const extra = (c, node) => { node.dataset.extra = ''; node.setAttribute('aria-hidden', 'true'); c.append(node); return node; };
+const anim = (s, vars) => { for (const k in vars) s.style.setProperty('--' + k, vars[k]); };
 
-// ---------- the effects ----------
-// Each one gets the word wrapper (c), its letter spans (L), a strength 1–3 (n), a seeded random (r).
-const FX = {
-  fall(c, L, n, r) {
-    const dir = signed(r);
-    L.forEach((s, i) => {
-      const t = pos(i, L);
-      const y = Math.pow(t, 1.7) * 0.55 * n;
-      const rot = dir * Math.pow(t, 1.4) * (18 + 14 * r()) * n * 0.6 + (r() - 0.5) * 8 * t;
-      s.style.transform = `translateY(${y}em) rotate(${rot}deg)`;
-    });
-    c.style.marginBottom = `${0.55 * n + 0.1}em`;
-  },
-  rise(c, L, n, r) {
-    c.style.fontWeight = 300;
-    L.forEach((s, i) => {
-      const t = pos(i, L);
-      s.style.transform = `translateY(${-Math.pow(t, 1.2) * 0.42 * n}em) rotate(${(r() - 0.5) * 10}deg)`;
-    });
-    c.style.marginTop = `${0.42 * n}em`;
-  },
-  sink(c, L, n) {
-    c.style.fontWeight = 800; c.style.fontStretch = '82%';
-    L.forEach((s, i) => { s.style.transform = `translateY(${Math.sin(Math.PI * pos(i, L)) * 0.28 * n}em)`; });
-    c.style.marginBottom = `${0.28 * n}em`;
-  },
-  grow(c, L, n) {
-    c.style.fontSize = `${1 + 0.5 * n}em`;
-    c.style.fontWeight = Math.min(900, 500 + 130 * n);
-    c.style.lineHeight = 1; c.style.letterSpacing = '-0.025em';
-  },
-  shrink(c, L, n) {
-    L.forEach((s, i) => { s.style.fontSize = `${Math.max(0.22, 1 - pos(i, L) * 0.26 * n)}em`; });
-  },
-  compress(c, L, n) {
-    c.style.fontStretch = '62%'; c.style.fontWeight = 800; c.style.letterSpacing = `${-0.035 * n}em`;
-  },
-  expand(c, L, n) {
-    c.style.fontStretch = '125%'; c.style.fontWeight = 300; c.style.letterSpacing = `${0.16 * n}em`;
-  },
-  stretch(c, L, n) {
-    c.style.fontStretch = '125%'; c.style.fontWeight = 300;
-    L.forEach((s, i) => { const t = pos(i, L); s.style.marginRight = `${t * t * 0.38 * n}em`; });
-  },
-  scatter(c, L, n, r) {
-    L.forEach(s => {
-      s.style.transform = `translate(${(r() - 0.5) * 0.22 * n}em, ${(r() - 0.5) * 0.5 * n}em) rotate(${(r() - 0.5) * 45 * n}deg)`;
-    });
-    c.style.margin = `${0.2 * n}em 0.05em`;
-  },
-  tremble(c, L, n, r) {
-    c.classList.add('anim'); c.style.fontWeight = 600;
-    const a = 0.025 * n, d = 3 * n;
-    L.forEach(s => {
-      s.style.setProperty('--t0', `translate(${(r() - 0.5) * a * 2}em, ${(r() - 0.5) * a * 2}em) rotate(${(r() - 0.5) * d}deg)`);
-      s.style.setProperty('--t1', `translate(${(r() - 0.5) * a * 2}em, ${(r() - 0.5) * a * 2}em) rotate(${(r() - 0.5) * d}deg)`);
-      s.style.setProperty('--d', `${0.07 + r() * 0.08}s`);
-      s.style.setProperty('--ease', 'steps(2, end)');
-    });
-  },
-  breathe(c, L, n) {
-    c.classList.add('breathe'); c.style.fontWeight = 600;
-    c.style.setProperty('--s', 1 + 0.08 * n);
-  },
-  fade(c, L, n) {
-    c.style.fontWeight = 250;
-    L.forEach((s, i) => { s.style.opacity = Math.max(0.06, 1 - pos(i, L) * 0.31 * n); });
-  },
-  hollow(c, L, n) {
-    c.classList.add('hollow');
-    c.style.letterSpacing = `${0.03 * n}em`;
-  },
-  radiate(c, L, n, r) {
-    c.classList.add('hollow');
-    const count = 3 + n * 2;
-    for (let k = 0; k < count; k++) {
-      const t = count > 1 ? k / (count - 1) : 0.5;
-      const ray = el('span', 'ray'); ray.setAttribute('aria-hidden', 'true');
-      ray.style.left = `${8 + t * 84}%`;
-      ray.style.height = `${0.3 + r() * 0.3 + 0.1 * n}em`;
-      ray.style.transform = `rotate(${(t - 0.5) * 70}deg)`;
-      c.append(ray);
-    }
-    c.style.marginTop = `${0.4 + 0.12 * n}em`;
-  },
-  dark(c, L, n) {
-    c.classList.add('dark');
-    L.forEach((s, i) => { s.style.transform = `translateY(${pos(i, L) * 0.05 * n}em)`; });
-  },
-  mirror(c, L, n) {
-    c.style.transform = n >= 3 ? 'scale(-1, -1)' : 'scaleX(-1)';
-    c.style.fontWeight = 500;
-  },
-  echo(c, L, n, r, text) {
-    const k = 1 + n;
-    for (let i = 1; i <= k; i++) {
-      const e = el('span', 'echo'); e.textContent = text; e.setAttribute('aria-hidden', 'true');
-      e.style.transform = `translate(${i * 0.13}em, ${-i * 0.09}em)`;
-      e.style.opacity = 0.7 / i;
-      c.append(e);
-    }
-    c.style.marginRight = `${k * 0.13}em`;
-    c.style.marginTop = `${k * 0.09}em`;
-  },
-  wave(c, L, n) {
-    c.classList.add('anim');
-    const a = 0.08 * n;
-    L.forEach((s, i) => {
-      s.style.setProperty('--t0', `translateY(${a}em)`);
-      s.style.setProperty('--t1', `translateY(${-a}em)`);
-      s.style.setProperty('--ts', `translateY(${Math.sin(i * 0.9) * a}em)`);
-      s.style.setProperty('--d', '1.1s');
-      s.style.setProperty('--dl', `${-i * 0.17}s`);
-    });
-    c.style.margin = `${a}em 0`;
-  },
-  magnet(c, L, n, r, text) {
-    let g = /^\p{Lu}/u.test(text) ? 0 : Math.min(L.length - 1, Math.max(0, Math.round((L.length - 1) * (0.3 + r() * 0.4))));
-    L.forEach((s, i) => {
-      if (i === g) {
-        s.style.fontSize = `${2.3 + 0.7 * n}em`;
-        s.style.fontWeight = 800; s.style.lineHeight = 0.82; s.style.letterSpacing = '-0.04em';
-      } else {
-        s.classList.add('knock');
-        s.style.transform = `translateY(${0.04 + r() * 0.25}em) rotate(${(r() - 0.5) * 44}deg)`;
-        if (i === g - 1) s.style.marginRight = '-0.3em';
-        if (i === g + 1) s.style.marginLeft = '-0.3em';
+// ---------- feelings, each with its own ways of being shown ----------
+// Every variant gets the word wrapper (c), its letters (L), a strength (n, 1–3, more on hover), a seeded random (r).
+const FEEL = {
+  fall: [
+    ['tumble', (c, L, n, r) => {
+      const dir = signed(r);
+      L.forEach((s, i) => {
+        const t = pos(i, L);
+        s.style.transform = `translateY(${Math.pow(t, 1.7) * 0.55 * n}em) rotate(${dir * Math.pow(t, 1.4) * (18 + 14 * r()) * n * 0.6 + (r() - 0.5) * 8 * t}deg)`;
+      });
+      c.style.marginBottom = `${0.55 * n + 0.1}em`;
+    }],
+    ['drop', (c, L, n) => {
+      L.forEach((s, i) => { const t = pos(i, L); s.style.transform = `translateY(${t * t * 0.7 * n}em)`; });
+      c.style.marginBottom = `${0.7 * n}em`;
+    }],
+    ['crumble', (c, L, n, r) => {
+      const k = Math.floor(L.length * (0.35 + r() * 0.3));
+      L.forEach((s, i) => {
+        if (i < k) return;
+        const d = (i - k + 1) / (L.length - k);
+        s.style.transform = `translate(${(r() - 0.3) * 0.25 * n}em, ${(0.2 + d * 0.45) * n}em) rotate(${(r() - 0.5) * 45 * n}deg)`;
+      });
+      c.style.marginBottom = `${0.65 * n}em`;
+    }],
+    ['hang', (c, L, n) => {
+      c.classList.add('stack');
+      c.style.fontWeight = Math.round(400 + 110 * Math.min(n, 3));
+      c.style.lineHeight = 0.62 + 0.12 * n;
+    }],
+  ],
+  rise: [
+    ['ascend', (c, L, n, r) => {
+      c.style.fontWeight = 300;
+      L.forEach((s, i) => { s.style.transform = `translateY(${-Math.pow(pos(i, L), 1.2) * 0.42 * n}em) rotate(${(r() - 0.5) * 10}deg)`; });
+      c.style.marginTop = `${0.42 * n}em`;
+    }],
+    ['float', (c, L, n, r) => {
+      c.classList.add('anim'); c.style.fontWeight = 250;
+      L.forEach((s, i) => {
+        const y = -(0.08 + pos(i, L) * 0.25) * n;
+        anim(s, { t0: `translateY(${y}em)`, t1: `translateY(${y - 0.08 * n}em)`, d: `${1.8 + r()}s`, dl: `${-r() * 2}s` });
+      });
+      c.style.marginTop = `${0.42 * n}em`;
+    }],
+    ['lift off', (c, L, n, r) => {
+      const k = Math.ceil(L.length / 2);
+      L.forEach((s, i) => {
+        if (i < k) return;
+        const d = (i - k + 1) / (L.length - k + 1);
+        s.style.transform = `translateY(${-d * 0.55 * n}em) rotate(${(r() - 0.5) * 20}deg)`;
+        s.style.opacity = Math.max(0.15, 1 - d * 0.15 * n);
+      });
+      c.style.marginTop = `${0.55 * n}em`;
+    }],
+  ],
+  sink: [
+    ['sag', (c, L, n) => {
+      c.style.fontWeight = 800; c.style.fontStretch = '82%';
+      L.forEach((s, i) => { s.style.transform = `translateY(${Math.sin(Math.PI * pos(i, L)) * 0.28 * n}em)`; });
+      c.style.marginBottom = `${0.28 * n}em`;
+    }],
+    ['slump', (c, L, n) => {
+      c.style.fontWeight = 800;
+      L.forEach((s, i) => {
+        const t = pos(i, L);
+        s.style.transformOrigin = '50% 100%';
+        s.style.transform = `translateY(${t * 0.3 * n}em) scaleY(${1 - t * 0.14 * n})`;
+      });
+      c.style.marginBottom = `${0.3 * n}em`;
+    }],
+    ['drown', (c, L, n) => {
+      L.forEach((s, i) => {
+        const t = pos(i, L);
+        s.style.transform = `translateY(${Math.pow(t, 1.5) * 0.45 * n}em)`;
+        s.style.opacity = Math.max(0.08, 1 - t * 0.27 * n);
+      });
+      c.style.marginBottom = `${0.45 * n}em`;
+    }],
+  ],
+  grow: [
+    ['swell', (c, L, n) => {
+      c.style.fontSize = `${1 + 0.5 * n}em`;
+      c.style.fontWeight = Math.round(Math.min(900, 500 + 130 * n));
+      c.style.lineHeight = 1; c.style.letterSpacing = '-0.025em';
+    }],
+    ['crescendo', (c, L, n) => {
+      c.style.lineHeight = 1;
+      L.forEach((s, i) => {
+        const t = pos(i, L);
+        s.style.fontSize = `${1 + t * 0.6 * n}em`;
+        s.style.fontWeight = Math.round(400 + t * 500);
+      });
+    }],
+    ['burst', (c, L, n) => {
+      c.style.fontSize = `${1 + 0.6 * n}em`; c.style.fontStretch = '125%';
+      c.style.fontWeight = 900; c.style.lineHeight = 1; c.style.letterSpacing = '0.01em';
+    }],
+  ],
+  shrink: [
+    ['diminish', (c, L, n) => {
+      L.forEach((s, i) => { s.style.fontSize = `${Math.max(0.18, 1 - pos(i, L) * 0.26 * n)}em`; });
+    }],
+    ['recede', (c, L, n) => {
+      L.forEach((s, i) => {
+        const t = pos(i, L);
+        s.style.fontSize = `${Math.max(0.18, 1 - t * 0.22 * n)}em`;
+        s.style.opacity = Math.max(0.12, 1 - t * 0.22 * n);
+        s.style.fontWeight = Math.round(400 - t * 200);
+      });
+    }],
+    ['pinch', (c, L, n) => {
+      c.style.fontSize = `${Math.max(0.25, 1 - 0.2 * n)}em`;
+      c.style.fontWeight = 600; c.style.letterSpacing = '-0.03em'; c.style.verticalAlign = 'middle';
+    }],
+    ['distance', (c, L, n) => {
+      L.forEach((s, i) => {
+        const t = pos(i, L);
+        s.style.fontSize = `${Math.max(0.18, 1 - t * 0.24 * n)}em`;
+        s.style.transform = `translateY(${-t * 0.5 * n}em)`;
+      });
+    }],
+  ],
+  squeeze: [
+    ['squeeze', (c, L, n) => {
+      c.style.fontStretch = '62%'; c.style.fontWeight = 800; c.style.letterSpacing = `${-0.035 * n}em`;
+    }],
+    ['crush', (c, L, n) => {
+      c.style.fontStretch = '125%'; c.style.fontWeight = 900;
+      L.forEach(s => { s.style.transformOrigin = '50% 100%'; s.style.transform = `scaleY(${Math.max(0.3, 1 - 0.15 * n)})`; });
+    }],
+    ['crowd', (c, L, n) => {
+      c.style.fontWeight = 700;
+      L.forEach(s => { s.classList.add('knock'); s.style.marginRight = `${-0.07 * n}em`; });
+    }],
+  ],
+  open: [
+    ['spread', (c, L, n) => {
+      c.style.fontStretch = '125%'; c.style.fontWeight = 300; c.style.letterSpacing = `${0.16 * n}em`;
+    }],
+    ['part', (c, L, n) => {
+      c.style.fontWeight = 300;
+      const mid = Math.floor(L.length / 2);
+      if (L[mid]) L[mid].style.marginLeft = `${0.35 * n}em`;
+    }],
+  ],
+  long: [
+    ['slow down', (c, L, n) => {
+      c.style.fontStretch = '125%'; c.style.fontWeight = 300;
+      L.forEach((s, i) => { const t = pos(i, L); s.style.marginRight = `${t * t * 0.38 * n}em`; });
+    }],
+    ['drawn out', (c, L, n) => {
+      c.style.fontStretch = '125%'; c.style.fontWeight = 300;
+      extra(c, el('span', 'tail')).style.width = `${0.7 * n}em`;
+    }],
+  ],
+  heavy: [
+    ['weighted', (c, L, n) => {
+      c.style.fontWeight = 900; c.style.fontStretch = '115%'; c.style.letterSpacing = '-0.03em';
+      L.forEach(s => { s.style.transformOrigin = '50% 100%'; s.style.transform = `scaleY(${Math.max(0.4, 1 - 0.09 * n)})`; });
+    }],
+    ['settle', (c, L, n, r) => {
+      c.style.fontWeight = 900;
+      L.forEach(s => { s.style.transform = `translateY(${(0.03 + r() * 0.05) * n}em) rotate(${(r() - 0.5) * 4 * n}deg)`; });
+      c.style.marginBottom = `${0.08 * n}em`;
+    }],
+  ],
+  fade: [
+    ['dissolve', (c, L, n) => {
+      c.style.fontWeight = 250;
+      L.forEach((s, i) => { s.style.opacity = Math.max(0.05, 1 - pos(i, L) * 0.31 * n); });
+    }],
+    ['ghost', (c, L, n) => {
+      c.style.fontWeight = 200; c.style.opacity = Math.max(0.1, 0.62 - 0.13 * n);
+    }],
+    ['erode', (c, L, n, r) => {
+      c.style.fontWeight = 300;
+      L.forEach(s => { if (r() < 0.17 * n) s.style.opacity = 0.07; });
+    }],
+  ],
+  empty: [
+    ['outline', (c, L, n) => { c.classList.add('hollow'); c.style.letterSpacing = `${0.03 * n}em`; }],
+    ['hollowed', (c, L, n) => {
+      c.style.letterSpacing = `${0.03 * n}em`;
+      L.forEach((s, i) => { if (i > 0 && i < L.length - 1) s.classList.add('hollow'); });
+    }],
+  ],
+  light: [
+    ['radiate', (c, L, n, r) => {
+      c.classList.add('hollow');
+      const count = Math.round(3 + n * 2);
+      for (let k = 0; k < count; k++) {
+        const t = count > 1 ? k / (count - 1) : 0.5;
+        const ray = extra(c, el('span', 'ray'));
+        ray.style.left = `${8 + t * 84}%`;
+        ray.style.height = `${0.3 + r() * 0.3 + 0.1 * n}em`;
+        ray.style.transform = `rotate(${(t - 0.5) * 70}deg)`;
       }
-    });
-  },
-  isolate(c, L, n) {
-    c.style.margin = `0 ${0.8 * n}em`; c.style.fontWeight = 300; c.style.letterSpacing = '0.05em';
-  },
-  split(c, L, n, r) {
-    const half = Math.ceil(L.length / 2);
-    L.forEach((s, i) => {
-      s.style.transform = i < half
-        ? `translateY(${-0.04 * n}em)`
-        : `translate(${0.06 * n}em, ${0.2 * n}em) rotate(${3 + r() * 4}deg)`;
-    });
-    c.style.marginBottom = `${0.2 * n}em`;
-  },
-  flicker(c, L, n, r) {
-    c.classList.add('flick'); c.style.fontWeight = 300;
-    L.forEach(s => {
-      s.style.setProperty('--d', `${1.4 + r() * (4 - n)}s`);
-      s.style.setProperty('--dl', `${-r() * 3}s`);
-      if (r() < 0.12 * n) s.style.opacity = 0.35;
-    });
-  },
-  rain(c, L, n, r) {
-    c.classList.add('drip');
-    L.forEach(s => {
-      s.style.setProperty('--y', `${0.3 + 0.15 * n}em`);
-      s.style.setProperty('--d', `${2.2 + r() * 2.4}s`);
-      s.style.setProperty('--dl', `${-r() * 4}s`);
-    });
-  },
-  stack(c, L, n) {
-    c.classList.add('stack');
-    c.style.fontWeight = 400 + 150 * n;
-  },
-  jagged(c, L, n, r) {
-    c.style.fontWeight = 900; c.style.fontStretch = '70%';
-    const d = signed(r);
-    L.forEach((s, i) => {
-      const sgn = i % 2 ? d : -d;
-      s.style.transform = `translateY(${sgn * 0.05 * n}em) rotate(${sgn * (8 + 6 * n)}deg)`;
-    });
-  },
-  lean(c, L, n) {
-    c.style.fontWeight = 600; c.style.letterSpacing = '-0.02em';
-    L.forEach((s, i) => {
-      s.style.transformOrigin = '50% 100%';
-      s.style.transform = `skewX(${-(4 + pos(i, L) * 12) * n}deg)`;
-    });
-  },
-  heavy(c, L, n) {
-    c.style.fontWeight = 900; c.style.fontStretch = '115%'; c.style.letterSpacing = '-0.03em';
-    L.forEach(s => { s.style.transformOrigin = '50% 100%'; s.style.transform = `scaleY(${1 - 0.09 * n})`; });
-  },
-  twist(c, L, n) {
-    L.forEach((s, i) => {
-      const t = pos(i, L);
-      s.style.transform = `translateY(${-Math.sin(t * Math.PI) * 0.2 * n}em) rotate(${t * 60 * n}deg)`;
-    });
-    c.style.margin = `${0.2 * n}em 0.1em`;
-  },
+      c.style.marginTop = `${0.4 + 0.12 * n}em`;
+    }],
+    ['glow', (c, L, n) => {
+      c.style.fontWeight = 200; c.style.letterSpacing = `${0.04 * n}em`;
+      c.style.textShadow = `0 0 ${0.08 * n}em var(--ink), 0 0 ${0.25 * n}em var(--ink)`;
+    }],
+  ],
+  dark: [
+    ['block', (c, L, n) => {
+      c.classList.add('dark');
+      L.forEach((s, i) => { s.style.transform = `translateY(${pos(i, L) * 0.05 * n}em)`; });
+    }],
+    ['deep shadow', (c, L, n) => {
+      c.classList.add('extrude');
+      const steps = Math.round(4 * n), sh = [];
+      for (let k = 1; k <= steps; k++) sh.push(`${k * 0.014}em ${k * 0.014}em 0 var(--ink)`);
+      c.style.textShadow = sh.join(',');
+    }],
+  ],
+  break: [
+    ['scatter', (c, L, n, r) => {
+      L.forEach(s => { s.style.transform = `translate(${(r() - 0.5) * 0.22 * n}em, ${(r() - 0.5) * 0.5 * n}em) rotate(${(r() - 0.5) * 45 * n}deg)`; });
+      c.style.margin = `${0.2 * n}em 0.05em`;
+    }],
+    ['shatter', (c, L, n, r) => {
+      const cuts = [Math.round(L.length / 3), Math.round((2 * L.length) / 3)];
+      const parts = [0, 1, 2].map(() => ({ y: (r() - 0.5) * 0.3, a: (r() - 0.5) * 14 }));
+      L.forEach((s, i) => {
+        const p = i < cuts[0] ? 0 : i < cuts[1] ? 1 : 2;
+        s.style.transform = `translate(${p * 0.12 * n}em, ${parts[p].y * n}em) rotate(${parts[p].a * n}deg)`;
+      });
+      c.style.margin = `${0.15 * n}em ${0.25 * n}em ${0.15 * n}em 0`;
+    }],
+    ['burst', (c, L, n, r) => {
+      L.forEach((s, i) => {
+        const t = pos(i, L) - 0.5;
+        s.style.transform = `translate(${t * 0.5 * n}em, ${(r() - 0.5) * 0.4 * n}em) rotate(${t * 40 * n}deg)`;
+      });
+      c.style.margin = `${0.2 * n}em ${0.25 * n}em`;
+    }],
+  ],
+  tremble: [
+    ['tremble', (c, L, n, r) => {
+      c.classList.add('anim'); c.style.fontWeight = 600;
+      const a = 0.05 * n, d = 3 * n;
+      const pose = () => `translate(${(r() - 0.5) * a}em, ${(r() - 0.5) * a}em) rotate(${(r() - 0.5) * d}deg)`;
+      L.forEach(s => anim(s, { t0: pose(), t1: pose(), d: `${0.07 + r() * 0.08}s`, ease: 'steps(2, end)' }));
+    }],
+    ['shiver', (c, L, n, r) => {
+      c.classList.add('anim'); c.style.fontWeight = 300;
+      L.forEach(s => anim(s, { t0: `translateX(${-0.012 * n}em)`, t1: `translateX(${0.012 * n}em)`, d: `${0.04 + r() * 0.03}s`, ease: 'linear' }));
+    }],
+    ['quake', (c, L, n, r) => {
+      c.classList.add('quake'); c.style.fontWeight = 800;
+      c.style.setProperty('--q', `${0.02 * n}em`);
+      L.forEach(s => { s.style.transform = `rotate(${(r() - 0.5) * 8 * n}deg)`; });
+    }],
+  ],
+  harsh: [
+    ['zigzag', (c, L, n, r) => {
+      c.style.fontWeight = 900; c.style.fontStretch = '70%';
+      const d = signed(r);
+      L.forEach((s, i) => {
+        const g = i % 2 ? d : -d;
+        s.style.transform = `translateY(${g * 0.05 * n}em) rotate(${g * (8 + 6 * n)}deg)`;
+      });
+    }],
+    ['spiked', (c, L, n) => {
+      c.style.fontWeight = 900; c.style.fontStretch = '62%';
+      L.forEach((s, i) => {
+        s.style.transformOrigin = '50% 100%';
+        s.style.transform = `skewX(${(i % 2 ? 1 : -1) * (10 + 6 * n)}deg) scaleY(${1 + 0.06 * n})`;
+      });
+    }],
+  ],
+  pulse: [
+    ['breathe', (c, L, n) => { c.classList.add('breathe'); c.style.fontWeight = 600; c.style.setProperty('--s', 1 + 0.08 * n); }],
+    ['heartbeat', (c, L, n) => { c.classList.add('beat'); c.style.fontWeight = 700; c.style.setProperty('--s', 1 + 0.07 * n); }],
+  ],
+  flow: [
+    ['wave', (c, L, n) => {
+      c.classList.add('anim');
+      const a = 0.08 * n;
+      L.forEach((s, i) => anim(s, { t0: `translateY(${a}em)`, t1: `translateY(${-a}em)`, ts: `translateY(${Math.sin(i * 0.9) * a}em)`, d: '1.1s', dl: `${-i * 0.17}s` }));
+      c.style.margin = `${a}em 0`;
+    }],
+    ['ripple', (c, L, n) => {
+      L.forEach((s, i) => { s.style.transform = `translateY(${Math.sin(i * 0.8) * 0.12 * n}em) rotate(${Math.cos(i * 0.8) * 9 * n}deg)`; });
+      c.style.margin = `${0.12 * n}em 0`;
+    }],
+    ['drift', (c, L, n) => {
+      c.classList.add('anim'); c.style.fontWeight = 300;
+      L.forEach((s, i) => anim(s, { t0: 'translateX(0)', t1: `translateX(${pos(i, L) * 0.3 * n}em)`, d: '2.6s' }));
+      c.style.marginRight = `${0.3 * n}em`;
+    }],
+  ],
+  rain: [
+    ['drip', (c, L, n, r) => {
+      c.classList.add('drip');
+      L.forEach(s => anim(s, { y: `${0.3 + 0.15 * n}em`, d: `${2.2 + r() * 2.4}s`, dl: `${-r() * 4}s` }));
+    }],
+    ['drizzle', (c, L, n, r) => {
+      c.classList.add('drip'); c.style.fontWeight = 300;
+      L.forEach(s => { if (r() < 0.5) anim(s, { y: `${0.2 + 0.1 * n}em`, d: `${3.5 + r() * 3}s`, dl: `${-r() * 6}s` }); else s.style.animation = 'none'; });
+    }],
+  ],
+  flicker: [
+    ['flicker', (c, L, n, r) => {
+      c.classList.add('flick'); c.style.fontWeight = 300;
+      L.forEach(s => {
+        anim(s, { d: `${1.2 + r() * Math.max(0.5, 4 - n)}s`, dl: `${-r() * 3}s` });
+        if (r() < 0.12 * n) s.style.opacity = 0.35;
+      });
+    }],
+    ['gutter', (c, L, n) => {
+      c.classList.add('dim'); c.style.fontWeight = 300;
+      c.style.setProperty('--o', Math.max(0.08, 0.5 - 0.12 * n));
+    }],
+  ],
+  echo: [
+    ['echo', (c, L, n, r, text) => {
+      const k = Math.round(1 + n);
+      for (let i = 1; i <= k; i++) {
+        const e = extra(c, el('span', 'echo'));
+        e.textContent = text;
+        e.style.transform = `translate(${i * 0.13}em, ${-i * 0.09}em)`;
+        e.style.opacity = 0.7 / i;
+      }
+      c.style.marginRight = `${k * 0.13}em`; c.style.marginTop = `${k * 0.09}em`;
+    }],
+    ['stutter', (c, L, n) => {
+      const k = Math.round(n);
+      for (let i = k; i >= 1; i--) {
+        const s = el('span', 'l'); s.textContent = L[0].textContent;
+        s.style.opacity = 0.15 + 0.6 * (1 - i / (k + 1));
+        s.style.marginRight = '0.08em';
+        s.dataset.extra = ''; s.setAttribute('aria-hidden', 'true');
+        c.prepend(s);
+      }
+    }],
+    ['trail', (c, L, n, r, text) => {
+      const k = Math.round(2 + n);
+      for (let i = 1; i <= k; i++) {
+        const e = extra(c, el('span', 'echo solid'));
+        e.textContent = text;
+        e.style.transform = `translateX(${-i * 0.09}em)`;
+        e.style.opacity = 0.35 / i;
+      }
+      c.style.marginLeft = `${k * 0.09}em`;
+    }],
+  ],
+  back: [
+    ['reverse', (c, L, n) => { c.style.transform = `scaleX(-1) rotate(${(n - 1) * 3}deg)`; c.style.fontWeight = 500; }],
+    ['upside down', (c, L, n) => { c.style.transform = `scale(-1, -1) rotate(${(n - 1) * 3}deg)`; c.style.fontWeight = 500; }],
+    ['each letter', (c, L, n) => { L.forEach((s, i) => { s.style.transform = `scaleX(-1) rotate(${(i % 2 ? 1 : -1) * (n - 1) * 4}deg)`; }); }],
+  ],
+  twist: [
+    ['twist', (c, L, n) => {
+      L.forEach((s, i) => { const t = pos(i, L); s.style.transform = `translateY(${-Math.sin(t * Math.PI) * 0.2 * n}em) rotate(${t * 60 * n}deg)`; });
+      c.style.margin = `${0.2 * n}em 0.1em`;
+    }],
+    ['spiral', (c, L, n) => {
+      L.forEach((s, i) => {
+        const t = pos(i, L);
+        s.style.fontSize = `${1 - t * 0.35}em`;
+        s.style.transform = `translateY(${-Math.sin(t * Math.PI * 2) * 0.25 * n}em) rotate(${t * 120 * n}deg)`;
+      });
+      c.style.margin = `${0.25 * n}em 0.1em`;
+    }],
+  ],
+  against: [
+    ['lean', (c, L, n) => {
+      c.style.fontWeight = 600; c.style.letterSpacing = '-0.02em';
+      L.forEach((s, i) => { s.style.transformOrigin = '50% 100%'; s.style.transform = `skewX(${-(4 + pos(i, L) * 12) * n}deg)`; });
+    }],
+    ['push', (c, L, n) => {
+      c.style.fontWeight = 700;
+      L.forEach((s, i) => {
+        s.classList.add('knock');
+        s.style.transformOrigin = '50% 100%';
+        s.style.marginRight = `${-pos(i, L) * 0.09 * n}em`;
+        s.style.transform = `skewX(${-8 * n}deg)`;
+      });
+    }],
+  ],
+  split: [
+    ['split', (c, L, n, r) => {
+      const half = Math.ceil(L.length / 2);
+      L.forEach((s, i) => {
+        s.style.transform = i < half ? `translateY(${-0.04 * n}em)` : `translate(${0.06 * n}em, ${0.2 * n}em) rotate(${3 + r() * 4}deg)`;
+      });
+      c.style.marginBottom = `${0.2 * n}em`;
+    }],
+    ['torn', (c, L, n, r, text) => {
+      L.forEach(s => { s.style.clipPath = 'inset(-0.6em -0.2em 50% -0.2em)'; });
+      const low = extra(c, el('span', 'half'));
+      low.textContent = text;
+      low.style.transform = `translate(${0.06 * n}em, ${0.1 * n}em)`;
+      c.style.marginBottom = `${0.1 * n}em`; c.style.marginRight = `${0.06 * n}em`;
+    }],
+  ],
+  alone: [
+    ['apart', (c, L, n) => { c.style.margin = `0 ${0.8 * n}em`; c.style.fontWeight = 300; c.style.letterSpacing = '0.05em'; }],
+    ['distant', (c, L, n) => { c.style.margin = `0 ${0.8 * n}em`; c.style.fontSize = '0.7em'; c.style.fontWeight = 200; c.style.opacity = 0.75; }],
+  ],
+  pull: [
+    ['magnet', (c, L, n, r, text) => {
+      const g = /^\p{Lu}/u.test(text) ? 0 : Math.min(L.length - 1, Math.max(0, Math.round((L.length - 1) * (0.3 + r() * 0.4))));
+      L.forEach((s, i) => {
+        if (i === g) {
+          s.style.fontSize = `${2.3 + 0.7 * n}em`;
+          s.style.fontWeight = 800; s.style.lineHeight = 0.82; s.style.letterSpacing = '-0.04em';
+        } else {
+          s.classList.add('knock');
+          s.style.transform = `translateY(${0.04 + r() * 0.25}em) rotate(${(r() - 0.5) * 44}deg)`;
+          if (i === g - 1) s.style.marginRight = '-0.3em';
+          if (i === g + 1) s.style.marginLeft = '-0.3em';
+        }
+      });
+    }],
+    ['converge', (c, L, n, r) => {
+      L.forEach((s, i) => {
+        if (i === 0) { s.style.fontWeight = 900; return; }
+        s.classList.add('knock');
+        s.style.marginLeft = `${-0.06 * n}em`;
+        s.style.transform = `translateX(${-i * 0.04 * n}em) rotate(${(r() - 0.5) * 20}deg)`;
+      });
+    }],
+  ],
 };
-const ORDER = ['fall', 'rise', 'sink', 'grow', 'shrink', 'compress', 'expand', 'stretch', 'heavy', 'fade',
-  'hollow', 'radiate', 'dark', 'scatter', 'tremble', 'jagged', 'breathe', 'wave', 'rain', 'flicker',
-  'echo', 'mirror', 'twist', 'lean', 'split', 'stack', 'isolate', 'magnet'];
+const FEELINGS = Object.keys(FEEL);
 
 // ---------- a small feeling list for your own text ----------
 const LEXICON = {
-  fall: 'fall fell fallen drop dropped plunge plummet descend tumble collapse',
-  stack: 'down beneath under tall tower deep',
-  sink: 'sink sank sunk sad sadness sorrow grief despair worst weary tired dread gloom depress',
-  heavy: 'heavy heavier weight burden fortune power powerful strong fearless iron stone',
-  grow: 'grow grew big large huge vast loud louder great greater giant swell everything',
-  shrink: 'small smaller little tiny shrink less fewer diminish quiet quieter faint',
-  compress: 'tight press pressed compress crowd crowded narrow trap trapped squeeze cramped',
-  expand: 'wide open opened opening universal free freedom space world sky',
-  stretch: 'long longer endless forever stretch slow slowly wait waiting',
-  scatter: 'scatter scattered break broke broken shatter chaos mad madness wild foolish',
-  tremble: 'tremble trembling shake shook shiver fear afraid nervous convulsive cold',
-  breathe: 'breathe breath breathed heart pulse alive beat beating',
-  fade: 'fade faded forget forgot past gone vanish dying died burnt whisper memory remember nothing',
-  radiate: 'light bright shine shining illuminate glow sun morning dawn',
-  dark: 'dark darkness night black shadow shadows midnight',
-  mirror: 'back reverse mirror return returned contradict backward',
-  echo: 'echo again repeat ceaseless always never nevermore multitude multitudes many',
-  wave: 'water sea wave waves current river ocean watery sail flow drift tide',
-  rise: 'rise rose up fly flew lift soar heaven best hope float',
-  isolate: 'alone single lonely only isolated apart end',
-  split: 'split half divide divided torn cut',
-  flicker: 'flicker glimmer candle flame spark blink',
-  rain: 'rain raining drip tears cry cried weep wept',
-  jagged: 'harsh sharp anger angry rage pain scream shout cruel',
-  lean: 'against resist push lean wind',
-  twist: 'twist turn turned spin spiral dizzy confused',
-  magnet: 'magnet attract pull drawn love want desire',
-  hollow: 'empty hollow absence void words',
+  'fall': 'fall fell fallen drop dropped plunge plummet tumble collapse',
+  'fall.3': 'down beneath under deep descend',
+  'sink': 'sink sank sunk sad sadness sorrow grief despair worst weary tired dread gloom depressed',
+  'heavy': 'heavy heavier weight burden fortune power powerful strong fearless iron stone',
+  'grow': 'grow grew big large huge vast loud louder great greater giant swell everything',
+  'shrink': 'small smaller little tiny shrink less fewer diminish quiet quieter',
+  'squeeze': 'tight press pressed compress crowd crowded narrow trap trapped squeeze cramped',
+  'open': 'wide open opened opening universal free freedom space world sky',
+  'long': 'long longer endless forever stretch slow slowly waiting',
+  'break': 'scatter scattered break broke broken shatter chaos mad madness wild foolish',
+  'tremble': 'tremble trembling shake shook shiver fear afraid nervous convulsive cold',
+  'pulse': 'breathe breath breathed heart pulse alive beat beating',
+  'fade': 'fade faded forget forgot past gone vanish dying died burnt whisper memory remember nothing',
+  'light': 'light bright shine shining illuminate glow sun morning dawn',
+  'dark': 'dark darkness night black shadow shadows midnight',
+  'back': 'back reverse mirror return returned contradict backward',
+  'echo': 'echo again repeat ceaseless always never nevermore multitude multitudes many',
+  'flow': 'water sea wave waves current river ocean watery sail flow drift tide',
+  'rise': 'rise rose up fly flew lift soar heaven best hope float',
+  'alone': 'alone single lonely only isolated apart end',
+  'split': 'split half divide divided torn cut',
+  'flicker': 'flicker glimmer candle flame spark blink',
+  'rain': 'rain raining drip tears cry cried weep wept',
+  'harsh': 'harsh sharp anger angry rage pain scream shout cruel',
+  'against': 'against resist push lean wind',
+  'twist': 'twist turn turned spin spiral dizzy confused',
+  'pull': 'magnet attract pull drawn love want desire',
+  'empty': 'empty hollow absence void words',
 };
 const LEX = {};
 for (const [fx, words] of Object.entries(LEXICON)) for (const w of words.split(' ')) LEX[w] = fx;
@@ -485,207 +752,354 @@ function suggest(core) {
   for (const key in LEX) if (key.length >= 4 && w.length > key.length && w.startsWith(key)) return LEX[key];
   return null;
 }
+function setFeel(t, spec) {
+  if (!spec) { t.fx = null; return; }
+  const [fx, v] = spec.split('.');
+  t.fx = FEEL[fx] ? fx : null; t.v = +(v || 0);
+}
 
 // ---------- parsing ----------
-function tokenizePlain(str, out) {
+function tokenizePlain(str, out, base = 0) {
+  let off = base;
   for (const part of str.split(/(\n|[ \t]+|—)/)) {
     if (!part) continue;
-    if (part === '\n') out.push({ type: 'br' });
-    else if (/^[ \t]+$/.test(part)) out.push({ type: 'space' });
+    const s = off; off += part.length;
+    if (part === '\n') out.push({ type: 'br', s, e: off });
+    else if (/^[ \t]+$/.test(part)) out.push({ type: 'space', s, e: off });
     else {
       const m = part.match(/^([^\p{L}\p{N}]*)([\s\S]*?)([^\p{L}\p{N}]*)$/u);
-      if (!m[2]) out.push({ type: 'punct', text: part });
-      else out.push({ type: 'word', lead: m[1], core: m[2], trail: m[3], fx: null, n: 2 });
+      if (!m[2]) out.push({ type: 'punct', text: part, s, e: off });
+      else out.push({ type: 'word', lead: m[1], core: m[2], trail: m[3], fx: null, v: 0, n: 2, s, e: off });
     }
   }
 }
 function parseMarked(str) {
-  const out = [], re = /\{([^|}]+)\|([a-z]+)(?:\|(\d))?\}/g;
+  const out = [], re = /\{([^|}]+)\|([a-z.0-9]+)(?:\|(\d))?\}/g;
   let last = 0, m;
   while ((m = re.exec(str))) {
     tokenizePlain(str.slice(last, m.index), out);
-    out.push({ type: 'word', lead: '', core: m[1], trail: '', fx: m[2], n: +(m[3] || 2) });
+    const t = { type: 'word', lead: '', core: m[1], trail: '', n: +(m[3] || 2) };
+    setFeel(t, m[2]);
+    out.push(t);
     last = re.lastIndex;
   }
   tokenizePlain(str.slice(last), out);
   return out;
 }
-function parseOwn(str) {
-  const out = [];
-  tokenizePlain(str.replace(/\r/g, ''), out);
-  const words = out.filter(t => t.type === 'word');
-  const budget = Math.max(1, Math.ceil(words.length / 7));
-  let used = 0;
-  for (const t of words) {
-    if (used >= budget) break;
-    const fx = suggest(t.core);
-    if (fx) { t.fx = fx; used++; }
-  }
-  return out;
-}
 
 // ---------- state ----------
-const state = { mode: 'read', idx: 0, seed: 1, plain: false, sel: -1, editing: false, mine: null };
-PASSAGES.forEach(p => { p.tokens = parseMarked(p.text); });
+const state = { plain: false, sel: null, seed: 1, hover: null, live: [], liveDrawn: false };
+const overrides = {};   // your own text: choices made per word, e.g. { rain: { fx: 'rain', v: 1, n: 3 } }
+const liveCache = new Map();
+const caret = el('span', 'caret');
+caret.setAttribute('aria-hidden', 'true');
 const store = {
   get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
   set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} },
 };
-const tokens = () => (state.mode === 'read' ? PASSAGES[state.idx].tokens : state.mine || []);
-const seedFor = i => (state.seed * 7919 + i * 104729 + state.idx * 31) >>> 0;
+PASSAGES.forEach((p, pi) => { p.tokens = parseMarked(p.text); p.pi = pi + 1; });
+const scopeTokens = scope => (scope === 'live' ? state.live : PASSAGES.find(p => p.id === scope).tokens);
+const seedFor = (scope, i) => ((scope === 'live' ? 97 : PASSAGES.findIndex(p => p.id === scope) * 131) + i * 104729 + state.seed * 7919) >>> 0;
 
-// ---------- rendering ----------
-function buildCore(text, fx, n, seed) {
+// ---------- drawing a word ----------
+function paint(c, n) {
+  const s = c._s;
+  c.removeAttribute('style');
+  c.className = 'fx';
+  c.querySelectorAll('[data-extra]').forEach(x => x.remove());
+  c._L.forEach(l => { l.removeAttribute('style'); l.className = 'l'; });
+  const variant = FEEL[s.fx][s.v] || FEEL[s.fx][0];
+  variant[1](c, c._L, n, rng(s.seed), s.text);
+}
+function buildCore(text, fx, v, n, seed) {
   const c = el('span', 'fx');
-  if (!fx || !FX[fx]) { c.textContent = text; return c; }
+  if (!fx || !FEEL[fx]) { c.textContent = text; return c; }
   c.dataset.fx = fx;
-  const L = Array.from(text).map(ch => {
+  c._L = Array.from(text).map(ch => {
     const s = el('span', 'l'); s.textContent = ch === ' ' ? ' ' : ch; s.setAttribute('aria-hidden', 'true');
     c.append(s); return s;
   });
   const sr = el('span', 'sr'); sr.textContent = text; c.append(sr);
-  FX[fx](c, L, n, rng(seed), text);
+  c._s = { text, fx, v, n, seed };
+  paint(c, n);
   return c;
 }
-function wordEl(t, i) {
+const boosted = n => Math.min(n + 1.5, 4.5);
+function wordEl(t, i, scope, caretAt = -1) {
   const w = el('span', 'w');
-  w.dataset.i = i; w.tabIndex = 0; w.setAttribute('role', 'button');
-  if (t.lead) w.append(t.lead);
-  w.append(buildCore(t.core, state.plain ? null : t.fx, t.n, seedFor(i)));
-  if (t.trail) w.append(t.trail);
-  if (i === state.sel) w.classList.add('sel');
+  w.dataset.i = i; w.dataset.scope = scope;
+  const fx = state.plain ? null : t.fx;
+  if (fx) { w.classList.add('felt-word'); w.tabIndex = 0; w.setAttribute('role', 'button'); }
+  else if (scope !== 'live') { w.tabIndex = 0; w.setAttribute('role', 'button'); }
+  const c = buildCore(t.core, fx, t.v, t.n, seedFor(scope, i));
+  const sel = state.sel && state.sel.scope === scope && state.sel.i === i;
+  if (sel) { w.classList.add('sel'); if (fx) paint(c, boosted(t.n)); }
+  const parts = [t.lead, c, t.trail];
+  if (caretAt >= 0) {
+    const k = caretAt, a = t.lead.length, b = a + t.core.length;
+    if (k <= a) parts.splice(0, 1, t.lead.slice(0, k), caret, t.lead.slice(k));
+    else if (k >= b) parts.splice(2, 1, t.trail.slice(0, k - b), caret, t.trail.slice(k - b));
+    else if (fx) c._L[k - a - 1].after(caret);
+    else c.replaceChildren(t.core.slice(0, k - a), caret, t.core.slice(k - a));
+  }
+  w.append(...parts.filter(x => x !== ''));
   return w;
 }
-function renderPiece() {
-  const piece = $('piece');
-  piece.replaceChildren();
-  tokens().forEach((t, i) => {
-    if (t.type === 'space') piece.append(' ');
-    else if (t.type === 'br') piece.append(el('br'));
-    else if (t.type === 'punct') piece.append(t.text);
-    else piece.append(wordEl(t, i));
+function enter(w, delay = 0) {
+  if (reduced()) return;
+  const c = w.querySelector('.fx[data-fx]');
+  if (!c) return;
+  const opts = { duration: 720, delay, easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'backwards' };
+  c.animate([{ offset: 0, fontSize: '1em', letterSpacing: '-0.012em', fontWeight: 400, opacity: 1 }], opts);
+  c._L.forEach((s, k) => s.animate([{ offset: 0, transform: 'none', fontSize: '1em', opacity: 1, marginRight: '0em', marginLeft: '0em' }], { ...opts, delay: delay + k * 28 }));
+}
+function nodeFor(t, i, scope) {
+  if (t.type === 'space') return document.createTextNode(' ');
+  if (t.type === 'br') return el('br');
+  if (t.type === 'punct') return document.createTextNode(t.text);
+  return wordEl(t, i, scope);
+}
+
+// ---------- passages ----------
+function renderPassage(p) {
+  p.el.replaceChildren(...p.tokens.map((t, i) => nodeFor(t, i, p.id)));
+}
+function buildBooks() {
+  const books = $('books');
+  for (const p of PASSAGES) {
+    const a = el('article', 'passage'); a.id = p.id;
+    const src = el('header', 'source');
+    const h = el('h3'); h.textContent = p.book;
+    const by = el('p'); by.textContent = `${p.author} · ${p.year}`;
+    src.append(h, by);
+    p.el = el('div', 'piece');
+    a.append(src, p.el);
+    books.append(a);
+    renderPassage(p);
+  }
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(entries => {
+      for (const e of entries) {
+        if (!e.isIntersecting) continue;
+        io.unobserve(e.target);
+        e.target.querySelectorAll('.felt-word').forEach((w, k) => enter(w, k * 140));
+      }
+    }, { threshold: 0.4 });
+    PASSAGES.forEach(p => io.observe(p.el));
+  }
+}
+
+// ---------- live typing ----------
+const src = $('src');
+function parseLive(text) {
+  const out = [];
+  tokenizePlain(text, out);
+  for (const t of out) {
+    if (t.type !== 'word') continue;
+    const o = overrides[t.core.toLowerCase()];
+    if (o) { t.fx = o.fx; t.v = o.v; t.n = o.n; }
+    else setFeel(t, suggest(t.core));
+  }
+  return out;
+}
+function reconcile(parent, nodes) {
+  let cur = parent.firstChild;
+  for (const n of nodes) {
+    if (cur === n) { cur = cur.nextSibling; continue; }
+    parent.insertBefore(n, cur);
+  }
+  while (cur) { const nx = cur.nextSibling; cur.remove(); cur = nx; }
+}
+function renderLive() {
+  const text = src.value;
+  state.live = parseLive(text);
+  const focused = document.activeElement === src;
+  const p = focused ? src.selectionEnd : -1;
+  const nodes = [], counts = {}, fresh = [];
+  const next = new Map();
+  let placed = !focused;
+  state.live.forEach((t, i) => {
+    if (!placed && p <= t.s) { nodes.push(caret); placed = true; }
+    const inside = !placed && p > t.s && p < t.e;
+    let node;
+    if (inside && t.type === 'word') {
+      node = wordEl(t, i, 'live', p - t.s);
+      placed = true;
+    } else {
+      const sel = state.sel && state.sel.scope === 'live' && state.sel.i === i;
+      const sig = t.type === 'word' ? `w:${t.lead}${t.core}${t.trail}:${state.plain ? '' : t.fx}:${t.v}:${t.n}:${sel}` : t.type === 'punct' ? 'p:' + t.text : t.type;
+      counts[sig] = (counts[sig] || 0) + 1;
+      const key = sig + '#' + counts[sig];
+      node = liveCache.get(key);
+      if (!node) {
+        node = nodeFor(t, i, 'live');
+        if (t.type === 'word' && t.fx && !state.plain && state.liveDrawn) fresh.push(node);
+      }
+      if (node.dataset) node.dataset.i = i;
+      next.set(key, node);
+    }
+    nodes.push(node);
+    if (inside && t.type !== 'word') { nodes.push(caret); placed = true; }
   });
-}
-function renderChrome() {
-  const read = state.mode === 'read';
-  $('tab-read').setAttribute('aria-pressed', read);
-  $('tab-mine').setAttribute('aria-pressed', !read);
-  $('tab-plain').setAttribute('aria-pressed', state.plain);
-  $('stage').hidden = !read && state.editing;
-  $('foot').hidden = !read && state.editing;
-  $('writer').hidden = read || !state.editing;
-  $('prev').hidden = $('next').hidden = $('count').hidden = !read;
-  $('edit').hidden = read;
-  if (read) {
-    const p = PASSAGES[state.idx];
-    $('cite').innerHTML = '';
-    const em = el('em'); em.textContent = p.book;
-    $('cite').append(em, ` — ${p.author}, ${p.year}`);
-    $('count').textContent = `${state.idx + 1} / ${PASSAGES.length}`;
-  } else {
-    $('cite').innerHTML = '<em>Your text</em> — first effects come from a word list';
+  if (!placed) nodes.push(caret);
+  if (!text && !focused) {
+    const ph = el('span', 'placeholder');
+    ph.textContent = 'Start typing. Try fall, tremble, louder, rain.';
+    nodes.push(ph);
   }
+  liveCache.clear();
+  next.forEach((v, k) => liveCache.set(k, v));
+  reconcile($('live'), nodes);
+  fresh.forEach(w => enter(w));
+  state.liveDrawn = true;
+  $('composer').classList.toggle('focused', focused);
 }
-function render(fadeIn) {
-  renderChrome();
-  renderPiece();
-  if (fadeIn && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    $('piece').animate([{ opacity: 0, transform: 'translateY(6px)' }, { opacity: 1, transform: 'none' }], { duration: 380, easing: 'ease-out' });
-  }
-}
+src.addEventListener('input', () => { store.set('felt-type:draft', src.value); renderLive(); });
+src.addEventListener('focus', renderLive);
+src.addEventListener('blur', renderLive);
+document.addEventListener('selectionchange', () => { if (document.activeElement === src) renderLive(); });
+$('composer').addEventListener('click', e => {
+  const w = e.target.closest('.w.felt-word');
+  if (w) { openSheet('live', +w.dataset.i); return; }
+  src.focus();
+  if (!e.target.closest('.w')) src.setSelectionRange(src.value.length, src.value.length);
+  renderLive();
+});
+$('clear').addEventListener('click', () => {
+  src.value = ''; store.set('felt-type:draft', '');
+  for (const k in overrides) delete overrides[k];
+  src.focus(); renderLive();
+});
+$('plain').addEventListener('click', () => {
+  state.plain = !state.plain;
+  $('plain').setAttribute('aria-pressed', state.plain);
+  closeSheet(true);
+  liveCache.clear(); renderLive();
+  PASSAGES.forEach(renderPassage);
+});
 
-// ---------- effect picker ----------
-function openSheet(i) {
-  state.sel = i;
-  const t = tokens()[i];
-  $('sheet-word').textContent = `“${t.core}”`;
-  $('lvl').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', +b.dataset.n === t.n));
-  const chips = $('chips');
-  chips.replaceChildren();
-  for (const fx of ['none', ...ORDER]) {
-    const b = el('button', 'chip');
-    b.dataset.fx = fx;
-    b.setAttribute('aria-pressed', (t.fx || 'none') === fx);
-    const prev = el('span', 'chip-prev');
-    prev.append(buildCore(t.core, fx === 'none' ? null : fx, t.n, seedFor(i)));
-    const name = el('span', 'chip-name'); name.textContent = fx;
-    b.append(prev, name);
-    chips.append(b);
-  }
+// ---------- hover: feel more ----------
+function amplify(w, on) {
+  const c = w && w.querySelector('.fx[data-fx]');
+  if (!c || w.classList.contains('sel')) return;
+  paint(c, on ? boosted(c._s.n) : c._s.n);
+}
+document.addEventListener('pointerover', e => {
+  if (e.pointerType === 'touch') return;
+  const w = e.target.closest('.w.felt-word');
+  if (w === state.hover) return;
+  amplify(state.hover, false);
+  state.hover = w;
+  amplify(w, true);
+});
+document.addEventListener('focusin', e => { if (e.target.matches('.w.felt-word')) amplify(e.target, true); });
+document.addEventListener('focusout', e => { if (e.target.matches('.w.felt-word')) amplify(e.target, false); });
+
+// ---------- shaping a word: only ways of the same feeling ----------
+function rerender(scope) {
+  if (scope === 'live') { liveCache.clear(); renderLive(); }
+  else renderPassage(PASSAGES.find(p => p.id === scope));
+}
+function commit(scope, t) {
+  if (scope === 'live') overrides[t.core.toLowerCase()] = { fx: t.fx, v: t.v, n: t.n };
+  rerender(scope);
+}
+function openSheet(scope, i) {
+  if (state.plain) return;
+  state.sel = { scope, i };
+  state.hover = null;
+  rerender(scope);
+  fillSheet();
   $('sheet').hidden = false;
-  if (state.plain) { state.plain = false; }
-  render();
 }
-function closeSheet() {
+function fillSheet() {
+  const { scope, i } = state.sel;
+  const t = scopeTokens(scope)[i];
+  $('sheet-word').textContent = `“${t.core}”`;
+  const chips = $('chips'), feelings = $('feelings');
+  chips.replaceChildren(); feelings.replaceChildren();
+  const felt = !!t.fx;
+  $('lvl').hidden = $('sheet-remove').hidden = chips.hidden = !felt;
+  feelings.hidden = felt;
+  if (felt) {
+    $('sheet-feel').textContent = `feels like ${t.fx}`;
+    $('lvl').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', +b.dataset.n === t.n));
+    FEEL[t.fx].forEach(([name], v) => {
+      const b = el('button', 'chip');
+      b.dataset.v = v;
+      b.setAttribute('aria-pressed', t.v === v);
+      const prev = el('span', 'chip-prev');
+      prev.append(buildCore(t.core, t.fx, v, t.n, seedFor(scope, i)));
+      const label = el('span', 'chip-name'); label.textContent = name;
+      b.append(prev, label);
+      chips.append(b);
+    });
+  } else {
+    $('sheet-feel').textContent = 'what does it feel like?';
+    for (const f of FEELINGS) {
+      const b = el('button'); b.dataset.f = f; b.textContent = f;
+      feelings.append(b);
+    }
+  }
+}
+function closeSheet(silent) {
+  if ($('sheet').hidden) return;
   $('sheet').hidden = true;
-  const back = document.querySelector(`.w[data-i="${state.sel}"]`);
-  state.sel = -1;
-  render();
-  if (back) document.querySelector(`.w[data-i="${back.dataset.i}"]`)?.focus();
+  const sel = state.sel;
+  state.sel = null;
+  if (silent || !sel) return;
+  rerender(sel.scope);
+  if (sel.scope === 'live') src.focus();
+  else sel && document.querySelector(`.w[data-scope="${sel.scope}"][data-i="${sel.i}"]`)?.focus();
 }
-
-// ---------- events ----------
-$('piece').addEventListener('click', e => {
-  const w = e.target.closest('.w');
-  if (w) openSheet(+w.dataset.i);
-});
-$('piece').addEventListener('keydown', e => {
-  const w = e.target.closest('.w');
-  if (w && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); openSheet(+w.dataset.i); }
-});
 $('chips').addEventListener('click', e => {
   const b = e.target.closest('.chip');
-  if (!b || state.sel < 0) return;
-  const t = tokens()[state.sel];
-  t.fx = b.dataset.fx === 'none' ? null : b.dataset.fx;
-  $('chips').querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', c === b));
-  render();
+  if (!b || !state.sel) return;
+  const t = scopeTokens(state.sel.scope)[state.sel.i];
+  t.v = +b.dataset.v;
+  $('chips').querySelectorAll('.chip').forEach(x => x.setAttribute('aria-pressed', x === b));
+  commit(state.sel.scope, t);
+});
+$('feelings').addEventListener('click', e => {
+  const b = e.target.closest('button');
+  if (!b || !state.sel) return;
+  const t = scopeTokens(state.sel.scope)[state.sel.i];
+  t.fx = b.dataset.f; t.v = 0;
+  commit(state.sel.scope, t);
+  fillSheet();
 });
 $('lvl').addEventListener('click', e => {
   const b = e.target.closest('button');
-  if (!b || state.sel < 0) return;
-  tokens()[state.sel].n = +b.dataset.n;
-  openSheet(state.sel);
+  if (!b || !state.sel) return;
+  const t = scopeTokens(state.sel.scope)[state.sel.i];
+  t.n = +b.dataset.n;
+  commit(state.sel.scope, t);
+  fillSheet();
 });
-$('sheet-close').addEventListener('click', closeSheet);
-
-function go(d) {
-  state.idx = (state.idx + d + PASSAGES.length) % PASSAGES.length;
-  $('sheet').hidden = true; state.sel = -1;
-  render(true);
-}
-$('prev').addEventListener('click', () => go(-1));
-$('next').addEventListener('click', () => go(1));
-$('shuffle').addEventListener('click', () => { state.seed++; render(); if (!$('sheet').hidden) openSheet(state.sel); });
-$('tab-plain').addEventListener('click', () => { state.plain = !state.plain; $('sheet').hidden = true; state.sel = -1; render(); });
-$('tab-read').addEventListener('click', () => { state.mode = 'read'; $('sheet').hidden = true; state.sel = -1; render(true); });
-$('tab-mine').addEventListener('click', () => {
-  state.mode = 'mine'; $('sheet').hidden = true; state.sel = -1;
-  state.editing = !state.mine;
-  render(true);
-  if (state.editing) $('src').focus();
+$('sheet-remove').addEventListener('click', () => {
+  const t = scopeTokens(state.sel.scope)[state.sel.i];
+  t.fx = null;
+  commit(state.sel.scope, t);
+  fillSheet();
 });
-$('edit').addEventListener('click', () => { state.editing = true; $('sheet').hidden = true; state.sel = -1; render(); $('src').focus(); });
-$('cancel').addEventListener('click', () => { state.mode = 'read'; render(true); });
-$('compose').addEventListener('click', () => {
-  const text = $('src').value.trim();
-  if (!text) { $('src').focus(); return; }
-  store.set('felt-type:draft', $('src').value);
-  state.mine = parseOwn(text);
-  state.editing = false;
-  render(true);
+$('sheet-close').addEventListener('click', () => closeSheet());
+$('books').addEventListener('click', e => {
+  const w = e.target.closest('.w');
+  if (w) openSheet(w.dataset.scope, +w.dataset.i);
 });
-$('src').addEventListener('input', () => store.set('felt-type:draft', $('src').value));
-document.addEventListener('keydown', e => {
-  if (e.target.matches('textarea')) return;
-  if (e.key === 'Escape' && !$('sheet').hidden) closeSheet();
-  else if ($('sheet').hidden && state.mode === 'read' && e.key === 'ArrowRight') go(1);
-  else if ($('sheet').hidden && state.mode === 'read' && e.key === 'ArrowLeft') go(-1);
+$('books').addEventListener('keydown', e => {
+  const w = e.target.closest('.w');
+  if (w && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); openSheet(w.dataset.scope, +w.dataset.i); }
 });
+$('composer').addEventListener('keydown', e => {
+  const w = e.target.closest('.w.felt-word');
+  if (w && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); openSheet('live', +w.dataset.i); }
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSheet(); });
 
 // ---------- start ----------
-$('src').value = store.get('felt-type:draft') || SAMPLE;
-const fromHash = PASSAGES.findIndex(p => p.id === location.hash.slice(1));
-if (fromHash >= 0) state.idx = fromHash;
-render();
+src.value = store.get('felt-type:draft') ?? SAMPLE;
+buildBooks();
+renderLive();
+if (location.hash) document.getElementById(location.hash.slice(1))?.scrollIntoView();
 </script>
