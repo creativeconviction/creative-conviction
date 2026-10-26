@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-4XFCI45zZpVAWJnMhEpRnLATDS4kUiSjDjzcYAFnotY='; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-JU8mAri1I2u04VsudcILyhcV8VOp7bh1FB5coxBxcSg='; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Type something perfectly ordinary and the letters will overreact on your behalf.">
@@ -189,6 +189,29 @@ button:focus-visible, .w:focus-visible { outline: 2px solid var(--ink); outline-
   100% { transform: none; opacity: 1; }
 }
 @keyframes blink { 50% { opacity: 0; } }
+/* seq: still → move into the feeling → hold → let go. Letters stagger it, so each feeling plays out. */
+@keyframes seq {
+  0%, 8% { transform: var(--t0); opacity: var(--o0, 1); }
+  45%, 78% { transform: var(--t1); opacity: var(--o1, 1); }
+  100% { transform: var(--t0); opacity: var(--o0, 1); }
+}
+@keyframes cseq {
+  0%, 8% { transform: var(--c0); }
+  45%, 78% { transform: var(--c1); }
+  100% { transform: var(--c0); }
+}
+@keyframes thud {
+  0% { transform: translateY(var(--h)); animation-timing-function: cubic-bezier(.55, 0, 1, .45); }
+  22% { transform: translateY(0) scale(1.06, var(--sq)); animation-timing-function: ease-out; }
+  32%, 100% { transform: none; }
+}
+@keyframes sonar { from { transform: translate(0, 0); opacity: 0.75; } to { transform: translate(var(--ex), var(--ey)); opacity: 0; } }
+@keyframes drain { 0%, 10% { clip-path: inset(0% -0.2em -0.6em -0.2em); } 75%, 100% { clip-path: inset(100% -0.2em -0.6em -0.2em); } }
+@keyframes rayp { from { transform: rotate(var(--rot)) scaleY(0.45); } to { transform: rotate(var(--rot)) scaleY(1.15); } }
+@keyframes streak { from { transform: translateX(0) scaleX(1); opacity: 0.8; } to { transform: translateX(-0.4em) scaleX(0.3); opacity: 0; } }
+.seq .l { transform: var(--t1); opacity: var(--o1, 1); }
+.cseq { transform: var(--c1); }
+.drain { position: absolute; left: 0; top: 0; white-space: pre; color: var(--ink); -webkit-text-stroke: 0; pointer-events: none; clip-path: inset(45% -0.2em -0.6em -0.2em); }
 @keyframes fume {
   from { transform: translate(-50%, 0) rotate(90deg) scaleX(1.4); opacity: 0.8; }
   to { transform: translate(-50%, -0.5em) rotate(90deg) scaleX(1.4); opacity: 0; }
@@ -211,6 +234,13 @@ button:focus-visible, .w:focus-visible { outline: 2px solid var(--ink); outline-
   .globe { animation: spinY var(--d, 8s) linear infinite; }
   .orbit { animation: spinZ var(--d, 12s) linear infinite; }
   .fume { animation: fume var(--d, 2s) ease-out var(--dl, 0s) infinite; }
+  .seq .l { animation: seq var(--d, 3s) var(--ease, ease-in-out) var(--dl, 0s) infinite; }
+  .cseq { animation: cseq var(--d, 3s) var(--ease, ease-in-out) var(--dl, 0s) infinite; }
+  .thud { animation: thud 2.4s infinite; }
+  .echo.sonar { animation: sonar var(--ed, 2.4s) ease-out var(--edl, 0s) infinite; }
+  .drain { animation: drain var(--d, 4s) ease-in-out infinite; }
+  .ray { animation: rayp 1.3s ease-in-out var(--dl, 0s) infinite alternate; }
+  .streak { animation: streak 0.7s linear var(--dl, 0s) infinite; }
 }
 @media (prefers-reduced-motion: reduce) {
   .fx, .l { transition: none; }
@@ -884,6 +914,186 @@ const FEEL = {
     }],
   ],
 };
+// Signature motions: the first way of each feeling moves like nothing else on the page.
+const SIGNATURE = {
+  fall: ['tumble', (c, L, n, r) => {
+    c.classList.add('seq');
+    const dir = signed(r);
+    L.forEach((s, i) => {
+      const t = pos(i, L);
+      anim(s, { t0: 'translateY(0) rotate(0deg)', t1: `translateY(${(0.2 + Math.pow(t, 1.3) * 0.5) * n}em) rotate(${dir * (8 + t * 30 + r() * 12) * n * 0.6}deg)`, d: '2.8s', dl: `${i * 0.09}s`, ease: 'cubic-bezier(.55,0,1,.45)' });
+    });
+    c.style.marginBottom = `${0.7 * n}em`;
+  }],
+  rise: ['ascend', (c, L, n, r) => {
+    c.classList.add('seq'); c.style.fontWeight = 300;
+    L.forEach((s, i) => anim(s, { t0: 'translateY(0) rotate(0deg)', t1: `translateY(${-(0.15 + pos(i, L) * 0.35) * n}em) rotate(${(r() - 0.5) * 12}deg)`, o1: 0.9, d: '3.2s', dl: `${i * 0.14}s`, ease: 'cubic-bezier(.2,.7,.3,1)' }));
+    c.style.marginTop = `${0.5 * n}em`;
+  }],
+  sink: ['sag', (c, L, n) => {
+    c.classList.add('seq'); c.style.fontWeight = 800; c.style.fontStretch = '82%';
+    const mid = (L.length - 1) / 2;
+    L.forEach((s, i) => {
+      const t = Math.sin(Math.PI * pos(i, L));
+      s.style.transformOrigin = '50% 100%';
+      anim(s, { t0: 'translateY(0) scaleY(1)', t1: `translateY(${t * 0.3 * n}em) scaleY(${1 - t * 0.12 * n})`, d: '4s', dl: `${Math.abs(i - mid) * 0.12}s`, ease: 'cubic-bezier(.4,0,.2,1)' });
+    });
+    c.style.marginBottom = `${0.3 * n}em`;
+  }],
+  grow: ['swell', (c, L, n) => {
+    const k = 1 + 0.5 * n;
+    c.classList.add('cseq');
+    c.style.fontSize = `${k}em`; c.style.fontWeight = Math.round(Math.min(900, 500 + 130 * n));
+    c.style.lineHeight = 1; c.style.letterSpacing = '-0.025em'; c.style.transformOrigin = '0 80%';
+    anim(c, { c0: `scale(${1 / k})`, c1: 'scale(1)', d: '2.6s', ease: 'cubic-bezier(.34,1.56,.64,1)' });
+  }],
+  shrink: ['diminish', (c, L, n) => {
+    c.classList.add('seq');
+    let lost = 0;
+    L.forEach((s, i) => {
+      const k = Math.max(0.2, 1 - pos(i, L) * 0.28 * n);
+      s.style.transformOrigin = '0 85%';
+      anim(s, { t0: 'translateX(0) scale(1)', t1: `translateX(${-lost * 0.55}em) scale(${k})`, d: '3s', dl: `${i * 0.1}s`, ease: 'cubic-bezier(.6,0,.4,1)' });
+      lost += 1 - k;
+    });
+    c.style.marginRight = `${-lost * 0.55}em`;
+  }],
+  squeeze: ['squeeze', (c, L, n) => {
+    c.classList.add('seq'); c.style.fontWeight = 800; c.style.fontStretch = '75%';
+    const mid = (L.length - 1) / 2;
+    L.forEach((s, i) => anim(s, { t0: 'translateX(0) scaleX(1)', t1: `translateX(${(mid - i) * 0.07 * n}em) scaleX(${1 - 0.1 * n})`, d: '1.8s', ease: 'cubic-bezier(.7,0,.3,1)' }));
+  }],
+  open: ['unfold', (c, L, n) => {
+    c.classList.add('seq'); c.style.fontWeight = 300; c.style.fontStretch = '125%'; c.style.letterSpacing = `${0.08 * n}em`;
+    L.forEach((s, i) => { s.style.transformOrigin = '0 50%'; anim(s, { t0: 'rotateY(80deg)', t1: 'rotateY(0deg)', d: '3s', dl: `${i * 0.08}s`, ease: 'cubic-bezier(.2,.8,.2,1)' }); });
+  }],
+  long: ['slow down', (c, L, n) => {
+    c.classList.add('seq'); c.style.fontStretch = '125%'; c.style.fontWeight = 300;
+    L.forEach((s, i) => { const t = pos(i, L); anim(s, { t0: 'translateX(0)', t1: `translateX(${t * t * 0.9 * n}em)`, d: '6s', ease: 'cubic-bezier(.1,.6,.2,1)' }); });
+    c.style.marginRight = `${0.9 * n}em`;
+  }],
+  heavy: ['thud', (c, L, n) => {
+    c.classList.add('thud'); c.style.fontWeight = 900; c.style.fontStretch = '115%'; c.style.letterSpacing = '-0.03em';
+    c.style.transformOrigin = '50% 100%';
+    c.style.setProperty('--h', `${-0.35 * n}em`); c.style.setProperty('--sq', 1 - 0.08 * n);
+  }],
+  fade: ['dissolve', (c, L, n, r) => {
+    c.classList.add('seq'); c.style.fontWeight = 250;
+    L.forEach((s, i) => anim(s, { t0: 'translateY(0)', t1: `translateY(${-(0.05 + r() * 0.12) * n}em)`, o1: Math.max(0.04, 1 - (0.25 + pos(i, L) * 0.5) * n * 0.6), d: '4.5s', dl: `${i * 0.18}s` }));
+  }],
+  empty: ['drain', (c, L, n, r, text) => {
+    c.classList.add('hollow'); c.style.letterSpacing = `${0.03 * n}em`;
+    extra(c, el('span', 'drain')).textContent = text;
+    c.style.setProperty('--d', `${Math.max(2.5, 5 - n)}s`);
+  }],
+  light: ['radiate', (c, L, n, r) => {
+    c.classList.add('hollow');
+    const count = Math.round(3 + n * 2);
+    for (let k = 0; k < count; k++) {
+      const t = count > 1 ? k / (count - 1) : 0.5;
+      const ray = extra(c, el('span', 'ray'));
+      const rot = `${(t - 0.5) * 70}deg`;
+      ray.style.left = `${8 + t * 84}%`;
+      ray.style.height = `${0.3 + r() * 0.3 + 0.1 * n}em`;
+      ray.style.transform = `rotate(${rot})`;
+      ray.style.setProperty('--rot', rot);
+      ray.style.setProperty('--dl', `${-r() * 1.3}s`);
+    }
+    c.style.marginTop = `${0.4 + 0.12 * n}em`;
+  }],
+  dark: ['lights out', (c, L, n) => {
+    c.classList.add('dark', 'seq');
+    L.forEach((s, i) => anim(s, { t0: 'translateY(0)', t1: `translateY(${0.03 * n}em)`, o1: Math.max(0.08, 0.5 - 0.12 * n), d: '4s', dl: `${i * 0.15}s` }));
+  }],
+  break: ['scatter', (c, L, n, r) => {
+    c.classList.add('seq');
+    L.forEach(s => anim(s, { t0: 'translate(0, 0) rotate(0deg)', t1: `translate(${(r() - 0.5) * 0.5 * n}em, ${(r() - 0.5) * 0.7 * n}em) rotate(${(r() - 0.5) * 80 * n}deg)`, d: '2.2s', dl: `${r() * 0.15}s`, ease: 'cubic-bezier(.1,.9,.2,1)' }));
+    c.style.margin = `${0.3 * n}em 0.1em`;
+  }],
+  harsh: ['snap', (c, L, n, r) => {
+    c.classList.add('anim'); c.style.fontWeight = 900; c.style.fontStretch = '70%';
+    const d = signed(r);
+    L.forEach((s, i) => {
+      const g = i % 2 ? d : -d, sharp = `translateY(${g * 0.05 * n}em) rotate(${g * (8 + 6 * n)}deg)`;
+      anim(s, { t0: sharp, t1: `translateY(${-g * 0.03 * n}em) rotate(${-g * (4 + 4 * n)}deg)`, ts: sharp, d: `${0.45 + r() * 0.3}s`, ease: 'steps(1, end)' });
+    });
+  }],
+  echo: ['sonar', (c, L, n, r, text) => {
+    const k = Math.round(1 + n);
+    for (let i = 1; i <= k; i++) {
+      const e = extra(c, el('span', 'echo sonar'));
+      e.textContent = text;
+      e.style.transform = `translate(${i * 0.13}em, ${-i * 0.09}em)`; e.style.opacity = 0.7 / i;
+      e.style.setProperty('--ex', `${0.45 * n}em`); e.style.setProperty('--ey', `${-0.3 * n}em`);
+      e.style.setProperty('--edl', `${-((i - 1) * 2.4) / k}s`);
+    }
+    c.style.marginRight = `${0.45 * n}em`; c.style.marginTop = `${0.3 * n}em`;
+  }],
+  back: ['turn around', (c, L, n) => {
+    c.classList.add('cseq'); c.style.fontWeight = 500;
+    anim(c, { c0: 'rotateY(0deg)', c1: `rotateY(180deg) rotate(${(n - 1) * 3}deg)`, d: '3s', ease: 'cubic-bezier(.6,0,.2,1)' });
+  }],
+  twist: ['twist', (c, L, n) => {
+    c.classList.add('seq');
+    L.forEach((s, i) => {
+      const t = pos(i, L);
+      s.style.transformOrigin = '50% 55%';
+      anim(s, { t0: 'translateY(0) rotate(0deg)', t1: `translateY(${-Math.sin(t * Math.PI) * 0.15 * n}em) rotate(${(t * 60 + 300) * (n / 2)}deg)`, d: '3.4s', dl: `${i * 0.12}s`, ease: 'cubic-bezier(.5,0,.3,1)' });
+    });
+    c.style.margin = `${0.15 * n}em 0.1em`;
+  }],
+  against: ['gusts', (c, L, n, r) => {
+    c.classList.add('anim'); c.style.fontWeight = 600; c.style.letterSpacing = '-0.02em';
+    c.style.marginRight = `${0.12 * n}em`;
+    L.forEach((s, i) => {
+      const t = pos(i, L);
+      s.style.transformOrigin = '50% 100%';
+      anim(s, { t0: `skewX(${-(4 + t * 12) * n}deg)`, t1: `skewX(${-(1 + t * 4) * n}deg) translateX(${-0.03 * n}em)`, d: `${0.6 + r() * 0.5}s`, dl: `${-r()}s`, ease: 'cubic-bezier(.4,0,.6,1)' });
+    });
+  }],
+  split: ['crack', (c, L, n, r) => {
+    c.classList.add('seq');
+    const half = Math.ceil(L.length / 2);
+    L.forEach((s, i) => anim(s, {
+      t0: 'translate(0, 0) rotate(0deg)',
+      t1: i < half ? `translate(${-0.08 * n}em, ${-0.06 * n}em) rotate(-3deg)` : `translate(${0.08 * n}em, ${0.2 * n}em) rotate(${3 + r() * 4}deg)`,
+      d: '2.6s', ease: 'cubic-bezier(.7,0,.2,1)',
+    }));
+    c.style.margin = `0 ${0.1 * n}em ${0.2 * n}em`;
+  }],
+  alone: ['wander off', (c, L, n) => {
+    c.classList.add('seq'); c.style.fontWeight = 300; c.style.letterSpacing = '0.05em';
+    const last = L[L.length - 1];
+    anim(last, { t0: 'translate(0, 0) rotate(0deg)', t1: `translate(${0.6 * n}em, ${0.1 * n}em) rotate(8deg)`, o1: 0.6, d: '5s', ease: 'cubic-bezier(.4,0,.2,1)' });
+    c.style.margin = `0 ${0.3 * n + 0.6 * n}em 0 ${0.3 * n}em`;
+  }],
+  pull: ['magnet', (c, L, n, r, text) => {
+    c.classList.add('seq');
+    const g = /^\p{Lu}/u.test(text) ? 0 : Math.min(L.length - 1, Math.max(0, Math.round((L.length - 1) * (0.3 + r() * 0.4))));
+    L.forEach((s, i) => {
+      if (i === g) {
+        s.style.fontSize = `${2.3 + 0.7 * n}em`;
+        s.style.fontWeight = 800; s.style.lineHeight = 0.82; s.style.letterSpacing = '-0.04em';
+        return;
+      }
+      s.classList.add('knock');
+      const rest = `translateY(${0.04 + r() * 0.25}em) rotate(${(r() - 0.5) * 44}deg)`;
+      const away = `translateX(${Math.sign(i - g) * 0.3 * n}em) rotate(0deg)`;
+      anim(s, { t0: away, t1: rest, d: '2.2s', dl: `${Math.abs(i - g) * 0.06}s`, ease: 'cubic-bezier(.7,0,.2,1)' });
+      if (i === g - 1) s.style.marginRight = '-0.3em';
+      if (i === g + 1) s.style.marginLeft = '-0.3em';
+    });
+  }],
+};
+for (const [f, way] of Object.entries(SIGNATURE)) FEEL[f][0] = way;
+// Motion lines that keep streaking off the dash.
+{
+  const dash = FEEL.speed[0][1];
+  FEEL.speed[0][1] = (c, L, n, r, text) => {
+    dash(c, L, n, r, text);
+    c.querySelectorAll('.streak').forEach((st, k) => st.style.setProperty('--dl', `${-k * 0.23}s`));
+  };
+}
 const FEELINGS = Object.keys(FEEL);
 
 // ---------- a small feeling list for your own text ----------
@@ -1479,7 +1689,7 @@ function alphaOf(node, root) {
 
 // One still of the piece as it is right now: every letter's transform, its untransformed box, and the bounds of it all.
 function snapshot(root) {
-  const items = [...root.querySelectorAll('.fx[data-fx], .fx[data-fx] .l, .echo, .half, .ray, .tail, .fume, .streak')];
+  const items = [...root.querySelectorAll('.fx[data-fx], .fx[data-fx] .l, .echo, .half, .ray, .tail, .fume, .streak, .drain')];
   const info = new Map();
   const rr = root.getBoundingClientRect();
   const box = { x0: rr.left, y0: rr.top, x1: rr.right, y1: rr.bottom };
@@ -1510,7 +1720,7 @@ function snapshot(root) {
   const range = document.createRange();
   const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
   for (let n = walker.nextNode(); n; n = walker.nextNode()) {
-    if (n.parentElement.closest('.l, .echo, .half, .sr, .caret, .fume')) continue;
+    if (n.parentElement.closest('.l, .echo, .half, .sr, .caret, .fume, .drain')) continue;
     const list = [];
     for (let i = 0; i < n.data.length; i++) {
       if (/\s/.test(n.data[i])) continue;
@@ -1613,11 +1823,18 @@ function paintSnap(ctx, root, snap, box, scale, caption) {
   ctx.fillText('FELT TYPE', W - PAD, H - PAD / 1.6);
   ctx.textAlign = 'left';
 }
+// A still shows each sequence at the moment the feeling has fully arrived.
+const HOLD = { seq: 0.62, cseq: 0.62, thud: 0.5, sonar: 0.35, drain: 0.45 };
 function makePNG(root, caption) {
   const anims = root.getAnimations({ subtree: true });
-  anims.forEach(a => a.pause());
+  const was = anims.map(a => a.currentTime);
+  anims.forEach(a => {
+    a.pause();
+    const h = HOLD[a.animationName];
+    if (h != null) { const t = a.effect.getTiming(); a.currentTime = (t.delay || 0) + h * t.duration; }
+  });
   let snap;
-  try { snap = snapshot(root); } finally { anims.forEach(a => { try { a.play(); } catch (e) {} }); }
+  try { snap = snapshot(root); } finally { anims.forEach((a, k) => { try { a.currentTime = was[k]; a.play(); } catch (e) {} }); }
   const scale = 2, { W, H } = sizeFor(snap.box);
   const canvas = document.createElement('canvas');
   canvas.width = W * scale; canvas.height = H * scale;
@@ -1676,7 +1893,7 @@ function gifWriter(w, h, palette, delayCs) {
 }
 const rgbOf = s => (s.match(/[\d.]+/g) || [0, 0, 0]).slice(0, 3).map(Number);
 async function makeGIF(root, caption, progress) {
-  const FRAMES = 60, STEP = 60;
+  const FRAMES = 64, STEP = 70;
   root.getAnimations({ subtree: true }).forEach(a => { if (!(a instanceof CSSAnimation)) a.finish(); });
   const words = [...root.querySelectorAll('.felt-word')];
   const gap = Math.min(110, 1100 / Math.max(1, words.length));
