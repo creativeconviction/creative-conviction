@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-spR8v8LuSfvTIkMH7PoJ7W8dH8D5MHngi43/tZbYqXU='; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-4XFCI45zZpVAWJnMhEpRnLATDS4kUiSjDjzcYAFnotY='; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Type something perfectly ordinary and the letters will overreact on your behalf.">
@@ -161,13 +161,15 @@ button:focus-visible, .w:focus-visible { outline: 2px solid var(--ink); outline-
 .echo { position: absolute; left: 0; top: 0; z-index: -1; white-space: pre; pointer-events: none; color: transparent; -webkit-text-stroke: max(1px, 0.02em) var(--ink); }
 .echo.solid { color: var(--ink); -webkit-text-stroke: 0; }
 .half { position: absolute; left: 0; top: 0; white-space: pre; pointer-events: none; clip-path: inset(50% -0.2em -0.6em -0.2em); }
+.fume { position: absolute; bottom: calc(100% - 0.15em); line-height: 1; font-weight: 300; opacity: 0.7; pointer-events: none; transform: translateX(-50%) rotate(90deg) scaleX(1.4); }
+.streak { position: absolute; right: calc(100% + 0.08em); height: max(1px, 0.045em); background: var(--ink); opacity: 0.8; }
 .ray { position: absolute; bottom: calc(100% + 0.08em); width: max(1px, 0.03em); background: var(--ink); transform-origin: 50% 100%; }
 .tail { display: inline-block; height: max(1px, 0.04em); background: var(--ink); vertical-align: 0.3em; margin-left: 0.1em; }
 
 /* export reads the untransformed layout for a moment */
-.measuring .fx, .measuring .l, .measuring .echo, .measuring .half, .measuring .ray, .measuring .tail,
+.measuring .fx, .measuring .l, .measuring .echo, .measuring .half, .measuring .ray, .measuring .tail, .measuring .fume, .measuring .streak,
 .notrans .fx, .notrans .l { transition: none !important; }
-.measuring .fx, .measuring .l, .measuring .echo, .measuring .half, .measuring .ray, .measuring .tail { transform: none !important; }
+.measuring .fx, .measuring .l, .measuring .echo, .measuring .half, .measuring .ray, .measuring .tail, .measuring .fume, .measuring .streak { transform: none !important; }
 
 /* motion: a still resting pose first, movement only when allowed */
 .anim .l { transform: var(--ts, var(--t0)); }
@@ -187,6 +189,10 @@ button:focus-visible, .w:focus-visible { outline: 2px solid var(--ink); outline-
   100% { transform: none; opacity: 1; }
 }
 @keyframes blink { 50% { opacity: 0; } }
+@keyframes fume {
+  from { transform: translate(-50%, 0) rotate(90deg) scaleX(1.4); opacity: 0.8; }
+  to { transform: translate(-50%, -0.5em) rotate(90deg) scaleX(1.4); opacity: 0; }
+}
 @keyframes spinY { to { transform: rotateY(-360deg); } }
 @keyframes spinZ { to { transform: rotate(360deg); } }
 .globe { transform-style: preserve-3d; isolation: auto; }
@@ -204,6 +210,7 @@ button:focus-visible, .w:focus-visible { outline: 2px solid var(--ink); outline-
   .caret { animation: blink 1s steps(1) infinite; }
   .globe { animation: spinY var(--d, 8s) linear infinite; }
   .orbit { animation: spinZ var(--d, 12s) linear infinite; }
+  .fume { animation: fume var(--d, 2s) ease-out var(--dl, 0s) infinite; }
 }
 @media (prefers-reduced-motion: reduce) {
   .fx, .l { transition: none; }
@@ -776,6 +783,83 @@ const FEEL = {
       });
     }],
   ],
+  bounce: [
+    ['hop', (c, L, n) => {
+      c.classList.add('anim'); c.style.fontWeight = 600;
+      L.forEach((s, i) => anim(s, { t0: 'translateY(0)', t1: `translateY(${-0.16 * n}em)`, d: '0.42s', dl: `${-i * 0.11}s`, ease: 'cubic-bezier(.3,0,.6,1)' }));
+      c.style.marginTop = `${0.16 * n}em`;
+    }],
+    ['jiggle', (c, L, n, r) => {
+      c.classList.add('anim'); c.style.fontWeight = 700;
+      L.forEach((s, i) => {
+        s.style.transformOrigin = '50% 100%';
+        const a = (i % 2 ? 1 : -1) * 5 * n;
+        anim(s, { t0: `rotate(${a}deg) scaleY(1)`, t1: `rotate(${-a}deg) scaleY(${1 - 0.05 * n})`, d: `${0.22 + r() * 0.08}s` });
+      });
+    }],
+    ['giggle', (c, L, n, r) => {
+      c.classList.add('anim');
+      L.forEach(s => anim(s, { t0: 'translateY(0) rotate(0deg)', t1: `translateY(${-(0.04 + r() * 0.06) * n}em) rotate(${(r() - 0.5) * 16}deg)`, d: `${0.14 + r() * 0.12}s`, dl: `${-r()}s` }));
+      c.style.marginTop = `${0.1 * n}em`;
+    }],
+  ],
+  gross: [
+    ['fumes', (c, L, n, r) => {
+      // Cartoon stink lines rising off the word.
+      c.style.fontWeight = 600;
+      L.forEach(s => { s.style.transform = `rotate(${(r() - 0.5) * 6}deg)`; });
+      const k = Math.min(5, Math.round(1 + n));
+      for (let i = 0; i < k; i++) {
+        const f = extra(c, el('span', 'fume'));
+        f.textContent = '~';
+        f.style.left = `${(i + 0.5) * (100 / k)}%`;
+        f.style.setProperty('--d', `${1.6 + r() * 0.8}s`);
+        f.style.setProperty('--dl', `${-r() * 2}s`);
+      }
+      c.style.marginTop = `${0.6 + 0.1 * n}em`;
+    }],
+    ['melt', (c, L, n, r) => {
+      c.style.fontWeight = 600;
+      L.forEach(s => { s.style.transformOrigin = '50% 30%'; s.style.transform = `scaleY(${1 + r() * 0.3 * n}) skewX(${(r() - 0.5) * 8 * n}deg)`; });
+      c.style.marginBottom = `${0.3 * n}em`;
+    }],
+    ['rot', (c, L, n, r) => {
+      c.style.fontWeight = 300;
+      L.forEach(s => { s.style.opacity = Math.max(0.2, 1 - r() * 0.25 * n); s.style.transform = `translateY(${r() * 0.08 * n}em) rotate(${(r() - 0.5) * 10 * n}deg)`; });
+    }],
+  ],
+  irk: [
+    ['buzz', (c, L, n, r) => {
+      // Fidgety, like a fly that won't leave.
+      c.classList.add('anim'); c.style.fontWeight = 600;
+      L.forEach(s => anim(s, {
+        t0: `translate(${-0.025 * n}em, ${(r() - 0.5) * 0.03 * n}em)`,
+        t1: `translate(${0.025 * n}em, ${(r() - 0.5) * 0.03 * n}em)`,
+        d: `${0.04 + r() * 0.04}s`, ease: 'steps(2, end)',
+      }));
+    }],
+    ['prickle', (c, L, n, r) => {
+      c.style.fontWeight = 800; c.style.fontStretch = '75%';
+      L.forEach(s => { s.style.transform = `rotate(${(r() - 0.5) * 14 * n}deg) translateY(${(r() - 0.5) * 0.08 * n}em)`; s.style.marginRight = `${0.02 * n}em`; });
+    }],
+  ],
+  speed: [
+    ['dash', (c, L, n) => {
+      c.style.fontWeight = 700;
+      L.forEach(s => { s.style.transformOrigin = '50% 100%'; s.style.transform = `skewX(${-8 * n}deg)`; });
+      [0.32, 0.52, 0.72].forEach((y, k) => {
+        const st = extra(c, el('span', 'streak'));
+        st.style.top = `${y * 100}%`;
+        st.style.width = `${(0.3 + 0.15 * n) * (1 - k * 0.2)}em`;
+      });
+      c.style.marginLeft = `${0.35 + 0.15 * n}em`;
+      c.style.marginRight = `${0.06 * n}em`;
+    }],
+    ['zoom', (c, L, n) => {
+      c.classList.add('anim'); c.style.fontWeight = 700;
+      L.forEach((s, i) => anim(s, { t0: `translateX(${-0.2 * n}em) skewX(${-10 * n}deg)`, t1: 'translateX(0) skewX(0deg)', d: '0.5s', dl: `${i * 0.03}s`, ease: 'cubic-bezier(.2,.8,.2,1)' }));
+    }],
+  ],
   spin: [
     ['globe', (c, L, n) => {
       // Letters wrapped round a turning globe: readable on the near side, gone on the far side.
@@ -840,50 +924,108 @@ const LEXICON = {
 };
 // A second, wider list: everyday words for feelings, weather, motion and time.
 const LEXICON_MORE = {
-  'fall': 'fate doom ruin ruined downfall topple toppled stumble stumbled trip tripped sag slump plunged dive dived descent landslide avalanche gravity',
-  'fall.3': 'basement underground buried bury burial abyss pit cellar',
-  'sink': 'suffer suffering sorrowful sadly unhappy miserable misery gloomy bleak hopeless helpless defeated defeat regret regrets disappointed disappointment drained hurt hurts ache aching mourning melancholy blue numb heavyhearted lament',
-  'heavy': 'massive dense thick anchor anchored chain chains concrete steel monument mighty strength sturdy bold brave courage courageous certain determined stubborn serious',
-  'heavy.1': 'alright settled settle steady stable grounded calm safe secure rest resting sure',
-  'grow': 'increase increasing rising expanding swelling grand grandest tremendous immense colossal thriving thrive flourish blooming blossom abundant overflow overflowing triumph victory proud pride yell roar boom',
-  'shrink': 'smallest lessen minimal miniature petite slight slightly meek timid fragile delicate frail shrinking reduce reduced scarce barely hardly whispering murmur mumble',
-  'squeeze': 'suffocate suffocating smother crushed crushing crammed packed jammed squashed squished cornered caged prison prisoner restrained restricted confined claustrophobic overwhelmed overwhelm deadline worried worry worries',
-  'open': 'vastness horizon horizons possibility possibilities opportunity welcome welcoming embrace generous liberty liberated release released relief relieved unlocked unbound limitless boundless infinite clear clearing expand spacious',
-  'spin': 'globes planets cosmos galaxy galaxies continent continents nations global',
-  'spin.1': 'rotate rotating revolving whirl whirling twirl twirling cycle cycles loop loops wheels carousel roundabout',
-  'long': 'future tomorrow someday eventually later linger lingering wait waited await yearning yearn distance distant faraway lifetime centuries century decades generations journey road path marathon',
-  'break': 'splinter splintered smash smashed crumble crumbling fracture fractured burst bursting explosion destroy destroyed destruction frenzy hysteria hysterical riot havoc disaster catastrophe',
-  'tremble': 'terrified horrified horror dreading nervously jittery jitters shudder shuddered quiver quivering quake earthquake chill chills shivering uneasy startled alarm alarmed frightened',
-  'tremble.2': 'rumble thunder thundering stomp crashing pound pounding',
-  'pulse': 'live lives lived breathing throb throbbing vital vibrant energy energetic awake wake woke rhythm',
-  'pulse.1': 'adore adored darling dear beloved affection tender romance romantic crush passion passionate',
-  'fade': 'ignorance ignorant unaware oblivion oblivious vanished vanishing disappear disappeared disappearing erase erased forgetting fleeting temporary dissolve dissolving evaporate haze hazy blur blurry dim dimming hush quietly unknown',
-  'light': 'joyful joyous delight delighted happiness glad cheerful bliss blissful sunshine sunny brighter brilliant radiant gleam glitter sparkle sparkling dazzling luminous lantern lamp grateful thankful laugh laughter',
-  'light.1': 'warmth glowing soft softly gentle gently peace peaceful serene',
-  'dark': 'darker darkest dusk shade shady murky blackness eclipse nightmare nightmares sin sinister wicked haunted haunting grim',
-  'back': 'remind reminded reminder remember remembered backwards rewind recall retreat regress reversed rethink revisit mirrored opposite upside',
-  'echo': 'repeated repeating repetition endlessly constant constantly everyday routine habit habits chant chorus crowds infinity',
-  'flow': 'flowing flowed stream streams waterfall rivers lake lakes pond splash wavy ripple ripples breeze drifting drifted wander wandering sway swaying glide gliding melody melodies tune humming liquid',
-  'rise': 'rises risen ascend ascending climb climbing upward uplift uplifted elevate elevated soaring flight hover hovering balloon cloud clouds angel angels spirit heavenly optimistic optimism hopeful',
-  'rise.1': 'imagine imagined imagination wish wishes wishing daydream fantasy weightless',
-  'alone': 'isolation isolate lonesome loneliness solitary separated abandoned abandon outsider stranger estranged singular exile',
-  'split': 'halves division heartbroken breakup divorce part parted parting farewell rift gap',
-  'flicker': 'unsure uncertain hesitant hesitate hesitation waver wavering doubtful flash flashing twinkle twinkling candlelight firefly fireflies glimpse',
-  'rain': 'raindrops drizzle downpour pour pouring shower showers tear teardrop sob sobbing weeping grieving drown drowning drench drenched soaked',
-  'harsh': 'rough brutal violent violence fury furious raging hostile bitter resent resentment spite spiteful jagged spike spikes thorn thorns knife blade razor screaming yelled',
-  'against': 'oppose opposed opposition rebel rebellion resisting defy defiant headwind upstream struggling persist persevere endure endured pushing',
-  'twist': 'twisted twisting tangled tangle knot knotted complicated complex puzzle puzzled bewildered baffled lost overthink overthinking wonder wondering curious curiosity question questions',
-  'pull': 'attracted attraction magnetic tempted temptation lure craving hunger hungry addicted addiction obsessed obsession gravitate',
-  'empty': 'emptiness hollowness vacant blank nothingness absent lack lacking hollowed bare barren deserted',
+  'against': 'barrier barriers challenge challenged challenges challenging defiant defiantly defied defies defy difficult difficulties difficulty endure endured endures enduring grit grits gritty hardship hardships headwind leaned leaning leans obstacle obstacles oppose opposed opposes opposing opposition persevere persevered persist persisted persisting persists protest protested protesting protests pushback pushed pushes pushing rebel rebelled rebelling rebellion rebellions rebels resisted resisting resists stand standing standings struggled struggles struggling survive survived survives surviving survivor survivors uphill upstream winding winds windy',
+  'against.1': 'force forced forcing pushy shove shoved shoves shoving',
+  'alone': 'abandon abandoned abandoning abandons ended ending ends estranged exclude excluded excludes excluding exile exiled exiles hermit ignore ignored ignores ignoring introvert introverted introverts island islands isolate isolates isolating isolation loneliness lonesome moon moons outsider outsiders rejected rejection rejections separated singled singles singling singular singularly solitary stranger strangers unloved unwanted',
+  'alone.1': 'aloof detached disconnected',
+  'back': 'apologies apologize apologized apologizes apologizing apology backed backing backs backwards childhood contradicted contradicting contradicts flip flipped flipping flips inverse inversely invert inverted mirrored mirroring mirrors opposite opposites recall recalled recalling recalls reflected reflecting reflections reflects regress remember remembered remembering remembers remind reminded reminder reminders reminding reminds rethink rethinking retreat retreated retreating retreats returning returns reversed reverses reversing revisit revisited revisiting rewind sorry swap swapped swapping swaps undoing upside',
+  'back.1': 'absurd absurdity absurdly nonsense ridiculous ridiculously topsy turvy',
+  'back.2': 'mixed mixup weirdo weirdos',
+  'bounce': 'boing bounce bounced bounces bouncing bouncy bubbly bunnies bunny celebrate celebrated celebrates celebrating celebration celebrations cheeky excited excitedly excitement exciting frog frogs fun funnier funniest funnily funny game games gaming goofy hilarious hilariously hooray hop hopped hopping hoppy hops hyper joke joked jokes joking jokingly jump jumped jumping jumps jumpy kangaroo kangaroos kitten kittens leap leaped leaping leaps partied party play playful playfully playing prank pranks puppies puppy quirky rabbit rabbits recess recessed recesses silliness silly skip skipping skippy spring springing springy thrill thrilled thrilling thrills toy toyed toying toys trampoline vacation vacationing vacations wacky weekend weekends woohoo yay yippee zany',
+  'bounce.1': 'boogie fidget fidgety groove grooves groovy jellies jello jelly jiggle jiggly restless restlessness shimmy squirm squirming squish squishy tickle tickled tickles tickling ticklish twerk twerking wiggle wiggles wiggling wiggly wobble wobbling wobbly wriggle',
+  'bounce.2': 'adorable babies baby chuckle chuckled chuckles chuckling cute cuteness cuter cutest cutie giggle giggled giggles giggling giggly haha hahaha hehe kiddo kiddos lmao lol lolly snicker snickering snickers sweetie teehee toddler toddlers',
+  'break': 'breaking breaks burst bursting bursts catastrophe catastrophes chaotic clutter cluttered confetti cracking cracks crazier crazies craziest craziness crumble crumbled crumbles crumbling destroy destroyed destroying destroys destruction disaster disasters disorder disordered disorderly disorders disorganized exploded explodes exploding explosion explosions fireworks foolishly foolishness fracture fractured fractures fracturing fragment fragmented fragments frenzied frenzy havoc hysteria hysterical hysterically insane insanely jumble jumbled maddy madly mads messed messes messing messy piece pieced pieces piecing random randomly randomness riot rioting riots scattering shards shattering shatters smash smashed smashes smashing splinter splintered splinters sprinkle sprinkled sprinkles sprinkling wildest wildly wilds',
+  'break.1': 'devastated devastating wreck wrecked wrecking wrecks',
+  'break.2': 'erupt erupted erupting eruption eruptions erupts pop popped popping poppy pops volcano',
+  'dark': 'beast beastly beasts blacked blackest blackness blacks crime crimes criminal criminally criminals curse cursed curses cursing danger dangerous dangerously dangers darker darkest darkly deadly deathly deaths demon demons devil devils dusk dusky eclipse eclipsed eclipses evils gravely graves gravy grim haunted haunting hell hells kill killed killer killing kills monster monsters murder murdered murdering murders murky nightly nightmare nightmares nights poison poisoned poisoning poisons shade shaded shades shading shadowed shadowing shady sin sinister sinned sinning sins threat threatening threats toxic villain villains villainy wicked wickedness witch witches',
+  'dark.1': 'lurk lurking lurks mysteries mysterious mysteriously mystery secretive shadowy sneak sneaked sneaking sneaks sneaky spy spying stealth stealthy',
+  'echo': 'bell bells belly chant chanted chanting chants chime chimed chimes chiming chorus choruses clone cloned clones cloning constant constantly constants copied copier copies copy crowds double doubled doubles doubling doubly duplicate duplicated duplicates duplicating echoed echoing encore endlessly everyday habit habits infinity knock knocking remix remixed remixes repeated repeatedly repeating repeats repetition repetitions replay replayed replaying replays ring ringed ringing rings routine routinely routines twin twinning twins',
+  'echo.1': 'clock clocking clocks countdown hiccup hiccups hmm stammer stammering stutter stuttering tick ticking tock',
+  'echo.2': 'follow followed following follows footsteps trail trailed trailing trails',
+  'empty': 'absences absent bare bared baring barren blank blankly blanks deserted emptied empties emptiness hollowed hollowness hollows lack lacked lacking lacks meaningless nobodies nothingness nothings nowhere pointless starved starving thirst thirsty useless vacant voided voids worthless',
+  'empty.1': 'cavities cavity donut donuts doughnut doughnuts gutted hole holed holes holy',
+  'fade': 'ash ashes blur blurred blurring blurry blurs dim dimly dimmed dimming disappear disappeared disappearing disappears dissolve dissolved dissolves dissolving dust dusted dusting dusty erase erased erases erasing evaporate evaporated evaporates fades fainted faintest fainting faintly fleeting foggy forgets forgetting former formerly ghostly goodbyes haze hazing hazy hidden hide hides hiding hush hushed ignorance ignorant invisible mists misty nostalgia nostalgic oblivion oblivious pale paler pales paley pasted pastel pastels pasting pasts pasty previous previously quietly secret secreted secretly secrets silenced silences silencing silently smoke smoked smokes smokey smoking smoky temporarily temporary transparent transparently unaware unknown unknowns unseen vanished vanishes vanishing whispered whispers yesterday',
+  'fade.1': 'ghosted ghosting ghosts phantom phantoms spooky',
+  'fade.2': 'erode eroded eroding erosion rust rusted rusting rusty tattered weathered',
+  'fall': 'autumn avalanche avalanches cliff cliffs collapsed collapses collapsing crashes descent dive dived dives divest diving doom doomed downfall dropping drops failing fails falls fate fated fates felled felling fells flunk flunked gravity landslide landslides leaf leafs leafy leaves lose loser losers loses losing parachute parachutes plummeted plummeting plunged plunges plunging quit quits quitting resign resigned resigning resigns ruin ruined ruining ruins sag sagging saggy skydive skydiving slid slide slides sliding slipping slips slump slumped stumble stumbled stumbles stumbling surrender surrendered surrendering surrenders swoon swooned topple toppled toppling trip tripped tripping trippy trips tumbled tumbling',
+  'fall.3': 'abyss basement basements bottomed bottoms burial burials buried buries bury cave caved caves caving cellar cellars dangle dangling deeper deepest deeply depth depths descended descending descends dig digest digging downing downs dug hang hanging hangings hung icicle mine pendulum pit pits pitting pity rope roped spider stalactite suspended tunnel tunneling tunnels underground',
+  'flicker': 'blaze blazed blazes blazing blinked blinking blinks burning candlelight candlelit candles doubted doubtful doubting doubts faulty fire fired fireflies firefly fires firing flames flaming flash flashed flashes flashing flashy flickering glimpse glimpsed glimpses glitch glitches glitchy hesitant hesitate hesitated hesitating hesitation lighthouse lighthouses sparked sparking sparkly sparky static torch torched torches twinkle twinkling uncertain unreliable unstable unsure waver wavered wavering waverly',
+  'flow': 'boat boating boats breeze breezes curl curled curling curls curly currently currents dances dancing drifted drifting drifts easier easiest easily easy effortless effortlessly flowed flowing flows flowy fluid fluids glide glides gliding harmonies harmonious harmony humming lake lakes liquid liquids melodies melody oceans poem poet poetry poets pond ponds ripple ripples rippling rivers sailed sailing sails seas ship silk silks silky singing singly sings slither smooth smoothed smoothest smoothing smoothly smoothness snake snakes songs splash splashed splashes splashing stream streamed streaming streams surf surfing sway swayed swaying swimming swims tides tidy tune tuned tunes tuning velvet velvety verse versed wander wandered wandering wanders watered waterfall waterfalls watering waters waved waving wavy',
+  'flow.1': 'drunk drunks nausea nauseous puddle puddles queasy seasick tipsy woozy',
+  'flow.2': 'aimless aimlessly meander meandering stroll strolled strolling strolls',
+  'gross': 'armpit armpits barf burp burping cheesy dirt dirtier dirtiest dirty disgust disgusted disgusting disgusts fart farted farting farts filth filthy funky garbage garlic greasy grime grimes grimy gross grossed grossing grossly icky muck mucky musty nasty odor odors odour poop pooped pooping puke puked puking reek reeking reeks rubbish sewage sewer sewers skunk slime slimy sludge smell smelled smelling smells smelly socks stank stench stink stinking stinks stinky sweat sweating sweats sweaty toilet toilets trash trashing trashy vomit vomited vomiting whiff yuck yucky',
+  'gross.1': 'boiling droop drooping droopy goo gooey heat heating heatwave hot hotly hotness hots hottest icecream lethargic limp limped limping melt melted melting melts mushy ooze oozes oozing scorching sloppy sluggish soggy sticky summer summers sweltering wax waxed waxes waxing waxy wilt wilted wilting',
+  'gross.2': 'compost composting corpse corpses decay decayed decaying decays expired grotesque gruesome hideous mold molded molding molds moldy mould moulded moulding moulds mouldy putrid rancid rot rots rotted rotten rotting sour soured spoiled spoilt stale uglier ugliest ugliness ugly zombie zombies',
+  'grow': 'abundant abundantly amazing amazingly awesome awesomeness biggest billion billions bloomed blooming blooms blossom blossomed blossoming blossoms boom boomed booming booms colossal confidence confident confidently enlarge enlarged enlarging enormously epic epics expanding fabulous fabulously fame famed famous famously fantastic flourish flourished flourishes flourishing giants gigantic glorious gloriously grand grandest grands greatest greatly greatness greats grows heaps hugely immense immensely increase increased increases increasing increasingly incredible incredibles incredibly jumbo king kings largely largest legendary lots loudest loudly loudness magnificent magnificently marvellous marvelous mega million millions mores mostly overflow overflowing overflows plenty pride prides proud proudest proudly queen queens rich riches richest richly richness rising roar roared roaring roars royal royally royals spectacular spectacularly super supersize swelled swelling swells thrive thrived thrives thriving tons tremendous tremendously triumph triumphed triumphs ultra ultras vastly victories victory wealth wealthier wealthiest wealthy wholeness wonderful wonderfully yell yelling yells',
+  'grow.1': 'amplified amplifier amplifies amplify crescendo escalate escalated escalates escalating gradually intensified intensifies intensify intensifying',
+  'grow.2': 'amazed astonished bang banged banging bangs ecstatic elated euphoric kaboom omg overjoyed pow pows shock shocked shocking shockingly shocks stunned surprise surprised surprises surprising surprisingly wham whammy whoa wow wowed',
+  'harsh': 'aggressive aggressively aggressiveness angered angers angrier angrily attack attacked attacking attacks battle battled battles battling bitter bitterly bitterness bitters blade bladed blades brutal brutally critic criticism criticisms criticize criticized criticizes criticizing critics cruelly edge edged edges edging edgy enemies enemy fierce fiercely fiercest fighting fights furious furiously fury growl growled growling growls grr harshest harshly harshness hated hates hating hatred hiss hissing hostile insult insulted insulting insults jagged judge judged judges judging judgmental kick kicked kicking kicks knife offend offended offending offends offensive offensively pained pains punch punched punches punching punchy raged rages raging razor razors resent resented resentment resents rough roughing roughly roughness rude rudely rudeness rudy savage savagely savages screamed screaming screams sharpest sharply sharpness sharps shouted shouting shouts slap slapped slapping slaps snarl snarling spike spiked spikes spiking spiky spite spiteful stab stabbed stabbing stabs sword swords thorn thorns vicious viciously violence violent violently waring warring wars wary yelled',
+  'harsh.1': 'cactus claw clawed clawing claws fangs hedgehog hedgehogs porcupine shark sharks teeth teething thorny',
+  'heavy': 'anchor anchored anchoring anchors bold boldly boldness brave braved bravely braves bravest brick bricks bulky burdened burdens certain certainly chain chained chaining chains concrete courage courageous courageously dense densely determined duties elephant elephants fearlessly firm firmly firmness firms fortress fortresses heaviest heavily heavyweight heavyweights importance important importantly ironed ironing irons irony load loaded loading loads massive massively metal metals mightiest mightily mighty monument monuments mountains powered powerfully powering powers responsibilities responsibility rocked rocking serious seriously seriousness significant significantly solemn solemnly solidly solids steel steels steely stern stoned stoney stoning strength strengths strict strictest strictly strongest strongly stubborn stubbornly stubbornness sturdy tank tanked tanking thick thickest thickly thickness titan titans tough toughest toughness wall walled walling walls wally weighed weighing weighs weighted weighting weights weighty whale whales',
+  'heavy.1': 'alright alrighty balance balanced balances balancing building builds calm calmed calming calmly calmness calms complete completed completeness completes completing faithful faithfully faithfulness finished foundation foundations grounded grounding grounds home homely homes homing house housed loyal loyalties loyalty okay reliable reliably remain remained remaining remains rest rested resting rests rooted roots safe safely safes safest seat seated seating secure secured securely secures securing settle settled settles settling sit sited sits sitting stable stables stay stayed staying stays steadily steady stillness sure surely surest trust trusted trusting trusts trusty',
+  'irk': 'annoy annoyance annoyed annoying annoyingly annoys argh bother bothered bothering bothers brat brats bratty bug bugged bugging buzz buzzed buzzing complain complained complaining complains crabby cranky frustrated frustrating frustration frustrations grumble grumbling grumpy hmph impatient impatiently irritate irritated irritates irritating irritation itch itching itchy moan moaned moaning moans moody mosquito mosquitoes mosquitos nag nagging nagy noise noises noisy pest pester pestering pests petty racket rackets sulking sulky ugh whine whines whining whiny',
+  'irk.1': 'needle needles needless nettle nettles poke poked pokes poking prickle prickly prod prodding rash rashes scratch scratched scratches scratching scratchy sneeze sneezed sneezes sneezing sting stinging stings stingy stung tingle tingling',
+  'light': 'beam beamed beaming beams birthday birthdays bliss blissful blissfully brighter brightest brightly brightness brilliant brilliantly cheer cheered cheerful cheerfully cheering cheers cheery christmas colorful colourful crystal crystals dazzling delight delighted delights diamond diamonds festive gift gifting gifts glad gladly gleam gleaming glitter glittering glittery glowed glows gold golden golding grateful gratefully gratitude grin grinned grinning grins happier happiest happily happiness holiday holidays illuminated illuminates illuminating jewel jewels jolly joyful joyfully joyous joys lamp lamps lantern lanterns laugh laughed laughing laughs laughter lighted lightest lightness luck lucked luckier luckiest luckily lucky luminous merrier merrily merry precious radiant rainbow rainbows shined shines shiny silver silvery smiles smiley smiling sparkle sparkles sparkling stared staring starring starry sunny suns sunshine suny thankful thankfully treasure treasured treasures treasury warmed warmest warming warmly warms wedding weddings',
+  'light.1': 'angelic beauties beautiful beautifully beauty elegant elegantly gentle gentleness gently glowing gorgeous grace graced graceful gracefully graces loveliest lovely peace peaceful peacefully prettier prettiest pretty serene soft softest softly softness sweet sweetest sweetly sweetness sweets sweety tenderly warmth',
+  'long': 'ages ancient ancients await awaited awaiting awaits centuries century crawl crawled crawling crawls decades delay delayed delaying delays distance distanced distances distancing distant distantly elderly eternally eventually faraway future futures generations grandma grandmas grandpa historic histories history journey journeyed journeys later lifetime lifetimes linger lingered lingering lingers longed longest longs marathon marathons path paths queue queued queues queuing road roads sloth sloths slowed slowest slowing slowness slows snail snails someday stretched stretches stretching stretchy tomorrow turtle turtles wait waited waits wrinkle wrinkled wrinkles yearn yearning',
+  'open': 'adventure adventures adventurous begin beginning beginnings begins boundless clear cleared clearest clearing clearly clears cleary discover discovered discoveries discovering discovers discovery embrace embraced embraces embracing expand expanded expands explored explores exploring field fielded fielding fields freedoms freeing freely frees fresh freshest freshly freshness generous generously hello honest honestly honesty horizon horizons infinite infinitely invitation invitations invite invited invites inviting kindness liberated liberties liberty limitless meadow meadows new newest newly newness news openings openly openness opens opportunities opportunity outdoors outside possibilities possibility prairie prairies release released releases releasing relief reliefs relieved roam roamed roaming share shared sharing spaced spaces spacey spacing spacious start started starting starts travel traveled traveling travelling travels truth truthful truthfully truths unbound universally unlocked vastness welcome welcomed welcomes welcoming widely widest',
+  'open.1': 'curtain curtains door doors gate gated gates peek peeked peeking peeks peep peeping peeps reveal revealed revealing reveals uncover uncovered uncovering uncovers unveil unveiled unveiling unveils window windows',
+  'pull': 'addicted addiction addictions attracted attracting attraction attractions attracts catch catching catchy caught charismatic charm charmed charming cling clinging clings clingy covet coveted craved craves craving cravings desired desires desiring envied envious envy grab grabbed grabbing grabs gravitate greed greedy hold holding holdings hook hooked hooking hunger hungry irresistible jealous jealously jealousy lure lured lures luring magnetic magnets miss missed misses missy needed needing needs needy obsessed obsession obsessions pulled pulling pulls seduce seduced seduces seducing seductive temptation temptations tempted tempting wanting wants',
+  'pull.1': 'collide collided colliding collision collisions connect connected connectedness connecting connection connections connects converge converged converges converging join joined joining link linked linking meet meeting meetings merge merged merges merging reunion reunions reunite reunited reunites reuniting',
+  'pulse': 'adrenaline awake beatings beats breathes breathing breathless breaths energetic energies energy exercise exercised exercises exercising gasp gasped gasping gasps lifes live lived lively lives livy pant panting pants panty pulsed pulses pulsing rhythm rhythms throb throbbing vibrant vital vitally vitals vitaly wake wakes waking woke woking workout workouts',
+  'pulse.1': 'adore adored adores adoring affection affections babe babes beloved blush blushed blushes blushing butterflies crush crushes darling darlings dear dearest flirt flirted flirting flirts flirty heartbeats hearted heartfelt hearts heartwarming hearty honey kissed kisses kissing lovers lovey lovingly marriage marriages married marry passion passionate passionately passions romance romances romantic romantics soulmate sweetheart sweethearts tender tendered tendering tenderness tenders valentine valentines',
+  'rain': 'cloudy downpour drench drenched dripping drips drizzle drown drowning drowns gray grays grey greys grieving leak leaked leaking leaks leaky overcast pour poured pouring pours raindrops rained rains rainy shower showered showering showers soaked sob sobbed sobbing sobs stormed storming storms stormy tear teardrop tearing teary umbrella umbrellas weeping weeps weepy wet wetness wettest wetting',
+  'rain.1': 'damp damping dew dewy humid moist',
+  'rise': 'above achieve achieved achieves achieving angel angels ascend ascended ascending ascends balloon ballooning balloons bested birding birds birdy blessed blessing blessings boost boosted boosting boosts bubble bubbles bubbling climb climbed climbing climbs cloud clouded clouds elevate elevated elevates elevating faith faiths flight flights floated floating floats heavenly heavens helium highest highness highs hoped hopeful hopefully hopefuls hopes hoping hover hovered hovering hovers improve improved improves improving kite kites lifted lifting lifts optimism optimistic pray prayed prayer prayers praying prays progress progressed progresses progressing promote promoted promotes promoting raise raised raising risen rises roses rosy skyward soared soaring soars soul souls spirit spirited spirits success successes successful successfully sunrise uplift uplifted uplifting upstairs upward upwards win winning winnings wins won',
+  'rise.1': 'airy asleep breezy daydream daydreaming dreamed dreamer dreamers dreamy fantasies fantasy imagination imaginations imagine imagined imagines imagining nap napping nappy naps relax relaxed relaxes relaxing sleep sleeping sleeps weightless wish wished wishes wishing',
+  'rise.2': 'blastoff depart departed departing departs flyaway launch launched launches launching',
+  'shrink': 'ant ants awkward awkwardly awkwardness barely bashful bit biting bits bitsy bitty coy crumb crumbs delicate delicately diminished diminishes diminishing dot dots dotted feeble fragile frail hardly humbled humbling humbly inferior insecure insecurities insecurity insignificant itsy lessen lessened lessening lessens lesser lessing littlest meek meeks mice micro microscopic mini miniature miniatures minimal minimally minis modest modestly modesty mouse mumble mumbled mumbles mumbling murmur murmuring murmurs pebble pebbles petite powerless puny quietest reduce reduced reduces reducing scarce scarcely seed seeded seeding seeds seedy shrinking shrinks shyness slight slightest slightly smallest smalling smalls speck specks teeny timid tiniest unimportant weak weakest weakly weakness weaknesses wee whispering',
+  'shrink.1': 'dwindle dwindled dwindling ebb ebbing recede receded receding wane waned waning withdraw withdrawing withdraws',
+  'shrink.2': 'brief briefed briefing briefly briefs compact compacted concise condensed pinch pinched pinches pinching short shorted shorter shortest shorting shortness shorts shorty',
+  'shrink.3': 'away aways far fared faring farther remote remotely',
+  'sink': 'ache aches aching ashamed blah bleak blue blues bummed bummer defeat defeated defeating defeats depression depressions despairing disappointed disappointment disappointments dismal drag dragged dragging drags drained dreaded dreads dreary embarrassed embarrassing embarrassingly gloomy glum grieved guilt guilty heartache heartbreaking heavyhearted helpless helplessly helplessness homesick hopeless hopelessly hopelessness humiliated hurt hurting hurts lament lamented lamenting laments lowest lowly lows meh melancholy miserable miserably misery mope moped mopey moping mourned mourning mourns numb numbing numbness regret regrets saddest sadly shame shamed shameful shamefully shaming sighed sighing sighs sorrowful sorrows suffer suffered suffering sufferings suffers sullen tiredness trouble troubled troubles troubling unhappiness unhappy upset upsets upsetting weariness woe woeful woefully woes',
+  'sink.1': 'bored boredom boring couch couches drowsiness drowsy dull dullness lazily laziness lazy monotonous mundane sleepy slouch slouching tedious yawn yawned yawning yawns',
+  'sink.2': 'drowned flood flooded flooding floods submerged swamped underwater',
+  'speed': 'bolt bullet bullets chase chased chases chasing dash dashing escape escaped escaping fast fasted faster fastest fled flee fleeing flees haste hastily hasty hurried hurriedly hurry hurrying immediately instant instantly quick quicker quickest quickly quickness race raced racing racy ran rapid rapidly rapids rocket rockets run running runny rush rushed rushing speed speedily speeding speedy sprint sprinted sprinting sudden suddenly swift swiftly swifts urgent urgently zip zipping zoom zoomed zooming zooms',
+  'speed.1': 'dart darting darts scramble scrambled scrambles scrambling scurry scurrying skid skidding skids swoosh vroom whiz whizz whoosh zoomies',
+  'spin': 'atlas climate climates continent continents cosmos countries country earthly earths earthy environment environments everybody everyone everyones galaxies galaxy global globally globes human humanities humanity humans international internationally internationals mankind map mapping maps nations natural naturals nature natures planets societies society universes worldly worldwide',
+  'spin.1': 'carousel circled circles circling circular cycle cycled cycles cycling ferris loop looped looping loops loopy orbiting orbits revolved revolves revolving rotate rotated rotates rotating roundabout roundabouts rounded rounding rounds satellite satellites spins spiny twirl twirling vinyl wheeled wheeling wheels whirl whirling',
+  'split': 'breakup breakups choice choose choosing chop chopped chopping choppy chops conflict conflicted conflicting conflicts crossroads cuts cutting decide decided decidedly deciding decision dilemma dilemmas divides dividing division divisions divorce divorced divorces divorcing either farewell gap gaping gaps halfway halves heartbroken part parted parting rift rifts rip ripped ripping rips scissors separately separates separating slice sliced slices slicing snip sniping splits splitting',
+  'split.1': 'shred shredded shredding shreds',
+  'squeeze': 'anxieties anxiously busier busiest business busy caged choked chokes choking claustrophobic compressed compresses compressing confined cornered crammed crowding crushed crushing deadline deadlines hectic jammed narrowed narrowest narrowing narrowly narrows overwhelm overwhelmed overwhelming packed presses pressing pressured pressures pressuring prison prisoner prisoners prisons restrained restricted smother smothered smothering squashed squeezed squeezes squeezing squished stressed stresses stressful stressing suffocate suffocated suffocating tensed tenses tension tensions tightest tightly tightness tights trapping traps worried worries worry',
+  'squeeze.1': 'flat flatly flats flatten flattened flattening squash trample trampled trampling',
+  'squeeze.2': 'bond bonded bunch bunches close closed closeness closer closes closest closing cluster clustered clustering clusters cosy cozy cuddle cuddled cuddles cuddling cuddly family friend friendly friends friendship friendships gather gathered gathering gatherings huddle huddled hug hugged hugging hugs snug snuggle snuggled snuggling team teaming teamwork together togetherness union unions unite united unites uniting unity',
+  'tremble': 'alarm alarmed alarming alarms caffeine chill chilled chilling chills coffee coffees coldest coldly coldness dreading earthquake earthquakes eek feared fearing fears frightened gulp horrified horror horrors jitters jittery nervously nervousness panics quake quakes quiver quivering scare scares scarier scariest scaring scary shakes shaking shaky shivering shivers shudder shuddered shuddering shudders startled terrified terrors uneasy yikes',
+  'tremble.1': 'chillies chilly freeze freezes frost frosted frosting frosty froze frozen ice iced icing icy snow snowed snowing snows snowy winter wintering winters',
+  'tremble.2': 'aftershock crashing drum drumming drums pound pounded pounding rumble rumbling stomp stomped stomping thunder thundering tremor tremors',
+  'twist': 'baffled bewildered bizarre bizarrely brain brains brainstorm brainstorming brainy complex complexes complicated contemplate contemplated contemplates contemplating curiosities curiosity curious curiously cyclone cyclones dizziness enigma hurricane hurricanes idea ideas knot knots knotted labyrinth lost maze mazes minded minding odd oddest oddly odds overthink overthinking peculiar peculiarly plan planing planning ponder pondered pondering puzzle puzzled puzzles puzzling question questioned questioning questions riddle riddled riddles scheme schemes scheming spirals strangely strangeness strangest swirl swirled swirling swirls tangle tangled tangles thinks thoughts tornado trick tricked trickier tricking tricks tricky turning turns twisted twisting twists twisty unusual unusually weird weirder weirdest weirdly weirdness wonder wondered wondering wonders wring wringing',
+  'twist.1': 'hypnotic hypnotize hypnotized spiraling spiralling vortex whirlpool',
 };
 const LEX = {};
 for (const [fx, words] of [...Object.entries(LEXICON_MORE), ...Object.entries(LEXICON)]) for (const w of words.split(' ')) LEX[w] = fx;
 function suggest(core) {
-  const w = core.toLowerCase();
+  const w = core.toLowerCase().replace(/’/g, "'");
   if (LEX[w]) return LEX[w];
   if (STOP.has(w)) return null;
-  for (const key in LEX) if (key.length >= 4 && w.length > key.length && w.startsWith(key)) return LEX[key];
+  // "hopeless", "fearless": the feeling is missing, so the word is hollow.
+  if (w.length > 6 && w.endsWith('less') && (LEX[w.slice(0, -4)] || stemmed(w.slice(0, -4)))) return 'empty';
+  const st = stemmed(w);
+  if (st) return st;
+  let best = '';
+  for (const key in LEX) if (key.length >= 4 && w.length > key.length && key.length > best.length && w.startsWith(key)) best = key;
+  if (best) return LEX[best];
   if (w.length >= 5) for (const key in LEX) if (key.length >= 5 && nearly(w, key)) return LEX[key];
+  return null;
+}
+// Strip an ending and try again: stinkier → stinky, hugged → hug, annoyingly → annoying.
+const ENDINGS = [['iest', 'y'], ['ier', 'y'], ['ily', 'y'], ['ies', 'y'], ['ied', 'y'], ['iness', 'y'], ['ingly', ''], ['ness', ''], ['ing', ''], ['ing', 'e'], ['ed', ''], ['ed', 'e'], ['es', ''], ['s', ''], ['ly', ''], ['est', ''], ['er', ''], ['y', ''], ['y', 'e']];
+function stemmed(w) {
+  for (const [end, add] of ENDINGS) {
+    if (!w.endsWith(end) || w.length - end.length < 3) continue;
+    let b = w.slice(0, -end.length) + add;
+    if (LEX[b]) return LEX[b];
+    if (!add && /([b-df-hj-np-tv-z])\1$/.test(b) && LEX[b.slice(0, -1)]) return LEX[b.slice(0, -1)];
+  }
   return null;
 }
 // Everyday words that only look like feeling words.
@@ -1040,14 +1182,27 @@ function buildBooks() {
 // ---------- live typing ----------
 const src = $('src');
 const PLACEHOLDER = 'Click here and write. Words that fall, tremble or rain will move.';
+const NEGATE = new Set(["not", "never", "no", "hardly", "barely", "nor", "without", "isn't", "wasn't", "aren't", "weren't", "don't", "doesn't", "didn't", "can't", "cannot", "won't", "wouldn't", "couldn't", "shouldn't", "ain't", "nothing"]);
 function parseLive(text) {
   const out = [];
   tokenizePlain(text, out);
+  let prev = '';
   for (const t of out) {
     if (t.type !== 'word') continue;
-    const o = overrides[t.core.toLowerCase()];
-    if (o) { t.fx = o.fx; t.v = o.v; t.n = o.n; }
-    else setFeel(t, suggest(t.core));
+    const low = t.core.toLowerCase().replace(/’/g, "'");
+    const o = overrides[low];
+    if (o) { t.fx = o.fx; t.v = o.v; t.n = o.n; prev = low; continue; }
+    // "sooo", "noooo": stretched letters mean a stretched word.
+    const squeezed = /(\p{L})\1\1/u.test(t.core) ? t.core.replace(/(\p{L})\1{2,}/gu, '$1') : '';
+    setFeel(t, suggest(squeezed || t.core) || (squeezed && (suggest(t.core.replace(/(\p{L})\1{2,}/gu, '$1$1')) || 'long.1')));
+    if (squeezed && t.fx) t.n = 3;
+    // SHOUTING and exclamation marks turn the feeling up; an all-caps word with none bursts.
+    const loud = t.core.length > 1 && t.core === t.core.toUpperCase() && /\p{Lu}/u.test(t.core);
+    if (loud) { if (!t.fx) setFeel(t, 'grow.2'); t.n = 3; }
+    if (t.fx && t.trail.includes('!')) t.n = 3;
+    // "not happy": the feeling shows as an empty outline of itself.
+    if (t.fx && NEGATE.has(prev)) { t.fx = 'empty'; t.v = 0; }
+    prev = low;
   }
   return out;
 }
@@ -1324,7 +1479,7 @@ function alphaOf(node, root) {
 
 // One still of the piece as it is right now: every letter's transform, its untransformed box, and the bounds of it all.
 function snapshot(root) {
-  const items = [...root.querySelectorAll('.fx[data-fx], .fx[data-fx] .l, .echo, .half, .ray, .tail')];
+  const items = [...root.querySelectorAll('.fx[data-fx], .fx[data-fx] .l, .echo, .half, .ray, .tail, .fume, .streak')];
   const info = new Map();
   const rr = root.getBoundingClientRect();
   const box = { x0: rr.left, y0: rr.top, x1: rr.right, y1: rr.bottom };
@@ -1355,7 +1510,7 @@ function snapshot(root) {
   const range = document.createRange();
   const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
   for (let n = walker.nextNode(); n; n = walker.nextNode()) {
-    if (n.parentElement.closest('.l, .echo, .half, .sr, .caret')) continue;
+    if (n.parentElement.closest('.l, .echo, .half, .sr, .caret, .fume')) continue;
     const list = [];
     for (let i = 0; i < n.data.length; i++) {
       if (/\s/.test(n.data[i])) continue;
@@ -1423,7 +1578,7 @@ function paintSnap(ctx, root, snap, box, scale, caption) {
   const drawEl = e => {
     const st = styles.get(e);
     const r = info.get(e).r;
-    if (e.matches('.ray, .tail')) {
+    if (e.matches('.ray, .tail, .streak')) {
       chain(e, () => { ctx.globalAlpha = st.alpha; ctx.fillStyle = st.backgroundColor; ctx.fillRect(r.left, r.top, r.width, r.height); });
     } else if (e.matches('.fx')) {
       if (!clear(st.backgroundColor)) chain(e, () => { ctx.globalAlpha = st.alpha; ctx.fillStyle = st.backgroundColor; ctx.fillRect(r.left, r.top, r.width, r.height); });
