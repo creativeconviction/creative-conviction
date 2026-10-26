@@ -55,7 +55,8 @@ elderly old young teen teens teenager teenagers child children kid kids baby bab
 daughter son aunt uncle grandmother grandfather girlfriend boyfriend gender sex sexual sexuality caucasian negro colored oriental
 gypsy gypsies roma slave slaves poor rich fat thin obese skinny short tall'''.split())
 page = pathlib.Path('/home/user/creative-conviction/felt-type/page.html').read_text()
-KEEP = set(re.findall(r"[a-z]+", ' '.join(re.findall(r"'[\w.]+': '([^']*)'", page))))
+CALENDAR = set('monday tuesday wednesday thursday friday saturday sunday weekend weekday january february march april may june july august september october november december spring summer autumn fall winter christmas easter halloween birthday holiday morning noon afternoon evening night midnight dawn dusk'.split())
+KEEP = CALENDAR | set(re.findall(r"[a-z]+", ' '.join(re.findall(r"'[\w.]+': '([^']*)'", page))))
 IDENTITY.update('''american americans british brits english french german germans italian italians spanish portuguese dutch irish scottish scots welsh
 russian russians chinese japanese korean koreans indian indians pakistani pakistanis bangladeshi afghan afghans iranian iranians iraqi iraqis
 syrian syrians turkish turks greek greeks egyptian egyptians israeli israelis palestinian palestinians lebanese saudi saudis yemeni emirati

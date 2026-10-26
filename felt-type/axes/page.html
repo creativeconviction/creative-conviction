@@ -83,7 +83,7 @@ h1 { font: 800 clamp(26px, 3vw, 36px)/1 var(--display); letter-spacing: -0.01em;
 
   <section class="write">
     <p class="label"><label for="src">Write something</label></p>
-    <textarea id="src" rows="2" spellcheck="false">my sister is stinky and annoying, but her laugh is warm and her whisper is soft as velvet</textarea>
+    <textarea id="src" rows="2" spellcheck="false">every tuesday my sister is stinky and annoying, but her laugh is warm and her whisper is soft as velvet</textarea>
     <div class="out" id="out" aria-live="polite"></div>
   </section>
 
@@ -123,8 +123,8 @@ const $ = id => document.getElementById(id);
 const el = (t, c) => { const e = document.createElement(t); if (c) e.className = c; return e; };
 let selected = null;
 
-// Below a third of the way out, a word is treated as neutral on that axis.
-const dz = v => Math.sign(v) * Math.max(0, Math.abs(v) - 0.3) / 0.7;
+// Only the faintest leanings count as neutral; milder ones show, just more quietly.
+const dz = v => Math.sign(v) * Math.max(0, Math.abs(v) - 0.1) / 0.9;
 const fx = n => n.toFixed(3).replace(/\.?0+$/, '');
 
 function lookup(word) {
