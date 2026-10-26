@@ -1,0 +1,292 @@
+<title>Felt Axes</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Recursive:slnt,wght,CASL,CRSV,MONO@-15..0,300..1000,0..1,0..1,0..1&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: one sheet. A line to write in, the sentence set from its words' positions, then the numbers behind one word, then specimens. */
+:root {
+  --paper: #ffffff;
+  --ink: #0b0b0c;
+  --mute: #75747a;
+  --faint: #e2e1e6;
+  --bar: #0b0b0c;
+  --display: 'Recursive', 'Helvetica Neue', Arial, sans-serif;
+  --type: 'American Typewriter', 'Courier Prime', 'Courier New', monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --paper: #0d0d0e; --ink: #f0efeb; --mute: #918f96; --faint: #2b2a2e; --bar: #f0efeb; color-scheme: dark; }
+}
+:root[data-theme="dark"] { --paper: #0d0d0e; --ink: #f0efeb; --mute: #918f96; --faint: #2b2a2e; --bar: #f0efeb; color-scheme: dark; }
+
+body { background: var(--paper); color: var(--ink); font: 13px/1.55 var(--type); letter-spacing: 0.04em; margin: 0; }
+.page {
+  max-width: 1180px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 28px 120px;
+  overflow-x: clip;
+}
+h1 { font: 800 clamp(26px, 3vw, 36px)/1 var(--display); letter-spacing: -0.01em; margin: 0; font-variation-settings: "CASL" 1; }
+.lede { color: var(--mute); max-width: 62ch; margin: 10px 0 0; font-size: 14px; letter-spacing: 0; }
+.label { text-transform: uppercase; color: var(--mute); margin: 0 0 8px; }
+
+.write { margin-top: 56px; }
+#src {
+  width: 100%; box-sizing: border-box; resize: vertical; min-height: 3.2em;
+  font: 400 18px/1.5 var(--display); letter-spacing: 0; color: var(--ink); background: var(--paper);
+  border: 1px solid var(--faint); border-radius: 2px; padding: 12px 14px;
+}
+#src:focus-visible { outline: none; border-color: var(--ink); }
+
+.out { margin-top: 40px; font-family: var(--display); font-size: clamp(28px, 4.4vw, 58px); line-height: 1.75; min-height: 2em; }
+.w { display: inline-block; position: relative; cursor: pointer; white-space: nowrap; border-radius: 3px; }
+.w.on { outline: 1px dashed var(--faint); outline-offset: 0.12em; }
+.w.plain { cursor: default; }
+.l { display: inline-block; white-space: pre; transform: var(--p); transform-origin: 50% 80%; }
+@keyframes ax { from { transform: var(--a0); } to { transform: var(--a1); } }
+@media (prefers-reduced-motion: no-preference) {
+  .moving .l { animation: ax var(--d, 1s) var(--e, ease-in-out) var(--dl, 0s) infinite alternate; }
+}
+
+.inspect { margin-top: 48px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 32px; align-items: start; border-top: 0.5px solid var(--mute); padding-top: 20px; }
+@media (max-width: 720px) { .inspect { grid-template-columns: 1fr; } }
+.iword { font-family: var(--display); font-size: clamp(40px, 6vw, 76px); line-height: 1.5; min-height: 1.6em; }
+.set { color: var(--mute); margin-top: 6px; }
+.bars { display: grid; gap: 10px; }
+.bar { display: grid; grid-template-columns: 11ch minmax(0, 1fr) 9ch 5ch; align-items: center; gap: 10px; text-transform: uppercase; font-size: 11px; color: var(--mute); }
+.bar .r { text-align: right; }
+.bar .lo, .bar .hi { white-space: nowrap; }
+.bar .hi { text-align: left; }
+.bar .lo { text-align: right; }
+.track { position: relative; height: 14px; }
+.track::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; border-top: 1px solid var(--faint); }
+.track::after { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; border-left: 1px solid var(--mute); }
+.fill { position: absolute; top: 3px; height: 8px; background: var(--bar); }
+.num { font-variant-numeric: tabular-nums; text-align: right; color: var(--ink); }
+.missing { color: var(--mute); }
+
+.specimens { margin-top: 64px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px; }
+.card { border: 1px solid var(--faint); border-radius: 2px; height: 120px; display: grid; place-items: center; overflow: hidden; font-family: var(--display); font-size: 27px; background: none; color: var(--ink); cursor: pointer; padding: 0; }
+.card:hover, .card:focus-visible { border-color: var(--ink); outline: none; }
+
+.notes { margin-top: 64px; color: var(--mute); max-width: 72ch; letter-spacing: 0; font-size: 13px; }
+.notes p { margin: 0 0 10px; }
+</style>
+
+<div class="page">
+  <header>
+    <h1>Felt Axes</h1>
+    <p class="lede">An experiment for Felt Type. Each word sits somewhere on seven feeling axes, worked out from what the word means. Its letters are set from where it lands: heavier, softer, faster, bigger, hotter. Nothing here is a hand-made list.</p>
+  </header>
+
+  <section class="write">
+    <p class="label"><label for="src">Write something</label></p>
+    <textarea id="src" rows="2" spellcheck="false">my sister is stinky and annoying, but her laugh is warm and her whisper is soft as velvet</textarea>
+    <div class="out" id="out" aria-live="polite"></div>
+  </section>
+
+  <section class="inspect" aria-label="Behind one word">
+    <div>
+      <p class="label">Behind the word</p>
+      <div class="iword" id="iword"></div>
+      <p class="set" id="iset"></p>
+    </div>
+    <div class="bars" id="bars"></div>
+  </section>
+
+  <section class="specimens">
+    <p class="label">Specimens</p>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section class="notes">
+    <p>How it works: 38,246 everyday words were placed on each axis by comparing them with two groups of opposite words, such as calm, relaxed, peaceful against frantic, wild, furious. The word positions come from ConceptNet Numberbatch, word vectors built from common-sense knowledge. Weight, softness, slant and size come from the font's own variable axes. The strongest axis picks the motion.</p>
+    <p>Left out on purpose: names, nationalities, religions and other identity words. Word vectors learn stereotypes about them, so they stay plain. Each word has one position whatever the sentence, so "cold coffee" and "cold person" look the same.</p>
+  </section>
+</div>
+
+<script>
+const AXES = [
+  ['valence', 'unpleasant', 'pleasant'],
+  ['arousal', 'calm', 'excited'],
+  ['weight', 'light', 'heavy'],
+  ['softness', 'sharp', 'soft'],
+  ['speed', 'slow', 'fast'],
+  ['size', 'small', 'big'],
+  ['temperature', 'cold', 'hot'],
+];
+const SPECIMENS = 'whisper thunder feather razor glacier sunshine furious sleepy stinky giggle velvet hurricane grief happy annoying anchor lazy explosion'.split(' ');
+const TABLE = new Map();
+const $ = id => document.getElementById(id);
+const el = (t, c) => { const e = document.createElement(t); if (c) e.className = c; return e; };
+let selected = null;
+
+// Below a third of the way out, a word is treated as neutral on that axis.
+const dz = v => Math.sign(v) * Math.max(0, Math.abs(v) - 0.3) / 0.7;
+const fx = n => n.toFixed(3).replace(/\.?0+$/, '');
+
+function lookup(word) {
+  const w = word.toLowerCase().replace(/[’']/g, '');
+  if (TABLE.has(w)) return TABLE.get(w);
+  for (const [end, add] of [['ies', 'y'], ['ied', 'y'], ['ier', 'y'], ['iest', 'y'], ['ily', 'y'], ['ing', ''], ['ing', 'e'], ['ed', ''], ['ed', 'e'], ['es', ''], ['s', ''], ['ly', ''], ['er', ''], ['est', '']]) {
+    if (w.endsWith(end) && w.length - end.length >= 3) {
+      const b = w.slice(0, -end.length) + add;
+      if (TABLE.has(b)) return TABLE.get(b);
+    }
+  }
+  return null;
+}
+
+// Turn seven numbers into type: font axes, posture, and one motion chosen by the strongest moving axis.
+function design(raw) {
+  const [V, A, W, So, Sp, Z, T] = raw.map(dz);
+  const wght = Math.round(Math.max(300, Math.min(1000, 450 + W * 420 - So * 60)));
+  const casl = Math.max(0, So);
+  const slnt = -15 * Math.max(0, Sp);
+  const size = Math.max(0.55, 1 + 0.6 * Z);
+  const track = 0.12 * Math.max(0, -Sp) + 0.07 * Math.max(0, -T) - 0.03 * Math.max(0, A);
+  const moves = [
+    ['buzzing (excited)', A, A > 0], ['breathing (calm)', -A, A < 0], ['dashing (fast)', Sp, Sp > 0],
+    ['shimmering (hot)', T, T > 0], ['shivering (cold)', -T, T < -0.3], ['floating (pleasant)', V, V > 0], ['sagging (unpleasant)', -V, V < 0],
+  ].filter(m => m[2] && m[1] > 0.05).sort((a, b) => b[1] - a[1]);
+  return { V, A, W, So, Sp, Z, T, wght, casl, slnt, size, track, motion: moves[0] ? moves[0][0] : null, m: moves[0] ? moves[0][1] : 0 };
+}
+
+function setWord(span, text, d) {
+  span.style.fontWeight = d.wght;
+  span.style.fontVariationSettings = `"CASL" ${fx(d.casl)}, "slnt" ${fx(d.slnt)}`;
+  span.style.fontSize = `${fx(d.size)}em`;
+  span.style.letterSpacing = `${fx(d.track)}em`;
+  const L = Array.from(text);
+  span.replaceChildren(...L.map((ch, i) => {
+    const s = el('span', 'l'); s.textContent = ch;
+    const t = L.length > 1 ? i / (L.length - 1) : 0;
+    // Posture: pleasant words lift toward their end, unpleasant ones droop; sharp words bristle.
+    const y = d.V > 0 ? -0.16 * d.V * t : 0.2 * -d.V * Math.pow(t, 1.4);
+    const r = (d.V < 0 ? 9 * -d.V * t : 0) + (d.So < 0 ? (i % 2 ? 1 : -1) * 6 * -d.So : 0);
+    const pose = `translateY(${fx(y)}em) rotate(${fx(r)}deg)`;
+    s.style.setProperty('--p', pose);
+    const k = d.m;
+    let a0 = pose, a1 = pose, dur = '1s', dl = `${-i * 0.12}s`, ease = 'ease-in-out';
+    switch (d.motion) {
+      case 'buzzing (excited)':
+        a0 = `${pose} translate(${fx(-0.035 * k)}em, ${fx(0.02 * k * (i % 2 ? 1 : -1))}em) rotate(${fx(-4 * k)}deg)`;
+        a1 = `${pose} translate(${fx(0.035 * k)}em, ${fx(-0.02 * k * (i % 2 ? 1 : -1))}em) rotate(${fx(4 * k)}deg)`;
+        dur = `${fx(0.07 + (1 - k) * 0.12 + (i % 3) * 0.02)}s`; ease = 'steps(2, end)'; dl = '0s'; break;
+      case 'breathing (calm)':
+        a1 = `${pose} translateY(${fx(-0.05 * k)}em) scale(${fx(1 + 0.03 * k)})`; dur = `${fx(3 + 1.5 * k)}s`; dl = `${-i * 0.2}s`; break;
+      case 'dashing (fast)':
+        a1 = `${pose} translateX(${fx(0.09 * k)}em) skewX(${fx(-8 * k)}deg)`; dur = `${fx(0.55 - 0.25 * k)}s`; dl = `${-i * 0.03}s`; break;
+      case 'shimmering (hot)':
+        a0 = `${pose} skewX(${fx(-7 * k)}deg)`; a1 = `${pose} skewX(${fx(7 * k)}deg) translateY(${fx(-0.03 * k)}em)`; dur = '0.9s'; break;
+      case 'shivering (cold)':
+        a0 = `${pose} translateX(${fx(-0.018 * k)}em)`; a1 = `${pose} translateX(${fx(0.018 * k)}em)`; dur = '0.06s'; ease = 'linear'; dl = `${-i * 0.013}s`; break;
+      case 'floating (pleasant)':
+        a1 = `${pose} translateY(${fx(-0.09 * k)}em)`; dur = '2.6s'; dl = `${-i * 0.18}s`; break;
+      case 'sagging (unpleasant)':
+        a1 = `${pose} translateY(${fx(0.07 * k)}em) rotate(${fx(3 * k)}deg)`; dur = '3.2s'; dl = `${-i * 0.15}s`; break;
+    }
+    s.style.setProperty('--a0', a0); s.style.setProperty('--a1', a1);
+    s.style.setProperty('--d', dur); s.style.setProperty('--dl', dl); s.style.setProperty('--e', ease);
+    return s;
+  }));
+  span.classList.toggle('moving', !!d.motion);
+}
+
+function renderSentence() {
+  const out = $('out');
+  out.replaceChildren();
+  const parts = $('src').value.split(/(\s+)/);
+  let first = null;
+  for (const part of parts) {
+    if (!part) continue;
+    if (/^\s+$/.test(part)) { out.append(' '); continue; }
+    const m = part.match(/^([^\p{L}]*)([\p{L}’']+(?:[-’'][\p{L}]+)*)?([\s\S]*)$/u);
+    if (m[1]) out.append(m[1]);
+    if (m[2]) {
+      const raw = lookup(m[2]);
+      const span = el('span', 'w');
+      span.tabIndex = 0;
+      span.dataset.word = m[2];
+      if (raw) {
+        const d = design(raw);
+        setWord(span, m[2], d);
+        if (!first && d.motion) first = m[2];
+      } else {
+        span.textContent = m[2];
+        span.classList.add('plain');
+      }
+      if (selected && selected.toLowerCase() === m[2].toLowerCase()) span.classList.add('on');
+      out.append(span);
+    }
+    if (m[3]) out.append(m[3]);
+  }
+  if (!selected && first) inspect(first);
+}
+
+function inspect(word) {
+  selected = word;
+  document.querySelectorAll('#out .w').forEach(w => w.classList.toggle('on', w.dataset.word.toLowerCase() === word.toLowerCase()));
+  const raw = lookup(word);
+  const iw = $('iword');
+  const bars = $('bars');
+  bars.replaceChildren();
+  if (!raw) {
+    iw.textContent = word;
+    $('iset').textContent = 'Not in the table. Names, nationalities, religions and other identity words are left out on purpose, and very rare words are not included.';
+    return;
+  }
+  const d = design(raw);
+  const span = el('span', 'w'); setWord(span, word, d);
+  iw.replaceChildren(span);
+  const parts = [`weight ${d.wght}`, `softness ${fx(d.casl)}`, `slant ${fx(d.slnt)}°`, `size ${fx(d.size)}×`];
+  $('iset').textContent = `${parts.join(' · ')} · ${d.motion ? 'motion: ' + d.motion : 'no motion: no axis is strong enough'}`;
+  AXES.forEach(([name, lo, hi], k) => {
+    const v = raw[k];
+    const row = el('div', 'bar');
+    const a = el('span', 'lo'); a.textContent = lo;
+    const track = el('span', 'track');
+    const fill = el('span', 'fill');
+    fill.style.left = v < 0 ? `${50 + v * 50}%` : '50%';
+    fill.style.width = `${Math.abs(v) * 50}%`;
+    track.append(fill);
+    track.setAttribute('role', 'img');
+    track.setAttribute('aria-label', `${name}: ${Math.round(v * 100)} (from ${lo} to ${hi})`);
+    const b = el('span', 'hi'); b.textContent = hi;
+    const num = el('span', 'num'); num.textContent = (v > 0 ? '+' : v < 0 ? '−' : '') + Math.abs(Math.round(v * 100));
+    row.append(a, track, b, num);
+    bars.append(row);
+  });
+}
+
+function renderSpecimens() {
+  $('grid').replaceChildren(...SPECIMENS.map(w => {
+    const b = el('button', 'card');
+    b.setAttribute('aria-label', `Inspect ${w}`);
+    const raw = lookup(w);
+    const span = el('span', 'w');
+    if (raw) setWord(span, w, design(raw)); else span.textContent = w;
+    b.append(span);
+    b.addEventListener('click', () => { inspect(w); $('iword').scrollIntoView({ block: 'center', behavior: 'smooth' }); });
+    return b;
+  }));
+}
+
+$('src').addEventListener('input', () => { selected = null; renderSentence(); });
+$('out').addEventListener('click', e => { const w = e.target.closest('.w'); if (w) inspect(w.dataset.word); });
+$('out').addEventListener('keydown', e => { const w = e.target.closest('.w'); if (w && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); inspect(w.dataset.word); } });
+
+fetch('axes.txt').then(r => r.text()).then(txt => {
+  for (const line of txt.split('\n')) {
+    if (!line || line[0] === '#') continue;
+    const [w, ...v] = line.split(' ');
+    TABLE.set(w, v.map(n => +n / 99));
+  }
+  renderSentence();
+  renderSpecimens();
+}).catch(() => {
+  $('out').textContent = 'The word table did not load. Reload the page to try again.';
+});
+</script>
