@@ -1,0 +1,18 @@
+{
+  "_note": "Model IDs change often. Run `node scripts/list-models.js` once keys are set and update these.",
+  "text_models": [
+    { "id": "claude",  "provider": "anthropic", "model": "claude-opus-5-5" },
+    { "id": "gpt",     "provider": "openai",    "model": "gpt-5" },
+    { "id": "gemini",  "provider": "google",    "model": "gemini-2.5-pro" },
+    { "id": "fanar",   "provider": "openai_compat", "model": "Fanar", "base_url": "https://api.fanar.qa/v1", "key_env": "FANAR_API_KEY", "enabled": false }
+  ],
+  "image_models": [
+    { "id": "gpt-image",    "provider": "openai", "model": "gpt-image-1" },
+    { "id": "gemini-image", "provider": "google", "model": "gemini-2.5-flash-image" }
+  ],
+  "judge": { "provider": "anthropic", "model": "claude-opus-5-5" },
+  "brief_languages": ["en", "ar"],
+  "markets": ["riyadh", "cairo", "casablanca"],
+  "samples_per_cell": 1,
+  "temperature": 1
+}
