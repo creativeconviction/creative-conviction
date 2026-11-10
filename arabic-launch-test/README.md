@@ -24,16 +24,18 @@ node scripts/list-models.js   # check current model IDs, then edit config.json
 
 Re-running is safe: anything already generated is skipped. Limit models with `ONLY=claude,gpt`.
 
-Keys: `ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `GEMINI_API_KEY` (or injected by the environment's network proxy). Optional Arabic-first model: enable `fanar` in `config.json` (any OpenAI-compatible API works the same way).
+Everything runs through **fal.ai** with one key (`FAL_KEY`): text models via fal's OpenRouter router, image models via fal endpoints. Model lineup and IDs live in `config.json`. See `ITEMS.md` for the full inventory of study items and what people need to supply.
+
+**Judging:** no model grades its own lab's work. Dialect and concept judgments use every judge from a *different* lab; image text is read back by Claude (Anthropic has no image model in the test). People have the final word via blind voting.
 
 ## Before the real run (≈1 h)
 
 1. **Native check of `markets.json`** — the scripted customer messages, billboard headlines and dialect marker lists are drafts. One native speaker per dialect should fix anything unnatural.
 2. Update model IDs in `config.json`.
 
-## Scale & cost (default config)
+## Scale & cost
 
-3 models × 3 markets × 2 brief languages = 18 cells → 18 landing pages, 18 campaigns, 18 chats (108 replies), 24 billboard + 18 campaign images per image model. Roughly $15–40 in API costs depending on models; set `samples_per_cell: 2` for more robust numbers at double the cost.
+5 text models × 3 cities × 2 brief languages = 30 cells → 30 landing pages, 30 campaigns, 30 chats (180 replies). 7 image models × 12 billboards (84 images) + 30 campaign images × 3 image models (90). About $35 total. Raise `render_samples` / `samples_per_cell` to 2 for sturdier numbers; re-runs only generate what's missing.
 
 ## Time plan (≈11 h)
 

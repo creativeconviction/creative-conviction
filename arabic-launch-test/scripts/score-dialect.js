@@ -6,7 +6,7 @@
 // Usage: node scripts/score-dialect.js [--mock] [--judge]
 const fs = require('fs');
 const path = require('path');
-const { config, markets, out, resultsDir, chat, extractJson, normAr } = require('./lib');
+const { markets, out, resultsDir, chat, extractJson, normAr, judgesFor } = require('./lib');
 
 const DIALECTS = ['riyadh', 'cairo', 'casablanca'];
 const markerSets = Object.fromEntries([...DIALECTS, 'msa'].map((k) => [k, markets.markers[k].map(normAr)]));
@@ -37,9 +37,24 @@ function summarize(text, target) {
   };
 }
 
-async function judge(text, target) {
+async function judge(text, target, madeBy) {
   const q = `Here is an Arabic text that was supposed to sound like a local from ${markets[target].city_en} (${markets[target].dialect}).\n\n«${text}»\n\nReturn only JSON: {"variety": one of "MSA","Saudi/Gulf","Egyptian","Levantine","Moroccan","Mixed","Other", "dialect_strength": 1-5 (1 = pure MSA, 5 = fully natural local dialect), "matches_target": true/false, "notes": short reason}. Classify the dialect.`;
-  return extractJson(await chat(config.judge, { messages: [{ role: 'user', content: q }], maxTokens: 300, temperature: 0 }));
+  // Every judge from a different lab than the model that wrote the text; results kept per judge.
+  const per = {};
+  for (const j of judgesFor(madeBy)) {
+    try { per[j.id] = extractJson(await chat(j, { messages: [{ role: 'user', content: q }], maxTokens: 400, temperature: 0 })); }
+    catch (e) { per[j.id] = { error: e.message }; }
+  }
+  const ok = Object.values(per).filter((r) => !r.error);
+  const votes = {}; ok.forEach((r) => (votes[r.variety] = (votes[r.variety] || 0) + 1));
+  return {
+    judge_variety: Object.entries(votes).sort((a, b) => b[1] - a[1])[0]?.[0] || '',
+    judge_strength: ok.length ? +(ok.reduce((s, r) => s + (+r.dialect_strength || 0), 0) / ok.length).toFixed(2) : null,
+    judge_matches_target: ok.length ? ok.filter((r) => r.matches_target === true).length / ok.length >= 0.5 : null,
+    judges_agree: new Set(ok.map((r) => r.variety)).size <= 1,
+    judges: Object.keys(per).join('+'),
+    judge_detail: JSON.stringify(per),
+  };
 }
 
 (async () => {
@@ -55,7 +70,7 @@ async function judge(text, target) {
       if (m.role !== 'assistant') continue;
       turn++;
       const row = { layer: 'persona', model, market, lang, sample, item: `turn${turn}`, text: m.content, ...summarize(m.content, market) };
-      if (useJudge) Object.assign(row, await judge(m.content, market));
+      if (useJudge) Object.assign(row, await judge(m.content, market, model));
       rows.push(row);
     }
   }
@@ -69,7 +84,7 @@ async function judge(text, target) {
       if (!c[k]) continue;
       const text = [].concat(c[k]).join(' / ');
       const row = { layer: 'copy', model, market, lang, sample, item: k, text, ...summarize(text, market) };
-      if (useJudge) Object.assign(row, await judge(text, market));
+      if (useJudge) Object.assign(row, await judge(text, market, model));
       rows.push(row);
     }
   }

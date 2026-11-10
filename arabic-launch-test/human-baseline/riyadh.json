@@ -1,0 +1,56 @@
+{
+  "_instructions": "Native copywriter from Riyadh, Saudi Arabia: write these for Qareeb (see prompts/en/brief.md) exactly as you would for a real launch in your city. Write naturally, in the language/register you'd actually use for this audience. Don't look at the AI outputs first.",
+  "writer": {
+    "name_or_initials": "",
+    "city": "",
+    "years_in_city": "",
+    "does_marketing_professionally": ""
+  },
+  "headline": "",
+  "subhead": "",
+  "cta": "",
+  "ad_lines": [
+    "",
+    "",
+    ""
+  ],
+  "app_store_blurb": "",
+  "push_notifications": [
+    "",
+    ""
+  ],
+  "onboarding": [
+    "",
+    "",
+    ""
+  ],
+  "persona_replies": {
+    "_instructions": "You are Noura, a Qareeb support agent on WhatsApp. Write your reply to each customer message, the way a real agent in your city would.",
+    "turns": [
+      {
+        "customer": "السلام عليكم، طلبي وصل ناقص، ما جاني الحليب والخبز",
+        "your_reply": ""
+      },
+      {
+        "customer": "طيب وش الحل الحين؟ أنا دافع المبلغ كامل",
+        "your_reply": ""
+      },
+      {
+        "customer": "أبغى أرجع فلوسي، ما أبغى توصيل ثاني",
+        "your_reply": ""
+      },
+      {
+        "customer": "كم يوم ياخذ الاسترجاع؟ وبيرجع على البطاقة ولا المحفظة؟",
+        "your_reply": ""
+      },
+      {
+        "customer": "والله صراحة مو أول مرة، المرة اللي قبل تأخر الطلب ساعة",
+        "your_reply": ""
+      },
+      {
+        "customer": "خلاص تمام، يعطيك العافية",
+        "your_reply": ""
+      }
+    ]
+  }
+}

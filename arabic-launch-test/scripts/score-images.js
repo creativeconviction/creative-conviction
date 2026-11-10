@@ -32,7 +32,7 @@ Return only JSON: {"transcription": string, "joined_letters": "yes"|"mostly"|"no
       const mime = data.startsWith('/9j') ? 'image/jpeg' : 'image/png';
       let j;
       try {
-        j = extractJson(await chat(config.judge, { messages: [{ role: 'user', content: [{ type: 'image', mime, data }, { type: 'text', text: Q }] }], maxTokens: 600, temperature: 0 }));
+        j = extractJson(await chat(config.image_reader, { messages: [{ role: 'user', content: [{ type: 'image', mime, data }, { type: 'text', text: Q }] }], maxTokens: 600, temperature: 0 }));
       } catch (e) { j = { error: e.message }; }
       const [model] = f.split('__');
       const market = meta.tag.split('__').find((t) => ['riyadh', 'cairo', 'casablanca'].includes(t));

@@ -40,7 +40,7 @@ async function withRetry(fn, label) {
   let delay = 2000;
   for (let i = 0; ; i++) {
     try { return await fn(); } catch (e) {
-      if (i >= 4 || (e.status && e.status < 500 && e.status !== 429)) throw e;
+      if (i >= (e.status === 429 ? 7 : 4) || (e.status && e.status < 500 && e.status !== 429)) throw e;
       console.warn(`  retry ${label} after ${e.message}`);
       await sleep(delay); delay *= 2;
     }
@@ -69,17 +69,19 @@ async function chat(spec, { system, messages, maxTokens = 8000, temperature = co
         { model: spec.model, max_tokens: maxTokens, temperature, system, messages: messages.map((m) => ({ role: m.role, content: content(m.content) })) });
       return r.content.filter((b) => b.type === 'text').map((b) => b.text).join('');
     }
-    if (spec.provider === 'openai' || spec.provider === 'openai_compat') {
-      const base = spec.base_url || 'https://api.openai.com/v1';
-      const k = key(spec.key_env || 'OPENAI_API_KEY');
+    if (spec.provider === 'openai' || spec.provider === 'openai_compat' || spec.provider === 'fal') {
+      const base = spec.provider === 'fal' ? 'https://fal.run/openrouter/router/openai/v1' : (spec.base_url || 'https://api.openai.com/v1');
+      const auth = spec.provider === 'fal' ? `Key ${key('FAL_KEY')}` : `Bearer ${key(spec.key_env || 'OPENAI_API_KEY')}`;
       const content = (c) => typeof c === 'string' ? c : c.map((p) => p.type === 'image'
         ? { type: 'image_url', image_url: { url: `data:${p.mime};base64,${p.data}` } } : { type: 'text', text: p.text });
       const msgs = [...(system ? [{ role: 'system', content: system }] : []), ...messages.map((m) => ({ role: m.role, content: content(m.content) }))];
       const body = { model: spec.model, messages: msgs };
-      if (spec.provider === 'openai_compat') { body.max_tokens = maxTokens; body.temperature = temperature; }
-      else body.max_completion_tokens = maxTokens * 4; // reasoning models spend tokens before answering
-      const r = await post(`${base}/chat/completions`, { authorization: `Bearer ${k}` }, body);
-      return r.choices[0].message.content;
+      if (spec.provider === 'openai') body.max_completion_tokens = maxTokens * 4; // reasoning models spend tokens before answering
+      else { body.max_tokens = Math.min(maxTokens * (spec.provider === 'fal' ? 4 : 1), spec.max_tokens_cap || Infinity); body.temperature = temperature; }
+      const r = await post(`${base}/chat/completions`, { authorization: auth }, body);
+      const msg = r.choices?.[0]?.message;
+      if (!msg?.content) { const e = new Error('empty reply: ' + JSON.stringify(r).slice(0, 300)); e.status = 500; throw e; }
+      return msg.content;
     }
     if (spec.provider === 'google') {
       const parts = (c) => typeof c === 'string' ? [{ text: c }] : c.map((p) => p.type === 'image'
@@ -99,6 +101,15 @@ async function chat(spec, { system, messages, maxTokens = 8000, temperature = co
 async function image(spec, promptText) {
   if (MOCK) return mockImage(promptText);
   return withRetry(async () => {
+    if (spec.provider === 'fal') {
+      const input = { prompt: promptText, ...(spec.params || {}) };
+      if (spec.size_param === 'aspect_ratio') input.aspect_ratio = '16:9'; else input.image_size = 'landscape_16_9';
+      const r = await post(`https://fal.run/${spec.endpoint}`, { authorization: `Key ${key('FAL_KEY')}` }, input);
+      const url = r.images?.[0]?.url;
+      if (!url) throw new Error('no image: ' + JSON.stringify(r).slice(0, 300));
+      if (url.startsWith('data:')) return Buffer.from(url.split(',')[1], 'base64');
+      return Buffer.from(await (await fetch(url)).arrayBuffer());
+    }
     if (spec.provider === 'openai') {
       const r = await post('https://api.openai.com/v1/images/generations',
         { authorization: `Bearer ${key('OPENAI_API_KEY')}` },
@@ -145,7 +156,7 @@ function mockChat(spec, system, messages) {
   if (/HTML/.test(last)) return '```html\n' + fs.readFileSync(path.join(ROOT, 'audit/fixtures', spec.id === 'gpt' ? 'bad.html' : 'good.html'), 'utf8') + '\n```';
   if (/JSON/.test(last) && /palette/.test(last)) return JSON.stringify({ big_idea: 'Your neighborhood shop, now in your pocket.', key_visual: 'A mother at a doorway receiving a bag from a rider, desert sunset behind.', image_prompt: 'warm photo of a delivery at a home door, golden light', palette: ['#0a7f5a', '#f4c430', '#ffffff', '#1a1a1a'], typography: 'IBM Plex Sans Arabic', tone_words: ['warm', 'quick', 'local'], headline: 'مقاضيك توصلك في ٢٠ دقيقة', subhead: 'من دكان الحي لباب بيتك', cta: 'اطلب الآن', ad_lines: ['سوف نصل إليك بسرعة', 'وش تنتظر؟ اطلب الحين', 'عايز طلباتك؟'], app_store_blurb: 'تطبيق دكان يوصل لك البقالة.', push_notifications: ['طلبك في الطريق', 'لا تنسَ عروض اليوم'], onboarding: ['أهلاً بك', 'اختر الحي', 'اطلب'] });
   if (/transcri/i.test(last)) return JSON.stringify({ transcription: 'مقاضيك توصلك في ٢٠ دقيقه', joined_letters: 'mostly', direction_correct: true, invented_glyphs: false, missing_dots: true, legible: 4, notes: 'mock' });
-  if (/dialect/i.test(last) && /JSON/.test(last)) return JSON.stringify({ variety: 'MSA', dialect_strength: 2, matches_target: false, notes: 'mock' });
+  if (/Classify the dialect/.test(last)) return JSON.stringify({ variety: 'MSA', dialect_strength: 2, matches_target: false, notes: 'mock' });
   if (/same campaign/i.test(last)) return JSON.stringify({ concept_similarity: 4, visual_similarity: 3, what_changed: ['mock'], tropes_en: ['desert'], tropes_ar: [] });
   const turn = messages.filter((m) => m.role === 'user').length;
   return ['أهلاً وسهلاً! نعتذر عن ذلك، سوف نقوم بحل المشكلة.', 'ابشر، نقدر نرجع لك المبلغ الحين', 'تم، سيتم استرداد المبلغ.', 'ياخذ من ٣ إلى ٥ أيام عمل', 'نعتذر جداً، يمكنك الحصول على توصيل مجاني', 'الله يعافيك، في الخدمة'][(turn - 1) % 6];
@@ -156,10 +167,17 @@ function mockImage() {
   return Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==', 'base64');
 }
 
+// Judges for an item made by `madeBy` (a model id): every judge from a different lab.
+function judgesFor(madeBy) {
+  const lab = (id) => (config.text_models.find((m) => m.id === id) || {}).lab || id;
+  const own = lab(madeBy);
+  return config.judges.filter((j) => j.lab !== own);
+}
+
 function resultsDir(...parts) {
   const p = path.join(ROOT, MOCK ? 'results-mock' : 'results', ...parts);
   fs.mkdirSync(p, { recursive: true });
   return p;
 }
 
-module.exports = { resultsDir, ROOT, MOCK, config, markets, prompt, marketVars, out, enabled, chat, image, extractJson, extractHtml, normAr, sleep };
+module.exports = { judgesFor, resultsDir, ROOT, MOCK, config, markets, prompt, marketVars, out, enabled, chat, image, extractJson, extractHtml, normAr, sleep };

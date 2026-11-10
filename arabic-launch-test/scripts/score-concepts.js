@@ -5,7 +5,7 @@
 // Usage: node scripts/score-concepts.js [--mock]
 const fs = require('fs');
 const path = require('path');
-const { config, out, resultsDir, chat, extractJson } = require('./lib');
+const { out, resultsDir, chat, extractJson, judgesFor, markets } = require('./lib');
 
 const TROPES = {
   desert: /desert|dune|sand|صحراء|كثبان|رمال/i,
@@ -47,12 +47,16 @@ Return only JSON: {"concept_similarity": 1-5 (5 = same idea), "visual_similarity
     const g = f.replace('__en__', '__ar__');
     if (!files.includes(g)) continue;
     const [model, market, , sample] = f.replace('.json', '').split('__');
-    const { markets } = require('./lib');
-    let j;
-    try { j = extractJson(await chat(config.judge, { messages: [{ role: 'user', content: Q(load(f), load(g), markets[market].city_en) }], maxTokens: 600, temperature: 0 })); }
-    catch (e) { j = { error: e.message }; }
-    pairs.push({ model, market, sample, ...j });
-    console.log('  ✓', model, market, j.concept_similarity);
+    const per = {};
+    for (const jd of judgesFor(model)) {
+      try { per[jd.id] = extractJson(await chat(jd, { messages: [{ role: 'user', content: Q(load(f), load(g), markets[market].city_en) }], maxTokens: 800, temperature: 0 })); }
+      catch (e) { per[jd.id] = { error: e.message }; }
+    }
+    const ok = Object.values(per).filter((r) => !r.error);
+    const mean = (k) => ok.length ? +(ok.reduce((s, r) => s + (+r[k] || 0), 0) / ok.length).toFixed(2) : null;
+    pairs.push({ model, market, sample, concept_similarity: mean('concept_similarity'), visual_similarity: mean('visual_similarity'), tone_similarity: mean('tone_similarity'),
+      more_locally_specific: ok.map((r) => r.more_locally_specific).join('/'), what_changed: ok.flatMap((r) => r.what_changed || []), judges: Object.keys(per).join('+'), per_judge: per });
+    console.log('  ✓', model, market, pairs.at(-1).concept_similarity);
   }
 
   const rd = resultsDir('concepts');

@@ -44,10 +44,10 @@ if (img.length) {
 const dia = read('dialect/dialect.json');
 if (dia.length) {
   md += `\n## 3. Copy & voice — dialect fidelity\n\nDialectality = target-dialect markers ÷ (target + MSA markers). Bleed = markers from another country's dialect.\n\n`;
-  md += table(['model', 'market', 'brief', 'copy dialectality', 'chat dialectality', 'items with bleed', 'judge: matches target'],
+  md += table(['model', 'market', 'brief', 'copy dialectality', 'chat dialectality', 'items with bleed', 'judges: matches target', 'judges agree'],
     Object.entries(group(dia, ['model', 'market', 'lang'])).map(([k, rs]) => [...k.split(' · '),
       avg(rs.filter((r) => r.layer === 'copy').map((r) => r.dialectality)), avg(rs.filter((r) => r.layer === 'persona').map((r) => r.dialectality)),
-      pct(rs.map((r) => r.bleed_markers > 0)), rs[0].matches_target === undefined ? '–' : pct(rs.map((r) => r.matches_target))]));
+      pct(rs.map((r) => r.bleed_markers > 0)), rs[0].judge_matches_target === undefined ? '–' : pct(rs.map((r) => r.judge_matches_target)), pct(rs.map((r) => r.judges_agree))]));
 
   // 4. Persona drift by turn
   const chats = dia.filter((r) => r.layer === 'persona');

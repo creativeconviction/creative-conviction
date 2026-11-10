@@ -1,18 +1,31 @@
 {
-  "_note": "Model IDs change often. Run `node scripts/list-models.js` once keys are set and update these.",
+  "_note": "All calls go through fal.ai (FAL_KEY). Text models via fal's OpenRouter router; check IDs at openrouter.ai/models. Image endpoints at fal.ai/models.",
   "text_models": [
-    { "id": "claude",  "provider": "anthropic", "model": "claude-opus-5-5" },
-    { "id": "gpt",     "provider": "openai",    "model": "gpt-5" },
-    { "id": "gemini",  "provider": "google",    "model": "gemini-2.5-pro" },
-    { "id": "fanar",   "provider": "openai_compat", "model": "Fanar", "base_url": "https://api.fanar.qa/v1", "key_env": "FANAR_API_KEY", "enabled": false }
+    { "id": "claude",   "lab": "anthropic", "provider": "fal", "model": "anthropic/claude-opus-5.5" },
+    { "id": "gpt",      "lab": "openai",    "provider": "fal", "model": "openai/gpt-5.6-sol" },
+    { "id": "gemini",   "lab": "google",    "provider": "fal", "model": "google/gemini-3.1-pro-preview" },
+    { "id": "deepseek", "lab": "deepseek",  "provider": "fal", "model": "deepseek/deepseek-v4-pro" },
+    { "id": "saba",     "lab": "mistral",   "provider": "fal", "model": "mistralai/mistral-saba", "max_tokens_cap": 16000, "_why": "Mistral's model built for Middle Eastern & South Asian languages" }
   ],
   "image_models": [
-    { "id": "gpt-image",    "provider": "openai", "model": "gpt-image-1" },
-    { "id": "gemini-image", "provider": "google", "model": "gemini-2.5-flash-image" }
+    { "id": "gpt-image",  "lab": "openai",    "provider": "fal", "endpoint": "openai/gpt-image-2.6/sunburst/text-to-image", "params": { "quality": "high", "output_format": "png" } },
+    { "id": "nano-banana","lab": "google",    "provider": "fal", "endpoint": "google/nano-banana-2.1", "size_param": "aspect_ratio", "params": { "output_format": "png" } },
+    { "id": "ideogram",   "lab": "ideogram",  "provider": "fal", "endpoint": "ideogram/v4.5", "params": { "quality": "high", "enable_prompt_expansion": false } },
+    { "id": "recraft",    "lab": "recraft",   "provider": "fal", "endpoint": "fal-ai/recraft/v4.1/pro/text-to-image" },
+    { "id": "seedream",   "lab": "bytedance", "provider": "fal", "endpoint": "bytedance/seedream/v5/pro/text-to-image", "params": { "output_format": "png" } },
+    { "id": "qwen-image", "lab": "alibaba",   "provider": "fal", "endpoint": "alibaba/qwen-image-3/text-to-image", "params": { "enable_prompt_expansion": false, "output_format": "png" } },
+    { "id": "flux",       "lab": "bfl",       "provider": "fal", "endpoint": "fal-ai/flux-2-max", "params": { "output_format": "png" } }
   ],
-  "judge": { "provider": "anthropic", "model": "claude-opus-5-5" },
+  "concept_image_models": ["gpt-image", "nano-banana", "seedream"],
+  "judges": [
+    { "id": "judge-claude", "lab": "anthropic", "provider": "fal", "model": "anthropic/claude-opus-5.5" },
+    { "id": "judge-gpt",    "lab": "openai",    "provider": "fal", "model": "openai/gpt-5.6-sol" },
+    { "id": "judge-gemini", "lab": "google",    "provider": "fal", "model": "google/gemini-3.1-pro-preview" }
+  ],
+  "image_reader": { "id": "reader-claude", "lab": "anthropic", "provider": "fal", "model": "anthropic/claude-opus-5.5", "_why": "Anthropic makes no image model in the test, so it never reads its own work" },
   "brief_languages": ["en", "ar"],
   "markets": ["riyadh", "cairo", "casablanca"],
   "samples_per_cell": 1,
+  "render_samples": 1,
   "temperature": 1
 }

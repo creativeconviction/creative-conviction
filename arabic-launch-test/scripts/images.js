@@ -8,7 +8,7 @@ const path = require('path');
 const { config, markets, out, enabled, image } = require('./lib');
 
 const samplesArg = process.argv.indexOf('--samples');
-const samples = samplesArg > 0 ? +process.argv[samplesArg + 1] : 2;
+const samples = samplesArg > 0 ? +process.argv[samplesArg + 1] : (config.render_samples || 2);
 
 const billboard = (city, text) =>
   `A clean, modern street billboard in ${city} advertising a grocery delivery app called Qareeb. ` +
@@ -27,7 +27,7 @@ const billboard = (city, text) =>
       const c = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'));
       if (!c.image_prompt) continue;
       const p = `${c.image_prompt}\n\nInclude this Arabic headline in the image, written exactly as given: «${c.headline}».`;
-      jobs.push({ kind: 'concept', tag: f.replace('.json', ''), text: c.headline, prompt: p });
+      jobs.push({ kind: 'concept', tag: f.replace('.json', ''), text: c.headline, prompt: p, only: config.concept_image_models });
     }
   }
 
@@ -35,6 +35,7 @@ const billboard = (city, text) =>
   console.log(`${jobs.length} prompts × ${models.map((m) => m.id)}`);
   await Promise.all(models.map(async (spec) => {
     for (const j of jobs) {
+      if (j.only && !j.only.includes(spec.id)) continue;
       const base = out('images', j.kind, `${spec.id}__${j.tag}`);
       if (fs.existsSync(base + '.png')) continue;
       try {
