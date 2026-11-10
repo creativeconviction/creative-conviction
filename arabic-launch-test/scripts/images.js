@@ -11,7 +11,7 @@ const samplesArg = process.argv.indexOf('--samples');
 const samples = samplesArg > 0 ? +process.argv[samplesArg + 1] : 2;
 
 const billboard = (city, text) =>
-  `A clean, modern street billboard in ${city} advertising a grocery delivery app called Dukkan. ` +
+  `A clean, modern street billboard in ${city} advertising a grocery delivery app called Qareeb. ` +
   `The billboard shows only this Arabic text, written exactly as given, right-to-left, with correctly joined letters: «${text}». Photorealistic, daytime.`;
 
 (async () => {

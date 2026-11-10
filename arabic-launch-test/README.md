@@ -2,7 +2,7 @@
 
 **Question:** When AI builds a product for an Arab market, does it actually design *for* that market — or does it design in English and translate the surface? ("Arabic as a skin.")
 
-Each model gets the same brief: launch **Dukkan**, a neighborhood grocery-delivery app, in **Riyadh**, **Cairo** and **Casablanca**. The brief is given once in English and once in Arabic. Every model produces the full launch, and each layer is scored:
+Each model gets the same brief: launch **Qareeb**, a neighborhood grocery-delivery app, in **Riyadh**, **Cairo** and **Casablanca**. The brief is given once in English and once in Arabic. Every model produces the full launch, and each layer is scored:
 
 | Layer | What the model makes | How it's scored | Script |
 |---|---|---|---|

@@ -1,6 +1,6 @@
 {brief}
 
-You are the creative director for the Dukkan launch in {city}. Create the launch campaign.
+You are the creative director for the Qareeb launch in {city}. Create the launch campaign.
 
 Return only a JSON object with these keys:
 - "big_idea": the campaign idea in 2–3 sentences (English)
