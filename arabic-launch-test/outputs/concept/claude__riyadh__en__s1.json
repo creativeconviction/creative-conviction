@@ -1,0 +1,37 @@
+{
+  "big_idea": "Your neighborhood, one tap closer. Qareeb isn't a faceless warehouse. It's the baqala and corner shops your family already knows and trusts, now at your door in about 20 minutes. The campaign plays on the brand name itself: everything you need was always close, and now it's closer.",
+  "key_visual": "A warm golden-hour scene on a typical Riyadh residential street. A friendly Qareeb rider hands a grocery bag to a smiling young Saudi father holding his little daughter at the villa door, while the familiar neighborhood baqala is visible just down the same street. The composition shows how close the shop is and how fast and personal the delivery feels.",
+  "image_prompt": "Photorealistic lifestyle advertising photo, golden hour in a residential neighborhood in Riyadh, Saudi Arabia. Beige and sand-colored villas with Najdi-inspired architectural details, palm trees, and a small neighborhood grocery shop (baqala) with a green awning visible down the street in soft focus. In the foreground, a friendly delivery rider in a green and saffron-yellow uniform with a matching insulated bag hands a paper grocery bag filled with fresh bread, vegetables, milk, and fruit to a smiling young Saudi father in a white thobe, who holds his small daughter at the front door of his home. Warm, natural, candid, neighborly mood. Shallow depth of field, cinematic lighting, warm tones, clean composition with negative space in the upper left for a headline. No text, no logos, high detail, 4:5 aspect ratio.",
+  "palette": [
+    "#17915A",
+    "#FFB81C",
+    "#F6EEE3",
+    "#1F2A2E"
+  ],
+  "typography": "Headlines: Alexandria Bold (Arabic and Latin), friendly, modern, and highly legible. Body and UI: IBM Plex Sans Arabic (Regular/Medium), a clean, neutral pairing for app screens and small text.",
+  "tone_words": [
+    "Warm",
+    "Neighborly",
+    "Quick",
+    "Unpretentious",
+    "Lightly witty"
+  ],
+  "headline": "حارتك صارت أقرب",
+  "subhead": "مقاضيك من محلات حيّك توصلك خلال ٢٠ دقيقة تقريبًا",
+  "cta": "اطلب الحين",
+  "ad_lines": [
+    "نسيت الحليب؟ لا تطلع.. قريب يجيبه لك خلال ٢٠ دقيقة",
+    "من بقالة حيّك لباب بيتك، وادفع بالبطاقة أو كاش عند الاستلام",
+    "كل طلب عاشر توصيله علينا 🎉"
+  ],
+  "app_store_blurb": "قريب يوصّل مقاضيك من محلات حيّك اللي تعرفها وتثق فيها خلال ٢٠ دقيقة تقريبًا. ادفع بالبطاقة أو كاش عند الاستلام، وكل طلبك العاشر توصيله مجاني. أسعار يومية تناسب بيتك، وتوصيل أسرع من مشوارك.",
+  "push_notifications": [
+    "العشا قرّب وناقصك شي؟ اطلبه الحين ويوصلك خلال ٢٠ دقيقة 🛒",
+    "باقي لك طلب واحد بس وتوصيلك الجاي مجاني! 🎉"
+  ],
+  "onboarding": [
+    "محلات حيّك في جوالك: اطلب من البقالات والمحلات اللي تعرفها",
+    "مقاضيك توصلك خلال ٢٠ دقيقة تقريبًا",
+    "ادفع بالبطاقة أو كاش، وكل طلب عاشر توصيله علينا"
+  ]
+}

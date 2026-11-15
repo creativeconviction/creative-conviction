@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>قريب | مقاضيك من محلات حيّك خلال ٢٠ دقيقة</title>
+  <meta name="description" content="قريب: تطبيق توصيل بقالة في الرياض يوصّل طلبك من محلات حيّك خلال نحو ٢٠ دقيقة. ادفع بالبطاقة أو كاش عند الاستلام، وكل طلب عاشر توصيله مجاني.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Tajawal:wght@500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #0E7A5A;
+      --green-dark: #095C44;
+      --green-light: #E6F4EE;
+      --yellow: #F6B731;
+      --yellow-light: #FFF5DC;
+      --ink: #1B2A24;
+      --muted: #5B6B64;
+      --line: #E3E9E6;
+      --bg: #FBFAF6;
+      --white: #FFFFFF;
+      --radius: 18px;
+      --shadow: 0 10px 30px rgba(14, 122, 90, 0.10);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "IBM Plex Sans Arabic", "Tajawal", system-ui, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.8;
+      font-size: 17px;
+    }
+
+    h1, h2, h3 { font-family: "Tajawal", "IBM Plex Sans Arabic", sans-serif; line-height: 1.35; }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container { width: min(1140px, 92%); margin-inline: auto; }
+
+    .skip-link {
+      position: absolute; inset-inline-start: 1rem; top: -60px;
+      background: var(--ink); color: var(--white); padding: .5rem 1rem; border-radius: 8px; z-index: 100;
+    }
+    .skip-link:focus { top: 1rem; }
+
+    :focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; border-radius: 6px; }
+
+    /* ========== Header ========== */
+    .site-header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(251, 250, 246, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-block: .9rem; gap: 1rem;
+    }
+    .logo { display: flex; align-items: center; gap: .6rem; font-family: "Tajawal", sans-serif; font-weight: 800; font-size: 1.7rem; color: var(--green); }
+    .logo svg { width: 40px; height: 40px; flex-shrink: 0; }
+    .nav { display: flex; align-items: center; gap: 1.8rem; }
+    .nav a { font-weight: 500; color: var(--muted); transition: color .2s; }
+    .nav a:hover { color: var(--green); }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+      font-family: inherit; font-weight: 700; font-size: 1rem;
+      padding: .8rem 1.6rem; border-radius: 999px; border: none; cursor: pointer;
+      transition: transform .15s, background .2s, box-shadow .2s;
+    }
+    .btn:active { transform: scale(.98); }
+    .btn-primary { background: var(--green); color: var(--white); box-shadow: 0 6px 18px rgba(14,122,90,.25); }
+    .btn-primary:hover { background: var(--green-dark); }
+    .btn-small { padding: .55rem 1.2rem; font-size: .95rem; }
+    .btn-large { padding: 1rem 2.2rem; font-size: 1.1rem; }
+    .nav .btn { color: var(--white); }
+
+    /* ========== Hero ========== */
+    .hero { padding-block: 4.5rem 5rem; }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 3.5rem; align-items: center; }
+    .badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--yellow-light); color: #8A5A00;
+      font-weight: 600; font-size: .92rem; padding: .35rem 1rem; border-radius: 999px; margin-bottom: 1.2rem;
+    }
+    .badge .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--yellow); }
+    .hero h1 { font-size: clamp(2.1rem, 4.6vw, 3.4rem); font-weight: 800; margin-bottom: 1.1rem; }
+    .hero h1 .hl { color: var(--green); position: relative; white-space: nowrap; }
+    .hero h1 .hl::after {
+      content: ""; position: absolute; inset-inline: 0; bottom: .1em; height: .28em;
+      background: var(--yellow); opacity: .45; z-index: -1; border-radius: 4px;
+    }
+    .hero .subtitle { font-size: 1.15rem; color: var(--muted); max-width: 34rem; margin-bottom: 2rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1.2rem; }
+    .hero-note { color: var(--muted); font-size: .95rem; }
+
+    .hero-points { display: flex; flex-wrap: wrap; gap: .7rem 1.6rem; margin-top: 2.2rem; list-style: none; }
+    .hero-points li { display: flex; align-items: center; gap: .45rem; font-weight: 500; font-size: .98rem; }
+    .hero-points svg { width: 20px; height: 20px; color: var(--green); flex-shrink: 0; }
+
+    .hero-placeholder {
+      aspect-ratio: 4 / 3.4; width: 100%;
+      border-radius: 28px;
+      background:
+        repeating-linear-gradient(45deg, transparent 0 14px, rgba(14,122,90,.05) 14px 28px),
+        var(--green-light);
+      border: 2px dashed rgba(14,122,90,.35);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .6rem;
+      color: var(--green); text-align: center; padding: 2rem;
+    }
+    .hero-placeholder svg { width: 56px; height: 56px; opacity: .7; }
+    .hero-placeholder strong { font-size: 1.1rem; }
+    .hero-placeholder span { font-size: .9rem; color: var(--muted); }
+
+    /* ========== Sections ========== */
+    section { scroll-margin-top: 80px; }
+    .section { padding-block: 5rem; }
+    .section-head { text-align: center; max-width: 40rem; margin: 0 auto 3rem; }
+    .eyebrow { color: var(--green); font-weight: 700; font-size: .95rem; margin-bottom: .4rem; display: block; }
+    .section-head h2 { font-size: clamp(1.8rem, 3.4vw, 2.5rem); font-weight: 800; margin-bottom: .7rem; }
+    .section-head p { color: var(--muted); }
+
+    /* How it works */
+    .how { background: var(--white); }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6rem; list-style: none; counter-reset: step; }
+    .step {
+      background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 2rem 1.7rem; position: relative;
+    }
+    .step-num {
+      width: 48px; height: 48px; border-radius: 14px;
+      background: var(--green); color: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      font-family: "Tajawal", sans-serif; font-weight: 800; font-size: 1.4rem; margin-bottom: 1.2rem;
+    }
+    .step h3 { font-size: 1.3rem; margin-bottom: .5rem; }
+    .step p { color: var(--muted); font-size: .98rem; }
+
+    .payment-strip {
+      margin-top: 2.5rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;
+    }
+    .pay-chip {
+      display: flex; align-items: center; gap: .6rem;
+      background: var(--green-light); color: var(--green-dark);
+      padding: .7rem 1.3rem; border-radius: 999px; font-weight: 600;
+    }
+    .pay-chip svg { width: 22px; height: 22px; }
+
+    /* Loyalty */
+    .loyalty-card {
+      background: var(--green); color: var(--white);
+      border-radius: 28px; padding: clamp(2rem, 5vw, 3.5rem);
+      display: grid; grid-template-columns: 1fr 1.1fr; gap: 3rem; align-items: center;
+      box-shadow: var(--shadow); position: relative; overflow: hidden;
+    }
+    .loyalty-card::before {
+      content: ""; position: absolute; width: 320px; height: 320px; border-radius: 50%;
+      background: rgba(255,255,255,.06); inset-inline-end: -100px; top: -120px;
+    }
+    .loyalty-card .eyebrow { color: var(--yellow); }
+    .loyalty-card h2 { font-size: clamp(1.8rem, 3.4vw, 2.5rem); font-weight: 800; margin-bottom: .8rem; }
+    .loyalty-card p { opacity: .9; margin-bottom: 1rem; }
+    .loyalty-card ul { list-style: none; display: grid; gap: .5rem; }
+    .loyalty-card li { display: flex; gap: .5rem; align-items: center; }
+    .loyalty-card li::before { content: "✓"; color: var(--yellow); font-weight: 700; }
+
+    .stamps-wrap { background: rgba(255,255,255,.1); border-radius: 22px; padding: 1.8rem; position: relative; }
+    .stamps-label { display: flex; justify-content: space-between; font-size: .95rem; margin-bottom: 1rem; opacity: .9; }
+    .stamps { display: grid; grid-template-columns: repeat(5, 1fr); gap: .8rem; list-style: none; }
+    .stamp {
+      aspect-ratio: 1; border-radius: 50%;
+      border: 2px dashed rgba(255,255,255,.45);
+      display: flex; align-items: center; justify-content: center;
+      font-family: "Tajawal", sans-serif; font-weight: 700; font-size: 1.1rem;
+    }
+    .stamp.done { background: var(--white); color: var(--green); border: none; }
+    .stamp.free {
+      background: var(--yellow); color: var(--ink); border: none;
+      font-size: .78rem; line-height: 1.2; text-align: center; padding: .2rem;
+    }
+
+    /* Signup */
+    .signup { background: var(--white); }
+    .signup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center; }
+    .signup-copy h2 { font-size: clamp(1.8rem, 3.4vw, 2.5rem); font-weight: 800; margin-bottom: .8rem; }
+    .signup-copy p { color: var(--muted); margin-bottom: 1.3rem; }
+    .perk { display: flex; gap: .8rem; align-items: flex-start; margin-bottom: 1rem; }
+    .perk-icon {
+      width: 40px; height: 40px; border-radius: 12px; background: var(--yellow-light); color: #8A5A00;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .perk-icon svg { width: 22px; height: 22px; }
+    .perk strong { display: block; }
+    .perk span { color: var(--muted); font-size: .95rem; }
+
+    .form-card {
+      background: var(--bg); border: 1px solid var(--line); border-radius: 24px;
+      padding: clamp(1.6rem, 4vw, 2.5rem); box-shadow: var(--shadow);
+    }
+    .form-card h3 { font-size: 1.4rem; margin-bottom: 1.4rem; }
+    .field { margin-bottom: 1.2rem; }
+    .field label { display: block; font-weight: 600; margin-bottom: .4rem; }
+    .field .hint { font-size: .85rem; color: var(--muted); margin-top: .3rem; }
+    .field .error { font-size: .88rem; color: #C0392B; margin-top: .3rem; display: none; }
+    .field.invalid .error { display: block; }
+    .field.invalid input { border-color: #C0392B; }
+
+    input[type="tel"], input[type="email"] {
+      width: 100%; font-family: inherit; font-size: 1rem; color: var(--ink);
+      background: var(--white); border: 1.5px solid var(--line); border-radius: 12px;
+      padding: .8rem 1rem; transition: border-color .2s, box-shadow .2s;
+    }
+    input:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 4px rgba(14,122,90,.12); }
+    input::placeholder { color: #A3AFAA; }
+
+    .phone-group { display: flex; direction: ltr; }
+    .phone-prefix {
+      display: flex; align-items: center; gap: .4rem;
+      background: var(--green-light); color: var(--green-dark); font-weight: 600;
+      border: 1.5px solid var(--line); border-right: none;
+      border-radius: 12px 0 0 12px; padding-inline: .9rem; white-space: nowrap;
+    }
+    .phone-group input { border-radius: 0 12px 12px 0; }
+    input[type="email"] { direction: ltr; text-align: left; }
+
+    .consent { display: flex; gap: .6rem; align-items: flex-start; font-size: .9rem; color: var(--muted); margin-bottom: 1.4rem; }
+    .consent input { margin-top: .4rem; accent-color: var(--green); width: 17px; height: 17px; flex-shrink: 0; }
+    .form-card .btn { width: 100%; }
+
+    .success {
+      display: none; text-align: center; padding: 1rem 0;
+    }
+    .success .check {
+      width: 64px; height: 64px; border-radius: 50%; background: var(--green-light); color: var(--green);
+      display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;
+    }
+    .success .check svg { width: 32px; height: 32px; }
+    .success h3 { margin-bottom: .4rem; }
+    .success p { color: var(--muted); }
+    .form-card.sent form { display: none; }
+    .form-card.sent .success { display: block; }
+
+    /* Footer */
+    .site-footer { background: var(--ink); color: #C9D3CF; padding-block: 3.5rem 2rem; }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 2.5rem; margin-bottom: 2.5rem; }
+    .site-footer .logo { color: var(--white); margin-bottom: .8rem; }
+    .site-footer p { font-size: .95rem; max-width: 22rem; }
+    .site-footer h4 { color: var(--white); font-family: "Tajawal", sans-serif; font-size: 1.05rem; margin-bottom: .9rem; }
+    .site-footer ul { list-style: none; display: grid; gap: .45rem; font-size: .95rem; }
+    .site-footer a:hover { color: var(--yellow); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.1); padding-top: 1.5rem;
+      display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; font-size: .88rem;
+    }
+    .ltr { direction: ltr; unicode-bidi: embed; }
+
+    /* Responsive */
+    @media (max-width: 920px) {
+      .hero-grid, .signup-grid, .loyalty-card { grid-template-columns: 1fr; }
+      .hero { padding-block: 3rem 3.5rem; }
+      .hero-placeholder { aspect-ratio: 16 / 11; }
+      .steps { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid > div:first-child { grid-column: 1 / -1; }
+    }
+    @media (max-width: 640px) {
+      .nav a:not(.btn) { display: none; }
+      .section { padding-block: 3.5rem; }
+      .stamps { gap: .5rem; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main" class="skip-link">تخطَّ إلى المحتوى</a>
+
+  <!-- ========== الترويسة ========== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#" class="logo" aria-label="قريب - الصفحة الرئيسية">
+        <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+          <rect width="40" height="40" rx="12" fill="#0E7A5A"/>
+          <path d="M12 16h16l-1.6 11.2a2 2 0 0 1-2 1.8h-8.8a2 2 0 0 1-2-1.8L12 16Z" fill="#fff"/>
+          <path d="M16 16v-2a4 4 0 0 1 8 0v2" stroke="#F6B731" stroke-width="2.4" stroke-linecap="round"/>
+          <circle cx="20" cy="22.5" r="2" fill="#0E7A5A"/>
+        </svg>
+        قريب
+      </a>
+      <nav class="nav" aria-label="التنقل الرئيسي">
+        <a href="#how">كيف يعمل</a>
+        <a href="#loyalty">المكافآت</a>
+        <a href="#signup" class="btn btn-primary btn-small">سجّل الآن</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ========== القسم الرئيسي ========== -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="badge"><span class="dot"></span> قريباً في الرياض</span>
+          <h1>مقاضي البيت من محلات حيّك… <span class="hl">خلال ٢٠ دقيقة</span></h1>
+          <p class="subtitle">
+            نسيت الحليب؟ خلص الخبز؟ اطلب من البقالة اللي تعرفها في حيّك، ويوصلك طلبك لباب البيت بسرعة وبسعر مناسب. بدون مشوار وبدون زحمة.
+          </p>
+          <div class="hero-actions">
+            <a href="#signup" class="btn btn-primary btn-large">سجّل وكن من أول المستخدمين</a>
+            <span class="hero-note">التسجيل مجاني ويأخذ أقل من دقيقة</span>
+          </div>
+          <ul class="hero-points">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              توصيل خلال ٢٠ دقيقة تقريباً
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/></svg>
+              بطاقة أو كاش عند الاستلام
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12v8H4v-8M2 7h20v5H2zM12 20V7M12 7H8a2 2 0 1 1 0-4c3 0 4 4 4 4Zm0 0h4a2 2 0 1 0 0-4c-3 0-4 4-4 4Z"/></svg>
+              كل طلب عاشر توصيله مجاني
+            </li>
+          </ul>
+        </div>
+
+        <div class="hero-placeholder" role="img" aria-label="مكان مخصص لصورة القسم الرئيسي">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg>
+          <strong>صورة القسم الرئيسي</strong>
+          <span>مثال: مندوب يسلّم كيس بقالة لعائلة عند باب بيت في أحد أحياء الرياض</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== كيف يعمل ========== -->
+    <section class="section how" id="how">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">كيف يعمل</span>
+          <h2>ثلاث خطوات وطلبك عندك</h2>
+          <p>صممنا "قريب" عشان يكون أسهل من مشوار للبقالة، خصوصاً في وقت الذروة أو بعد الدوام.</p>
+        </div>
+
+        <ol class="steps">
+          <li class="step">
+            <div class="step-num">١</div>
+            <h3>اختر محل من حيّك</h3>
+            <p>نعرض لك البقالات والمحلات القريبة منك، عشان طلبك يجي من مكان قريب ويوصل أسرع.</p>
+          </li>
+          <li class="step">
+            <div class="step-num">٢</div>
+            <h3>عبّي سلتك وادفع براحتك</h3>
+            <p>اختر احتياجاتك اليومية من خضار وألبان ومنظفات وغيرها، وادفع بالبطاقة أو كاش عند الاستلام.</p>
+          </li>
+          <li class="step">
+            <div class="step-num">٣</div>
+            <h3>استلم خلال ٢٠ دقيقة تقريباً</h3>
+            <p>تابع طلبك لحظة بلحظة، ويوصلك المندوب لباب البيت أو المكتب.</p>
+          </li>
+        </ol>
+
+        <div class="payment-strip" aria-label="طرق الدفع المتاحة">
+          <span class="pay-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg>
+            الدفع بالبطاقة
+          </span>
+          <span class="pay-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg>
+            كاش عند الاستلام
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== برنامج الولاء ========== -->
+    <section class="section" id="loyalty">
+      <div class="container">
+        <div class="loyalty-card">
+          <div>
+            <span class="eyebrow">برنامج المكافآت</span>
+            <h2>كل طلب عاشر… توصيله علينا</h2>
+            <p>ما يحتاج تجمع نقاط أو تحفظ أكواد. كل ما تطلب، نحسب لك تلقائياً، وطلبك العاشر يوصلك بدون رسوم توصيل.</p>
+            <ul>
+              <li>يتفعّل تلقائياً من أول طلب</li>
+              <li>بدون شروط معقدة</li>
+              <li>تشوف عدد طلباتك داخل التطبيق</li>
+            </ul>
+          </div>
+
+          <div class="stamps-wrap">
+            <div class="stamps-label">
+              <span>بطاقة طلباتك</span>
+              <span>٧ من ١٠</span>
+            </div>
+            <ol class="stamps" aria-label="مثال: أكملت ٧ طلبات من أصل ١٠">
+              <li class="stamp done">١</li>
+              <li class="stamp done">٢</li>
+              <li class="stamp done">٣</li>
+              <li class="stamp done">٤</li>
+              <li class="stamp done">٥</li>
+              <li class="stamp done">٦</li>
+              <li class="stamp done">٧</li>
+              <li class="stamp">٨</li>
+              <li class="stamp">٩</li>
+              <li class="stamp free">توصيل مجاني</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== التسجيل ========== -->
+    <section class="section signup" id="signup">
+      <div class="container signup-grid">
+        <div class="signup-copy">
+          <span class="eyebrow">سجّل اهتمامك</span>
+          <h2>خلك أول من يجرب "قريب"</h2>
+          <p>سجّل رقم جوالك وإيميلك، ونبلغك أول ما نطلق الخدمة في حيّك.</p>
+
+          <div class="perk">
+            <div class="perk-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+            </div>
+            <div>
+              <strong>تنبيه أول ما نوصل حيّك</strong>
+              <span>رسالة واحدة على جوالك وقت الإطلاق، بدون إزعاج.</span>
+            </div>
+          </div>
+          <div class="perk">
+            <div class="perk-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3 6.5 7 .8-5.2 4.8 1.4 7L12 17.5 5.8 21l1.4-7L2 9.3l7-.8z"/></svg>
+            </div>
+            <div>
+              <strong>أولوية في التجربة</strong>
+              <span>المسجلين أول من يقدر يستخدم التطبيق.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-card" id="formCard">
+          <form id="signupForm" novalidate>
+            <h3>سجّل الحين</h3>
+
+            <div class="field" id="phoneField">
+              <label for="phone">رقم الجوال</label>
+              <div class="phone-group">
+                <span class="phone-prefix" aria-hidden="true">🇸🇦 +966</span>
+                <input type="tel" id="phone" name="phone" inputmode="numeric" autocomplete="tel-national"
+                       placeholder="5X XXX XXXX" maxlength="13" required aria-describedby="phoneHint phoneError">
+              </div>
+              <p class="hint" id="phoneHint">رقم جوال سعودي يبدأ بـ ٥، مثال: 5XXXXXXXX</p>
+              <p class="error" id="phoneError" role="alert">فضلاً أدخل رقم جوال سعودي صحيح مكوّن من ٩ أرقام ويبدأ بـ ٥.</p>
+            </div>
+
+            <div class="field" id="emailField">
+              <label for="email">البريد الإلكتروني</label>
+              <input type="email" id="email" name="email" autocomplete="email"
+                     placeholder="name@example.com" required aria-describedby="emailError">
+              <p class="error" id="emailError" role="alert">فضلاً أدخل بريداً إلكترونياً صحيحاً.</p>
+            </div>
+
+            <label class="consent">
+              <input type="checkbox" name="updates" checked>
+              <span>أوافق على استلام رسائل عن إطلاق "قريب" والعروض الخاصة. تقدر تلغي الاشتراك في أي وقت.</span>
+            </label>
+
+            <button type="submit" class="btn btn-primary btn-large">سجّلني</button>
+          </form>
+
+          <div class="success" role="status" aria-live="polite">
+            <div class="check">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            </div>
+            <h3>تم تسجيلك، أهلاً فيك!</h3>
+            <p>بنرسل لك أول ما يوصل "قريب" لحيّك.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== التذييل ========== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="#" class="logo" aria-label="قريب">
+            <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+              <rect width="40" height="40" rx="12" fill="#0E7A5A"/>
+              <path d="M12 16h16l-1.6 11.2a2 2 0 0 1-2 1.8h-8.8a2 2 0 0 1-2-1.8L12 16Z" fill="#fff"/>
+              <path d="M16 16v-2a4 4 0 0 1 8 0v2" stroke="#F6B731" stroke-width="2.4" stroke-linecap="round"/>
+              <circle cx="20" cy="22.5" r="2" fill="#0E7A5A"/>
+            </svg>
+            قريب
+          </a>
+          <p>مقاضيك اليومية من محلات حيّك في الرياض، توصلك خلال ٢٠ دقيقة تقريباً.</p>
+        </div>
+        <div>
+          <h4>روابط سريعة</h4>
+          <ul>
+            <li><a href="#how">كيف يعمل</a></li>
+            <li><a href="#loyalty">برنامج المكافآت</a></li>
+            <li><a href="#signup">سجّل الآن</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>تواصل معنا</h4>
+          <ul>
+            <li><a href="mailto:hello@qareeb.example" class="ltr">hello@qareeb.example</a></li>
+            <li>الرياض، المملكة العربية السعودية</li>
+            <li><a href="#">سياسة الخصوصية</a></li>
+            <li><a href="#">الشروط والأحكام</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© قريب. جميع الحقوق محفوظة.</span>
+        <span>صُنع بحب في الرياض 💚</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var form = document.getElementById('signupForm');
+      var card = document.getElementById('formCard');
+      var phone = document.getElementById('phone');
+      var email = document.getElementById('email');
+      var phoneField = document.getElementById('phoneField');
+      var emailField = document.getElementById('emailField');
+
+      // تحويل الأرقام العربية والفارسية إلى أرقام لاتينية
+      function normalizeDigits(str) {
+        return str
+          .replace(/[٠-٩]/g, function (d) { return d.charCodeAt(0) - 1632; })
+          .replace(/[۰-۹]/g, function (d) { return d.charCodeAt(0) - 1776; });
+      }
+
+      function cleanPhone(value) {
+        var v = normalizeDigits(value).replace(/[^\d]/g, '');
+        if (v.indexOf('00966') === 0) v = v.slice(5);
+        else if (v.indexOf('966') === 0) v = v.slice(3);
+        if (v.indexOf('0') === 0) v = v.slice(1);
+        return v;
+      }
+
+      function validPhone() {
+        return /^5\d{8}$/.test(cleanPhone(phone.value));
+      }
+      function validEmail() {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value.trim());
+      }
+
+      phone.addEventListener('input', function () {
+        phone.value = normalizeDigits(phone.value).replace(/[^\d\s+]/g, '');
+        if (phoneField.classList.contains('invalid') && validPhone()) phoneField.classList.remove('invalid');
+      });
+      email.addEventListener('input', function () {
+        if (emailField.classList.contains('invalid') && validEmail()) emailField.classList.remove('invalid');
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var okPhone = validPhone();
+        var okEmail = validEmail();
+        phoneField.classList.toggle('invalid', !okPhone);
+        emailField.classList.toggle('invalid', !okEmail);
+        phone.setAttribute('aria-invalid', !okPhone);
+        email.setAttribute('aria-invalid', !okEmail);
+
+        if (!okPhone) { phone.focus(); return; }
+        if (!okEmail) { email.focus(); return; }
+
+        // الرقم بصيغة دولية جاهز للإرسال: +9665XXXXXXXX
+        phone.value = cleanPhone(phone.value);
+        card.classList.add('sent');
+      });
+    })();
+  </script>
+</body>
+</html>

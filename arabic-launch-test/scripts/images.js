@@ -37,7 +37,7 @@ const billboard = (city, text) =>
     for (const j of jobs) {
       if (j.only && !j.only.includes(spec.id)) continue;
       const base = out('images', j.kind, `${spec.id}__${j.tag}`);
-      if (fs.existsSync(base + '.png')) continue;
+      if (fs.existsSync(base + '.png') || fs.existsSync(base + '.jpg')) continue;
       try {
         fs.writeFileSync(base + '.png', await image(spec, j.prompt));
         fs.writeFileSync(base + '.json', JSON.stringify({ model: spec.model, ...j }, null, 2));

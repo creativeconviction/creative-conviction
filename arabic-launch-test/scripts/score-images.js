@@ -27,7 +27,8 @@ Return only JSON: {"transcription": string, "joined_letters": "yes"|"mostly"|"no
     if (!fs.existsSync(dir)) continue;
     for (const f of fs.readdirSync(dir).filter((f) => f.endsWith('.json'))) {
       const meta = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'));
-      const png = path.join(dir, f.replace('.json', '.png'));
+      const png = [ '.png', '.jpg' ].map((x) => path.join(dir, f.replace('.json', x))).find((x) => fs.existsSync(x));
+      if (!png) continue;
       const data = fs.readFileSync(png).toString('base64');
       const mime = data.startsWith('/9j') ? 'image/jpeg' : 'image/png';
       let j;

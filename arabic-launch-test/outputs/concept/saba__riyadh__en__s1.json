@@ -1,0 +1,40 @@
+{
+  "big_idea": "Celebrate the joy of local shopping with Qareeb’s fast 20-minute grocery delivery. The campaign highlights how Qareeb makes everyday errands quick, affordable, and effortless for busy families and professionals in Riyadh, turning 'one more thing' into 'no problem.'",
+  "key_visual": "A vibrant split-screen showing a chaotic mom juggling a baby and a shopping list on the left, transitioning to a serene street scene where Qareeb’s delivery agent swiftly hands her a fresh bag of groceries on the right. Modern Riyadh architecture frames the action in warm sunset tones.",
+  "image_prompt": "A cinematic split-screen image: on the left, a tired but smiling young mother (25-40) holds a crying baby while carrying a tangled shopping list, background is a cluttered kitchen. On the right, the same mother receives a neatly packed eco-friendly bag from a friendly Qareeb delivery agent (in branded orange vest) against a soft golden-hour Riyadh street backdrop with palm trees and modern low-rise buildings. Warm, natural lighting, inviting Saudi summer atmosphere, muted sunny palette, hyper-realistic, 8K, vibrant colors.",
+  "palette": [
+    "#FF7A00",
+    "#2E8B57",
+    "#FFFFFF",
+    "#1E1E1E"
+  ],
+  "typography": {
+    "primary": "Almarai (Bold for headlines, Regular for body)",
+    "secondary": "Levantine (Light for secondary text)"
+  },
+  "tone_words": [
+    "Warm",
+    "Relatable",
+    "Efficient",
+    "Local",
+    "Joyful"
+  ],
+  "headline": "20 دقيقة.. تسليمRequest اليوميات",
+  "subhead": "طلباتك discreetly سريعة أطلقها اليوم! توفر Qareeb",
+  "cta": "ابدأ الطلب",
+  "ad_lines": [
+    "أحك لعيالكку shorts قبل أن يطلبوا 지역의 معهم",
+    "كل 10 طلبات → توصيل مجاني",
+    "#سعادتك_قبل_الطلب ... من Qareeb"
+  ],
+  "app_store_blurb": "اطلب البقالة في 20 دقيقة من متاجر الأحياء المحلية! توصيل سريع وبسعرٍ يسير مع خيارات دفع مرنة وبرنامج ولاء بسيط. начать прямо сейчас!",
+  "push_notifications": [
+    "تم شحن طلبك! ستة: 🚚 خلال 20 دقيقة تنتظرك المفاجأة الصغيرة 🥳",
+    "كشف مهم: 50% خصم على توصيل طلبك الأول 🤯 try it now!"
+  ],
+  "onboarding": [
+    "اطلب البقالة من أقرب متجر ووفر 20 دقيقة من وقتك!",
+    "ادفع باي cash أو إلكترونيًا بأمان.",
+    "ابدأ الآن واكتشف المتاجر المحلية الجديدة!"
+  ]
+}

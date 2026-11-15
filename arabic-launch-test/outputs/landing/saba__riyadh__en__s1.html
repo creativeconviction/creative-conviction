@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قريب - تسليم البقالة في 20 دقيقة - الرياض</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2E7D32;
+            --primary-dark: #1B5E20;
+            --accent-color: #FFC107;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --background-light: #FFFFFF;
+            --background-lighter: #F5F5F5;
+            --border-color: #E0E0E0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--background-light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            padding: 20px 0;
+            background-color: var(--background-light);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            margin-left: 8px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            margin-left: 30px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 70px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.8;
+        }
+
+        .hero .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-badge {
+            background-color: var(--accent-color);
+            color: var(--text-dark);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .hero-badge:before {
+            content: '📦';
+            margin-right: 8px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: var(--primary-dark);
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+
+        .cta-button {
+            background-color: var(--accent-color);
+            color: var(--text-dark);
+            padding: 16px 32px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 18px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.4);
+        }
+
+        .hero-placeholder {
+            width: 100%;
+            height: 250px;
+            background-color: var(--border-color);
+            border-radius: 12px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--primary-dark);
+        }
+
+        /* How it works */
+        .how-it-works {
+            background-color: var(--background-lighter);
+        }
+
+        .steps {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            position: relative;
+            padding-top: 60px;
+        }
+
+        .step-number {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .step-icon {
+            font-size: 48px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .step h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .step p {
+            color: var(--text-light);
+        }
+
+        /* Loyalty Program */
+        .loyalty-program .container {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            text-align: right;
+        }
+
+        .loyalty-text {
+            flex: 1;
+        }
+
+        .loyalty-text .loyalty-badge {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .loyalty-text p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text-light);
+        }
+
+        .loyalty-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .loyalty-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+        }
+
+        @media (max-width: 992px) {
+            .loyalty-program .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .loyalty-text {
+                order: 2;
+            }
+            .loyalty-image {
+                order: 1;
+                margin-bottom: 30px;
+            }
+        }
+
+        /* Signup */
+        .signup-form {
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: right;
+        }
+
+        .form-group label {
+            display: block;
+            text-align: right;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+
+        .form-control {
+            width: 100%;
+            max-width: 400px;
+            padding: 14px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: #f9f9f9;
+            text-align: right;
+        }
+
+        .form-control::placeholder {
+            color: var(--text-light);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background-color: var(--background-light);
+            box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.2);
+        }
+
+        .submit-btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #121212;
+            color: #E0E0E0;
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column a {
+            color: #BDBDBD;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #424242;
+            font-size: 14px;
+            color: #9E9E9E;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            color: #E0E0E0;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .social-icon:hover {
+            background-color: var(--primary-color);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            .hero p {
+                font-size: 16px;
+            }
+            .section-title {
+                font-size: 28px;
+            }
+            .steps {
+                flex-direction: column;
+                align-items: center;
+            }
+            .step {
+                min-width: 100%;
+            }
+            .nav-links {
+                display: none; /* Simple hiding for mobile, a real site would use a hamburger menu */
+            }
+        }
+
+        .nav-links.mobile-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <a href="#" class="logo">
+                близ
+                <span class="logo-icon">Q</span>
+            </a>
+            <nav class="nav-links">
+                <a href="#">التسجيل</a>
+                <a href="#">كيف يعمل</a>
+            </nav>
+            <div class="nav-links mobile-toggle">☰</div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <img src="placeholder.img" alt="شخص يقف بجانب دراجة نارية تحمل حقيبة تسليم" class="hero-bg">
+            <div class="container">
+                <div class="hero-badge">قريب يصل لغداك</div>
+                <h1>طلب البقالة arrive في 20 دقيقة</h1>
+                <p>تلقي البقالة الطازجة من المتاجر المجاورة إلى باب منزلك. تسديد dieron عبرCard في التطبيق أو عند الاستلام بالنس - فريش شوب، الخضروات والفواكه، البقالة الأساسية، والمزيد</p>
+                <a href="#" class="cta-button">تنزيل التطبيق</a>
+                <div class="hero-placeholder">
+                    Placeholder for Hero Image with rider
+                </div>
+            </div>
+        </section>
+
+        <section class="section how-it-works">
+            <div class="container">
+                <h2 class="section-title">كيف نعمل؟</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-icon">👍</div>
+                        <h3>اختر المتجر</h3>
+                        <p>قم باختيار المتجر القريب منك من قائمة المتاجر في Riyadh</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-icon">🛒</div>
+                        <h3>أضف المنتجات للسلة</h3>
+                        <p>ابحث عن منتجاتك واخترها. نحن نغطي كل ما تحتاجه في المنزل</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-icon">🚚</div>
+                        <h3>اطلبنا نرسلها لك</h3>
+                        <p>سيصل طلبك إلى باب منزلك في 20 دقيقة! نحن نتعاون مع المتاجر في حيك للتوصيل السريع</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section loyalty-program">
+            <div class="container">
+                <div class="loyalty-text">
+                    <div class="loyalty-badge">?شارك في برنامج الولاء</div>
+                    <p>?هل تعلم، عند является каждым 10 طلب من خلال تطبيق «قريب»! انضم إلى برنامج الولاء واحصل على كلّ 10 طلبات خدمتنا، تحصل على توصيل مجاني كل 10 طلبات</p>
+                </div>
+                <div class="loyalty-image">
+                    <img src="placeholder.img" alt="شخص يقوم بتوصيل طرد طرود مع شعار قريب">
+                </div>
+            </div>
+        </section>
+
+        <section class="section signup">
+            <div class="container">
+                <h2 class="section-title">!ابدا رحلتك مع قريب</h2>
+                <form class="signup-form">
+                    <div class="form-group">
+                        <label for="phone">رقم الجوال</label>
+                        <input type="tel" id="phone" class="form-control" placeholder="ادخل رقم الجوال">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">البريد الإلكتروني (اختياري)</label>
+                        <input type="email" id="email" class="form-control" placeholder="ادخل بريدك الإلكتروني">
+                    </div>
+                    <button type="submit" class="submit-btn">سجل الآن</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h4>قريب</h4>
+                    <p>قريب. доставка в ближайший магазин через 20 минут.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="#">كيف يعمل</a></li>
+                        <li><a href="#">متاجرنا</a></li>
+                        <li><a href="#">الدعم</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>تتصل بنا</h4>
+                    <ul>
+                        <li><a href="mailto:help@qareeb.app">help@qareeb.app</a></li>
+                        <li><a href="tel:+966123456789">+966 (12) 345 6789</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>تابعنا</h4>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon" aria-label="Instagram">📷</a>
+                        <a href="#" class="social-icon" aria-label="Snapchat">👻</a>
+                        <a href="#" class="social-icon" aria-label="TikTok">🎵</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 جميع الحقوق محفوظة لـ "قريب" Riyadh, Saudi Arabia.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
+```

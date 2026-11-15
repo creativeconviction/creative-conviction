@@ -1,0 +1,37 @@
+{
+  "big_idea": "“Close to Home” turns Qareeb’s name into a simple promise: everyday groceries from neighborhood shops, delivered when life gets busy. The campaign celebrates familiar Cairo routines, showing that whatever the home needs is only about 20 minutes away.",
+  "key_visual": "A warm, lived-in Cairo apartment as a young family receives a Qareeb grocery bag at the door, with fresh everyday essentials visible inside. Familiar neighborhood storefronts appear softly in the background, connected to the home by a playful route line that suggests speed and proximity.",
+  "image_prompt": "Photorealistic launch campaign image for an affordable grocery delivery app in Cairo, Egypt. A modern but modest lived-in Cairo apartment, a smiling Egyptian couple in their early 30s with a young child receiving a simple branded grocery bag from a friendly delivery rider at the open door; visible everyday groceries include bread, milk, eggs, tomatoes, fruit, and household essentials. Through the doorway and balcony, show authentic neighborhood Cairo storefronts and warm urban details, with a subtle graphic route line suggesting a quick 20-minute journey. Natural daylight, energetic but relatable, contemporary commercial photography, teal and warm yellow accents, no luxury styling, no stereotypes, no readable text, clean negative space on the right for Arabic campaign copy, vertical-friendly composition.",
+  "palette": [
+    "#00A88F",
+    "#FFD447",
+    "#F7F3E8",
+    "#24323D"
+  ],
+  "typography": "Alexandria Bold for Arabic headlines, IBM Plex Sans Arabic for body copy, and IBM Plex Sans for English.",
+  "tone_words": [
+    "ودود",
+    "سريع",
+    "بسيط",
+    "عملي",
+    "قريب"
+  ],
+  "headline": "طلبات البيت؟ قريبة منك.",
+  "subhead": "من محلات منطقتك لحد بابك في حوالي ٢٠ دقيقة. ادفع كاش أو بالكارت.",
+  "cta": "اطلب دلوقتي",
+  "ad_lines": [
+    "ناقصك لبن؟ قريب يوصّله لحد بابك.",
+    "من محلات منطقتك... عندك في حوالي ٢٠ دقيقة.",
+    "كل طلب عاشر، التوصيل علينا."
+  ],
+  "app_store_blurb": "مع قريب، اطلب احتياجات البيت من محلات منطقتك واستلمها في حوالي ٢٠ دقيقة. ادفع كاش أو بالكارت، واستمتع بتوصيل مجاني مع كل طلب عاشر.",
+  "push_notifications": [
+    "ناقصك حاجة للبيت؟ اطلبها من محلات منطقتك وتوصلك في حوالي ٢٠ دقيقة.",
+    "ده طلبك العاشر 🎉 التوصيل علينا المرة دي!"
+  ],
+  "onboarding": [
+    "محلات منطقتك في مكان واحد",
+    "احتياجاتك عندك في حوالي ٢٠ دقيقة",
+    "ادفع كاش أو بالكارت، وكل طلب عاشر توصيله مجاني"
+  ]
+}

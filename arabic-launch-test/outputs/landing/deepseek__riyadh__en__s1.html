@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قريب - توصيل البقالة من متاجر حيّك خلال ٢٠ دقيقة | الرياض</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0D9488;
+            --primary-dark: #0F766E;
+            --primary-light: #CCFBF1;
+            --primary-bg: #F0FDFA;
+            --accent: #F59E0B;
+            --accent-dark: #D97706;
+            --accent-light: #FEF3C7;
+            --text: #1F2937;
+            --text-secondary: #4B5563;
+            --text-light: #6B7280;
+            --bg: #FAFAFA;
+            --white: #FFFFFF;
+            --border: #E5E7EB;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.08), 0 4px 10px rgba(0, 0, 0, 0.04);
+            --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.05);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --radius-xs: 8px;
+            --max-width: 1200px;
+            --transition: all 0.25s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            color: var(--text);
+            background-color: var(--bg);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        /* ============ HEADER ============ */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            transition: var(--transition);
+            padding: 0 24px;
+        }
+
+        .header-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 68px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 900;
+            font-size: 26px;
+            letter-spacing: -0.3px;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--primary), #14B8A6);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3);
+            position: relative;
+        }
+
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+            top: -3px;
+            left: -3px;
+            border: 2px solid white;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        .logo-name {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--text);
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+        }
+        .logo-tag {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--primary);
+            letter-spacing: 0.5px;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            list-style: none;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 15px;
+            padding: 10px 16px;
+            border-radius: 50px;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .nav a:hover {
+            color: var(--primary);
+            background: var(--primary-bg);
+        }
+
+        .nav-cta {
+            background: var(--primary) !important;
+            color: white !important;
+            padding: 10px 22px !important;
+            border-radius: 50px !important;
+            font-weight: 700 !important;
+            box-shadow: 0 4px 14px rgba(13, 148, 136, 0.35);
+            transition: var(--transition);
+        }
+
+        .nav-cta:hover {
+            background: var(--primary-dark) !important;
+            box-shadow: 0 6px 20px rgba(13, 148, 136, 0.45);
+            transform: translateY(-1px);
+        }
+
+        /* Mobile nav toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            color: var(--text);
+            font-size: 26px;
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                display: none;
+                position: absolute;
+                top: 68px;
+                right: 16px;
+                left: 16px;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                border-radius: var(--radius);
+                box-shadow: var(--shadow-xl);
+                gap: 4px;
+                border: 1px solid var(--border);
+            }
+            .nav.open {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .nav a {
+                padding: 14px 16px;
+                width: 100%;
+                text-align: center;
+                border-radius: var(--radius-xs);
+                font-size: 16px;
+            }
+            .nav-cta {
+                margin-top: 8px;
+            }
+        }
+
+        /* ============ HERO ============ */
+        .hero {
+            padding: 120px 24px 80px;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 56px;
+            min-height: 85vh;
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 580px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent-light);
+            color: #92400E;
+            font-weight: 700;
+            font-size: 13px;
+            padding: 8px 16px;
+            border-radius: 50px;
+            margin-bottom: 20px;
+            letter-spacing: -0.1px;
+        }
+
+        .hero-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(1.6);
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(34px, 5vw, 54px);
+            font-weight: 900;
+            line-height: 1.25;
+            color: var(--text);
+            margin-bottom: 16px;
+            letter-spacing: -0.8px;
+        }
+
+        .hero h1 .highlight {
+            color: var(--primary);
+            position: relative;
+        }
+
+        .hero h1 .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            right: 0;
+            width: 100%;
+            height: 10px;
+            background: var(--primary-light);
+            border-radius: 5px;
+            z-index: -1;
+            opacity: 0.7;
+        }
+
+        .hero-subhead {
+            font-size: clamp(16px, 2vw, 19px);
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            line-height: 1.8;
+            font-weight: 500;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 15px 28px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 50px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-family: 'Tajawal', sans-serif;
+            white-space: nowrap;
+            letter-spacing: -0.2px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 6px 20px rgba(13, 148, 136, 0.35);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            box-shadow: 0 8px 28px rgba(13, 148, 136, 0.45);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-bg);
+            transform: translateY(-2px);
+        }
+
+        .hero-visual {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero-image-placeholder {
+            width: 100%;
+            max-width: 480px;
+            aspect-ratio: 4/3;
+            background: linear-gradient(160deg, #F0FDFA 0%, #E6FFFA 30%, #CCFBF1 60%, #F0FDFA 100%);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            border: 3px dashed #99F6E4;
+        }
+
+        .hero-image-placeholder .inner-content {
+            text-align: center;
+            z-index: 2;
+            padding: 20px;
+        }
+
+        .hero-image-placeholder .placeholder-icon {
+            font-size: 72px;
+            display: block;
+            margin-bottom: 16px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-14px);
+            }
+        }
+
+        .hero-image-placeholder .placeholder-text {
+            font-weight: 700;
+            color: var(--primary-dark);
+            font-size: 16px;
+            letter-spacing: -0.2px;
+        }
+
+        .hero-image-placeholder .placeholder-sub {
+            font-weight: 500;
+            color: var(--text-light);
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        .hero-image-placeholder::before {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(13, 148, 136, 0.08);
+            border-radius: 50%;
+            top: -40px;
+            left: -40px;
+            z-index: 0;
+        }
+
+        .hero-image-placeholder::after {
+            content: '';
+            position: absolute;
+            width: 140px;
+            height: 140px;
+            background: rgba(245, 158, 11, 0.10);
+            border-radius: 50%;
+            bottom: -30px;
+            right: -30px;
+            z-index: 0;
+        }
+
+        /* Floating decorative elements */
+        .float-card {
+            position: absolute;
+            background: white;
+            border-radius: var(--radius-sm);
+            padding: 12px 18px;
+            box-shadow: var(--shadow-lg);
+            font-weight: 700;
+            font-size: 14px;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .float-card.top-right {
+            top: 8%;
+            left: 2%;
+            animation: float 4s ease-in-out infinite;
+            animation-delay: 0.5s;
+        }
+        .float-card.bottom-left {
+            bottom: 10%;
+            right: 2%;
+            animation: float 4s ease-in-out infinite;
+            animation-delay: 1.5s;
+        }
+        .float-card .fc-icon {
+            font-size: 22px;
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                flex-direction: column;
+                padding: 100px 20px 48px;
+                gap: 40px;
+                min-height: auto;
+                text-align: center;
+            }
+            .hero-content {
+                max-width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .hero-buttons {
+                justify-content: center;
+            }
+            .hero-image-placeholder {
+                max-width: 100%;
+                aspect-ratio: 16/10;
+            }
+            .float-card {
+                display: none;
+            }
+            .hero-badge {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        /* ============ HOW IT WORKS ============ */
+        .section {
+            padding: 80px 24px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-weight: 700;
+            font-size: 13px;
+            color: var(--primary);
+            background: var(--primary-bg);
+            padding: 6px 16px;
+            border-radius: 50px;
+            margin-bottom: 14px;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-size: clamp(26px, 4vw, 38px);
+            font-weight: 900;
+            color: var(--text);
+            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+        }
+
+        .section-subtitle {
+            font-size: 17px;
+            color: var(--text-secondary);
+            max-width: 540px;
+            margin: 0 auto;
+            font-weight: 500;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .step-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 36px 28px 28px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            border: 1px solid transparent;
+        }
+
+        .step-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-xl);
+            border-color: #E6FFFA;
+        }
+
+        .step-number {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), #14B8A6);
+            color: white;
+            font-weight: 900;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            box-shadow: 0 6px 18px rgba(13, 148, 136, 0.3);
+        }
+
+        .step-icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .step-card h3 {
+            font-weight: 800;
+            font-size: 19px;
+            margin-bottom: 8px;
+            color: var(--text);
+            letter-spacing: -0.2px;
+        }
+        .step-card p {
+            color: var(--text-light);
+            font-size: 15px;
+            line-height: 1.7;
+            font-weight: 500;
+        }
+
+        .step-connector {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .steps-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                max-width: 420px;
+                margin: 0 auto;
+            }
+            .step-card {
+                display: flex;
+                align-items: center;
+                gap: 18px;
+                text-align: right;
+                padding: 20px 20px;
+            }
+            .step-number {
+                margin: 0;
+                flex-shrink: 0;
+                width: 44px;
+                height: 44px;
+                font-size: 18px;
+            }
+            .step-icon {
+                display: none;
+            }
+            .step-card h3 {
+                margin-bottom: 2px;
+                font-size: 17px;
+            }
+            .step-card p {
+                font-size: 14px;
+            }
+        }
+
+        /* ============ LOYALTY ============ */
+        .loyalty-section {
+            background: linear-gradient(170deg, #F0FDFA 0%, #FFFFFF 40%, #FFFBF0 100%);
+            padding: 80px 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .loyalty-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 48px;
+        }
+
+        .loyalty-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 36px;
+            box-shadow: var(--shadow-xl);
+            flex: 1;
+            max-width: 520px;
+            border: 2px solid #FDE68A;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .loyalty-card::before {
+            content: '';
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.10) 0%, transparent 70%);
+            top: -40px;
+            left: -40px;
+            border-radius: 50%;
+        }
+
+        .loyalty-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #FEF3C7;
+            color: #92400E;
+            font-weight: 800;
+            font-size: 13px;
+            padding: 7px 14px;
+            border-radius: 50px;
+            margin-bottom: 18px;
+            letter-spacing: 0.1px;
+        }
+
+        .loyalty-card h2 {
+            font-size: clamp(24px, 3.5vw, 32px);
+            font-weight: 900;
+            color: var(--text);
+            margin-bottom: 10px;
+            letter-spacing: -0.4px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .loyalty-card .big-number {
+            font-size: 72px;
+            font-weight: 900;
+            color: var(--accent);
+            line-height: 1;
+            display: block;
+            margin: 8px 0 4px;
+            position: relative;
+            z-index: 2;
+            letter-spacing: -2px;
+        }
+
+        .loyalty-card p {
+            color: var(--text-secondary);
+            font-size: 16px;
+            font-weight: 500;
+            position: relative;
+            z-index: 2;
+            line-height: 1.7;
+        }
+
+        .loyalty-visual {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loyalty-illustration {
+            width: 100%;
+            max-width: 340px;
+            aspect-ratio: 1;
+            background: linear-gradient(145deg, #FFFBF0, #FEF3C7, #FDE68A);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 100px;
+            box-shadow: 0 20px 50px rgba(245, 158, 11, 0.2);
+            animation: float 5s ease-in-out infinite;
+            position: relative;
+        }
+
+        .loyalty-illustration::after {
+            content: '';
+            position: absolute;
+            width: 120%;
+            height: 120%;
+            border-radius: 50%;
+            border: 3px dashed rgba(245, 158, 11, 0.25);
+            animation: spin-slow 25s linear infinite;
+        }
+
+        @keyframes spin-slow {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .loyalty-inner {
+                flex-direction: column-reverse;
+                gap: 32px;
+                text-align: center;
+            }
+            .loyalty-card {
+                max-width: 100%;
+                padding: 28px 22px;
+            }
+            .loyalty-illustration {
+                max-width: 200px;
+                font-size: 64px;
+            }
+            .loyalty-card .big-number {
+                font-size: 56px;
+            }
+        }
+
+        /* ============ SIGN-UP FORM ============ */
+        .signup-section {
+            padding: 80px 24px;
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .signup-wrapper {
+            background: white;
+            border-radius: 24px;
+            padding: 48px 40px;
+            box-shadow: var(--shadow-xl);
+            display: flex;
+            gap: 40px;
+            align-items: stretch;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .signup-wrapper::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(13, 148, 136, 0.04) 0%, transparent 70%);
+            top: -60px;
+            right: -60px;
+            border-radius: 50%;
+        }
+
+        .signup-info {
+            flex: 1;
+            position: relative;
+            z-index: 2;
+        }
+        .signup-info h2 {
+            font-size: clamp(22px, 3vw, 30px);
+            font-weight: 900;
+            margin-bottom: 10px;
+            letter-spacing: -0.4px;
+            color: var(--text);
+        }
+        .signup-info p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.8;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+        .signup-perks {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .signup-perks li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text);
+        }
+        .signup-perks .check {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #D1FAE5;
+            color: #059669;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            flex-shrink: 0;
+            font-weight: 700;
+        }
+
+        .signup-form-wrapper {
+            flex: 1;
+            position: relative;
+            z-index: 2;
+            background: #FAFAFA;
+            border-radius: var(--radius);
+            padding: 32px 28px;
+            border: 1px solid var(--border);
+        }
+
+        .signup-form-wrapper h3 {
+            font-weight: 800;
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--text);
+            letter-spacing: -0.2px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 6px;
+            color: var(--text);
+        }
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-xs);
+            font-size: 15px;
+            font-family: 'Tajawal', sans-serif;
+            transition: var(--transition);
+            background: white;
+            color: var(--text);
+            font-weight: 500;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.08);
+        }
+        .form-group input::placeholder {
+            color: #9CA3AF;
+            font-weight: 400;
+        }
+
+        .phone-input-wrapper {
+            display: flex;
+            gap: 8px;
+        }
+        .country-code {
+            width: 90px;
+            flex-shrink: 0;
+            padding: 14px 10px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-xs);
+            font-size: 15px;
+            font-family: 'Tajawal', sans-serif;
+            background: #F9FAFB;
+            color: var(--text);
+            text-align: center;
+            font-weight: 600;
+            pointer-events: none;
+        }
+        .phone-input-wrapper input {
+            flex: 1;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: 700;
+            background: var(--accent);
+            color: #1F2937;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Tajawal', sans-serif;
+            margin-top: 8px;
+            letter-spacing: -0.2px;
+            box-shadow: 0 4px 14px rgba(245, 158, 11, 0.3);
+        }
+        .btn-submit:hover {
+            background: var(--accent-dark);
+            color: white;
+            box-shadow: 0 6px 22px rgba(245, 158, 11, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .form-note {
+            font-size: 12px;
+            color: var(--text-light);
+            text-align: center;
+            margin-top: 12px;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .signup-wrapper {
+                flex-direction: column;
+                padding: 28px 20px;
+                gap: 28px;
+                border-radius: var(--radius);
+            }
+            .signup-form-wrapper {
+                padding: 24px 18px;
+            }
+            .signup-info {
+                text-align: center;
+            }
+            .signup-perks {
+                align-items: flex-start;
+                display: inline-flex;
+                flex-direction: column;
+                text-align: right;
+            }
+        }
+
+        /* ============ FOOTER ============ */
+        .footer {
+            background: #1F2937;
+            color: #D1D5DB;
+            padding: 48px 24px 28px;
+        }
+
+        .footer-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 36px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            font-weight: 800;
+            font-size: 16px;
+            margin-bottom: 14px;
+            letter-spacing: -0.2px;
+        }
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .footer-col ul li a {
+            color: #9CA3AF;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        .footer-col ul li a:hover {
+            color: white;
+        }
+
+        .footer-logo {
+            font-size: 22px;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 10px;
+            letter-spacing: -0.3px;
+        }
+        .footer-col p {
+            font-size: 14px;
+            color: #9CA3AF;
+            line-height: 1.7;
+            font-weight: 500;
+        }
+
+        .footer-bottom {
+            max-width: var(--max-width);
+            margin: 32px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid #374151;
+            text-align: center;
+            font-size: 13px;
+            color: #6B7280;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .footer-inner {
+                grid-template-columns: 1fr 1fr;
+                gap: 24px;
+            }
+            .footer-col:first-child {
+                grid-column: 1 / -1;
+                text-align: center;
+            }
+        }
+        @media (max-width: 480px) {
+            .footer-inner {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        /* ============ MISC ============ */
+        .divider {
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+            margin: 0 auto 20px;
+            opacity: 0.5;
+        }
+
+        /* Smooth section entrance (subtle, no JS needed - just visual) */
+        .step-card,
+        .loyalty-card,
+        .signup-wrapper {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Selection colors */
+        ::selection {
+            background: #CCFBF1;
+            color: #0F766E;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="header" id="header">
+        <div class="header-inner">
+            <a href="#" class="logo" aria-label="قريب - الرئيسية">
+                <div class="logo-icon">📦</div>
+                <div class="logo-text">
+                    <span class="logo-name">قريب</span>
+                    <span class="logo-tag">توصيل البقالة</span>
+                </div>
+            </a>
+            <button class="menu-toggle" id="menuToggle" aria-label="القائمة">☰</button>
+            <ul class="nav" id="nav">
+                <li><a href="#how-it-works">كيف يعمل؟</a></li>
+                <li><a href="#loyalty">برنامج الولاء</a></li>
+                <li><a href="#signup">سجّل الآن</a></li>
+                <li><a href="#signup" class="nav-cta">حمّل التطبيق</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- ==================== HERO ==================== -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="dot"></span> قريباً في الرياض
+            </div>
+            <h1>
+                بقالة <span class="highlight">حيّك</span>،<br>عند بابك خلال <span class="highlight">٢٠ دقيقة</span>
+            </h1>
+            <p class="hero-subhead">
+                تسوّق من متاجر حيّك المفضّلة واستلم طلبك في ٢٠ دقيقة فقط. يومي، ميسور، ومن غير تعقيد — لأنّ قريب دايمًا قريب منك.
+            </p>
+            <div class="hero-buttons">
+                <a href="#signup" class="btn btn-primary">📱 سجّل إيميلك وجوالك</a>
+                <a href="#how-it-works" class="btn btn-outline">🔍 اكتشف الخدمة</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-image-placeholder">
+                <div class="inner-content">
+                    <span class="placeholder-icon">🛒</span>
+                    <span class="placeholder-text">صورة التطبيق</span>
+                    <span class="placeholder-sub">واجهة توصيل البقالة من المتاجر القريبة</span>
+                </div>
+            </div>
+            <div class="float-card top-right">
+                <span class="fc-icon">⚡</span> توصيل ٢٠ دقيقة
+            </div>
+            <div class="float-card bottom-left">
+                <span class="fc-icon">🏪</span> متاجر حيّك
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== HOW IT WORKS ==================== -->
+    <section class="section" id="how-it-works">
+        <div class="section-header">
+            <span class="section-label">🔍 كيف يعمل قريب؟</span>
+            <h2 class="section-title">ثلاث خطوات بسيطة</h2>
+            <p class="section-subtitle">ما تحتاج أكثر من جوالك وقريب يوصلك كل اللي تحتاجه من متاجر حيّك</p>
+            <div class="divider"></div>
+        </div>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-number">١</div>
+                <span class="step-icon">📍</span>
+                <h3>تصفّح متاجر حيّك</h3>
+                <p>اختَر متجر البقالة الأقرب لك من بين متاجر حيّك المعروفة. كل اللي تحتاجه في مكان واحد.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">٢</div>
+                <span class="step-icon">🛍️</span>
+                <h3>اختر أغراضك</h3>
+                <p>أضف اللي تبيه لسلّتك — من الخضار والفواكه للمنتجات اليومية. الأسعار نفس أسعار المتجر، بدون زيادة.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">٣</div>
+                <span class="step-icon">🚀</span>
+                <h3>استلم خلال ٢٠ دقيقة</h3>
+                <p>ادفع بالبطاقة أو كاش عند الاستلام، ووصول طلبك لباب بيتك في ٢٠ دقيقة. سريع ومضمون.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== LOYALTY PROGRAM ==================== -->
+    <section class="loyalty-section" id="loyalty">
+        <div class="loyalty-inner">
+            <div class="loyalty-card">
+                <span class="loyalty-badge">🎁 برنامج الولاء</span>
+                <h2>برنامجنا البسيط</h2>
+                <span class="big-number">١٠</span>
+                <p>
+                    <strong>كل عاشر طلبية — توصيلها مجاني.</strong><br>
+                    بدون تعقيد، بدون نقاط، بدون شروط مخفية. اطلب ٩ مرّات، والعاشرة علينا. لأنّك تستاهل الأفضل من قريب.
+                </p>
+                <p style="font-size:14px;color:#92400E;margin-top:10px;font-weight:600;">
+                    ✨ باقة العائلة: توصيل مجاني لطلبات الأسرة فوق ٢٠٠ ريال
+                </p>
+            </div>
+            <div class="loyalty-visual">
+                <div class="loyalty-illustration">🎖️</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SIGN-UP FORM ==================== -->
+    <section class="signup-section" id="signup">
+        <div class="section-header">
+            <span class="section-label">📋 سجّل الآن</span>
+            <h2 class="section-title">كون من أوائل المستخدمين</h2>
+            <p class="section-subtitle">سجّل بريدك الإلكتروني ورقم جوالك عشان تكون أول من يجرّب قريب في الرياض</p>
+            <div class="divider"></div>
+        </div>
+        <div class="signup-wrapper">
+            <div class="signup-info">
+                <h2>🎉 اطلب من حيّك وخلّنا نوصل لك</h2>
+                <p>قريب بينطلق قريبًا في أحياء الرياض. سجّل بياناتك الآن عشان تصير من أوائل اللي يجرّبون الخدمة وتستفيد من العروض الحصرية.</p>
+                <ul class="signup-perks">
+                    <li><span class="check">✓</span> توصيل خلال ٢٠ دقيقة من متاجر حيّك</li>
+                    <li><span class="check">✓</span> كل عاشر طلب توصيله مجاني</li>
+                    <li><span class="check">✓</span> ادفع بالبطاقة أو كاش عند الاستلام</li>
+                    <li><span class="check">✓</span> أسعار المتجر نفسها بدون رسوم مخفية</li>
+                    <li><span class="check">✓</span> دعم عملاء بالعربي على مدار الساعة</li>
+                </ul>
+            </div>
+            <div class="signup-form-wrapper">
+                <h3>📝 نموذج التسجيل</h3>
+                <form id="signupForm" onsubmit="event.preventDefault(); alert('تم استلام بياناتك بنجاح! سنتواصل معك قريبًا 🎉');">
+                    <div class="form-group">
+                        <label for="name">الاسم الكامل</label>
+                        <input type="text" id="name" placeholder="مثال: محمد العتيبي" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">رقم الجوال</label>
+                        <div class="phone-input-wrapper">
+                            <span class="country-code">+966</span>
+                            <input type="tel" id="phone" placeholder="05xxxxxxxx" required dir="ltr" pattern="05[0-9]{8}" maxlength="10" minlength="10">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">البريد الإلكتروني</label>
+                        <input type="email" id="email" placeholder="example@email.com" required dir="ltr">
+                    </div>
+                    <button type="submit" class="btn-submit">🚀 سجّل الآن مجانًا</button>
+                    <p class="form-note">لن نشارك بياناتك مع أي جهة. نكره السبام قد ما تكرهه.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-col">
+                <div class="footer-logo">📦 قريب</div>
+                <p>توصيل البقالة من متاجر حيّك في الرياض خلال ٢٠ دقيقة. يومي، ميسور، وقريب منك دايمًا.</p>
+            </div>
+            <div class="footer-col">
+                <h4>الخدمة</h4>
+                <ul>
+                    <li><a href="#how-it-works">كيف يعمل قريب</a></li>
+                    <li><a href="#loyalty">برنامج الولاء</a></li>
+                    <li><a href="#signup">التسجيل</a></li>
+                    <li><a href="#">المتاجر الشريكة</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>الدعم</h4>
+                <ul>
+                    <li><a href="#">الأسئلة الشائعة</a></li>
+                    <li><a href="#">اتصل بنا</a></li>
+                    <li><a href="#">سياسة الخصوصية</a></li>
+                    <li><a href="#">الشروط والأحكام</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>قريب في</h4>
+                <ul>
+                    <li><a href="#">الرياض</a></li>
+                    <li><a href="#">قريبًا في جدة</a></li>
+                    <li><a href="#">قريبًا في الدمام</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © ٢٠٢٥ قريب — جميع الحقوق محفوظة. صنع في الرياض 🇸🇦
+        </div>
+    </footer>
+
+    <!-- ==================== SIMPLE MOBILE MENU TOGGLE (inline, no framework) ==================== -->
+    <script>
+        (function() {
+            var toggle = document.getElementById('menuToggle');
+            var nav = document.getElementById('nav');
+            if (toggle && nav) {
+                toggle.addEventListener('click', function() {
+                    nav.classList.toggle('open');
+                    toggle.textContent = nav.classList.contains('open') ? '✕' : '☰';
+                });
+                // Close menu when a link is clicked
+                var links = nav.querySelectorAll('a');
+                links.forEach(function(link) {
+                    link.addEventListener('click', function() {
+                        nav.classList.remove('open');
+                        toggle.textContent = '☰';
+                    });
+                });
+            }
+        })();
+    </script>
+
+</body>
+</html>

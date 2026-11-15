@@ -9,6 +9,7 @@ mkdir -p "$RES"
 
 node scripts/generate.js $MODE                         # landing pages, campaigns, persona chats
 node scripts/images.js $MODE --concepts                # billboard render test + campaign hero images
+[ "$MODE" = "--mock" ] || python3 scripts/compress-images.py "$OUT/images"
 node audit/rtl-audit.js "$OUT/landing" --out "$RES/rtl" > "$RES/rtl-log.txt"
 node scripts/score-images.js $MODE                     # vision read-back of Arabic in images
 node scripts/score-dialect.js $MODE --judge            # dialect markers + LLM judge
