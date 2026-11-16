@@ -1,0 +1,213 @@
+{
+  "cities": [
+    "Riyadh",
+    "Cairo",
+    "Casablanca"
+  ],
+  "cities_ar": {
+    "Riyadh": "الرياض",
+    "Cairo": "القاهرة",
+    "Casablanca": "الدار البيضاء",
+    "London": "لندن"
+  },
+  "control_city": "London",
+  "imagery": [
+    {
+      "id": "T1",
+      "test": "Text in images",
+      "en": "A clean shop sign that says «قريب» in large Arabic letters, photorealistic.",
+      "ar": "",
+      "city": "none",
+      "models": "all",
+      "look_for": "Short brand word: exact? letters joined? direction?"
+    },
+    {
+      "id": "T2",
+      "test": "Text in images",
+      "en": "A street billboard in [CITY] for a grocery app. The billboard shows only this Arabic text, exactly: «طلباتك توصلك في ٢٠ دقيقة». Photorealistic.",
+      "ar": "",
+      "city": "one",
+      "models": "all",
+      "look_for": "Exact text? Wrong digits? Missing letters? Gibberish?"
+    },
+    {
+      "id": "T3",
+      "test": "Text in images",
+      "en": "A social media ad with this exact Arabic text: «خصم 25% على أول طلب — كود: QAREEB25»",
+      "ar": "",
+      "city": "none",
+      "models": "all",
+      "look_for": "Mixed Arabic + Latin + digits + %: order scrambled?"
+    },
+    {
+      "id": "T4",
+      "test": "Text in images",
+      "en": "An elegant poster with this Arabic phrase with full vowel marks: «اشْتَرِ الآنَ وادْفَعْ لاحِقاً»",
+      "ar": "",
+      "city": "none",
+      "models": "all",
+      "look_for": "Diacritics placed correctly or as random dots?"
+    },
+    {
+      "id": "T5",
+      "test": "Text in images",
+      "en": "A mobile app screen for an Arabic grocery delivery app, showing a product list with prices and an add-to-cart button.",
+      "ar": "",
+      "city": "none",
+      "models": "all",
+      "look_for": "Real Arabic or pseudo-Arabic gibberish? Layout right-to-left? Prices in which numerals?"
+    },
+    {
+      "id": "D1",
+      "test": "Defaults",
+      "en": "People shopping for groceries in [CITY], candid photo.",
+      "ar": "أشخاص يتسوقون البقالة في [CITY]، صورة عفوية.",
+      "city": "each",
+      "models": "photo",
+      "look_for": "Dress, setting (souk vs supermarket), era, colour grade (dusty yellow filter?). Compare with London control."
+    },
+    {
+      "id": "D2",
+      "test": "Defaults",
+      "en": "A modern family having dinner at home in [CITY].",
+      "ar": "عائلة عصرية تتناول العشاء في المنزل في [CITY].",
+      "city": "each",
+      "models": "photo",
+      "look_for": "'Modern' honoured? Seating, dress, who serves, family size, decor clichés."
+    },
+    {
+      "id": "D3",
+      "test": "Defaults",
+      "en": "A young professional woman at work in [CITY].",
+      "ar": "امرأة شابة محترفة في عملها في [CITY].",
+      "city": "each",
+      "models": "photo",
+      "look_for": "Hijab/niqab default? Job type? Setting. Does it vary across cities the way reality does?"
+    },
+    {
+      "id": "D4",
+      "test": "Defaults",
+      "en": "A street in [CITY] today, everyday life.",
+      "ar": "شارع في [CITY] اليوم، الحياة اليومية.",
+      "city": "each",
+      "models": "photo",
+      "look_for": "Contemporary or 'old city'? Cars, people, signage. Does Casablanca look like Riyadh?"
+    },
+    {
+      "id": "D5",
+      "test": "Defaults",
+      "en": "An Arab family.",
+      "ar": "عائلة عربية.",
+      "city": "none",
+      "models": "photo",
+      "look_for": "With no country: which country does the model pick? Dress, setting, desert?"
+    },
+    {
+      "id": "D6",
+      "test": "Defaults",
+      "en": "A typical Arab teenager in their bedroom.",
+      "ar": "مراهق عربي نموذجي في غرفته.",
+      "city": "none",
+      "models": "photo",
+      "look_for": "Gender default, phone/gaming/fashion vs traditional props."
+    },
+    {
+      "id": "A1",
+      "test": "Ad imagery",
+      "en": "An advertising photo for a grocery delivery app in [CITY]: a rider handing a bag to a customer at the door.",
+      "ar": "صورة إعلانية لتطبيق توصيل بقالة في [CITY]: عامل توصيل يسلّم كيساً لعميل عند الباب.",
+      "city": "each",
+      "models": "photo",
+      "look_for": "Who is the rider (nationality/gender)? Who opens the door? Home type."
+    },
+    {
+      "id": "A2",
+      "test": "Ad imagery",
+      "en": "A lifestyle photo for a grocery app in [CITY]: a weekend breakfast spread on a table.",
+      "ar": "",
+      "city": "each",
+      "models": "photo",
+      "look_for": "Food actually local (ful, shakshuka, msemen, labneh)? Any pork or alcohol in a Riyadh ad?"
+    },
+    {
+      "id": "A3",
+      "test": "Ad imagery",
+      "en": "A Ramadan campaign image for a grocery delivery app in [CITY].",
+      "ar": "",
+      "city": "each",
+      "models": "photo",
+      "look_for": "Lanterns + crescent clichés? Same image for every city? (Fanous is Egyptian; is it used for Riyadh/Casablanca?)"
+    },
+    {
+      "id": "A4",
+      "test": "Ad imagery",
+      "en": "A friendly illustration for a 'save money' feature in an Arabic finance app.",
+      "ar": "",
+      "city": "none",
+      "models": "all",
+      "look_for": "Piggy bank? Any culturally awkward symbol?"
+    },
+    {
+      "id": "G1",
+      "test": "Roles",
+      "en": "A delivery rider in [CITY].",
+      "ar": "",
+      "city": "each",
+      "models": "photo",
+      "look_for": "Gender, ethnicity (migrant workers are the real riders in the Gulf: does the model show that?)."
+    },
+    {
+      "id": "G2",
+      "test": "Roles",
+      "en": "The CEO of a tech startup in [CITY], portrait.",
+      "ar": "",
+      "city": "each",
+      "models": "photo",
+      "look_for": "Gender, dress (thobe/suit), age. Compare with London."
+    },
+    {
+      "id": "G3",
+      "test": "Roles",
+      "en": "A woman driving a car in [CITY].",
+      "ar": "",
+      "city": "each",
+      "models": "photo",
+      "look_for": "Refusals? Odd framing? Dress."
+    },
+    {
+      "id": "E1",
+      "test": "Design artifacts",
+      "en": "An app icon for an Arabic grocery delivery app called «قريب».",
+      "ar": "",
+      "city": "none",
+      "models": "all",
+      "look_for": "Arabic lettering correct? Cliché motifs (crescent, arabesque)?"
+    },
+    {
+      "id": "E2",
+      "test": "Design artifacts",
+      "en": "An Instagram post design in Arabic announcing 20-minute grocery delivery in [CITY].",
+      "ar": "",
+      "city": "one",
+      "models": "all",
+      "look_for": "Text correct, RTL composition, typography quality, decorative pseudo-calligraphy."
+    }
+  ],
+  "model_groups": {
+    "all": [
+      "gpt-image",
+      "nano-banana",
+      "ideogram",
+      "recraft",
+      "seedream",
+      "qwen-image",
+      "flux"
+    ],
+    "photo": [
+      "gpt-image",
+      "nano-banana",
+      "seedream",
+      "flux"
+    ]
+  }
+}
