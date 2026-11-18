@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قريب — جولة تعريفية</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ===== Reset & Base ===== */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --color-primary: #0D9488;
+            --color-primary-dark: #0F766E;
+            --color-primary-light: #14B8A6;
+            --color-text-dark: #1E293B;
+            --color-text-muted: #64748B;
+            --color-border: #E2E8F0;
+            --color-dot-inactive: #CBD5E1;
+            --color-bg-page: #F8FAFC;
+            --color-white: #FFFFFF;
+            --font-family: 'Tajawal', sans-serif;
+            --transition-carousel: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-button: all 0.3s ease;
+            --transition-dot: all 0.35s ease;
+            --max-width-mobile: 390px;
+            --max-width-desktop: 520px;
+        }
+
+        html {
+            font-family: var(--font-family);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            background-color: var(--color-bg-page);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-block-size: 100dvh;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* ===== Onboarding Container ===== */
+        .onboarding {
+            background-color: var(--color-white);
+            inline-size: 100%;
+            max-inline-size: var(--max-width-mobile);
+            min-block-size: 100dvh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* ===== Header ===== */
+        .onboarding-header {
+            display: flex;
+            justify-content: flex-end;
+            padding-block: 16px;
+            padding-inline: 20px;
+            flex-shrink: 0;
+        }
+
+        .skip-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--color-text-muted);
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: var(--transition-button);
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: inherit;
+        }
+        .skip-link:hover,
+        .skip-link:focus-visible {
+            color: var(--color-primary);
+            background-color: #F0FDFA;
+            outline: 2px solid var(--color-primary);
+            outline-offset: 2px;
+        }
+
+        /* ===== Carousel ===== */
+        .carousel {
+            flex: 1;
+            overflow: hidden;
+            inline-size: 100%;
+            position: relative;
+            display: flex;
+            align-items: stretch;
+            min-block-size: 0;
+        }
+
+        .slides-track {
+            display: flex;
+            inline-size: 100%;
+            block-size: 100%;
+            transition: var(--transition-carousel);
+            will-change: transform;
+        }
+
+        /* ===== Slides ===== */
+        .slide {
+            flex: 0 0 100%;
+            min-inline-size: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-block: 32px 24px;
+            padding-inline: 28px;
+            overflow-y: auto;
+        }
+
+        /* ===== Illustration Placeholder ===== */
+        .illustration {
+            inline-size: 180px;
+            block-size: 180px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-block-end: 36px;
+            flex-shrink: 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+        .illustration svg {
+            inline-size: 84px;
+            block-size: 84px;
+        }
+        .illustration--teal {
+            background: linear-gradient(135deg, #0D9488 0%, #14B8A6 100%);
+        }
+        .illustration--blue {
+            background: linear-gradient(135deg, #1D4ED8 0%, #3B82F6 100%);
+        }
+        .illustration--orange {
+            background: linear-gradient(135deg, #B45309 0%, #F59E0B 100%);
+        }
+
+        /* ===== Slide Text ===== */
+        .slide-title {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--color-text-dark);
+            margin-block-end: 12px;
+            line-height: 1.4;
+        }
+        .slide-desc {
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--color-text-muted);
+            line-height: 1.8;
+            max-inline-size: 300px;
+            margin-block-end: 24px;
+        }
+
+        /* ===== Get Started Button (inside slide 3) ===== */
+        .btn-get-started {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            border: none;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 17px;
+            font-weight: 700;
+            padding-block: 14px;
+            padding-inline: 36px;
+            min-block-size: 52px;
+            cursor: pointer;
+            transition: var(--transition-button);
+            box-shadow: 0 4px 16px rgba(13, 148, 136, 0.3);
+            margin-block-start: 8px;
+        }
+        .btn-get-started:hover,
+        .btn-get-started:focus-visible {
+            background-color: var(--color-primary-dark);
+            box-shadow: 0 6px 20px rgba(13, 148, 136, 0.4);
+            outline: 2px solid var(--color-primary-dark);
+            outline-offset: 2px;
+        }
+        .btn-get-started:active {
+            transform: scale(0.97);
+        }
+
+        /* ===== Dots ===== */
+        .dots {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding-block: 16px 8px;
+            flex-shrink: 0;
+        }
+        .dot {
+            inline-size: 8px;
+            block-size: 8px;
+            border-radius: 999px;
+            background-color: var(--color-dot-inactive);
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: var(--transition-dot);
+            flex-shrink: 0;
+            position: relative;
+        }
+        .dot:hover,
+        .dot:focus-visible {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 3px;
+        }
+        .dot.active {
+            inline-size: 32px;
+            background-color: var(--color-primary);
+            border-radius: 999px;
+        }
+
+        /* ===== Actions (Back / Next) ===== */
+        .actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding-block: 8px 24px;
+            padding-inline: 20px;
+            flex-shrink: 0;
+        }
+        .btn-back,
+        .btn-next {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 12px;
+            padding-block: 12px;
+            padding-inline: 20px;
+            min-block-size: 48px;
+            cursor: pointer;
+            transition: var(--transition-button);
+            border: none;
+            white-space: nowrap;
+        }
+        .btn-back {
+            background-color: transparent;
+            color: var(--color-text-muted);
+            border: 2px solid var(--color-border);
+        }
+        .btn-back:hover,
+        .btn-back:focus-visible {
+            color: var(--color-text-dark);
+            border-color: var(--color-text-muted);
+            outline: 2px solid var(--color-text-muted);
+            outline-offset: 2px;
+        }
+        .btn-back:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            pointer-events: none;
+            border-color: var(--color-border);
+            color: var(--color-text-muted);
+        }
+        .btn-next {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            box-shadow: 0 4px 16px rgba(13, 148, 136, 0.3);
+        }
+        .btn-next:hover,
+        .btn-next:focus-visible {
+            background-color: var(--color-primary-dark);
+            box-shadow: 0 6px 20px rgba(13, 148, 136, 0.4);
+            outline: 2px solid var(--color-primary-dark);
+            outline-offset: 2px;
+        }
+        .btn-next:active {
+            transform: scale(0.97);
+        }
+        .btn-next.is-hidden {
+            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* ===== Desktop / Tablet Responsive ===== */
+        @media (min-width: 480px) {
+            body {
+                padding: 24px;
+            }
+            .onboarding {
+                max-inline-size: var(--max-width-desktop);
+                min-block-size: 640px;
+                max-block-size: 90dvh;
+                border-radius: 24px;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+                overflow: hidden;
+            }
+            .slide {
+                padding-block: 40px 28px;
+                padding-inline: 40px;
+            }
+            .illustration {
+                inline-size: 220px;
+                block-size: 220px;
+                margin-block-end: 40px;
+            }
+            .illustration svg {
+                inline-size: 100px;
+                block-size: 100px;
+            }
+            .slide-title {
+                font-size: 32px;
+                margin-block-end: 16px;
+            }
+            .slide-desc {
+                font-size: 18px;
+                max-inline-size: 340px;
+                margin-block-end: 28px;
+            }
+            .btn-get-started {
+                font-size: 18px;
+                padding-block: 16px;
+                padding-inline: 44px;
+                min-block-size: 56px;
+            }
+            .dots {
+                padding-block: 20px 10px;
+            }
+            .actions {
+                padding-block: 10px 32px;
+                padding-inline: 32px;
+            }
+            .btn-back,
+            .btn-next {
+                font-size: 17px;
+                padding-block: 14px;
+                padding-inline: 28px;
+                min-block-size: 52px;
+            }
+        }
+
+        /* ===== Large Desktop ===== */
+        @media (min-width: 768px) {
+            .onboarding {
+                max-inline-size: 560px;
+                min-block-size: 700px;
+            }
+            .illustration {
+                inline-size: 240px;
+                block-size: 240px;
+            }
+            .illustration svg {
+                inline-size: 112px;
+                block-size: 112px;
+            }
+        }
+
+        /* ===== Reduce Motion ===== */
+        @media (prefers-reduced-motion: reduce) {
+            .slides-track {
+                transition: none;
+            }
+            .dot,
+            .btn-back,
+            .btn-next,
+            .btn-get-started,
+            .skip-link {
+                transition: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="onboarding" aria-label="جولة تعريفية لتطبيق قريب">
+        <!-- Header with Skip link -->
+        <header class="onboarding-header">
+            <a href="#" class="skip-link" aria-label="تخطي الجولة التعريفية">تخطي</a>
+        </header>
+
+        <!-- Carousel -->
+        <div class="carousel" aria-roledescription="carousel" aria-label="شرائح الجولة التعريفية">
+            <div class="slides-track">
+                <!-- Slide 1 -->
+                <section class="slide" role="group" aria-label="الشريحة الأولى: مرحباً بك في قريب" data-slide="0">
+                    <div class="illustration illustration--teal" aria-hidden="true">
+                        <svg viewBox="0 0 80 80" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="28" cy="26" r="10" />
+                            <circle cx="56" cy="26" r="7" />
+                            <path d="M10 70c0-12 8-20 18-20s18 8 18 20" />
+                            <path d="M46 70c0-10 6-16 12-16s12 6 12 16" />
+                        </svg>
+                    </div>
+                    <h1 class="slide-title">مرحباً بك في قريب</h1>
+                    <p class="slide-desc">منصة تجمعك بجيرانك ومجتمعك المحلي، لتشارك وتتواصل بكل سهولة.</p>
+                </section>
+
+                <!-- Slide 2 -->
+                <section class="slide" role="group" aria-label="الشريحة الثانية: تواصل وشارك" data-slide="1">
+                    <div class="illustration illustration--blue" aria-hidden="true">
+                        <svg viewBox="0 0 80 80" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M10 14h60v42H34L14 78V14z" />
+                            <path d="M26 30h28M26 42h28" />
+                        </svg>
+                    </div>
+                    <h1 class="slide-title">تواصل وشارك</h1>
+                    <p class="slide-desc">اكتشف الفعاليات والخدمات القريبة منك، وشارك لحظاتك مع من حولك.</p>
+                </section>
+
+                <!-- Slide 3 -->
+                <section class="slide" role="group" aria-label="الشريحة الثالثة: ابدأ رحلتك الآن" data-slide="2">
+                    <div class="illustration illustration--orange" aria-hidden="true">
+                        <svg viewBox="0 0 80 80" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M40 10c10 16 22 26 22 40 0 8-6 14-14 16-8-2-14-8-14-16 0-14 12-24 22-40z" />
+                            <circle cx="40" cy="50" r="5" />
+                            <path d="M28 60c-4 8-6 14-4 20M52 60c4 8 6 14 4 20" />
+                        </svg>
+                    </div>
+                    <h1 class="slide-title">ابدأ رحلتك الآن</h1>
+                    <p class="slide-desc">انضم إلى آلاف المستخدمين واستمتع بتجربة مجتمعية فريدة من نوعها.</p>
+                    <button class="btn-get-started" type="button">ابدأ الآن</button>
+                </section>
+            </div>
+        </div>
+
+        <!-- Dot indicators -->
+        <div class="dots" role="tablist" aria-label="التنقل بين الشرائح">
+            <button class="dot active" role="tab" aria-selected="true" aria-label="الشريحة الأولى" tabindex="0"></button>
+            <button class="dot" role="tab" aria-selected="false" aria-label="الشريحة الثانية" tabindex="-1"></button>
+            <button class="dot" role="tab" aria-selected="false" aria-label="الشريحة الثالثة" tabindex="-1"></button>
+        </div>
+
+        <!-- Back / Next actions -->
+        <div class="actions">
+            <button class="btn-back" type="button" aria-label="رجوع إلى الشريحة السابقة">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+                <span>رجوع</span>
+            </button>
+            <button class="btn-next" type="button" aria-label="التالي إلى الشريحة التالية">
+                <span>التالي</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M19 12H5M12 5l-7 7 7 7" />
+                </svg>
+            </button>
+        </div>
+    </main>
+
+    <script>
+        (function() {
+            // ===== State =====
+            const TOTAL_SLIDES = 3;
+            let currentSlide = 0;
+            let isTransitioning = false;
+
+            // ===== DOM Elements =====
+            const track = document.querySelector('.slides-track');
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.dot');
+            const btnBack = document.querySelector('.btn-back');
+            const btnNext = document.querySelector('.btn-next');
+            const skipLink = document.querySelector('.skip-link');
+            const btnGetStarted = document.querySelector('.btn-get-started');
+            const carouselElement = document.querySelector('.carousel');
+
+            // ===== Update UI =====
+            function updateCarousel(animate = true) {
+                // Update track position
+                if (animate) {
+                    track.style.transition = 'var(--transition-carousel)';
+                } else {
+                    track.style.transition = 'none';
+                }
+                track.style.transform = 'translateX(' + (currentSlide * 100) + '%)';
+
+                // Update dots
+                dots.forEach(function(dot, index) {
+                    var isActive = index === currentSlide;
+                    dot.classList.toggle('active', isActive);
+                    dot.setAttribute('aria-selected', isActive ? 'true' : 'false');
+                    dot.setAttribute('tabindex', isActive ? '0' : '-1');
+                });
+
+                // Update Back button
+                btnBack.disabled = currentSlide === 0;
+                btnBack.setAttribute('aria-disabled', currentSlide === 0 ? 'true' : 'false');
+
+                // Update Next button: hidden on last slide
+                if (currentSlide === TOTAL_SLIDES - 1) {
+                    btnNext.classList.add('is-hidden');
+                    btnNext.setAttribute('aria-hidden', 'true');
+                    btnNext.setAttribute('tabindex', '-1');
+                } else {
+                    btnNext.classList.remove('is-hidden');
+                    btnNext.setAttribute('aria-hidden', 'false');
+                    btnNext.removeAttribute('tabindex');
+                }
+
+                // Update slide aria-hidden
+                slides.forEach(function(slide, index) {
+                    slide.setAttribute('aria-hidden', index === currentSlide ? 'false' : 'true');
+                });
+
+                // Reset transition flag after animation
+                if (animate) {
+                    isTransitioning = true;
+                    setTimeout(function() {
+                        isTransitioning = false;
+                        track.style.transition = '';
+                    }, 500);
+                }
+            }
+
+            // ===== Navigation Functions =====
+            function goToSlide(index, animate) {
+                if (animate === undefined) {
+                    animate = true;
+                }
+                if (index < 0 || index >= TOTAL_SLIDES || isTransitioning) {
+                    return;
+                }
+                currentSlide = index;
+                updateCarousel(animate);
+            }
+
+            function goToNext() {
+                if (currentSlide < TOTAL_SLIDES - 1) {
+                    goToSlide(currentSlide + 1);
+                }
+            }
+
+            function goToBack() {
+                if (currentSlide > 0) {
+                    goToSlide(currentSlide - 1);
+                }
+            }
+
+            // ===== Event Listeners =====
+            btnNext.addEventListener('click', goToNext);
+            btnBack.addEventListener('click', goToBack);
+
+            skipLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                goToSlide(TOTAL_SLIDES - 1);
+                // Ensure the skip link doesn't keep focus causing confusion
+                btnNext.focus();
+            });
+
+            dots.forEach(function(dot, index) {
+                dot.addEventListener('click', function() {
+                    goToSlide(index);
+                });
+            });
+
+            if (btnGetStarted) {
+                btnGetStarted.addEventListener('click', function() {
+                    // Demo action: show a simple alert
+                    alert('أهلاً بك في قريب! 🎉');
+                });
+            }
+
+            // ===== Touch Swipe Support (RTL-aware) =====
+            var touchStartX = 0;
+            var touchEndX = 0;
+            var touchStartY = 0;
+            var touchEndY = 0;
+
+            carouselElement.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+                touchStartY = e.changedTouches[0].screenY;
+            }, { passive: true });
+
+            carouselElement.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                touchEndY = e.changedTouches[0].screenY;
+                var deltaX = touchEndX - touchStartX;
+                var deltaY = touchEndY - touchStartY;
+
+                // Only trigger if horizontal swipe is dominant
+                if (Math.abs(deltaX) > 50 && Math.abs(deltaX) > Math.abs(deltaY) * 1.5) {
+                    if (deltaX > 0) {
+                        // Swiped right → go back (previous slide)
+                        goToBack();
+                    } else {
+                        // Swiped left → go next (next slide)
+                        goToNext();
+                    }
+                }
+            }, { passive: true });
+
+            // ===== Keyboard Navigation =====
+            carouselElement.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowLeft') {
+                    // In RTL, ArrowLeft means "next" (moving forward leftward)
+                    e.preventDefault();
+                    goToNext();
+                } else if (e.key === 'ArrowRight') {
+                    // In RTL, ArrowRight means "back" (moving back rightward)
+                    e.preventDefault();
+                    goToBack();
+                }
+            });
+
+            // ===== Initialize =====
+            updateCarousel(false);
+        })();
+    </script>
+</body>
+</html>

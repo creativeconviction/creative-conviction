@@ -1,0 +1,160 @@
+{
+  "file": "out/S5__arabic__gemini.html",
+  "screen": "S5",
+  "cond": "arabic",
+  "model": "gemini",
+  "score": 88,
+  "mainFont": "Tajawal",
+  "checks": [
+    {
+      "id": "complete",
+      "label": "Page is complete (not cut off)",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "id": "dir",
+      "label": "Page set to right-to-left",
+      "pass": true,
+      "detail": "rtl/rtl"
+    },
+    {
+      "id": "lang",
+      "label": "Language set to Arabic",
+      "pass": true,
+      "detail": "ar"
+    },
+    {
+      "id": "align",
+      "label": "Arabic text aligned to the right",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "flow",
+      "label": "Rows flow right-to-left (first item on the right)",
+      "pass": true,
+      "detail": "0/12 wrong []"
+    },
+    {
+      "id": "scramble",
+      "label": "Phone numbers, IDs and English names display in the right order",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "arrows",
+      "label": "Next points left, back points right",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "back",
+      "label": "Back button on the right",
+      "pass": true,
+      "detail": "right"
+    },
+    {
+      "id": "font",
+      "label": "Arabic drawn in an intended font",
+      "pass": true,
+      "detail": {
+        "Tajawal": 90,
+        "Tajawal Medium": 18,
+        "Tajawal ExtraBold": 31
+      }
+    },
+    {
+      "id": "size",
+      "label": "Arabic text not too small (<13px under 25%)",
+      "pass": true,
+      "detail": "median 14.4px, 22% small"
+    },
+    {
+      "id": "lineheight",
+      "label": "Line height leaves room for Arabic marks",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "letterspacing",
+      "label": "No letter-spacing on Arabic",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "numerals",
+      "label": "One numeral system per page",
+      "pass": false,
+      "detail": "western 8, eastern 10"
+    },
+    {
+      "id": "logical",
+      "label": "Built with direction-neutral CSS",
+      "pass": false,
+      "detail": "physical 11, logical 0"
+    },
+    {
+      "id": "presentation",
+      "label": "No pre-shaped Arabic characters",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "id": "overflow",
+      "label": "No sideways scroll on phone",
+      "pass": true,
+      "detail": false
+    },
+    {
+      "id": "jserrors",
+      "label": "No JavaScript errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "raw": {
+    "htmlDir": "rtl",
+    "htmlLang": "ar",
+    "bodyDir": "rtl",
+    "arabicEls": 27,
+    "medianArabicFontPx": 14.4,
+    "smallArabicShare": 0.22,
+    "leftAligned": [],
+    "letterSpaced": [],
+    "tightLines": [],
+    "rows": 12,
+    "wrongRows": 0,
+    "wrongRowLabels": [],
+    "doubleFlip": 0,
+    "ltrRuns": 1,
+    "scrambledRuns": [],
+    "unisolatedRuns": 1,
+    "arrowsWrong": [],
+    "backSide": "right",
+    "sidebarSide": null,
+    "tableFirstColRight": null,
+    "ltrInputs": 0,
+    "ltrInputsWrong": 0,
+    "mirroredEls": 0,
+    "forcedLtrArabic": 1,
+    "westernDigits": 8,
+    "easternDigits": 10,
+    "presentationForms": 0,
+    "bidiControls": 0,
+    "physicalCss": 11,
+    "logicalCss": 0,
+    "overflowX": false,
+    "fonts": {
+      "Tajawal": 90,
+      "Tajawal Medium": 18,
+      "Tajawal ExtraBold": 31
+    },
+    "mobileOverflow": false,
+    "carousel": {
+      "found": false
+    },
+    "sidebarSideDesktop": null,
+    "jsErrors": []
+  }
+}

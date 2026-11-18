@@ -1,0 +1,184 @@
+{
+  "file": "out/S6__arabic__gemini.html",
+  "screen": "S6",
+  "cond": "arabic",
+  "model": "gemini",
+  "score": 88,
+  "mainFont": "Cairo",
+  "checks": [
+    {
+      "id": "complete",
+      "label": "Page is complete (not cut off)",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "id": "dir",
+      "label": "Page set to right-to-left",
+      "pass": true,
+      "detail": "rtl/rtl"
+    },
+    {
+      "id": "lang",
+      "label": "Language set to Arabic",
+      "pass": true,
+      "detail": "ar"
+    },
+    {
+      "id": "align",
+      "label": "Arabic text aligned to the right",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "flow",
+      "label": "Rows flow right-to-left (first item on the right)",
+      "pass": true,
+      "detail": "0/22 wrong []"
+    },
+    {
+      "id": "arrows",
+      "label": "Next points left, back points right",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "sidebar",
+      "label": "Sidebar on the right (desktop)",
+      "pass": true,
+      "detail": "right"
+    },
+    {
+      "id": "table",
+      "label": "Table starts from the right",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "id": "font",
+      "label": "Arabic drawn in an intended font",
+      "pass": true,
+      "detail": {
+        "Cairo": 452
+      }
+    },
+    {
+      "id": "size",
+      "label": "Arabic text not too small (<13px under 25%)",
+      "pass": true,
+      "detail": "median 14.4px, 17% small"
+    },
+    {
+      "id": "lineheight",
+      "label": "Line height leaves room for Arabic marks",
+      "pass": false,
+      "detail": [
+        "div.avatar \"أ\"",
+        "th \"رقم الطلب\"",
+        "th \"العميل\""
+      ]
+    },
+    {
+      "id": "letterspacing",
+      "label": "No letter-spacing on Arabic",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "numerals",
+      "label": "One numeral system per page",
+      "pass": true,
+      "detail": "western 130, eastern 1"
+    },
+    {
+      "id": "logical",
+      "label": "Built with direction-neutral CSS",
+      "pass": false,
+      "detail": "physical 6, logical 0"
+    },
+    {
+      "id": "presentation",
+      "label": "No pre-shaped Arabic characters",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "id": "overflow",
+      "label": "No sideways scroll on phone",
+      "pass": true,
+      "detail": false
+    },
+    {
+      "id": "jserrors",
+      "label": "No JavaScript errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "raw": {
+    "htmlDir": "rtl",
+    "htmlLang": "ar",
+    "bodyDir": "rtl",
+    "arabicEls": 58,
+    "medianArabicFontPx": 14.4,
+    "smallArabicShare": 0.17,
+    "leftAligned": [],
+    "letterSpaced": [],
+    "tightLines": [
+      "div.avatar \"أ\"",
+      "th \"رقم الطلب\"",
+      "th \"العميل\"",
+      "th \"التاريخ\"",
+      "th \"المبلغ\"",
+      "th \"الحالة\"",
+      "div.customer-avatar \"م\"",
+      "span \"محمد عبدالله\"",
+      "td \"20 أكتوبر 2023\"",
+      "td \"240 ر.س\"",
+      "div.customer-avatar \"س\"",
+      "td \"20 أكتوبر 2023\"",
+      "td \"125 ر.س\"",
+      "span.badge.badge-warning \"قيد التجهيز\"",
+      "div.customer-avatar \"ع\"",
+      "td \"19 أكتوبر 2023\"",
+      "td \"450 ر.س\"",
+      "div.customer-avatar \"ن\"",
+      "td \"19 أكتوبر 2023\"",
+      "td \"85 ر.س\"",
+      "div.customer-avatar \"ي\"",
+      "td \"18 أكتوبر 2023\"",
+      "td \"320 ر.س\""
+    ],
+    "rows": 22,
+    "wrongRows": 0,
+    "wrongRowLabels": [],
+    "doubleFlip": 0,
+    "ltrRuns": 0,
+    "scrambledRuns": [],
+    "unisolatedRuns": 0,
+    "arrowsWrong": [],
+    "backSide": null,
+    "sidebarSide": null,
+    "tableFirstColRight": true,
+    "ltrInputs": 0,
+    "ltrInputsWrong": 0,
+    "mirroredEls": 0,
+    "forcedLtrArabic": 0,
+    "westernDigits": 130,
+    "easternDigits": 1,
+    "presentationForms": 0,
+    "bidiControls": 0,
+    "physicalCss": 6,
+    "logicalCss": 0,
+    "overflowX": false,
+    "fonts": {
+      "Cairo": 452
+    },
+    "mobileOverflow": false,
+    "carousel": {
+      "found": false
+    },
+    "sidebarSideDesktop": "right",
+    "jsErrors": []
+  }
+}

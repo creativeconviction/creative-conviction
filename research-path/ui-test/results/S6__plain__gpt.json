@@ -1,0 +1,208 @@
+{
+  "file": "out/S6__plain__gpt.html",
+  "screen": "S6",
+  "cond": "plain",
+  "model": "gpt",
+  "score": 78,
+  "mainFont": "Tajawal",
+  "checks": [
+    {
+      "id": "complete",
+      "label": "Page is complete (not cut off)",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "id": "dir",
+      "label": "Page set to right-to-left",
+      "pass": true,
+      "detail": "rtl/rtl"
+    },
+    {
+      "id": "lang",
+      "label": "Language set to Arabic",
+      "pass": true,
+      "detail": "ar"
+    },
+    {
+      "id": "align",
+      "label": "Arabic text aligned to the right",
+      "pass": false,
+      "detail": [
+        "text \"الاثنين\"",
+        "text \"الثلاثاء\"",
+        "text \"الأربعاء\"",
+        "text \"الخميس\""
+      ]
+    },
+    {
+      "id": "flow",
+      "label": "Rows flow right-to-left (first item on the right)",
+      "pass": true,
+      "detail": "0/15 wrong []"
+    },
+    {
+      "id": "scramble",
+      "label": "Phone numbers, IDs and English names display in the right order",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "arrows",
+      "label": "Next points left, back points right",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "sidebar",
+      "label": "Sidebar on the right (desktop)",
+      "pass": true,
+      "detail": "right"
+    },
+    {
+      "id": "table",
+      "label": "Table starts from the right",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "id": "font",
+      "label": "Arabic drawn in an intended font",
+      "pass": true,
+      "detail": {
+        "Tajawal ExtraBold": 4,
+        "Tajawal": 477,
+        "Tajawal Medium": 109,
+        "Noto Color Emoji": 1
+      }
+    },
+    {
+      "id": "size",
+      "label": "Arabic text not too small (<13px under 25%)",
+      "pass": false,
+      "detail": "median 12px, 79% small"
+    },
+    {
+      "id": "lineheight",
+      "label": "Line height leaves room for Arabic marks",
+      "pass": false,
+      "detail": [
+        "div.avatar \"أم\"",
+        "span.customer-avatar \"سن\"",
+        "td \"18 مايو، 10:35\""
+      ]
+    },
+    {
+      "id": "letterspacing",
+      "label": "No letter-spacing on Arabic",
+      "pass": false,
+      "detail": [
+        "small \"ر.س\"",
+        "small \"ر.س\""
+      ]
+    },
+    {
+      "id": "numerals",
+      "label": "One numeral system per page",
+      "pass": true,
+      "detail": "western 107, eastern 0"
+    },
+    {
+      "id": "logical",
+      "label": "Built with direction-neutral CSS",
+      "pass": true,
+      "detail": "physical 4, logical 7"
+    },
+    {
+      "id": "presentation",
+      "label": "No pre-shaped Arabic characters",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "id": "overflow",
+      "label": "No sideways scroll on phone",
+      "pass": true,
+      "detail": false
+    },
+    {
+      "id": "jserrors",
+      "label": "No JavaScript errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "raw": {
+    "htmlDir": "rtl",
+    "htmlLang": "ar",
+    "bodyDir": "rtl",
+    "arabicEls": 66,
+    "medianArabicFontPx": 12,
+    "smallArabicShare": 0.79,
+    "leftAligned": [
+      "text \"الاثنين\"",
+      "text \"الثلاثاء\"",
+      "text \"الأربعاء\"",
+      "text \"الخميس\"",
+      "text \"الجمعة\"",
+      "text \"السبت\"",
+      "text \"الأحد\""
+    ],
+    "letterSpaced": [
+      "small \"ر.س\"",
+      "small \"ر.س\""
+    ],
+    "tightLines": [
+      "div.avatar \"أم\"",
+      "span.customer-avatar \"سن\"",
+      "td \"18 مايو، 10:35\"",
+      "td.amount \"286 ر.س\"",
+      "span.customer-avatar \"مم\"",
+      "td \"18 مايو، 10:12\"",
+      "td.amount \"154 ر.س\"",
+      "span.customer-avatar \"لا\"",
+      "td \"18 مايو، 09:48\"",
+      "td.amount \"420 ر.س\"",
+      "span.customer-avatar \"خر\"",
+      "td \"18 مايو، 09:21\"",
+      "td.amount \"98 ر.س\"",
+      "span.customer-avatar \"ني\"",
+      "td \"18 مايو، 08:56\"",
+      "td.amount \"237 ر.س\""
+    ],
+    "rows": 15,
+    "wrongRows": 0,
+    "wrongRowLabels": [],
+    "doubleFlip": 0,
+    "ltrRuns": 5,
+    "scrambledRuns": [],
+    "unisolatedRuns": 0,
+    "arrowsWrong": [],
+    "backSide": null,
+    "sidebarSide": null,
+    "tableFirstColRight": true,
+    "ltrInputs": 0,
+    "ltrInputsWrong": 0,
+    "mirroredEls": 0,
+    "forcedLtrArabic": 0,
+    "westernDigits": 107,
+    "easternDigits": 0,
+    "presentationForms": 0,
+    "bidiControls": 0,
+    "physicalCss": 4,
+    "logicalCss": 7,
+    "overflowX": false,
+    "fonts": {
+      "Tajawal ExtraBold": 4,
+      "Tajawal": 477,
+      "Tajawal Medium": 109,
+      "Noto Color Emoji": 1
+    },
+    "mobileOverflow": false,
+    "carousel": {
+      "found": false
+    },
+    "sidebarSideDesktop": "right",
+    "jsErrors": []
+  }
+}

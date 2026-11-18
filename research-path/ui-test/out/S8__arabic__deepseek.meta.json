@@ -1,0 +1,9 @@
+{
+  "screen": "S8",
+  "cond": "arabic",
+  "model": "deepseek",
+  "model_id": "deepseek/deepseek-v4-pro",
+  "raw_chars": 10926,
+  "complete": true,
+  "at": "2026-11-18T06:16:38.203Z"
+}

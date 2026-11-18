@@ -1,0 +1,202 @@
+{
+  "file": "out/S6__localize__saba.html",
+  "screen": "S6",
+  "cond": "localize",
+  "model": "saba",
+  "score": 67,
+  "mainFont": "DejaVu Sans",
+  "checks": [
+    {
+      "id": "complete",
+      "label": "Page is complete (not cut off)",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "id": "dir",
+      "label": "Page set to right-to-left",
+      "pass": true,
+      "detail": "rtl/rtl"
+    },
+    {
+      "id": "lang",
+      "label": "Language set to Arabic",
+      "pass": true,
+      "detail": "ar"
+    },
+    {
+      "id": "align",
+      "label": "Arabic text aligned to the right",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "flow",
+      "label": "Rows flow right-to-left (first item on the right)",
+      "pass": true,
+      "detail": "0/17 wrong []"
+    },
+    {
+      "id": "scramble",
+      "label": "Phone numbers, IDs and English names display in the right order",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "arrows",
+      "label": "Next points left, back points right",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "sidebar",
+      "label": "Sidebar on the right (desktop)",
+      "pass": false,
+      "detail": "left"
+    },
+    {
+      "id": "table",
+      "label": "Table starts from the right",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "id": "font",
+      "label": "Arabic drawn in an intended font",
+      "pass": false,
+      "detail": {
+        "DejaVu Sans": 521,
+        "Inter": 107,
+        "Inter SemiBold": 2
+      }
+    },
+    {
+      "id": "size",
+      "label": "Arabic text not too small (<13px under 25%)",
+      "pass": false,
+      "detail": "median 11px, 76% small"
+    },
+    {
+      "id": "lineheight",
+      "label": "Line height leaves room for Arabic marks",
+      "pass": false,
+      "detail": [
+        "div.avatar \"أك\"",
+        "span.customer-avatar \"م ت\"",
+        "div.customer \"م تميا تومبسون\""
+      ]
+    },
+    {
+      "id": "letterspacing",
+      "label": "No letter-spacing on Arabic",
+      "pass": false,
+      "detail": [
+        "span \"ق\"",
+        "div.brand \"ق\n      قريب\"",
+        "p.nav-label \"مساحة العمل\""
+      ]
+    },
+    {
+      "id": "numerals",
+      "label": "One numeral system per page",
+      "pass": true,
+      "detail": "western 120, eastern 0"
+    },
+    {
+      "id": "logical",
+      "label": "Built with direction-neutral CSS",
+      "pass": false,
+      "detail": "physical 11, logical 0"
+    },
+    {
+      "id": "presentation",
+      "label": "No pre-shaped Arabic characters",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "id": "overflow",
+      "label": "No sideways scroll on phone",
+      "pass": true,
+      "detail": false
+    },
+    {
+      "id": "jserrors",
+      "label": "No JavaScript errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "raw": {
+    "htmlDir": "rtl",
+    "htmlLang": "ar",
+    "bodyDir": "rtl",
+    "arabicEls": 63,
+    "medianArabicFontPx": 11,
+    "smallArabicShare": 0.76,
+    "leftAligned": [],
+    "letterSpaced": [
+      "span \"ق\"",
+      "div.brand \"ق\n      قريب\"",
+      "p.nav-label \"مساحة العمل\"",
+      "p.nav-label \"المتجر\"",
+      "h1 \"صباح الخير أحمد\"",
+      "button \"رقم الطلب ▲▼\"",
+      "button \"العميل ▲▼\"",
+      "button \"التاريخ ▲▼\"",
+      "button \"المبلغ ▲▼\"",
+      "button \"الحالة ▲▼\""
+    ],
+    "tightLines": [
+      "div.avatar \"أك\"",
+      "span.customer-avatar \"م ت\"",
+      "div.customer \"م تميا تومبسون\"",
+      "td \"10:42 ص، 18 يونيو\"",
+      "span.customer-avatar \"ن و\"",
+      "div.customer \"ن ونوح ويليامز\"",
+      "td \"10:18 ص، 18 يونيو\"",
+      "span.customer-avatar \"س م\"",
+      "div.customer \"س مسارة ميلر\"",
+      "td \"9:54 ص، 18 يونيو\"",
+      "span.customer-avatar \"إ ك\"",
+      "div.customer \"إ كإيثان كلارك\"",
+      "td \"9:20 ص، 18 يونيو\"",
+      "span.customer-avatar \"أ م\"",
+      "div.customer \"أ مأليفيا مارتن\"",
+      "td \"8:48 ص، 18 يونيو\""
+    ],
+    "rows": 17,
+    "wrongRows": 0,
+    "wrongRowLabels": [],
+    "doubleFlip": 0,
+    "ltrRuns": 5,
+    "scrambledRuns": [],
+    "unisolatedRuns": 0,
+    "arrowsWrong": [],
+    "backSide": null,
+    "sidebarSide": null,
+    "tableFirstColRight": true,
+    "ltrInputs": 0,
+    "ltrInputsWrong": 0,
+    "mirroredEls": 0,
+    "forcedLtrArabic": 0,
+    "westernDigits": 120,
+    "easternDigits": 0,
+    "presentationForms": 0,
+    "bidiControls": 0,
+    "physicalCss": 11,
+    "logicalCss": 0,
+    "overflowX": false,
+    "fonts": {
+      "DejaVu Sans": 521,
+      "Inter": 107,
+      "Inter SemiBold": 2
+    },
+    "mobileOverflow": false,
+    "carousel": {
+      "found": false
+    },
+    "sidebarSideDesktop": "left",
+    "jsErrors": []
+  }
+}

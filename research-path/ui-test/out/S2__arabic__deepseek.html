@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قريب - إتمام الطلب</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0a7e5f;
+            --primary-light: #e8f5f0;
+            --primary-dark: #065446;
+            --accent: #f0a04b;
+            --accent-light: #fef7f0;
+            --bg: #f5f3f0;
+            --surface: #ffffff;
+            --text: #1a1a1a;
+            --text-secondary: #5c5c5c;
+            --text-muted: #8c8c8c;
+            --border: #e8e4df;
+            --border-light: #f0ede8;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.08), 0 3px 10px rgba(0, 0, 0, 0.05);
+            --radius-sm: 10px;
+            --radius: 14px;
+            --radius-lg: 18px;
+            --radius-xl: 22px;
+            --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --font: 'Tajawal', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            font-size: 16px;
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Main container - mobile first 390px */
+        .app-container {
+            width: 100%;
+            max-width: 390px;
+            background: var(--bg);
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Desktop: center the app and add subtle shadow */
+        @media (min-width: 430px) {
+            body {
+                padding: 20px 16px;
+                align-items: flex-start;
+                background: #eae6df;
+            }
+            .app-container {
+                border-radius: 28px;
+                min-height: auto;
+                box-shadow: var(--shadow-lg), 0 20px 60px rgba(0, 0, 0, 0.12);
+                overflow: hidden;
+                background: var(--bg);
+            }
+        }
+
+        /* Header */
+        .header {
+            background: var(--surface);
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border-light);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .header-back {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--bg);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--text);
+            transition: var(--transition);
+        }
+        .header-back:hover {
+            background: #e8e4df;
+        }
+        .header-title {
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--text);
+            letter-spacing: -0.2px;
+        }
+        .header-logo {
+            font-weight: 800;
+            font-size: 1rem;
+            color: var(--primary);
+            background: var(--primary-light);
+            padding: 6px 14px;
+            border-radius: 20px;
+            letter-spacing: -0.3px;
+        }
+
+        /* Scrollable content */
+        .content {
+            flex: 1;
+            padding: 12px 14px 100px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            overflow-y: auto;
+        }
+
+        /* Card styles */
+        .card {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            padding: 16px 18px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+        .card:hover {
+            box-shadow: var(--shadow-md);
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .card-label {
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .card-label .icon {
+            font-size: 1rem;
+        }
+
+        /* Address card */
+        .address-card {
+            cursor: default;
+        }
+        .address-details {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .address-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: #fef3e7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            color: #e88a3c;
+        }
+        .address-text {
+            flex: 1;
+            min-width: 0;
+        }
+        .address-name {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text);
+            margin-bottom: 2px;
+        }
+        .address-full {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .address-edit {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.8rem;
+            cursor: pointer;
+            white-space: nowrap;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex-shrink: 0;
+            padding: 6px 10px;
+            border-radius: 20px;
+            background: var(--primary-light);
+            border: none;
+            font-family: var(--font);
+        }
+        .address-edit:hover {
+            background: #d0e8dd;
+            color: var(--primary-dark);
+        }
+
+        /* Delivery time */
+        .time-options {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        .time-day-btn {
+            flex: 1;
+            padding: 10px 8px;
+            border-radius: var(--radius);
+            border: 2px solid var(--border);
+            background: var(--surface);
+            cursor: pointer;
+            font-family: var(--font);
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--text);
+            transition: var(--transition);
+            text-align: center;
+        }
+        .time-day-btn.active {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(10, 126, 95, 0.08);
+        }
+        .time-day-btn:hover {
+            border-color: #c0bdb6;
+        }
+        .time-day-btn.active:hover {
+            border-color: var(--primary);
+        }
+        .time-slots {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .time-slot {
+            padding: 8px 14px;
+            border-radius: 20px;
+            border: 1.5px solid var(--border);
+            background: var(--surface);
+            cursor: pointer;
+            font-family: var(--font);
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text);
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+        .time-slot.active {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: #fff;
+            font-weight: 700;
+            box-shadow: 0 2px 8px rgba(10, 126, 95, 0.2);
+        }
+        .time-slot:hover {
+            border-color: #b5b0a8;
+        }
+        .time-slot.active:hover {
+            border-color: var(--primary);
+            background: var(--primary-dark);
+        }
+
+        /* Cart items */
+        .cart-item {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .cart-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        .cart-item-img {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: #f9f7f3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            flex-shrink: 0;
+        }
+        .cart-item-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .cart-item-name {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--text);
+            margin-bottom: 2px;
+        }
+        .cart-item-price {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+        .qty-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 1.5px solid var(--border);
+            background: var(--surface);
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            color: var(--text);
+            font-family: var(--font);
+            font-weight: 700;
+            line-height: 1;
+        }
+        .qty-btn:hover {
+            background: #f5f3f0;
+            border-color: #c0bdb6;
+        }
+        .qty-btn:active {
+            background: #e8e4df;
+            transform: scale(0.94);
+        }
+        .qty-value {
+            font-weight: 700;
+            font-size: 0.9rem;
+            min-width: 22px;
+            text-align: center;
+            color: var(--text);
+        }
+        .cart-item-total {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--text);
+            min-width: 55px;
+            text-align: left;
+            direction: ltr;
+            display: inline-block;
+        }
+
+        /* Promo code */
+        .promo-row {
+            display: flex;
+            gap: 8px;
+        }
+        .promo-input {
+            flex: 1;
+            padding: 11px 14px;
+            border-radius: var(--radius);
+            border: 1.5px solid var(--border);
+            font-family: var(--font);
+            font-size: 0.85rem;
+            outline: none;
+            transition: var(--transition);
+            background: #fafaf8;
+            color: var(--text);
+            direction: ltr;
+            text-align: left;
+        }
+        .promo-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(10, 126, 95, 0.06);
+            background: #fff;
+        }
+        .promo-input::placeholder {
+            color: #b5b0a8;
+            font-size: 0.8rem;
+        }
+        .promo-apply-btn {
+            padding: 11px 20px;
+            border-radius: var(--radius);
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-family: var(--font);
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+        .promo-apply-btn:hover {
+            background: #e89335;
+            box-shadow: 0 4px 12px rgba(240, 160, 75, 0.3);
+        }
+        .promo-apply-btn:active {
+            transform: scale(0.96);
+            background: #d9822a;
+        }
+        .promo-applied {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 8px;
+            padding: 8px 12px;
+            border-radius: 20px;
+            background: #e8f8e8;
+            color: #1a7a1a;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+        .promo-applied .remove-promo {
+            cursor: pointer;
+            font-weight: 700;
+            margin-right: auto;
+            color: #c0392b;
+            font-size: 0.75rem;
+        }
+
+        /* Payment methods */
+        .payment-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .payment-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 13px 16px;
+            border-radius: var(--radius);
+            border: 1.5px solid var(--border);
+            cursor: pointer;
+            transition: var(--transition);
+            background: var(--surface);
+        }
+        .payment-option:hover {
+            border-color: #c0bdb6;
+            background: #fdfdfc;
+        }
+        .payment-option.active {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(10, 126, 95, 0.06);
+        }
+        .payment-radio {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid #c0bdb6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+        .payment-option.active .payment-radio {
+            border-color: var(--primary);
+            background: var(--primary);
+        }
+        .payment-radio::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #fff;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        .payment-option.active .payment-radio::after {
+            opacity: 1;
+        }
+        .payment-icon {
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+        .payment-label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+        .payment-hint {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-right: auto;
+        }
+
+        /* Total summary */
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        .summary-row.total {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--text);
+            border-top: 1.5px dashed var(--border);
+            margin-top: 4px;
+            padding-top: 10px;
+        }
+        .summary-row.discount {
+            color: #1a7a1a;
+            font-weight: 600;
+        }
+        .summary-value {
+            font-weight: 600;
+            direction: ltr;
+            display: inline-block;
+        }
+
+        /* Confirm button */
+        .confirm-btn {
+            width: 100%;
+            padding: 15px;
+            border-radius: var(--radius-xl);
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-family: var(--font);
+            font-weight: 800;
+            font-size: 1.05rem;
+            letter-spacing: -0.2px;
+            transition: var(--transition);
+            box-shadow: 0 6px 20px rgba(10, 126, 95, 0.25);
+            margin-top: 4px;
+        }
+        .confirm-btn:hover {
+            background: var(--primary-dark);
+            box-shadow: 0 8px 28px rgba(10, 126, 95, 0.35);
+            transform: translateY(-1px);
+        }
+        .confirm-btn:active {
+            transform: scale(0.97);
+            box-shadow: 0 4px 14px rgba(10, 126, 95, 0.2);
+            transition: 0.08s;
+        }
+
+        /* Bottom safe area for mobile */
+        .bottom-safe {
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        /* RTL direction fix for currency */
+        [dir="rtl"] .ltr {
+            direction: ltr;
+            display: inline-block;
+        }
+
+        /* Small utility */
+        .text-accent {
+            color: var(--accent);
+        }
+        .text-primary {
+            color: var(--primary);
+        }
+        .mt-2 {
+            margin-top: 8px;
+        }
+        .mt-1 {
+            margin-top: 4px;
+        }
+
+        /* Scrollbar */
+        .content::-webkit-scrollbar {
+            width: 3px;
+        }
+        .content::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .content::-webkit-scrollbar-thumb {
+            background: #d5d0c8;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <button class="header-back" aria-label="رجوع" onclick="history.back()">←</button>
+            <span class="header-title">إتمام الطلب</span>
+            <span class="header-logo">قريب</span>
+        </header>
+
+        <!-- Main content -->
+        <main class="content" id="mainContent">
+            <!-- عنوان التوصيل -->
+            <div class="card address-card">
+                <div class="card-header">
+                    <span class="card-label"><span class="icon">📍</span> عنوان التوصيل</span>
+                </div>
+                <div class="address-details">
+                    <div class="address-icon">🏠</div>
+                    <div class="address-text">
+                        <div class="address-name">منزل - حي النزهة</div>
+                        <div class="address-full">شارع الأمير محمد بن عبدالعزيز، مبنى رقم ٤٢، الرياض ١٢٤٧٤</div>
+                    </div>
+                    <button class="address-edit" onclick="alert('تعديل العنوان')">
+                        ✎ تعديل
+                    </button>
+                </div>
+            </div>
+
+            <!-- وقت التوصيل -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-label"><span class="icon">🕒</span> وقت التوصيل</span>
+                </div>
+                <div class="time-options">
+                    <button class="time-day-btn active" data-day="today" onclick="selectDay(this, 'today')">اليوم</button>
+                    <button class="time-day-btn" data-day="tomorrow" onclick="selectDay(this, 'tomorrow')">غداً</button>
+                </div>
+                <div class="time-slots" id="timeSlots">
+                    <button class="time-slot active" data-slot="9-12" onclick="selectSlot(this)">٩:٠٠ ص - ١٢:٠٠ م</button>
+                    <button class="time-slot" data-slot="12-3" onclick="selectSlot(this)">١٢:٠٠ م - ٣:٠٠ م</button>
+                    <button class="time-slot" data-slot="3-6" onclick="selectSlot(this)">٣:٠٠ م - ٦:٠٠ م</button>
+                    <button class="time-slot" data-slot="6-9" onclick="selectSlot(this)">٦:٠٠ م - ٩:٠٠ م</button>
+                    <button class="time-slot" data-slot="9-11" onclick="selectSlot(this)">٩:٠٠ م - ١١:٠٠ م</button>
+                </div>
+            </div>
+
+            <!-- ملخص السلة -->
+            <div class="card" id="cartCard">
+                <div class="card-header">
+                    <span class="card-label"><span class="icon">🛒</span> ملخص السلة</span>
+                    <span style="font-size:0.8rem;color:var(--text-muted);font-weight:600;" id="cartItemCount">٣ منتجات</span>
+                </div>
+                <div id="cartItems">
+                    <!-- منتج 1 -->
+                    <div class="cart-item" data-price="35" data-id="1">
+                        <div class="cart-item-img">☕</div>
+                        <div class="cart-item-info">
+                            <div class="cart-item-name">قهوة عربية خاصة</div>
+                            <div class="cart-item-price">٣٥ ر.س</div>
+                        </div>
+                        <div class="cart-item-actions">
+                            <button class="qty-btn" onclick="changeQty(this, -1, 1)">−</button>
+                            <span class="qty-value">2</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1, 1)">+</button>
+                        </div>
+                        <span class="cart-item-total ltr">70 ر.س</span>
+                    </div>
+                    <!-- منتج 2 -->
+                    <div class="cart-item" data-price="28" data-id="2">
+                        <div class="cart-item-img">🥐</div>
+                        <div class="cart-item-info">
+                            <div class="cart-item-name">كرواسون زعتر</div>
+                            <div class="cart-item-price">٢٨ ر.س</div>
+                        </div>
+                        <div class="cart-item-actions">
+                            <button class="qty-btn" onclick="changeQty(this, -1, 2)">−</button>
+                            <span class="qty-value">1</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1, 2)">+</button>
+                        </div>
+                        <span class="cart-item-total ltr">28 ر.س</span>
+                    </div>
+                    <!-- منتج 3 -->
+                    <div class="cart-item" data-price="45" data-id="3">
+                        <div class="cart-item-img">🍰</div>
+                        <div class="cart-item-info">
+                            <div class="cart-item-name">تشيز كيك تمر</div>
+                            <div class="cart-item-price">٤٥ ر.س</div>
+                        </div>
+                        <div class="cart-item-actions">
+                            <button class="qty-btn" onclick="changeQty(this, -1, 3)">−</button>
+                            <span class="qty-value">1</span>
+                            <button class="qty-btn" onclick="changeQty(this, 1, 3)">+</button>
+                        </div>
+                        <span class="cart-item-total ltr">45 ر.س</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- رمز الخصم -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-label"><span class="icon">🏷️</span> رمز الخصم</span>
+                </div>
+                <div class="promo-row">
+                    <input type="text" class="promo-input" placeholder="أدخل رمز الخصم" id="promoInput" value="">
+                    <button class="promo-apply-btn" onclick="applyPromo()">تطبيق</button>
+                </div>
+                <div id="promoMessage"></div>
+            </div>
+
+            <!-- خيارات الدفع -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-label"><span class="icon">💳</span> طريقة الدفع</span>
+                </div>
+                <div class="payment-methods" id="paymentMethods">
+                    <div class="payment-option active" data-payment="card" onclick="selectPayment(this)">
+                        <div class="payment-radio"></div>
+                        <span class="payment-icon">💳</span>
+                        <span class="payment-label">بطاقة ائتمان</span>
+                        <span class="payment-hint">فيزا / مدى</span>
+                    </div>
+                    <div class="payment-option" data-payment="applepay" onclick="selectPayment(this)">
+                        <div class="payment-radio"></div>
+                        <span class="payment-icon">🍎</span>
+                        <span class="payment-label">Apple Pay</span>
+                    </div>
+                    <div class="payment-option" data-payment="cod" onclick="selectPayment(this)">
+                        <div class="payment-radio"></div>
+                        <span class="payment-icon">💵</span>
+                        <span class="payment-label">الدفع عند الاستلام</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- تفصيل المبلغ الإجمالي -->
+            <div class="card" id="summaryCard">
+                <div class="card-header">
+                    <span class="card-label"><span class="icon">🧾</span> تفصيل المبلغ</span>
+                </div>
+                <div class="summary-row">
+                    <span>المجموع الفرعي</span>
+                    <span class="summary-value ltr" id="subtotalDisplay">143 ر.س</span>
+                </div>
+                <div class="summary-row" id="discountRow" style="display:none;">
+                    <span>الخصم (كود)</span>
+                    <span class="summary-value discount ltr" id="discountDisplay">-0 ر.س</span>
+                </div>
+                <div class="summary-row">
+                    <span>رسوم التوصيل</span>
+                    <span class="summary-value ltr" id="deliveryFeeDisplay">15 ر.س</span>
+                </div>
+                <div class="summary-row">
+                    <span>ضريبة القيمة المضافة (15%)</span>
+                    <span class="summary-value ltr" id="vatDisplay">21.45 ر.س</span>
+                </div>
+                <div class="summary-row total">
+                    <span>الإجمالي</span>
+                    <span class="summary-value ltr" id="totalDisplay" style="color:var(--primary);font-size:1.1rem;">179.45 ر.س</span>
+                </div>
+            </div>
+
+            <!-- زر تأكيد الطلب -->
+            <button class="confirm-btn" onclick="confirmOrder()">
+                ✓ تأكيد الطلب
+            </button>
+
+            <div class="bottom-safe"></div>
+        </main>
+    </div>
+
+    <script>
+        // State
+        let state = {
+            items: {
+                1: { qty: 2, price: 35 },
+                2: { qty: 1, price: 28 },
+                3: { qty: 1, price: 45 },
+            },
+            deliveryFee: 15,
+            vatRate: 0.15,
+            discountPercent: 0,
+            discountCode: '',
+            selectedPayment: 'card',
+            selectedDay: 'today',
+            selectedSlot: '9-12',
+        };
+
+        // Initialize
+        function init() {
+            updateAllTotals();
+            updateCartDisplay();
+        }
+
+        // Change quantity
+        function changeQty(btn, delta, itemId) {
+            const item = state.items[itemId];
+            if (!item) return;
+            const newQty = item.qty + delta;
+            if (newQty < 1) return; // minimum 1
+            if (newQty > 10) return; // maximum 10
+            item.qty = newQty;
+            updateCartDisplay();
+            updateAllTotals();
+            // Add subtle animation
+            const cartItem = btn.closest('.cart-item');
+            if (cartItem) {
+                cartItem.style.transition = '0.15s';
+                cartItem.style.backgroundColor = '#f9fdf9';
+                setTimeout(() => { cartItem.style.backgroundColor = ''; }, 200);
+            }
+        }
+
+        // Update cart item displays
+        function updateCartDisplay() {
+            let totalItems = 0;
+            for (const id in state.items) {
+                const item = state.items[id];
+                totalItems += item.qty;
+                const cartItem = document.querySelector(`.cart-item[data-id="${id}"]`);
+                if (cartItem) {
+                    const qtySpan = cartItem.querySelector('.qty-value');
+                    const totalSpan = cartItem.querySelector('.cart-item-total');
+                    if (qtySpan) qtySpan.textContent = item.qty;
+                    if (totalSpan) {
+                        const total = item.qty * item.price;
+                        totalSpan.textContent = total + ' ر.س';
+                    }
+                }
+            }
+            const countEl = document.getElementById('cartItemCount');
+            if (countEl) {
+                countEl.textContent = totalItems + ' ' + (totalItems === 1 ? 'منتج' : 'منتجات');
+            }
+        }
+
+        // Calculate subtotal
+        function getSubtotal() {
+            let subtotal = 0;
+            for (const id in state.items) {
+                subtotal += state.items[id].qty * state.items[id].price;
+            }
+            return subtotal;
+        }
+
+        // Update all totals
+        function updateAllTotals() {
+            const subtotal = getSubtotal();
+            const discountAmount = Math.round(subtotal * state.discountPercent);
+            const afterDiscount = subtotal - discountAmount;
+            const vat = Math.round(afterDiscount * state.vatRate * 100) / 100;
+            const total = Math.round((afterDiscount + state.deliveryFee + vat) * 100) / 100;
+
+            document.getElementById('subtotalDisplay').textContent = subtotal + ' ر.س';
+            document.getElementById('deliveryFeeDisplay').textContent = state.deliveryFee + ' ر.س';
+            document.getElementById('vatDisplay').textContent = vat.toFixed(2) + ' ر.س';
+            document.getElementById('totalDisplay').textContent = total.toFixed(2) + ' ر.س';
+
+            const discountRow = document.getElementById('discountRow');
+            const discountDisplay = document.getElementById('discountDisplay');
+            if (state.discountPercent > 0 && discountAmount > 0) {
+                discountRow.style.display = 'flex';
+                discountDisplay.textContent = '-' + discountAmount + ' ر.س';
+            } else {
+                discountRow.style.display = 'none';
+                discountDisplay.textContent = '-0 ر.س';
+            }
+        }
+
+        // Apply promo code
+        function applyPromo() {
+            const input = document.getElementById('promoInput');
+            const code = input.value.trim().toUpperCase();
+            const msgEl = document.getElementById('promoMessage');
+
+            if (!code) {
+                msgEl.innerHTML = '<div class="promo-applied" style="background:#fff0f0;color:#c0392b;">الرجاء إدخال رمز الخصم</div>';
+                setTimeout(() => { msgEl.innerHTML = ''; }, 2000);
+                return;
+            }
+
+            // Simple demo codes
+            if (code === 'WELCOME10') {
+                state.discountPercent = 0.10;
+                state.discountCode = code;
+                msgEl.innerHTML =
+                    '<div class="promo-applied">✅ تم تطبيق الخصم 10% <span class="remove-promo" onclick="removePromo()">✕ إلغاء</span></div>';
+                input.disabled = true;
+                input.style.opacity = '0.6';
+            } else if (code === 'SAVE20') {
+                state.discountPercent = 0.20;
+                state.discountCode = code;
+                msgEl.innerHTML =
+                    '<div class="promo-applied">✅ تم تطبيق الخصم 20% <span class="remove-promo" onclick="removePromo()">✕ إلغاء</span></div>';
+                input.disabled = true;
+                input.style.opacity = '0.6';
+            } else if (code === 'FREESHIP') {
+                state.deliveryFee = 0;
+                state.discountCode = code;
+                state.discountPercent = 0;
+                msgEl.innerHTML =
+                    '<div class="promo-applied">🚚 توصيل مجاني! <span class="remove-promo" onclick="removePromo()">✕ إلغاء</span></div>';
+                input.disabled = true;
+                input.style.opacity = '0.6';
+            } else {
+                msgEl.innerHTML =
+                    '<div class="promo-applied" style="background:#fff0f0;color:#c0392b;">❌ رمز الخصم غير صالح</div>';
+                setTimeout(() => { msgEl.innerHTML = ''; }, 2500);
+                return;
+            }
+            updateAllTotals();
+        }
+
+        // Remove promo
+        function removePromo() {
+            state.discountPercent = 0;
+            state.discountCode = '';
+            state.deliveryFee = 15;
+            const input = document.getElementById('promoInput');
+            input.disabled = false;
+            input.style.opacity = '1';
+            input.value = '';
+            document.getElementById('promoMessage').innerHTML = '';
+            updateAllTotals();
+        }
+
+        // Select day
+        function selectDay(btn, day) {
+            state.selectedDay = day;
+            document.querySelectorAll('.time-day-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+
+        // Select time slot
+        function selectSlot(btn) {
+            state.selectedSlot = btn.dataset.slot;
+            document.querySelectorAll('.time-slot').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+
+        // Select payment method
+        function selectPayment(el) {
+            state.selectedPayment = el.dataset.payment;
+            document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('active'));
+            el.classList.add('active');
+        }
+
+        // Confirm order
+        function confirmOrder() {
+            const totalText = document.getElementById('totalDisplay').textContent;
+            const paymentLabels = {
+                'card': 'بطاقة ائتمان',
+                'applepay': 'Apple Pay',
+                'cod': 'الدفع عند الاستلام'
+            };
+            const paymentMethod = paymentLabels[state.selectedPayment] || state.selectedPayment;
+
+            let message = '🛎️ تم تأكيد الطلب!\n\n';
+            message += '📦 إجمالي الطلب: ' + totalText + '\n';
+            message += '💳 طريقة الدفع: ' + paymentMethod + '\n';
+            message += '🕒 التوصيل: ' + (state.selectedDay === 'today' ? 'اليوم' : 'غداً') + ' - الفترة: ' + state
+            .selectedSlot + '\n';
+            if (state.discountCode) {
+                message += '🏷️ رمز الخصم: ' + state.discountCode + '\n';
+            }
+            message += '\n✨ شكراً لثقتكم في "قريب"!';
+
+            alert(message);
+        }
+
+        // Run on load
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>

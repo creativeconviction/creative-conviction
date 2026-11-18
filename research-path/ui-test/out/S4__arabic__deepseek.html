@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قريب - خدمة العملاء</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-page: #e8eaed;
+            --bg-chat: #efeae2;
+            --bg-header: #ffffff;
+            --bg-input-area: #ffffff;
+            --bubble-customer: #0b7d6b;
+            --bubble-customer-text: #ffffff;
+            --bubble-employee: #ffffff;
+            --bubble-employee-text: #1a1a1a;
+            --text-secondary: #6b7280;
+            --text-timestamp: #8a8a8a;
+            --border-input: #e0e0e0;
+            --color-online: #22c55e;
+            --color-read: #4a9cd9;
+            --color-send-btn: #0b7d6b;
+            --shadow-header: 0 1px 3px rgba(0, 0, 0, 0.08);
+            --shadow-container: 0 4px 24px rgba(0, 0, 0, 0.12);
+            --radius-lg: 20px;
+            --radius-md: 16px;
+            --radius-sm: 12px;
+            --radius-xs: 8px;
+            --font-family: 'Cairo', sans-serif;
+            --transition-fast: 0.15s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background: #d9dcdd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            min-height: 100dvh;
+            padding: 16px;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 390px;
+            height: 100vh;
+            height: 100dvh;
+            max-height: 750px;
+            background: var(--bg-chat);
+            border-radius: var(--radius-lg);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: var(--shadow-container);
+            position: relative;
+        }
+
+        @media (min-width: 431px) {
+            .app-container {
+                border-radius: 22px;
+                height: 720px;
+                max-height: 85vh;
+                max-height: 85dvh;
+            }
+        }
+
+        @media (max-width: 430px) {
+            body {
+                padding: 0;
+                background: var(--bg-chat);
+            }
+            .app-container {
+                max-width: 100%;
+                border-radius: 0;
+                box-shadow: none;
+                height: 100vh;
+                height: 100dvh;
+                max-height: none;
+            }
+        }
+
+        /* ========== HEADER ========== */
+        .chat-header {
+            background: var(--bg-header);
+            padding: 10px 8px 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-header);
+            position: relative;
+            z-index: 10;
+            min-height: 56px;
+        }
+
+        .btn-back {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: background var(--transition-fast);
+            color: #333;
+            padding: 0;
+        }
+        .btn-back:hover {
+            background: #f3f4f6;
+        }
+        .btn-back:active {
+            background: #e5e7eb;
+            transform: scale(0.94);
+        }
+        .btn-back svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .header-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0b7d6b 0%, #16a38b 100%);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: 0;
+            line-height: 1;
+        }
+
+        .header-info {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1px;
+        }
+        .header-name {
+            font-size: 15px;
+            font-weight: 700;
+            color: #1a1a1a;
+            line-height: 1.3;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .header-status {
+            font-size: 12px;
+            font-weight: 500;
+            color: #555;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            line-height: 1;
+        }
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--color-online);
+            flex-shrink: 0;
+            animation: pulse-dot 2.2s ease-in-out infinite;
+        }
+        @keyframes pulse-dot {
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 0 7px rgba(34, 197, 94, 0);
+            }
+        }
+
+        /* ========== CHAT BODY ========== */
+        .chat-body {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 14px 12px 8px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            scroll-behavior: smooth;
+            background:
+                radial-gradient(ellipse at 50% 0%, rgba(0, 0, 0, 0.02) 0%, transparent 60%),
+                var(--bg-chat);
+        }
+        .chat-body::-webkit-scrollbar {
+            width: 4px;
+        }
+        .chat-body::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .chat-body::-webkit-scrollbar-thumb {
+            background: #c4c4c4;
+            border-radius: 8px;
+        }
+
+        /* Message row */
+        .msg-row {
+            display: flex;
+            flex-direction: column;
+            max-width: 82%;
+            animation: fadeInUp 0.35s ease forwards;
+            opacity: 0;
+        }
+        .msg-row.customer {
+            align-self: flex-end;
+            align-items: flex-end;
+        }
+        .msg-row.employee {
+            align-self: flex-start;
+            align-items: flex-start;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .msg-row:nth-child(1) {
+            animation-delay: 0s;
+        }
+        .msg-row:nth-child(2) {
+            animation-delay: 0.08s;
+        }
+        .msg-row:nth-child(3) {
+            animation-delay: 0.16s;
+        }
+        .msg-row:nth-child(4) {
+            animation-delay: 0.24s;
+        }
+        .msg-row:nth-child(5) {
+            animation-delay: 0.32s;
+        }
+        .msg-row:nth-child(6) {
+            animation-delay: 0.4s;
+        }
+
+        /* Bubble */
+        .bubble {
+            padding: 11px 15px;
+            font-size: 14px;
+            line-height: 1.6;
+            word-break: break-word;
+            position: relative;
+            letter-spacing: -0.01em;
+        }
+        .msg-row.customer .bubble {
+            background: var(--bubble-customer);
+            color: var(--bubble-customer-text);
+            border-radius: 18px 18px 4px 18px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.10);
+        }
+        .msg-row.employee .bubble {
+            background: var(--bubble-employee);
+            color: var(--bubble-employee-text);
+            border-radius: 18px 18px 18px 4px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e8e5e0;
+        }
+
+        /* Meta (time + read) */
+        .msg-meta {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: 2px;
+            padding: 0 4px;
+            font-size: 11px;
+            color: var(--text-timestamp);
+            font-weight: 500;
+            letter-spacing: 0;
+        }
+        .msg-row.customer .msg-meta {
+            justify-content: flex-end;
+        }
+        .read-receipt {
+            display: inline-flex;
+            align-items: center;
+            gap: -1px;
+            color: var(--color-read);
+            font-size: 11px;
+            letter-spacing: -1px;
+        }
+        .read-receipt .check {
+            display: inline-block;
+            line-height: 1;
+        }
+
+        /* Highlight spans */
+        .highlight {
+            font-weight: 600;
+            letter-spacing: 0.01em;
+        }
+        .msg-row.customer .highlight {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.18);
+            padding: 1px 6px;
+            border-radius: 5px;
+            white-space: nowrap;
+        }
+        .msg-row.employee .highlight {
+            color: #0b7d6b;
+            background: #e8f5f2;
+            padding: 1px 6px;
+            border-radius: 5px;
+            white-space: nowrap;
+        }
+
+        /* Date divider (optional subtle) */
+        .date-divider {
+            text-align: center;
+            font-size: 11px;
+            color: #999;
+            margin: 8px 0 4px 0;
+            font-weight: 500;
+            letter-spacing: 0;
+        }
+
+        /* ========== INPUT AREA ========== */
+        .input-area {
+            background: var(--bg-input-area);
+            padding: 8px 8px 10px 8px;
+            display: flex;
+            align-items: flex-end;
+            gap: 7px;
+            flex-shrink: 0;
+            border-top: 1px solid #e2e0db;
+            position: relative;
+            z-index: 10;
+        }
+        .btn-attach {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            transition: all var(--transition-fast);
+            padding: 0;
+        }
+        .btn-attach:hover {
+            background: #f3f4f6;
+            color: #333;
+        }
+        .btn-attach:active {
+            background: #e5e7eb;
+            transform: scale(0.92);
+        }
+        .btn-attach svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .input-wrapper {
+            flex: 1;
+            position: relative;
+            background: #f5f5f5;
+            border-radius: 24px;
+            border: 1px solid #e0ded9;
+            transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+            display: flex;
+            align-items: center;
+        }
+        .input-wrapper:focus-within {
+            border-color: #0b7d6b;
+            box-shadow: 0 0 0 3px rgba(11, 125, 107, 0.08);
+            background: #fff;
+        }
+        .input-wrapper input {
+            width: 100%;
+            border: none;
+            background: transparent;
+            padding: 10px 16px;
+            font-size: 14px;
+            font-family: var(--font-family);
+            color: #1a1a1a;
+            outline: none;
+            line-height: 1.4;
+            min-height: 20px;
+            letter-spacing: -0.01em;
+        }
+        .input-wrapper input::placeholder {
+            color: #b0b0b0;
+            font-weight: 400;
+        }
+
+        .btn-send {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: var(--color-send-btn);
+            cursor: pointer;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-fast);
+            padding: 0;
+            box-shadow: 0 2px 6px rgba(11, 125, 107, 0.3);
+        }
+        .btn-send:hover {
+            background: #0a6e5e;
+            box-shadow: 0 3px 10px rgba(11, 125, 107, 0.4);
+            transform: translateY(-1px);
+        }
+        .btn-send:active {
+            transform: scale(0.9);
+            box-shadow: 0 1px 3px rgba(11, 125, 107, 0.3);
+        }
+        .btn-send svg {
+            width: 19px;
+            height: 19px;
+            color: #fff;
+        }
+
+        /* Responsive tweaks */
+        @media (max-width: 360px) {
+            .bubble {
+                font-size: 13px;
+                padding: 9px 12px;
+            }
+            .msg-row {
+                max-width: 88%;
+            }
+            .header-name {
+                font-size: 14px;
+            }
+            .header-avatar {
+                width: 36px;
+                height: 36px;
+                font-size: 13px;
+            }
+            .btn-back {
+                width: 34px;
+                height: 34px;
+            }
+            .btn-back svg {
+                width: 20px;
+                height: 20px;
+            }
+            .btn-send {
+                width: 36px;
+                height: 36px;
+            }
+            .btn-send svg {
+                width: 17px;
+                height: 17px;
+            }
+            .btn-attach {
+                width: 34px;
+                height: 34px;
+            }
+            .btn-attach svg {
+                width: 20px;
+                height: 20px;
+            }
+            .input-wrapper input {
+                padding: 9px 12px;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container" role="main" aria-label="شاشة محادثة خدمة العملاء - تطبيق قريب">
+        <!-- ==================== HEADER ==================== -->
+        <header class="chat-header">
+            <button class="btn-back" aria-label="رجوع" title="رجوع">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="13 4 21 12 13 20"></polyline>
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                </svg>
+            </button>
+            <div class="header-avatar" aria-hidden="true">أ</div>
+            <div class="header-info">
+                <span class="header-name">أحمد القحطاني</span>
+                <span class="header-status">
+                    <span class="status-dot" aria-hidden="true"></span>
+                    متصل الآن
+                </span>
+            </div>
+        </header>
+
+        <!-- ==================== CHAT BODY ==================== -->
+        <div class="chat-body" id="chatBody" aria-label="المحادثة">
+            <!-- Message 1 - Customer -->
+            <div class="msg-row customer">
+                <div class="bubble">
+                    مرحباً، عندي استفسار بخصوص الطلب <span class="highlight">#QR-48213</span> لو سمحت
+                </div>
+                <div class="msg-meta">
+                    <span>10:28 ص</span>
+                    <span class="read-receipt" title="تمت القراءة">
+                        <span class="check">✓</span><span class="check">✓</span>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Message 2 - Employee -->
+            <div class="msg-row employee">
+                <div class="bubble">
+                    أهلاً وسهلاً بك! لحظة من فضلك وأراجع تفاصيل طلبك
+                </div>
+                <div class="msg-meta">
+                    <span>10:29 ص</span>
+                </div>
+            </div>
+
+            <!-- Message 3 - Customer -->
+            <div class="msg-row customer">
+                <div class="bubble">
+                    تمام، رقم الجوال المسجّل في الطلب هو <span class="highlight">+966 55 123 4567</span>
+                </div>
+                <div class="msg-meta">
+                    <span>10:30 ص</span>
+                    <span class="read-receipt" title="تمت القراءة">
+                        <span class="check">✓</span><span class="check">✓</span>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Message 4 - Employee -->
+            <div class="msg-row employee">
+                <div class="bubble">
+                    وصلني النظام، هل الطلب خاص بمنتج <span class="highlight">Almarai Fresh Milk 1L</span>؟
+                </div>
+                <div class="msg-meta">
+                    <span>10:31 ص</span>
+                </div>
+            </div>
+
+            <!-- Message 5 - Customer -->
+            <div class="msg-row customer">
+                <div class="bubble">
+                    نعم صحيح، <span class="highlight">Almarai Fresh Milk 1L</span> هو المنتج المطلوب
+                </div>
+                <div class="msg-meta">
+                    <span>10:31 ص</span>
+                    <span class="read-receipt" title="تمت القراءة">
+                        <span class="check">✓</span><span class="check">✓</span>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Message 6 - Employee -->
+            <div class="msg-row employee">
+                <div class="bubble">
+                    تمام عليك، تم تأكيد طلبك <span class="highlight">#QR-48213</span> وجاري التوصيل، سيصل خلال ٤٥ دقيقة تقريباً 👍
+                </div>
+                <div class="msg-meta">
+                    <span>10:32 ص</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== INPUT AREA ==================== -->
+        <div class="input-area">
+            <button class="btn-attach" aria-label="إرفاق ملف" title="إرفاق">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"></path>
+                </svg>
+            </button>
+            <div class="input-wrapper">
+                <input type="text" id="messageInput" placeholder="اكتب رسالتك هنا..." aria-label="اكتب رسالتك" maxlength="500" autocomplete="off">
+            </div>
+            <button class="btn-send" id="btnSend" aria-label="إرسال" title="إرسال">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            const chatBody = document.getElementById('chatBody');
+            const messageInput = document.getElementById('messageInput');
+            const btnSend = document.getElementById('btnSend');
+
+            // Scroll chat to bottom on load
+            function scrollToBottom(smooth) {
+                if (smooth) {
+                    chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: 'smooth' });
+                } else {
+                    chatBody.scrollTop = chatBody.scrollHeight;
+                }
+            }
+
+            // Initial scroll
+            scrollToBottom(false);
+
+            // Helper: get current time in Arabic-friendly format
+            function getCurrentTime() {
+                const now = new Date();
+                let hours = now.getHours();
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const ampm = hours >= 12 ? 'م' : 'ص';
+                if (hours > 12) hours -= 12;
+                if (hours === 0) hours = 12;
+                return hours + ':' + minutes + ' ' + ampm;
+            }
+
+            // Helper: create a new message row
+            function createMessageRow(text, type) {
+                const row = document.createElement('div');
+                row.className = 'msg-row ' + type;
+
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+                bubble.textContent = text;
+
+                const meta = document.createElement('div');
+                meta.className = 'msg-meta';
+                const timeSpan = document.createElement('span');
+                timeSpan.textContent = getCurrentTime();
+                meta.appendChild(timeSpan);
+
+                if (type === 'customer') {
+                    const receipt = document.createElement('span');
+                    receipt.className = 'read-receipt';
+                    receipt.title = 'تمت القراءة';
+                    receipt.innerHTML = '<span class="check">✓</span><span class="check">✓</span>';
+                    meta.appendChild(receipt);
+                }
+
+                row.appendChild(bubble);
+                row.appendChild(meta);
+                return row;
+            }
+
+            // Send message handler
+            function sendMessage() {
+                const text = messageInput.value.trim();
+                if (!text) return;
+
+                // Append customer message
+                const customerRow = createMessageRow(text, 'customer');
+                chatBody.appendChild(customerRow);
+                scrollToBottom(true);
+
+                // Clear input
+                messageInput.value = '';
+                messageInput.focus();
+
+                // Simulate employee auto-reply after a short delay
+                const autoReplies = [
+                    'شكراً لتواصلك، سأتحقق من ذلك وأعود إليك قريباً',
+                    'تم استلام رسالتك، فريقنا يتابع طلبك الآن',
+                    'نشكر صبرك، سيتم الرد عليك في أقرب وقت ممكن',
+                    'وصلتني رسالتك، سأقوم باللازم فوراً',
+                ];
+                const randomReply =
+                    autoReplies[Math.floor(Math.random() * autoReplies.length)];
+
+                setTimeout(function() {
+                    const employeeRow = createMessageRow(randomReply, 'employee');
+                    chatBody.appendChild(employeeRow);
+                    scrollToBottom(true);
+                }, 1200 + Math.random() * 1800);
+            }
+
+            // Event listeners
+            btnSend.addEventListener('click', sendMessage);
+
+            messageInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            });
+
+            // Focus input on page load for convenience
+            setTimeout(function() {
+                messageInput.focus();
+            }, 500);
+        })();
+    </script>
+</body>
+</html>

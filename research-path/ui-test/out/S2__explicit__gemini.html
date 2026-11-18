@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>إتمام الطلب - Qareeb</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00A651;
+            --primary-dark: #008a43;
+            --primary-light: #e6f6ec;
+            --bg: #f4f6f8;
+            --surface: #ffffff;
+            --text-main: #1a1a1a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --radius: 12px;
+            --spacing: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .app-container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: var(--bg);
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 110px;
+        }
+
+        /* Header */
+        header {
+            background: var(--surface);
+            padding: var(--spacing);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            display: flex;
+            color: var(--text-main);
+        }
+
+        header h1 {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        /* Sections */
+        section {
+            background: var(--surface);
+            margin-top: 10px;
+            padding: var(--spacing);
+        }
+
+        .section-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Address Card */
+        .address-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .address-content {
+            display: flex;
+            gap: 12px;
+        }
+
+        .icon-box {
+            background: var(--primary-light);
+            color: var(--primary);
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .address-details h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .address-details p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .edit-link {
+            color: var(--primary);
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 4px 8px;
+        }
+
+        /* Delivery Time */
+        .tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            background: #f1f5f9;
+            padding: 4px;
+            border-radius: 10px;
+        }
+
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            transition: 0.2s;
+        }
+
+        .tab.active {
+            background: var(--surface);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .time-slot {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px 4px;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+            color: var(--text-main);
+        }
+
+        .time-slot.selected {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+
+        /* Cart Summary */
+        .cart-item {
+            display: flex;
+            gap: 12px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 16px;
+        }
+
+        .cart-item:last-child {
+            border: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .item-img {
+            width: 72px;
+            height: 72px;
+            background: #f8fafc;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            border: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+
+        .item-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .item-name {
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .item-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .item-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 8px;
+        }
+
+        .item-price {
+            font-weight: 800;
+            font-size: 1rem;
+            color: var(--text-main);
+        }
+
+        .currency {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .stepper {
+            display: flex;
+            align-items: center;
+            background: #f1f5f9;
+            border-radius: 24px;
+            padding: 4px;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.02);
+        }
+
+        .stepper button {
+            width: 28px;
+            height: 28px;
+            border: none;
+            background: var(--surface);
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            color: var(--primary);
+            transition: 0.1s;
+        }
+        
+        .stepper button:active {
+            transform: scale(0.95);
+        }
+
+        .stepper span {
+            width: 36px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        /* Promo Code */
+        .promo-container {
+            display: flex;
+            gap: 12px;
+        }
+
+        .promo-input {
+            flex: 1;
+            padding: 14px 16px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .promo-input:focus {
+            border-color: var(--primary);
+        }
+
+        .promo-btn {
+            background: var(--text-main);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 0 24px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+
+        /* Payment Methods */
+        .payment-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .payment-option:last-child {
+            margin-bottom: 0;
+        }
+
+        .payment-option.selected {
+            border-color: var(--primary);
+            background: #fafdfa;
+        }
+
+        .pay-icon-wrapper {
+            width: 40px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+        }
+
+        .payment-option.selected .pay-icon-wrapper.card { color: var(--primary); border-color: var(--primary-light); background: var(--primary-light); }
+        .payment-option.selected .pay-icon-wrapper.cash { color: var(--primary); border-color: var(--primary-light); background: var(--primary-light); }
+
+        .pay-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .radio-circle {
+            width: 22px;
+            height: 22px;
+            border: 2px solid #cbd5e1;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-inline-start: auto;
+            transition: 0.2s;
+        }
+
+        .payment-option.selected .radio-circle {
+            border-color: var(--primary);
+        }
+
+        .payment-option.selected .radio-circle::after {
+            content: '';
+            width: 12px;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        /* Order Total */
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .total-row:last-of-type {
+            margin-bottom: 0;
+        }
+        
+        .total-row .val {
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .total-row.grand-total {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px dashed #cbd5e1;
+        }
+        
+        .total-row.grand-total .val {
+            font-weight: 800;
+        }
+
+        /* Footer */
+        .checkout-footer {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 480px;
+            background: var(--surface);
+            padding: 16px var(--spacing);
+            padding-bottom: calc(16px + env(safe-area-inset-bottom));
+            box-shadow: 0 -4px 16px rgba(0,0,0,0.06);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 20;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-total-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 2px;
+        }
+
+        .footer-total-amount {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .place-order-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 14px 36px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 166, 81, 0.25);
+            transition: 0.2s;
+        }
+        
+        .place-order-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 6px rgba(0, 166, 81, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    <header>
+        <button class="back-btn" aria-label="عودة">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 18l6-6-6-6"/>
+            </svg>
+        </button>
+        <h1>إتمام الطلب</h1>
+    </header>
+
+    <main>
+        <!-- Address Section -->
+        <section>
+            <div class="address-header">
+                <div class="address-content">
+                    <div class="icon-box">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                    </div>
+                    <div class="address-details">
+                        <div style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 2px;">التوصيل إلى</div>
+                        <h3>المنزل</h3>
+                        <p>شارع العليا، حي الملك فهد<br>الرياض، المملكة العربية السعودية</p>
+                    </div>
+                </div>
+                <a href="#" class="edit-link">تعديل</a>
+            </div>
+        </section>
+
+        <!-- Delivery Time Section -->
+        <section>
+            <h2 class="section-title">وقت التوصيل</h2>
+            <div class="tabs">
+                <div class="tab active" id="tab-today">اليوم</div>
+                <div class="tab" id="tab-tomorrow">غداً</div>
+            </div>
+            
+            <div id="slots-today" class="time-slots">
+                <div class="time-slot selected">10:00 ص - 12:00 م</div>
+                <div class="time-slot">12:00 م - 02:00 م</div>
+                <div class="time-slot">02:00 م - 04:00 م</div>
+                <div class="time-slot">04:00 م - 06:00 م</div>
+                <div class="time-slot">06:00 م - 08:00 م</div>
+                <div class="time-slot">08:00 م - 10:00 م</div>
+            </div>
+            
+            <div id="slots-tomorrow" class="time-slots" style="display: none;">
+                <div class="time-slot">08:00 ص - 10:00 ص</div>
+                <div class="time-slot">10:00 ص - 12:00 م</div>
+                <div class="time-slot">12:00 م - 02:00 م</div>
+                <div class="time-slot">02:00 م - 04:00 م</div>
+                <div class="time-slot">04:00 م - 06:00 م</div>
+                <div class="time-slot">06:00 م - 08:00 م</div>
+            </div>
+        </section>
+
+        <!-- Cart Summary Section -->
+        <section>
+            <h2 class="section-title">ملخص الطلب</h2>
+            
+            <!-- Item 1 -->
+            <div class="cart-item" data-price="10.00">
+                <div class="item-img">🥛</div>
+                <div class="item-details">
+                    <div>
+                        <div class="item-name">حليب المراعي طازج كامل الدسم</div>
+                        <div class="item-meta">2 لتر</div>
+                    </div>
+                    <div class="item-bottom">
+                        <div class="item-price"><span>10.00</span> <span class="currency">ر.س</span></div>
+                        <div class="stepper">
+                            <button class="minus">-</button>
+                            <span class="qty">1</span>
+                            <button class="plus">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="cart-item" data-price="5.50">
+                <div class="item-img">🍞</div>
+                <div class="item-details">
+                    <div>
+                        <div class="item-name">خبز توست أبيض لوزين</div>
+                        <div class="item-meta">600 جم</div>
+                    </div>
+                    <div class="item-bottom">
+                        <div class="item-price"><span>5.50</span> <span class="currency">ر.س</span></div>
+                        <div class="stepper">
+                            <button class="minus">-</button>
+                            <span class="qty">2</span>
+                            <button class="plus">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="cart-item" data-price="8.95">
+                <div class="item-img">🍎</div>
+                <div class="item-details">
+                    <div>
+                        <div class="item-name">تفاح جالا طازج</div>
+                        <div class="item-meta">1 كجم</div>
+                    </div>
+                    <div class="item-bottom">
+                        <div class="item-price"><span>8.95</span> <span class="currency">ر.س</span></div>
+                        <div class="stepper">
+                            <button class="minus">-</button>
+                            <span class="qty">1</span>
+                            <button class="plus">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Promo Code Section -->
+        <section>
+            <div class="promo-container">
+                <input type="text" class="promo-input" placeholder="أدخل كود الخصم" dir="rtl">
+                <button class="promo-btn">تطبيق</button>
+            </div>
+        </section>
+
+        <!-- Payment Methods Section -->
+        <section>
+            <h2 class="section-title">طريقة الدفع</h2>
+            
+            <div class="payment-option selected">
+                <div class="pay-icon-wrapper card">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                        <line x1="1" y1="10" x2="23" y2="10"></line>
+                    </svg>
+                </div>
+                <span class="pay-name">بطاقة ائتمانية</span>
+                <div class="radio-circle"></div>
+            </div>
+
+            <div class="payment-option">
+                <div class="pay-icon-wrapper" style="background: #000; color: #fff; border: none;">
+                    <svg width="18" height="18" viewBox="0 0 384 512" fill="currentColor">
+                        <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-96.2 20.7-22 0-54.9-20.4-83.6-19.9-41.2.5-79.3 24.3-100.9 63.6-43.9 79.5-11.2 197.8 31.9 259.9 21.2 30.6 46.1 64.1 79.8 63.1 32.3-1 43.8-20.5 82.6-20.5 38.6 0 49.3 20.5 83 20 35.1-.5 56.6-31.2 77.5-61.9 24.5-36 35.3-71 36.1-72.8-1.5-.7-85-32.3-85.5-122.8zM245.9 83c21.8-26.6 36.3-63.5 32.3-99.6-30.8 1.2-68.5 20.4-91 46.5-17.7 20.4-34.6 58.7-29.8 93.6 34.6 2.7 69.1-18.2 88.5-40.5z"/>
+                    </svg>
+                </div>
+                <span class="pay-name" style="font-family: -apple-system, BlinkMacSystemFont, sans-serif;" dir="ltr">Apple Pay</span>
+                <div class="radio-circle"></div>
+            </div>
+
+            <div class="payment-option">
+                <div class="pay-icon-wrapper cash">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="6" width="20" height="12" rx="2"></rect>
+                        <circle cx="12" cy="12" r="2"></circle>
+                    </svg>
+                </div>
+                <span class="pay-name">الدفع عند الاستلام</span>
+                <div class="radio-circle"></div>
+            </div>
+        </section>
+
+        <!-- Order Total Section -->
+        <section style="margin-bottom: 20px;">
+            <div class="total-row">
+                <span>المجموع الفرعي</span>
+                <span class="val"><span id="subtotal-val">0.00</span> <span class="currency">ر.س</span></span>
+            </div>
+            <div class="total-row">
+                <span>رسوم التوصيل</span>
+                <span class="val"><span id="delivery-val">15.00</span> <span class="currency">ر.س</span></span>
+            </div>
+            <div class="total-row">
+                <span>ضريبة القيمة المضافة (15%)</span>
+                <span class="val"><span id="vat-val">0.00</span> <span class="currency">ر.س</span></span>
+            </div>
+            <div class="total-row grand-total">
+                <span>الإجمالي</span>
+                <span class="val"><span id="grand-total-val">0.00</span> <span class="currency">ر.س</span></span>
+            </div>
+        </section>
+    </main>
+
+    <!-- Fixed Footer -->
+    <div class="checkout-footer">
+        <div>
+            <div class="footer-total-label">المبلغ المطلوب</div>
+            <div class="footer-total-amount"><span id="footer-total-val">0.00</span> <span class="currency" style="color: var(--primary); font-size: 0.9rem;">ر.س</span></div>
+        </div>
+        <button class="place-order-btn">تأكيد الطلب</button>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Delivery Time Tabs
+        const tabToday = document.getElementById('tab-today');
+        const tabTomorrow = document.getElementById('tab-tomorrow');
+        const slotsToday = document.getElementById('slots-today');
+        const slotsTomorrow = document.getElementById('slots-tomorrow');
+
+        tabToday.addEventListener('click', () => {
+            tabToday.classList.add('active');
+            tabTomorrow.classList.remove('active');
+            slotsToday.style.display = 'grid';
+            slotsTomorrow.style.display = 'none';
+        });
+
+        tabTomorrow.addEventListener('click', () => {
+            tabTomorrow.classList.add('active');
+            tabToday.classList.remove('active');
+            slotsTomorrow.style.display = 'grid';
+            slotsToday.style.display = 'none';
+        });
+
+        // Time Slots Selection
+        document.querySelectorAll('.time-slot').forEach(slot => {
+            slot.addEventListener('click', (e) => {
+                const parent = e.target.closest('.time-slots');
+                parent.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+                e.target.classList.add('selected');
+            });
+        });
+
+        // Payment Method Selection
+        document.querySelectorAll('.payment-option').forEach(option => {
+            option.addEventListener('click', (e) => {
+                document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
+                e.currentTarget.classList.add('selected');
+            });
+        });
+
+        // Calculate Totals
+        const updateTotals = () => {
+            let subtotal = 0;
+            document.querySelectorAll('.cart-item').forEach(item => {
+                const price = parseFloat(item.dataset.price);
+                const qty = parseInt(item.querySelector('.qty').innerText);
+                subtotal += price * qty;
+            });
+
+            const delivery = 15.00;
+            const vat = subtotal * 0.15; 
+            const total = subtotal + delivery + vat;
+
+            document.getElementById('subtotal-val').innerText = subtotal.toFixed(2);
+            document.getElementById('vat-val').innerText = vat.toFixed(2);
+            document.getElementById('grand-total-val').innerText = total.toFixed(2);
+            document.getElementById('footer-total-val').innerText = total.toFixed(2);
+        };
+
+        // Quantity Steppers
+        document.querySelectorAll('.plus').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const qtySpan = e.currentTarget.parentElement.querySelector('.qty');
+                let qty = parseInt(qtySpan.innerText);
+                qtySpan.innerText = qty + 1;
+                updateTotals();
+            });
+        });
+
+        document.querySelectorAll('.minus').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const qtySpan = e.currentTarget.parentElement.querySelector('.qty');
+                let qty = parseInt(qtySpan.innerText);
+                if (qty > 1) {
+                    qtySpan.innerText = qty - 1;
+                    updateTotals();
+                }
+            });
+        });
+
+        // Initialize Calculation
+        updateTotals();
+    });
+</script>
+
+</body>
+</html>

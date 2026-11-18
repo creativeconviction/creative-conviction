@@ -1,0 +1,184 @@
+{
+  "file": "out/S3__plain__deepseek.html",
+  "screen": "S3",
+  "cond": "plain",
+  "model": "deepseek",
+  "score": 67,
+  "mainFont": "Cairo",
+  "checks": [
+    {
+      "id": "complete",
+      "label": "Page is complete (not cut off)",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "id": "dir",
+      "label": "Page set to right-to-left",
+      "pass": true,
+      "detail": "rtl/rtl"
+    },
+    {
+      "id": "lang",
+      "label": "Language set to Arabic",
+      "pass": true,
+      "detail": "ar"
+    },
+    {
+      "id": "align",
+      "label": "Arabic text aligned to the right",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "flow",
+      "label": "Rows flow right-to-left (first item on the right)",
+      "pass": true,
+      "detail": "0/19 wrong []"
+    },
+    {
+      "id": "arrows",
+      "label": "Next points left, back points right",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "sidebar",
+      "label": "Sidebar on the right (desktop)",
+      "pass": true,
+      "detail": "right"
+    },
+    {
+      "id": "inputs",
+      "label": "Phone/email/password fields typed left-to-right",
+      "pass": false,
+      "detail": "2/2 wrong"
+    },
+    {
+      "id": "font",
+      "label": "Arabic drawn in an intended font",
+      "pass": true,
+      "detail": {
+        "Cairo": 644,
+        "Noto Color Emoji": 2,
+        "DejaVu Sans": 1
+      }
+    },
+    {
+      "id": "size",
+      "label": "Arabic text not too small (<13px under 25%)",
+      "pass": false,
+      "detail": "median 12.16px, 70% small"
+    },
+    {
+      "id": "lineheight",
+      "label": "Line height leaves room for Arabic marks",
+      "pass": false,
+      "detail": [
+        "button.page-btn.disabled \"السابق\"",
+        "button.page-btn \"التالي\""
+      ]
+    },
+    {
+      "id": "letterspacing",
+      "label": "No letter-spacing on Arabic",
+      "pass": false,
+      "detail": [
+        "span.logo-icon \"ق\"",
+        "span.logo-text \"قريب\""
+      ]
+    },
+    {
+      "id": "numerals",
+      "label": "One numeral system per page",
+      "pass": true,
+      "detail": "western 107, eastern 0"
+    },
+    {
+      "id": "logical",
+      "label": "Built with direction-neutral CSS",
+      "pass": false,
+      "detail": "physical 14, logical 0"
+    },
+    {
+      "id": "presentation",
+      "label": "No pre-shaped Arabic characters",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "id": "overflow",
+      "label": "No sideways scroll on phone",
+      "pass": true,
+      "detail": false
+    },
+    {
+      "id": "carousel",
+      "label": "Carousel next works and moves the RTL way",
+      "pass": false,
+      "detail": {
+        "found": true,
+        "changed": true,
+        "dotMoved": "right"
+      }
+    },
+    {
+      "id": "jserrors",
+      "label": "No JavaScript errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "raw": {
+    "htmlDir": "rtl",
+    "htmlLang": "ar",
+    "bodyDir": "rtl",
+    "arabicEls": 67,
+    "medianArabicFontPx": 12.16,
+    "smallArabicShare": 0.7,
+    "leftAligned": [],
+    "letterSpaced": [
+      "span.logo-icon \"ق\"",
+      "span.logo-text \"قريب\""
+    ],
+    "tightLines": [
+      "button.page-btn.disabled \"السابق\"",
+      "button.page-btn \"التالي\""
+    ],
+    "rows": 19,
+    "wrongRows": 0,
+    "wrongRowLabels": [],
+    "doubleFlip": 0,
+    "ltrRuns": 0,
+    "scrambledRuns": [],
+    "unisolatedRuns": 0,
+    "arrowsWrong": [],
+    "backSide": null,
+    "sidebarSide": null,
+    "tableFirstColRight": null,
+    "ltrInputs": 2,
+    "ltrInputsWrong": 2,
+    "mirroredEls": 0,
+    "forcedLtrArabic": 0,
+    "westernDigits": 107,
+    "easternDigits": 0,
+    "presentationForms": 0,
+    "bidiControls": 0,
+    "physicalCss": 14,
+    "logicalCss": 0,
+    "overflowX": false,
+    "fonts": {
+      "Cairo": 644,
+      "Noto Color Emoji": 2,
+      "DejaVu Sans": 1
+    },
+    "mobileOverflow": false,
+    "carousel": {
+      "found": true,
+      "changed": true,
+      "dotMoved": "right"
+    },
+    "sidebarSideDesktop": "right",
+    "jsErrors": []
+  }
+}

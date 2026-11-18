@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم - تطبيق قريب</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0d9488;
+            --primary-hover: #0f766e;
+            --bg-color: #f3f4f6;
+            --card-bg: #ffffff;
+            --text-dark: #1f2937;
+            --text-muted: #6b7280;
+            --border-color: #e5e7eb;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --sidebar-width: 260px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Layout */
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--card-bg);
+            border-left: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100vh;
+            z-index: 1000;
+            transform: translateX(100%);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar.active {
+            transform: translateX(0);
+        }
+
+        .sidebar-header {
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .close-sidebar {
+            background: none;
+            border: none;
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            display: block;
+        }
+
+        .nav-menu {
+            list-style: none;
+            padding: 1rem;
+            flex-grow: 1;
+        }
+
+        .nav-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.875rem 1rem;
+            text-decoration: none;
+            color: var(--text-muted);
+            border-radius: 0.5rem;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background-color: #f0fdfa;
+            color: var(--primary);
+        }
+
+        .nav-link i {
+            font-size: 1.25rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex-grow: 1;
+            width: 100%;
+            transition: var(--transition);
+        }
+
+        /* Topbar */
+        .topbar {
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            height: 70px;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 99;
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .menu-toggle {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            cursor: pointer;
+        }
+
+        .search-bar {
+            position: relative;
+            display: none;
+        }
+
+        .search-bar input {
+            padding: 0.5rem 1rem 0.5rem 2.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 2rem;
+            outline: none;
+            font-size: 0.9rem;
+            width: 250px;
+            background-color: var(--bg-color);
+        }
+
+        .search-bar i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .user-info {
+            display: none;
+        }
+
+        .user-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .user-role {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Content Area */
+        .content-area {
+            padding: 1.5rem;
+        }
+
+        .page-title {
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        /* KPI Cards */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .kpi-card {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .kpi-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .kpi-title {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .kpi-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 0.5rem;
+            background-color: #f0fdfa;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .kpi-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .kpi-change {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .change-up { color: var(--success); }
+        .change-down { color: var(--danger); }
+
+        /* Chart Section */
+        .chart-container {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            border: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            overflow-x: auto;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .chart-svg {
+            width: 100%;
+            min-width: 500px;
+            height: 300px;
+        }
+
+        /* Table Section */
+        .table-container {
+            background-color: var(--card-bg);
+            border-radius: 1rem;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .table-header-section {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: right;
+            min-width: 600px;
+        }
+
+        th, td {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: #f9fafb;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.875rem;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        th i {
+            margin-right: 0.5rem;
+            font-size: 0.75rem;
+            color: #d1d5db;
+        }
+
+        th:hover i {
+            color: var(--text-dark);
+        }
+
+        td {
+            font-size: 0.9rem;
+            color: var(--text-dark);
+        }
+
+        .customer-cell {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .customer-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+        }
+
+        .badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 2rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .badge-success { background-color: #d1fae5; color: #065f46; }
+        .badge-warning { background-color: #fef3c7; color: #92400e; }
+        .badge-danger { background-color: #fee2e2; color: #991b1b; }
+
+        /* Media Queries */
+        @media (min-width: 768px) {
+            .sidebar {
+                transform: translateX(0);
+            }
+            .close-sidebar {
+                display: none;
+            }
+            .main-content {
+                margin-right: var(--sidebar-width);
+                width: calc(100% - var(--sidebar-width));
+            }
+            .menu-toggle {
+                display: none;
+            }
+            .search-bar {
+                display: block;
+            }
+            .user-info {
+                display: block;
+            }
+            .kpi-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .kpi-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* Overlay for mobile */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+        
+        @media (min-width: 768px) {
+            .overlay.active {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard">
+        <!-- Overlay -->
+        <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="brand">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>قريب</span>
+                </div>
+                <button class="close-sidebar" onclick="toggleSidebar()">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active">
+                        <i class="fa-solid fa-house"></i>
+                        <span>الرئيسية</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fa-solid fa-box-open"></i>
+                        <span>الطلبات</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fa-solid fa-tags"></i>
+                        <span>المنتجات</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fa-solid fa-users"></i>
+                        <span>العملاء</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fa-solid fa-chart-pie"></i>
+                        <span>التقارير</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fa-solid fa-gear"></i>
+                        <span>الإعدادات</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Topbar -->
+            <header class="topbar">
+                <div class="topbar-right">
+                    <button class="menu-toggle" onclick="toggleSidebar()">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <div class="search-bar">
+                        <input type="text" placeholder="ابحث عن طلب، منتج، عميل...">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                </div>
+                <div class="topbar-left">
+                    <div class="user-profile">
+                        <div class="user-info">
+                            <div class="user-name">أحمد متجري</div>
+                            <div class="user-role">مدير المتجر</div>
+                        </div>
+                        <div class="avatar">أ</div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="content-area">
+                <h1 class="page-title">نظرة عامة</h1>
+
+                <!-- KPI Cards -->
+                <div class="kpi-grid">
+                    <!-- Card 1 -->
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">طلبات اليوم</span>
+                            <div class="kpi-icon"><i class="fa-solid fa-bag-shopping"></i></div>
+                        </div>
+                        <div class="kpi-value">124</div>
+                        <div class="kpi-change change-up">
+                            <i class="fa-solid fa-arrow-trend-up"></i>
+                            <span>+12.5% منذ الأمس</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">الإيرادات</span>
+                            <div class="kpi-icon"><i class="fa-solid fa-wallet"></i></div>
+                        </div>
+                        <div class="kpi-value">4,520 ر.س</div>
+                        <div class="kpi-change change-up">
+                            <i class="fa-solid fa-arrow-trend-up"></i>
+                            <span>+8.2% منذ الأمس</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">متوسط السلة</span>
+                            <div class="kpi-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                        </div>
+                        <div class="kpi-value">185 ر.س</div>
+                        <div class="kpi-change change-down">
+                            <i class="fa-solid fa-arrow-trend-down"></i>
+                            <span>-2.1% منذ الأمس</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">نسبة الإلغاء</span>
+                            <div class="kpi-icon"><i class="fa-solid fa-ban"></i></div>
+                        </div>
+                        <div class="kpi-value">3.2%</div>
+                        <!-- Green text for down arrow because lower cancellation is good -->
+                        <div class="kpi-change change-up">
+                            <i class="fa-solid fa-arrow-trend-down"></i>
+                            <span>-1.5% منذ الأمس</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SVG Bar Chart Section -->
+                <div class="chart-container">
+                    <h2 class="section-title">مبيعات آخر ٧ أيام (ر.س)</h2>
+                    <!-- SVG Chart -->
+                    <svg class="chart-svg" viewBox="0 0 700 300" preserveAspectRatio="xMidYMid meet">
+                        <!-- Grid Lines -->
+                        <line x1="50" y1="50" x2="680" y2="50" stroke="#e5e7eb" stroke-dasharray="4"/>
+                        <line x1="50" y1="100" x2="680" y2="100" stroke="#e5e7eb" stroke-dasharray="4"/>
+                        <line x1="50" y1="150" x2="680" y2="150" stroke="#e5e7eb" stroke-dasharray="4"/>
+                        <line x1="50" y1="200" x2="680" y2="200" stroke="#e5e7eb" stroke-dasharray="4"/>
+                        <line x1="50" y1="250" x2="680" y2="250" stroke="#9ca3af"/> <!-- Base line -->
+
+                        <!-- Y Axis Labels -->
+                        <text x="40" y="55" font-size="12" fill="#6b7280" text-anchor="end">4000</text>
+                        <text x="40" y="105" font-size="12" fill="#6b7280" text-anchor="end">3000</text>
+                        <text x="40" y="155" font-size="12" fill="#6b7280" text-anchor="end">2000</text>
+                        <text x="40" y="205" font-size="12" fill="#6b7280" text-anchor="end">1000</text>
+                        <text x="40" y="255" font-size="12" fill="#6b7280" text-anchor="end">0</text>
+
+                        <!-- Bars & X Axis Labels -->
+                        <!-- Day 1 -->
+                        <rect x="90" y="120" width="40" height="130" rx="4" fill="#0d9488" />
+                        <text x="110" y="110" font-size="12" fill="#1f2937" text-anchor="middle" font-weight="bold">2600</text>
+                        <text x="110" y="275" font-size="14" fill="#6b7280" text-anchor="middle">السبت</text>
+
+                        <!-- Day 2 -->
+                        <rect x="180" y="80" width="40" height="170" rx="4" fill="#0d9488" />
+                        <text x="200" y="70" font-size="12" fill="#1f2937" text-anchor="middle" font-weight="bold">3400</text>
+                        <text x="200" y="275" font-size="14" fill="#6b7280" text-anchor="middle">الأحد</text>
+
+                        <!-- Day 3 -->
+                        <rect x="270" y="150" width="40" height="100" rx="4" fill="#0d9488" />
+                        <text x="290" y="140" font-size="12" fill="#1f2937" text-anchor="middle" font-weight="bold">2000</text>
+                        <text x="290" y="275" font-size="14" fill="#6b7280" text-anchor="middle">الإثنين</text>
+
+                        <!-- Day 4 -->
+                        <rect x="360" y="180" width="40" height="70" rx="4" fill="#0d9488" />
+                        <text x="380" y="170" font-size="12" fill="#1f2937" text-anchor="middle" font-weight="bold">1400</text>
+                        <text x="380" y="275" font-size="14" fill="#6b7280" text-anchor="middle">الثلاثاء</text>
+
+                        <!-- Day 5 -->
+                        <rect x="450" y="90" width="40" height="160" rx="4" fill="#0d9488" />
+                        <text x="470" y="80" font-size="12" fill="#1f2937" text-anchor="middle" font-weight="bold">3200</text>
+                        <text x="470" y="275" font-size="14" fill="#6b7280" text-anchor="middle">الأربعاء</text>
+
+                        <!-- Day 6 -->
+                        <rect x="540" y="60" width="40" height="190" rx="4" fill="#0d9488" />
+                        <text x="560" y="50" font-size="12" fill="#1f2937" text-anchor="middle" font-weight="bold">3800</text>
+                        <text x="560" y="275" font-size="14" fill="#6b7280" text-anchor="middle">الخميس</text>
+
+                        <!-- Day 7 -->
+                        <rect x="630" y="40" width="40" height="210" rx="4" fill="#14b8a6" /> <!-- Highlight Today -->
+                        <text x="650" y="30" font-size="12" fill="#1f2937" text-anchor="middle" font-weight="bold">4520</text>
+                        <text x="650" y="275" font-size="14" fill="#6b7280" text-anchor="middle" font-weight="bold">الجمعة</text>
+                    </svg>
+                </div>
+
+                <!-- Table Section -->
+                <div class="table-container">
+                    <div class="table-header-section">
+                        <h2 class="section-title" style="margin:0;">أحدث الطلبات</h2>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="ordersTable">
+                            <thead>
+                                <tr>
+                                    <th onclick="sortTable(0)">رقم الطلب <i class="fa-solid fa-sort"></i></th>
+                                    <th onclick="sortTable(1)">العميل <i class="fa-solid fa-sort"></i></th>
+                                    <th onclick="sortTable(2)">التاريخ <i class="fa-solid fa-sort"></i></th>
+                                    <th onclick="sortTable(3)">المبلغ <i class="fa-solid fa-sort"></i></th>
+                                    <th onclick="sortTable(4)">الحالة <i class="fa-solid fa-sort"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>#QR-8901</strong></td>
+                                    <td>
+                                        <div class="customer-cell">
+                                            <div class="customer-avatar">م</div>
+                                            <span>محمد عبدالله</span>
+                                        </div>
+                                    </td>
+                                    <td>20 أكتوبر 2023</td>
+                                    <td>240 ر.س</td>
+                                    <td><span class="badge badge-success">مكتمل</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>#QR-8902</strong></td>
+                                    <td>
+                                        <div class="customer-cell">
+                                            <div class="customer-avatar">س</div>
+                                            <span>سارة خالد</span>
+                                        </div>
+                                    </td>
+                                    <td>20 أكتوبر 2023</td>
+                                    <td>125 ر.س</td>
+                                    <td><span class="badge badge-warning">قيد التجهيز</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>#QR-8903</strong></td>
+                                    <td>
+                                        <div class="customer-cell">
+                                            <div class="customer-avatar">ع</div>
+                                            <span>علي فهد</span>
+                                        </div>
+                                    </td>
+                                    <td>19 أكتوبر 2023</td>
+                                    <td>450 ر.س</td>
+                                    <td><span class="badge badge-success">مكتمل</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>#QR-8904</strong></td>
+                                    <td>
+                                        <div class="customer-cell">
+                                            <div class="customer-avatar">ن</div>
+                                            <span>نورة سعد</span>
+                                        </div>
+                                    </td>
+                                    <td>19 أكتوبر 2023</td>
+                                    <td>85 ر.س</td>
+                                    <td><span class="badge badge-danger">ملغي</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>#QR-8905</strong></td>
+                                    <td>
+                                        <div class="customer-cell">
+                                            <div class="customer-avatar">ي</div>
+                                            <span>ياسر أحمد</span>
+                                        </div>
+                                    </td>
+                                    <td>18 أكتوبر 2023</td>
+                                    <td>320 ر.س</td>
+                                    <td><span class="badge badge-success">مكتمل</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Toggle Sidebar for Mobile
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+
+        // Simple Table Sorting Logic
+        let sortDirection = false;
+        function sortTable(columnIndex) {
+            const table = document.getElementById("ordersTable");
+            const tbody = table.tBodies[0];
+            const rows = Array.from(tbody.querySelectorAll("tr"));
+            
+            sortDirection = !sortDirection; // Toggle direction
+
+            rows.sort((a, b) => {
+                let cellA = a.cells[columnIndex].innerText.trim();
+                let cellB = b.cells[columnIndex].innerText.trim();
+
+                // Simple check to remove text from numbers if column is Amount
+                if(columnIndex === 3) {
+                    cellA = parseFloat(cellA.replace(/[^\d.-]/g, ''));
+                    cellB = parseFloat(cellB.replace(/[^\d.-]/g, ''));
+                }
+
+                if (cellA < cellB) return sortDirection ? -1 : 1;
+                if (cellA > cellB) return sortDirection ? 1 : -1;
+                return 0;
+            });
+
+            // Append sorted rows
+            rows.forEach(row => tbody.appendChild(row));
+        }
+    </script>
+</body>
+</html>

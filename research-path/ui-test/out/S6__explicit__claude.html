@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>لوحة التحكم — قريب</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brand:#0E7C66;
+    --brand-600:#0A6絵54;
+    --brand-700:#095C4C;
+    --brand-50:#E8F5F1;
+    --brand-100:#CDEBE2;
+    --bg:#F4F6F5;
+    --surface:#FFFFFF;
+    --ink:#14211D;
+    --ink-2:#4A5A55;
+    --muted:#7A8A85;
+    --line:#E3E9E7;
+    --good:#0B7A4B; --good-bg:#E6F5EE;
+    --bad:#B42318;  --bad-bg:#FDECEC;
+    --sidebar-w:264px;
+    --radius:14px;
+    --shadow:0 1px 2px rgba(16,40,32,.05),0 2px 8px rgba(16,40,32,.04);
+    --font:"IBM Plex Sans Arabic",system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;
+  }
+  :root{--brand-600:#0B6B58}
+  *,*::before,*::after{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;font-family:var(--font);font-size:14px;line-height:1.6;
+    color:var(--ink);background:var(--bg);
+    -webkit-font-smoothing:antialiased;
+  }
+  body.no-scroll{overflow:hidden}
+  a{color:inherit;text-decoration:none}
+  button,input,select{font:inherit;color:inherit}
+  button{cursor:pointer}
+  h1,h2,h3,p{margin:0}
+  svg.i{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  /* Directional icons are drawn for LTR and mirrored in RTL */
+  [dir="rtl"] .flip-rtl{transform:scaleX(-1)}
+  .num{font-variant-numeric:tabular-nums}
+  .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+  :focus-visible{outline:2px solid var(--brand);outline-offset:2px;border-radius:8px}
+
+  .skip-link{
+    position:fixed;inset-block-start:8px;inset-inline-start:8px;z-index:100;
+    background:var(--ink);color:#fff;padding:8px 14px;border-radius:8px;
+    transform:translateY(-200%);transition:transform .2s;
+  }
+  .skip-link:focus{transform:none}
+
+  /* ---------- Sidebar (off-canvas on mobile) ---------- */
+  .sidebar{
+    position:fixed;inset-block:0;inset-inline-start:calc(-1 * var(--sidebar-w) - 20px);
+    width:var(--sidebar-w);z-index:60;
+    background:var(--surface);border-inline-end:1px solid var(--line);
+    display:flex;flex-direction:column;padding:16px 14px;
+    transition:inset-inline-start .25s ease;overflow-y:auto;
+  }
+  .sidebar.open{inset-inline-start:0;box-shadow:0 10px 40px rgba(0,0,0,.18)}
+  .overlay{position:fixed;inset:0;background:rgba(10,25,20,.45);z-index:55;opacity:0;transition:opacity .25s}
+  .overlay.show{opacity:1}
+  .sb-head{display:flex;align-items:center;gap:10px;padding-inline:6px;margin-block-end:18px}
+  .logo{
+    width:40px;height:40px;border-radius:12px;background:var(--brand);color:#fff;
+    display:grid;place-items:center;font-weight:700;font-size:20px;flex:none;
+  }
+  .brand-text{display:flex;flex-direction:column;line-height:1.2}
+  .brand-text strong{font-size:18px}
+  .brand-text small{color:var(--muted);font-size:12px;letter-spacing:.3px}
+  .icon-btn{
+    display:inline-grid;place-items:center;width:40px;height:40px;border-radius:10px;
+    border:1px solid var(--line);background:var(--surface);color:var(--ink-2);position:relative;
+  }
+  .icon-btn:hover{background:var(--bg)}
+  .sb-close{margin-inline-start:auto}
+  .store-switch{
+    display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;
+    background:var(--bg);margin-block-end:18px;
+  }
+  .store-switch .dot{width:8px;height:8px;border-radius:50%;background:#22C55E;flex:none;box-shadow:0 0 0 3px #DCFCE7}
+  .store-switch span{display:block;font-size:12px;color:var(--muted)}
+  .store-switch strong{font-size:13px;font-weight:600}
+  .nav-label{font-size:12px;color:var(--muted);padding-inline:12px;margin-block:6px}
+  .nav{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
+  .nav a{
+    position:relative;display:flex;align-items:center;gap:12px;
+    padding:10px 12px;border-radius:10px;color:var(--ink-2);font-weight:500;
+  }
+  .nav a:hover{background:var(--bg);color:var(--ink)}
+  .nav a[aria-current="page"]{background:var(--brand-50);color:var(--brand-700);font-weight:600}
+  .nav a[aria-current="page"]::before{
+    content:"";position:absolute;inset-block:8px;inset-inline-start:-14px;width:4px;
+    border-start-end-radius:4px;border-end-end-radius:4px;background:var(--brand);
+  }
+  .nav .count{
+    margin-inline-start:auto;background:var(--brand);color:#fff;font-size:11px;
+    min-width:22px;height:20px;padding-inline:6px;border-radius:999px;display:grid;place-items:center;
+  }
+  .sb-foot{margin-block-start:auto;padding-block-start:16px;border-block-start:1px solid var(--line)}
+  .sb-foot .logout{color:var(--bad)}
+
+  /* ---------- Main ---------- */
+  .main{min-height:100vh;display:flex;flex-direction:column}
+  .topbar{
+    position:sticky;inset-block-start:0;z-index:40;
+    background:rgba(255,255,255,.92);backdrop-filter:saturate(1.4) blur(8px);
+    border-block-end:1px solid var(--line);
+    display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:10px 16px;
+  }
+  .tb-title{flex:1;display:flex;align-items:center;gap:8px;font-weight:700;font-size:16px;min-width:0}
+  .tb-title .logo{width:32px;height:32px;font-size:16px;border-radius:9px}
+  .search{
+    order:10;flex:1 1 100%;position:relative;
+  }
+  .search svg{position:absolute;inset-inline-start:12px;inset-block-start:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}
+  .search input{
+    width:100%;height:42px;border:1px solid var(--line);border-radius:12px;background:var(--bg);
+    padding-inline-start:40px;padding-inline-end:52px;outline:none;transition:border-color .15s,background .15s;
+  }
+  .search input:focus{border-color:var(--brand);background:#fff;box-shadow:0 0 0 3px var(--brand-100)}
+  .search input::placeholder{color:var(--muted)}
+  .search kbd{
+    position:absolute;inset-inline-end:10px;inset-block-start:50%;transform:translateY(-50%);
+    font-family:ui-monospace,Menlo,monospace;font-size:11px;color:var(--muted);
+    border:1px solid var(--line);border-radius:6px;padding:1px 6px;background:#fff;display:none;
+  }
+  .notif-dot{
+    position:absolute;inset-block-start:6px;inset-inline-end:6px;min-width:16px;height:16px;padding-inline:4px;
+    border-radius:999px;background:var(--bad);color:#fff;font-size:10px;line-height:16px;text-align:center;
+    border:2px solid #fff;box-sizing:content-box;
+  }
+  .profile{
+    display:flex;align-items:center;gap:10px;border:0;background:none;padding:4px;border-radius:12px;
+  }
+  .profile:hover{background:var(--bg)}
+  .avatar{
+    width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#F59E0B,#EA580C);
+    color:#fff;display:grid;place-items:center;font-weight:700;flex:none;
+  }
+  .profile-text{display:none;text-align:start;line-height:1.25}
+  .profile-text strong{display:block;font-size:13px}
+  .profile-text span{font-size:12px;color:var(--muted)}
+  .profile .chev{display:none;color:var(--muted);width:16px;height:16px}
+
+  .content{padding:18px 16px 32px;width:100%;max-width:1400px;margin-inline:auto;display:flex;flex-direction:column;gap:16px}
+  .page-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px}
+  .page-head h1{font-size:20px;font-weight:700}
+  .page-head p{color:var(--muted);font-size:13px}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;height:40px;padding-inline:14px;border-radius:10px;
+    border:1px solid var(--line);background:#fff;font-weight:600;font-size:13px;
+  }
+  .btn:hover{background:var(--bg)}
+  .btn-primary{background:var(--brand);border-color:var(--brand);color:#fff}
+  .btn-primary:hover{background:var(--brand-600)}
+  .head-actions{display:flex;gap:8px}
+
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+
+  /* ---------- KPIs ---------- */
+  .kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .kpi{padding:14px;display:flex;flex-direction:column;gap:8px;min-width:0}
+  .kpi-head{display:flex;align-items:center;gap:8px}
+  .kpi-ic{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;flex:none}
+  .kpi-ic svg{width:18px;height:18px}
+  .kpi h3{font-size:12.5px;font-weight:500;color:var(--ink-2);line-height:1.3}
+  .kpi-value{font-size:22px;font-weight:700;letter-spacing:-.3px;line-height:1.2;white-space:nowrap}
+  .kpi-value .unit{font-size:13px;font-weight:500;color:var(--muted);margin-inline-start:4px}
+  .kpi-delta{display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;font-size:12px}
+  .pill{
+    display:inline-flex;align-items:center;gap:2px;padding:1px 7px 1px 6px;border-radius:999px;font-weight:600;
+  }
+  .pill svg{width:14px;height:14px;stroke-width:2.4}
+  .pill.good{color:var(--good);background:var(--good-bg)}
+  .pill.bad{color:var(--bad);background:var(--bad-bg)}
+  .kpi-delta .muted{color:var(--muted)}
+
+  /* ---------- Chart ---------- */
+  .card-head{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:10px;padding:16px 16px 0}
+  .card-head h2{font-size:16px;font-weight:700}
+  .card-head .sub{color:var(--muted);font-size:12.5px}
+  .chart-total{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-block-start:6px}
+  .chart-total strong{font-size:22px;font-weight:700}
+  .legend{display:flex;gap:14px;font-size:12px;color:var(--ink-2);align-items:center}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+  .chart-wrap{position:relative;padding:8px 8px 12px}
+  #chart{display:block;width:100%;height:auto;overflow:visible}
+  #chart .grid{stroke:var(--line);stroke-width:1}
+  #chart .grid.base{stroke:#CBD5D1}
+  #chart .ylab{fill:var(--muted);font-size:11px;font-family:var(--font)}
+  #chart .xlab{fill:var(--ink-2);font-size:11.5px;font-weight:500;font-family:var(--font)}
+  #chart .xsub{fill:var(--muted);font-size:10.5px;font-family:var(--font)}
+  #chart .bar{fill:var(--brand-100);transition:fill .15s}
+  #chart .bar.today{fill:var(--brand)}
+  #chart .bar-g{cursor:pointer;outline:none}
+  #chart .bar-g:hover .bar,#chart .bar-g:focus .bar{fill:#7CC9B5}
+  #chart .bar-g:hover .bar.today,#chart .bar-g:focus .bar.today{fill:var(--brand-700)}
+  #chart .bar-g:focus-visible .hit{stroke:var(--brand);stroke-width:2;stroke-dasharray:4 3}
+  #chart .hit{fill:transparent}
+  #chart .vlab{fill:var(--brand-700);font-size:11.5px;font-weight:700;font-family:var(--font)}
+  .tooltip{
+    position:absolute;z-index:5;pointer-events:none;background:var(--ink);color:#fff;
+    padding:8px 10px;border-radius:10px;font-size:12px;line-height:1.5;white-space:nowrap;
+    transform:translate(-50%,-100%);opacity:0;transition:opacity .12s;box-shadow:0 6px 20px rgba(0,0,0,.2);
+  }
+  .tooltip.show{opacity:1}
+  .tooltip strong{display:block;font-size:13.5px}
+  .tooltip span{color:#B9C7C2}
+
+  /* ---------- Orders ---------- */
+  .orders-head{padding:16px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px}
+  .link{display:inline-flex;align-items:center;gap:4px;color:var(--brand-700);font-weight:600;font-size:13px}
+  .link:hover{text-decoration:underline}
+  .link svg{width:16px;height:16px}
+  .sort-label{font-size:12px;color:var(--muted);padding-inline:16px;margin-block-end:6px}
+  .table-wrap{padding:0 16px 8px}
+  .orders-table{width:100%;border-collapse:collapse}
+  .sort-btn{
+    display:inline-flex;align-items:center;gap:4px;border:0;background:none;padding:0;
+    font-size:12.5px;font-weight:600;color:var(--ink-2);
+  }
+  .sort-ic{width:14px;height:14px;flex:none}
+  .sort-ic path{fill:currentColor;opacity:.3;stroke:none}
+  th[aria-sort="ascending"] .sort-ic .up,
+  th[aria-sort="descending"] .sort-ic .down{opacity:1}
+  th[aria-sort="ascending"] .sort-btn,
+  th[aria-sort="descending"] .sort-btn{color:var(--brand-700)}
+  .order-id{font-weight:600;color:var(--brand-700);font-variant-numeric:tabular-nums}
+  .order-id:hover{text-decoration:underline}
+  .cust{display:flex;align-items:center;gap:10px;min-width:0}
+  .avatar-sm{
+    width:34px;height:34px;border-radius:50%;flex:none;display:grid;place-items:center;
+    font-weight:700;font-size:13px;background:var(--brand-50);color:var(--brand-700);
+  }
+  .cust-name{display:block;font-weight:600;line-height:1.3}
+  .phone{display:block;width:fit-content;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;unicode-bidi:isolate}
+  .phone:hover{color:var(--brand-700)}
+  .date{color:var(--ink-2);font-size:13px;white-space:nowrap}
+  .money{font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+  .money .cur{font-weight:500;font-size:12px;color:var(--muted)}
+  .badge{
+    display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;
+    font-size:12px;font-weight:600;white-space:nowrap;
+  }
+  .badge::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+  .b-new{background:#EEF2FF;color:#4338CA}
+  .b-preparing{background:#FFF4E0;color:#B45309}
+  .b-delivering{background:#E0F2FE;color:#0369A1}
+  .b-completed{background:var(--good-bg);color:var(--good)}
+  .b-cancelled{background:var(--bad-bg);color:var(--bad)}
+  .empty{padding:28px 16px;text-align:center;color:var(--muted)}
+  .table-foot{
+    display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;
+    padding:12px 16px 16px;border-block-start:1px solid var(--line);margin-block-start:8px;
+    color:var(--muted);font-size:12.5px;
+  }
+  .pager{display:flex;gap:6px}
+  .pager .btn{height:34px;padding-inline:10px;font-weight:500}
+  .pager .btn svg{width:16px;height:16px}
+  .pager .btn[disabled]{opacity:.45;cursor:not-allowed}
+
+  /* Mobile: table rows become cards, header becomes sort chips */
+  @media (max-width:767.98px){
+    .orders-table,.orders-table thead,.orders-table tbody,.orders-table td{display:block}
+    .orders-table thead tr{display:flex;gap:8px;overflow-x:auto;padding-block-end:6px;scrollbar-width:none}
+    .orders-table thead tr::-webkit-scrollbar{display:none}
+    .orders-table th{padding:0;flex:none}
+    .sort-btn{border:1px solid var(--line);border-radius:999px;padding:6px 12px;background:#fff;white-space:nowrap}
+    th[aria-sort="ascending"] .sort-btn,th[aria-sort="descending"] .sort-btn{background:var(--brand-50);border-color:var(--brand-100)}
+    .orders-table tbody tr{
+      display:grid;grid-template-columns:1fr auto;
+      grid-template-areas:"id status" "cust cust" "date amount";
+      gap:10px;align-items:center;padding:14px;margin-block-start:10px;
+      border:1px solid var(--line);border-radius:12px;background:#fff;
+    }
+    .c-id{grid-area:id}.c-status{grid-area:status}.c-cust{grid-area:cust}
+    .c-date{grid-area:date}.c-amount{grid-area:amount;text-align:end}
+    .c-cust{padding-block:10px;border-block:1px dashed var(--line)}
+  }
+
+  @media (min-width:768px){
+    .sort-label{display:none}
+    .content{padding:24px;gap:20px}
+    .kpis{gap:16px}
+    .kpi{padding:18px}
+    .kpi-value{font-size:26px}
+    .card-head{padding:20px 20px 0}
+    .orders-head{padding:20px}
+    .table-wrap{padding:0 8px 4px;overflow-x:auto}
+    .orders-table th{
+      text-align:start;padding:10px 12px;background:var(--bg);border-block-end:1px solid var(--line);
+      white-space:nowrap;
+    }
+    .orders-table th:first-child{border-start-start-radius:10px;border-end-start-radius:10px}
+    .orders-table th:last-child{border-start-end-radius:10px;border-end-end-radius:10px}
+    .orders-table td{padding:12px;border-block-end:1px solid var(--line);vertical-align:middle}
+    .orders-table tbody tr:last-child td{border-block-end:0}
+    .orders-table tbody tr:hover td{background:#FAFBFB}
+    .orders-table .c-amount{text-align:end}
+    .orders-table th.c-amount .sort-btn{flex-direction:row}
+    .table-foot{padding:14px 20px 18px}
+    .page-head h1{font-size:24px}
+  }
+
+  @media (min-width:1024px){
+    .sidebar{inset-inline-start:0;transition:none;box-shadow:none}
+    .sb-close,.menu-btn,.overlay{display:none!important}
+    .main{margin-inline-start:var(--sidebar-w)}
+    .topbar{padding:12px 28px;flex-wrap:nowrap;gap:14px}
+    .tb-title{display:none}
+    .search{order:0;flex:0 1 440px;margin-inline-end:auto}
+    .search kbd{display:inline-block}
+    .profile-text{display:block}
+    .profile .chev{display:block}
+    .content{padding:28px}
+  }
+  @media (min-width:1180px){
+    .kpis{grid-template-columns:repeat(4,minmax(0,1fr))}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none!important}
+  }
+</style>
+</head>
+<body>
+
+<!-- Icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9.5"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8h14l-1 12a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><path d="M21 8 12 3 3 8v8l9 5 9-5V8Z"/><path d="m3 8 9 5 9-5M12 13v8"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.2a6.5 6.5 0 0 1 3.5 5.8"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></symbol>
+  <symbol id="i-mega" viewBox="0 0 24 24"><path d="M3 10v4a1 1 0 0 0 1 1h3l6 4V5L7 9H4a1 1 0 0 0-1 1Z"/><path d="M17 8.5a5 5 0 0 1 0 7"/></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24"><path d="M2 6h12v10H2zM14 10h4l3 3v3h-7"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></symbol>
+  <symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.6M12 17h.01"/></symbol>
+  <symbol id="i-logout" viewBox="0 0 24 24"><path d="M9 21H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h4"/><path d="m16 17 5-5-5-5M21 12H9"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  <symbol id="i-chev-right" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+  <symbol id="i-chev-left" viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></symbol>
+  <symbol id="i-chev-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+  <symbol id="i-cash" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></symbol>
+  <symbol id="i-basket" viewBox="0 0 24 24"><path d="M3 9h18l-2 10a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1L3 9Z"/><path d="m8 9 3-6M16 9l-3-6M9 13v3M15 13v3"/></symbol>
+  <symbol id="i-xcircle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15 9-6 6M9 9l6 6"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+</svg>
+
+<a class="skip-link" href="#main">تخطَّ إلى المحتوى الرئيسي</a>
+
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar" aria-label="القائمة الرئيسية">
+  <div class="sb-head">
+    <span class="logo" aria-hidden="true">ق</span>
+    <span class="brand-text">
+      <strong>قريب</strong>
+      <small><bdi lang="en" dir="ltr">Qareeb Merchant</bdi></small>
+    </span>
+    <button class="icon-btn sb-close" id="sbClose" type="button" aria-label="إغلاق القائمة">
+      <svg class="i"><use href="#i-x"/></svg>
+    </button>
+  </div>
+
+  <div class="store-switch">
+    <span class="dot" aria-hidden="true"></span>
+    <div>
+      <span>المتجر الحالي · مفتوح الآن</span>
+      <strong>بقالة الحي — فرع النرجس</strong>
+    </div>
+  </div>
+
+  <nav aria-label="التنقل">
+    <p class="nav-label">القائمة</p>
+    <ul class="nav">
+      <li><a href="#" aria-current="page"><svg class="i"><use href="#i-home"/></svg>الرئيسية</a></li>
+      <li><a href="#"><svg class="i"><use href="#i-bag"/></svg>الطلبات <span class="count num" aria-label="12 طلبًا جديدًا">12</span></a></li>
+      <li><a href="#"><svg class="i"><use href="#i-box"/></svg>المنتجات</a></li>
+      <li><a href="#"><svg class="i"><use href="#i-users"/></svg>العملاء</a></li>
+      <li><a href="#"><svg class="i"><use href="#i-truck"/></svg>التوصيل</a></li>
+      <li><a href="#"><svg class="i"><use href="#i-chart"/></svg>التقارير</a></li>
+      <li><a href="#"><svg class="i"><use href="#i-mega"/></svg>التسويق والعروض</a></li>
+      <li><a href="#"><svg class="i"><use href="#i-settings"/></svg>الإعدادات</a></li>
+    </ul>
+  </nav>
+
+  <div class="sb-foot">
+    <ul class="nav">
+      <li><a href="#"><svg class="i"><use href="#i-help"/></svg>المساعدة والدعم</a></li>
+      <li><a href="#" class="logout"><svg class="i flip-rtl"><use href="#i-logout"/></svg>تسجيل الخروج</a></li>
+    </ul>
+  </div>
+</aside>
+<div class="overlay" id="overlay" hidden></div>
+
+<div class="main">
+  <!-- Top bar -->
+  <header class="topbar">
+    <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="فتح القائمة" aria-controls="sidebar" aria-expanded="false">
+      <svg class="i"><use href="#i-menu"/></svg>
+    </button>
+    <div class="tb-title"><span class="logo" aria-hidden="true">ق</span><span>قريب</span></div>
+
+    <form class="search" role="search" onsubmit="return false">
+      <label for="q" class="sr-only">ابحث في الطلبات</label>
+      <svg class="i" aria-hidden="true"><use href="#i-search"/></svg>
+      <input id="q" type="search" dir="auto" autocomplete="off"
+             placeholder="ابحث برقم الطلب أو اسم العميل أو الجوال">
+      <kbd dir="ltr" aria-hidden="true">/</kbd>
+    </form>
+
+    <button class="icon-btn" type="button" aria-label="الإشعارات، 3 غير مقروءة">
+      <svg class="i"><use href="#i-bell"/></svg>
+      <span class="notif-dot num" aria-hidden="true">3</span>
+    </button>
+    <button class="profile" type="button" aria-label="الملف الشخصي: أحمد العتيبي">
+      <span class="avatar" aria-hidden="true">أ</span>
+      <span class="profile-text"><strong>أحمد العتيبي</strong><span>مالك المتجر</span></span>
+      <svg class="i chev" aria-hidden="true"><use href="#i-chev-down"/></svg>
+    </button>
+  </header>
+
+  <main class="content" id="main" tabindex="-1">
+    <div class="page-head">
+      <div>
+        <h1>لوحة التحكم</h1>
+        <p>مرحبًا أحمد، إليك ملخص أداء متجرك · <time id="todayLabel"></time></p>
+      </div>
+      <div class="head-actions">
+        <button class="btn" type="button"><svg class="i"><use href="#i-download"/></svg>تصدير</button>
+        <button class="btn btn-primary" type="button"><svg class="i"><use href="#i-plus"/></svg>منتج جديد</button>
+      </div>
+    </div>
+
+    <!-- KPIs -->
+    <section class="kpis" aria-label="مؤشرات الأداء الرئيسية">
+      <article class="card kpi">
+        <div class="kpi-head">
+          <span class="kpi-ic" style="background:#E8F5F1;color:#0E7C66"><svg class="i" aria-hidden="true"><use href="#i-bag"/></svg></span>
+          <h3>طلبات اليوم</h3>
+        </div>
+        <p class="kpi-value num">148</p>
+        <p class="kpi-delta">
+          <span class="pill good"><svg class="i" aria-hidden="true"><use href="#i-up"/></svg><span class="sr-only">ارتفاع</span><bdi dir="ltr" class="num">+12.4%</bdi></span>
+          <span class="muted">عن الأمس</span>
+        </p>
+      </article>
+
+      <article class="card kpi">
+        <div class="kpi-head">
+          <span class="kpi-ic" style="background:#EEF2FF;color:#4338CA"><svg class="i" aria-hidden="true"><use href="#i-cash"/></svg></span>
+          <h3>الإيرادات</h3>
+        </div>
+        <p class="kpi-value"><bdi class="num">24,860</bdi><span class="unit">ر.س</span></p>
+        <p class="kpi-delta">
+          <span class="pill good"><svg class="i" aria-hidden="true"><use href="#i-up"/></svg><span class="sr-only">ارتفاع</span><bdi dir="ltr" class="num">+8.1%</bdi></span>
+          <span class="muted">عن الأمس</span>
+        </p>
+      </article>
+
+      <article class="card kpi">
+        <div class="kpi-head">
+          <span class="kpi-ic" style="background:#FFF4E0;color:#B45309"><svg class="i" aria-hidden="true"><use href="#i-basket"/></svg></span>
+          <h3>متوسط السلة</h3>
+        </div>
+        <p class="kpi-value"><bdi class="num">168</bdi><span class="unit">ر.س</span></p>
+        <p class="kpi-delta">
+          <span class="pill bad"><svg class="i" aria-hidden="true"><use href="#i-down"/></svg><span class="sr-only">انخفاض</span><bdi dir="ltr" class="num">−2.3%</bdi></span>
+          <span class="muted">عن الأمس</span>
+        </p>
+      </article>
+
+      <article class="card kpi">
+        <div class="kpi-head">
+          <span class="kpi-ic" style="background:#FDECEC;color:#B42318"><svg class="i" aria-hidden="true"><use href="#i-xcircle"/></svg></span>
+          <h3>معدل الإلغاء</h3>
+        </div>
+        <p class="kpi-value"><bdi dir="ltr" class="num">3.2%</bdi></p>
+        <p class="kpi-delta">
+          <!-- A decrease in cancellations is positive, so it's styled "good" -->
+          <span class="pill good"><svg class="i" aria-hidden="true"><use href="#i-down"/></svg><span class="sr-only">انخفاض (تحسّن)</span><bdi dir="ltr" class="num">−0.8%</bdi></span>
+          <span class="muted">عن الأمس</span>
+        </p>
+      </article>
+    </section>
+
+    <!-- Sales chart -->
+    <section class="card" aria-labelledby="chartTitle">
+      <div class="card-head">
+        <div>
+          <h2 id="chartTitle">المبيعات — آخر 7 أيام</h2>
+          <div class="chart-total">
+            <strong><bdi class="num" id="weekTotal">—</bdi> <span class="unit" style="font-size:13px;color:var(--muted);font-weight:500">ر.س</span></strong>
+            <span class="pill good" style="font-size:12px"><svg class="i" aria-hidden="true"><use href="#i-up"/></svg><bdi dir="ltr" class="num">+6.2%</bdi></span>
+            <span class="sub">عن الأسبوع الماضي</span>
+          </div>
+        </div>
+        <div class="legend" aria-hidden="true">
+          <span><i style="background:var(--brand)"></i>اليوم</span>
+          <span><i style="background:var(--brand-100)"></i>الأيام السابقة</span>
+        </div>
+      </div>
+      <div class="chart-wrap" id="chartWrap">
+        <svg id="chart" role="group" aria-labelledby="chartTitle" aria-describedby="chartDesc"></svg>
+        <p id="chartDesc" class="sr-only">مخطط أعمدة يعرض إجمالي المبيعات اليومية بالريال السعودي، والأيام مرتبة من اليمين (الأقدم) إلى اليسار (اليوم).</p>
+        <div class="tooltip" id="tooltip" role="status" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- Recent orders -->
+    <section class="card" aria-labelledby="ordersTitle">
+      <div class="orders-head">
+        <div>
+          <h2 id="ordersTitle" style="font-size:16px;font-weight:700">أحدث الطلبات</h2>
+          <p style="color:var(--muted);font-size:12.5px">آخر الطلبات الواردة إلى متجرك</p>
+        </div>
+        <a href="#" class="link">عرض كل الطلبات <svg class="i flip-rtl" aria-hidden="true"><use href="#i-chev-right"/></svg></a>
+      </div>
+
+      <p class="sort-label" aria-hidden="true">ترتيب حسب:</p>
+      <div class="table-wrap">
+        <table class="orders-table">
+          <caption class="sr-only">أحدث الطلبات، يمكن ترتيبها بالنقر على عناوين الأعمدة</caption>
+          <thead>
+            <tr>
+              <th scope="col" class="c-id" aria-sort="none"><button class="sort-btn" data-key="id">رقم الطلب<svg class="sort-ic" viewBox="0 0 14 14" aria-hidden="true"><path class="up" d="M7 2 11 6H3z"/><path class="down" d="M7 12 3 8h8z"/></svg></button></th>
+              <th scope="col" class="c-cust" aria-sort="none"><button class="sort-btn" data-key="name">العميل<svg class="sort-ic" viewBox="0 0 14 14" aria-hidden="true"><path class="up" d="M7 2 11 6H3z"/><path class="down" d="M7 12 3 8h8z"/></svg></button></th>
+              <th scope="col" class="c-date" aria-sort="descending"><button class="sort-btn" data-key="date">التاريخ<svg class="sort-ic" viewBox="0 0 14 14" aria-hidden="true"><path class="up" d="M7 2 11 6H3z"/><path class="down" d="M7 12 3 8h8z"/></svg></button></th>
+              <th scope="col" class="c-amount" aria-sort="none"><button class="sort-btn" data-key="amount">المبلغ<svg class="sort-ic" viewBox="0 0 14 14" aria-hidden="true"><path class="up" d="M7 2 11 6H3z"/><path class="down" d="M7 12 3 8h8z"/></svg></button></th>
+              <th scope="col" class="c-status" aria-sort="none"><button class="sort-btn" data-key="status">الحالة<svg class="sort-ic" viewBox="0 0 14 14" aria-hidden="true"><path class="up" d="M7 2 11 6H3z"/><path class="down" d="M7 12 3 8h8z"/></svg></button></th>
+            </tr>
+          </thead>
+          <tbody id="ordersBody"></tbody>
+        </table>
+        <p class="empty" id="emptyState" hidden>لا توجد طلبات مطابقة لبحثك.</p>
+      </div>
+
+      <div class="table-foot">
+        <span id="countLabel"></span>
+        <div class="pager">
+          <button class="btn" type="button" disabled><svg class="i flip-rtl" aria-hidden="true"><use href="#i-chev-left"/></svg>السابق</button>
+          <button class="btn" type="button">التالي<svg class="i flip-rtl" aria-hidden="true"><use href="#i-chev-right"/></svg></button>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+(function(){
+  const isRTL = document.documentElement.dir === 'rtl';
+  const LOCALE = 'ar-SA-u-ca-gregory-nu-latn'; // Arabic text, Gregorian calendar, Latin digits
+  const nf = new Intl.NumberFormat('en-US');
+  const money = n => n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+  const fDay = new Intl.DateTimeFormat(LOCALE,{weekday:'long'});
+  const fDM = new Intl.DateTimeFormat(LOCALE,{day:'numeric',month:'short'});
+  const fTime = new Intl.DateTimeFormat(LOCALE,{hour:'numeric',minute:'2-digit'});
+  const fFull = new Intl.DateTimeFormat(LOCALE,{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  const now = new Date();
+
+  const todayEl = document.getElementById('todayLabel');
+  todayEl.textContent = fFull.format(now);
+  todayEl.setAttribute('datetime', now.toISOString().slice(0,10));
+
+  /* ---------- Sidebar drawer ---------- */
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('overlay');
+  const menuBtn = document.getElementById('menuBtn');
+  const sbClose = document.getElementById('sbClose');
+  function openNav(){
+    overlay.hidden = false;
+    requestAnimationFrame(()=>overlay.classList.add('show'));
+    sidebar.classList.add('open');
+    menuBtn.setAttribute('aria-expanded','true');
+    document.body.classList.add('no-scroll');
+    sbClose.focus();
+  }
+  function closeNav(){
+    sidebar.classList.remove('open');
+    overlay.classList.remove('show');
+    menuBtn.setAttribute('aria-expanded','false');
+    document.body.classList.remove('no-scroll');
+    setTimeout(()=>{overlay.hidden = true},250);
+    menuBtn.focus();
+  }
+  menuBtn.addEventListener('click',openNav);
+  sbClose.addEventListener('click',closeNav);
+  overlay.addEventListener('click',closeNav);
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape' && sidebar.classList.contains('open')) closeNav();
+    if(e.key==='/' && document.activeElement.tagName!=='INPUT'){e.preventDefault();document.getElementById('q').focus();}
+  });
+
+  /* ---------- Chart ---------- */
+  const sales = [18250, 21400, 19800, 26300, 31200, 22900, 24860]; // oldest → today
+  const days = sales.map((v,i)=>{
+    const d = new Date(now); d.setDate(now.getDate() - (sales.length-1-i));
+    return {v, d, today: i===sales.length-1};
+  });
+  document.getElementById('weekTotal').textContent = nf.format(sales.reduce((a,b)=>a+b,0));
+
+  const svg = document.getElementById('chart');
+  const wrap = document.getElementById('chartWrap');
+  const tip = document.getElementById('tooltip');
+
+  function barPath(x,y,w,h,r){
+    r = Math.min(r,w/2,h);
+    const yb = y+h;
+    return `M${x},${yb}V${y+r}Q${x},${y} ${x+r},${y}H${x+w-r}Q${x+w},${y} ${x+w},${y+r}V${yb}Z`;
+  }
+
+  function renderChart(){
+    const W = Math.max(300, wrap.clientWidth - 16);
+    const H = W < 520 ? 230 : 280;
+    // "start" padding holds the Y-axis labels; it sits on the right in RTL
+    const pad = {top:24, bottom:46, start:50, end:6};
+    const innerW = W - pad.start - pad.end;
+    const innerH = H - pad.top - pad.bottom;
+    const max = Math.ceil(Math.max(...sales)/5000)*5000;
+    const step = innerW / days.length;
+    const bw = Math.min(44, step*0.56);
+    const plotStartX = isRTL ? W - pad.start : pad.start;   // physical x where the time axis begins
+    const xCenter = i => isRTL ? plotStartX - step*(i+0.5) : plotStartX + step*(i+0.5);
+    const yOf = v => pad.top + innerH - (v/max)*innerH;
+    const gx1 = isRTL ? pad.end : pad.start, gx2 = isRTL ? W - pad.start : W - pad.end;
+    const yLabX = isRTL ? W - 2 : 2;
+    const yLabAnchor = isRTL ? 'end' : 'start'; // with direction="ltr", "end" = right edge
+
+    let s = '';
+    for(let k=0;k<=4;k++){
+      const v = max*k/4, y = yOf(v);
+      s += `<line class="grid${k===0?' base':''}" x1="${gx1}" x2="${gx2}" y1="${y}" y2="${y}"/>`;
+      s += `<text class="ylab" x="${yLabX}" y="${y+4}" text-anchor="${yLabAnchor}" direction="ltr">${nf.format(v)}</text>`;
+    }
+    days.forEach((d,i)=>{
+      const cx = xCenter(i), y = yOf(d.v), h = pad.top+innerH - y;
+      const label = `${fDay.format(d.d)} ${fDM.format(d.d)}: ${nf.format(d.v)} ر.س`;
+      s += `<g class="bar-g" tabindex="0" role="img" aria-label="${label}" data-i="${i}">
+              <rect class="hit" x="${cx-step/2+2}" y="${pad.top}" width="${step-4}" height="${innerH}" rx="8"/>
+              <path class="bar${d.today?' today':''}" d="${barPath(cx-bw/2,y,bw,h,7)}"/>
+            </g>`;
+      if(d.today){
+        s += `<text class="vlab" x="${cx}" y="${y-8}" text-anchor="middle" direction="ltr">${nf.format(d.v)}</text>`;
+      }
+      const dayName = d.today ? 'اليوم' : fDay.format(d.d);
+      s += `<text class="xlab" x="${cx}" y="${H-26}" text-anchor="middle">${dayName}</text>`;
+      s += `<text class="xsub" x="${cx}" y="${H-10}" text-anchor="middle">${fDM.format(d.d)}</text>`;
+    });
+    svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+    svg.setAttribute('width',W); svg.setAttribute('height',H);
+    svg.innerHTML = s;
+
+    svg.querySelectorAll('.bar-g').forEach(g=>{
+      const i = +g.dataset.i, d = days[i];
+      const show = ()=>{
+        tip.innerHTML = `<span>${d.today?'اليوم · ':''}${fDay.format(d.d)} ${fDM.format(d.d)}</span><strong><bdi>${nf.format(d.v)}</bdi> ر.س</strong>`;
+        // Physical coordinates from the SVG geometry, so physical "left" is correct here
+        const scale = svg.getBoundingClientRect().width / W;
+        const left = 8 + xCenter(i)*scale;
+        const top = 8 + (yOf(d.v) - 14)*scale;
+        tip.style.left = Math.min(Math.max(left, 70), wrap.clientWidth-70) + 'px';
+        tip.style.top = top + 'px';
+        tip.classList.add('show');
+      };
+      const hide = ()=>tip.classList.remove('show');
+      g.addEventListener('mouseenter',show);
+      g.addEventListener('mouseleave',hide);
+      g.addEventListener('focus',show);
+      g.addEventListener('blur',hide);
+      g.addEventListener('click',show);
+    });
+  }
+  renderChart();
+  if('ResizeObserver' in window){
+    let raf; new ResizeObserver(()=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(renderChart)}).observe(wrap);
+  } else window.addEventListener('resize',renderChart);
+
+  /* ---------- Orders table ---------- */
+  const STATUS = {
+    new:{label:'جديد',rank:0},
+    preparing:{label:'قيد التجهيز',rank:1},
+    delivering:{label:'قيد التوصيل',rank:2},
+    completed:{label:'مكتمل',rank:3},
+    cancelled:{label:'ملغي',rank:4}
+  };
+  const raw = [
+    {id:10482,name:'نورة القحطاني',phone:'+966 55 214 7789',mins:12,amount:245.5,status:'new'},
+    {id:10481,name:'Sarah Johnson',en:true,phone:'+966 50 331 0921',mins:38,amount:612,status:'preparing'},
+    {id:10480,name:'محمد الشهري',phone:'+966 54 870 1123',mins:65,amount:89.75,status:'delivering'},
+    {id:10479,name:'ريم الدوسري',phone:'+966 56 402 3318',mins:140,amount:1320,status:'completed'},
+    {id:10478,name:'خالد الزهراني',phone:'+966 53 118 6640',mins:205,amount:156.25,status:'cancelled'},
+    {id:10477,name:'Omar Haddad',en:true,phone:'+966 59 775 2204',mins:320,amount:478,status:'completed'},
+    {id:10476,name:'لمى العنزي',phone:'+966 50 990 4512',mins:1500,amount:64,status:'completed'},
+    {id:10475,name:'عبدالله المطيري',phone:'+966 55 630 8871',mins:1620,amount:930.4,status:'delivering'}
+  ];
+  const orders = raw.map(o=>({...o, date:new Date(now.getTime() - o.mins*60000)}));
+
+  function relDate(d){
+    const a = new Date(d); a.setHours(0,0,0,0);
+    const b = new Date(now); b.setHours(0,0,0,0);
+    const diff = Math.round((b-a)/86400000);
+    const day = diff===0 ? 'اليوم' : diff===1 ? 'أمس' : fDM.format(d);
+    return `${day}، ${fTime.format(d)}`;
+  }
+  const initial = n => [...n.trim()][0].toUpperCase();
+
+  const tbody = document.getElementById('ordersBody');
+  const empty = document.getElementById('emptyState');
+  const countLabel = document.getElementById('countLabel');
+  const q = document.getElementById('q');
+  let sort = {key:'date', dir:'desc'};
+
+  const cmp = {
+    id:(a,b)=>a.id-b.id,
+    name:(a,b)=>a.name.localeCompare(b.name,'ar'),
+    date:(a,b)=>a.date-b.date,
+    amount:(a,b)=>a.amount-b.amount,
+    status:(a,b)=>STATUS[a.status].rank-STATUS[b.status].rank
+  };
+
+  function render(){
+    const term = q.value.trim().toLowerCase();
+    const termDigits = term.replace(/\D/g,'');
+    let list = orders.filter(o=>{
+      if(!term) return true;
+      return o.name.toLowerCase().includes(term)
+        || ('qr-'+o.id).includes(term) || String(o.id).includes(term)
+        || (termDigits.length>=3 && o.phone.replace(/\D/g,'').includes(termDigits));
+    });
+    list.sort((a,b)=>cmp[sort.key](a,b)*(sort.dir==='asc'?1:-1));
+
+    tbody.innerHTML = list.map(o=>{
+      const nameHTML = o.en ? `<bdi lang="en">${o.name}</bdi>` : o.name;
+      const tel = o.phone.replace(/\s/g,'');
+      return `<tr>
+        <td class="c-id"><a href="#" class="order-id"><bdi dir="ltr">#QR-${o.id}</bdi></a></td>
+        <td class="c-cust"><div class="cust">
+          <span class="avatar-sm" aria-hidden="true">${initial(o.name)}</span>
+          <div><span class="cust-name">${nameHTML}</span>
+          <a class="phone" href="tel:${tel}" dir="ltr">${o.phone}</a></div>
+        </div></td>
+        <td class="c-date"><time class="date" datetime="${o.date.toISOString()}">${relDate(o.date)}</time></td>
+        <td class="c-amount"><span class="money"><bdi>${money(o.amount)}</bdi> <span class="cur">ر.س</span></span></td>
+        <td class="c-status"><span class="badge b-${o.status}">${STATUS[o.status].label}</span></td>
+      </tr>`;
+    }).join('');
+    empty.hidden = list.length>0;
+    countLabel.textContent = `عرض ${list.length} من أصل 148 طلبًا اليوم`;
+
+    document.querySelectorAll('.orders-table th').forEach(th=>{
+      const k = th.querySelector('.sort-btn').dataset.key;
+      th.setAttribute('aria-sort', k===sort.key ? (sort.dir==='asc'?'ascending':'descending') : 'none');
+    });
+  }
+
+  document.querySelectorAll('.sort-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const k = btn.dataset.key;
+      if(sort.key===k) sort.dir = sort.dir==='asc'?'desc':'asc';
+      else sort = {key:k, dir:(k==='date'||k==='amount')?'desc':'asc'};
+      render();
+    });
+  });
+  q.addEventListener('input',render);
+  render();
+})();
+</script>
+</body>
+</html>

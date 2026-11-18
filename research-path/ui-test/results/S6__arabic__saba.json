@@ -1,0 +1,184 @@
+{
+  "file": "out/S6__arabic__saba.html",
+  "screen": "S6",
+  "cond": "arabic",
+  "model": "saba",
+  "score": 82,
+  "mainFont": "Tajawal",
+  "checks": [
+    {
+      "id": "complete",
+      "label": "Page is complete (not cut off)",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "id": "dir",
+      "label": "Page set to right-to-left",
+      "pass": true,
+      "detail": "rtl/rtl"
+    },
+    {
+      "id": "lang",
+      "label": "Language set to Arabic",
+      "pass": true,
+      "detail": "ar"
+    },
+    {
+      "id": "align",
+      "label": "Arabic text aligned to the right",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "flow",
+      "label": "Rows flow right-to-left (first item on the right)",
+      "pass": true,
+      "detail": "0/7 wrong []"
+    },
+    {
+      "id": "arrows",
+      "label": "Next points left, back points right",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "sidebar",
+      "label": "Sidebar on the right (desktop)",
+      "pass": true,
+      "detail": "right"
+    },
+    {
+      "id": "table",
+      "label": "Table starts from the right",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "id": "font",
+      "label": "Arabic drawn in an intended font",
+      "pass": true,
+      "detail": {
+        "Tajawal": 403,
+        "Tajawal Medium": 56
+      }
+    },
+    {
+      "id": "size",
+      "label": "Arabic text not too small (<13px under 25%)",
+      "pass": true,
+      "detail": "median 16px, 14% small"
+    },
+    {
+      "id": "lineheight",
+      "label": "Line height leaves room for Arabic marks",
+      "pass": false,
+      "detail": [
+        "div.user-avatar \"م\"",
+        "th \"العميل\"",
+        "th \"التاريخ\""
+      ]
+    },
+    {
+      "id": "letterspacing",
+      "label": "No letter-spacing on Arabic",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "numerals",
+      "label": "One numeral system per page",
+      "pass": true,
+      "detail": "western 133, eastern 0"
+    },
+    {
+      "id": "logical",
+      "label": "Built with direction-neutral CSS",
+      "pass": false,
+      "detail": "physical 10, logical 0"
+    },
+    {
+      "id": "presentation",
+      "label": "No pre-shaped Arabic characters",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "id": "overflow",
+      "label": "No sideways scroll on phone",
+      "pass": false,
+      "detail": true
+    },
+    {
+      "id": "jserrors",
+      "label": "No JavaScript errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "raw": {
+    "htmlDir": "rtl",
+    "htmlLang": "ar",
+    "bodyDir": "rtl",
+    "arabicEls": 43,
+    "medianArabicFontPx": 16,
+    "smallArabicShare": 0.14,
+    "leftAligned": [],
+    "letterSpaced": [],
+    "tightLines": [
+      "div.user-avatar \"م\"",
+      "th \"العميل\"",
+      "th \"التاريخ\"",
+      "th \"المبلغ\"",
+      "th \"الحالة\"",
+      "td \"منصور الجهني\"",
+      "td \"11/05/2024 - 8:30 مساءاً\"",
+      "td \"380 ر.س\"",
+      "td \"11/05/2024 - 7:15 مساءاً\"",
+      "td \"195 ر.س\"",
+      "td \"11/05/2024 - 5:45 مساءاً\"",
+      "td \"260 ر.س\"",
+      "td \"كمال الشريف\"",
+      "td \"11/05/2024 - 4:20 مساءاً\"",
+      "td \"220 ر.س\"",
+      "td \"حنان التميمي\"",
+      "td \"11/05/2024 - 3:10 مساءاً\"",
+      "td \"165 ر.س\"",
+      "td \"يوسف الحربي\"",
+      "td \"11/05/2024 - 2:05 مساءاً\"",
+      "td \"420 ر.س\""
+    ],
+    "rows": 7,
+    "wrongRows": 0,
+    "wrongRowLabels": [],
+    "doubleFlip": 0,
+    "ltrRuns": 0,
+    "scrambledRuns": [],
+    "unisolatedRuns": 0,
+    "arrowsWrong": [],
+    "backSide": null,
+    "sidebarSide": null,
+    "tableFirstColRight": true,
+    "ltrInputs": 0,
+    "ltrInputsWrong": 0,
+    "mirroredEls": 0,
+    "forcedLtrArabic": 0,
+    "westernDigits": 133,
+    "easternDigits": 0,
+    "presentationForms": 0,
+    "bidiControls": 0,
+    "physicalCss": 10,
+    "logicalCss": 0,
+    "overflowX": true,
+    "fonts": {
+      "Tajawal": 403,
+      "Tajawal Medium": 56
+    },
+    "mobileOverflow": true,
+    "carousel": {
+      "found": false
+    },
+    "sidebarSideDesktop": "right",
+    "jsErrors": []
+  }
+}

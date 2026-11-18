@@ -1,0 +1,164 @@
+{
+  "file": "out/S1__explicit__gemini.html",
+  "screen": "S1",
+  "cond": "explicit",
+  "model": "gemini",
+  "score": 82,
+  "mainFont": "Cairo",
+  "checks": [
+    {
+      "id": "complete",
+      "label": "Page is complete (not cut off)",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "id": "dir",
+      "label": "Page set to right-to-left",
+      "pass": true,
+      "detail": "rtl/rtl"
+    },
+    {
+      "id": "lang",
+      "label": "Language set to Arabic",
+      "pass": true,
+      "detail": "ar"
+    },
+    {
+      "id": "align",
+      "label": "Arabic text aligned to the right",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "flow",
+      "label": "Rows flow right-to-left (first item on the right)",
+      "pass": true,
+      "detail": "0/1 wrong []"
+    },
+    {
+      "id": "arrows",
+      "label": "Next points left, back points right",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "back",
+      "label": "Back button on the right",
+      "pass": true,
+      "detail": "right"
+    },
+    {
+      "id": "inputs",
+      "label": "Phone/email/password fields typed left-to-right",
+      "pass": true,
+      "detail": "0/3 wrong"
+    },
+    {
+      "id": "font",
+      "label": "Arabic drawn in an intended font",
+      "pass": true,
+      "detail": {
+        "Cairo": 237
+      }
+    },
+    {
+      "id": "size",
+      "label": "Arabic text not too small (<13px under 25%)",
+      "pass": true,
+      "detail": "median 14px, 0% small"
+    },
+    {
+      "id": "lineheight",
+      "label": "Line height leaves room for Arabic marks",
+      "pass": false,
+      "detail": [
+        "button.btn-primary \"إنشاء حساب\""
+      ]
+    },
+    {
+      "id": "letterspacing",
+      "label": "No letter-spacing on Arabic",
+      "pass": false,
+      "detail": [
+        "h1 \"إنشاء حساب\""
+      ]
+    },
+    {
+      "id": "numerals",
+      "label": "One numeral system per page",
+      "pass": true,
+      "detail": "western 3, eastern 0"
+    },
+    {
+      "id": "logical",
+      "label": "Built with direction-neutral CSS",
+      "pass": false,
+      "detail": "physical 4, logical 1"
+    },
+    {
+      "id": "presentation",
+      "label": "No pre-shaped Arabic characters",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "id": "overflow",
+      "label": "No sideways scroll on phone",
+      "pass": true,
+      "detail": false
+    },
+    {
+      "id": "jserrors",
+      "label": "No JavaScript errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "raw": {
+    "htmlDir": "rtl",
+    "htmlLang": "ar",
+    "bodyDir": "rtl",
+    "arabicEls": 12,
+    "medianArabicFontPx": 14,
+    "smallArabicShare": 0,
+    "leftAligned": [],
+    "letterSpaced": [
+      "h1 \"إنشاء حساب\""
+    ],
+    "tightLines": [
+      "button.btn-primary \"إنشاء حساب\""
+    ],
+    "rows": 1,
+    "wrongRows": 0,
+    "wrongRowLabels": [],
+    "doubleFlip": 0,
+    "ltrRuns": 0,
+    "scrambledRuns": [],
+    "unisolatedRuns": 0,
+    "arrowsWrong": [],
+    "backSide": "right",
+    "sidebarSide": null,
+    "tableFirstColRight": null,
+    "ltrInputs": 3,
+    "ltrInputsWrong": 0,
+    "mirroredEls": 0,
+    "forcedLtrArabic": 0,
+    "westernDigits": 3,
+    "easternDigits": 0,
+    "presentationForms": 0,
+    "bidiControls": 0,
+    "physicalCss": 4,
+    "logicalCss": 1,
+    "overflowX": false,
+    "fonts": {
+      "Cairo": 237
+    },
+    "mobileOverflow": false,
+    "carousel": {
+      "found": false
+    },
+    "sidebarSideDesktop": null,
+    "jsErrors": []
+  }
+}

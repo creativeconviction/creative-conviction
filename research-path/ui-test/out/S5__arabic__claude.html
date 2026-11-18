@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>تتبّع الطلب — قريب</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brand: #0E7C66;
+    --brand-dark: #0A5E4E;
+    --brand-soft: #E3F4EF;
+    --accent: #F2A33A;
+    --ink: #17211E;
+    --ink-2: #4D5A56;
+    --ink-3: #8A9692;
+    --line: #E4E9E7;
+    --bg: #F4F7F6;
+    --card: #FFFFFF;
+    --radius: 18px;
+    --shadow: 0 1px 2px rgba(16, 40, 34, .06), 0 8px 24px rgba(16, 40, 34, .08);
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "IBM Plex Sans Arabic", system-ui, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  button, a { font: inherit; color: inherit; }
+
+  :focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .visually-hidden {
+    position: absolute !important;
+    width: 1px; height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  /* ---------- Layout ---------- */
+  .app {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    padding-top: max(12px, env(safe-area-inset-top));
+    background: rgba(255, 255, 255, .92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .icon-btn {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--card);
+    cursor: pointer;
+    transition: background .15s;
+  }
+  .icon-btn:hover { background: var(--bg); }
+  .icon-btn svg { width: 22px; height: 22px; }
+
+  .topbar__title { flex: 1; min-width: 0; }
+  .topbar__title h1 {
+    margin: 0;
+    font-size: 1.125rem;
+    font-weight: 700;
+  }
+  .topbar__title p {
+    margin: 0;
+    font-size: .8125rem;
+    color: var(--ink-3);
+  }
+
+  .brand-mark {
+    font-weight: 700;
+    color: var(--brand);
+    font-size: 1.05rem;
+  }
+
+  .main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ---------- Map ---------- */
+  .map {
+    position: relative;
+    height: 280px;
+    overflow: hidden;
+    background: #E6EEE9;
+  }
+  .map svg.map__art {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .map__chip {
+    position: absolute;
+    top: 14px;
+    inset-inline-start: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: var(--card);
+    box-shadow: var(--shadow);
+    font-size: .8125rem;
+    font-weight: 600;
+  }
+  .map__chip .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--brand);
+    box-shadow: 0 0 0 4px var(--brand-soft);
+  }
+
+  .driver-marker { transform-origin: center; }
+  @media (prefers-reduced-motion: no-preference) {
+    .driver-pulse {
+      animation: mapPulse 2s ease-out infinite;
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+  }
+  @keyframes mapPulse {
+    0%   { transform: scale(.6); opacity: .55; }
+    100% { transform: scale(1.8); opacity: 0; }
+  }
+
+  /* ---------- Sheet ---------- */
+  .sheet {
+    position: relative;
+    margin-top: -24px;
+    z-index: 5;
+    padding: 20px 16px 32px;
+    padding-bottom: max(32px, env(safe-area-inset-bottom));
+    background: var(--bg);
+    border-radius: 24px 24px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .sheet::before {
+    content: "";
+    align-self: center;
+    width: 40px;
+    height: 4px;
+    margin-top: -8px;
+    border-radius: 4px;
+    background: #CBD4D1;
+  }
+
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 18px;
+  }
+
+  /* ---------- ETA ---------- */
+  .eta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .eta__label {
+    margin: 0;
+    font-size: .875rem;
+    color: var(--ink-2);
+  }
+  .eta__value {
+    margin: 2px 0 0;
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--ink);
+  }
+  .eta__value small {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink-2);
+  }
+  .eta__time {
+    text-align: center;
+    padding: 8px 14px;
+    border-radius: 14px;
+    background: var(--brand-soft);
+    color: var(--brand-dark);
+    flex: none;
+  }
+  .eta__time span { display: block; font-size: .75rem; }
+  .eta__time strong { font-size: 1.125rem; }
+
+  /* ---------- Stepper ---------- */
+  .status-line {
+    margin: 16px 0 14px;
+    padding-top: 16px;
+    border-top: 1px dashed var(--line);
+    font-size: .9375rem;
+    color: var(--ink-2);
+  }
+  .status-line strong { color: var(--brand-dark); }
+
+  .stepper {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .step {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+  }
+  /* connector to previous step (previous lies on inline-start side in RTL) */
+  .step + .step::before {
+    content: "";
+    position: absolute;
+    top: 17px;
+    inset-inline-start: -50%;
+    width: 100%;
+    height: 4px;
+    border-radius: 4px;
+    background: var(--line);
+    z-index: 0;
+  }
+  .step[data-state="done"]::before,
+  .step[data-state="current"]::before { background: var(--brand); }
+
+  .step__dot {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--card);
+    border: 2px solid var(--line);
+    color: var(--ink-3);
+  }
+  .step__dot svg { width: 18px; height: 18px; }
+
+  .step[data-state="done"] .step__dot {
+    background: var(--brand);
+    border-color: var(--brand);
+    color: #fff;
+  }
+  .step[data-state="current"] .step__dot {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    box-shadow: 0 0 0 6px rgba(242, 163, 58, .22);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .step[data-state="current"] .step__dot::after {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      animation: ring 1.8s ease-out infinite;
+    }
+  }
+  @keyframes ring {
+    0%   { transform: scale(1); opacity: .8; }
+    100% { transform: scale(1.7); opacity: 0; }
+  }
+
+  .step__label {
+    font-size: .8125rem;
+    font-weight: 500;
+    color: var(--ink-3);
+    line-height: 1.35;
+  }
+  .step[data-state="done"] .step__label { color: var(--ink-2); }
+  .step[data-state="current"] .step__label {
+    color: var(--ink);
+    font-weight: 700;
+  }
+  .step__time {
+    display: block;
+    font-size: .6875rem;
+    font-weight: 400;
+    color: var(--ink-3);
+  }
+
+  /* ---------- Driver ---------- */
+  .driver {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .driver__avatar {
+    flex: none;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, #CFEDE4, #9FD8C7);
+    color: var(--brand-dark);
+    font-weight: 700;
+    font-size: 1.25rem;
+  }
+  .driver__info { flex: 1; min-width: 0; }
+  .driver__name {
+    margin: 0;
+    font-size: 1.0625rem;
+    font-weight: 700;
+  }
+  .driver__meta {
+    margin: 2px 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 10px;
+    font-size: .8125rem;
+    color: var(--ink-2);
+  }
+  .rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .rating svg { width: 15px; height: 15px; color: var(--accent); }
+
+  .vehicle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 14px;
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: var(--bg);
+  }
+  .vehicle__label { font-size: .8125rem; color: var(--ink-2); }
+  .vehicle__label strong { display: block; color: var(--ink); font-size: .9375rem; }
+
+  /* Saudi-style plate: numbers on the left, letters on the right */
+  .plate {
+    flex: none;
+    display: grid;
+    grid-template-columns: auto auto;
+    direction: ltr;
+    border: 2px solid var(--ink);
+    border-radius: 8px;
+    background: #fff;
+    overflow: hidden;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .plate > span {
+    padding: 5px 10px;
+    text-align: center;
+    font-size: .9375rem;
+    letter-spacing: .06em;
+  }
+  .plate > span:nth-child(odd) { border-right: 2px solid var(--ink); }
+  .plate > span:nth-child(-n+2) { border-bottom: 1px solid var(--ink); }
+  .plate .ar { font-size: 1rem; letter-spacing: .12em; }
+
+  .actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 14px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 48px;
+    padding: 0 16px;
+    border-radius: 14px;
+    border: 0;
+    font-weight: 600;
+    font-size: .9375rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+  }
+  .btn:active { transform: scale(.98); }
+  .btn svg { width: 20px; height: 20px; }
+  .btn--primary { background: var(--brand); color: #fff; }
+  .btn--primary:hover { background: var(--brand-dark); }
+  .btn--ghost {
+    background: var(--brand-soft);
+    color: var(--brand-dark);
+  }
+  .btn--ghost:hover { background: #D2EDE5; }
+
+  /* ---------- Order details ---------- */
+  details.order { padding: 0; overflow: hidden; }
+  details.order summary {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 18px;
+    cursor: pointer;
+    min-height: 56px;
+  }
+  details.order summary::-webkit-details-marker { display: none; }
+  .order__icon {
+    flex: none;
+    width: 40px; height: 40px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    background: var(--brand-soft);
+    color: var(--brand-dark);
+  }
+  .order__icon svg { width: 20px; height: 20px; }
+  .order__head { flex: 1; min-width: 0; }
+  .order__head strong { display: block; font-size: 1rem; }
+  .order__head span { font-size: .8125rem; color: var(--ink-3); }
+  .chev {
+    width: 22px; height: 22px;
+    color: var(--ink-3);
+    transition: transform .2s;
+  }
+  details[open] .chev { transform: rotate(180deg); }
+
+  .order__body {
+    padding: 0 18px 18px;
+    border-top: 1px solid var(--line);
+  }
+  .store {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 14px 0 10px;
+    font-size: .875rem;
+    color: var(--ink-2);
+  }
+  .store strong { color: var(--ink); font-size: .9375rem; }
+
+  .items { list-style: none; margin: 0; padding: 0; }
+  .items li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 0;
+    font-size: .9375rem;
+  }
+  .qty {
+    flex: none;
+    min-width: 30px;
+    padding: 2px 6px;
+    border-radius: 8px;
+    background: var(--bg);
+    text-align: center;
+    font-size: .8125rem;
+    font-weight: 600;
+    color: var(--ink-2);
+  }
+  .items .name { flex: 1; }
+  .price { white-space: nowrap; font-weight: 500; }
+
+  .totals {
+    margin: 10px 0 0;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line);
+  }
+  .totals div {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    font-size: .875rem;
+    color: var(--ink-2);
+  }
+  .totals dt, .totals dd { margin: 0; }
+  .totals .grand {
+    margin-top: 6px;
+    padding-top: 10px;
+    border-top: 1px solid var(--line);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .meta-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 14px;
+    padding: 12px;
+    border-radius: 12px;
+    background: var(--bg);
+    font-size: .8125rem;
+    color: var(--ink-2);
+  }
+  .meta-row svg { flex: none; width: 18px; height: 18px; color: var(--brand); margin-top: 2px; }
+  .meta-row strong { display: block; color: var(--ink); font-size: .875rem; }
+
+  /* ---------- Desktop ---------- */
+  @media (min-width: 900px) {
+    .main {
+      display: grid;
+      grid-template-columns: 440px 1fr;
+      height: calc(100dvh - 69px);
+    }
+    .sheet {
+      grid-column: 1;
+      grid-row: 1;
+      margin: 0;
+      border-radius: 0;
+      overflow-y: auto;
+      padding: 24px;
+      border-inline-end: 1px solid var(--line);
+    }
+    .sheet::before { display: none; }
+    .map {
+      grid-column: 2;
+      grid-row: 1;
+      height: 100%;
+    }
+    .topbar { padding-inline: 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header class="topbar">
+    <button class="icon-btn" type="button" id="backBtn" aria-label="رجوع">
+      <!-- arrow points right (backwards in RTL) -->
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M5 12h14M13 6l6 6-6 6"/>
+      </svg>
+    </button>
+    <div class="topbar__title">
+      <h1>تتبّع الطلب</h1>
+      <p>طلب رقم <bdi>#QR-20481</bdi></p>
+    </div>
+    <span class="brand-mark" aria-hidden="true">قريب</span>
+  </header>
+
+  <main class="main">
+
+    <!-- Map placeholder -->
+    <section class="map" aria-label="خريطة موقع المندوب">
+      <svg class="map__art" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" role="img" aria-label="خريطة توضّح مسار المندوب نحو عنوان التوصيل">
+        <rect width="400" height="300" fill="#E6EEE9"/>
+        <!-- blocks -->
+        <g fill="#D8E3DD">
+          <rect x="10" y="10" width="110" height="70" rx="6"/>
+          <rect x="140" y="10" width="120" height="70" rx="6"/>
+          <rect x="280" y="10" width="110" height="70" rx="6"/>
+          <rect x="10" y="100" width="70" height="90" rx="6"/>
+          <rect x="190" y="100" width="70" height="90" rx="6"/>
+          <rect x="280" y="100" width="110" height="90" rx="6"/>
+          <rect x="10" y="210" width="110" height="80" rx="6"/>
+          <rect x="140" y="210" width="120" height="80" rx="6"/>
+          <rect x="280" y="210" width="110" height="80" rx="6"/>
+        </g>
+        <!-- park -->
+        <rect x="100" y="100" width="70" height="90" rx="10" fill="#C6E3CF"/>
+        <circle cx="122" cy="128" r="9" fill="#AED6BA"/>
+        <circle cx="148" cy="160" r="12" fill="#AED6BA"/>
+        <!-- roads -->
+        <g stroke="#FFFFFF" stroke-width="12" stroke-linecap="round">
+          <path d="M0 90H400"/>
+          <path d="M0 200H400"/>
+          <path d="M130 0V300"/>
+          <path d="M270 0V300"/>
+        </g>
+        <g stroke="#F7F9F8" stroke-width="6">
+          <path d="M90 90V200"/>
+          <path d="M180 90V200"/>
+        </g>
+        <!-- route -->
+        <path d="M60 255 H130 V90 H270 V150 H335" fill="none" stroke="#0E7C66" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity=".25"/>
+        <path d="M130 140 V90 H270 V150 H335" fill="none" stroke="#0E7C66" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2 9"/>
+        <path d="M60 255 H130 V140" fill="none" stroke="#0E7C66" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- store -->
+        <circle cx="60" cy="255" r="8" fill="#fff" stroke="#0E7C66" stroke-width="3"/>
+        <!-- driver -->
+        <g class="driver-marker">
+          <circle class="driver-pulse" cx="130" cy="140" r="18" fill="#0E7C66"/>
+          <circle cx="130" cy="140" r="15" fill="#0E7C66" stroke="#fff" stroke-width="3"/>
+          <path d="M123 143v-3l2-4h10l2 4v3h-14zm2 0v2m10-2v2" fill="#fff" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/>
+        </g>
+        <!-- destination -->
+        <g transform="translate(335 150)">
+          <ellipse cx="0" cy="2" rx="8" ry="3" fill="#000" opacity=".15"/>
+          <path d="M0 0c-7-9-13-15-13-22a13 13 0 0 1 26 0c0 7-6 13-13 22z" fill="#F2A33A" stroke="#fff" stroke-width="2.5"/>
+          <circle cx="0" cy="-22" r="5" fill="#fff"/>
+        </g>
+      </svg>
+      <div class="map__chip"><span class="dot" aria-hidden="true"></span>يبعد ٢٫٤ كم عنك</div>
+    </section>
+
+    <div class="sheet">
+
+      <!-- ETA + progress -->
+      <section class="card" aria-labelledby="etaLabel">
+        <div class="eta">
+          <div>
+            <p class="eta__label" id="etaLabel">الوصول المتوقع خلال</p>
+            <p class="eta__value">١٢ <small>دقيقة</small></p>
+          </div>
+          <div class="eta__time">
+            <span>عند الساعة</span>
+            <strong>٨:١٥ م</strong>
+          </div>
+        </div>
+
+        <p class="status-line" role="status">طلبك <strong>في الطريق</strong> إليك الآن</p>
+
+        <ol class="stepper" aria-label="مراحل الطلب">
+          <li class="step" data-state="done">
+            <span class="step__dot" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+            </span>
+            <span class="step__label">تم استلام الطلب<span class="step__time">٧:٤٢ م</span></span>
+            <span class="visually-hidden">(مكتملة)</span>
+          </li>
+          <li class="step" data-state="done">
+            <span class="step__dot" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+            </span>
+            <span class="step__label">قيد التجهيز<span class="step__time">٧:٤٨ م</span></span>
+            <span class="visually-hidden">(مكتملة)</span>
+          </li>
+          <li class="step" data-state="current" aria-current="step">
+            <span class="step__dot" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16V8h11v8M14 11h4l3 3v2h-7"/><circle cx="7" cy="17" r="2" fill="currentColor"/><circle cx="17" cy="17" r="2" fill="currentColor"/></svg>
+            </span>
+            <span class="step__label">في الطريق<span class="step__time">٨:٠٣ م</span></span>
+            <span class="visually-hidden">(المرحلة الحالية)</span>
+          </li>
+          <li class="step" data-state="upcoming">
+            <span class="step__dot" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-6 8 6v8a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1z"/></svg>
+            </span>
+            <span class="step__label">تم التوصيل<span class="step__time">—</span></span>
+            <span class="visually-hidden">(لم تبدأ بعد)</span>
+          </li>
+        </ol>
+      </section>
+
+      <!-- Driver card -->
+      <section class="card" aria-labelledby="driverName">
+        <div class="driver">
+          <div class="driver__avatar" aria-hidden="true">خ</div>
+          <div class="driver__info">
+            <h2 class="driver__name" id="driverName">خالد العتيبي</h2>
+            <p class="driver__meta">
+              <span class="rating" aria-label="التقييم ٤٫٨ من ٥">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg>
+                ٤٫٨
+              </span>
+              <span>· ١٬٢٤٠ توصيلة</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="vehicle">
+          <div class="vehicle__label">
+            تويوتا كامري
+            <strong>بيضاء</strong>
+          </div>
+          <div class="plate" role="img" aria-label="رقم اللوحة: ABC 1234 / أ ب ج ١٢٣٤">
+            <span class="ar">١٢٣٤</span>
+            <span class="ar">أ ب ج</span>
+            <span>1234</span>
+            <span>ABC</span>
+          </div>
+        </div>
+
+        <div class="actions">
+          <a class="btn btn--primary" href="tel:+966500000000">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+            اتصال
+          </a>
+          <a class="btn btn--ghost" href="sms:+966500000000">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 10h8M8 13h5"/></svg>
+            مراسلة
+          </a>
+        </div>
+      </section>
+
+      <!-- Order details (expandable) -->
+      <details class="card order">
+        <summary>
+          <span class="order__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l-1 13H7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+          </span>
+          <span class="order__head">
+            <strong>تفاصيل الطلب</strong>
+            <span>٣ منتجات · ٨٧٫٥٠ ر.س</span>
+          </span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+
+        <div class="order__body">
+          <div class="store">
+            <strong>مخبز الحيّ</strong>
+            <span>رقم الطلب <bdi>#QR-20481</bdi></span>
+          </div>
+
+          <ul class="items">
+            <li><span class="qty">٢×</span><span class="name">كرواسون بالزعتر</span><span class="price">٢٤٫٠٠ ر.س</span></li>
+            <li><span class="qty">١×</span><span class="name">قهوة مختصة باردة</span><span class="price">٢٢٫٠٠ ر.س</span></li>
+            <li><span class="qty">١×</span><span class="name">كيكة التمر — حجم وسط</span><span class="price">٣٥٫٠٠ ر.س</span></li>
+          </ul>
+
+          <dl class="totals">
+            <div><dt>المجموع الفرعي</dt><dd>٨١٫٠٠ ر.س</dd></div>
+            <div><dt>رسوم التوصيل</dt><dd>٦٫٥٠ ر.س</dd></div>
+            <div class="grand"><dt>الإجمالي</dt><dd>٨٧٫٥٠ ر.س</dd></div>
+          </dl>
+
+          <div class="meta-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            <div><strong>عنوان التوصيل</strong>حي النرجس، شارع الأمير سعود، مبنى ١٤، شقة ٣</div>
+          </div>
+          <div class="meta-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h3"/></svg>
+            <div><strong>طريقة الدفع</strong>بطاقة مدى تنتهي بـ <bdi>4821</bdi></div>
+          </div>
+        </div>
+      </details>
+
+    </div>
+  </main>
+</div>
+
+<script>
+  document.getElementById('backBtn').addEventListener('click', function () {
+    if (history.length > 1) { history.back(); }
+  });
+</script>
+</body>
+</html>

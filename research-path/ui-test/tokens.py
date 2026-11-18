@@ -33,7 +33,7 @@ def ntok(name, text):
     t = TOK[name]
     return len(t.encode(text)) if name.startswith("GPT") else len(t.encode(text, add_special_tokens=False).ids)
 
-AR_WORD = re.compile(r"[ء-ي٠-٩ٱ-ۓ]+")
+AR_WORD = re.compile("[\u0621-\u065F\u0670-\u06D3]+")
 EN_WORD = re.compile(r"\b[A-Za-z]{2,}\b")
 def visible(html):
     soup = BeautifulSoup(html, "html.parser")
@@ -67,6 +67,7 @@ ar_words = collections.Counter(); en_words = collections.Counter(); where = coll
 for f in sorted((here / "out").glob("*.html")):
     v = visible(f.read_text(encoding="utf-8"))
     for w in AR_WORD.findall(v):
+        w = re.sub(r"[\u064B-\u065F\u0670\u0640]", "", w)
         if len(w) > 1 and not re.match(r"^[٠-٩]+$", w): ar_words[w] += 1; where[w].add(f.stem)
 for f in sorted((here / "reference").glob("*.html")):
     for w in EN_WORD.findall(visible(f.read_text(encoding="utf-8"))): en_words[w.lower()] += 1

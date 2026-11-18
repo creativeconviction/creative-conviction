@@ -1,0 +1,160 @@
+{
+  "file": "out/S5__explicit__deepseek.html",
+  "screen": "S5",
+  "cond": "explicit",
+  "model": "deepseek",
+  "score": 81,
+  "mainFont": "Cairo",
+  "checks": [
+    {
+      "id": "complete",
+      "label": "Page is complete (not cut off)",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "id": "dir",
+      "label": "Page set to right-to-left",
+      "pass": true,
+      "detail": "rtl/rtl"
+    },
+    {
+      "id": "lang",
+      "label": "Language set to Arabic",
+      "pass": true,
+      "detail": "ar"
+    },
+    {
+      "id": "align",
+      "label": "Arabic text aligned to the right",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "flow",
+      "label": "Rows flow right-to-left (first item on the right)",
+      "pass": true,
+      "detail": "0/13 wrong []"
+    },
+    {
+      "id": "arrows",
+      "label": "Next points left, back points right",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "back",
+      "label": "Back button on the right",
+      "pass": true,
+      "detail": "right"
+    },
+    {
+      "id": "font",
+      "label": "Arabic drawn in an intended font",
+      "pass": true,
+      "detail": {
+        "Cairo": 293,
+        "Noto Color Emoji": 1
+      }
+    },
+    {
+      "id": "size",
+      "label": "Arabic text not too small (<13px under 25%)",
+      "pass": false,
+      "detail": "median 12.8px, 55% small"
+    },
+    {
+      "id": "lineheight",
+      "label": "Line height leaves room for Arabic marks",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "letterspacing",
+      "label": "No letter-spacing on Arabic",
+      "pass": false,
+      "detail": [
+        "span.eta-time \"١٥ – ٢٠ دقيقة\"",
+        "span.plate-arabic \"أ ب ج ١٢٣٤\"",
+        "span.order-total-amount \"٨٥ ريال\""
+      ]
+    },
+    {
+      "id": "numerals",
+      "label": "One numeral system per page",
+      "pass": false,
+      "detail": "western 4, eastern 24"
+    },
+    {
+      "id": "logical",
+      "label": "Built with direction-neutral CSS",
+      "pass": true,
+      "detail": "physical 0, logical 25"
+    },
+    {
+      "id": "presentation",
+      "label": "No pre-shaped Arabic characters",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "id": "overflow",
+      "label": "No sideways scroll on phone",
+      "pass": true,
+      "detail": false
+    },
+    {
+      "id": "jserrors",
+      "label": "No JavaScript errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "raw": {
+    "htmlDir": "rtl",
+    "htmlLang": "ar",
+    "bodyDir": "rtl",
+    "arabicEls": 31,
+    "medianArabicFontPx": 12.8,
+    "smallArabicShare": 0.55,
+    "leftAligned": [],
+    "letterSpaced": [
+      "span.eta-time \"١٥ – ٢٠ دقيقة\"",
+      "span.plate-arabic \"أ ب ج ١٢٣٤\"",
+      "span.order-total-amount \"٨٥ ريال\""
+    ],
+    "tightLines": [],
+    "rows": 13,
+    "wrongRows": 0,
+    "wrongRowLabels": [],
+    "doubleFlip": 0,
+    "ltrRuns": 0,
+    "scrambledRuns": [],
+    "unisolatedRuns": 0,
+    "arrowsWrong": [],
+    "backSide": "right",
+    "sidebarSide": null,
+    "tableFirstColRight": null,
+    "ltrInputs": 0,
+    "ltrInputsWrong": 0,
+    "mirroredEls": 0,
+    "forcedLtrArabic": 0,
+    "westernDigits": 4,
+    "easternDigits": 24,
+    "presentationForms": 0,
+    "bidiControls": 0,
+    "physicalCss": 0,
+    "logicalCss": 25,
+    "overflowX": false,
+    "fonts": {
+      "Cairo": 293,
+      "Noto Color Emoji": 1
+    },
+    "mobileOverflow": false,
+    "carousel": {
+      "found": false
+    },
+    "sidebarSideDesktop": null,
+    "jsErrors": []
+  }
+}

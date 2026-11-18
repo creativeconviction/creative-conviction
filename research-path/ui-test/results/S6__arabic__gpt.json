@@ -1,0 +1,204 @@
+{
+  "file": "out/S6__arabic__gpt.html",
+  "screen": "S6",
+  "cond": "arabic",
+  "model": "gpt",
+  "score": 78,
+  "mainFont": "Tajawal",
+  "checks": [
+    {
+      "id": "complete",
+      "label": "Page is complete (not cut off)",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "id": "dir",
+      "label": "Page set to right-to-left",
+      "pass": true,
+      "detail": "rtl/rtl"
+    },
+    {
+      "id": "lang",
+      "label": "Language set to Arabic",
+      "pass": true,
+      "detail": "ar"
+    },
+    {
+      "id": "align",
+      "label": "Arabic text aligned to the right",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "flow",
+      "label": "Rows flow right-to-left (first item on the right)",
+      "pass": true,
+      "detail": "0/21 wrong []"
+    },
+    {
+      "id": "scramble",
+      "label": "Phone numbers, IDs and English names display in the right order",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "arrows",
+      "label": "Next points left, back points right",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "sidebar",
+      "label": "Sidebar on the right (desktop)",
+      "pass": true,
+      "detail": "right"
+    },
+    {
+      "id": "table",
+      "label": "Table starts from the right",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "id": "font",
+      "label": "Arabic drawn in an intended font",
+      "pass": true,
+      "detail": {
+        "Tajawal ExtraBold": 82,
+        "Tajawal": 553,
+        "Noto Color Emoji": 1,
+        "DejaVu Sans": 13,
+        "Tajawal Medium": 113
+      }
+    },
+    {
+      "id": "size",
+      "label": "Arabic text not too small (<13px under 25%)",
+      "pass": false,
+      "detail": "median 12px, 70% small"
+    },
+    {
+      "id": "lineheight",
+      "label": "Line height leaves room for Arabic marks",
+      "pass": false,
+      "detail": [
+        "div.avatar \"م ع\"",
+        "span.customer-avatar.c1 \"س م\"",
+        "td \"اليوم، ١٠:٣٥ ص\""
+      ]
+    },
+    {
+      "id": "letterspacing",
+      "label": "No letter-spacing on Arabic",
+      "pass": false,
+      "detail": [
+        "span.brand-name \"قريب\"",
+        "h1 \"مرحباً محمد 👋\"",
+        "p.stat-value \"١٢٨\""
+      ]
+    },
+    {
+      "id": "numerals",
+      "label": "One numeral system per page",
+      "pass": false,
+      "detail": "western 22, eastern 86"
+    },
+    {
+      "id": "logical",
+      "label": "Built with direction-neutral CSS",
+      "pass": true,
+      "detail": "physical 4, logical 4"
+    },
+    {
+      "id": "presentation",
+      "label": "No pre-shaped Arabic characters",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "id": "overflow",
+      "label": "No sideways scroll on phone",
+      "pass": true,
+      "detail": false
+    },
+    {
+      "id": "jserrors",
+      "label": "No JavaScript errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "raw": {
+    "htmlDir": "rtl",
+    "htmlLang": "ar",
+    "bodyDir": "rtl",
+    "arabicEls": 83,
+    "medianArabicFontPx": 12,
+    "smallArabicShare": 0.7,
+    "leftAligned": [],
+    "letterSpaced": [
+      "span.brand-name \"قريب\"",
+      "h1 \"مرحباً محمد 👋\"",
+      "p.stat-value \"١٢٨\"",
+      "p.stat-value \"١٨٬٤٢٠ ر.س\"",
+      "small \"ر.س\"",
+      "p.stat-value \"١٤٣٫٩ ر.س\"",
+      "small \"ر.س\"",
+      "p.stat-value \"٢٫٤٪\""
+    ],
+    "tightLines": [
+      "div.avatar \"م ع\"",
+      "span.customer-avatar.c1 \"س م\"",
+      "td \"اليوم، ١٠:٣٥ ص\"",
+      "td.amount \"٢٨٤٫٠٠ ر.س\"",
+      "span.customer-avatar.c2 \"ع أ\"",
+      "td \"اليوم، ١٠:١٢ ص\"",
+      "td.amount \"١٥٧٫٥٠ ر.س\"",
+      "span.customer-avatar.c3 \"ن خ\"",
+      "td \"اليوم، ٩:٤٥ ص\"",
+      "td.amount \"٣٩٢٫٠٠ ر.س\"",
+      "span.customer-avatar.c4 \"ف ع\"",
+      "td \"اليوم، ٩:١٨ ص\"",
+      "td.amount \"١١٩٫٧٥ ر.س\"",
+      "span.customer-avatar.c5 \"ر س\"",
+      "td \"اليوم، ٨:٥٦ ص\"",
+      "td.amount \"٢٠٨٫٠٠ ر.س\""
+    ],
+    "rows": 21,
+    "wrongRows": 0,
+    "wrongRowLabels": [],
+    "doubleFlip": 0,
+    "ltrRuns": 5,
+    "scrambledRuns": [],
+    "unisolatedRuns": 0,
+    "arrowsWrong": [],
+    "backSide": null,
+    "sidebarSide": null,
+    "tableFirstColRight": true,
+    "ltrInputs": 0,
+    "ltrInputsWrong": 0,
+    "mirroredEls": 0,
+    "forcedLtrArabic": 0,
+    "westernDigits": 22,
+    "easternDigits": 86,
+    "presentationForms": 0,
+    "bidiControls": 0,
+    "physicalCss": 4,
+    "logicalCss": 4,
+    "overflowX": false,
+    "fonts": {
+      "Tajawal ExtraBold": 82,
+      "Tajawal": 553,
+      "Noto Color Emoji": 1,
+      "DejaVu Sans": 13,
+      "Tajawal Medium": 113
+    },
+    "mobileOverflow": false,
+    "carousel": {
+      "found": false
+    },
+    "sidebarSideDesktop": "right",
+    "jsErrors": []
+  }
+}

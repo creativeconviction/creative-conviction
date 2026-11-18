@@ -1,0 +1,164 @@
+{
+  "file": "out/S7__plain__deepseek.html",
+  "screen": "S7",
+  "cond": "plain",
+  "model": "deepseek",
+  "score": 81,
+  "mainFont": "Tajawal",
+  "checks": [
+    {
+      "id": "complete",
+      "label": "Page is complete (not cut off)",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "id": "dir",
+      "label": "Page set to right-to-left",
+      "pass": true,
+      "detail": "rtl/rtl"
+    },
+    {
+      "id": "lang",
+      "label": "Language set to Arabic",
+      "pass": true,
+      "detail": "ar"
+    },
+    {
+      "id": "align",
+      "label": "Arabic text aligned to the right",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "flow",
+      "label": "Rows flow right-to-left (first item on the right)",
+      "pass": true,
+      "detail": "0/1 wrong []"
+    },
+    {
+      "id": "arrows",
+      "label": "Next points left, back points right",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "font",
+      "label": "Arabic drawn in an intended font",
+      "pass": true,
+      "detail": {
+        "Tajawal Medium": 4,
+        "Tajawal ExtraBold": 51,
+        "Tajawal": 203
+      }
+    },
+    {
+      "id": "size",
+      "label": "Arabic text not too small (<13px under 25%)",
+      "pass": true,
+      "detail": "median 16px, 0% small"
+    },
+    {
+      "id": "lineheight",
+      "label": "Line height leaves room for Arabic marks",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "letterspacing",
+      "label": "No letter-spacing on Arabic",
+      "pass": false,
+      "detail": [
+        "button.slide-cta \"ابدأ الآن\""
+      ]
+    },
+    {
+      "id": "numerals",
+      "label": "One numeral system per page",
+      "pass": true,
+      "detail": "western 0, eastern 0"
+    },
+    {
+      "id": "logical",
+      "label": "Built with direction-neutral CSS",
+      "pass": false,
+      "detail": "physical 2, logical 0"
+    },
+    {
+      "id": "presentation",
+      "label": "No pre-shaped Arabic characters",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "id": "overflow",
+      "label": "No sideways scroll on phone",
+      "pass": true,
+      "detail": false
+    },
+    {
+      "id": "carousel",
+      "label": "Carousel next works and moves the RTL way",
+      "pass": false,
+      "detail": {
+        "found": true,
+        "changed": true,
+        "dotMoved": "right"
+      }
+    },
+    {
+      "id": "jserrors",
+      "label": "No JavaScript errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "raw": {
+    "htmlDir": "rtl",
+    "htmlLang": "ar",
+    "bodyDir": "rtl",
+    "arabicEls": 8,
+    "medianArabicFontPx": 16,
+    "smallArabicShare": 0,
+    "leftAligned": [],
+    "letterSpaced": [
+      "button.slide-cta \"ابدأ الآن\""
+    ],
+    "tightLines": [],
+    "rows": 1,
+    "wrongRows": 0,
+    "wrongRowLabels": [],
+    "doubleFlip": 0,
+    "ltrRuns": 0,
+    "scrambledRuns": [],
+    "unisolatedRuns": 0,
+    "arrowsWrong": [],
+    "backSide": null,
+    "sidebarSide": null,
+    "tableFirstColRight": null,
+    "ltrInputs": 0,
+    "ltrInputsWrong": 0,
+    "mirroredEls": 0,
+    "forcedLtrArabic": 0,
+    "westernDigits": 0,
+    "easternDigits": 0,
+    "presentationForms": 0,
+    "bidiControls": 0,
+    "physicalCss": 2,
+    "logicalCss": 0,
+    "overflowX": false,
+    "fonts": {
+      "Tajawal Medium": 4,
+      "Tajawal ExtraBold": 51,
+      "Tajawal": 203
+    },
+    "mobileOverflow": false,
+    "carousel": {
+      "found": true,
+      "changed": true,
+      "dotMoved": "right"
+    },
+    "sidebarSideDesktop": null,
+    "jsErrors": []
+  }
+}

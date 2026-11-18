@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قريب - شاشات الترحيب</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00BFA5;
+            --primary-dark: #009688;
+            --primary-light: #E0F2F1;
+            --text-main: #111827;
+            --text-muted: #6B7280;
+            --bg-color: #F9FAFB;
+            --surface: #FFFFFF;
+            --dot-inactive: #D1D5DB;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #E5E7EB;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .app-container {
+            width: 100%;
+            height: 100vh;
+            max-width: 390px;
+            background-color: var(--surface);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Desktop representation of mobile */
+        @media (min-width: 480px) {
+            .app-container {
+                height: 844px;
+                border-radius: 40px;
+                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+                border: 8px solid #1F2937;
+            }
+        }
+
+        /* Header / Skip */
+        .top-bar {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: flex-end; /* RTL: pushes to visual left */
+            z-index: 10;
+        }
+
+        .skip-btn {
+            background: none;
+            border: none;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: color 0.2s, opacity 0.3s;
+        }
+
+        .skip-btn:hover {
+            color: var(--text-main);
+        }
+
+        /* Carousel Area */
+        .carousel-wrapper {
+            flex: 1;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .carousel-track {
+            display: flex;
+            height: 100%;
+            width: 100%;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .slide {
+            flex: 0 0 100%;
+            width: 100%;
+            padding: 1rem 2rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .illustration {
+            width: 100%;
+            max-width: 280px;
+            aspect-ratio: 1/1;
+            margin-bottom: 2.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .illustration svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .text-content {
+            margin-bottom: auto;
+        }
+
+        .slide h2 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .slide p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        /* Footer Controls */
+        .bottom-bar {
+            padding: 1.5rem 2rem 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--surface);
+            position: relative;
+        }
+
+        /* Dots */
+        .dots-container {
+            display: flex;
+            gap: 6px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--dot-inactive);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            width: 24px;
+            border-radius: 4px;
+            background-color: var(--primary);
+        }
+
+        /* Buttons */
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            height: 48px;
+        }
+
+        .next-btn {
+            background-color: var(--primary);
+            color: white;
+            padding-inline-start: 1.5rem;
+            padding-inline-end: 1rem;
+            gap: 0.5rem;
+            box-shadow: 0 4px 12px rgba(0, 191, 165, 0.3);
+        }
+
+        .next-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .next-btn svg {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+
+        .prev-btn {
+            background-color: transparent;
+            color: var(--text-muted);
+            padding: 0;
+            width: 48px;
+        }
+
+        .prev-btn:hover {
+            color: var(--text-main);
+            background-color: var(--bg-color);
+        }
+
+        .prev-btn svg {
+            width: 24px;
+            height: 24px;
+            stroke: currentColor;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+
+        .prev-btn.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Final Step Adjustments */
+        .bottom-bar.final-step {
+            justify-content: center;
+        }
+
+        .bottom-bar.final-step .dots-container,
+        .bottom-bar.final-step .prev-btn {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .bottom-bar.final-step .next-btn {
+            width: 100%;
+            padding: 0;
+            font-size: 1.125rem;
+        }
+
+        .bottom-bar.final-step .next-btn svg {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header class="top-bar">
+            <button id="skipBtn" class="skip-btn" aria-label="تخطي المقدمة">تخطي</button>
+        </header>
+
+        <!-- Carousel -->
+        <main class="carousel-wrapper">
+            <div class="carousel-track" id="track">
+                
+                <!-- Slide 1 -->
+                <div class="slide">
+                    <div class="illustration">
+                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="100" cy="100" r="100" fill="#E0F2F1"/>
+                            <path d="M100 40C80.67 40 65 55.67 65 75C65 101.25 100 145 100 145C100 145 135 101.25 135 75C135 55.67 119.33 40 100 40ZM100 87.5C93.1 87.5 87.5 81.9 87.5 75C87.5 68.1 93.1 62.5 100 62.5C106.9 62.5 112.5 68.1 112.5 75C112.5 81.9 106.9 87.5 100 87.5Z" fill="#00BFA5"/>
+                            <path d="M50 160C50 151.716 72.3858 145 100 145C127.614 145 150 151.716 150 160C150 168.284 127.614 175 100 175C72.3858 175 50 168.284 50 160Z" fill="#B2DFDB" opacity="0.5"/>
+                        </svg>
+                    </div>
+                    <div class="text-content">
+                        <h2>مرحباً بك في قريب</h2>
+                        <p>اكتشف الخدمات والمتاجر القريبة منك بكل سهولة وسرعة من مكان واحد.</p>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="slide">
+                    <div class="illustration">
+                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="100" cy="100" r="100" fill="#E0F2F1"/>
+                            <rect x="55" y="80" width="90" height="70" rx="8" fill="#00BFA5"/>
+                            <path d="M70 80V65C70 48.4315 83.4315 35 100 35C116.569 35 130 48.4315 130 65V80" stroke="#00BFA5" stroke-width="12" stroke-linecap="round" fill="none"/>
+                            <circle cx="80" cy="105" r="8" fill="#FFFFFF"/>
+                            <circle cx="120" cy="105" r="8" fill="#FFFFFF"/>
+                            <path d="M50 165C50 156.716 72.3858 150 100 150C127.614 150 150 156.716 150 165C150 173.284 127.614 180 100 180C72.3858 180 50 173.284 50 165Z" fill="#B2DFDB" opacity="0.5"/>
+                        </svg>
+                    </div>
+                    <div class="text-content">
+                        <h2>اطلب ما تحتاجه</h2>
+                        <p>مجموعة واسعة من الخيارات لتلبية جميع احتياجاتك اليومية بخطوات بسيطة.</p>
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="slide">
+                    <div class="illustration">
+                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="100" cy="100" r="100" fill="#E0F2F1"/>
+                            <path d="M140 60L125 110L100 100L90 125L80 90L40 75L140 60Z" fill="#00BFA5"/>
+                            <path d="M140 60L100 100M140 60L80 90" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+                            <path d="M60 145C60 136.716 77.9086 130 100 130C122.091 130 140 136.716 140 145C140 153.284 122.091 160 100 160C77.9086 160 60 153.284 60 145Z" fill="#B2DFDB" opacity="0.5"/>
+                            <path d="M30 110L50 105M40 130L55 120M20 90L45 80" stroke="#009688" stroke-width="4" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="text-content">
+                        <h2>توصيل سريع</h2>
+                        <p>نضمن لك وصول طلباتك بأسرع وقت ممكن إلى باب منزلك بأمان تام.</p>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        <!-- Controls -->
+        <footer class="bottom-bar" id="bottomBar">
+            
+            <!-- Prev Button (Arrow points Right for RTL) -->
+            <button id="prevBtn" class="nav-btn prev-btn hidden" aria-label="السابق">
+                <svg viewBox="0 0 24 24">
+                    <path d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+
+            <!-- Dots -->
+            <div class="dots-container" id="dotsContainer">
+                <div class="dot active" data-index="0"></div>
+                <div class="dot" data-index="1"></div>
+                <div class="dot" data-index="2"></div>
+            </div>
+
+            <!-- Next / Get Started Button -->
+            <!-- Next Arrow points Left for RTL -->
+            <button id="nextBtn" class="nav-btn next-btn">
+                <span id="nextText">التالي</span>
+                <svg viewBox="0 0 24 24" id="nextIcon">
+                    <path d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const track = document.getElementById('track');
+            const nextBtn = document.getElementById('nextBtn');
+            const prevBtn = document.getElementById('prevBtn');
+            const skipBtn = document.getElementById('skipBtn');
+            const bottomBar = document.getElementById('bottomBar');
+            const dots = document.querySelectorAll('.dot');
+            const nextText = document.getElementById('nextText');
+            
+            let currentIndex = 0;
+            const totalSlides = dots.length;
+
+            function updateCarousel() {
+                // In RTL, positive translateX moves the track to the right, showing leftward items.
+                track.style.transform = `translateX(${currentIndex * 100}%)`;
+
+                // Update dots
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentIndex);
+                });
+
+                // Update UI elements based on slide index
+                if (currentIndex === 0) {
+                    prevBtn.classList.add('hidden');
+                    skipBtn.style.opacity = '1';
+                    skipBtn.style.pointerEvents = 'auto';
+                    bottomBar.classList.remove('final-step');
+                    nextText.textContent = 'التالي';
+                } else if (currentIndex === totalSlides - 1) {
+                    prevBtn.classList.remove('hidden');
+                    skipBtn.style.opacity = '0';
+                    skipBtn.style.pointerEvents = 'none';
+                    bottomBar.classList.add('final-step');
+                    nextText.textContent = 'ابدأ الآن';
+                } else {
+                    prevBtn.classList.remove('hidden');
+                    skipBtn.style.opacity = '1';
+                    skipBtn.style.pointerEvents = 'auto';
+                    bottomBar.classList.remove('final-step');
+                    nextText.textContent = 'التالي';
+                }
+            }
+
+            nextBtn.addEventListener('click', () => {
+                if (currentIndex < totalSlides - 1) {
+                    currentIndex++;
+                    updateCarousel();
+                } else {
+                    // Action for "Get started"
+                    alert('تم البدء بنجاح! يتم الآن التوجيه للتطبيق...');
+                }
+            });
+
+            prevBtn.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateCarousel();
+                }
+            });
+
+            skipBtn.addEventListener('click', () => {
+                currentIndex = totalSlides - 1;
+                updateCarousel();
+            });
+
+            dots.forEach(dot => {
+                dot.addEventListener('click', (e) => {
+                    currentIndex = parseInt(e.target.getAttribute('data-index'));
+                    updateCarousel();
+                });
+            });
+        });
+    </script>
+</body>
+</html>

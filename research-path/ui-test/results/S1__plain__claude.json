@@ -1,0 +1,165 @@
+{
+  "file": "out/S1__plain__claude.html",
+  "screen": "S1",
+  "cond": "plain",
+  "model": "claude",
+  "score": 88,
+  "mainFont": "IBM Plex Sans Arabic",
+  "checks": [
+    {
+      "id": "complete",
+      "label": "Page is complete (not cut off)",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "id": "dir",
+      "label": "Page set to right-to-left",
+      "pass": true,
+      "detail": "rtl/rtl"
+    },
+    {
+      "id": "lang",
+      "label": "Language set to Arabic",
+      "pass": true,
+      "detail": "ar"
+    },
+    {
+      "id": "align",
+      "label": "Arabic text aligned to the right",
+      "pass": false,
+      "detail": [
+        "span.visually-hidden \"رمز الدولة السعودية\""
+      ]
+    },
+    {
+      "id": "flow",
+      "label": "Rows flow right-to-left (first item on the right)",
+      "pass": false,
+      "detail": "2/5 wrong [\"div.phone \\\"رمز الدولة السعودية +966\\\"\",\"span.prefix \\\"رمز الدولة السعودية +966\\\"\"]"
+    },
+    {
+      "id": "arrows",
+      "label": "Next points left, back points right",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "back",
+      "label": "Back button on the right",
+      "pass": true,
+      "detail": "right"
+    },
+    {
+      "id": "inputs",
+      "label": "Phone/email/password fields typed left-to-right",
+      "pass": true,
+      "detail": "0/3 wrong"
+    },
+    {
+      "id": "font",
+      "label": "Arabic drawn in an intended font",
+      "pass": true,
+      "detail": {
+        "IBM Plex Sans Arabic": 183,
+        "IBM Plex Sans Arabic SemiBold": 142
+      }
+    },
+    {
+      "id": "size",
+      "label": "Arabic text not too small (<13px under 25%)",
+      "pass": true,
+      "detail": "median 15.04px, 0% small"
+    },
+    {
+      "id": "lineheight",
+      "label": "Line height leaves room for Arabic marks",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "letterspacing",
+      "label": "No letter-spacing on Arabic",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "numerals",
+      "label": "One numeral system per page",
+      "pass": true,
+      "detail": "western 4, eastern 0"
+    },
+    {
+      "id": "logical",
+      "label": "Built with direction-neutral CSS",
+      "pass": true,
+      "detail": "physical 7, logical 10"
+    },
+    {
+      "id": "presentation",
+      "label": "No pre-shaped Arabic characters",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "id": "overflow",
+      "label": "No sideways scroll on phone",
+      "pass": true,
+      "detail": false
+    },
+    {
+      "id": "jserrors",
+      "label": "No JavaScript errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "raw": {
+    "htmlDir": "rtl",
+    "htmlLang": "ar",
+    "bodyDir": "rtl",
+    "arabicEls": 16,
+    "medianArabicFontPx": 15.04,
+    "smallArabicShare": 0,
+    "leftAligned": [
+      "span.visually-hidden \"رمز الدولة السعودية\""
+    ],
+    "letterSpaced": [],
+    "tightLines": [],
+    "rows": 5,
+    "wrongRows": 2,
+    "wrongRowLabels": [
+      "div.phone \"رمز الدولة السعودية +966\"",
+      "span.prefix \"رمز الدولة السعودية +966\""
+    ],
+    "doubleFlip": 0,
+    "ltrRuns": 0,
+    "scrambledRuns": [],
+    "unisolatedRuns": 0,
+    "arrowsWrong": [],
+    "backSide": "right",
+    "sidebarSide": null,
+    "tableFirstColRight": null,
+    "ltrInputs": 3,
+    "ltrInputsWrong": 0,
+    "mirroredEls": 0,
+    "forcedLtrArabic": 0,
+    "westernDigits": 4,
+    "easternDigits": 0,
+    "presentationForms": 0,
+    "bidiControls": 0,
+    "physicalCss": 7,
+    "logicalCss": 10,
+    "overflowX": false,
+    "fonts": {
+      "IBM Plex Sans Arabic": 183,
+      "IBM Plex Sans Arabic SemiBold": 142
+    },
+    "mobileOverflow": false,
+    "carousel": {
+      "found": false
+    },
+    "sidebarSideDesktop": null,
+    "jsErrors": []
+  }
+}

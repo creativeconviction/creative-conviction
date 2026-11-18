@@ -1,0 +1,186 @@
+{
+  "file": "out/S3__explicit__deepseek.html",
+  "screen": "S3",
+  "cond": "explicit",
+  "model": "deepseek",
+  "score": 65,
+  "mainFont": "Tajawal",
+  "checks": [
+    {
+      "id": "complete",
+      "label": "Page is complete (not cut off)",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "id": "dir",
+      "label": "Page set to right-to-left",
+      "pass": true,
+      "detail": "rtl/rtl"
+    },
+    {
+      "id": "lang",
+      "label": "Language set to Arabic",
+      "pass": true,
+      "detail": "ar"
+    },
+    {
+      "id": "align",
+      "label": "Arabic text aligned to the right",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "flow",
+      "label": "Rows flow right-to-left (first item on the right)",
+      "pass": true,
+      "detail": "0/14 wrong []"
+    },
+    {
+      "id": "arrows",
+      "label": "Next points left, back points right",
+      "pass": false,
+      "detail": [
+        "button.page-btn \"‹ السابق\" back←",
+        "button.page-btn \"التالي ›\" next→"
+      ]
+    },
+    {
+      "id": "sidebar",
+      "label": "Sidebar on the right (desktop)",
+      "pass": true,
+      "detail": "right"
+    },
+    {
+      "id": "font",
+      "label": "Arabic drawn in an intended font",
+      "pass": true,
+      "detail": {
+        "Tajawal": 440,
+        "DejaVu Sans": 4,
+        "Tajawal Medium": 21,
+        "Noto Color Emoji": 8
+      }
+    },
+    {
+      "id": "size",
+      "label": "Arabic text not too small (<13px under 25%)",
+      "pass": false,
+      "detail": "median 13.6px, 40% small"
+    },
+    {
+      "id": "lineheight",
+      "label": "Line height leaves room for Arabic marks",
+      "pass": false,
+      "detail": [
+        "button.page-num.active \"١\"",
+        "button.page-num \"٢\"",
+        "button.page-num \"٣\""
+      ]
+    },
+    {
+      "id": "letterspacing",
+      "label": "No letter-spacing on Arabic",
+      "pass": false,
+      "detail": [
+        "div.logo \"قريب.\""
+      ]
+    },
+    {
+      "id": "numerals",
+      "label": "One numeral system per page",
+      "pass": true,
+      "detail": "western 0, eastern 102"
+    },
+    {
+      "id": "logical",
+      "label": "Built with direction-neutral CSS",
+      "pass": false,
+      "detail": "physical 9, logical 0"
+    },
+    {
+      "id": "presentation",
+      "label": "No pre-shaped Arabic characters",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "id": "overflow",
+      "label": "No sideways scroll on phone",
+      "pass": true,
+      "detail": false
+    },
+    {
+      "id": "carousel",
+      "label": "Carousel next works and moves the RTL way",
+      "pass": false,
+      "detail": {
+        "found": true,
+        "changed": false,
+        "dotMoved": null
+      }
+    },
+    {
+      "id": "jserrors",
+      "label": "No JavaScript errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "raw": {
+    "htmlDir": "rtl",
+    "htmlLang": "ar",
+    "bodyDir": "rtl",
+    "arabicEls": 67,
+    "medianArabicFontPx": 13.6,
+    "smallArabicShare": 0.4,
+    "leftAligned": [],
+    "letterSpaced": [
+      "div.logo \"قريب.\""
+    ],
+    "tightLines": [
+      "button.page-num.active \"١\"",
+      "button.page-num \"٢\"",
+      "button.page-num \"٣\""
+    ],
+    "rows": 14,
+    "wrongRows": 0,
+    "wrongRowLabels": [],
+    "doubleFlip": 0,
+    "ltrRuns": 0,
+    "scrambledRuns": [],
+    "unisolatedRuns": 0,
+    "arrowsWrong": [
+      "button.page-btn \"‹ السابق\" back←",
+      "button.page-btn \"التالي ›\" next→"
+    ],
+    "backSide": null,
+    "sidebarSide": null,
+    "tableFirstColRight": null,
+    "ltrInputs": 0,
+    "ltrInputsWrong": 0,
+    "mirroredEls": 0,
+    "forcedLtrArabic": 0,
+    "westernDigits": 0,
+    "easternDigits": 102,
+    "presentationForms": 0,
+    "bidiControls": 0,
+    "physicalCss": 9,
+    "logicalCss": 0,
+    "overflowX": false,
+    "fonts": {
+      "Tajawal": 440,
+      "DejaVu Sans": 4,
+      "Tajawal Medium": 21,
+      "Noto Color Emoji": 8
+    },
+    "mobileOverflow": false,
+    "carousel": {
+      "found": true,
+      "changed": false,
+      "dotMoved": null
+    },
+    "sidebarSideDesktop": "right",
+    "jsErrors": []
+  }
+}

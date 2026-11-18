@@ -1,0 +1,170 @@
+{
+  "file": "out/S1__localize__saba.html",
+  "screen": "S1",
+  "cond": "localize",
+  "model": "saba",
+  "score": 71,
+  "mainFont": "DejaVu Sans",
+  "checks": [
+    {
+      "id": "complete",
+      "label": "Page is complete (not cut off)",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "id": "dir",
+      "label": "Page set to right-to-left",
+      "pass": true,
+      "detail": "rtl/rtl"
+    },
+    {
+      "id": "lang",
+      "label": "Language set to Arabic",
+      "pass": true,
+      "detail": "ar"
+    },
+    {
+      "id": "align",
+      "label": "Arabic text aligned to the right",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "flow",
+      "label": "Rows flow right-to-left (first item on the right)",
+      "pass": true,
+      "detail": "0/4 wrong []"
+    },
+    {
+      "id": "arrows",
+      "label": "Next points left, back points right",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "back",
+      "label": "Back button on the right",
+      "pass": true,
+      "detail": "right"
+    },
+    {
+      "id": "inputs",
+      "label": "Phone/email/password fields typed left-to-right",
+      "pass": false,
+      "detail": "2/3 wrong"
+    },
+    {
+      "id": "font",
+      "label": "Arabic drawn in an intended font",
+      "pass": false,
+      "detail": {
+        "DejaVu Sans": 264,
+        "DM Sans 9pt": 36
+      }
+    },
+    {
+      "id": "size",
+      "label": "Arabic text not too small (<13px under 25%)",
+      "pass": true,
+      "detail": "median 14px, 0% small"
+    },
+    {
+      "id": "lineheight",
+      "label": "Line height leaves room for Arabic marks",
+      "pass": false,
+      "detail": [
+        "button.submit-button \"إنشاء حساب\""
+      ]
+    },
+    {
+      "id": "letterspacing",
+      "label": "No letter-spacing on Arabic",
+      "pass": false,
+      "detail": [
+        "div.brand \"قريب\"",
+        "div.eyebrow \"قريب منك دوماً بأجود الم\"",
+        "h1 \"إنشاء حسابك\""
+      ]
+    },
+    {
+      "id": "numerals",
+      "label": "One numeral system per page",
+      "pass": true,
+      "detail": "western 3, eastern 0"
+    },
+    {
+      "id": "logical",
+      "label": "Built with direction-neutral CSS",
+      "pass": false,
+      "detail": "physical 7, logical 0"
+    },
+    {
+      "id": "presentation",
+      "label": "No pre-shaped Arabic characters",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "id": "overflow",
+      "label": "No sideways scroll on phone",
+      "pass": true,
+      "detail": false
+    },
+    {
+      "id": "jserrors",
+      "label": "No JavaScript errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "raw": {
+    "htmlDir": "rtl",
+    "htmlLang": "ar",
+    "bodyDir": "rtl",
+    "arabicEls": 15,
+    "medianArabicFontPx": 14,
+    "smallArabicShare": 0,
+    "leftAligned": [],
+    "letterSpaced": [
+      "div.brand \"قريب\"",
+      "div.eyebrow \"قريب منك دوماً بأجود الم\"",
+      "h1 \"إنشاء حسابك\""
+    ],
+    "tightLines": [
+      "button.submit-button \"إنشاء حساب\""
+    ],
+    "rows": 4,
+    "wrongRows": 0,
+    "wrongRowLabels": [],
+    "doubleFlip": 0,
+    "ltrRuns": 0,
+    "scrambledRuns": [],
+    "unisolatedRuns": 0,
+    "arrowsWrong": [],
+    "backSide": "right",
+    "sidebarSide": null,
+    "tableFirstColRight": null,
+    "ltrInputs": 3,
+    "ltrInputsWrong": 2,
+    "mirroredEls": 0,
+    "forcedLtrArabic": 0,
+    "westernDigits": 3,
+    "easternDigits": 0,
+    "presentationForms": 0,
+    "bidiControls": 0,
+    "physicalCss": 7,
+    "logicalCss": 0,
+    "overflowX": false,
+    "fonts": {
+      "DejaVu Sans": 264,
+      "DM Sans 9pt": 36
+    },
+    "mobileOverflow": false,
+    "carousel": {
+      "found": false
+    },
+    "sidebarSideDesktop": null,
+    "jsErrors": []
+  }
+}

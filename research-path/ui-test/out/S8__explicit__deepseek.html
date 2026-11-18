@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الإعدادات - قريب</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #f2f2f7;
+            --bg-surface: #ffffff;
+            --bg-surface-hover: #f5f5f7;
+            --text-primary: #1c1c1e;
+            --text-secondary: #6d6d72;
+            --text-tertiary: #8e8e93;
+            --separator: #e5e5ea;
+            --separator-strong: #d9d9de;
+            --accent: #009e6c;
+            --accent-subtle: #e8f8f2;
+            --toggle-off: #e0e0e4;
+            --toggle-on: #34c759;
+            --chevron-color: #c7c7cc;
+            --icon-bg-1: #f0f4ff;
+            --icon-color-1: #4a7dff;
+            --icon-bg-2: #fef3e8;
+            --icon-color-2: #f5a623;
+            --icon-bg-3: #fde8ef;
+            --icon-color-3: #e8505b;
+            --icon-bg-4: #e8f5f0;
+            --icon-color-4: #009e6c;
+            --icon-bg-5: #f3edf9;
+            --icon-color-5: #7c5cbf;
+            --icon-bg-6: #fdecea;
+            --icon-color-6: #e87d4b;
+            --icon-bg-7: #ffeaea;
+            --icon-color-7: #d93030;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.1);
+            --radius-sm: 10px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --radius-full: 9999px;
+            --transition-fast: 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+            --transition-smooth: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            --font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .dark-mode {
+            --bg-primary: #1a1a1d;
+            --bg-surface: #252528;
+            --bg-surface-hover: #2e2e32;
+            --text-primary: #f0f0f3;
+            --text-secondary: #a8a8ae;
+            --text-tertiary: #7a7a80;
+            --separator: #333338;
+            --separator-strong: #404045;
+            --accent: #2dd4a8;
+            --accent-subtle: #1a2e28;
+            --toggle-off: #48484d;
+            --toggle-on: #30d158;
+            --chevron-color: #505055;
+            --icon-bg-1: #1e2a3d;
+            --icon-color-1: #6b9fff;
+            --icon-bg-2: #2e2418;
+            --icon-color-2: #f7b84e;
+            --icon-bg-3: #2e1a20;
+            --icon-color-3: #f0656e;
+            --icon-bg-4: #1a2e26;
+            --icon-color-4: #2dd4a8;
+            --icon-bg-5: #241e2e;
+            --icon-color-5: #9b7fd4;
+            --icon-bg-6: #2e1e18;
+            --icon-color-6: #f09a6b;
+            --icon-bg-7: #2e1818;
+            --icon-color-7: #e85555;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.25);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            transition: background-color var(--transition-smooth), color var(--transition-smooth);
+            -webkit-tap-highlight-color: transparent;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 430px;
+            min-height: 100vh;
+            background-color: var(--bg-primary);
+            position: relative;
+            transition: background-color var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media (min-width: 431px) {
+            body {
+                align-items: flex-start;
+                padding-top: 20px;
+                padding-bottom: 40px;
+            }
+            .app-container {
+                border-radius: 28px;
+                min-height: auto;
+                box-shadow: var(--shadow-lg);
+                overflow: hidden;
+                margin: 0 16px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            body {
+                padding-top: 40px;
+                padding-bottom: 60px;
+            }
+        }
+
+        /* Navigation Bar */
+        .nav-bar {
+            display: flex;
+            align-items: center;
+            padding-block: 14px;
+            padding-inline: 8px 16px;
+            background-color: var(--bg-surface);
+            border-bottom: 1px solid var(--separator);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: background-color var(--transition-smooth), border-color var(--transition-smooth);
+            gap: 4px;
+        }
+
+        @media (min-width: 431px) {
+            .nav-bar {
+                border-radius: 28px 28px 0 0;
+            }
+        }
+
+        .nav-back-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-full);
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            color: var(--accent);
+            transition: background-color var(--transition-fast);
+            flex-shrink: 0;
+        }
+
+        .nav-back-btn:hover {
+            background-color: var(--bg-surface-hover);
+        }
+        .nav-back-btn:active {
+            background-color: var(--separator);
+            transform: scale(0.95);
+        }
+
+        .nav-back-btn svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        .nav-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.01em;
+            transition: color var(--transition-smooth);
+            flex: 1;
+            text-align: start;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            padding-bottom: 32px;
+        }
+
+        @media (min-width: 431px) {
+            .main-content {
+                padding: 20px;
+                gap: 20px;
+            }
+        }
+
+        /* Profile Card */
+        .profile-card {
+            background-color: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: var(--shadow-sm);
+            transition: background-color var(--transition-smooth), box-shadow var(--transition-smooth);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .profile-card:hover {
+            background-color: var(--bg-surface-hover);
+        }
+        .profile-card:active {
+            transform: scale(0.985);
+            transition: transform var(--transition-fast);
+        }
+
+        .profile-card::after {
+            content: '';
+            position: absolute;
+            inset-inline-end: 18px;
+            width: 18px;
+            height: 18px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23c7c7cc' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='15 18 9 12 15 6'%3E%3C/polyline%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.7;
+            transition: opacity var(--transition-smooth);
+        }
+        .dark-mode .profile-card::after {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23505055' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='15 18 9 12 15 6'%3E%3C/polyline%3E%3C/svg%3E");
+        }
+
+        .avatar-wrapper {
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: var(--radius-full);
+            background: linear-gradient(135deg, #00b894 0%, #009e6c 40%, #007a52 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 0;
+            box-shadow: 0 4px 14px rgba(0, 158, 108, 0.35);
+            transition: box-shadow var(--transition-smooth);
+            user-select: none;
+        }
+
+        .dark-mode .avatar {
+            box-shadow: 0 4px 18px rgba(45, 212, 168, 0.4);
+        }
+
+        .avatar-dot {
+            position: absolute;
+            bottom: 2px;
+            inset-inline-end: 2px;
+            width: 14px;
+            height: 14px;
+            border-radius: var(--radius-full);
+            background-color: #34c759;
+            border: 3px solid var(--bg-surface);
+            transition: border-color var(--transition-smooth);
+        }
+
+        .profile-info {
+            flex: 1;
+            min-width: 0;
+            padding-inline-end: 8px;
+        }
+
+        .profile-name {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+            transition: color var(--transition-smooth);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .profile-email {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            transition: color var(--transition-smooth);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            direction: ltr;
+            text-align: right;
+            display: inline-block;
+            max-width: 100%;
+        }
+
+        /* Settings Section */
+        .settings-section {
+            background-color: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: background-color var(--transition-smooth), box-shadow var(--transition-smooth);
+        }
+
+        .section-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding-block: 14px 8px;
+            padding-inline: 18px;
+            transition: color var(--transition-smooth);
+            user-select: none;
+        }
+
+        .settings-section:first-of-type .section-label {
+            padding-block-start: 6px;
+        }
+
+        .settings-row {
+            display: flex;
+            align-items: center;
+            padding-block: 14px;
+            padding-inline: 16px;
+            cursor: pointer;
+            transition: background-color var(--transition-fast);
+            position: relative;
+            gap: 14px;
+            min-height: 54px;
+        }
+
+        .settings-row:hover {
+            background-color: var(--bg-surface-hover);
+        }
+        .settings-row:active {
+            background-color: var(--separator);
+            transition: background-color 0.08s;
+        }
+
+        .settings-row+.settings-row {
+            border-top: 1px solid var(--separator);
+            transition: border-color var(--transition-smooth);
+        }
+
+        .row-icon-container {
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: background-color var(--transition-smooth);
+        }
+
+        .row-icon-container svg {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .icon-addresses {
+            background-color: var(--icon-bg-1);
+            color: var(--icon-color-1);
+        }
+        .icon-payment {
+            background-color: var(--icon-bg-2);
+            color: var(--icon-color-2);
+        }
+        .icon-notifications {
+            background-color: var(--icon-bg-3);
+            color: var(--icon-color-3);
+        }
+        .icon-language {
+            background-color: var(--icon-bg-4);
+            color: var(--icon-color-4);
+        }
+        .icon-darkmode {
+            background-color: var(--icon-bg-5);
+            color: var(--icon-color-5);
+        }
+        .icon-help {
+            background-color: var(--icon-bg-6);
+            color: var(--icon-color-6);
+        }
+        .icon-logout {
+            background-color: var(--icon-bg-7);
+            color: var(--icon-color-7);
+        }
+
+        .row-label {
+            flex: 1;
+            font-size: 0.98rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            transition: color var(--transition-smooth);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            min-width: 0;
+        }
+
+        .row-value {
+            font-size: 0.88rem;
+            color: var(--text-tertiary);
+            transition: color var(--transition-smooth);
+            flex-shrink: 0;
+            text-align: end;
+            direction: ltr;
+            unicode-bidi: embed;
+        }
+
+        .row-value-lang {
+            font-size: 0.88rem;
+            color: var(--text-tertiary);
+            transition: color var(--transition-smooth);
+            flex-shrink: 0;
+            text-align: end;
+        }
+
+        .row-chevron {
+            flex-shrink: 0;
+            width: 14px;
+            height: 14px;
+            color: var(--chevron-color);
+            transition: color var(--transition-smooth);
+            margin-inline-start: -2px;
+        }
+
+        .row-chevron svg {
+            width: 14px;
+            height: 14px;
+            display: block;
+        }
+
+        /* Toggle Switch */
+        .toggle-wrapper {
+            flex-shrink: 0;
+            margin-inline-start: -2px;
+        }
+
+        .toggle-input {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+            pointer-events: none;
+        }
+
+        .toggle-track {
+            display: block;
+            width: 51px;
+            height: 31px;
+            border-radius: 31px;
+            background-color: var(--toggle-off);
+            position: relative;
+            cursor: pointer;
+            transition: background-color var(--transition-smooth);
+        }
+
+        .toggle-knob {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 25px;
+            height: 25px;
+            border-radius: var(--radius-full);
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 1px 8px rgba(0, 0, 0, 0.08);
+            transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+            pointer-events: none;
+        }
+
+        .toggle-input:checked+.toggle-track {
+            background-color: var(--toggle-on);
+        }
+        .toggle-input:checked+.toggle-track .toggle-knob {
+            transform: translateX(20px);
+        }
+
+        .toggle-input:focus-visible+.toggle-track {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        /* Logout specific styling */
+        .settings-row.logout-row .row-label {
+            color: #d93030;
+            font-weight: 600;
+        }
+        .dark-mode .settings-row.logout-row .row-label {
+            color: #e85555;
+        }
+
+        .settings-row.logout-row {
+            justify-content: flex-start;
+        }
+        .settings-row.logout-row .row-chevron {
+            display: none;
+        }
+
+        /* Subtle animation for page load */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .profile-card {
+            animation: fadeInUp 0.45s ease-out;
+        }
+        .settings-section:nth-child(2) {
+            animation: fadeInUp 0.5s ease-out;
+        }
+        .settings-section:nth-child(3) {
+            animation: fadeInUp 0.55s ease-out;
+        }
+        .settings-section:nth-child(4) {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Ripple-like feedback for rows */
+        .settings-row {
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        /* Scrollbar styling */
+        .main-content::-webkit-scrollbar {
+            width: 0;
+        }
+
+        /* Ensure text selection is clean */
+        .row-label,
+        .profile-name {
+            -webkit-user-select: text;
+            user-select: text;
+        }
+
+        /* Transition all interactive elements */
+        .settings-row,
+        .profile-card,
+        .nav-back-btn,
+        .toggle-track {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Handle very small screens */
+        @media (max-width: 350px) {
+            .nav-title {
+                font-size: 1.05rem;
+            }
+            .profile-name {
+                font-size: 1rem;
+            }
+            .row-label {
+                font-size: 0.9rem;
+            }
+            .avatar {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+            }
+            .settings-row {
+                padding-block: 12px;
+                padding-inline: 12px;
+                gap: 10px;
+            }
+            .main-content {
+                padding: 10px;
+                gap: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Navigation Bar -->
+        <nav class="nav-bar" role="navigation" aria-label="شريط التنقل">
+            <button class="nav-back-btn" aria-label="رجوع" title="رجوع">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </button>
+            <h1 class="nav-title">الإعدادات</h1>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content" role="main">
+            <!-- Profile Card -->
+            <section class="profile-card" role="button" tabindex="0" aria-label="الملف الشخصي - أحمد محمد">
+                <div class="avatar-wrapper">
+                    <div class="avatar" aria-hidden="true">أ</div>
+                    <span class="avatar-dot" aria-hidden="true"></span>
+                </div>
+                <div class="profile-info">
+                    <h2 class="profile-name">أحمد محمد</h2>
+                    <span class="profile-email" dir="ltr">ahmed@qareeb.com</span>
+                </div>
+            </section>
+
+            <!-- Settings Section 1: Account -->
+            <section class="settings-section" aria-label="إعدادات الحساب">
+                <div class="settings-row" role="button" tabindex="0" aria-label="العناوين">
+                    <div class="row-icon-container icon-addresses">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                    </div>
+                    <span class="row-label">العناوين</span>
+                    <span class="row-chevron">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </span>
+                </div>
+                <div class="settings-row" role="button" tabindex="0" aria-label="طرق الدفع">
+                    <div class="row-icon-container icon-payment">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                            <line x1="1" y1="10" x2="23" y2="10"></line>
+                        </svg>
+                    </div>
+                    <span class="row-label">طرق الدفع</span>
+                    <span class="row-chevron">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </span>
+                </div>
+            </section>
+
+            <!-- Settings Section 2: Preferences -->
+            <section class="settings-section" aria-label="إعدادات التفضيلات">
+                <div class="settings-row" aria-label="الإشعارات">
+                    <div class="row-icon-container icon-notifications">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                        </svg>
+                    </div>
+                    <span class="row-label">الإشعارات</span>
+                    <label class="toggle-wrapper" aria-label="تفعيل أو تعطيل الإشعارات">
+                        <input type="checkbox" class="toggle-input" id="notifications-toggle" checked>
+                        <span class="toggle-track">
+                            <span class="toggle-knob"></span>
+                        </span>
+                    </label>
+                </div>
+                <div class="settings-row" role="button" tabindex="0" aria-label="اللغة - العربية" id="language-row">
+                    <div class="row-icon-container icon-language">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                    </div>
+                    <span class="row-label">اللغة</span>
+                    <span class="row-value-lang" id="language-value">العربية</span>
+                    <span class="row-chevron">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </span>
+                </div>
+                <div class="settings-row" aria-label="الوضع الداكن">
+                    <div class="row-icon-container icon-darkmode">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </div>
+                    <span class="row-label">الوضع الداكن</span>
+                    <label class="toggle-wrapper" aria-label="تفعيل أو تعطيل الوضع الداكن">
+                        <input type="checkbox" class="toggle-input" id="darkmode-toggle">
+                        <span class="toggle-track">
+                            <span class="toggle-knob"></span>
+                        </span>
+                    </label>
+                </div>
+            </section>
+
+            <!-- Settings Section 3: Support & Account -->
+            <section class="settings-section" aria-label="الدعم والحساب">
+                <div class="settings-row" role="button" tabindex="0" aria-label="المساعدة">
+                    <div class="row-icon-container icon-help">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                        </svg>
+                    </div>
+                    <span class="row-label">المساعدة</span>
+                    <span class="row-chevron">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </span>
+                </div>
+                <div class="settings-row logout-row" role="button" tabindex="0" aria-label="تسجيل الخروج">
+                    <div class="row-icon-container icon-logout">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                            <polyline points="16 17 21 12 16 7"></polyline>
+                            <line x1="21" y1="12" x2="9" y2="12"></line>
+                        </svg>
+                    </div>
+                    <span class="row-label">تسجيل الخروج</span>
+                    <span class="row-chevron">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </span>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        (function() {
+            const darkModeToggle = document.getElementById('darkmode-toggle');
+            const notificationsToggle = document.getElementById('notifications-toggle');
+            const languageRow = document.getElementById('language-row');
+            const languageValue = document.getElementById('language-value');
+            const htmlElement = document.documentElement;
+
+            // Check for saved dark mode preference
+            const savedDarkMode = localStorage.getItem('qareeb-dark-mode');
+            if (savedDarkMode === 'true') {
+                htmlElement.classList.add('dark-mode');
+                darkModeToggle.checked = true;
+            }
+
+            // Also check system preference if no saved preference
+            if (savedDarkMode === null && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                htmlElement.classList.add('dark-mode');
+                darkModeToggle.checked = true;
+            }
+
+            // Dark mode toggle
+            darkModeToggle.addEventListener('change', function() {
+                if (this.checked) {
+                    htmlElement.classList.add('dark-mode');
+                    localStorage.setItem('qareeb-dark-mode', 'true');
+                } else {
+                    htmlElement.classList.remove('dark-mode');
+                    localStorage.setItem('qareeb-dark-mode', 'false');
+                }
+            });
+
+            // Listen for system color scheme changes
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+                const savedPref = localStorage.getItem('qareeb-dark-mode');
+                if (savedPref === null) {
+                    if (e.matches) {
+                        htmlElement.classList.add('dark-mode');
+                        darkModeToggle.checked = true;
+                    } else {
+                        htmlElement.classList.remove('dark-mode');
+                        darkModeToggle.checked = false;
+                    }
+                }
+            });
+
+            // Notifications toggle (just UI feedback)
+            notificationsToggle.addEventListener('change', function() {
+                // Subtle haptic-like feedback via brief style change
+                const row = this.closest('.settings-row');
+                if (row) {
+                    row.style.transition = 'background-color 0.08s';
+                    row.style.backgroundColor = this.checked ?
+                        'var(--accent-subtle)' : 'var(--bg-surface-hover)';
+                    setTimeout(() => {
+                        row.style.backgroundColor = '';
+                        row.style.transition = '';
+                    }, 200);
+                }
+            });
+
+            // Language toggle
+            let currentLang = 'ar';
+            languageRow.addEventListener('click', function(e) {
+                // Don't trigger if clicking the chevron area specifically (let it behave naturally)
+                if (currentLang === 'ar') {
+                    currentLang = 'en';
+                    languageValue.textContent = 'English';
+                    languageValue.style.direction = 'ltr';
+                    languageValue.style.unicodeBidi = 'embed';
+                } else {
+                    currentLang = 'ar';
+                    languageValue.textContent = 'العربية';
+                    languageValue.style.direction = '';
+                    languageValue.style.unicodeBidi = '';
+                }
+                // Brief feedback
+                languageValue.style.color = 'var(--accent)';
+                languageValue.style.fontWeight = '600';
+                setTimeout(() => {
+                    languageValue.style.color = '';
+                    languageValue.style.fontWeight = '';
+                }, 400);
+            });
+
+            // Logout confirmation
+            const logoutRow = document.querySelector('.logout-row');
+            logoutRow.addEventListener('click', function() {
+                const confirmed = confirm('هل أنت متأكد من رغبتك في تسجيل الخروج؟');
+                if (confirmed) {
+                    // Visual feedback
+                    this.style.opacity = '0.6';
+                    this.style.transform = 'scale(0.97)';
+                    this.style.transition = 'all 0.2s ease';
+                    setTimeout(() => {
+                        this.style.opacity = '';
+                        this.style.transform = '';
+                        this.style.transition = '';
+                        alert('تم تسجيل الخروج بنجاح.');
+                    }, 300);
+                }
+            });
+
+            // Back button
+            const backBtn = document.querySelector('.nav-back-btn');
+            backBtn.addEventListener('click', function() {
+                // Visual feedback
+                this.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+                // In a real app, this would navigate back
+                console.log('العودة إلى الشاشة السابقة');
+            });
+
+            // Profile card click
+            const profileCard = document.querySelector('.profile-card');
+            profileCard.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+                console.log('فتح الملف الشخصي');
+            });
+
+            // Other rows with chevrons - add click feedback
+            const clickableRows = document.querySelectorAll(
+                '.settings-row[role="button"]:not(.logout-row):not(#language-row)');
+            clickableRows.forEach(row => {
+                row.addEventListener('click', function() {
+                    this.style.backgroundColor = 'var(--bg-surface-hover)';
+                    this.style.transform = 'scale(0.985)';
+                    this.style.transition = 'all 0.1s ease';
+                    setTimeout(() => {
+                        this.style.backgroundColor = '';
+                        this.style.transform = '';
+                        this.style.transition = '';
+                    }, 180);
+                });
+            });
+
+            // Keyboard support for accessibility
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    backBtn.click();
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

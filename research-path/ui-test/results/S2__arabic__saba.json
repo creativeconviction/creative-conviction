@@ -1,0 +1,198 @@
+{
+  "file": "out/S2__arabic__saba.html",
+  "screen": "S2",
+  "cond": "arabic",
+  "model": "saba",
+  "score": 69,
+  "mainFont": "Tajawal",
+  "checks": [
+    {
+      "id": "complete",
+      "label": "Page is complete (not cut off)",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "id": "dir",
+      "label": "Page set to right-to-left",
+      "pass": false,
+      "detail": "null/ltr"
+    },
+    {
+      "id": "lang",
+      "label": "Language set to Arabic",
+      "pass": true,
+      "detail": "ar"
+    },
+    {
+      "id": "align",
+      "label": "Arabic text aligned to the right",
+      "pass": false,
+      "detail": [
+        "h1 \"إتمام الطلب\"",
+        "h2.section-title \"عنوان التوصيل\"",
+        "p.label \"المنزل\"",
+        "p \"الرياض، شارع العليا، نجر\""
+      ]
+    },
+    {
+      "id": "flow",
+      "label": "Rows flow right-to-left (first item on the right)",
+      "pass": false,
+      "detail": "19/19 wrong [\"header.header \\\"إتمام الطلب\\\"\",\"div.address-card \\\"المنزل\\n                ا\\\"\",\"div.time-segment \\\"اليوممن ١٠ ص إلى ١ م\\\"\"]"
+    },
+    {
+      "id": "arrows",
+      "label": "Next points left, back points right",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "inputs",
+      "label": "Phone/email/password fields typed left-to-right",
+      "pass": true,
+      "detail": "0/3 wrong"
+    },
+    {
+      "id": "font",
+      "label": "Arabic drawn in an intended font",
+      "pass": true,
+      "detail": {
+        "Tajawal": 301,
+        "Tajawal Medium": 129,
+        "Liberation Sans": 6,
+        "DejaVu Sans": 15
+      }
+    },
+    {
+      "id": "size",
+      "label": "Arabic text not too small (<13px under 25%)",
+      "pass": true,
+      "detail": "median 14px, 0% small"
+    },
+    {
+      "id": "lineheight",
+      "label": "Line height leaves room for Arabic marks",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "letterspacing",
+      "label": "No letter-spacing on Arabic",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "numerals",
+      "label": "One numeral system per page",
+      "pass": false,
+      "detail": "western 7, eastern 30"
+    },
+    {
+      "id": "logical",
+      "label": "Built with direction-neutral CSS",
+      "pass": false,
+      "detail": "physical 5, logical 0"
+    },
+    {
+      "id": "presentation",
+      "label": "No pre-shaped Arabic characters",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "id": "overflow",
+      "label": "No sideways scroll on phone",
+      "pass": true,
+      "detail": false
+    },
+    {
+      "id": "jserrors",
+      "label": "No JavaScript errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "raw": {
+    "htmlDir": null,
+    "htmlLang": "ar",
+    "bodyDir": "ltr",
+    "arabicEls": 33,
+    "medianArabicFontPx": 14,
+    "smallArabicShare": 0,
+    "leftAligned": [
+      "h1 \"إتمام الطلب\"",
+      "h2.section-title \"عنوان التوصيل\"",
+      "p.label \"المنزل\"",
+      "p \"الرياض، شارع العليا، نجر\"",
+      "h2.section-title \"مواعيد التوصيل\"",
+      "label \"اليوممن ١٠ ص إلى ١ م\"",
+      "label \"غداًمن ١٠ ص إلى ١ م\"",
+      "h2.section-title \"السلة\"",
+      "p.item-name \"اذربيجان اروج ازرق ٣٠٠قط\"",
+      "span.item-price \"٩٩ ر.س\"",
+      "p.item-name \"حليب سائل كامل الدسم زين\"",
+      "span.item-price \"٧ ر.س\"",
+      "p.item-name \"ملح خشن ١ كجم\"",
+      "span.item-price \"٥ ر.س\"",
+      "h2.section-title \"هل لديك كوبون خصم؟\"",
+      "h2.section-title \"طريقة الدفع\"",
+      "span.method-name \"بطاقة مدى/فيزا/ماستر\"",
+      "span.method-name \"الدفع عند الاستلام\"",
+      "h2.section-title \"تفاصيل الطلب\"",
+      "span.label \"المجموع الفرعي\"",
+      "span.value \"١١١ ر.س\"",
+      "span.label \"رسوم التوصيل\"",
+      "span.value \"٥ ر.س\"",
+      "span.label \"كوبون خصم\"",
+      "span.value \"- ١٠ ر.س\"",
+      "span.label \"ضريبة القيمة المضافة (١٥\"",
+      "span.value \"١٨.٩ ر.س\"",
+      "span.label \"الإجمالي\"",
+      "span.value.total-value \"١٢٤.٩ ر.س\""
+    ],
+    "letterSpaced": [],
+    "tightLines": [],
+    "rows": 19,
+    "wrongRows": 19,
+    "wrongRowLabels": [
+      "header.header \"إتمام الطلب\"",
+      "div.address-card \"المنزل\n                ا\"",
+      "div.time-segment \"اليوممن ١٠ ص إلى ١ م\"",
+      "div.time-segment \"غداًمن ١٠ ص إلى ١ م\"",
+      "div.cart-item \"اذربيجان اروج ازرق ٣٠٠قط\"",
+      "div.item-price-quantity \"٩٩ ر.س\n                 \""
+    ],
+    "doubleFlip": 0,
+    "ltrRuns": 0,
+    "scrambledRuns": [],
+    "unisolatedRuns": 0,
+    "arrowsWrong": [],
+    "backSide": null,
+    "sidebarSide": null,
+    "tableFirstColRight": null,
+    "ltrInputs": 3,
+    "ltrInputsWrong": 0,
+    "mirroredEls": 0,
+    "forcedLtrArabic": 0,
+    "westernDigits": 7,
+    "easternDigits": 30,
+    "presentationForms": 0,
+    "bidiControls": 0,
+    "physicalCss": 5,
+    "logicalCss": 0,
+    "overflowX": false,
+    "fonts": {
+      "Tajawal": 301,
+      "Tajawal Medium": 129,
+      "Liberation Sans": 6,
+      "DejaVu Sans": 15
+    },
+    "mobileOverflow": false,
+    "carousel": {
+      "found": false
+    },
+    "sidebarSideDesktop": null,
+    "jsErrors": []
+  }
+}

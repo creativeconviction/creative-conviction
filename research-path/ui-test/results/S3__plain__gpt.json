@@ -1,0 +1,172 @@
+{
+  "file": "out/S3__plain__gpt.html",
+  "screen": "S3",
+  "cond": "plain",
+  "model": "gpt",
+  "score": 76,
+  "mainFont": "Tajawal",
+  "checks": [
+    {
+      "id": "complete",
+      "label": "Page is complete (not cut off)",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "id": "dir",
+      "label": "Page set to right-to-left",
+      "pass": true,
+      "detail": "rtl/rtl"
+    },
+    {
+      "id": "lang",
+      "label": "Language set to Arabic",
+      "pass": true,
+      "detail": "ar"
+    },
+    {
+      "id": "align",
+      "label": "Arabic text aligned to the right",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "flow",
+      "label": "Rows flow right-to-left (first item on the right)",
+      "pass": true,
+      "detail": "0/27 wrong []"
+    },
+    {
+      "id": "arrows",
+      "label": "Next points left, back points right",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "sidebar",
+      "label": "Sidebar on the right (desktop)",
+      "pass": true,
+      "detail": "right"
+    },
+    {
+      "id": "font",
+      "label": "Arabic drawn in an intended font",
+      "pass": true,
+      "detail": {
+        "Tajawal ExtraBold": 202,
+        "Tajawal": 474
+      }
+    },
+    {
+      "id": "size",
+      "label": "Arabic text not too small (<13px under 25%)",
+      "pass": false,
+      "detail": "median 13px, 36% small"
+    },
+    {
+      "id": "lineheight",
+      "label": "Line height leaves room for Arabic marks",
+      "pass": false,
+      "detail": [
+        "button.filter-trigger \"تصفية\"",
+        "button.apply-filter \"تطبيق\"",
+        "button.reset-filter \"إعادة ضبط\""
+      ]
+    },
+    {
+      "id": "letterspacing",
+      "label": "No letter-spacing on Arabic",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "numerals",
+      "label": "One numeral system per page",
+      "pass": true,
+      "detail": "western 105, eastern 0"
+    },
+    {
+      "id": "logical",
+      "label": "Built with direction-neutral CSS",
+      "pass": false,
+      "detail": "physical 9, logical 4"
+    },
+    {
+      "id": "presentation",
+      "label": "No pre-shaped Arabic characters",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "id": "overflow",
+      "label": "No sideways scroll on phone",
+      "pass": true,
+      "detail": false
+    },
+    {
+      "id": "carousel",
+      "label": "Carousel next works and moves the RTL way",
+      "pass": false,
+      "detail": {
+        "found": true,
+        "changed": false,
+        "dotMoved": "none"
+      }
+    },
+    {
+      "id": "jserrors",
+      "label": "No JavaScript errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "raw": {
+    "htmlDir": "rtl",
+    "htmlLang": "ar",
+    "bodyDir": "rtl",
+    "arabicEls": 67,
+    "medianArabicFontPx": 13,
+    "smallArabicShare": 0.36,
+    "leftAligned": [],
+    "letterSpaced": [],
+    "tightLines": [
+      "button.filter-trigger \"تصفية\"",
+      "button.apply-filter \"تطبيق\"",
+      "button.reset-filter \"إعادة ضبط\""
+    ],
+    "rows": 27,
+    "wrongRows": 0,
+    "wrongRowLabels": [],
+    "doubleFlip": 0,
+    "ltrRuns": 0,
+    "scrambledRuns": [],
+    "unisolatedRuns": 0,
+    "arrowsWrong": [],
+    "backSide": null,
+    "sidebarSide": null,
+    "tableFirstColRight": null,
+    "ltrInputs": 0,
+    "ltrInputsWrong": 0,
+    "mirroredEls": 0,
+    "forcedLtrArabic": 0,
+    "westernDigits": 105,
+    "easternDigits": 0,
+    "presentationForms": 0,
+    "bidiControls": 0,
+    "physicalCss": 9,
+    "logicalCss": 4,
+    "overflowX": false,
+    "fonts": {
+      "Tajawal ExtraBold": 202,
+      "Tajawal": 474
+    },
+    "mobileOverflow": false,
+    "carousel": {
+      "found": true,
+      "changed": false,
+      "dotMoved": "none"
+    },
+    "sidebarSideDesktop": "right",
+    "jsErrors": []
+  }
+}

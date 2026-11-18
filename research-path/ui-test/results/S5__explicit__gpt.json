@@ -1,0 +1,174 @@
+{
+  "file": "out/S5__explicit__gpt.html",
+  "screen": "S5",
+  "cond": "explicit",
+  "model": "gpt",
+  "score": 75,
+  "mainFont": "Tajawal",
+  "checks": [
+    {
+      "id": "complete",
+      "label": "Page is complete (not cut off)",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "id": "dir",
+      "label": "Page set to right-to-left",
+      "pass": true,
+      "detail": "rtl/rtl"
+    },
+    {
+      "id": "lang",
+      "label": "Language set to Arabic",
+      "pass": true,
+      "detail": "ar"
+    },
+    {
+      "id": "align",
+      "label": "Arabic text aligned to the right",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "flow",
+      "label": "Rows flow right-to-left (first item on the right)",
+      "pass": true,
+      "detail": "0/9 wrong []"
+    },
+    {
+      "id": "arrows",
+      "label": "Next points left, back points right",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "back",
+      "label": "Back button on the right",
+      "pass": true,
+      "detail": "right"
+    },
+    {
+      "id": "font",
+      "label": "Arabic drawn in an intended font",
+      "pass": true,
+      "detail": {
+        "Tajawal ExtraBold": 12,
+        "Tajawal": 286,
+        "Liberation Sans": 4,
+        "DejaVu Sans": 7
+      }
+    },
+    {
+      "id": "size",
+      "label": "Arabic text not too small (<13px under 25%)",
+      "pass": false,
+      "detail": "median 13px, 36% small"
+    },
+    {
+      "id": "lineheight",
+      "label": "Line height leaves room for Arabic marks",
+      "pass": false,
+      "detail": [
+        "span.step-label \"تم استلامالطلب\"",
+        "span.step-label \"جارٍالتحضير\"",
+        "span.step-label \"فيالطريق\""
+      ]
+    },
+    {
+      "id": "letterspacing",
+      "label": "No letter-spacing on Arabic",
+      "pass": false,
+      "detail": [
+        "span \"قريب\"",
+        "h1 \"تتبّع طلبك\""
+      ]
+    },
+    {
+      "id": "numerals",
+      "label": "One numeral system per page",
+      "pass": false,
+      "detail": "western 10, eastern 18"
+    },
+    {
+      "id": "logical",
+      "label": "Built with direction-neutral CSS",
+      "pass": true,
+      "detail": "physical 0, logical 13"
+    },
+    {
+      "id": "presentation",
+      "label": "No pre-shaped Arabic characters",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "id": "overflow",
+      "label": "No sideways scroll on phone",
+      "pass": true,
+      "detail": false
+    },
+    {
+      "id": "jserrors",
+      "label": "No JavaScript errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "raw": {
+    "htmlDir": "rtl",
+    "htmlLang": "ar",
+    "bodyDir": "rtl",
+    "arabicEls": 25,
+    "medianArabicFontPx": 13,
+    "smallArabicShare": 0.36,
+    "leftAligned": [],
+    "letterSpaced": [
+      "span \"قريب\"",
+      "h1 \"تتبّع طلبك\""
+    ],
+    "tightLines": [
+      "span.step-label \"تم استلامالطلب\"",
+      "span.step-label \"جارٍالتحضير\"",
+      "span.step-label \"فيالطريق\"",
+      "span.step-label \"تمالتوصيل\"",
+      "text \"شارع الورد\"",
+      "a.action-button.action-primary \"اتصال\"",
+      "a.action-button.action-secondary \"رسالة\""
+    ],
+    "rows": 9,
+    "wrongRows": 0,
+    "wrongRowLabels": [],
+    "doubleFlip": 0,
+    "ltrRuns": 0,
+    "scrambledRuns": [],
+    "unisolatedRuns": 0,
+    "arrowsWrong": [],
+    "backSide": "right",
+    "sidebarSide": null,
+    "tableFirstColRight": null,
+    "ltrInputs": 0,
+    "ltrInputsWrong": 0,
+    "mirroredEls": 0,
+    "forcedLtrArabic": 0,
+    "westernDigits": 10,
+    "easternDigits": 18,
+    "presentationForms": 0,
+    "bidiControls": 0,
+    "physicalCss": 0,
+    "logicalCss": 13,
+    "overflowX": false,
+    "fonts": {
+      "Tajawal ExtraBold": 12,
+      "Tajawal": 286,
+      "Liberation Sans": 4,
+      "DejaVu Sans": 7
+    },
+    "mobileOverflow": false,
+    "carousel": {
+      "found": false
+    },
+    "sidebarSideDesktop": null,
+    "jsErrors": []
+  }
+}

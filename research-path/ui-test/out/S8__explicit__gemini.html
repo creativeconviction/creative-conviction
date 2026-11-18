@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>إعدادات - قريب</title>
+    
+    <!-- Google Fonts: Tajawal -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        /* --- CSS Variables & Theming --- */
+        :root {
+            --primary: #00B289;
+            --primary-hover: #009975;
+            --bg: #F4F6F9;
+            --surface: #FFFFFF;
+            --text-main: #1C1C1E;
+            --text-sec: #8E8E93;
+            --border: #E5E5EA;
+            --danger: #FF3B30;
+            --danger-bg: #FFEBEA;
+            --divider: rgba(0,0,0,0.05);
+            --shadow: 0 4px 20px rgba(0,0,0,0.03);
+            --transition: 0.3s ease;
+        }
+
+        [data-theme="dark"] {
+            --primary: #00D2A0;
+            --bg: #000000;
+            --surface: #1C1C1E;
+            --text-main: #F2F2F7;
+            --text-sec: #AEAEB2;
+            --border: #38383A;
+            --danger: #FF453A;
+            --danger-bg: rgba(255, 69, 58, 0.15);
+            --divider: rgba(255,255,255,0.08);
+            --shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        /* --- Reset & Base --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.5;
+            transition: background-color var(--transition), color var(--transition);
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        /* --- App Container (Mobile First, Desktop Friendly) --- */
+        .app-container {
+            width: 100%;
+            max-width: 390px;
+            background-color: var(--bg);
+            min-height: 100vh;
+            position: relative;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media (min-width: 400px) {
+            body {
+                padding: 20px 0;
+                background-color: #E2E8F0;
+            }
+            [data-theme="dark"] body {
+                background-color: #121212;
+            }
+            .app-container {
+                min-height: calc(100vh - 40px);
+                border-radius: 24px;
+                overflow: hidden;
+            }
+        }
+
+        /* --- Header --- */
+        .screen-header {
+            padding: 20px 24px 10px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            background-color: var(--bg);
+            z-index: 10;
+        }
+
+        .screen-header h1 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        /* --- Profile Section --- */
+        .profile-section {
+            padding: 16px 24px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .avatar-container {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background-color: var(--surface);
+            border: 2px solid var(--border);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .avatar-container svg {
+            width: 100%;
+            height: 100%;
+            color: var(--text-sec);
+        }
+
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .profile-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .profile-phone {
+            font-size: 14px;
+            color: var(--text-sec);
+            /* Handle LTR inside RTL safely */
+            direction: ltr;
+            text-align: right; 
+        }
+
+        /* --- Settings Lists --- */
+        .settings-content {
+            padding: 0 20px 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .settings-group {
+            background-color: var(--surface);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: background-color var(--transition);
+        }
+
+        .setting-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            position: relative;
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .setting-row:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            inset-inline-start: 56px; /* Align with text, skip icon */
+            inset-inline-end: 0;
+            height: 1px;
+            background-color: var(--divider);
+        }
+
+        .setting-row:hover, .setting-row:active {
+            background-color: rgba(0, 0, 0, 0.02);
+        }
+
+        [data-theme="dark"] .setting-row:hover {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+
+        .row-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .row-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background-color: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 20px;
+            transition: background-color var(--transition);
+        }
+
+        .row-title {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        .row-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-sec);
+        }
+
+        .row-value {
+            font-size: 14px;
+        }
+
+        .chevron-icon {
+            font-size: 18px;
+            /* In RTL, caret-left indicates forward navigation */
+            color: var(--text-sec);
+        }
+
+        /* --- Toggle Switch (RTL Optimized) --- */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 48px;
+            height: 28px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--border);
+            transition: .3s;
+            border-radius: 28px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 24px;
+            width: 24px;
+            /* Logical properties for RTL */
+            inset-inline-start: 2px;
+            bottom: 2px;
+            background-color: white;
+            transition: .3s;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        input:checked + .slider {
+            background-color: var(--primary);
+        }
+
+        input:checked + .slider:before {
+            /* Move towards inline-end (left visually in RTL) */
+            inset-inline-start: 22px;
+        }
+
+        /* --- Hidden Native Select --- */
+        .hidden-select {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+            appearance: none;
+        }
+
+        /* --- Logout Specifics --- */
+        .logout-row .row-icon {
+            background-color: var(--danger-bg);
+            color: var(--danger);
+        }
+        .logout-row .row-title {
+            color: var(--danger);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- Header -->
+        <header class="screen-header">
+            <h1>الإعدادات</h1>
+        </header>
+
+        <!-- Profile -->
+        <div class="profile-section">
+            <div class="avatar-container">
+                <!-- Inline SVG for generic avatar -->
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 4c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm0 14c-2.03 0-4.43-.82-6.14-2.88C7.55 15.8 9.68 15 12 15s4.45.8 6.14 2.12C16.43 19.18 14.03 20 12 20z"/>
+                </svg>
+            </div>
+            <div class="profile-info">
+                <h2 class="profile-name">محمد عبدالله</h2>
+                <p class="profile-phone">+966 50 123 4567</p>
+            </div>
+        </div>
+
+        <!-- Settings Content -->
+        <main class="settings-content">
+            
+            <!-- Group 1: Account -->
+            <section class="settings-group">
+                <div class="setting-row" role="button" tabindex="0">
+                    <div class="row-left">
+                        <div class="row-icon"><i class="ph ph-map-pin"></i></div>
+                        <span class="row-title">العناوين</span>
+                    </div>
+                    <div class="row-right">
+                        <i class="ph ph-caret-left chevron-icon"></i>
+                    </div>
+                </div>
+
+                <div class="setting-row" role="button" tabindex="0">
+                    <div class="row-left">
+                        <div class="row-icon"><i class="ph ph-credit-card"></i></div>
+                        <span class="row-title">طرق الدفع</span>
+                    </div>
+                    <div class="row-right">
+                        <i class="ph ph-caret-left chevron-icon"></i>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Group 2: Preferences -->
+            <section class="settings-group">
+                <div class="setting-row">
+                    <div class="row-left">
+                        <div class="row-icon"><i class="ph ph-bell"></i></div>
+                        <span class="row-title">الإشعارات</span>
+                    </div>
+                    <div class="row-right">
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked aria-label="تفعيل الإشعارات">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="setting-row">
+                    <div class="row-left">
+                        <div class="row-icon"><i class="ph ph-globe"></i></div>
+                        <span class="row-title">اللغة</span>
+                    </div>
+                    <div class="row-right">
+                        <span class="row-value" id="language-display">العربية</span>
+                        <i class="ph ph-caret-left chevron-icon"></i>
+                    </div>
+                    <!-- Native Select Overlay -->
+                    <select class="hidden-select" id="language-select" aria-label="اختر اللغة" dir="rtl">
+                        <option value="ar" selected>العربية</option>
+                        <option value="en">English</option>
+                    </select>
+                </div>
+
+                <div class="setting-row">
+                    <div class="row-left">
+                        <div class="row-icon"><i class="ph ph-moon"></i></div>
+                        <span class="row-title">الوضع الداكن</span>
+                    </div>
+                    <div class="row-right">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="dark-mode-toggle" aria-label="تفعيل الوضع الداكن">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Group 3: Support & Auth -->
+            <section class="settings-group">
+                <div class="setting-row" role="button" tabindex="0">
+                    <div class="row-left">
+                        <div class="row-icon"><i class="ph ph-question"></i></div>
+                        <span class="row-title">المساعدة</span>
+                    </div>
+                    <div class="row-right">
+                        <i class="ph ph-caret-left chevron-icon"></i>
+                    </div>
+                </div>
+
+                <div class="setting-row logout-row" role="button" tabindex="0">
+                    <div class="row-left">
+                        <div class="row-icon"><i class="ph ph-sign-out"></i></div>
+                        <span class="row-title">تسجيل الخروج</span>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Minimal JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Dark Mode Toggle Logic
+            const darkModeToggle = document.getElementById('dark-mode-toggle');
+            
+            // Check system preference
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                darkModeToggle.checked = true;
+            }
+
+            darkModeToggle.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                } else {
+                    document.documentElement.removeAttribute('data-theme');
+                }
+            });
+
+            // Language Selector Display Update
+            const languageSelect = document.getElementById('language-select');
+            const languageDisplay = document.getElementById('language-display');
+
+            languageSelect.addEventListener('change', (e) => {
+                // Update text based on selection
+                const selectedText = e.target.options[e.target.selectedIndex].text;
+                // Add LTR direction if English is selected to maintain proper display
+                if (e.target.value === 'en') {
+                    languageDisplay.innerHTML = `<span dir="ltr">${selectedText}</span>`;
+                } else {
+                    languageDisplay.innerHTML = selectedText;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

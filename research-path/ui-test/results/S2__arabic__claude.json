@@ -1,0 +1,168 @@
+{
+  "file": "out/S2__arabic__claude.html",
+  "screen": "S2",
+  "cond": "arabic",
+  "model": "claude",
+  "score": 83,
+  "mainFont": "IBM Plex Sans Arabic",
+  "checks": [
+    {
+      "id": "complete",
+      "label": "Page is complete (not cut off)",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "id": "dir",
+      "label": "Page set to right-to-left",
+      "pass": true,
+      "detail": "rtl/rtl"
+    },
+    {
+      "id": "lang",
+      "label": "Language set to Arabic",
+      "pass": true,
+      "detail": "ar"
+    },
+    {
+      "id": "align",
+      "label": "Arabic text aligned to the right",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "flow",
+      "label": "Rows flow right-to-left (first item on the right)",
+      "pass": true,
+      "detail": "0/21 wrong []"
+    },
+    {
+      "id": "scramble",
+      "label": "Phone numbers, IDs and English names display in the right order",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "arrows",
+      "label": "Next points left, back points right",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "back",
+      "label": "Back button on the right",
+      "pass": true,
+      "detail": "right"
+    },
+    {
+      "id": "sidebar",
+      "label": "Sidebar on the right (desktop)",
+      "pass": false,
+      "detail": "left"
+    },
+    {
+      "id": "font",
+      "label": "Arabic drawn in an intended font",
+      "pass": true,
+      "detail": {
+        "IBM Plex Sans Arabic": 626,
+        "IBM Plex Sans Arabic SemiBold": 147,
+        "IBM Plex Sans Arabic Medium": 103,
+        "Noto Color Emoji": 1
+      }
+    },
+    {
+      "id": "size",
+      "label": "Arabic text not too small (<13px under 25%)",
+      "pass": true,
+      "detail": "median 14.5px, 24% small"
+    },
+    {
+      "id": "lineheight",
+      "label": "Line height leaves room for Arabic marks",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "letterspacing",
+      "label": "No letter-spacing on Arabic",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "numerals",
+      "label": "One numeral system per page",
+      "pass": false,
+      "detail": "western 20, eastern 122"
+    },
+    {
+      "id": "logical",
+      "label": "Built with direction-neutral CSS",
+      "pass": true,
+      "detail": "physical 2, logical 2"
+    },
+    {
+      "id": "presentation",
+      "label": "No pre-shaped Arabic characters",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "id": "overflow",
+      "label": "No sideways scroll on phone",
+      "pass": false,
+      "detail": true
+    },
+    {
+      "id": "jserrors",
+      "label": "No JavaScript errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "raw": {
+    "htmlDir": "rtl",
+    "htmlLang": "ar",
+    "bodyDir": "rtl",
+    "arabicEls": 66,
+    "medianArabicFontPx": 14.5,
+    "smallArabicShare": 0.24,
+    "leftAligned": [],
+    "letterSpaced": [],
+    "tightLines": [],
+    "rows": 21,
+    "wrongRows": 0,
+    "wrongRowLabels": [],
+    "doubleFlip": 0,
+    "ltrRuns": 2,
+    "scrambledRuns": [],
+    "unisolatedRuns": 1,
+    "arrowsWrong": [],
+    "backSide": "right",
+    "sidebarSide": null,
+    "tableFirstColRight": null,
+    "ltrInputs": 0,
+    "ltrInputsWrong": 0,
+    "mirroredEls": 0,
+    "forcedLtrArabic": 0,
+    "westernDigits": 20,
+    "easternDigits": 122,
+    "presentationForms": 0,
+    "bidiControls": 1,
+    "physicalCss": 2,
+    "logicalCss": 2,
+    "overflowX": true,
+    "fonts": {
+      "IBM Plex Sans Arabic": 626,
+      "IBM Plex Sans Arabic SemiBold": 147,
+      "IBM Plex Sans Arabic Medium": 103,
+      "Noto Color Emoji": 1
+    },
+    "mobileOverflow": true,
+    "carousel": {
+      "found": false
+    },
+    "sidebarSideDesktop": "left",
+    "jsErrors": []
+  }
+}

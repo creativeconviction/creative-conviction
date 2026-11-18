@@ -110,6 +110,10 @@ table.heat th.dim { color: var(--muted); opacity: .7; }
 .quotes blockquote { margin: 8px 0; font-size: 17px; line-height: 1.9; }
 .quotes p { margin: 0; font-size: 14px; color: var(--muted); }
 
+.shot { margin: 18px 0 0; }
+.shot img { display: block; max-width: 100%; width: 420px; border-radius: 8px; border: 1px solid var(--line); }
+.shot figcaption { font-size: 14px; color: var(--muted); margin-top: 8px; max-width: 620px; }
+ul.tight { margin: 6px 0 12px; padding-left: 20px; display: grid; gap: 6px; }
 .note { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--you); border-radius: 6px; padding: 12px 14px; font-size: 14px; color: var(--muted); margin-top: 14px; }
 
 .todo-list { display: grid; gap: 12px; margin-top: 14px; }
@@ -123,7 +127,7 @@ code { font: 13px var(--font-mono); background: var(--todo-bg); padding: 1px 5px
     <div class="eyebrow">Outliers · research status</div>
     <h1>Where AI breaks when we design and write for Arab users</h1>
     <p class="lede">We build one product, a grocery delivery app called Qareeb <span class="ar">(قريب)</span>, the way a real team would, using AI at every step, for Riyadh, Cairo and Casablanca. Every place the output wouldn't work for real users gets logged, explained, and turned into guidance for designers and writers.</p>
-    <p class="updated">Updated 18 Nov 2026 · imagery done · copy experiment done · interface experiment running</p>
+    <p class="updated">Updated 18 Nov 2026 · imagery, copy and interface experiments done; native check and tagging next</p>
   </header>
 
   <section class="col">
@@ -134,7 +138,7 @@ code { font: 13px var(--font-mono); background: var(--todo-bg); padding: 1px 5px
       <div class="phase"><div class="n">1</div><div class="body"><h3>Build it with AI: text</h3><p>Run the 22 prompts (research, brand, copy, interface, support) in ChatGPT, Claude and Gemini per city; log every break.</p></div><span class="pill you">Your turn</span></div>
       <div class="phase"><div class="n">1b</div><div class="body"><h3>Build it with AI: imagery</h3><p>20 image prompts × 7 image models, three cities plus London as a control, English and Arabic prompts. All generated; tagging is next.</p><div class="bar" aria-label="Imagery progress"><span style="width:100%;background:var(--done)"></span></div><p class="mono" style="margin-top:6px">292 / 292 images</p></div><span class="pill you">Tag them</span></div>
       <div class="phase"><div class="n">1c</div><div class="body"><h3>Experiment: marketing copy and dialect</h3><p>470 outputs: prompt language × launch city × 14 requested dialects, scored by an independent dialect identifier.</p></div><span class="pill done">Done</span></div>
-      <div class="phase"><div class="n">1d</div><div class="body"><h3>Experiment: right-to-left interfaces</h3><p>8 product screens × 4 ways of asking × 5 models, with a deep browser audit and tokenization analysis.</p></div><span class="pill run">Running</span></div>
+      <div class="phase"><div class="n">1d</div><div class="body"><h3>Experiment: right-to-left interfaces</h3><p>8 product screens × 4 ways of asking × 5 models, with a deep browser audit and tokenization analysis.</p></div><span class="pill done">Done</span></div>
       <div class="phase"><div class="n">2</div><div class="body"><h3>Compare with real products</h3><p>Screenshot 4–6 leading regional apps per country at the same stages; read real Arabic reviews.</p></div><span class="pill todo">Not started</span></div>
       <div class="phase"><div class="n">3</div><div class="body"><h3>Ask native speakers</h3><p>3–5 short blind conversations: AI work next to real work. What feels off, and why?</p></div><span class="pill todo">Not started</span></div>
       <div class="phase"><div class="n">4</div><div class="body"><h3>Test the strongest breaks</h3><p>Repeat 5–10 times, across tools, cities, Arabic vs English; try to fix with better prompts.</p></div><span class="pill todo">Not started</span></div>
@@ -328,6 +332,71 @@ code { font: 13px var(--font-mono); background: var(--todo-bg); padding: 1px 5px
       <p>Mistral Saba, marketed for Middle Eastern languages, put foreign-script characters (Russian, Korean, Chinese) in <b>63%</b> of its outputs and English words in <b>86%</b>. The four general models: 0% foreign script, under 5% English.</p>
 
       <div class="note">How much to trust this: the dialect identifier was right on all five calibration prompts, but in six spot checks two of its labels looked wrong to me (one Gulf ad labeled Egyptian, one Libyan ad labeled Tunisian). The patterns across hundreds of outputs are robust; individual cells need a native speaker. Costume vs genuine dialect can only be judged by natives.</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="col">
+      <div class="eyebrow" style="margin-top:56px">Experiment · 160 AI-built interface screens</div>
+      <h2 style="margin-top:0">Can AI build a right-to-left interface?</h2>
+      <p class="muted">Five models built eight real product screens: sign-up, checkout, product listing, support chat, order tracking, a dashboard, an onboarding carousel and settings. They were asked four ways: an English prompt for an Arabic interface, the same in Arabic, an English prompt that explicitly asks for RTL best practices, and the everyday workflow of handing over an existing English page to localize. Each page was opened in a real browser at phone and desktop width and checked on 21 things a user would notice.</p>
+
+      <h3 style="margin-top:28px">What it gets right</h3>
+      <p>The foundations are solid. Every one of the 160 pages declared Arabic and right-to-left; none was cut off; 94% of rows flowed the right way; tables started from the right every time; back buttons sat on the right 97% of the time.</p>
+
+      <h3 style="margin-top:22px">Where it breaks</h3>
+      <div class="scroll"><table>
+        <thead><tr><th>Problem</th><th>How often</th><th>What a user sees</th></tr></thead>
+        <tbody>
+          <tr><td>Phone, email and password fields typed right-to-left</td><td class="mono">78%</td><td>The cursor and digits jump around while typing a phone number or email</td></tr>
+          <tr><td>Built with hard-coded left/right styling</td><td class="mono">66%</td><td>Nothing visible today; every future layout change risks breaking the mirror</td></tr>
+          <tr><td>Line height too tight for Arabic</td><td class="mono">50%</td><td>Dots and vowel marks crowd or clip between lines</td></tr>
+          <tr><td>Arabic text too small</td><td class="mono">49%</td><td>Over a quarter of the text under 13px; Arabic needs more size than Latin to read the same</td></tr>
+          <tr><td>Letter-spacing on Arabic</td><td class="mono">31%</td><td>Spacing pulls apart a script whose letters are meant to join</td></tr>
+          <tr><td>Two numeral systems on one screen</td><td class="mono">26%</td><td><span class="ar">٢٠</span> and 20 side by side</td></tr>
+          <tr><td>Carousel "next" moves the wrong way</td><td class="mono">4 of 20</td><td>The progress dots advance left-to-right (Claude and DeepSeek, only when RTL wasn't mentioned)</td></tr>
+          <tr><td>Phone number displayed scrambled</td><td class="mono">5 pages</td><td>See below</td></tr>
+        </tbody>
+      </table></div>
+
+      <figure class="shot">
+        <img src="img/phone-deepseek.png" alt="A chat bubble showing the phone number reversed as 4567 123 55 966+" loading="lazy">
+        <figcaption>DeepSeek's support chat. The customer's number, +966 55 123 4567, displays as <b>4567 123 55 966+</b>: the classic bug where an LTR run inside Arabic text is reordered. Claude's version of the same screen kept the order.</figcaption>
+      </figure>
+
+      <h3 style="margin-top:28px">How you ask matters more than which model you use</h3>
+      <div class="bars">
+        <div class="barrow"><span>Asks for RTL best practices</span><div class="track"><i style="width:87%"></i></div><b>87</b></div>
+        <div class="barrow"><span>Prompt in Arabic</span><div class="track"><i style="width:83%"></i></div><b>83</b></div>
+        <div class="barrow"><span>Prompt in English</span><div class="track"><i style="width:81%"></i></div><b>81</b></div>
+        <div class="barrow"><span>Localize an English page</span><div class="track"><i style="width:76%"></i></div><b>76</b></div>
+      </div>
+      <p class="muted">Average audit score out of 100 across all models. By model: Claude 87, Gemini 84, GPT 80, DeepSeek 80, Saba 78.</p>
+      <p><b>The models know RTL; they just don't apply it unless asked.</b> Hard-coded left/right styling appeared in 75% of the four main models' pages normally, and in 13% when the prompt asked for RTL best practices. Phone and email fields went from wrong almost every time to wrong once.</p>
+      <p><b>Localizing an existing English page is the weakest path, and it's how most real products get to Arabic.</b> The models translated the words but kept the English design decisions:</p>
+      <ul class="tight">
+        <li>They kept the English font, which has no Arabic letters, so Arabic fell back to whatever the device has. On the product-listing page, all five models did this.</li>
+        <li>They kept English line heights: 26 of 32 localized pages had lines too tight for Arabic.</li>
+        <li>They kept the placeholder people. Asked to localize a Saudi store dashboard, Gemini, DeepSeek and Saba listed customers named Olivia Thompson and Ethan, written in Arabic letters. Claude and GPT swapped in Sarah, Fahad and Noura.</li>
+      </ul>
+
+      <h3 style="margin-top:28px">Tokenization: real, but not why interfaces break</h3>
+      <p>Six real tokenizers counted the same screens in English and Arabic.</p>
+      <div class="scroll"><table>
+        <thead><tr><th>Tokenizer</th><th>Arabic interface text vs English</th><th>Pieces per word: Arabic / English</th><th>Arabic words split into 3+ pieces</th></tr></thead>
+        <tbody>
+          <tr><td>GPT (o200k)</td><td class="mono">1.31×</td><td class="mono">2.45 / 1.10</td><td class="mono">45%</td></tr>
+          <tr><td>DeepSeek V3</td><td class="mono">1.58×</td><td class="mono">2.71 / 1.15</td><td class="mono">59%</td></tr>
+          <tr><td>Qwen 2.5</td><td class="mono">1.58×</td><td class="mono">2.47 / 1.13</td><td class="mono">45%</td></tr>
+          <tr><td>Mistral Small</td><td class="mono">1.24×</td><td class="mono">2.42 / 1.17</td><td class="mono">43%</td></tr>
+          <tr><td>Fanar (Arabic-first)</td><td class="mono">1.43×</td><td class="mono">2.48 / 1.11</td><td class="mono">47%</td></tr>
+          <tr><td>Jais (Arabic-first)</td><td class="mono">1.03×</td><td class="mono">1.96 / 1.21</td><td class="mono">17%</td></tr>
+        </tbody>
+      </table></div>
+      <p>Arabic interface text costs 24–58% more tokens than the same English text, except with Jais, whose tokenizer was built for Arabic and reaches parity. But a whole page costs only about 2% more, because the code itself is English and dwarfs the visible text. No page was cut off. So the token tax matters for copy-heavy work, but it does not explain the RTL failures; those come from habits learned on English interfaces.</p>
+      <p>Where tokenization does show up is in spelling. Of 1,784 distinct Arabic words across all pages, only 2% weren't recognized by Arabic dictionaries, and most of those were real loanwords and names (<span class="ar">برجر، أفوكادو، ماستركارد</span>). The genuine errors clustered on the brand name: given only "Qareeb" in Latin letters, Saba spelled it <span class="ar">قاريب</span>, <span class="ar">كويرب</span> and <span class="ar">جاريب</span>. The other four models wrote <span class="ar">قريب</span>. Unrecognized words were split into more pieces on average (3.1 vs 2.4), which fits the idea that heavily fragmented words are easier to get wrong, though the sample is small.</p>
+
+      <div class="note">How much to trust this: every check is a measurement in a real browser, and the suspicious ones were verified by hand (the scrambled phone number is shown above). The "text too small" and "line height" thresholds are judgement calls; a designer should confirm them on the screenshots in <code>research-path/ui-test/results/shots/</code>.</div>
     </div>
   </section>
   <section class="col">

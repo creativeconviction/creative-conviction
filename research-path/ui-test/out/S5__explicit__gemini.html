@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>تتبع الطلب - قريب</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #009688;
+            --primary-light: #e0f2f1;
+            --primary-dark: #00796b;
+            --secondary: #ff9800;
+            --bg-color: #f3f4f6;
+            --surface: #ffffff;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+            --border-color: #e5e7eb;
+            --success: #10b981;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 420px;
+            background-color: var(--surface);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+        }
+
+        /* --- Header --- */
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            padding: 1.25rem 1rem;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0) 100%);
+        }
+
+        .back-btn {
+            background: var(--surface);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-md);
+            cursor: pointer;
+            color: var(--text-main);
+            font-size: 1.1rem;
+            transition: background 0.2s;
+        }
+
+        .back-btn:active {
+            background: var(--bg-color);
+        }
+
+        .header-title {
+            flex: 1;
+            text-align: center;
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-inline-end: 40px; /* offset back btn width for true centering */
+        }
+
+        /* --- Map Placeholder --- */
+        .map-area {
+            height: 40vh;
+            min-height: 300px;
+            background-color: #e5e7eb;
+            position: relative;
+            background-image: 
+                radial-gradient(#d1d5db 2px, transparent 2px),
+                radial-gradient(#d1d5db 2px, transparent 2px);
+            background-size: 32px 32px;
+            background-position: 0 0, 16px 16px;
+            overflow: hidden;
+        }
+
+        .map-route {
+            position: absolute;
+            top: 40%;
+            left: 20%;
+            right: 30%;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+            transform: rotate(-15deg);
+            opacity: 0.6;
+            border-style: dashed;
+            border-color: var(--primary);
+            border-width: 4px;
+            background: transparent;
+        }
+
+        .map-marker-store {
+            position: absolute;
+            top: 35%;
+            right: 25%;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.2));
+        }
+
+        .map-marker-car {
+            position: absolute;
+            top: 48%;
+            left: 45%;
+            background: var(--surface);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-md);
+            color: var(--primary);
+            font-size: 1.25rem;
+            z-index: 2;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 150, 136, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 150, 136, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 150, 136, 0); }
+        }
+
+        /* --- Bottom Sheet --- */
+        .bottom-sheet {
+            background: var(--surface);
+            border-radius: 24px 24px 0 0;
+            margin-top: -24px;
+            position: relative;
+            z-index: 5;
+            padding: 1.5rem 1.25rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
+            overflow-y: auto;
+        }
+
+        .handle-bar {
+            width: 40px;
+            height: 4px;
+            background: #d1d5db;
+            border-radius: 2px;
+            margin: -0.5rem auto 1rem auto;
+        }
+
+        /* --- ETA Section --- */
+        .eta-section {
+            text-align: center;
+        }
+
+        .eta-title {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .eta-time {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        /* --- Stepper --- */
+        .stepper {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            padding: 0 0.5rem;
+        }
+
+        .step {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Line connecting steps */
+        .step:not(:first-child)::before {
+            content: '';
+            position: absolute;
+            top: 14px;
+            right: -50%;
+            width: 100%;
+            height: 2px;
+            background: var(--border-color);
+            z-index: -1;
+        }
+
+        .step.completed:not(:first-child)::before,
+        .step.active:not(:first-child)::before {
+            background: var(--primary);
+        }
+
+        .step-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--border-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .step.completed .step-icon {
+            background: var(--primary);
+        }
+
+        .step.active .step-icon {
+            background: var(--primary);
+            box-shadow: 0 0 0 4px var(--primary-light);
+        }
+
+        .step-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        .step.completed .step-label,
+        .step.active .step-label {
+            color: var(--text-main);
+        }
+
+        /* --- Driver Card --- */
+        .driver-card {
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .driver-info-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .driver-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            background: #e5e7eb;
+            object-fit: cover;
+        }
+
+        .driver-details {
+            flex: 1;
+        }
+
+        .driver-name {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .driver-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .driver-rating i {
+            color: var(--secondary);
+            font-size: 0.75rem;
+        }
+
+        .plate-number {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f9fafb;
+            border: 1.5px solid #d1d5db;
+            border-radius: 6px;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            font-family: monospace;
+            width: fit-content;
+            margin-top: 0.5rem;
+            position: relative;
+        }
+
+        .plate-number::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: #d1d5db;
+        }
+
+        .plate-section {
+            padding: 0 0.5rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .driver-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 0.75rem;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.875rem;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-call {
+            background: var(--primary);
+            color: white;
+            border: none;
+            box-shadow: 0 2px 4px rgba(0, 150, 136, 0.2);
+        }
+
+        .btn-call:active {
+            background: var(--primary-dark);
+        }
+
+        .btn-msg {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .btn-msg:active {
+            background: var(--primary-light);
+        }
+
+        /* --- Order Details Accordion --- */
+        .order-details {
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .order-details summary {
+            padding: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            list-style: none;
+            background: #f9fafb;
+            user-select: none;
+        }
+
+        .order-details summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .order-details summary::after {
+            content: '\f078';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--text-muted);
+            transition: transform 0.3s ease;
+            font-size: 0.875rem;
+        }
+
+        .order-details[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        .summary-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .order-id {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .details-content {
+            padding: 1rem;
+            border-top: 1px solid var(--border-color);
+            background: var(--surface);
+        }
+
+        .item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+            font-size: 0.875rem;
+        }
+
+        .item-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .item-name {
+            font-weight: 500;
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .item-qty {
+            color: var(--primary);
+            font-weight: 700;
+            background: var(--primary-light);
+            padding: 0 0.4rem;
+            border-radius: 4px;
+        }
+
+        .item-price {
+            font-weight: 700;
+        }
+
+        .divider {
+            height: 1px;
+            background: var(--border-color);
+            margin: 1rem 0;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 800;
+            font-size: 1rem;
+            color: var(--text-main);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- Header -->
+        <header>
+            <button class="back-btn" aria-label="العودة">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+            <div class="header-title">تتبع الطلب</div>
+        </header>
+
+        <!-- Map Area -->
+        <div class="map-area">
+            <div class="map-route"></div>
+            <i class="fa-solid fa-store map-marker-store"></i>
+            <div class="map-marker-car">
+                <i class="fa-solid fa-car-side"></i>
+            </div>
+        </div>
+
+        <!-- Bottom Sheet -->
+        <div class="bottom-sheet">
+            <div class="handle-bar"></div>
+
+            <!-- ETA -->
+            <div class="eta-section">
+                <div class="eta-title">الوقت المقدر للوصول</div>
+                <div class="eta-time">١٥ - ٢٠ دقيقة</div>
+            </div>
+
+            <!-- Stepper -->
+            <div class="stepper">
+                <div class="step completed">
+                    <div class="step-icon"><i class="fa-solid fa-check"></i></div>
+                    <div class="step-label">تم الطلب</div>
+                </div>
+                <div class="step completed">
+                    <div class="step-icon"><i class="fa-solid fa-check"></i></div>
+                    <div class="step-label">قيد التجهيز</div>
+                </div>
+                <div class="step active">
+                    <div class="step-icon"><i class="fa-solid fa-motorcycle"></i></div>
+                    <div class="step-label">في الطريق</div>
+                </div>
+                <div class="step">
+                    <div class="step-icon"><i class="fa-solid fa-house"></i></div>
+                    <div class="step-label">تم التوصيل</div>
+                </div>
+            </div>
+
+            <!-- Driver Card -->
+            <div class="driver-card">
+                <div class="driver-info-row">
+                    <!-- Placeholder Avatar -->
+                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23e5e7eb' width='100' height='100'/><circle cx='50' cy='40' r='20' fill='%239ca3af'/><path d='M20 90 Q50 60 80 90' stroke='%239ca3af' stroke-width='10' fill='none'/></svg>" alt="Driver" class="driver-avatar">
+                    
+                    <div class="driver-details">
+                        <div class="driver-name">أحمد محمد</div>
+                        <div class="driver-rating">
+                            <i class="fa-solid fa-star"></i>
+                            <span>4.8</span>
+                            <span style="color: var(--border-color);">|</span>
+                            <span>كابتن قريب</span>
+                        </div>
+                        
+                        <!-- RTL/LTR safe license plate -->
+                        <div class="plate-number" dir="ltr">
+                            <div class="plate-section">
+                                <bdi>1234</bdi>
+                                <bdi>ABC</bdi>
+                            </div>
+                            <div class="plate-section" dir="rtl">
+                                <bdi>١٢٣٤</bdi>
+                                <bdi>أ ب ج</bdi>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="driver-actions">
+                    <button class="btn btn-call">
+                        <i class="fa-solid fa-phone"></i>
+                        اتصال
+                    </button>
+                    <button class="btn btn-msg">
+                        <i class="fa-regular fa-comment-dots"></i>
+                        رسالة
+                    </button>
+                </div>
+            </div>
+
+            <!-- Expandable Order Details -->
+            <details class="order-details">
+                <summary>
+                    <div class="summary-info">
+                        <span>تفاصيل الطلب</span>
+                        <span class="order-id">رقم الطلب #QR-98245</span>
+                    </div>
+                </summary>
+                <div class="details-content">
+                    <div class="item-row">
+                        <div class="item-name">
+                            <span class="item-qty">1x</span>
+                            وجبة برجر دجاج كلاسيك
+                        </div>
+                        <div class="item-price">45 ر.س</div>
+                    </div>
+                    <div class="item-row">
+                        <div class="item-name">
+                            <span class="item-qty">2x</span>
+                            بطاطس مقلية حجم وسط
+                        </div>
+                        <div class="item-price">20 ر.س</div>
+                    </div>
+                    <div class="item-row">
+                        <div class="item-name">
+                            <span class="item-qty">1x</span>
+                            مشروب غازي
+                        </div>
+                        <div class="item-price">8 ر.س</div>
+                    </div>
+                    
+                    <div class="divider"></div>
+                    
+                    <div class="item-row" style="color: var(--text-muted);">
+                        <div>رسوم التوصيل</div>
+                        <div>12 ر.س</div>
+                    </div>
+                    <div class="item-row" style="color: var(--text-muted);">
+                        <div>الضريبة (15%)</div>
+                        <div>10.95 ر.س</div>
+                    </div>
+                    
+                    <div class="divider"></div>
+                    
+                    <div class="total-row">
+                        <div>الإجمالي</div>
+                        <div>95.95 ر.س</div>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+    </div>
+
+</body>
+</html>

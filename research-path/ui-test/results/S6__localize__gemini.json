@@ -1,0 +1,211 @@
+{
+  "file": "out/S6__localize__gemini.html",
+  "screen": "S6",
+  "cond": "localize",
+  "model": "gemini",
+  "score": 72,
+  "mainFont": "Cairo",
+  "checks": [
+    {
+      "id": "complete",
+      "label": "Page is complete (not cut off)",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "id": "dir",
+      "label": "Page set to right-to-left",
+      "pass": true,
+      "detail": "rtl/rtl"
+    },
+    {
+      "id": "lang",
+      "label": "Language set to Arabic",
+      "pass": true,
+      "detail": "ar"
+    },
+    {
+      "id": "align",
+      "label": "Arabic text aligned to the right",
+      "pass": false,
+      "detail": [
+        "text \"12 ألف\"",
+        "text \"9 آلاف\"",
+        "text \"6 آلاف\"",
+        "text \"3 آلاف\""
+      ]
+    },
+    {
+      "id": "flow",
+      "label": "Rows flow right-to-left (first item on the right)",
+      "pass": true,
+      "detail": "0/18 wrong []"
+    },
+    {
+      "id": "scramble",
+      "label": "Phone numbers, IDs and English names display in the right order",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "arrows",
+      "label": "Next points left, back points right",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "sidebar",
+      "label": "Sidebar on the right (desktop)",
+      "pass": true,
+      "detail": "right"
+    },
+    {
+      "id": "table",
+      "label": "Table starts from the right",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "id": "font",
+      "label": "Arabic drawn in an intended font",
+      "pass": true,
+      "detail": {
+        "Cairo": 751,
+        "Inter": 1,
+        "Inter SemiBold": 1
+      }
+    },
+    {
+      "id": "size",
+      "label": "Arabic text not too small (<13px under 25%)",
+      "pass": false,
+      "detail": "median 12px, 54% small"
+    },
+    {
+      "id": "lineheight",
+      "label": "Line height leaves room for Arabic marks",
+      "pass": false,
+      "detail": [
+        "div.avatar \"أ.خ\"",
+        "span.customer-avatar \"م.ت\"",
+        "td \"18 يونيو, 10:42 ص\""
+      ]
+    },
+    {
+      "id": "letterspacing",
+      "label": "No letter-spacing on Arabic",
+      "pass": false,
+      "detail": [
+        "span \"ق\"",
+        "div.brand \"ق\n      قريب\""
+      ]
+    },
+    {
+      "id": "numerals",
+      "label": "One numeral system per page",
+      "pass": true,
+      "detail": "western 120, eastern 0"
+    },
+    {
+      "id": "logical",
+      "label": "Built with direction-neutral CSS",
+      "pass": false,
+      "detail": "physical 14, logical 0"
+    },
+    {
+      "id": "presentation",
+      "label": "No pre-shaped Arabic characters",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "id": "overflow",
+      "label": "No sideways scroll on phone",
+      "pass": true,
+      "detail": false
+    },
+    {
+      "id": "jserrors",
+      "label": "No JavaScript errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "raw": {
+    "htmlDir": "rtl",
+    "htmlLang": "ar",
+    "bodyDir": "rtl",
+    "arabicEls": 76,
+    "medianArabicFontPx": 12,
+    "smallArabicShare": 0.54,
+    "leftAligned": [
+      "text \"12 ألف\"",
+      "text \"9 آلاف\"",
+      "text \"6 آلاف\"",
+      "text \"3 آلاف\"",
+      "text \"10,920 ر.س\"",
+      "text \"الخميس\"",
+      "text \"الجمعة\"",
+      "text \"السبت\"",
+      "text \"الأحد\"",
+      "text \"الاثنين\"",
+      "text \"الثلاثاء\"",
+      "text \"الأربعاء\""
+    ],
+    "letterSpaced": [
+      "span \"ق\"",
+      "div.brand \"ق\n      قريب\""
+    ],
+    "tightLines": [
+      "div.avatar \"أ.خ\"",
+      "span.customer-avatar \"م.ت\"",
+      "td \"18 يونيو, 10:42 ص\"",
+      "td.amount \"126.40 ر.س\"",
+      "span.customer-avatar \"ن.و\"",
+      "td \"18 يونيو, 10:18 ص\"",
+      "td.amount \"84.25 ر.س\"",
+      "span.customer-avatar \"س.م\"",
+      "td \"18 يونيو, 9:54 ص\"",
+      "td.amount \"59.80 ر.س\"",
+      "span.customer-avatar \"إ.ك\"",
+      "td \"18 يونيو, 9:20 ص\"",
+      "td.amount \"42.15 ر.س\"",
+      "span.customer-avatar \"أ.م\"",
+      "td \"18 يونيو, 8:48 ص\"",
+      "td.amount \"97.60 ر.س\""
+    ],
+    "rows": 18,
+    "wrongRows": 0,
+    "wrongRowLabels": [],
+    "doubleFlip": 0,
+    "ltrRuns": 5,
+    "scrambledRuns": [],
+    "unisolatedRuns": 0,
+    "arrowsWrong": [],
+    "backSide": null,
+    "sidebarSide": null,
+    "tableFirstColRight": true,
+    "ltrInputs": 0,
+    "ltrInputsWrong": 0,
+    "mirroredEls": 0,
+    "forcedLtrArabic": 1,
+    "westernDigits": 120,
+    "easternDigits": 0,
+    "presentationForms": 0,
+    "bidiControls": 0,
+    "physicalCss": 14,
+    "logicalCss": 0,
+    "overflowX": false,
+    "fonts": {
+      "Cairo": 751,
+      "Inter": 1,
+      "Inter SemiBold": 1
+    },
+    "mobileOverflow": false,
+    "carousel": {
+      "found": false
+    },
+    "sidebarSideDesktop": "right",
+    "jsErrors": []
+  }
+}

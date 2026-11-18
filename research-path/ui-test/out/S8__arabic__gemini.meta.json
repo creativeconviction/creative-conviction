@@ -1,0 +1,9 @@
+{
+  "screen": "S8",
+  "cond": "arabic",
+  "model": "gemini",
+  "model_id": "google/gemini-3.1-pro-preview",
+  "raw_chars": 12502,
+  "complete": true,
+  "at": "2026-11-18T06:06:38.429Z"
+}

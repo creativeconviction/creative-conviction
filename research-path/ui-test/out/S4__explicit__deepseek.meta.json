@@ -1,0 +1,9 @@
+{
+  "screen": "S4",
+  "cond": "explicit",
+  "model": "deepseek",
+  "model_id": "deepseek/deepseek-v4-pro",
+  "raw_chars": 25545,
+  "complete": true,
+  "at": "2026-11-18T06:21:02.496Z"
+}

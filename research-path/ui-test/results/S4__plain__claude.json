@@ -1,0 +1,176 @@
+{
+  "file": "out/S4__plain__claude.html",
+  "screen": "S4",
+  "cond": "plain",
+  "model": "claude",
+  "score": 75,
+  "mainFont": "IBM Plex Sans Arabic",
+  "checks": [
+    {
+      "id": "complete",
+      "label": "Page is complete (not cut off)",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "id": "dir",
+      "label": "Page set to right-to-left",
+      "pass": true,
+      "detail": "rtl/rtl"
+    },
+    {
+      "id": "lang",
+      "label": "Language set to Arabic",
+      "pass": true,
+      "detail": "ar"
+    },
+    {
+      "id": "align",
+      "label": "Arabic text aligned to the right",
+      "pass": false,
+      "detail": [
+        "time \"10:41 ص\"",
+        "time \"10:42 ص\"",
+        "time \"10:43 ص\"",
+        "time \"10:44 ص\""
+      ]
+    },
+    {
+      "id": "flow",
+      "label": "Rows flow right-to-left (first item on the right)",
+      "pass": true,
+      "detail": "0/8 wrong []"
+    },
+    {
+      "id": "arrows",
+      "label": "Next points left, back points right",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "back",
+      "label": "Back button on the right",
+      "pass": true,
+      "detail": "right"
+    },
+    {
+      "id": "font",
+      "label": "Arabic drawn in an intended font",
+      "pass": true,
+      "detail": {
+        "IBM Plex Sans Arabic": 543,
+        "IBM Plex Sans Arabic Medium": 16,
+        "IBM Plex Sans Arabic SemiBold": 11,
+        "Inter": 107,
+        "DejaVu Sans": 6,
+        "Noto Color Emoji": 3
+      }
+    },
+    {
+      "id": "size",
+      "label": "Arabic text not too small (<13px under 25%)",
+      "pass": false,
+      "detail": "median 12.5px, 55% small"
+    },
+    {
+      "id": "lineheight",
+      "label": "Line height leaves room for Arabic marks",
+      "pass": false,
+      "detail": [
+        "div.avatar \"س\""
+      ]
+    },
+    {
+      "id": "letterspacing",
+      "label": "No letter-spacing on Arabic",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "numerals",
+      "label": "One numeral system per page",
+      "pass": true,
+      "detail": "western 60, eastern 2"
+    },
+    {
+      "id": "logical",
+      "label": "Built with direction-neutral CSS",
+      "pass": false,
+      "detail": "physical 6, logical 0"
+    },
+    {
+      "id": "presentation",
+      "label": "No pre-shaped Arabic characters",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "id": "overflow",
+      "label": "No sideways scroll on phone",
+      "pass": true,
+      "detail": false
+    },
+    {
+      "id": "jserrors",
+      "label": "No JavaScript errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "raw": {
+    "htmlDir": "rtl",
+    "htmlLang": "ar",
+    "bodyDir": "rtl",
+    "arabicEls": 20,
+    "medianArabicFontPx": 12.5,
+    "smallArabicShare": 0.55,
+    "leftAligned": [
+      "time \"10:41 ص\"",
+      "time \"10:42 ص\"",
+      "time \"10:43 ص\"",
+      "time \"10:44 ص\"",
+      "time \"10:45 ص\"",
+      "time \"10:46 ص\""
+    ],
+    "letterSpaced": [],
+    "tightLines": [
+      "div.avatar \"س\""
+    ],
+    "rows": 8,
+    "wrongRows": 0,
+    "wrongRowLabels": [],
+    "doubleFlip": 0,
+    "ltrRuns": 0,
+    "scrambledRuns": [],
+    "unisolatedRuns": 0,
+    "arrowsWrong": [],
+    "backSide": "right",
+    "sidebarSide": null,
+    "tableFirstColRight": null,
+    "ltrInputs": 0,
+    "ltrInputsWrong": 0,
+    "mirroredEls": 1,
+    "forcedLtrArabic": 0,
+    "westernDigits": 60,
+    "easternDigits": 2,
+    "presentationForms": 0,
+    "bidiControls": 0,
+    "physicalCss": 6,
+    "logicalCss": 0,
+    "overflowX": false,
+    "fonts": {
+      "IBM Plex Sans Arabic": 543,
+      "IBM Plex Sans Arabic Medium": 16,
+      "IBM Plex Sans Arabic SemiBold": 11,
+      "Inter": 107,
+      "DejaVu Sans": 6,
+      "Noto Color Emoji": 3
+    },
+    "mobileOverflow": false,
+    "carousel": {
+      "found": false
+    },
+    "sidebarSideDesktop": null,
+    "jsErrors": []
+  }
+}

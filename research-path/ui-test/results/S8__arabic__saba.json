@@ -1,0 +1,165 @@
+{
+  "file": "out/S8__arabic__saba.html",
+  "screen": "S8",
+  "cond": "arabic",
+  "model": "saba",
+  "score": 67,
+  "mainFont": "Cairo",
+  "checks": [
+    {
+      "id": "complete",
+      "label": "Page is complete (not cut off)",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "id": "dir",
+      "label": "Page set to right-to-left",
+      "pass": false,
+      "detail": "null/ltr"
+    },
+    {
+      "id": "lang",
+      "label": "Language set to Arabic",
+      "pass": true,
+      "detail": "ar"
+    },
+    {
+      "id": "align",
+      "label": "Arabic text aligned to the right",
+      "pass": false,
+      "detail": [
+        "h3.section-title \"الملف الشخصي\"",
+        "span.item-title \"العنوان الأساسي\"",
+        "span.item-title \"طرق الدفع\"",
+        "span.item-title \"الإشعارات\""
+      ]
+    },
+    {
+      "id": "flow",
+      "label": "Rows flow right-to-left (first item on the right)",
+      "pass": false,
+      "detail": "6/6 wrong [\"a.settings-item \\\"العنوان الأساسي\\\"\",\"a.settings-item \\\"طرق الدفع\\\"\",\"div.settings-item \\\"الإشعارات\\\"\"]"
+    },
+    {
+      "id": "arrows",
+      "label": "Next points left, back points right",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "font",
+      "label": "Arabic drawn in an intended font",
+      "pass": true,
+      "detail": {
+        "Cairo": 92
+      }
+    },
+    {
+      "id": "size",
+      "label": "Arabic text not too small (<13px under 25%)",
+      "pass": true,
+      "detail": "median 15px, 10% small"
+    },
+    {
+      "id": "lineheight",
+      "label": "Line height leaves room for Arabic marks",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "letterspacing",
+      "label": "No letter-spacing on Arabic",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "numerals",
+      "label": "One numeral system per page",
+      "pass": true,
+      "detail": "western 0, eastern 0"
+    },
+    {
+      "id": "logical",
+      "label": "Built with direction-neutral CSS",
+      "pass": false,
+      "detail": "physical 3, logical 0"
+    },
+    {
+      "id": "presentation",
+      "label": "No pre-shaped Arabic characters",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "id": "overflow",
+      "label": "No sideways scroll on phone",
+      "pass": false,
+      "detail": true
+    },
+    {
+      "id": "jserrors",
+      "label": "No JavaScript errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "raw": {
+    "htmlDir": null,
+    "htmlLang": "ar",
+    "bodyDir": "ltr",
+    "arabicEls": 10,
+    "medianArabicFontPx": 15,
+    "smallArabicShare": 0.1,
+    "leftAligned": [
+      "h3.section-title \"الملف الشخصي\"",
+      "span.item-title \"العنوان الأساسي\"",
+      "span.item-title \"طرق الدفع\"",
+      "span.item-title \"الإشعارات\"",
+      "span.item-title \"اللغة\"",
+      "span.item-value \"العربية\"",
+      "span.item-title \"الوضع الداكن\"",
+      "span.item-title \"المساعدة\""
+    ],
+    "letterSpaced": [],
+    "tightLines": [],
+    "rows": 6,
+    "wrongRows": 6,
+    "wrongRowLabels": [
+      "a.settings-item \"العنوان الأساسي\"",
+      "a.settings-item \"طرق الدفع\"",
+      "div.settings-item \"الإشعارات\"",
+      "div.settings-item \"اللغة\n                ال\"",
+      "div.settings-item \"الوضع الداكن\"",
+      "a.settings-item \"المساعدة\""
+    ],
+    "doubleFlip": 0,
+    "ltrRuns": 0,
+    "scrambledRuns": [],
+    "unisolatedRuns": 0,
+    "arrowsWrong": [],
+    "backSide": null,
+    "sidebarSide": null,
+    "tableFirstColRight": null,
+    "ltrInputs": 0,
+    "ltrInputsWrong": 0,
+    "mirroredEls": 0,
+    "forcedLtrArabic": 0,
+    "westernDigits": 0,
+    "easternDigits": 0,
+    "presentationForms": 0,
+    "bidiControls": 0,
+    "physicalCss": 3,
+    "logicalCss": 0,
+    "overflowX": true,
+    "fonts": {
+      "Cairo": 92
+    },
+    "mobileOverflow": true,
+    "carousel": {
+      "found": false
+    },
+    "sidebarSideDesktop": null,
+    "jsErrors": []
+  }
+}

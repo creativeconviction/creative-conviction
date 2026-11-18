@@ -1,0 +1,160 @@
+S1__arabic__claude                88  inputs logical
+S1__arabic__deepseek              88  inputs logical
+S1__arabic__gemini                82  inputs letterspacing logical
+S1__arabic__gpt                   76  inputs lineheight letterspacing logical
+S1__arabic__saba                  82  arrows inputs logical
+S1__explicit__claude              94  overflow
+S1__explicit__deepseek            88  inputs letterspacing
+S1__explicit__gemini              82  lineheight letterspacing logical
+S1__explicit__gpt                 88  lineheight letterspacing
+S1__explicit__saba                82  arrows inputs logical
+S1__localize__claude              82  inputs lineheight logical
+S1__localize__deepseek            76  inputs lineheight letterspacing logical
+S1__localize__gemini              76  inputs lineheight letterspacing logical
+S1__localize__gpt                 82  inputs lineheight logical
+S1__localize__saba                71  inputs font lineheight letterspacing logical
+S1__plain__claude                 88  align flow
+S1__plain__deepseek               88  inputs logical
+S1__plain__gemini                 88  inputs logical
+S1__plain__gpt                    76  back lineheight letterspacing logical
+S1__plain__saba                   82  arrows inputs logical
+S2__arabic__claude                83  sidebar numerals overflow
+S2__arabic__deepseek              65  align arrows size letterspacing numerals logical
+S2__arabic__gemini                82  lineheight numerals logical
+S2__arabic__gpt                   83  sidebar size logical
+S2__arabic__saba                  69  dir align flow numerals logical
+S2__explicit__claude              88  sidebar size
+S2__explicit__deepseek           100  
+S2__explicit__gemini              88  lineheight logical
+S2__explicit__gpt                 88  sidebar lineheight
+S2__explicit__saba                81  size numerals logical
+S2__localize__claude              88  sidebar size
+S2__localize__deepseek            71  sidebar size lineheight numerals logical
+S2__localize__gemini              76  sidebar size lineheight numerals
+S2__localize__gpt                 82  sidebar size lineheight
+S2__localize__saba                65  sidebar font size lineheight letterspacing logical
+S2__plain__claude                 78  sidebar size lineheight logical
+S2__plain__deepseek               88  align logical
+S2__plain__gemini                 88  lineheight logical
+S2__plain__gpt                    82  sidebar lineheight letterspacing
+S2__plain__saba                   56  align scramble lineheight numerals logical presentation jserrors
+S3__arabic__claude                88  size carousel
+S3__arabic__deepseek              78  inputs size logical carousel
+S3__arabic__gemini                72  inputs size numerals logical carousel
+S3__arabic__gpt                   88  size carousel
+S3__arabic__saba                  94  logical
+S3__explicit__claude              94  carousel
+S3__explicit__deepseek            65  arrows size lineheight letterspacing logical carousel
+S3__explicit__gemini              82  size lineheight carousel
+S3__explicit__gpt                 76  size lineheight numerals carousel
+S3__explicit__saba                82  lineheight overflow carousel
+S3__localize__claude              76  font size logical carousel
+S3__localize__deepseek            71  font size letterspacing logical carousel
+S3__localize__gemini              71  font size letterspacing logical carousel
+S3__localize__gpt                 76  font size logical carousel
+S3__localize__saba                71  font size letterspacing logical carousel
+S3__plain__claude                 83  inputs size logical
+S3__plain__deepseek               67  inputs size lineheight letterspacing logical carousel
+S3__plain__gemini                 78  inputs size logical carousel
+S3__plain__gpt                    76  size lineheight logical carousel
+S3__plain__saba                   76  inputs numerals logical overflow
+S4__arabic__claude                69  align flow size lineheight logical
+S4__arabic__deepseek              82  scramble size lineheight
+S4__arabic__gemini                88  size logical
+S4__arabic__gpt                   81  size lineheight numerals
+S4__arabic__saba                  88  scramble logical
+S4__explicit__claude              94  size
+S4__explicit__deepseek            88  size lineheight
+S4__explicit__gemini              94  size
+S4__explicit__gpt                 94  lineheight
+S4__explicit__saba                82  size numerals logical
+S4__localize__claude              88  size lineheight
+S4__localize__deepseek            71  scramble size lineheight letterspacing logical
+S4__localize__gemini              81  size lineheight logical
+S4__localize__gpt                 75  size lineheight numerals logical
+S4__localize__saba                44  dir align flow back font size lineheight letterspacing logical
+S4__plain__claude                 75  align size lineheight logical
+S4__plain__deepseek               94  size
+S4__plain__gemini                 88  size logical
+S4__plain__gpt                    75  size lineheight numerals logical
+S4__plain__saba                   59  align flow scramble arrows size lineheight logical
+S5__arabic__claude                75  lineheight letterspacing numerals logical
+S5__arabic__deepseek              65  align size lineheight letterspacing numerals logical
+S5__arabic__gemini                88  numerals logical
+S5__arabic__gpt                   76  lineheight letterspacing numerals logical
+S5__arabic__saba                  87  numerals logical
+S5__explicit__claude              81  size letterspacing numerals
+S5__explicit__deepseek            81  size letterspacing numerals
+S5__explicit__gemini              76  align size numerals logical
+S5__explicit__gpt                 75  size lineheight letterspacing numerals
+S5__explicit__saba                75  arrows numerals logical overflow
+S5__localize__claude              75  size lineheight numerals logical
+S5__localize__deepseek            65  font size lineheight letterspacing numerals logical
+S5__localize__gemini              75  size lineheight numerals logical
+S5__localize__gpt                 75  size lineheight numerals logical
+S5__localize__saba                65  font size lineheight letterspacing numerals logical
+S5__plain__claude                 88  size numerals
+S5__plain__deepseek               65  align size lineheight letterspacing numerals logical
+S5__plain__gemini                 69  align size letterspacing numerals logical
+S5__plain__gpt                    76  size lineheight numerals logical
+S5__plain__saba                   88  numerals logical
+S6__arabic__claude                82  size logical overflow
+S6__arabic__deepseek              82  size letterspacing logical
+S6__arabic__gemini                88  lineheight logical
+S6__arabic__gpt                   78  size lineheight letterspacing numerals
+S6__arabic__saba                  82  lineheight logical overflow
+S6__explicit__claude              89  size carousel
+S6__explicit__deepseek            82  sidebar size lineheight
+S6__explicit__gemini              88  size lineheight
+S6__explicit__gpt                 82  size lineheight letterspacing
+S6__explicit__saba                89  sidebar overflow
+S6__localize__claude              88  size logical
+S6__localize__deepseek            67  font size lineheight letterspacing numerals logical
+S6__localize__gemini              72  align size lineheight letterspacing logical
+S6__localize__gpt                 65  align size lineheight letterspacing numerals logical
+S6__localize__saba                67  sidebar font size lineheight letterspacing logical
+S6__plain__claude                 94  size
+S6__plain__deepseek               72  size lineheight letterspacing numerals logical
+S6__plain__gemini                 89  letterspacing logical
+S6__plain__gpt                    78  align size lineheight letterspacing
+S6__plain__saba                   76  size lineheight logical overflow
+S7__arabic__claude                88  lineheight carousel
+S7__arabic__deepseek              81  flow logical carousel
+S7__arabic__gemini                94  lineheight
+S7__arabic__gpt                   81  lineheight letterspacing logical
+S7__arabic__saba                 100  
+S7__explicit__claude             100  
+S7__explicit__deepseek           100  
+S7__explicit__gemini             100  
+S7__explicit__gpt                 81  font lineheight letterspacing
+S7__explicit__saba                94  logical
+S7__localize__claude              94  lineheight
+S7__localize__deepseek            81  flow lineheight logical
+S7__localize__gemini              88  lineheight logical
+S7__localize__gpt                 75  flow lineheight letterspacing logical
+S7__localize__saba                75  font lineheight letterspacing logical
+S7__plain__claude                 94  carousel
+S7__plain__deepseek               81  letterspacing logical carousel
+S7__plain__gemini                 88  lineheight logical
+S7__plain__gpt                    88  letterspacing logical
+S7__plain__saba                   94  logical
+S8__arabic__claude                94  numerals
+S8__arabic__deepseek              93  logical
+S8__arabic__gemini                93  logical
+S8__arabic__gpt                   87  size logical
+S8__arabic__saba                  67  dir align flow logical overflow
+S8__explicit__claude             100  
+S8__explicit__deepseek           100  
+S8__explicit__gemini             100  
+S8__explicit__gpt                 87  size letterspacing
+S8__explicit__saba                87  letterspacing logical
+S8__localize__claude              93  lineheight
+S8__localize__deepseek            80  lineheight letterspacing logical
+S8__localize__gemini              87  lineheight logical
+S8__localize__gpt                 87  lineheight logical
+S8__localize__saba                67  align font lineheight letterspacing logical
+S8__plain__claude                 80  size lineheight numerals
+S8__plain__deepseek               94  logical
+S8__plain__gemini                 93  logical
+S8__plain__gpt                    73  size lineheight letterspacing logical
+S8__plain__saba                   93  logical

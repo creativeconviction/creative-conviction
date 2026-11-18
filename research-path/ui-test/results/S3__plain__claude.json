@@ -1,0 +1,172 @@
+{
+  "file": "out/S3__plain__claude.html",
+  "screen": "S3",
+  "cond": "plain",
+  "model": "claude",
+  "score": 83,
+  "mainFont": "IBM Plex Sans Arabic",
+  "checks": [
+    {
+      "id": "complete",
+      "label": "Page is complete (not cut off)",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "id": "dir",
+      "label": "Page set to right-to-left",
+      "pass": true,
+      "detail": "rtl/rtl"
+    },
+    {
+      "id": "lang",
+      "label": "Language set to Arabic",
+      "pass": true,
+      "detail": "ar"
+    },
+    {
+      "id": "align",
+      "label": "Arabic text aligned to the right",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "flow",
+      "label": "Rows flow right-to-left (first item on the right)",
+      "pass": true,
+      "detail": "0/21 wrong []"
+    },
+    {
+      "id": "arrows",
+      "label": "Next points left, back points right",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "sidebar",
+      "label": "Sidebar on the right (desktop)",
+      "pass": true,
+      "detail": "right"
+    },
+    {
+      "id": "inputs",
+      "label": "Phone/email/password fields typed left-to-right",
+      "pass": false,
+      "detail": "2/2 wrong"
+    },
+    {
+      "id": "font",
+      "label": "Arabic drawn in an intended font",
+      "pass": true,
+      "detail": {
+        "IBM Plex Sans Arabic": 518,
+        "IBM Plex Sans Arabic SemiBold": 213,
+        "IBM Plex Sans Arabic Medium": 24
+      }
+    },
+    {
+      "id": "size",
+      "label": "Arabic text not too small (<13px under 25%)",
+      "pass": false,
+      "detail": "median 12px, 56% small"
+    },
+    {
+      "id": "lineheight",
+      "label": "Line height leaves room for Arabic marks",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "letterspacing",
+      "label": "No letter-spacing on Arabic",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "numerals",
+      "label": "One numeral system per page",
+      "pass": true,
+      "detail": "western 100, eastern 0"
+    },
+    {
+      "id": "logical",
+      "label": "Built with direction-neutral CSS",
+      "pass": false,
+      "detail": "physical 4, logical 1"
+    },
+    {
+      "id": "presentation",
+      "label": "No pre-shaped Arabic characters",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "id": "overflow",
+      "label": "No sideways scroll on phone",
+      "pass": true,
+      "detail": false
+    },
+    {
+      "id": "carousel",
+      "label": "Carousel next works and moves the RTL way",
+      "pass": true,
+      "detail": {
+        "found": true,
+        "changed": true,
+        "dotMoved": null
+      }
+    },
+    {
+      "id": "jserrors",
+      "label": "No JavaScript errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "raw": {
+    "htmlDir": "rtl",
+    "htmlLang": "ar",
+    "bodyDir": "rtl",
+    "arabicEls": 78,
+    "medianArabicFontPx": 12,
+    "smallArabicShare": 0.56,
+    "leftAligned": [],
+    "letterSpaced": [],
+    "tightLines": [],
+    "rows": 21,
+    "wrongRows": 0,
+    "wrongRowLabels": [],
+    "doubleFlip": 0,
+    "ltrRuns": 0,
+    "scrambledRuns": [],
+    "unisolatedRuns": 0,
+    "arrowsWrong": [],
+    "backSide": null,
+    "sidebarSide": null,
+    "tableFirstColRight": null,
+    "ltrInputs": 2,
+    "ltrInputsWrong": 2,
+    "mirroredEls": 0,
+    "forcedLtrArabic": 0,
+    "westernDigits": 100,
+    "easternDigits": 0,
+    "presentationForms": 0,
+    "bidiControls": 0,
+    "physicalCss": 4,
+    "logicalCss": 1,
+    "overflowX": false,
+    "fonts": {
+      "IBM Plex Sans Arabic": 518,
+      "IBM Plex Sans Arabic SemiBold": 213,
+      "IBM Plex Sans Arabic Medium": 24
+    },
+    "mobileOverflow": false,
+    "carousel": {
+      "found": true,
+      "changed": true,
+      "dotMoved": null
+    },
+    "sidebarSideDesktop": "right",
+    "jsErrors": []
+  }
+}

@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0E9F6E">
+<title>الإعدادات — قريب</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brand: #0E9F6E;
+    --brand-strong: #057A55;
+    --brand-soft: #E3F7EF;
+    --bg: #F4F6F5;
+    --surface: #FFFFFF;
+    --surface-2: #F0F2F1;
+    --text: #15201B;
+    --text-2: #5F6B66;
+    --text-3: #8C9792;
+    --divider: #E6EAE8;
+    --danger: #E02424;
+    --danger-soft: #FDECEC;
+    --shadow: 0 1px 2px rgba(16, 24, 20, .04), 0 4px 16px rgba(16, 24, 20, .05);
+    --radius: 18px;
+    --focus: 0 0 0 3px rgba(14, 159, 110, .35);
+  }
+  [data-theme="dark"] {
+    --brand: #31C48D;
+    --brand-strong: #84E1BC;
+    --brand-soft: rgba(49, 196, 141, .14);
+    --bg: #0D1210;
+    --surface: #161D1A;
+    --surface-2: #1F2824;
+    --text: #EEF3F0;
+    --text-2: #A5B1AC;
+    --text-3: #75817C;
+    --divider: #253029;
+    --danger: #F98080;
+    --danger-soft: rgba(249, 128, 128, .12);
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3);
+    --focus: 0 0 0 3px rgba(49, 196, 141, .4);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: "IBM Plex Sans Arabic", system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    min-height: 100vh;
+    transition: background-color .25s ease, color .25s ease;
+    -webkit-font-smoothing: antialiased;
+  }
+  button, input { font: inherit; color: inherit; }
+  button { background: none; border: 0; cursor: pointer; }
+  :focus-visible { outline: none; box-shadow: var(--focus); }
+
+  .app {
+    max-width: 480px;
+    margin: 0 auto;
+    min-height: 100vh;
+    padding-bottom: calc(32px + env(safe-area-inset-bottom));
+  }
+
+  /* شريط علوي */
+  .topbar {
+    position: sticky; top: 0; z-index: 10;
+    display: flex; align-items: center; gap: 8px;
+    padding: calc(10px + env(safe-area-inset-top)) 12px 10px;
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter: saturate(160%) blur(14px);
+    -webkit-backdrop-filter: saturate(160%) blur(14px);
+  }
+  .topbar h1 { font-size: 20px; font-weight: 700; flex: 1; }
+  .icon-btn {
+    width: 40px; height: 40px; border-radius: 12px;
+    display: grid; place-items: center;
+    color: var(--text);
+    transition: background-color .15s;
+  }
+  .icon-btn:hover { background: var(--surface-2); }
+  .icon-btn svg { width: 22px; height: 22px; }
+
+  /* اتجاه الأسهم */
+  [dir="rtl"] .flip { transform: scaleX(-1); }
+
+  /* الملف الشخصي */
+  .profile {
+    margin: 4px 16px 24px;
+    padding: 20px;
+    background: var(--surface);
+    border-radius: 22px;
+    box-shadow: var(--shadow);
+    display: flex; align-items: center; gap: 16px;
+    position: relative; overflow: hidden;
+  }
+  .profile::before {
+    content: ""; position: absolute; inset: 0 0 auto 0; height: 64px;
+    background: linear-gradient(135deg, var(--brand-soft), transparent 70%);
+    pointer-events: none;
+  }
+  .avatar {
+    position: relative; flex-shrink: 0;
+    width: 72px; height: 72px; border-radius: 50%;
+  }
+  .avatar img {
+    width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
+    border: 3px solid var(--surface);
+    box-shadow: 0 0 0 2px var(--brand);
+    background: var(--brand-soft);
+  }
+  .avatar .edit {
+    position: absolute; bottom: -2px; inset-inline-end: -2px;
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--brand); color: #fff;
+    display: grid; place-items: center;
+    border: 3px solid var(--surface);
+  }
+  [data-theme="dark"] .avatar .edit { color: #0D1210; }
+  .avatar .edit svg { width: 13px; height: 13px; }
+  .profile-info { flex: 1; min-width: 0; position: relative; }
+  .profile-info h2 { font-size: 19px; font-weight: 700; line-height: 1.3; }
+  .profile-info p {
+    color: var(--text-2); font-size: 14px; direction: ltr;
+    text-align: start; unicode-bidi: plaintext;
+  }
+  .badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    margin-top: 6px; padding: 2px 10px;
+    font-size: 12px; font-weight: 600;
+    color: var(--brand-strong); background: var(--brand-soft);
+    border-radius: 999px;
+  }
+  .badge svg { width: 12px; height: 12px; }
+
+  /* الأقسام */
+  .section { margin: 0 16px 22px; }
+  .section-title {
+    font-size: 13px; font-weight: 600; color: var(--text-3);
+    padding: 0 6px 8px;
+  }
+  .group {
+    background: var(--surface);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .row {
+    display: flex; align-items: center; gap: 14px;
+    width: 100%; min-height: 60px;
+    padding: 12px 16px;
+    text-align: start;
+    position: relative;
+    transition: background-color .15s;
+  }
+  .row + .row::before {
+    content: ""; position: absolute; top: 0;
+    inset-inline-start: 66px; inset-inline-end: 0;
+    border-top: 1px solid var(--divider);
+  }
+  button.row:hover, label.row:hover { background: var(--surface-2); }
+  button.row:active { background: var(--divider); }
+  label.row { cursor: pointer; }
+  .row:focus-visible { box-shadow: inset var(--focus); }
+
+  .ico {
+    width: 36px; height: 36px; border-radius: 11px;
+    display: grid; place-items: center; flex-shrink: 0;
+  }
+  .ico svg { width: 20px; height: 20px; }
+  .ico.green  { background: #E3F7EF; color: #057A55; }
+  .ico.blue   { background: #E5EEFF; color: #2F5BD3; }
+  .ico.orange { background: #FFF1E3; color: #C2570C; }
+  .ico.purple { background: #F0EBFF; color: #6B46D8; }
+  .ico.slate  { background: #E9EDF1; color: #3B4A5A; }
+  .ico.teal   { background: #E1F6F8; color: #0B7A8A; }
+  .ico.red    { background: var(--danger-soft); color: var(--danger); }
+  [data-theme="dark"] .ico { background: var(--surface-2); }
+  [data-theme="dark"] .ico.green  { color: #31C48D; }
+  [data-theme="dark"] .ico.blue   { color: #8AABFF; }
+  [data-theme="dark"] .ico.orange { color: #FDBA74; }
+  [data-theme="dark"] .ico.purple { color: #B9A5FF; }
+  [data-theme="dark"] .ico.slate  { color: #B5C2CF; }
+  [data-theme="dark"] .ico.teal   { color: #67D6E3; }
+
+  .row-text { flex: 1; min-width: 0; }
+  .row-label { font-size: 15.5px; font-weight: 500; display: block; }
+  .row-sub {
+    font-size: 13px; color: var(--text-2); display: block;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .row-end {
+    display: flex; align-items: center; gap: 6px;
+    color: var(--text-3); font-size: 14px; flex-shrink: 0;
+  }
+  .chev { width: 18px; height: 18px; color: var(--text-3); }
+
+  .row.danger .row-label { color: var(--danger); font-weight: 600; }
+
+  /* المفتاح */
+  .switch { position: relative; width: 50px; height: 30px; flex-shrink: 0; }
+  .switch input {
+    appearance: none; -webkit-appearance: none;
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    margin: 0; cursor: pointer; border-radius: 999px;
+    background: var(--divider);
+    transition: background-color .2s ease;
+  }
+  [data-theme="dark"] .switch input { background: #34413B; }
+  .switch input:checked { background: var(--brand); }
+  .switch input:focus-visible { box-shadow: var(--focus); }
+  .switch .knob {
+    position: absolute; top: 3px; inset-inline-start: 3px;
+    width: 24px; height: 24px; border-radius: 50%;
+    background: #fff; pointer-events: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,.2);
+    transition: transform .22s cubic-bezier(.3,.7,.4,1);
+  }
+  [dir="ltr"] .switch input:checked + .knob { transform: translateX(20px); }
+  [dir="rtl"] .switch input:checked + .knob { transform: translateX(-20px); }
+
+  /* اختيار اللغة */
+  .lang-row { flex-wrap: wrap; }
+  .segmented {
+    display: inline-flex; padding: 3px; gap: 2px;
+    background: var(--surface-2);
+    border-radius: 11px;
+    flex-shrink: 0;
+  }
+  .segmented label { position: relative; cursor: pointer; }
+  .segmented input { position: absolute; opacity: 0; pointer-events: none; }
+  .segmented span {
+    display: block; padding: 5px 13px;
+    font-size: 14px; font-weight: 500;
+    color: var(--text-2);
+    border-radius: 8px;
+    transition: background-color .15s, color .15s;
+    white-space: nowrap;
+  }
+  .segmented span[lang="en"] { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+  .segmented input:checked + span {
+    background: var(--surface); color: var(--text); font-weight: 600;
+    box-shadow: 0 1px 3px rgba(0,0,0,.1);
+  }
+  [data-theme="dark"] .segmented input:checked + span { background: #34413B; }
+  .segmented input:focus-visible + span { box-shadow: var(--focus); }
+
+  .footer {
+    text-align: center; color: var(--text-3); font-size: 12.5px;
+    padding: 4px 16px 0;
+  }
+  .footer strong { color: var(--brand); font-weight: 700; }
+
+  /* نافذة التأكيد */
+  dialog {
+    margin: auto; border: 0; padding: 0;
+    width: min(340px, calc(100% - 40px));
+    background: var(--surface); color: var(--text);
+    border-radius: 22px;
+    box-shadow: 0 20px 50px rgba(0,0,0,.25);
+  }
+  dialog::backdrop { background: rgba(10, 16, 13, .45); backdrop-filter: blur(2px); }
+  dialog[open] { animation: pop .2s ease; }
+  @keyframes pop { from { transform: scale(.94); opacity: 0; } to { transform: none; opacity: 1; } }
+  .dlg-body { padding: 24px 22px 18px; text-align: center; }
+  .dlg-body .ico { margin: 0 auto 12px; width: 48px; height: 48px; border-radius: 50%; }
+  .dlg-body h3 { font-size: 18px; margin-bottom: 4px; }
+  .dlg-body p { color: var(--text-2); font-size: 14px; }
+  .dlg-actions { display: flex; gap: 10px; padding: 0 18px 18px; }
+  .btn {
+    flex: 1; height: 46px; border-radius: 13px;
+    font-weight: 600; font-size: 15px;
+    transition: filter .15s;
+  }
+  .btn:hover { filter: brightness(.96); }
+  .btn.ghost { background: var(--surface-2); }
+  .btn.danger { background: var(--danger); color: #fff; }
+  [data-theme="dark"] .btn.danger { color: #1A0B0B; }
+
+  /* إشعار صغير */
+  .toast {
+    position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom));
+    transform: translate(-50%, 20px); opacity: 0;
+    background: var(--text); color: var(--bg);
+    padding: 10px 18px; border-radius: 12px; font-size: 14px;
+    transition: opacity .2s, transform .2s; pointer-events: none;
+    max-width: calc(100% - 40px); text-align: center;
+  }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+  /* سطح المكتب */
+  @media (min-width: 768px) {
+    body { padding: 40px 0; }
+    .app {
+      min-height: auto;
+      background: var(--bg);
+      border-radius: 28px;
+      border: 1px solid var(--divider);
+      box-shadow: 0 30px 80px rgba(16, 24, 20, .08);
+      padding-bottom: 28px;
+      overflow: hidden;
+    }
+    .topbar { position: static; padding: 18px 16px 12px; }
+    body { background: var(--surface-2); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header class="topbar">
+    <button class="icon-btn" type="button" data-i18n-aria="back" aria-label="رجوع">
+      <svg class="flip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </button>
+    <h1 data-i18n="title">الإعدادات</h1>
+  </header>
+
+  <main>
+    <!-- الملف الشخصي -->
+    <section class="profile" aria-labelledby="profile-name">
+      <div class="avatar">
+        <img src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2334D399'/%3E%3Cstop offset='1' stop-color='%23057A55'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='80' height='80' fill='url(%23g)'/%3E%3Ccircle cx='40' cy='31' r='14' fill='%23ffffff' fill-opacity='.92'/%3E%3Cpath d='M14 76c3-15 14-23 26-23s23 8 26 23' fill='%23ffffff' fill-opacity='.92'/%3E%3C/svg%3E" alt="" width="72" height="72">
+        <button class="edit" type="button" data-i18n-aria="editPhoto" aria-label="تغيير الصورة">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+        </button>
+      </div>
+      <div class="profile-info">
+        <h2 id="profile-name" data-i18n="name">سارة العتيبي</h2>
+        <p>+966 55 123 4567</p>
+        <span class="badge">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17l-6.1 3.4 1.5-6.8L2.2 9l6.9-.7z"/></svg>
+          <span data-i18n="member">عضو ذهبي</span>
+        </span>
+      </div>
+    </section>
+
+    <!-- الحساب -->
+    <section class="section" aria-labelledby="sec-account">
+      <h2 class="section-title" id="sec-account" data-i18n="account">الحساب</h2>
+      <div class="group">
+        <button class="row" type="button">
+          <span class="ico green" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          </span>
+          <span class="row-text">
+            <span class="row-label" data-i18n="addresses">العناوين</span>
+            <span class="row-sub" data-i18n="addressesSub">المنزل، العمل، +١</span>
+          </span>
+          <span class="row-end">
+            <svg class="chev flip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+          </span>
+        </button>
+        <button class="row" type="button">
+          <span class="ico blue" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2.5"/><path d="M2 10h20M6 15h4"/></svg>
+          </span>
+          <span class="row-text">
+            <span class="row-label" data-i18n="payments">طرق الدفع</span>
+            <span class="row-sub" data-i18n="paymentsSub">مدى •••• 4821</span>
+          </span>
+          <span class="row-end">
+            <svg class="chev flip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+          </span>
+        </button>
+      </div>
+    </section>
+
+    <!-- التفضيلات -->
+    <section class="section" aria-labelledby="sec-prefs">
+      <h2 class="section-title" id="sec-prefs" data-i18n="preferences">التفضيلات</h2>
+      <div class="group">
+        <label class="row" for="notif">
+          <span class="ico orange" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg>
+          </span>
+          <span class="row-text">
+            <span class="row-label" data-i18n="notifications">الإشعارات</span>
+            <span class="row-sub" id="notif-sub" data-i18n="notifOn">العروض وحالة الطلبات</span>
+          </span>
+          <span class="switch">
+            <input type="checkbox" role="switch" id="notif" checked>
+            <span class="knob"></span>
+          </span>
+        </label>
+
+        <div class="row lang-row" role="group" aria-labelledby="lang-label">
+          <span class="ico purple" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+          </span>
+          <span class="row-text">
+            <span class="row-label" id="lang-label" data-i18n="language">اللغة</span>
+          </span>
+          <span class="segmented">
+            <label><input type="radio" name="lang" value="ar" checked><span lang="ar">العربية</span></label>
+            <label><input type="radio" name="lang" value="en"><span lang="en">English</span></label>
+          </span>
+        </div>
+
+        <label class="row" for="dark">
+          <span class="ico slate" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+          </span>
+          <span class="row-text">
+            <span class="row-label" data-i18n="darkMode">الوضع الداكن</span>
+          </span>
+          <span class="switch">
+            <input type="checkbox" role="switch" id="dark">
+            <span class="knob"></span>
+          </span>
+        </label>
+      </div>
+    </section>
+
+    <!-- الدعم -->
+    <section class="section" aria-labelledby="sec-support">
+      <h2 class="section-title" id="sec-support" data-i18n="support">الدعم</h2>
+      <div class="group">
+        <button class="row" type="button">
+          <span class="ico teal" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+          </span>
+          <span class="row-text">
+            <span class="row-label" data-i18n="help">المساعدة</span>
+            <span class="row-sub" data-i18n="helpSub">الأسئلة الشائعة والتواصل معنا</span>
+          </span>
+          <span class="row-end">
+            <svg class="chev flip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+          </span>
+        </button>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="group">
+        <button class="row danger" type="button" id="logout-btn">
+          <span class="ico red" aria-hidden="true">
+            <svg class="flip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg>
+          </span>
+          <span class="row-text">
+            <span class="row-label" data-i18n="logout">تسجيل الخروج</span>
+          </span>
+        </button>
+      </div>
+    </section>
+
+    <p class="footer"><strong data-i18n="brand">قريب</strong> · <span data-i18n="version">الإصدار ٢٫٤٫٠</span></p>
+  </main>
+</div>
+
+<dialog id="logout-dlg" aria-labelledby="dlg-title">
+  <form method="dialog">
+    <div class="dlg-body">
+      <span class="ico red" aria-hidden="true">
+        <svg class="flip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg>
+      </span>
+      <h3 id="dlg-title" data-i18n="dlgTitle">تسجيل الخروج؟</h3>
+      <p data-i18n="dlgText">ستحتاج إلى إدخال رقم جوالك مرة أخرى للدخول.</p>
+    </div>
+    <div class="dlg-actions">
+      <button class="btn ghost" value="cancel" data-i18n="cancel">إلغاء</button>
+      <button class="btn danger" value="confirm" data-i18n="confirm">خروج</button>
+    </div>
+  </form>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+  const i18n = {
+    ar: {
+      title: "الإعدادات", back: "رجوع", editPhoto: "تغيير الصورة",
+      name: "سارة العتيبي", member: "عضو ذهبي",
+      account: "الحساب", addresses: "العناوين", addressesSub: "المنزل، العمل، +١",
+      payments: "طرق الدفع", paymentsSub: "مدى •••• 4821",
+      preferences: "التفضيلات", notifications: "الإشعارات",
+      notifOn: "العروض وحالة الطلبات", notifOff: "متوقفة",
+      language: "اللغة", darkMode: "الوضع الداكن",
+      support: "الدعم", help: "المساعدة", helpSub: "الأسئلة الشائعة والتواصل معنا",
+      logout: "تسجيل الخروج", brand: "قريب", version: "الإصدار ٢٫٤٫٠",
+      dlgTitle: "تسجيل الخروج؟", dlgText: "ستحتاج إلى إدخال رقم جوالك مرة أخرى للدخول.",
+      cancel: "إلغاء", confirm: "خروج", loggedOut: "تم تسجيل الخروج"
+    },
+    en: {
+      title: "Settings", back: "Back", editPhoto: "Change photo",
+      name: "Sara Alotaibi", member: "Gold member",
+      account: "Account", addresses: "Addresses", addressesSub: "Home, Work, +1",
+      payments: "Payment methods", paymentsSub: "mada •••• 4821",
+      preferences: "Preferences", notifications: "Notifications",
+      notifOn: "Offers and order updates", notifOff: "Off",
+      language: "Language", darkMode: "Dark mode",
+      support: "Support", help: "Help", helpSub: "FAQs and contact us",
+      logout: "Log out", brand: "Qareeb", version: "Version 2.4.0",
+      dlgTitle: "Log out?", dlgText: "You'll need to enter your phone number again to sign in.",
+      cancel: "Cancel", confirm: "Log out", loggedOut: "You've been logged out"
+    }
+  };
+
+  const root = document.documentElement;
+  const notif = document.getElementById("notif");
+  const dark = document.getElementById("dark");
+  const notifSub = document.getElementById("notif-sub");
+  let lang = localStorage.getItem("qareeb-lang") || "ar";
+
+  const t = key => i18n[lang][key];
+
+  function applyLang(l) {
+    lang = l;
+    root.lang = l;
+    root.dir = l === "ar" ? "rtl" : "ltr";
+    document.title = t("title") + (l === "ar" ? " — قريب" : " — Qareeb");
+    document.querySelectorAll("[data-i18n]").forEach(el => el.textContent = t(el.dataset.i18n));
+    document.querySelectorAll("[data-i18n-aria]").forEach(el => el.setAttribute("aria-label", t(el.dataset.i18nAria)));
+    notifSub.textContent = t(notif.checked ? "notifOn" : "notifOff");
+    document.querySelector(`input[name="lang"][value="${l}"]`).checked = true;
+    localStorage.setItem("qareeb-lang", l);
+  }
+
+  function applyTheme(isDark) {
+    root.dataset.theme = isDark ? "dark" : "light";
+    dark.checked = isDark;
+    document.querySelector('meta[name="theme-color"]').content = isDark ? "#0D1210" : "#0E9F6E";
+    localStorage.setItem("qareeb-theme", isDark ? "dark" : "light");
+  }
+
+  const savedTheme = localStorage.getItem("qareeb-theme");
+  applyTheme(savedTheme ? savedTheme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches);
+  applyLang(lang);
+
+  dark.addEventListener("change", () => applyTheme(dark.checked));
+  notif.addEventListener("change", () => notifSub.textContent = t(notif.checked ? "notifOn" : "notifOff"));
+  document.querySelectorAll('input[name="lang"]').forEach(r =>
+    r.addEventListener("change", () => applyLang(r.value)));
+
+  const dlg = document.getElementById("logout-dlg");
+  const toast = document.getElementById("toast");
+  document.getElementById("logout-btn").addEventListener("click", () => dlg.showModal());
+  dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close("cancel"); });
+  dlg.addEventListener("close", () => {
+    if (dlg.returnValue !== "confirm") return;
+    toast.textContent = t("loggedOut");
+    toast.classList.add("show");
+    setTimeout(() => toast.classList.remove("show"), 2200);
+  });
+</script>
+</body>
+</html>

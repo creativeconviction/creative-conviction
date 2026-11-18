@@ -1,0 +1,9 @@
+{
+  "screen": "S4",
+  "cond": "arabic",
+  "model": "claude",
+  "model_id": "anthropic/claude-opus-5.5",
+  "raw_chars": 15088,
+  "complete": true,
+  "at": "2026-11-18T05:58:49.182Z"
+}

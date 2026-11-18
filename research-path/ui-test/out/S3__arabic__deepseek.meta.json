@@ -1,0 +1,9 @@
+{
+  "screen": "S3",
+  "cond": "arabic",
+  "model": "deepseek",
+  "model_id": "deepseek/deepseek-v4-pro",
+  "raw_chars": 41996,
+  "complete": true,
+  "at": "2026-11-18T06:09:14.296Z"
+}

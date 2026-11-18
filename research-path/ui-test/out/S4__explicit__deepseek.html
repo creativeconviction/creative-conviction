@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قريب - دعم العملاء</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand: #0d9488;
+            --brand-dark: #0f766e;
+            --brand-light: #ccfbf1;
+            --online: #22c55e;
+            --bg-chat: #e8eaed;
+            --bg-page: #f5f5f5;
+            --white: #ffffff;
+            --text-primary: #1a1a1a;
+            --text-secondary: #6b7280;
+            --text-light: #9ca3af;
+            --bubble-agent: #ffffff;
+            --bubble-customer: #0d9488;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 20px;
+            --radius-xl: 24px;
+            --transition: 0.2s ease;
+            --font-family: 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-family: var(--font-family);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            min-height: 100dvh;
+            background: linear-gradient(160deg, #e8ecef 0%, #dce3e8 30%, #eef1f4 60%, #e2e7ec 100%);
+            background-attachment: fixed;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Desktop wrapper */
+        .app-wrapper {
+            width: 100%;
+            max-width: 390px;
+            height: 100vh;
+            height: 100dvh;
+            max-height: 780px;
+            display: flex;
+            flex-direction: column;
+            background: var(--bg-chat);
+            box-shadow: var(--shadow-lg);
+            border-radius: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @media (min-width: 430px) {
+            body {
+                padding: 20px 16px;
+            }
+            .app-wrapper {
+                border-radius: 24px;
+                height: min(100vh - 40px, 780px);
+                height: min(100dvh - 40px, 780px);
+                max-height: 780px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            body {
+                padding: 32px 24px;
+                background: linear-gradient(160deg, #dce3e8 0%, #c8d3db 30%, #dde4ea 60%, #d0d9e0 100%);
+            }
+            .app-wrapper {
+                border-radius: 28px;
+                box-shadow: 0 20px 48px rgba(0, 0, 0, 0.18), 0 8px 16px rgba(0, 0, 0, 0.08);
+                height: min(100vh - 64px, 800px);
+                height: min(100dvh - 64px, 800px);
+                max-height: 800px;
+            }
+        }
+
+        /* Header */
+        .chat-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-block: 10px;
+            padding-inline: 12px 16px;
+            background: var(--white);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: var(--shadow-sm);
+            z-index: 10;
+            flex-shrink: 0;
+            min-height: 56px;
+            position: relative;
+        }
+
+        .back-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            color: var(--text-primary);
+            transition: all var(--transition);
+            flex-shrink: 0;
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+            padding: 0;
+        }
+
+        .back-btn:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+        .back-btn:active {
+            background: rgba(0, 0, 0, 0.1);
+            transform: scale(0.94);
+        }
+
+        .back-btn svg {
+            width: 20px;
+            height: 20px;
+            display: block;
+        }
+
+        .agent-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 17px;
+            flex-shrink: 0;
+            letter-spacing: 0;
+            position: relative;
+        }
+
+        .online-dot {
+            position: absolute;
+            bottom: 1px;
+            inset-inline-end: 1px;
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: var(--online);
+            border: 2px solid var(--white);
+            box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.2);
+        }
+
+        .agent-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+            min-width: 0;
+            flex: 1;
+        }
+
+        .agent-name {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.3;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .agent-status {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--online);
+            line-height: 1.2;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Chat area */
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 16px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            scroll-behavior: smooth;
+            background:
+                radial-gradient(circle at 20% 30%, rgba(13, 148, 136, 0.02) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(13, 148, 136, 0.015) 0%, transparent 50%),
+                var(--bg-chat);
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .chat-messages::-webkit-scrollbar {
+            width: 3px;
+        }
+        .chat-messages::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.12);
+            border-radius: 10px;
+        }
+
+        /* Message wrapper */
+        .msg-row {
+            display: flex;
+            flex-direction: column;
+            max-width: 82%;
+            animation: msgIn 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+
+        .msg-row.agent {
+            align-self: flex-start;
+            align-items: flex-start;
+        }
+
+        .msg-row.customer {
+            align-self: flex-end;
+            align-items: flex-end;
+        }
+
+        @keyframes msgIn {
+            from {
+                opacity: 0;
+                transform: translateY(16px) scale(0.96);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Bubble */
+        .bubble {
+            padding: 10px 14px;
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            line-height: 1.6;
+            word-break: break-word;
+            position: relative;
+            box-shadow: var(--shadow-sm);
+            transition: box-shadow var(--transition);
+            max-width: 100%;
+        }
+
+        .bubble:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .msg-row.agent .bubble {
+            background: var(--bubble-agent);
+            color: var(--text-primary);
+            border-start-start-radius: 4px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .msg-row.customer .bubble {
+            background: var(--bubble-customer);
+            color: #ffffff;
+            border-start-end-radius: 4px;
+        }
+
+        /* LTR spans inside RTL */
+        .ltr-inline {
+            direction: ltr;
+            display: inline;
+            unicode-bidi: embed;
+            font-feature-settings: "kern" 1;
+            letter-spacing: 0.01em;
+        }
+
+        .ltr-inline.code {
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            background: rgba(0, 0, 0, 0.06);
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: 0.95em;
+        }
+
+        .msg-row.customer .ltr-inline.code {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1px 6px;
+            border-radius: 4px;
+        }
+
+        .msg-row.customer .ltr-inline {
+            letter-spacing: 0.02em;
+        }
+
+        /* Timestamp and read receipts */
+        .msg-meta {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-block-start: 4px;
+            font-size: 11px;
+            color: var(--text-light);
+            font-weight: 500;
+            padding-inline: 2px;
+        }
+
+        .msg-row.customer .msg-meta {
+            color: rgba(255, 255, 255, 0.8);
+            justify-content: flex-end;
+            padding-inline-end: 2px;
+        }
+
+        .msg-row.agent .msg-meta {
+            justify-content: flex-start;
+            padding-inline-start: 2px;
+        }
+
+        .read-receipt {
+            display: inline-flex;
+            align-items: center;
+            gap: -2px;
+            font-size: 10px;
+            letter-spacing: -1px;
+            line-height: 1;
+            margin-inline-start: 2px;
+        }
+
+        .read-receipt.delivered {
+            color: #9ca3af;
+        }
+
+        .read-receipt.read {
+            color: #0d9488;
+        }
+
+        .msg-row.customer .read-receipt.read {
+            color: #ccfbf1;
+        }
+        .msg-row.customer .read-receipt.delivered {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Input area */
+        .input-area {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            background: var(--white);
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 -1px 6px rgba(0, 0, 0, 0.04);
+            flex-shrink: 0;
+            z-index: 10;
+        }
+
+        .input-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            background: #f3f4f6;
+            border-radius: var(--radius-xl);
+            padding-inline: 6px;
+            gap: 2px;
+            border: 2px solid transparent;
+            transition: all var(--transition);
+            min-width: 0;
+        }
+
+        .input-wrapper:focus-within {
+            border-color: var(--brand);
+            background: #fafbfc;
+            box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.08);
+        }
+
+        .attach-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            color: #6b7280;
+            transition: all var(--transition);
+            flex-shrink: 0;
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+            padding: 0;
+        }
+
+        .attach-btn:hover {
+            background: rgba(0, 0, 0, 0.06);
+            color: var(--brand);
+        }
+        .attach-btn:active {
+            transform: scale(0.9);
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .attach-btn svg {
+            width: 18px;
+            height: 18px;
+            display: block;
+        }
+
+        .msg-input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            font-family: var(--font-family);
+            font-size: 14px;
+            line-height: 1.5;
+            padding: 8px 4px;
+            outline: none;
+            color: var(--text-primary);
+            min-width: 0;
+            resize: none;
+            max-height: 100px;
+            direction: rtl;
+        }
+
+        .msg-input::placeholder {
+            color: #b0b7c3;
+            font-weight: 400;
+        }
+
+        .send-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: var(--brand);
+            cursor: pointer;
+            color: white;
+            transition: all var(--transition);
+            flex-shrink: 0;
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+            padding: 0;
+            box-shadow: 0 2px 8px rgba(13, 148, 136, 0.25);
+        }
+
+        .send-btn:hover {
+            background: var(--brand-dark);
+            box-shadow: 0 4px 14px rgba(13, 148, 136, 0.35);
+            transform: translateY(-1px);
+        }
+        .send-btn:active {
+            transform: scale(0.9);
+            box-shadow: 0 1px 4px rgba(13, 148, 136, 0.2);
+        }
+        .send-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            box-shadow: none;
+            pointer-events: none;
+        }
+
+        .send-btn svg {
+            width: 18px;
+            height: 18px;
+            display: block;
+            margin-inline-start: 2px;
+        }
+
+        /* Subtle brand watermark on chat bg */
+        .chat-messages::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.015;
+            background: repeating-linear-gradient(45deg,
+                    transparent,
+                    transparent 40px,
+                    rgba(13, 148, 136, 0.3) 40px,
+                    rgba(13, 148, 136, 0.3) 41px);
+            z-index: 0;
+        }
+
+        .chat-messages>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Responsive fine-tuning */
+        @media (max-width: 389px) {
+            .app-wrapper {
+                max-width: 100%;
+                border-radius: 0;
+            }
+            .chat-messages {
+                padding: 12px 8px;
+                gap: 8px;
+            }
+            .msg-row {
+                max-width: 88%;
+            }
+            .bubble {
+                font-size: 13px;
+                padding: 8px 12px;
+                border-radius: 14px;
+            }
+            .msg-row.agent .bubble {
+                border-start-start-radius: 3px;
+            }
+            .msg-row.customer .bubble {
+                border-start-end-radius: 3px;
+            }
+            .chat-header {
+                padding-block: 8px;
+                padding-inline: 8px 12px;
+                min-height: 50px;
+            }
+            .agent-avatar {
+                width: 36px;
+                height: 36px;
+                font-size: 15px;
+            }
+            .agent-name {
+                font-size: 14px;
+            }
+            .input-area {
+                padding: 8px 8px;
+                gap: 6px;
+            }
+            .send-btn {
+                width: 36px;
+                height: 36px;
+            }
+            .send-btn svg {
+                width: 16px;
+                height: 16px;
+            }
+            .attach-btn {
+                width: 32px;
+                height: 32px;
+            }
+            .attach-btn svg {
+                width: 16px;
+                height: 16px;
+            }
+        }
+
+        @media (min-width: 431px) and (max-width: 767px) {
+            .app-wrapper {
+                max-width: 410px;
+                border-radius: 20px;
+                height: min(100vh - 32px, 760px);
+                height: min(100dvh - 32px, 760px);
+                max-height: 760px;
+            }
+        }
+
+        /* Date divider (optional, for visual polish) */
+        .date-divider {
+            text-align: center;
+            font-size: 11px;
+            color: var(--text-light);
+            font-weight: 500;
+            padding-block: 4px;
+            margin-block: 2px;
+            letter-spacing: 0.02em;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-wrapper" role="main" aria-label="شاشة المحادثة مع خدمة عملاء قريب">
+        <!-- Header -->
+        <header class="chat-header">
+            <button class="back-btn" aria-label="رجوع" title="رجوع">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </button>
+            <div class="agent-avatar" aria-hidden="true">
+                س
+                <span class="online-dot" aria-label="متصل الآن"></span>
+            </div>
+            <div class="agent-info">
+                <span class="agent-name">سارة العماري</span>
+                <span class="agent-status">متصل الآن</span>
+            </div>
+        </header>
+
+        <!-- Chat Messages -->
+        <div class="chat-messages" id="chatMessages" aria-label="رسائل المحادثة" role="log" aria-live="polite">
+            <!-- Message 1 - Agent -->
+            <div class="msg-row agent">
+                <div class="bubble">
+                    مرحباً! أهلاً بك في خدمة عملاء <strong>قريب</strong>. كيف يمكنني مساعدتك اليوم؟ 🌟
+                </div>
+                <span class="msg-meta">10:15 ص</span>
+            </div>
+
+            <!-- Message 2 - Customer -->
+            <div class="msg-row customer">
+                <div class="bubble">
+                    مرحباً، لدي استفسار بخصوص الطلب رقم <span class="ltr-inline code" dir="ltr">#QR-48213</span>
+                </div>
+                <span class="msg-meta">
+                    10:16 ص
+                    <span class="read-receipt delivered" title="تم التوصيل">✓✓</span>
+                </span>
+            </div>
+
+            <!-- Message 3 - Agent -->
+            <div class="msg-row agent">
+                <div class="bubble">
+                    بالطبع، لحظات وأتحقق من طلبك. هل يمكنك تزويدي برقم الهاتف المسجل في الطلب للتأكيد؟
+                </div>
+                <span class="msg-meta">10:17 ص</span>
+            </div>
+
+            <!-- Message 4 - Customer -->
+            <div class="msg-row customer">
+                <div class="bubble">
+                    نعم بالتأكيد، رقم هاتفي هو <span class="ltr-inline" dir="ltr">+966 55 123 4567</span>. الطلب يحتوي على منتج <span class="ltr-inline" dir="ltr">Almarai Fresh Milk 1L</span>
+                </div>
+                <span class="msg-meta">
+                    10:18 ص
+                    <span class="read-receipt delivered" title="تم التوصيل">✓✓</span>
+                </span>
+            </div>
+
+            <!-- Message 5 - Agent -->
+            <div class="msg-row agent">
+                <div class="bubble">
+                    شكراً لك! تم التأكيد ✅ طلبك <span class="ltr-inline code" dir="ltr">#QR-48213</span> الذي يتضمن <span class="ltr-inline" dir="ltr">Almarai Fresh Milk 1L</span> قيد التجهيز الآن وسيتم توصيله خلال <strong>ساعتين</strong> إن شاء الله. 🚚
+                </div>
+                <span class="msg-meta">10:20 ص</span>
+            </div>
+
+            <!-- Message 6 - Customer -->
+            <div class="msg-row customer">
+                <div class="bubble">
+                    شكراً جزيلاً على المساعدة السريعة! 🙏🏼
+                </div>
+                <span class="msg-meta">
+                    10:21 ص
+                    <span class="read-receipt read" title="تمت القراءة">✓✓</span>
+                </span>
+            </div>
+        </div>
+
+        <!-- Input Area -->
+        <div class="input-area">
+            <div class="input-wrapper">
+                <button class="attach-btn" aria-label="إرفاق ملف" title="إرفاق">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"></path>
+                    </svg>
+                </button>
+                <input type="text" class="msg-input" id="msgInput" placeholder="اكتب رسالتك هنا..." autocomplete="off" dir="rtl" enterkeyhint="send">
+            </div>
+            <button class="send-btn" id="sendBtn" aria-label="إرسال الرسالة" title="إرسال">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            const chatMessages = document.getElementById('chatMessages');
+            const msgInput = document.getElementById('msgInput');
+            const sendBtn = document.getElementById('sendBtn');
+
+            // Scroll to bottom on load
+            function scrollToBottom(smooth) {
+                if (smooth) {
+                    chatMessages.scrollTo({
+                        top: chatMessages.scrollHeight,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }
+            }
+
+            // Initial scroll
+            scrollToBottom(false);
+
+            // Get current time in Arabic-friendly format
+            function getCurrentTime() {
+                const now = new Date();
+                let hours = now.getHours();
+                const minutes = now.getMinutes().toString().padStart(2, '0');
+                const period = hours < 12 ? 'ص' : 'م';
+                if (hours > 12) hours -= 12;
+                if (hours === 0) hours = 12;
+                return hours + ':' + minutes + ' ' + period;
+            }
+
+            // Send message
+            function sendMessage() {
+                const text = msgInput.value.trim();
+                if (!text) return;
+
+                // Create message row
+                const msgRow = document.createElement('div');
+                msgRow.className = 'msg-row customer';
+                msgRow.style.animation = 'none';
+                msgRow.offsetHeight;
+                msgRow.style.animation = 'msgIn 0.35s cubic-bezier(0.22, 0.61, 0.36, 1)';
+
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+                bubble.textContent = text;
+
+                const meta = document.createElement('span');
+                meta.className = 'msg-meta';
+                meta.textContent = getCurrentTime() + ' ';
+
+                const receipt = document.createElement('span');
+                receipt.className = 'read-receipt delivered';
+                receipt.title = 'تم الإرسال';
+                receipt.textContent = '✓';
+                meta.appendChild(receipt);
+
+                msgRow.appendChild(bubble);
+                msgRow.appendChild(meta);
+
+                chatMessages.appendChild(msgRow);
+
+                // Clear input
+                msgInput.value = '';
+                msgInput.focus();
+
+                // Scroll to new message
+                scrollToBottom(true);
+
+                // Update send button state
+                updateSendButton();
+
+                // Simulate read receipt after delay
+                setTimeout(function() {
+                    receipt.className = 'read-receipt delivered';
+                    receipt.title = 'تم التوصيل';
+                    receipt.textContent = '✓✓';
+                }, 800);
+
+                setTimeout(function() {
+                    receipt.className = 'read-receipt read';
+                    receipt.title = 'تمت القراءة';
+                    receipt.textContent = '✓✓';
+                }, 2500);
+            }
+
+            // Update send button based on input
+            function updateSendButton() {
+                const hasText = msgInput.value.trim().length > 0;
+                sendBtn.disabled = !hasText;
+            }
+
+            // Event listeners
+            sendBtn.addEventListener('click', sendMessage);
+
+            msgInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            });
+
+            msgInput.addEventListener('input', updateSendButton);
+
+            // Initial button state
+            updateSendButton();
+
+            // Focus input on load for demo
+            setTimeout(function() {
+                msgInput.focus();
+            }, 600);
+
+            // Re-scroll on window resize
+            window.addEventListener('resize', function() {
+                scrollToBottom(false);
+            });
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "screen": "S1",
+  "cond": "explicit",
+  "model": "gemini",
+  "model_id": "google/gemini-3.1-pro-preview",
+  "raw_chars": 14789,
+  "complete": true,
+  "at": "2026-11-18T06:08:20.850Z"
+}

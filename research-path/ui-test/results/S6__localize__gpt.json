@@ -1,0 +1,220 @@
+{
+  "file": "out/S6__localize__gpt.html",
+  "screen": "S6",
+  "cond": "localize",
+  "model": "gpt",
+  "score": 65,
+  "mainFont": "Noto Sans Arabic",
+  "checks": [
+    {
+      "id": "complete",
+      "label": "Page is complete (not cut off)",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "id": "dir",
+      "label": "Page set to right-to-left",
+      "pass": true,
+      "detail": "rtl/rtl"
+    },
+    {
+      "id": "lang",
+      "label": "Language set to Arabic",
+      "pass": true,
+      "detail": "ar-SA"
+    },
+    {
+      "id": "align",
+      "label": "Arabic text aligned to the right",
+      "pass": false,
+      "detail": [
+        "text \"١٢ ألف\"",
+        "text \"٩ آلاف\"",
+        "text \"٦ آلاف\"",
+        "text \"٣ آلاف\""
+      ]
+    },
+    {
+      "id": "flow",
+      "label": "Rows flow right-to-left (first item on the right)",
+      "pass": true,
+      "detail": "0/18 wrong []"
+    },
+    {
+      "id": "arrows",
+      "label": "Next points left, back points right",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "sidebar",
+      "label": "Sidebar on the right (desktop)",
+      "pass": true,
+      "detail": "right"
+    },
+    {
+      "id": "table",
+      "label": "Table starts from the right",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "id": "font",
+      "label": "Arabic drawn in an intended font",
+      "pass": true,
+      "detail": {
+        "Noto Sans Arabic": 1029,
+        "Inter SemiBold": 2,
+        "Inter": 1
+      }
+    },
+    {
+      "id": "size",
+      "label": "Arabic text not too small (<13px under 25%)",
+      "pass": false,
+      "detail": "median 11px, 76% small"
+    },
+    {
+      "id": "lineheight",
+      "label": "Line height leaves room for Arabic marks",
+      "pass": false,
+      "detail": [
+        "div.avatar \"أق\"",
+        "span.customer-avatar \"نع\"",
+        "div.customer \"نعنورة العتيبي\""
+      ]
+    },
+    {
+      "id": "letterspacing",
+      "label": "No letter-spacing on Arabic",
+      "pass": false,
+      "detail": [
+        "span \"ق\"",
+        "div.brand \"ق\n      قريب\"",
+        "p.nav-label \"مساحة العمل\""
+      ]
+    },
+    {
+      "id": "numerals",
+      "label": "One numeral system per page",
+      "pass": false,
+      "detail": "western 25, eastern 95"
+    },
+    {
+      "id": "logical",
+      "label": "Built with direction-neutral CSS",
+      "pass": false,
+      "detail": "physical 11, logical 0"
+    },
+    {
+      "id": "presentation",
+      "label": "No pre-shaped Arabic characters",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "id": "overflow",
+      "label": "No sideways scroll on phone",
+      "pass": true,
+      "detail": false
+    },
+    {
+      "id": "jserrors",
+      "label": "No JavaScript errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "raw": {
+    "htmlDir": "rtl",
+    "htmlLang": "ar-SA",
+    "bodyDir": "rtl",
+    "arabicEls": 85,
+    "medianArabicFontPx": 11,
+    "smallArabicShare": 0.76,
+    "leftAligned": [
+      "text \"١٢ ألف\"",
+      "text \"٩ آلاف\"",
+      "text \"٦ آلاف\"",
+      "text \"٣ آلاف\"",
+      "text \"٠\"",
+      "text \"١٠٬٩٢٠\"",
+      "text \"الخميس\"",
+      "text \"الجمعة\"",
+      "text \"السبت\"",
+      "text \"الأحد\"",
+      "text \"الاثنين\"",
+      "text \"الثلاثاء\"",
+      "text \"الأربعاء\""
+    ],
+    "letterSpaced": [
+      "span \"ق\"",
+      "div.brand \"ق\n      قريب\"",
+      "p.nav-label \"مساحة العمل\"",
+      "p.nav-label \"المتجر\"",
+      "h1 \"صباح الخير، أحمد\"",
+      "div.kpi-value \"١٢٨\"",
+      "div.kpi-value \"٨٬٤٢٠ ر.س.\"",
+      "div.kpi-value \"٦٥٫٧٨ ر.س.\"",
+      "div.kpi-value \"٢٫٨٪\"",
+      "strong \"٥٢٬٤٨٠ ر.س.\""
+    ],
+    "tightLines": [
+      "div.avatar \"أق\"",
+      "span.customer-avatar \"نع\"",
+      "div.customer \"نعنورة العتيبي\"",
+      "td \"١٨ يونيو، ١٠:٤٢ ص\"",
+      "td.amount \"١٢٦٫٤٠ ر.س.\"",
+      "span.customer-avatar \"مد\"",
+      "div.customer \"مدمحمد الدوسري\"",
+      "td \"١٨ يونيو، ١٠:١٨ ص\"",
+      "td.amount \"٨٤٫٢٥ ر.س.\"",
+      "span.customer-avatar \"سح\"",
+      "div.customer \"سحسارة الحربي\"",
+      "td \"١٨ يونيو، ٩:٥٤ ص\"",
+      "td.amount \"٥٩٫٨٠ ر.س.\"",
+      "span.customer-avatar \"خغ\"",
+      "div.customer \"خغخالد الغامدي\"",
+      "td \"١٨ يونيو، ٩:٢٠ ص\"",
+      "td.amount \"٤٢٫١٥ ر.س.\"",
+      "span.customer-avatar \"رش\"",
+      "div.customer \"رشريم الشهري\"",
+      "td \"١٨ يونيو، ٨:٤٨ ص\"",
+      "td.amount \"٩٧٫٦٠ ر.س.\""
+    ],
+    "rows": 18,
+    "wrongRows": 0,
+    "wrongRowLabels": [],
+    "doubleFlip": 0,
+    "ltrRuns": 0,
+    "scrambledRuns": [],
+    "unisolatedRuns": 0,
+    "arrowsWrong": [],
+    "backSide": null,
+    "sidebarSide": null,
+    "tableFirstColRight": true,
+    "ltrInputs": 0,
+    "ltrInputsWrong": 0,
+    "mirroredEls": 0,
+    "forcedLtrArabic": 0,
+    "westernDigits": 25,
+    "easternDigits": 95,
+    "presentationForms": 0,
+    "bidiControls": 0,
+    "physicalCss": 11,
+    "logicalCss": 0,
+    "overflowX": false,
+    "fonts": {
+      "Noto Sans Arabic": 1029,
+      "Inter SemiBold": 2,
+      "Inter": 1
+    },
+    "mobileOverflow": false,
+    "carousel": {
+      "found": false
+    },
+    "sidebarSideDesktop": "right",
+    "jsErrors": []
+  }
+}

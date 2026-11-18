@@ -1,0 +1,188 @@
+{
+  "file": "out/S4__localize__saba.html",
+  "screen": "S4",
+  "cond": "localize",
+  "model": "saba",
+  "score": 44,
+  "mainFont": "DejaVu Sans",
+  "checks": [
+    {
+      "id": "complete",
+      "label": "Page is complete (not cut off)",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "id": "dir",
+      "label": "Page set to right-to-left",
+      "pass": false,
+      "detail": "null/ltr"
+    },
+    {
+      "id": "lang",
+      "label": "Language set to Arabic",
+      "pass": true,
+      "detail": "ar-SA"
+    },
+    {
+      "id": "align",
+      "label": "Arabic text aligned to the right",
+      "pass": false,
+      "detail": [
+        "div.avatar \"نا\"",
+        "h1.agent-name \"نورة الحاربي\"",
+        "div.agent-status \"متصل\"",
+        "span \"اليوم\""
+      ]
+    },
+    {
+      "id": "flow",
+      "label": "Rows flow right-to-left (first item on the right)",
+      "pass": false,
+      "detail": "5/5 wrong [\"header.chat-header \\\"نا\\n            \\n        \\\"\",\"div.agent \\\"نا\\n            \\n        \\\"\",\"div.meta \\\"10:24 ص\\\"\"]"
+    },
+    {
+      "id": "arrows",
+      "label": "Next points left, back points right",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "id": "back",
+      "label": "Back button on the right",
+      "pass": false,
+      "detail": "left"
+    },
+    {
+      "id": "font",
+      "label": "Arabic drawn in an intended font",
+      "pass": false,
+      "detail": {
+        "DejaVu Sans": 335,
+        "Inter": 141
+      }
+    },
+    {
+      "id": "size",
+      "label": "Arabic text not too small (<13px under 25%)",
+      "pass": false,
+      "detail": "median 13.5px, 50% small"
+    },
+    {
+      "id": "lineheight",
+      "label": "Line height leaves room for Arabic marks",
+      "pass": false,
+      "detail": [
+        "div.avatar \"نا\""
+      ]
+    },
+    {
+      "id": "letterspacing",
+      "label": "No letter-spacing on Arabic",
+      "pass": false,
+      "detail": [
+        "span \"اليوم\""
+      ]
+    },
+    {
+      "id": "numerals",
+      "label": "One numeral system per page",
+      "pass": true,
+      "detail": "western 44, eastern 0"
+    },
+    {
+      "id": "logical",
+      "label": "Built with direction-neutral CSS",
+      "pass": false,
+      "detail": "physical 5, logical 0"
+    },
+    {
+      "id": "presentation",
+      "label": "No pre-shaped Arabic characters",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "id": "overflow",
+      "label": "No sideways scroll on phone",
+      "pass": true,
+      "detail": false
+    },
+    {
+      "id": "jserrors",
+      "label": "No JavaScript errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "raw": {
+    "htmlDir": null,
+    "htmlLang": "ar-SA",
+    "bodyDir": "ltr",
+    "arabicEls": 16,
+    "medianArabicFontPx": 13.5,
+    "smallArabicShare": 0.5,
+    "leftAligned": [
+      "div.avatar \"نا\"",
+      "h1.agent-name \"نورة الحاربي\"",
+      "div.agent-status \"متصل\"",
+      "span \"اليوم\"",
+      "div.bubble \"مرحبا، أحتاج مساعدتك بشأ\"",
+      "time \"10:24 ص\"",
+      "div.bubble \"مرحبا سارة! أنا نورة من \"",
+      "time \"10:25 ص\"",
+      "div.bubble \"لقد تم إغفال حليب الألبا\"",
+      "time \"10:26 ص\"",
+      "div.bubble \"أنا آسفة بشأن هذا الخلل.\"",
+      "time \"10:27 ص\"",
+      "div.bubble \"نعم، هذا الرقم صحيح. من \"",
+      "time \"10:28 ص\"",
+      "div.bubble \"تمّ! لقد قمتِ بإصدار است\"",
+      "time \"10:30 ص\""
+    ],
+    "letterSpaced": [
+      "span \"اليوم\""
+    ],
+    "tightLines": [
+      "div.avatar \"نا\""
+    ],
+    "rows": 5,
+    "wrongRows": 5,
+    "wrongRowLabels": [
+      "header.chat-header \"نا\n            \n        \"",
+      "div.agent \"نا\n            \n        \"",
+      "div.meta \"10:24 ص\"",
+      "div.meta \"10:26 ص\"",
+      "div.meta \"10:28 ص\""
+    ],
+    "doubleFlip": 0,
+    "ltrRuns": 0,
+    "scrambledRuns": [],
+    "unisolatedRuns": 0,
+    "arrowsWrong": [],
+    "backSide": "left",
+    "sidebarSide": null,
+    "tableFirstColRight": null,
+    "ltrInputs": 0,
+    "ltrInputsWrong": 0,
+    "mirroredEls": 0,
+    "forcedLtrArabic": 0,
+    "westernDigits": 44,
+    "easternDigits": 0,
+    "presentationForms": 0,
+    "bidiControls": 0,
+    "physicalCss": 5,
+    "logicalCss": 0,
+    "overflowX": false,
+    "fonts": {
+      "DejaVu Sans": 335,
+      "Inter": 141
+    },
+    "mobileOverflow": false,
+    "carousel": {
+      "found": false
+    },
+    "sidebarSideDesktop": null,
+    "jsErrors": []
+  }
+}
