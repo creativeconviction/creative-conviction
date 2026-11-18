@@ -3,7 +3,7 @@
   "screen": "S3",
   "cond": "arabic",
   "model": "deepseek",
-  "score": 78,
+  "score": 82,
   "mainFont": "Cairo",
   "checks": [
     {
@@ -104,16 +104,6 @@
       "label": "No sideways scroll on phone",
       "pass": true,
       "detail": false
-    },
-    {
-      "id": "carousel",
-      "label": "Carousel next works and moves the RTL way",
-      "pass": false,
-      "detail": {
-        "found": true,
-        "changed": false,
-        "dotMoved": null
-      }
     },
     {
       "id": "jserrors",

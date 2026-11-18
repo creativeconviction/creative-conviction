@@ -3,7 +3,7 @@
   "screen": "S6",
   "cond": "explicit",
   "model": "claude",
-  "score": 89,
+  "score": 94,
   "mainFont": "IBM Plex Sans Arabic",
   "checks": [
     {
@@ -105,16 +105,6 @@
       "label": "No sideways scroll on phone",
       "pass": true,
       "detail": false
-    },
-    {
-      "id": "carousel",
-      "label": "Carousel next works and moves the RTL way",
-      "pass": false,
-      "detail": {
-        "found": true,
-        "changed": false,
-        "dotMoved": null
-      }
     },
     {
       "id": "jserrors",

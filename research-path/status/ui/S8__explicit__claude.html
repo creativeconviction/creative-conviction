@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0F8B6C">
+<title>الإعدادات · قريب</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brand:#0F8B6C;
+    --brand-soft:#E3F4EE;
+    --bg:#F3F5F4;
+    --surface:#FFFFFF;
+    --text:#14201C;
+    --muted:#66736E;
+    --line:#E7ECEA;
+    --track:#CBD3D0;
+    --danger:#D23B3B;
+    --danger-soft:#FCE9E9;
+    --shadow:0 1px 2px rgba(16,32,28,.04),0 8px 24px rgba(16,32,28,.06);
+    --radius:18px;
+    color-scheme:light;
+  }
+  [data-theme="dark"]{
+    --brand:#34C79C;
+    --brand-soft:#123A2F;
+    --bg:#0D1412;
+    --surface:#16201D;
+    --text:#E9F0ED;
+    --muted:#93A39D;
+    --line:#24302C;
+    --track:#3A4843;
+    --danger:#FF6B6B;
+    --danger-soft:#3A1C1C;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    font-family:"IBM Plex Sans Arabic",system-ui,-apple-system,"Segoe UI",sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    transition:background-color .25s,color .25s;
+    min-block-size:100vh;
+  }
+  button{font:inherit;color:inherit}
+  .app{
+    max-inline-size:480px;
+    margin-inline:auto;
+    padding-block:max(12px,env(safe-area-inset-top)) 40px;
+    padding-inline:16px;
+  }
+
+  /* Top bar */
+  .topbar{
+    display:flex;align-items:center;gap:8px;
+    padding-block:4px 12px;
+  }
+  .topbar h1{font-size:1.25rem;font-weight:700;margin:0;flex:1}
+  .icon-btn{
+    inline-size:40px;block-size:40px;border-radius:12px;border:0;
+    background:var(--surface);box-shadow:var(--shadow);
+    display:grid;place-items:center;cursor:pointer;
+  }
+  .icon-btn svg{inline-size:20px;block-size:20px}
+
+  /* Directional icons: drawn for LTR, mirrored in RTL */
+  [dir="rtl"] .flip{transform:scaleX(-1)}
+
+  /* Profile */
+  .profile{
+    background:var(--surface);border-radius:22px;box-shadow:var(--shadow);
+    padding:20px;display:flex;align-items:center;gap:14px;
+    margin-block-end:22px;position:relative;overflow:hidden;
+  }
+  .profile::before{
+    content:"";position:absolute;inset-block-start:-60px;inset-inline-end:-60px;
+    inline-size:160px;block-size:160px;border-radius:50%;
+    background:var(--brand-soft);opacity:.8;
+  }
+  .avatar{
+    position:relative;flex:none;inline-size:64px;block-size:64px;border-radius:50%;
+    background:linear-gradient(135deg,#0F8B6C,#2FB98F);
+    color:#fff;display:grid;place-items:center;font-size:1.5rem;font-weight:700;
+    box-shadow:0 0 0 3px var(--surface),0 0 0 5px var(--brand-soft);
+  }
+  .avatar .badge{
+    position:absolute;inset-block-end:0;inset-inline-end:0;
+    inline-size:18px;block-size:18px;border-radius:50%;background:#2ECC71;
+    border:3px solid var(--surface);
+  }
+  .profile-info{position:relative;flex:1;min-inline-size:0}
+  .profile-info h2{margin:0;font-size:1.125rem;font-weight:700}
+  .profile-info p{margin:2px 0 0;color:var(--muted);font-size:.875rem}
+  .ltr{direction:ltr;unicode-bidi:isolate}
+  .edit-btn{
+    position:relative;border:0;cursor:pointer;
+    background:var(--brand-soft);color:var(--brand);
+    border-radius:12px;padding-block:8px;padding-inline:12px;
+    font-size:.8125rem;font-weight:600;display:flex;align-items:center;gap:6px;
+  }
+  .edit-btn svg{inline-size:16px;block-size:16px}
+
+  /* Sections */
+  .section{margin-block-end:22px}
+  .section-title{
+    font-size:.8125rem;font-weight:600;color:var(--muted);
+    margin:0;padding-inline:8px;padding-block-end:8px;
+  }
+  .card{
+    background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  .row{
+    inline-size:100%;display:flex;align-items:center;gap:12px;
+    padding-block:14px;padding-inline:16px;
+    background:none;border:0;cursor:pointer;text-align:start;
+    position:relative;transition:background-color .15s;
+    min-block-size:64px;
+  }
+  .row + .row::before{
+    content:"";position:absolute;inset-block-start:0;
+    inset-inline-start:68px;inset-inline-end:16px;
+    border-block-start:1px solid var(--line);
+  }
+  .row:hover{background:color-mix(in srgb,var(--brand) 5%,transparent)}
+  .row:active{background:color-mix(in srgb,var(--brand) 10%,transparent)}
+  .row:focus-visible,.icon-btn:focus-visible,.edit-btn:focus-visible,.opt:focus-visible,.btn:focus-visible{
+    outline:2px solid var(--brand);outline-offset:-2px;
+  }
+  .row-icon{
+    flex:none;inline-size:40px;block-size:40px;border-radius:12px;
+    display:grid;place-items:center;background:var(--brand-soft);color:var(--brand);
+  }
+  .row-icon svg{inline-size:20px;block-size:20px}
+  .row-text{flex:1;min-inline-size:0}
+  .row-label{display:block;font-weight:600;font-size:.9375rem}
+  .row-sub{display:block;color:var(--muted);font-size:.8125rem;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .row-value{color:var(--muted);font-size:.875rem;flex:none}
+  .chev{flex:none;inline-size:18px;block-size:18px;color:var(--muted)}
+  .row.danger{color:var(--danger)}
+  .row.danger .row-icon{background:var(--danger-soft);color:var(--danger)}
+
+  /* Switch (logical positioning — works in both directions) */
+  .switch{
+    flex:none;position:relative;inline-size:50px;block-size:30px;border-radius:999px;
+    background:var(--track);transition:background-color .2s;
+  }
+  .switch::after{
+    content:"";position:absolute;inset-block-start:3px;inset-inline-start:3px;
+    inline-size:24px;block-size:24px;border-radius:50%;background:#fff;
+    box-shadow:0 1px 3px rgba(0,0,0,.25);
+    transition:inset-inline-start .22s cubic-bezier(.3,.7,.4,1);
+  }
+  .row[aria-checked="true"] .switch{background:var(--brand)}
+  .row[aria-checked="true"] .switch::after{inset-inline-start:23px}
+
+  .version{text-align:center;color:var(--muted);font-size:.8125rem;margin-block-start:8px}
+
+  /* Dialogs (bottom sheet) */
+  dialog{
+    border:0;padding:0;background:var(--surface);color:var(--text);
+    inline-size:min(480px,100%);max-inline-size:100%;
+    margin-block:auto 0;margin-inline:auto;
+    border-start-start-radius:24px;border-start-end-radius:24px;
+    padding-block-end:env(safe-area-inset-bottom);
+  }
+  dialog[open]{animation:up .25s ease-out}
+  dialog::backdrop{background:rgba(5,15,12,.45)}
+  @keyframes up{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+  .sheet{padding:10px 20px 20px}
+  .grab{inline-size:40px;block-size:4px;border-radius:4px;background:var(--line);margin:0 auto 14px}
+  .sheet h3{margin:0 0 4px;font-size:1.0625rem}
+  .sheet p{margin:0 0 16px;color:var(--muted);font-size:.875rem}
+  .opt{
+    inline-size:100%;display:flex;align-items:center;gap:12px;
+    padding:14px 16px;border-radius:14px;border:1.5px solid var(--line);
+    background:none;cursor:pointer;margin-block-end:10px;text-align:start;
+  }
+  .opt[aria-checked="true"]{border-color:var(--brand);background:var(--brand-soft)}
+  .opt .name{flex:1;font-weight:600}
+  .opt .sub{color:var(--muted);font-size:.8125rem}
+  .radio{flex:none;inline-size:20px;block-size:20px;border-radius:50%;border:2px solid var(--track);display:grid;place-items:center}
+  .opt[aria-checked="true"] .radio{border-color:var(--brand)}
+  .opt[aria-checked="true"] .radio::after{content:"";inline-size:10px;block-size:10px;border-radius:50%;background:var(--brand)}
+  .actions{display:flex;gap:10px;margin-block-start:6px}
+  .btn{flex:1;border:0;border-radius:14px;padding:13px;font-weight:600;cursor:pointer;background:var(--bg)}
+  .btn.danger{background:var(--danger);color:#fff}
+
+  /* Toast */
+  .toast{
+    position:fixed;inset-inline:16px;inset-block-end:24px;margin-inline:auto;
+    max-inline-size:360px;background:var(--text);color:var(--surface);
+    padding:12px 16px;border-radius:14px;text-align:center;font-size:.875rem;
+    opacity:0;transform:translateY(12px);pointer-events:none;transition:.25s;
+  }
+  .toast.show{opacity:1;transform:none}
+
+  @media (min-width:768px){
+    .app{padding-block-start:48px}
+    .topbar h1{font-size:1.5rem}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<main class="app">
+  <header class="topbar">
+    <button class="icon-btn" type="button" data-i18n-aria="back" aria-label="رجوع">
+      <!-- "Back" arrow: points left in LTR, mirrored to point right in RTL -->
+      <svg class="flip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    </button>
+    <h1 data-i18n="title">الإعدادات</h1>
+  </header>
+
+  <section class="profile" aria-labelledby="pname">
+    <div class="avatar" aria-hidden="true">س<span class="badge"></span></div>
+    <div class="profile-info">
+      <h2 id="pname" data-i18n="name">سارة العتيبي</h2>
+      <p><bdi class="ltr" dir="ltr">+966 55 123 4567</bdi></p>
+      <p><bdi dir="ltr" lang="en">sara@qareeb.app</bdi></p>
+    </div>
+    <button class="edit-btn" type="button" data-toast="soon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+      <span data-i18n="edit">تعديل</span>
+    </button>
+  </section>
+
+  <section class="section" aria-labelledby="s-account">
+    <h2 class="section-title" id="s-account" data-i18n="account">الحساب</h2>
+    <div class="card">
+      <button class="row" type="button" data-toast="soon">
+        <span class="row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+        <span class="row-text">
+          <span class="row-label" data-i18n="addresses">العناوين</span>
+          <span class="row-sub" data-i18n="addressesSub">3 عناوين محفوظة · المنزل، العمل</span>
+        </span>
+        <svg class="chev flip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+      <button class="row" type="button" data-toast="soon">
+        <span class="row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></span>
+        <span class="row-text">
+          <span class="row-label" data-i18n="payment">طرق الدفع</span>
+          <span class="row-sub"><bdi dir="ltr" lang="en">Visa •••• 4242</bdi> <span data-i18n="paymentMore">· مدى</span></span>
+        </span>
+        <svg class="chev flip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="s-prefs">
+    <h2 class="section-title" id="s-prefs" data-i18n="prefs">التفضيلات</h2>
+    <div class="card">
+      <button class="row" type="button" role="switch" aria-checked="true" id="notifRow">
+        <span class="row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></span>
+        <span class="row-text">
+          <span class="row-label" data-i18n="notifications">الإشعارات</span>
+          <span class="row-sub" data-i18n="notificationsSub">حالة الطلبات والعروض</span>
+        </span>
+        <span class="switch" aria-hidden="true"></span>
+      </button>
+      <button class="row" type="button" id="langRow" aria-haspopup="dialog">
+        <span class="row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z"/></svg></span>
+        <span class="row-text">
+          <span class="row-label" data-i18n="language">اللغة</span>
+        </span>
+        <span class="row-value" id="langValue"><bdi lang="ar" dir="rtl">العربية</bdi></span>
+        <svg class="chev flip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+      <button class="row" type="button" role="switch" aria-checked="false" id="darkRow">
+        <span class="row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></span>
+        <span class="row-text">
+          <span class="row-label" data-i18n="dark">الوضع الداكن</span>
+        </span>
+        <span class="switch" aria-hidden="true"></span>
+      </button>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="s-support">
+    <h2 class="section-title" id="s-support" data-i18n="support">الدعم</h2>
+    <div class="card">
+      <button class="row" type="button" data-toast="soon">
+        <span class="row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span>
+        <span class="row-text">
+          <span class="row-label" data-i18n="help">المساعدة والدعم</span>
+          <span class="row-sub" data-i18n="helpSub">الأسئلة الشائعة والتواصل معنا</span>
+        </span>
+        <svg class="chev flip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+      <button class="row danger" type="button" id="logoutRow" aria-haspopup="dialog">
+        <span class="row-icon"><svg class="flip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5M21 12H9"/></svg></span>
+        <span class="row-text">
+          <span class="row-label" data-i18n="logout">تسجيل الخروج</span>
+        </span>
+      </button>
+    </div>
+  </section>
+
+  <p class="version"><span data-i18n="version">الإصدار</span> <bdi dir="ltr">2.4.1</bdi></p>
+</main>
+
+<dialog id="langSheet" aria-labelledby="langTitle">
+  <div class="sheet">
+    <div class="grab" aria-hidden="true"></div>
+    <h3 id="langTitle" data-i18n="langTitle">اختر اللغة</h3>
+    <p data-i18n="langHint">سيتم تطبيق اللغة على كامل التطبيق.</p>
+    <div role="radiogroup" aria-labelledby="langTitle">
+      <button class="opt" type="button" role="radio" data-lang="ar" aria-checked="true">
+        <span class="name" lang="ar" dir="rtl">العربية</span>
+        <span class="radio" aria-hidden="true"></span>
+      </button>
+      <button class="opt" type="button" role="radio" data-lang="en" aria-checked="false">
+        <span class="name"><bdi lang="en" dir="ltr">English</bdi></span>
+        <span class="radio" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="logoutSheet" aria-labelledby="logoutTitle">
+  <div class="sheet">
+    <div class="grab" aria-hidden="true"></div>
+    <h3 id="logoutTitle" data-i18n="logoutTitle">تسجيل الخروج؟</h3>
+    <p data-i18n="logoutMsg">ستحتاج إلى إدخال رقم جوالك ورمز التحقق للدخول مرة أخرى.</p>
+    <div class="actions">
+      <button class="btn" type="button" id="cancelLogout" data-i18n="cancel">إلغاء</button>
+      <button class="btn danger" type="button" id="confirmLogout" data-i18n="logout">تسجيل الخروج</button>
+    </div>
+  </div>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(() => {
+  const T = {
+    ar:{title:"الإعدادات",back:"رجوع",name:"سارة العتيبي",edit:"تعديل",account:"الحساب",
+      addresses:"العناوين",addressesSub:"3 عناوين محفوظة · المنزل، العمل",payment:"طرق الدفع",paymentMore:"· مدى",
+      prefs:"التفضيلات",notifications:"الإشعارات",notificationsSub:"حالة الطلبات والعروض",language:"اللغة",
+      dark:"الوضع الداكن",support:"الدعم",help:"المساعدة والدعم",helpSub:"الأسئلة الشائعة والتواصل معنا",
+      logout:"تسجيل الخروج",version:"الإصدار",langTitle:"اختر اللغة",langHint:"سيتم تطبيق اللغة على كامل التطبيق.",
+      logoutTitle:"تسجيل الخروج؟",logoutMsg:"ستحتاج إلى إدخال رقم جوالك ورمز التحقق للدخول مرة أخرى.",cancel:"إلغاء",
+      soon:"هذه الميزة قادمة قريبًا",notifOn:"تم تفعيل الإشعارات",notifOff:"تم إيقاف الإشعارات",
+      darkOn:"تم تفعيل الوضع الداكن",darkOff:"تم تفعيل الوضع الفاتح",langSet:"تم تغيير اللغة إلى العربية",
+      loggedOut:"تم تسجيل الخروج بنجاح",pageTitle:"الإعدادات · قريب"},
+    en:{title:"Settings",back:"Back",name:"Sara Alotaibi",edit:"Edit",account:"Account",
+      addresses:"Addresses",addressesSub:"3 saved addresses · Home, Work",payment:"Payment methods",paymentMore:"· mada",
+      prefs:"Preferences",notifications:"Notifications",notificationsSub:"Order status and offers",language:"Language",
+      dark:"Dark mode",support:"Support",help:"Help & support",helpSub:"FAQ and contact us",
+      logout:"Log out",version:"Version",langTitle:"Choose language",langHint:"The language will apply to the whole app.",
+      logoutTitle:"Log out?",logoutMsg:"You'll need your phone number and a verification code to sign in again.",cancel:"Cancel",
+      soon:"This feature is coming soon",notifOn:"Notifications turned on",notifOff:"Notifications turned off",
+      darkOn:"Dark mode on",darkOff:"Light mode on",langSet:"Language changed to English",
+      loggedOut:"Logged out successfully",pageTitle:"Settings · Qareeb"}
+  };
+  const store = {
+    get:k=>{try{return localStorage.getItem("qareeb-"+k)}catch(e){return null}},
+    set:(k,v)=>{try{localStorage.setItem("qareeb-"+k,v)}catch(e){}}
+  };
+  let lang = store.get("lang") || "ar";
+  const t = k => T[lang][k];
+
+  const toastEl = document.getElementById("toast");
+  let timer;
+  function toast(msg){
+    toastEl.textContent = msg;
+    toastEl.classList.add("show");
+    clearTimeout(timer);
+    timer = setTimeout(()=>toastEl.classList.remove("show"),2200);
+  }
+
+  function applyLang(){
+    const root = document.documentElement;
+    root.lang = lang;
+    root.dir = lang === "ar" ? "rtl" : "ltr";
+    document.title = t("pageTitle");
+    document.querySelectorAll("[data-i18n]").forEach(el=>el.textContent = t(el.dataset.i18n));
+    document.querySelectorAll("[data-i18n-aria]").forEach(el=>el.setAttribute("aria-label",t(el.dataset.i18nAria)));
+    document.querySelector(".avatar").firstChild.nodeValue = lang === "ar" ? "س" : "S";
+    document.getElementById("langValue").innerHTML = lang === "ar"
+      ? '<bdi lang="ar" dir="rtl">العربية</bdi>'
+      : '<bdi lang="en" dir="ltr">English</bdi>';
+    document.querySelectorAll(".opt").forEach(o=>o.setAttribute("aria-checked",String(o.dataset.lang===lang)));
+  }
+
+  // Theme
+  const darkRow = document.getElementById("darkRow");
+  function setTheme(dark){
+    document.documentElement.dataset.theme = dark ? "dark" : "light";
+    darkRow.setAttribute("aria-checked",String(dark));
+    document.querySelector('meta[name="theme-color"]').content = dark ? "#0D1412" : "#0F8B6C";
+  }
+  const savedTheme = store.get("theme");
+  setTheme(savedTheme ? savedTheme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches);
+  darkRow.addEventListener("click",()=>{
+    const on = darkRow.getAttribute("aria-checked") !== "true";
+    setTheme(on); store.set("theme",on?"dark":"light");
+    toast(t(on?"darkOn":"darkOff"));
+  });
+
+  // Notifications
+  const notifRow = document.getElementById("notifRow");
+  if (store.get("notif") === "off") notifRow.setAttribute("aria-checked","false");
+  notifRow.addEventListener("click",()=>{
+    const on = notifRow.getAttribute("aria-checked") !== "true";
+    notifRow.setAttribute("aria-checked",String(on));
+    store.set("notif",on?"on":"off");
+    toast(t(on?"notifOn":"notifOff"));
+  });
+
+  // Dialogs
+  const langSheet = document.getElementById("langSheet");
+  const logoutSheet = document.getElementById("logoutSheet");
+  [langSheet,logoutSheet].forEach(d=>d.addEventListener("click",e=>{ if(e.target===d) d.close(); }));
+  document.getElementById("langRow").addEventListener("click",()=>langSheet.showModal());
+  document.querySelectorAll(".opt").forEach(o=>o.addEventListener("click",()=>{
+    const changed = lang !== o.dataset.lang;
+    lang = o.dataset.lang; store.set("lang",lang);
+    applyLang(); langSheet.close();
+    if (changed) toast(t("langSet"));
+  }));
+  document.getElementById("logoutRow").addEventListener("click",()=>logoutSheet.showModal());
+  document.getElementById("cancelLogout").addEventListener("click",()=>logoutSheet.close());
+  document.getElementById("confirmLogout").addEventListener("click",()=>{ logoutSheet.close(); toast(t("loggedOut")); });
+
+  document.querySelectorAll("[data-toast]").forEach(b=>b.addEventListener("click",()=>toast(t(b.dataset.toast))));
+  document.querySelector(".topbar .icon-btn").addEventListener("click",()=>history.length>1?history.back():toast(t("soon")));
+
+  applyLang();
+})();
+</script>
+</body>
+</html>

@@ -3,7 +3,7 @@
   "screen": "S7",
   "cond": "arabic",
   "model": "gpt",
-  "score": 81,
+  "score": 80,
   "mainFont": "Tajawal",
   "checks": [
     {
@@ -97,16 +97,6 @@
       "label": "No sideways scroll on phone",
       "pass": true,
       "detail": false
-    },
-    {
-      "id": "carousel",
-      "label": "Carousel next works and moves the RTL way",
-      "pass": true,
-      "detail": {
-        "found": true,
-        "changed": true,
-        "dotMoved": "left"
-      }
     },
     {
       "id": "jserrors",

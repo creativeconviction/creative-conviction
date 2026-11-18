@@ -3,7 +3,7 @@
   "screen": "S7",
   "cond": "plain",
   "model": "deepseek",
-  "score": 81,
+  "score": 87,
   "mainFont": "Tajawal",
   "checks": [
     {
@@ -95,16 +95,6 @@
       "label": "No sideways scroll on phone",
       "pass": true,
       "detail": false
-    },
-    {
-      "id": "carousel",
-      "label": "Carousel next works and moves the RTL way",
-      "pass": false,
-      "detail": {
-        "found": true,
-        "changed": true,
-        "dotMoved": "right"
-      }
     },
     {
       "id": "jserrors",

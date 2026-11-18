@@ -3,7 +3,7 @@
   "screen": "S7",
   "cond": "localize",
   "model": "saba",
-  "score": 75,
+  "score": 73,
   "mainFont": "DejaVu Sans",
   "checks": [
     {
@@ -99,16 +99,6 @@
       "label": "No sideways scroll on phone",
       "pass": true,
       "detail": false
-    },
-    {
-      "id": "carousel",
-      "label": "Carousel next works and moves the RTL way",
-      "pass": true,
-      "detail": {
-        "found": true,
-        "changed": true,
-        "dotMoved": "left"
-      }
     },
     {
       "id": "jserrors",

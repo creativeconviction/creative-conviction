@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Qareeb Customer Support</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #059669; /* Emerald Green */
+            --primary-dark: #047857;
+            --bg-body: #e5e7eb;
+            --bg-app: #f9fafb;
+            --bg-chat: #f3f4f6;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+            --msg-out: #059669;
+            --msg-in: #ffffff;
+            --font-family: 'Tajawal', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-body);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100dvh;
+            color: var(--text-main);
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 390px;
+            height: 100%;
+            background-color: var(--bg-app);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        @media (min-width: 450px) {
+            .app-container {
+                height: 85vh;
+                max-height: 850px;
+                border-radius: 24px;
+                border: 8px solid #ffffff;
+            }
+        }
+
+        /* --- Header --- */
+        .header {
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 10;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px;
+        }
+
+        .agent-avatar {
+            width: 42px;
+            height: 42px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            position: relative;
+        }
+
+        .agent-avatar svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .status-dot {
+            position: absolute;
+            bottom: 0;
+            right: 2px;
+            width: 12px;
+            height: 12px;
+            background-color: #10b981;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+        }
+
+        .agent-info {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .agent-name {
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .agent-status {
+            font-size: 12px;
+            opacity: 0.9;
+            margin-top: 2px;
+        }
+
+        /* --- Chat Area --- */
+        .chat-area {
+            flex-grow: 1;
+            background-color: var(--bg-chat);
+            padding: 20px 16px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            scroll-behavior: smooth;
+            /* Subtle background pattern */
+            background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239ca3af' fill-opacity='0.05' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        /* Custom Scrollbar */
+        .chat-area::-webkit-scrollbar {
+            width: 5px;
+        }
+        .chat-area::-webkit-scrollbar-thumb {
+            background-color: rgba(0,0,0,0.15);
+            border-radius: 10px;
+        }
+
+        .message {
+            max-width: 85%;
+            padding: 10px 14px;
+            border-radius: 16px;
+            font-size: 15px;
+            line-height: 1.5;
+            position: relative;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .message.customer {
+            align-self: flex-end; /* Left side in RTL */
+            background-color: var(--msg-out);
+            color: white;
+            border-bottom-left-radius: 4px;
+        }
+
+        .message.agent {
+            align-self: flex-start; /* Right side in RTL */
+            background-color: var(--msg-in);
+            color: var(--text-main);
+            border-bottom-right-radius: 4px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .bdi-text {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .message.customer .bdi-text {
+            color: #d1fae5;
+        }
+
+        .message.agent .bdi-text {
+            color: var(--primary);
+        }
+
+        .meta {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            font-size: 11px;
+            margin-top: 6px;
+            gap: 4px;
+        }
+
+        .customer .meta {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .agent .meta {
+            color: var(--text-muted);
+        }
+
+        .read-receipt {
+            display: flex;
+            align-items: center;
+        }
+
+        .read-receipt svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .customer .read-receipt svg {
+            stroke: #a7f3d0; /* Light green tint */
+        }
+
+        /* --- Input Area --- */
+        .input-area {
+            background-color: white;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-top: 1px solid #e5e7eb;
+            z-index: 10;
+        }
+
+        .attach-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background-color 0.2s;
+        }
+
+        .attach-btn:hover {
+            background-color: #f3f4f6;
+            color: var(--primary);
+        }
+
+        .input-wrapper {
+            flex-grow: 1;
+            background-color: #f3f4f6;
+            border-radius: 24px;
+            padding: 2px 16px;
+            display: flex;
+            align-items: center;
+            border: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .input-wrapper:focus-within {
+            border-color: #a7f3d0;
+            background-color: white;
+        }
+
+        .message-input {
+            width: 100%;
+            border: none;
+            background: none;
+            padding: 10px 0;
+            font-family: var(--font-family);
+            font-size: 15px;
+            color: var(--text-main);
+            outline: none;
+        }
+
+        .message-input::placeholder {
+            color: #9ca3af;
+        }
+
+        .send-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(5, 150, 105, 0.3);
+            transition: transform 0.1s, background-color 0.2s;
+        }
+
+        .send-btn:hover {
+            background-color: var(--primary-dark);
+            transform: scale(1.05);
+        }
+
+        .send-btn svg {
+            /* Flip for RTL */
+            transform: scaleX(-1);
+            margin-left: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <button class="back-btn" aria-label="العودة">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </button>
+            <div class="agent-avatar">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                </svg>
+                <div class="status-dot"></div>
+            </div>
+            <div class="agent-info">
+                <div class="agent-name">أحمد - قريب</div>
+                <div class="agent-status">متصل الآن</div>
+            </div>
+        </header>
+
+        <!-- Chat Area -->
+        <main class="chat-area" id="chatArea">
+            
+            <!-- Message 1: Customer -->
+            <div class="message customer">
+                مرحباً، لدي مشكلة في طلبي رقم <bdi class="bdi-text">#QR-48213</bdi>.
+                <div class="meta">
+                    <span>10:00 ص</span>
+                    <span class="read-receipt">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                            <polyline points="22 10 17 15"></polyline>
+                        </svg>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Message 2: Agent -->
+            <div class="message agent">
+                أهلاً بك في خدمة عملاء تطبيق قريب. اسمي أحمد، كيف يمكنني مساعدتك بخصوص هذا الطلب؟
+                <div class="meta">
+                    <span>10:01 ص</span>
+                </div>
+            </div>
+
+            <!-- Message 3: Customer -->
+            <div class="message customer">
+                لقد قمت بطلب <bdi class="bdi-text">Almarai Fresh Milk 1L</bdi> ولكن وصلني منتج مختلف تماماً. هل يمكنكم استبداله؟
+                <div class="meta">
+                    <span>10:03 ص</span>
+                    <span class="read-receipt">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                            <polyline points="22 10 17 15"></polyline>
+                        </svg>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Message 4: Agent -->
+            <div class="message agent">
+                نعتذر جداً عن هذا الخطأ غير المقصود. بالتأكيد سنقوم باستبدال المنتج لك فوراً دون أي تكلفة إضافية.
+                <div class="meta">
+                    <span>10:04 ص</span>
+                </div>
+            </div>
+
+            <!-- Message 5: Agent -->
+            <div class="message agent">
+                لتنسيق عملية الاستبدال مع المندوب، هل يمكنني تأكيد رقم هاتفك؟ هل هو <bdi class="bdi-text">+966 55 123 4567</bdi>؟
+                <div class="meta">
+                    <span>10:04 ص</span>
+                </div>
+            </div>
+
+            <!-- Message 6: Customer -->
+            <div class="message customer">
+                نعم، هذا هو الرقم الصحيح. شكراً لتجاوبكم السريع.
+                <div class="meta">
+                    <span>10:05 ص</span>
+                    <span class="read-receipt">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                            <polyline points="22 10 17 15"></polyline>
+                        </svg>
+                    </span>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Input Area -->
+        <footer class="input-area">
+            <button class="attach-btn" aria-label="إرفاق ملف">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path>
+                </svg>
+            </button>
+            
+            <form class="input-wrapper" onsubmit="event.preventDefault(); document.querySelector('.message-input').value = '';">
+                <input type="text" class="message-input" placeholder="اكتب رسالتك هنا..." autocomplete="off">
+            </form>
+
+            <button class="send-btn" aria-label="إرسال" onclick="document.querySelector('.message-input').value = '';">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+            </button>
+        </footer>
+    </div>
+
+    <script>
+        // Ensure chat is scrolled to bottom on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const chatArea = document.getElementById('chatArea');
+            chatArea.scrollTop = chatArea.scrollHeight;
+        });
+    </script>
+</body>
+</html>
