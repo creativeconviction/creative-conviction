@@ -1,0 +1,13 @@
+{
+  "scenario": "M2",
+  "lang": "ar_sa",
+  "model": "gemini",
+  "message": "وين طلبي؟؟ صار له ساعتين، شي يفشل",
+  "raw": "{\n  \"intent\": \"late_delivery\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"The customer is highly frustrated and complaining because their grocery order is two hours late, calling the service a failure.\"\n}",
+  "intent": "late_delivery",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "The customer is highly frustrated and complaining because their grocery order is two hours late, calling the service a failure."
+}

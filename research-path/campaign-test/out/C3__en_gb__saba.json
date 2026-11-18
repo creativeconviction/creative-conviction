@@ -1,0 +1,12 @@
+{
+  "line": "C3",
+  "market": "en_gb",
+  "model": "saba",
+  "source": "Thanksgiving dinner, sorted. Order your turkey today.",
+  "raw": "```json\n{\n  \"literal\": \"Thanksgiving dinner, sorted. Order your turkey today.\",\n  \"adaptation\": \"Sunday dinner, sorted. Order your roast today.\",\n  \"back_translation\": \"Sunday dinner, sorted. Order your roast today.\",\n  \"approach\": \"replaced\",\n  \"notes\": \"Thanksgiving is not widely celebrated in the UK, so replaced with a culturally relevant meal and occasion.\"\n}\n```",
+  "literal": "Thanksgiving dinner, sorted. Order your turkey today.",
+  "adaptation": "Sunday dinner, sorted. Order your roast today.",
+  "back_translation": "Sunday dinner, sorted. Order your roast today.",
+  "approach": "replaced",
+  "notes": "Thanksgiving is not widely celebrated in the UK, so replaced with a culturally relevant meal and occasion."
+}

@@ -1,0 +1,13 @@
+{
+  "scenario": "M11",
+  "lang": "en",
+  "model": "gpt",
+  "message": "honestly this is the last time I'm ordering from you, something goes wrong every single week",
+  "raw": "{\"intent\":\"general_complaint\",\"sentiment\":\"negative\",\"urgency\":\"medium\",\"sarcasm\":false,\"churn_risk\":true,\"summary\":\"The customer reports repeated weekly problems and says they will no longer order from the service.\"}",
+  "intent": "general_complaint",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "The customer reports repeated weekly problems and says they will no longer order from the service."
+}

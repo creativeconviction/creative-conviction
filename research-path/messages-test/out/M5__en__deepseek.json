@@ -1,0 +1,13 @@
+{
+  "scenario": "M5",
+  "lang": "en",
+  "model": "deepseek",
+  "message": "Hello, I would like a refund for order #48213 please. The items were not as described.",
+  "raw": "{\n  \"intent\": \"refund_request\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"Customer requests a refund for order #48213 because the items were not as described.\"\n}",
+  "intent": "refund_request",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Customer requests a refund for order #48213 because the items were not as described."
+}

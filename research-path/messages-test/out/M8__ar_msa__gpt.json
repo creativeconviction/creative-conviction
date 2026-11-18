@@ -1,0 +1,13 @@
+{
+  "scenario": "M8",
+  "lang": "ar_msa",
+  "model": "gpt",
+  "message": "تم خصم المبلغ مرتين لنفس الطلب، 2 × 150 ريالاً من بطاقتي",
+  "raw": "{\"intent\":\"billing_issue\",\"sentiment\":\"negative\",\"urgency\":\"high\",\"sarcasm\":false,\"churn_risk\":false,\"summary\":\"The customer was charged twice for the same order, with two charges of 150 SAR each.\"}",
+  "intent": "billing_issue",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer was charged twice for the same order, with two charges of 150 SAR each."
+}

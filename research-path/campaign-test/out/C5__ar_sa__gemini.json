@@ -1,0 +1,12 @@
+{
+  "line": "C5",
+  "market": "ar_sa",
+  "model": "gemini",
+  "source": "Your Friday night date starts here.",
+  "raw": "{\n  \"literal\": \"موعدك ليلة الجمعة يبدأ من هنا.\",\n  \"adaptation\": \"لقاء الويكند يبدأ من هنا.\",\n  \"back_translation\": \"Your weekend meetup starts here.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Replaced the explicit and culturally sensitive concept of a romantic 'date' with 'meetup' (لقاء) and shifted 'Friday night' to 'the weekend' (الويكند) to sound natural and respectful to Saudi youth.\"\n}",
+  "literal": "موعدك ليلة الجمعة يبدأ من هنا.",
+  "adaptation": "لقاء الويكند يبدأ من هنا.",
+  "back_translation": "Your weekend meetup starts here.",
+  "approach": "adapted",
+  "notes": "Replaced the explicit and culturally sensitive concept of a romantic 'date' with 'meetup' (لقاء) and shifted 'Friday night' to 'the weekend' (الويكند) to sound natural and respectful to Saudi youth."
+}

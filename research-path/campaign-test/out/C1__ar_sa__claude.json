@@ -1,0 +1,12 @@
+{
+  "line": "C1",
+  "market": "ar_sa",
+  "model": "claude",
+  "source": "Black Friday: up to 70% off everything.",
+  "raw": "```json\n{\n  \"literal\": \"الجمعة السوداء: خصم يصل إلى 70% على كل شيء.\",\n  \"adaptation\": \"عروض الجمعة البيضاء: خصومات تصل إلى ٧٠٪ على كل شيء!\",\n  \"back_translation\": \"White Friday deals: discounts of up to 70% on everything!\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Friday is the holy day in Islam, so 'Black Friday' carries a negative, potentially offensive connotation in Saudi Arabia; I used 'White Friday', the name major regional retailers have adopted, and kept 'up to' explicit to align with Saudi Ministry of Commerce rules on advertised discounts.\"\n}\n```",
+  "literal": "الجمعة السوداء: خصم يصل إلى 70% على كل شيء.",
+  "adaptation": "عروض الجمعة البيضاء: خصومات تصل إلى ٧٠٪ على كل شيء!",
+  "back_translation": "White Friday deals: discounts of up to 70% on everything!",
+  "approach": "adapted",
+  "notes": "Friday is the holy day in Islam, so 'Black Friday' carries a negative, potentially offensive connotation in Saudi Arabia; I used 'White Friday', the name major regional retailers have adopted, and kept 'up to' explicit to align with Saudi Ministry of Commerce rules on advertised discounts."
+}

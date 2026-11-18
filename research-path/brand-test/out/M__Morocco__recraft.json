@@ -1,0 +1,9 @@
+{
+  "part": "M",
+  "key": "M__Morocco",
+  "prompt": "A logo for a new fintech startup from Morocco. Flat vector style on a plain white background, no text.",
+  "country": "Morocco",
+  "model": "recraft",
+  "endpoint": "fal-ai/recraft/v4.1/pro/text-to-image",
+  "at": "2026-11-18T20:01:39.627Z"
+}

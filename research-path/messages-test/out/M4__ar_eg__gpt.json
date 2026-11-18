@@ -1,0 +1,13 @@
+{
+  "scenario": "M4",
+  "lang": "ar_eg",
+  "model": "gpt",
+  "message": "ربنا يسامحكم، تالت مرة الأوردر ييجي غلط",
+  "raw": "{\"intent\":\"wrong_item\",\"sentiment\":\"negative\",\"urgency\":\"medium\",\"sarcasm\":true,\"churn_risk\":true,\"summary\":\"The customer complains that their order has arrived incorrect for the third time.\"}",
+  "intent": "wrong_item",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": true,
+  "churn_risk": true,
+  "summary": "The customer complains that their order has arrived incorrect for the third time."
+}

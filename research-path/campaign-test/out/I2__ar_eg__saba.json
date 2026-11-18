@@ -1,0 +1,12 @@
+{
+  "line": "I2",
+  "market": "ar_eg",
+  "model": "saba",
+  "source": "Rise and grind.",
+  "raw": "```json\n{\n  \"literal\": \" استيقظ وابدأ العمل \",\n  \"adaptation\": \" بدء اليوم بالقهوة والطاقة \",\n  \"back_translation\": \"Start the day with coffee and energy\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Avoids a direct translation of 'grind' which could sound mechanical or harsh in Arabic.\"\n}\n```",
+  "literal": " استيقظ وابدأ العمل ",
+  "adaptation": " بدء اليوم بالقهوة والطاقة ",
+  "back_translation": "Start the day with coffee and energy",
+  "approach": "adapted",
+  "notes": "Avoids a direct translation of 'grind' which could sound mechanical or harsh in Arabic."
+}

@@ -1,0 +1,12 @@
+{
+  "line": "I3",
+  "market": "ar_eg",
+  "model": "gpt",
+  "source": "Bring home the bacon with zero fees.",
+  "raw": "{\n  \"literal\": \"هات لحم الخنزير للبيت من غير رسوم.\",\n  \"adaptation\": \"خلّي مكسبك كله ليك... من غير رسوم.\",\n  \"back_translation\": \"Keep all your earnings for yourself—with zero fees.\",\n  \"approach\": \"replaced\",\n  \"notes\": \"The bacon reference was replaced because the English idiom does not translate naturally and pork is culturally inappropriate in Egypt.\"\n}",
+  "literal": "هات لحم الخنزير للبيت من غير رسوم.",
+  "adaptation": "خلّي مكسبك كله ليك... من غير رسوم.",
+  "back_translation": "Keep all your earnings for yourself—with zero fees.",
+  "approach": "replaced",
+  "notes": "The bacon reference was replaced because the English idiom does not translate naturally and pork is culturally inappropriate in Egypt."
+}

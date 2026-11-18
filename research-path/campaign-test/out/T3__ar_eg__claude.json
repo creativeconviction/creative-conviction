@@ -1,0 +1,12 @@
+{
+  "line": "T3",
+  "market": "ar_eg",
+  "model": "claude",
+  "source": "Have a break, have a KitKat",
+  "raw": "```json\n{\n  \"literal\": \"خذ استراحة، خذ كيت كات\",\n  \"adaptation\": \"خد بريك، خد كيت كات\",\n  \"back_translation\": \"Take a break, take a KitKat\",\n  \"approach\": \"adapted\",\n  \"notes\": \"I switched from formal Modern Standard Arabic to Egyptian colloquial and used the everyday loanword 'بريك' (break), which keeps the brand's core 'break' idea and sounds natural to Egyptians, while watching that break-time messaging around Ramadan is timed for after iftar rather than daytime fasting hours.\"\n}\n```",
+  "literal": "خذ استراحة، خذ كيت كات",
+  "adaptation": "خد بريك، خد كيت كات",
+  "back_translation": "Take a break, take a KitKat",
+  "approach": "adapted",
+  "notes": "I switched from formal Modern Standard Arabic to Egyptian colloquial and used the everyday loanword 'بريك' (break), which keeps the brand's core 'break' idea and sounds natural to Egyptians, while watching that break-time messaging around Ramadan is timed for after iftar rather than daytime fasting hours."
+}

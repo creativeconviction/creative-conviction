@@ -1,0 +1,12 @@
+{
+  "line": "C5",
+  "market": "en_gb",
+  "model": "gemini",
+  "source": "Your Friday night date starts here.",
+  "raw": "{\n  \"literal\": \"Your Friday night date starts here.\",\n  \"adaptation\": \"Your Friday night date, sorted.\",\n  \"back_translation\": \"Your Friday night date, taken care of.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Replaced the generic 'starts here' with 'sorted' to leverage a highly recognizable, colloquial British phrase for having things successfully arranged.\"\n}",
+  "literal": "Your Friday night date starts here.",
+  "adaptation": "Your Friday night date, sorted.",
+  "back_translation": "Your Friday night date, taken care of.",
+  "approach": "adapted",
+  "notes": "Replaced the generic 'starts here' with 'sorted' to leverage a highly recognizable, colloquial British phrase for having things successfully arranged."
+}

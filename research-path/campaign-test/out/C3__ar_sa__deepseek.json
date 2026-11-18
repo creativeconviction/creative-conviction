@@ -1,0 +1,12 @@
+{
+  "line": "C3",
+  "market": "ar_sa",
+  "model": "deepseek",
+  "source": "Thanksgiving dinner, sorted. Order your turkey today.",
+  "raw": "{\n  \"literal\": \"عشاء عيد الشكر، تم الترتيب. اطلب الديك الرومي اليوم.\",\n  \"adaptation\": \"وليمة العيد، جاهزة. اطلب لحم الخروف اليوم.\",\n  \"back_translation\": \"Eid feast, sorted. Order your lamb today.\",\n  \"approach\": \"replaced\",\n  \"notes\": \"Thanksgiving is not observed in Saudi Arabia, so the occasion was switched to the local Eid al-Adha celebration with lamb as the traditional centerpiece.\"\n}",
+  "literal": "عشاء عيد الشكر، تم الترتيب. اطلب الديك الرومي اليوم.",
+  "adaptation": "وليمة العيد، جاهزة. اطلب لحم الخروف اليوم.",
+  "back_translation": "Eid feast, sorted. Order your lamb today.",
+  "approach": "replaced",
+  "notes": "Thanksgiving is not observed in Saudi Arabia, so the occasion was switched to the local Eid al-Adha celebration with lamb as the traditional centerpiece."
+}

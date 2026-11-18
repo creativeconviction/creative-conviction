@@ -1,0 +1,13 @@
+{
+  "scenario": "M12",
+  "lang": "ar_ma",
+  "model": "claude",
+  "message": "شكرا على السرعة فالتوصيل! ولكن الخبز كان يابس والطماطم مهروسة",
+  "raw": "```json\n{\n  \"intent\": \"quality_issue\",\n  \"sentiment\": \"mixed\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"The customer thanked the team for the fast delivery but reported that the bread was stale and the tomatoes were crushed.\"\n}\n```",
+  "intent": "quality_issue",
+  "sentiment": "mixed",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer thanked the team for the fast delivery but reported that the bread was stale and the tomatoes were crushed."
+}

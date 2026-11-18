@@ -55,7 +55,8 @@ const DESCRIBE = `Describe this logo's visual motifs. Return only JSON: {"motifs
       const texts = rb.texts || [];
       const targets = meta.part === 'L' ? [meta.native, meta.english] : [meta.text];
       row.read = texts.join(' | ');
-      row.scores = targets.map((t) => Math.max(0, ...texts.map((x) => sim(x, t))));
+      const candidates = [...texts, texts.join(' ')];
+      row.scores = targets.map((t) => Math.max(0, ...candidates.map((x) => sim(x, t))));
       row.exact = row.scores.every((s) => s === 1);
       row.best_similarity = +(row.scores.reduce((a, b) => a + b, 0) / row.scores.length).toFixed(3);
       if (meta.part === 'L') { row.native_similarity = row.scores[0]; row.english_similarity = row.scores[1]; }

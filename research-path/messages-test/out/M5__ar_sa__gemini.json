@@ -1,0 +1,13 @@
+{
+  "scenario": "M5",
+  "lang": "ar_sa",
+  "model": "gemini",
+  "message": "السلام عليكم، أبغى أسترجع فلوس الطلب 48213 لو سمحت. الأغراض مو نفس الوصف.",
+  "raw": "{\n  \"intent\": \"refund_request\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"The customer is requesting a refund for order 48213 because the received items do not match their descriptions.\"\n}",
+  "intent": "refund_request",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "The customer is requesting a refund for order 48213 because the received items do not match their descriptions."
+}

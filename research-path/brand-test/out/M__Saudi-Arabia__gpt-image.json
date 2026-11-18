@@ -1,0 +1,9 @@
+{
+  "part": "M",
+  "key": "M__Saudi-Arabia",
+  "prompt": "A logo for a new fintech startup from Saudi Arabia. Flat vector style on a plain white background, no text.",
+  "country": "Saudi Arabia",
+  "model": "gpt-image",
+  "endpoint": "openai/gpt-image-2.6/sunburst/text-to-image",
+  "at": "2026-11-18T20:01:43.779Z"
+}

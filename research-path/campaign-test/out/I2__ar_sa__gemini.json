@@ -1,0 +1,12 @@
+{
+  "line": "I2",
+  "market": "ar_sa",
+  "model": "gemini",
+  "source": "Rise and grind.",
+  "raw": "{\n  \"literal\": \"استيقظ واطحن.\",\n  \"adaptation\": \"صحصح وأنجز.\",\n  \"back_translation\": \"Energize and achieve.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Since the literal translation of 'grind' lacks the motivational double-meaning in Arabic, we used 'Sahsih' (a very common term for getting alert, inherently tied to drinking coffee) paired with 'achieve' to match the energetic hustle culture of Saudi youth.\"\n}",
+  "literal": "استيقظ واطحن.",
+  "adaptation": "صحصح وأنجز.",
+  "back_translation": "Energize and achieve.",
+  "approach": "adapted",
+  "notes": "Since the literal translation of 'grind' lacks the motivational double-meaning in Arabic, we used 'Sahsih' (a very common term for getting alert, inherently tied to drinking coffee) paired with 'achieve' to match the energetic hustle culture of Saudi youth."
+}

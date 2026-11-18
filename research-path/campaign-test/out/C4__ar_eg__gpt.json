@@ -1,0 +1,12 @@
+{
+  "line": "C4",
+  "market": "ar_eg",
+  "model": "gpt",
+  "source": "Get beach-body ready this summer.",
+  "raw": "{\n  \"literal\": \"استعد بجسم الشاطئ هذا الصيف.\",\n  \"adaptation\": \"استعد للصيف وخليك في أحسن فورمة.\",\n  \"back_translation\": \"Get ready for summer and be in your best shape.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"تجنبنا تعبير «جسم الشاطئ» لأنه غير طبيعي في مصر وقد يعزز ضغوطًا مرتبطة بصورة الجسد.\"\n}",
+  "literal": "استعد بجسم الشاطئ هذا الصيف.",
+  "adaptation": "استعد للصيف وخليك في أحسن فورمة.",
+  "back_translation": "Get ready for summer and be in your best shape.",
+  "approach": "adapted",
+  "notes": "تجنبنا تعبير «جسم الشاطئ» لأنه غير طبيعي في مصر وقد يعزز ضغوطًا مرتبطة بصورة الجسد."
+}

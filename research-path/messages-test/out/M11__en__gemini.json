@@ -1,0 +1,13 @@
+{
+  "scenario": "M11",
+  "lang": "en",
+  "model": "gemini",
+  "message": "honestly this is the last time I'm ordering from you, something goes wrong every single week",
+  "raw": "{\n  \"intent\": \"general_complaint\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"The customer is expressing extreme frustration over recurring issues and is threatening to stop using the service.\"\n}",
+  "intent": "general_complaint",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "The customer is expressing extreme frustration over recurring issues and is threatening to stop using the service."
+}

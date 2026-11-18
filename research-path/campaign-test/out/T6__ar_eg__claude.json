@@ -1,0 +1,12 @@
+{
+  "line": "T6",
+  "market": "ar_eg",
+  "model": "claude",
+  "source": "Got milk?",
+  "raw": "```json\n{\n  \"literal\": \"هل لديك حليب؟\",\n  \"adaptation\": \"فيه لبن؟\",\n  \"back_translation\": \"Is there any milk?\",\n  \"approach\": \"adapted\",\n  \"notes\": \"I used the Egyptian colloquial 'لبن' (milk in Egypt, though it means yogurt in the Levant) instead of formal 'حليب', and I avoided the second-person 'عندك لبن؟' because, said to a woman, it can suggest breastfeeding, the same trap behind the infamous Spanish 'Are you lactating?' mistranslation.\"\n}\n```",
+  "literal": "هل لديك حليب؟",
+  "adaptation": "فيه لبن؟",
+  "back_translation": "Is there any milk?",
+  "approach": "adapted",
+  "notes": "I used the Egyptian colloquial 'لبن' (milk in Egypt, though it means yogurt in the Levant) instead of formal 'حليب', and I avoided the second-person 'عندك لبن؟' because, said to a woman, it can suggest breastfeeding, the same trap behind the infamous Spanish 'Are you lactating?' mistranslation."
+}

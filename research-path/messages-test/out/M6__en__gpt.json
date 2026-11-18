@@ -1,0 +1,13 @@
+{
+  "scenario": "M6",
+  "lang": "en",
+  "model": "gpt",
+  "message": "cancel my order NOW please, I ordered to the wrong address",
+  "raw": "{\"intent\":\"cancel_order\",\"sentiment\":\"negative\",\"urgency\":\"high\",\"sarcasm\":false,\"churn_risk\":false,\"summary\":\"The customer urgently wants to cancel their order because it was placed for the wrong address.\"}",
+  "intent": "cancel_order",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer urgently wants to cancel their order because it was placed for the wrong address."
+}

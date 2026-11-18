@@ -1,0 +1,12 @@
+{
+  "line": "I1",
+  "market": "ar_eg",
+  "model": "gemini",
+  "source": "We deliver the goods. Literally.",
+  "raw": "{\n  \"literal\": \"نحن نوصل البضائع. حرفياً.\",\n  \"adaptation\": \"إحنا قول وفعل.. وبنوصل طلباتك بجد.\",\n  \"back_translation\": \"We are word and deed.. and we deliver your orders for real.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"The English idiom 'deliver the goods' doesn't translate, so we used the Egyptian phrase for keeping promises ('word and deed') and added 'for real' to recreate the pun about physical delivery.\"\n}",
+  "literal": "نحن نوصل البضائع. حرفياً.",
+  "adaptation": "إحنا قول وفعل.. وبنوصل طلباتك بجد.",
+  "back_translation": "We are word and deed.. and we deliver your orders for real.",
+  "approach": "adapted",
+  "notes": "The English idiom 'deliver the goods' doesn't translate, so we used the Egyptian phrase for keeping promises ('word and deed') and added 'for real' to recreate the pun about physical delivery."
+}

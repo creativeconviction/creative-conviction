@@ -1,0 +1,12 @@
+{
+  "line": "T5",
+  "market": "ar_sa",
+  "model": "deepseek",
+  "source": "Because you're worth it",
+  "raw": "{\n  \"literal\": \"لأنك تستحقين ذلك\",\n  \"adaptation\": \"لأنك تستحقين\",\n  \"back_translation\": \"Because you deserve it.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"The phrase was shortened to the more idiomatic Arabic 'لأنك تستحقين', omitting 'it', which sounds more natural and empowering without any cultural insensitivity.\"\n}",
+  "literal": "لأنك تستحقين ذلك",
+  "adaptation": "لأنك تستحقين",
+  "back_translation": "Because you deserve it.",
+  "approach": "adapted",
+  "notes": "The phrase was shortened to the more idiomatic Arabic 'لأنك تستحقين', omitting 'it', which sounds more natural and empowering without any cultural insensitivity."
+}

@@ -1,0 +1,13 @@
+{
+  "scenario": "M11",
+  "lang": "arabizi",
+  "model": "claude",
+  "message": "besara7a di a5er marra atlob menko, kol esboo3 fe moseeba",
+  "raw": "{\"intent\": \"general_complaint\", \"sentiment\": \"negative\", \"urgency\": \"medium\", \"sarcasm\": false, \"churn_risk\": true, \"summary\": \"The customer says this is the last time they will order because there is a problem every week.\"}",
+  "intent": "general_complaint",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "The customer says this is the last time they will order because there is a problem every week."
+}

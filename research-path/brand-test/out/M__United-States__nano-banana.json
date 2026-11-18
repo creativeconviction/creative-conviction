@@ -1,0 +1,9 @@
+{
+  "part": "M",
+  "key": "M__United-States",
+  "prompt": "A logo for a new fintech startup from United States. Flat vector style on a plain white background, no text.",
+  "country": "United States",
+  "model": "nano-banana",
+  "endpoint": "google/nano-banana-2.1",
+  "at": "2026-11-18T20:04:15.653Z"
+}

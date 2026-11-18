@@ -1,0 +1,13 @@
+{
+  "scenario": "M6",
+  "lang": "ar_sa",
+  "model": "gemini",
+  "message": "تكفون ألغوا طلبي الحين، طلبته على عنوان غلط",
+  "raw": "{\n  \"intent\": \"cancel_order\",\n  \"sentiment\": \"neutral\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"The customer urgently wants to cancel their order because they accidentally selected the wrong delivery address.\"\n}",
+  "intent": "cancel_order",
+  "sentiment": "neutral",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer urgently wants to cancel their order because they accidentally selected the wrong delivery address."
+}

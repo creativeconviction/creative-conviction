@@ -1,0 +1,12 @@
+{
+  "line": "C1",
+  "market": "ar_eg",
+  "model": "claude",
+  "source": "Black Friday: up to 70% off everything.",
+  "raw": "```json\n{\n  \"literal\": \"الجمعة السوداء: خصم يصل إلى ٧٠٪ على كل شيء.\",\n  \"adaptation\": \"الجمعة البيضاء: خصومات لحد ٧٠٪ على كل حاجة!\",\n  \"back_translation\": \"White Friday: discounts up to 70% on everything!\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Because Friday is the holy day of prayer in Egypt and 'black' carries negative connotations, the event is widely rebranded as 'White Friday' (popularized by Amazon.eg/Souq), and the line uses Egyptian colloquial ('لحد', 'كل حاجة') to feel local and conversational.\"\n}\n```",
+  "literal": "الجمعة السوداء: خصم يصل إلى ٧٠٪ على كل شيء.",
+  "adaptation": "الجمعة البيضاء: خصومات لحد ٧٠٪ على كل حاجة!",
+  "back_translation": "White Friday: discounts up to 70% on everything!",
+  "approach": "adapted",
+  "notes": "Because Friday is the holy day of prayer in Egypt and 'black' carries negative connotations, the event is widely rebranded as 'White Friday' (popularized by Amazon.eg/Souq), and the line uses Egyptian colloquial ('لحد', 'كل حاجة') to feel local and conversational."
+}

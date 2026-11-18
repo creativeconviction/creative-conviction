@@ -1,0 +1,12 @@
+{
+  "line": "I1",
+  "market": "ar_sa",
+  "model": "gemini",
+  "source": "We deliver the goods. Literally.",
+  "raw": "{\n  \"literal\": \"نحن نوصل البضائع. حرفياً.\",\n  \"adaptation\": \"نوصل لك مقاضيك.. قول وفعل.\",\n  \"back_translation\": \"We deliver your groceries... in word and deed.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Since the English pun on 'delivering the goods' doesn't translate, the line was adapted using the quintessential Saudi colloquial word for groceries ('maqadhi') paired with the local idiom for ultimate reliability ('qawl wa fi'l') to capture the exact same dual message of physical delivery and trustworthy execution.\"\n}",
+  "literal": "نحن نوصل البضائع. حرفياً.",
+  "adaptation": "نوصل لك مقاضيك.. قول وفعل.",
+  "back_translation": "We deliver your groceries... in word and deed.",
+  "approach": "adapted",
+  "notes": "Since the English pun on 'delivering the goods' doesn't translate, the line was adapted using the quintessential Saudi colloquial word for groceries ('maqadhi') paired with the local idiom for ultimate reliability ('qawl wa fi'l') to capture the exact same dual message of physical delivery and trustworthy execution."
+}

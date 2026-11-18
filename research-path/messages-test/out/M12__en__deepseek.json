@@ -1,0 +1,13 @@
+{
+  "scenario": "M12",
+  "lang": "en",
+  "model": "deepseek",
+  "message": "thanks for the fast delivery! but the bread was stale and the tomatoes were squashed",
+  "raw": "{\n  \"intent\": \"quality_issue\",\n  \"sentiment\": \"mixed\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"Customer thanks for fast delivery but reports stale bread and squashed tomatoes.\"\n}",
+  "intent": "quality_issue",
+  "sentiment": "mixed",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Customer thanks for fast delivery but reports stale bread and squashed tomatoes."
+}

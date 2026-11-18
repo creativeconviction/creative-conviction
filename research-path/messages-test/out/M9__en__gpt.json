@@ -1,0 +1,13 @@
+{
+  "scenario": "M9",
+  "lang": "en",
+  "model": "gpt",
+  "message": "just wanted to say the driver was super kind and helped me carry everything upstairs, thank you!",
+  "raw": "{\"intent\":\"praise\",\"sentiment\":\"positive\",\"urgency\":\"low\",\"sarcasm\":false,\"churn_risk\":false,\"summary\":\"The customer praises the driver for being kind and helping carry the groceries upstairs.\"}",
+  "intent": "praise",
+  "sentiment": "positive",
+  "urgency": "low",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer praises the driver for being kind and helping carry the groceries upstairs."
+}

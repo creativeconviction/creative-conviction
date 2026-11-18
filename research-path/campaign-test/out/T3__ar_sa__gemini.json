@@ -1,0 +1,12 @@
+{
+  "line": "T3",
+  "market": "ar_sa",
+  "model": "gemini",
+  "source": "Have a break, have a KitKat",
+  "raw": "{\n  \"literal\": \"خذ استراحة، خذ كيت كات\",\n  \"adaptation\": \"خذ لك بريك، خذ لك كيت كات\",\n  \"back_translation\": \"Take a break, take a KitKat\",\n  \"approach\": \"adapted\",\n  \"notes\": \"By using the conversational Saudi phrasing 'خذ لك' (take for yourself) and the fully integrated English loanword 'بريك' (break), this matches the brand's actual, culturally resonant official slogan in the region.\"\n}",
+  "literal": "خذ استراحة، خذ كيت كات",
+  "adaptation": "خذ لك بريك، خذ لك كيت كات",
+  "back_translation": "Take a break, take a KitKat",
+  "approach": "adapted",
+  "notes": "By using the conversational Saudi phrasing 'خذ لك' (take for yourself) and the fully integrated English loanword 'بريك' (break), this matches the brand's actual, culturally resonant official slogan in the region."
+}

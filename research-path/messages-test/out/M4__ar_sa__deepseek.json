@@ -1,0 +1,13 @@
+{
+  "scenario": "M4",
+  "lang": "ar_sa",
+  "model": "deepseek",
+  "message": "الله يسامحكم، ثالث مرة الطلب يجيني غلط",
+  "raw": "{\n  \"intent\": \"wrong_item\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"Customer complains that for the third time, their order is wrong.\"\n}",
+  "intent": "wrong_item",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Customer complains that for the third time, their order is wrong."
+}

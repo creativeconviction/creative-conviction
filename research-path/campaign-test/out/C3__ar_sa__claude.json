@@ -1,0 +1,12 @@
+{
+  "line": "C3",
+  "market": "ar_sa",
+  "model": "claude",
+  "source": "Thanksgiving dinner, sorted. Order your turkey today.",
+  "raw": "```json\n{\n  \"literal\": \"عشاء عيد الشكر، تم ترتيبه. اطلب ديكك الرومي اليوم.\",\n  \"adaptation\": \"عزيمة العيد؟ أبشر، علينا! اطلب مقاضيك اليوم.\",\n  \"back_translation\": \"The Eid family feast? Consider it done, we've got you! Order your groceries today.\",\n  \"approach\": \"replaced\",\n  \"notes\": \"Thanksgiving and turkey have no cultural relevance in Saudi Arabia, so the occasion was swapped for the Eid family gathering ('azeema') and the turkey for Saudi-dialect 'maqadi' (grocery shopping), with the warm local reassurance 'abshir' carrying the 'sorted' promise.\"\n}\n```",
+  "literal": "عشاء عيد الشكر، تم ترتيبه. اطلب ديكك الرومي اليوم.",
+  "adaptation": "عزيمة العيد؟ أبشر، علينا! اطلب مقاضيك اليوم.",
+  "back_translation": "The Eid family feast? Consider it done, we've got you! Order your groceries today.",
+  "approach": "replaced",
+  "notes": "Thanksgiving and turkey have no cultural relevance in Saudi Arabia, so the occasion was swapped for the Eid family gathering ('azeema') and the turkey for Saudi-dialect 'maqadi' (grocery shopping), with the warm local reassurance 'abshir' carrying the 'sorted' promise."
+}

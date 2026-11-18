@@ -1,0 +1,13 @@
+{
+  "scenario": "M5",
+  "lang": "arabizi",
+  "model": "deepseek",
+  "message": "el salamo 3aleekom, 3ayez asterga3 felous el order 48213 law sama7t. el 7agat mesh zay el wasf.",
+  "raw": "{\n  \"intent\": \"refund_request\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"Customer requests a refund for order 48213 because the items received do not match the description.\"\n}",
+  "intent": "refund_request",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "Customer requests a refund for order 48213 because the items received do not match the description."
+}

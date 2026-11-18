@@ -1,0 +1,13 @@
+{
+  "scenario": "M11",
+  "lang": "ar_sa",
+  "model": "gpt",
+  "message": "والله هذي آخر مرة أطلب منكم، كل أسبوع فيه مشكلة",
+  "raw": "{\"intent\":\"general_complaint\",\"sentiment\":\"negative\",\"urgency\":\"medium\",\"sarcasm\":false,\"churn_risk\":true,\"summary\":\"The customer says recurring weekly problems have made this their last order.\"}",
+  "intent": "general_complaint",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "The customer says recurring weekly problems have made this their last order."
+}

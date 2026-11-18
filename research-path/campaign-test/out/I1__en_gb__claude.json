@@ -1,0 +1,12 @@
+{
+  "line": "I1",
+  "market": "en_gb",
+  "model": "claude",
+  "source": "We deliver the goods. Literally.",
+  "raw": "```json\n{\n  \"literal\": \"We deliver the goods. Literally.\",\n  \"adaptation\": \"We deliver the goods. Quite literally.\",\n  \"back_translation\": \"We deliver the goods. Quite literally.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"The idiom 'deliver the goods' is well understood in the UK, so the pun survives intact; adding 'quite' gives it a drier, more understated British tone without changing the joke.\"\n}\n```",
+  "literal": "We deliver the goods. Literally.",
+  "adaptation": "We deliver the goods. Quite literally.",
+  "back_translation": "We deliver the goods. Quite literally.",
+  "approach": "adapted",
+  "notes": "The idiom 'deliver the goods' is well understood in the UK, so the pun survives intact; adding 'quite' gives it a drier, more understated British tone without changing the joke."
+}

@@ -1,0 +1,12 @@
+{
+  "line": "I1",
+  "market": "ar_sa",
+  "model": "deepseek",
+  "source": "We deliver the goods. Literally.",
+  "raw": "{\n  \"literal\": \"نحن نوصّل البضائع. حرفيًا.\",\n  \"adaptation\": \"نوصلك الطيب. حرفيًا.\",\n  \"back_translation\": \"We deliver the good to you. Literally.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Replaced the English idiom 'deliver the goods' with the Arabic word 'الطيب' which means both 'goodness' and 'tasty food', preserving the double-meaning pun and ensuring cultural relevance.\"\n}",
+  "literal": "نحن نوصّل البضائع. حرفيًا.",
+  "adaptation": "نوصلك الطيب. حرفيًا.",
+  "back_translation": "We deliver the good to you. Literally.",
+  "approach": "adapted",
+  "notes": "Replaced the English idiom 'deliver the goods' with the Arabic word 'الطيب' which means both 'goodness' and 'tasty food', preserving the double-meaning pun and ensuring cultural relevance."
+}

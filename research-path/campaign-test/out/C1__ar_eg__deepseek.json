@@ -1,0 +1,12 @@
+{
+  "line": "C1",
+  "market": "ar_eg",
+  "model": "deepseek",
+  "source": "Black Friday: up to 70% off everything.",
+  "raw": "{\n  \"literal\": \"الجمعة السوداء: حتى 70% خصم على كل شيء\",\n  \"adaptation\": \"الجمعة البيضاء: خصومات تصل إلى 70% على كل المنتجات\",\n  \"back_translation\": \"White Friday: discounts up to 70% on all products\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Changed 'Black Friday' to 'White Friday' because in Egypt the term 'black' has negative connotations when paired with Friday, the Islamic day of prayer, so retailers use 'White Friday' instead.\"\n}",
+  "literal": "الجمعة السوداء: حتى 70% خصم على كل شيء",
+  "adaptation": "الجمعة البيضاء: خصومات تصل إلى 70% على كل المنتجات",
+  "back_translation": "White Friday: discounts up to 70% on all products",
+  "approach": "adapted",
+  "notes": "Changed 'Black Friday' to 'White Friday' because in Egypt the term 'black' has negative connotations when paired with Friday, the Islamic day of prayer, so retailers use 'White Friday' instead."
+}

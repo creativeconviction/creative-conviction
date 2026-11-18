@@ -1,0 +1,12 @@
+{
+  "line": "I2",
+  "market": "en_gb",
+  "model": "gemini",
+  "source": "Rise and grind.",
+  "raw": "{\n  \"literal\": \"Rise and grind.\",\n  \"adaptation\": \"Time for the daily grind.\",\n  \"back_translation\": \"Time for the daily grind.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"We shifted away from the earnest American hustle-culture phrase 'rise and grind' to 'the daily grind', which better aligns with the dry, slightly cynical British sense of humour while maintaining the clever coffee bean pun.\"\n}",
+  "literal": "Rise and grind.",
+  "adaptation": "Time for the daily grind.",
+  "back_translation": "Time for the daily grind.",
+  "approach": "adapted",
+  "notes": "We shifted away from the earnest American hustle-culture phrase 'rise and grind' to 'the daily grind', which better aligns with the dry, slightly cynical British sense of humour while maintaining the clever coffee bean pun."
+}

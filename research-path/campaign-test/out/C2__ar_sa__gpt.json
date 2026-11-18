@@ -1,0 +1,12 @@
+{
+  "line": "C2",
+  "market": "ar_sa",
+  "model": "gpt",
+  "source": "Happy hour: 2-for-1 drinks from 5 to 7pm.",
+  "raw": "{\n  \"literal\": \"الساعة السعيدة: مشروبان بسعر مشروب واحد من 5 إلى 7 مساءً.\",\n  \"adaptation\": \"عرض المساء: اطلب مشروبًا واحصل على الثاني مجانًا من 5 إلى 7 مساءً.\",\n  \"back_translation\": \"Evening offer: Order one drink and get the second free from 5 to 7pm.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"استُبدلت عبارة «الساعة السعيدة» لتجنّب ارتباطها بالعروض على المشروبات الكحولية، المحظورة في السعودية.\"\n}",
+  "literal": "الساعة السعيدة: مشروبان بسعر مشروب واحد من 5 إلى 7 مساءً.",
+  "adaptation": "عرض المساء: اطلب مشروبًا واحصل على الثاني مجانًا من 5 إلى 7 مساءً.",
+  "back_translation": "Evening offer: Order one drink and get the second free from 5 to 7pm.",
+  "approach": "adapted",
+  "notes": "استُبدلت عبارة «الساعة السعيدة» لتجنّب ارتباطها بالعروض على المشروبات الكحولية، المحظورة في السعودية."
+}

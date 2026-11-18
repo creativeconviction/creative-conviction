@@ -1,0 +1,1223 @@
+[
+ {
+  "file": "C__ar__long.jpg",
+  "part": "C",
+  "model": "browser",
+  "script": "ar",
+  "requested": "السوق الطازج",
+  "read": "السوق الطازج",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "yes",
+  "garbled": false
+ },
+ {
+  "file": "C__ar__short.jpg",
+  "part": "C",
+  "model": "browser",
+  "script": "ar",
+  "requested": "قريب",
+  "read": "قريب",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "yes",
+  "garbled": false
+ },
+ {
+  "file": "C__en__long.jpg",
+  "part": "C",
+  "model": "browser",
+  "script": "en",
+  "requested": "Fresh Market",
+  "read": "Fresh Market",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "n/a",
+  "garbled": false
+ },
+ {
+  "file": "C__en__short.jpg",
+  "part": "C",
+  "model": "browser",
+  "script": "en",
+  "requested": "Nearby",
+  "read": "Nearby",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "n/a",
+  "garbled": false
+ },
+ {
+  "file": "C__fa__long.jpg",
+  "part": "C",
+  "model": "browser",
+  "script": "fa",
+  "requested": "بازار تازه",
+  "read": "بازار تازه",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "yes",
+  "garbled": false
+ },
+ {
+  "file": "C__fa__short.jpg",
+  "part": "C",
+  "model": "browser",
+  "script": "fa",
+  "requested": "نزدیک",
+  "read": "نزدیک",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "yes",
+  "garbled": false
+ },
+ {
+  "file": "C__he__long.jpg",
+  "part": "C",
+  "model": "browser",
+  "script": "he",
+  "requested": "השוק הטרי",
+  "read": "השוק הטרי",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "n/a",
+  "garbled": false
+ },
+ {
+  "file": "C__he__short.jpg",
+  "part": "C",
+  "model": "browser",
+  "script": "he",
+  "requested": "קרוב",
+  "read": "קרוב",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "n/a",
+  "garbled": false
+ },
+ {
+  "file": "C__hi__long.jpg",
+  "part": "C",
+  "model": "browser",
+  "script": "hi",
+  "requested": "ताज़ा बाज़ार",
+  "read": "ताज़ा बाज़ार",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "n/a",
+  "garbled": false
+ },
+ {
+  "file": "C__hi__short.jpg",
+  "part": "C",
+  "model": "browser",
+  "script": "hi",
+  "requested": "नज़दीक",
+  "read": "नज़दीक",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "n/a",
+  "garbled": false
+ },
+ {
+  "file": "C__ja__long.jpg",
+  "part": "C",
+  "model": "browser",
+  "script": "ja",
+  "requested": "新鮮市場",
+  "read": "新鮮市場",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "n/a",
+  "garbled": false
+ },
+ {
+  "file": "C__ja__short.jpg",
+  "part": "C",
+  "model": "browser",
+  "script": "ja",
+  "requested": "ちかく",
+  "read": "ちかく",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "n/a",
+  "garbled": false
+ },
+ {
+  "file": "C__ru__long.jpg",
+  "part": "C",
+  "model": "browser",
+  "script": "ru",
+  "requested": "Свежий рынок",
+  "read": "Свежий рынок",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "n/a",
+  "garbled": false
+ },
+ {
+  "file": "C__ru__short.jpg",
+  "part": "C",
+  "model": "browser",
+  "script": "ru",
+  "requested": "Рядом",
+  "read": "Рядом",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "n/a",
+  "garbled": false
+ },
+ {
+  "file": "C__th__long.jpg",
+  "part": "C",
+  "model": "browser",
+  "script": "th",
+  "requested": "ตลาดสด",
+  "read": "ตลาดสด",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "n/a",
+  "garbled": false
+ },
+ {
+  "file": "C__th__short.jpg",
+  "part": "C",
+  "model": "browser",
+  "script": "th",
+  "requested": "ใกล้",
+  "read": "ใกล้",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "n/a",
+  "garbled": false
+ },
+ {
+  "file": "C__zh__long.jpg",
+  "part": "C",
+  "model": "browser",
+  "script": "zh",
+  "requested": "新鲜市场",
+  "read": "新鲜市场",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "n/a",
+  "garbled": false
+ },
+ {
+  "file": "C__zh__short.jpg",
+  "part": "C",
+  "model": "browser",
+  "script": "zh",
+  "requested": "近邻",
+  "read": "近邻",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "n/a",
+  "garbled": false
+ },
+ {
+  "file": "L__ar__flux.jpg",
+  "part": "L",
+  "model": "flux",
+  "script": "ar",
+  "requested": "قريب | Nearby",
+  "read": "الحييئ | Nearby",
+  "scores": [
+   0.167,
+   1
+  ],
+  "exact": false,
+  "best_similarity": 0.584,
+  "native_similarity": 0.167,
+  "english_similarity": 1,
+  "joined": "yes",
+  "garbled": true
+ },
+ {
+  "file": "L__ar__gpt-image.jpg",
+  "part": "L",
+  "model": "gpt-image",
+  "script": "ar",
+  "requested": "قريب | Nearby",
+  "read": "قريب | Nearby",
+  "scores": [
+   1,
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "native_similarity": 1,
+  "english_similarity": 1,
+  "joined": "yes",
+  "garbled": false
+ },
+ {
+  "file": "L__ar__ideogram.jpg",
+  "part": "L",
+  "model": "ideogram",
+  "script": "ar",
+  "requested": "قريب | Nearby",
+  "read": "قريب | Nearby",
+  "scores": [
+   1,
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "native_similarity": 1,
+  "english_similarity": 1,
+  "joined": "yes",
+  "garbled": false
+ },
+ {
+  "file": "L__ar__nano-banana.jpg",
+  "part": "L",
+  "model": "nano-banana",
+  "script": "ar",
+  "requested": "قريب | Nearby",
+  "read": "قريب | Nearby",
+  "scores": [
+   1,
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "native_similarity": 1,
+  "english_similarity": 1,
+  "joined": "yes",
+  "garbled": false
+ },
+ {
+  "file": "L__ar__qwen-image.jpg",
+  "part": "L",
+  "model": "qwen-image",
+  "script": "ar",
+  "requested": "قريب | Nearby",
+  "read": "قررب | Nearby",
+  "scores": [
+   0.75,
+   1
+  ],
+  "exact": false,
+  "best_similarity": 0.875,
+  "native_similarity": 0.75,
+  "english_similarity": 1,
+  "joined": "yes",
+  "garbled": true
+ },
+ {
+  "file": "L__ar__recraft.jpg",
+  "part": "L",
+  "model": "recraft",
+  "script": "ar",
+  "requested": "قريب | Nearby",
+  "read": "قريٮب | Nearby",
+  "scores": [
+   0.8,
+   1
+  ],
+  "exact": false,
+  "best_similarity": 0.9,
+  "native_similarity": 0.8,
+  "english_similarity": 1,
+  "joined": "yes",
+  "garbled": true
+ },
+ {
+  "file": "L__ar__seedream.jpg",
+  "part": "L",
+  "model": "seedream",
+  "script": "ar",
+  "requested": "قريب | Nearby",
+  "read": "قريب | Nearby",
+  "scores": [
+   1,
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "native_similarity": 1,
+  "english_similarity": 1,
+  "joined": "yes",
+  "garbled": false
+ },
+ {
+  "file": "M__Egypt__flux.jpg",
+  "part": "M",
+  "model": "flux",
+  "country": "Egypt",
+  "tropes": "pyramid|generic_abstract",
+  "motifs": "two-faced triangular pyramid shape; letter A form; split triangle facets; flowing path or river cutout; circuit board traces; circuit nodes with open circle terminals; small solid squares; small solid circles/dots; tech connector lines",
+  "has_text": false
+ },
+ {
+  "file": "M__Egypt__gpt-image.jpg",
+  "part": "M",
+  "model": "gpt-image",
+  "country": "Egypt",
+  "tropes": "pyramid|flag_colors",
+  "motifs": "two golden pyramids; payment card; EMV chip; contactless payment waves; red swoosh ring; white swoosh ring; black swoosh ring; orbital swoosh",
+  "has_text": false
+ },
+ {
+  "file": "M__Egypt__ideogram.jpg",
+  "part": "M",
+  "model": "ideogram",
+  "country": "Egypt",
+  "tropes": "pyramid|generic_abstract",
+  "motifs": "slanted diagonal stroke with hooked top; stylized letter A; gold triangle with two-tone shading; faceted pyramid-like shape; roofline/peak form; negative-space gap between shapes",
+  "has_text": false
+ },
+ {
+  "file": "M__Egypt__nano-banana.jpg",
+  "part": "M",
+  "model": "nano-banana",
+  "country": "Egypt",
+  "tropes": "pyramid|generic_abstract",
+  "motifs": "pyramid; faceted triangular segments; circuit board traces; circuit nodes; upward arrow; nested inner triangle; flowing wavy lines; small diamond accents",
+  "has_text": false
+ },
+ {
+  "file": "M__Egypt__qwen-image.jpg",
+  "part": "M",
+  "model": "qwen-image",
+  "country": "Egypt",
+  "tropes": "crescent|generic_abstract",
+  "motifs": "lightning bolt; zigzag stylized letter N; broken circular ring; crescent-shaped inner arc; beveled 3D faceted surfaces; diagonal upward arrow-like stroke",
+  "has_text": false
+ },
+ {
+  "file": "M__Egypt__recraft.jpg",
+  "part": "M",
+  "model": "recraft",
+  "country": "Egypt",
+  "tropes": "generic_abstract",
+  "motifs": "stylized letter E with rounded pill-shaped arms; pill-shaped rounded bar above the letter; orange circle behind the letter; small rounded black bar cutting into the circle; negative-space white notches; overlapping black and orange forms",
+  "has_text": true
+ },
+ {
+  "file": "M__Egypt__seedream.jpg",
+  "part": "M",
+  "model": "seedream",
+  "country": "Egypt",
+  "tropes": "pyramid|desert_dunes",
+  "motifs": "circular ring outline; three pyramids; desert dune wave; dollar sign coin; circuit node connector line with dots; horizontal ground stripes; gradient fades",
+  "has_text": false
+ },
+ {
+  "file": "M__Morocco__flux.jpg",
+  "part": "M",
+  "model": "flux",
+  "country": "Morocco",
+  "tropes": "star|flag_colors",
+  "motifs": "five-pointed star; upward trending arrow; zigzag line graph; vertical bar chart columns; angled bar cutouts; negative space separation",
+  "has_text": false
+ },
+ {
+  "file": "M__Morocco__gpt-image.jpg",
+  "part": "M",
+  "model": "gpt-image",
+  "country": "Morocco",
+  "tropes": "star|crescent",
+  "motifs": "wallet; contactless payment waves; wallet clasp with circular button; yellow card; green card; red crescent-shaped swoosh; green eight-pointed star outline",
+  "has_text": false
+ },
+ {
+  "file": "M__Morocco__ideogram.jpg",
+  "part": "M",
+  "model": "ideogram",
+  "country": "Morocco",
+  "tropes": "star|generic_abstract",
+  "motifs": "eight-pointed star outline; overlapping rotated squares; diagonal upward arrow; growth arrow; geometric star frame",
+  "has_text": false
+ },
+ {
+  "file": "M__Morocco__nano-banana.jpg",
+  "part": "M",
+  "model": "nano-banana",
+  "country": "Morocco",
+  "tropes": "star|calligraphy|generic_abstract",
+  "motifs": "eight-pointed star silhouette; chevron corner segments; network node graph; connected circles and lines; circuit-like branching structure; upward trending arrow; stylized angular Kufic-like letterforms; geometric square and diamond shapes; split two-half composition",
+  "has_text": false
+ },
+ {
+  "file": "M__Morocco__qwen-image.jpg",
+  "part": "M",
+  "model": "qwen-image",
+  "country": "Morocco",
+  "tropes": "star",
+  "motifs": "five-pointed star; interlaced pentagram outline; solid circle background; overlapping line strokes",
+  "has_text": false
+ },
+ {
+  "file": "M__Morocco__recraft.jpg",
+  "part": "M",
+  "model": "recraft",
+  "country": "Morocco",
+  "tropes": "generic_abstract",
+  "motifs": "vertical rounded pill shape; quarter-circle segments; half-circle segments; semicircle bowls; solid circle dot; geometric modular blocks; stacked geometric letterforms",
+  "has_text": false
+ },
+ {
+  "file": "M__Morocco__seedream.jpg",
+  "part": "M",
+  "model": "seedream",
+  "country": "Morocco",
+  "tropes": "star",
+  "motifs": "Star of David (hexagram); interlaced triangles; hexagonal frame; inner triangular cutouts; rising zigzag arrow; upward trend line",
+  "has_text": false
+ },
+ {
+  "file": "M__Saudi-Arabia__flux.jpg",
+  "part": "M",
+  "model": "flux",
+  "country": "Saudi Arabia",
+  "tropes": "generic_abstract",
+  "motifs": "half shield outline; curved shield edge; gold shield tip segment; circuit board traces; circuit nodes; right-angle connector lines; split shield-circuit composition",
+  "has_text": false
+ },
+ {
+  "file": "M__Saudi-Arabia__gpt-image.jpg",
+  "part": "M",
+  "model": "gpt-image",
+  "country": "Saudi Arabia",
+  "tropes": "palm_tree|flag_colors",
+  "motifs": "skyscraper with arched cutout at top (resembling Riyadh's Kingdom Centre); palm tree; ascending bar chart with three rounded bars; elliptical swoosh orbit; payment card shape; EMV chip icon",
+  "has_text": false
+ },
+ {
+  "file": "M__Saudi-Arabia__ideogram.jpg",
+  "part": "M",
+  "model": "ideogram",
+  "country": "Saudi Arabia",
+  "tropes": "falcon|generic_abstract",
+  "motifs": "V-shaped chevron; stylized bird wings; hooked-beak bird head; golden wheat or grass sprigs; folded paper shading; geometric angular shapes",
+  "has_text": false
+ },
+ {
+  "file": "M__Saudi-Arabia__nano-banana.jpg",
+  "part": "M",
+  "model": "nano-banana",
+  "country": "Saudi Arabia",
+  "tropes": "crescent|star|palm_tree",
+  "motifs": "stylized palm tree; curved palm fronds; circuit-board lines with nodes forming fronds; crescent moon; four-pointed star; ascending bar chart; palm trunk formed by tallest bar; horizontal baseline",
+  "has_text": false
+ },
+ {
+  "file": "M__Saudi-Arabia__qwen-image.jpg",
+  "part": "M",
+  "model": "qwen-image",
+  "country": "Saudi Arabia",
+  "tropes": "generic_abstract",
+  "motifs": "solid green circle; white angular stylized letterforms resembling 'LK' or '4K'; folded paper or ribbon effect; diagonal intersecting strokes; small detached accent mark; subtle gray shading on the fold",
+  "has_text": true
+ },
+ {
+  "file": "M__Saudi-Arabia__recraft.jpg",
+  "part": "M",
+  "model": "recraft",
+  "country": "Saudi Arabia",
+  "tropes": "generic_abstract",
+  "motifs": "stylized numeral 5; stylized letter G or numeral 6; abstract bird head silhouette; circular eye cutout; rounded geometric shapes; flat bar shape; curved semicircular forms",
+  "has_text": true
+ },
+ {
+  "file": "M__Saudi-Arabia__seedream.jpg",
+  "part": "M",
+  "model": "seedream",
+  "country": "Saudi Arabia",
+  "tropes": "generic_abstract|flag_colors",
+  "motifs": "circular ring border; green arc segment on left of ring; black upward chevron arrow; stacked gold chevron bands; rounded arch/roof shape; gold segmented circle; vertical pillar-like bars; branching Y-shaped lines; circuit-like channel pattern; symmetrical geometric composition",
+  "has_text": false
+ },
+ {
+  "file": "M__United-Kingdom__flux.jpg",
+  "part": "M",
+  "model": "flux",
+  "country": "United Kingdom",
+  "tropes": "none",
+  "motifs": "shield; pound sterling symbol; vertically split shield halves; inverted color split currency symbol; small circle dot; teal outline border",
+  "has_text": false
+ },
+ {
+  "file": "M__United-Kingdom__gpt-image.jpg",
+  "part": "M",
+  "model": "gpt-image",
+  "country": "United Kingdom",
+  "tropes": "flag_colors",
+  "motifs": "rounded square card shape; Union Jack flag segment; curved swoosh divider; green upward trending arrow; three ascending bar chart columns; blue sloping wave base; white payment card chip icon; white outline borders",
+  "has_text": false
+ },
+ {
+  "file": "M__United-Kingdom__ideogram.jpg",
+  "part": "M",
+  "model": "ideogram",
+  "country": "United Kingdom",
+  "tropes": "flag_colors|generic_abstract",
+  "motifs": "shield shape; diagonal upward arrow; radiating white stripes; union jack-style diagonal lines; rounded shield base",
+  "has_text": false
+ },
+ {
+  "file": "M__United-Kingdom__nano-banana.jpg",
+  "part": "M",
+  "model": "nano-banana",
+  "country": "United Kingdom",
+  "tropes": "flag_colors",
+  "motifs": "pound sterling symbol; upward arrow; curved swoosh forming the base of the pound sign; two-tone split shading; growth trend line",
+  "has_text": false
+ },
+ {
+  "file": "M__United-Kingdom__qwen-image.jpg",
+  "part": "M",
+  "model": "qwen-image",
+  "country": "United Kingdom",
+  "tropes": "flag_colors",
+  "motifs": "circular emblem; Union Jack flag pattern; split circular ring; blue left arc; red right arc; red central cross; diagonal saltire stripes; blue triangular segments; white border fimbriation",
+  "has_text": false
+ },
+ {
+  "file": "M__United-Kingdom__recraft.jpg",
+  "part": "M",
+  "model": "recraft",
+  "country": "United Kingdom",
+  "tropes": "generic_abstract",
+  "motifs": "abstract letter K; rounded circular lobes; teardrop shapes; interlocking blob forms; modular geometric construction; negative space curves; two-tone color blocking",
+  "has_text": false
+ },
+ {
+  "file": "M__United-Kingdom__seedream.jpg",
+  "part": "M",
+  "model": "seedream",
+  "country": "United Kingdom",
+  "tropes": "generic_abstract",
+  "motifs": "concentric circular rings; segmented quadrant arcs; crosshair-like gaps; central diamond; rotated square outline; interlocking triangles; negative-space square center; geometric parallelogram bands; four-way symmetry",
+  "has_text": false
+ },
+ {
+  "file": "M__United-States__flux.jpg",
+  "part": "M",
+  "model": "flux",
+  "country": "United States",
+  "tropes": "generic_abstract",
+  "motifs": "shield; ascending bar chart; upward trending arrow; three vertical bars; split two-tone shield; geometric angular cuts",
+  "has_text": false
+ },
+ {
+  "file": "M__United-States__gpt-image.jpg",
+  "part": "M",
+  "model": "gpt-image",
+  "country": "United States",
+  "tropes": "flag_colors",
+  "motifs": "overlapping credit cards; EMV chip; upward curved arrow; ascending bar chart; wavy red stripes; flag-like waving bands",
+  "has_text": false
+ },
+ {
+  "file": "M__United-States__ideogram.jpg",
+  "part": "M",
+  "model": "ideogram",
+  "country": "United States",
+  "tropes": "generic_abstract",
+  "motifs": "shield outline; upward arrow; zigzag line graph; growth trend line; broken outline segments",
+  "has_text": false
+ },
+ {
+  "file": "M__United-States__nano-banana.jpg",
+  "part": "M",
+  "model": "nano-banana",
+  "country": "United States",
+  "tropes": "star|flag_colors",
+  "motifs": "partial circular ring (C-shape); upward-trending arrow; zigzag line graph; bar chart columns; circuit-board traces with node dots; star points; red and white stripes; checkmark-like shape",
+  "has_text": false
+ },
+ {
+  "file": "M__United-States__qwen-image.jpg",
+  "part": "M",
+  "model": "qwen-image",
+  "country": "United States",
+  "tropes": "crescent|generic_abstract",
+  "motifs": "lowercase letter n; stylized letter e formed from a circle; blue circular globe-like shape; horizontal bar cutout inside the circle; gold crescent-shaped arc wrapping the circle; small notch or leaf-like cutouts along the circle edge; white negative space separating the shapes",
+  "has_text": true
+ },
+ {
+  "file": "M__United-States__recraft.jpg",
+  "part": "M",
+  "model": "recraft",
+  "country": "United States",
+  "tropes": "generic_abstract",
+  "motifs": "interlocking ribbon shapes; continuous rounded line; U-shaped curve; inverted U arch; loop resembling letter P; overlapping bands; monogram-like letterforms; wave pattern",
+  "has_text": false
+ },
+ {
+  "file": "M__United-States__seedream.jpg",
+  "part": "M",
+  "model": "seedream",
+  "country": "United States",
+  "tropes": "generic_abstract",
+  "motifs": "suspension bridge silhouette; rounded blue shield/canopy shape; speech bubble with three dots (ellipsis); upward trending zigzag arrow; growth chart line; negative space white cutouts",
+  "has_text": false
+ },
+ {
+  "file": "W__ar__long__flux.jpg",
+  "part": "W",
+  "model": "flux",
+  "script": "ar",
+  "requested": "السوق الطازج",
+  "read": "العيلة وممة",
+  "scores": [
+   0.182
+  ],
+  "exact": false,
+  "best_similarity": 0.182,
+  "joined": "yes",
+  "garbled": true
+ },
+ {
+  "file": "W__ar__long__gpt-image.jpg",
+  "part": "W",
+  "model": "gpt-image",
+  "script": "ar",
+  "requested": "السوق الطازج",
+  "read": "السوق الطازج",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "yes",
+  "garbled": false
+ },
+ {
+  "file": "W__ar__long__ideogram.jpg",
+  "part": "W",
+  "model": "ideogram",
+  "script": "ar",
+  "requested": "السوق الطازج",
+  "read": "السوق الطازج",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "yes",
+  "garbled": false
+ },
+ {
+  "file": "W__ar__long__nano-banana.jpg",
+  "part": "W",
+  "model": "nano-banana",
+  "script": "ar",
+  "requested": "السوق الطازج",
+  "read": "السوق الطازج",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "yes",
+  "garbled": false
+ },
+ {
+  "file": "W__ar__long__qwen-image.jpg",
+  "part": "W",
+  "model": "qwen-image",
+  "script": "ar",
+  "requested": "السوق الطازج",
+  "read": "السوق الطازج",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "yes",
+  "garbled": false
+ },
+ {
+  "file": "W__ar__long__recraft.jpg",
+  "part": "W",
+  "model": "recraft",
+  "script": "ar",
+  "requested": "السوق الطازج",
+  "read": "السوق الطازج",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "yes",
+  "garbled": true
+ },
+ {
+  "file": "W__ar__long__seedream.jpg",
+  "part": "W",
+  "model": "seedream",
+  "script": "ar",
+  "requested": "السوق الطازج",
+  "read": "السوق الطازج",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "yes",
+  "garbled": false
+ },
+ {
+  "file": "W__ar__short__flux.jpg",
+  "part": "W",
+  "model": "flux",
+  "script": "ar",
+  "requested": "قريب",
+  "read": "خلية",
+  "scores": [
+   0.25
+  ],
+  "exact": false,
+  "best_similarity": 0.25,
+  "joined": "yes",
+  "garbled": false
+ },
+ {
+  "file": "W__ar__short__gpt-image.jpg",
+  "part": "W",
+  "model": "gpt-image",
+  "script": "ar",
+  "requested": "قريب",
+  "read": "قريب",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "yes",
+  "garbled": false
+ },
+ {
+  "file": "W__ar__short__ideogram.jpg",
+  "part": "W",
+  "model": "ideogram",
+  "script": "ar",
+  "requested": "قريب",
+  "read": "قريٮب",
+  "scores": [
+   0.8
+  ],
+  "exact": false,
+  "best_similarity": 0.8,
+  "joined": "yes",
+  "garbled": true
+ },
+ {
+  "file": "W__ar__short__nano-banana.jpg",
+  "part": "W",
+  "model": "nano-banana",
+  "script": "ar",
+  "requested": "قريب",
+  "read": "قريب",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "yes",
+  "garbled": false
+ },
+ {
+  "file": "W__ar__short__qwen-image.jpg",
+  "part": "W",
+  "model": "qwen-image",
+  "script": "ar",
+  "requested": "قريب",
+  "read": "قررٻ",
+  "scores": [
+   0.5
+  ],
+  "exact": false,
+  "best_similarity": 0.5,
+  "joined": "partly",
+  "garbled": true
+ },
+ {
+  "file": "W__ar__short__recraft.jpg",
+  "part": "W",
+  "model": "recraft",
+  "script": "ar",
+  "requested": "قريب",
+  "read": "ڡَرين",
+  "scores": [
+   0.5
+  ],
+  "exact": false,
+  "best_similarity": 0.5,
+  "joined": "yes",
+  "garbled": true
+ },
+ {
+  "file": "W__ar__short__seedream.jpg",
+  "part": "W",
+  "model": "seedream",
+  "script": "ar",
+  "requested": "قريب",
+  "read": "قريىب",
+  "scores": [
+   0.8
+  ],
+  "exact": false,
+  "best_similarity": 0.8,
+  "joined": "yes",
+  "garbled": true
+ },
+ {
+  "file": "W__en__long__flux.jpg",
+  "part": "W",
+  "model": "flux",
+  "script": "en",
+  "requested": "Fresh Market",
+  "read": "Fresh Market",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "n/a",
+  "garbled": false
+ },
+ {
+  "file": "W__en__long__gpt-image.jpg",
+  "part": "W",
+  "model": "gpt-image",
+  "script": "en",
+  "requested": "Fresh Market",
+  "read": "Fresh | Market",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "n/a",
+  "garbled": false
+ },
+ {
+  "file": "W__en__long__ideogram.jpg",
+  "part": "W",
+  "model": "ideogram",
+  "script": "en",
+  "requested": "Fresh Market",
+  "read": "Fresh Market",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "n/a",
+  "garbled": false
+ },
+ {
+  "file": "W__en__long__nano-banana.jpg",
+  "part": "W",
+  "model": "nano-banana",
+  "script": "en",
+  "requested": "Fresh Market",
+  "read": "Fresh | Market",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "n/a",
+  "garbled": false
+ },
+ {
+  "file": "W__en__long__qwen-image.jpg",
+  "part": "W",
+  "model": "qwen-image",
+  "script": "en",
+  "requested": "Fresh Market",
+  "read": "Fresh Market",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "n/a",
+  "garbled": false
+ },
+ {
+  "file": "W__en__long__recraft.jpg",
+  "part": "W",
+  "model": "recraft",
+  "script": "en",
+  "requested": "Fresh Market",
+  "read": "Fresh Market",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "n/a",
+  "garbled": false
+ },
+ {
+  "file": "W__en__long__seedream.jpg",
+  "part": "W",
+  "model": "seedream",
+  "script": "en",
+  "requested": "Fresh Market",
+  "read": "Fresh Market",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "n/a",
+  "garbled": false
+ },
+ {
+  "file": "W__en__short__flux.jpg",
+  "part": "W",
+  "model": "flux",
+  "script": "en",
+  "requested": "Nearby",
+  "read": "Nearby",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "n/a",
+  "garbled": false
+ },
+ {
+  "file": "W__en__short__gpt-image.jpg",
+  "part": "W",
+  "model": "gpt-image",
+  "script": "en",
+  "requested": "Nearby",
+  "read": "Nearby",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "n/a",
+  "garbled": false
+ },
+ {
+  "file": "W__en__short__ideogram.jpg",
+  "part": "W",
+  "model": "ideogram",
+  "script": "en",
+  "requested": "Nearby",
+  "read": "Nearby",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "n/a",
+  "garbled": false
+ },
+ {
+  "file": "W__en__short__nano-banana.jpg",
+  "part": "W",
+  "model": "nano-banana",
+  "script": "en",
+  "requested": "Nearby",
+  "read": "Nearby",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "n/a",
+  "garbled": false
+ },
+ {
+  "file": "W__en__short__qwen-image.jpg",
+  "part": "W",
+  "model": "qwen-image",
+  "script": "en",
+  "requested": "Nearby",
+  "read": "Nearby",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "n/a",
+  "garbled": false
+ },
+ {
+  "file": "W__en__short__recraft.jpg",
+  "part": "W",
+  "model": "recraft",
+  "script": "en",
+  "requested": "Nearby",
+  "read": "Nearby",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "n/a",
+  "garbled": false
+ },
+ {
+  "file": "W__en__short__seedream.jpg",
+  "part": "W",
+  "model": "seedream",
+  "script": "en",
+  "requested": "Nearby",
+  "read": "Nearby",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "n/a",
+  "garbled": false
+ },
+ {
+  "file": "W__fa__long__ideogram.jpg",
+  "part": "W",
+  "model": "ideogram",
+  "script": "fa",
+  "requested": "بازار تازه",
+  "read": "بازار تازه",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "yes",
+  "garbled": false
+ },
+ {
+  "file": "W__fa__long__recraft.jpg",
+  "part": "W",
+  "model": "recraft",
+  "script": "fa",
+  "requested": "بازار تازه",
+  "read": "بازار تازو",
+  "scores": [
+   0.889
+  ],
+  "exact": false,
+  "best_similarity": 0.889,
+  "joined": "partly",
+  "garbled": true
+ },
+ {
+  "file": "W__fa__short__ideogram.jpg",
+  "part": "W",
+  "model": "ideogram",
+  "script": "fa",
+  "requested": "نزدیک",
+  "read": "نزدیک",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "yes",
+  "garbled": false
+ },
+ {
+  "file": "W__fa__short__recraft.jpg",
+  "part": "W",
+  "model": "recraft",
+  "script": "fa",
+  "requested": "نزدیک",
+  "read": "نزدیک",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "partly",
+  "garbled": false
+ },
+ {
+  "file": "W__he__long__ideogram.jpg",
+  "part": "W",
+  "model": "ideogram",
+  "script": "he",
+  "requested": "השוק הטרי",
+  "read": "השוק הטרי",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "n/a",
+  "garbled": false
+ },
+ {
+  "file": "W__he__short__ideogram.jpg",
+  "part": "W",
+  "model": "ideogram",
+  "script": "he",
+  "requested": "קרוב",
+  "read": "קרוב",
+  "scores": [
+   1
+  ],
+  "exact": true,
+  "best_similarity": 1,
+  "joined": "n/a",
+  "garbled": false
+ }
+]

@@ -1,0 +1,13 @@
+{
+  "scenario": "M10",
+  "lang": "ar_eg",
+  "model": "claude",
+  "message": "بتوصلوا التجمع الخامس؟ وفيه حد أدنى للأوردر؟",
+  "raw": "{\"intent\": \"question\", \"sentiment\": \"neutral\", \"urgency\": \"low\", \"sarcasm\": false, \"churn_risk\": false, \"summary\": \"The customer asks whether the app delivers to Fifth Settlement (New Cairo) and whether there is a minimum order amount.\"}",
+  "intent": "question",
+  "sentiment": "neutral",
+  "urgency": "low",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer asks whether the app delivers to Fifth Settlement (New Cairo) and whether there is a minimum order amount."
+}

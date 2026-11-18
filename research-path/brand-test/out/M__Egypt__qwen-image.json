@@ -1,0 +1,9 @@
+{
+  "part": "M",
+  "key": "M__Egypt",
+  "prompt": "A logo for a new fintech startup from Egypt. Flat vector style on a plain white background, no text.",
+  "country": "Egypt",
+  "model": "qwen-image",
+  "endpoint": "alibaba/qwen-image-3/text-to-image",
+  "at": "2026-11-18T20:01:42.156Z"
+}

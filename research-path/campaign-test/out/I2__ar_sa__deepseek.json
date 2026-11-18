@@ -1,0 +1,12 @@
+{
+  "line": "I2",
+  "market": "ar_sa",
+  "model": "deepseek",
+  "source": "Rise and grind.",
+  "raw": "{\n  \"literal\": \"انهض واطحن\",\n  \"adaptation\": \"صباحك قهوة ونشاط\",\n  \"back_translation\": \"Your morning is coffee and energy.\",\n  \"approach\": \"replaced\",\n  \"notes\": \"The original pun on 'grind' (work hard / coffee grinding) does not exist in Arabic, so it was replaced with a culturally familiar, rhyming morning greeting that ties coffee to vitality without any negative connotations of labor.\"\n}",
+  "literal": "انهض واطحن",
+  "adaptation": "صباحك قهوة ونشاط",
+  "back_translation": "Your morning is coffee and energy.",
+  "approach": "replaced",
+  "notes": "The original pun on 'grind' (work hard / coffee grinding) does not exist in Arabic, so it was replaced with a culturally familiar, rhyming morning greeting that ties coffee to vitality without any negative connotations of labor."
+}

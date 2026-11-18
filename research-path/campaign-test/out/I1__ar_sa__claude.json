@@ -1,0 +1,12 @@
+{
+  "line": "I1",
+  "market": "ar_sa",
+  "model": "claude",
+  "source": "We deliver the goods. Literally.",
+  "raw": "```json\n{\n  \"literal\": \"نحن نوصّل البضائع. حرفياً.\",\n  \"adaptation\": \"نجيب لك الخير لين بابك.. حرفياً.\",\n  \"back_translation\": \"We bring the goodness (bounty) right to your door... literally.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"The English idiom 'deliver the goods' has no Arabic equivalent, so the wordplay now rests on 'الخير', which in Saudi usage means both blessing/goodness and food provisions, and the line uses warm Saudi dialect ('نجيب لك', 'لين بابك') to sound local and hospitable.\"\n}\n```",
+  "literal": "نحن نوصّل البضائع. حرفياً.",
+  "adaptation": "نجيب لك الخير لين بابك.. حرفياً.",
+  "back_translation": "We bring the goodness (bounty) right to your door... literally.",
+  "approach": "adapted",
+  "notes": "The English idiom 'deliver the goods' has no Arabic equivalent, so the wordplay now rests on 'الخير', which in Saudi usage means both blessing/goodness and food provisions, and the line uses warm Saudi dialect ('نجيب لك', 'لين بابك') to sound local and hospitable."
+}

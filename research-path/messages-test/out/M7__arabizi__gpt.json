@@ -1,0 +1,13 @@
+{
+  "scenario": "M7",
+  "lang": "arabizi",
+  "model": "gpt",
+  "message": "ba3atoo baskot be zebdet el fool el soudany badal el 3ady, w ebny 3ando 7asaseya men el mekassarat w kal wa7da 5alas",
+  "raw": "{\"intent\":\"wrong_item\",\"sentiment\":\"negative\",\"urgency\":\"high\",\"sarcasm\":false,\"churn_risk\":false,\"summary\":\"The customer received peanut butter biscuits instead of regular ones, and their nut-allergic son has already eaten one.\"}",
+  "intent": "wrong_item",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer received peanut butter biscuits instead of regular ones, and their nut-allergic son has already eaten one."
+}

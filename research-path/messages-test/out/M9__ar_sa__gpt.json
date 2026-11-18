@@ -1,0 +1,13 @@
+{
+  "scenario": "M9",
+  "lang": "ar_sa",
+  "model": "gpt",
+  "message": "حبيت أقول إن المندوب كان مره ذوق وساعدني أطلع الأغراض فوق، يعطيكم العافية!",
+  "raw": "{\"intent\":\"praise\",\"sentiment\":\"positive\",\"urgency\":\"low\",\"sarcasm\":false,\"churn_risk\":false,\"summary\":\"The customer praises the courteous delivery driver for helping carry the groceries upstairs.\"}",
+  "intent": "praise",
+  "sentiment": "positive",
+  "urgency": "low",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer praises the courteous delivery driver for helping carry the groceries upstairs."
+}

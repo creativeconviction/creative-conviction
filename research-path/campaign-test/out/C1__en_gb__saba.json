@@ -1,0 +1,12 @@
+{
+  "line": "C1",
+  "market": "en_gb",
+  "model": "saba",
+  "source": "Black Friday: up to 70% off everything.",
+  "raw": "```json\n{\n  \"literal\": \"Black Friday: totalling 70% off everything.\",\n  \"adaptation\": \"Black Friday: up to £££ off everything - save BIG!\",\n  \"back_translation\": \"Black Friday: up to £££ off everything — save BIG!\",\n  \"approach\": \"adapted\",\n  \"notes\": \"The original lacks energy; added playful punctuation and a sense of scale ('£££') to resonate with UK shoppers seeking value without the hyperbole.\"\n}\n```",
+  "literal": "Black Friday: totalling 70% off everything.",
+  "adaptation": "Black Friday: up to £££ off everything - save BIG!",
+  "back_translation": "Black Friday: up to £££ off everything — save BIG!",
+  "approach": "adapted",
+  "notes": "The original lacks energy; added playful punctuation and a sense of scale ('£££') to resonate with UK shoppers seeking value without the hyperbole."
+}

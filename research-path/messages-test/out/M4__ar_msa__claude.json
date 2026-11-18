@@ -1,0 +1,13 @@
+{
+  "scenario": "M4",
+  "lang": "ar_msa",
+  "model": "claude",
+  "message": "سامحكم الله، هذه ثالث مرة يصلني الطلب خطأ",
+  "raw": "```json\n{\n  \"intent\": \"wrong_item\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"The customer complains that this is the third time their order has arrived wrong.\"\n}\n```",
+  "intent": "wrong_item",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "The customer complains that this is the third time their order has arrived wrong."
+}

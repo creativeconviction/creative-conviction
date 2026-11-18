@@ -1,0 +1,12 @@
+{
+  "line": "I2",
+  "market": "ar_eg",
+  "model": "claude",
+  "source": "Rise and grind.",
+  "raw": "```json\n{\n  \"literal\": \"انهض واطحن.\",\n  \"adaptation\": \"اصحى.. وخلّي يومك مظبوط.\",\n  \"back_translation\": \"Wake up... and make your day just right (\\\"mazboot\\\").\",\n  \"approach\": \"adapted\",\n  \"notes\": \"The English pun on grinding coffee and hustling is lost in Arabic, where \\\"اطحن\\\" reads as being crushed or worn down, so I swapped it for an Egyptian-colloquial play on \\\"مظبوط\\\", which means 'just right' and is also the classic medium-sugar Egyptian coffee order.\"\n}\n```",
+  "literal": "انهض واطحن.",
+  "adaptation": "اصحى.. وخلّي يومك مظبوط.",
+  "back_translation": "Wake up... and make your day just right (\"mazboot\").",
+  "approach": "adapted",
+  "notes": "The English pun on grinding coffee and hustling is lost in Arabic, where \"اطحن\" reads as being crushed or worn down, so I swapped it for an Egyptian-colloquial play on \"مظبوط\", which means 'just right' and is also the classic medium-sugar Egyptian coffee order."
+}

@@ -1,0 +1,13 @@
+{
+  "scenario": "M3",
+  "lang": "arabizi",
+  "model": "gemini",
+  "message": "la begad service to7fa, met2a5areen sa3teen bas zay kol marra 👏👏",
+  "raw": "{\n  \"intent\": \"late_delivery\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": true,\n  \"churn_risk\": true,\n  \"summary\": \"The customer is sarcastically complaining about their grocery delivery being two hours late, noting that this is a recurring issue.\"\n}",
+  "intent": "late_delivery",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": true,
+  "churn_risk": true,
+  "summary": "The customer is sarcastically complaining about their grocery delivery being two hours late, noting that this is a recurring issue."
+}

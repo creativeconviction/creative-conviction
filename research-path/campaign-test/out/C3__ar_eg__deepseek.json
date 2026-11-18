@@ -1,0 +1,12 @@
+{
+  "line": "C3",
+  "market": "ar_eg",
+  "model": "deepseek",
+  "source": "Thanksgiving dinner, sorted. Order your turkey today.",
+  "raw": "{\n  \"literal\": \"عشاء عيد الشكر، تم الترتيب. اطلب الديك الرومي اليوم.\",\n  \"adaptation\": \"عشاء العيلة، خلصان. اطلب الديك الرومي النهاردة!\",\n  \"back_translation\": \"Family dinner, sorted. Order the turkey today!\",\n  \"approach\": \"replaced\",\n  \"notes\": \"Thanksgiving is not celebrated in Egypt, so the occasion was changed to a generic family dinner to ensure cultural relevance and appeal.\"\n}",
+  "literal": "عشاء عيد الشكر، تم الترتيب. اطلب الديك الرومي اليوم.",
+  "adaptation": "عشاء العيلة، خلصان. اطلب الديك الرومي النهاردة!",
+  "back_translation": "Family dinner, sorted. Order the turkey today!",
+  "approach": "replaced",
+  "notes": "Thanksgiving is not celebrated in Egypt, so the occasion was changed to a generic family dinner to ensure cultural relevance and appeal."
+}

@@ -1,0 +1,12 @@
+{
+  "line": "T5",
+  "market": "en_gb",
+  "model": "gemini",
+  "source": "Because you're worth it",
+  "raw": "{\n  \"literal\": \"Because you're worth it\",\n  \"adaptation\": \"Because you're worth it\",\n  \"back_translation\": \"Because you're worth it\",\n  \"approach\": \"keep_english\",\n  \"notes\": \"The original slogan is culturally iconic and universally recognized in the UK exactly as written, so retaining it preserves decades of established brand equity.\"\n}",
+  "literal": "Because you're worth it",
+  "adaptation": "Because you're worth it",
+  "back_translation": "Because you're worth it",
+  "approach": "keep_english",
+  "notes": "The original slogan is culturally iconic and universally recognized in the UK exactly as written, so retaining it preserves decades of established brand equity."
+}

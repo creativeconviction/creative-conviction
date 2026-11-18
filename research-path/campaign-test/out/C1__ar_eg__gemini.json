@@ -1,0 +1,12 @@
+{
+  "line": "C1",
+  "market": "ar_eg",
+  "model": "gemini",
+  "source": "Black Friday: up to 70% off everything.",
+  "raw": "{\n  \"literal\": \"الجمعة السوداء: خصم يصل إلى 70% على كل شيء.\",\n  \"adaptation\": \"الجمعة البيضاء: خصم بيوصل لـ 70% على كل حاجة.\",\n  \"back_translation\": \"White Friday: discounts reaching up to 70% on everything.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Changed 'Black Friday' to 'White Friday' (الجمعة البيضاء) because Friday is a blessed day in Islamic culture and associating it with 'black' has negative connotations, while using natural Egyptian vernacular for the offer.\"\n}",
+  "literal": "الجمعة السوداء: خصم يصل إلى 70% على كل شيء.",
+  "adaptation": "الجمعة البيضاء: خصم بيوصل لـ 70% على كل حاجة.",
+  "back_translation": "White Friday: discounts reaching up to 70% on everything.",
+  "approach": "adapted",
+  "notes": "Changed 'Black Friday' to 'White Friday' (الجمعة البيضاء) because Friday is a blessed day in Islamic culture and associating it with 'black' has negative connotations, while using natural Egyptian vernacular for the offer."
+}

@@ -1,0 +1,12 @@
+{
+  "line": "C1",
+  "market": "en_gb",
+  "model": "gemini",
+  "source": "Black Friday: up to 70% off everything.",
+  "raw": "```json\n{\n  \"literal\": \"Black Friday: up to 70% off everything.\",\n  \"adaptation\": \"Black Friday: up to 70% off everything.\",\n  \"back_translation\": \"Black Friday: up to 70% off everything.\",\n  \"approach\": \"keep_english\",\n  \"notes\": \"Black Friday is fully established in the UK retail calendar, and this standard discount phrasing translates perfectly across the Atlantic without needing any localized vocabulary.\"\n}\n```",
+  "literal": "Black Friday: up to 70% off everything.",
+  "adaptation": "Black Friday: up to 70% off everything.",
+  "back_translation": "Black Friday: up to 70% off everything.",
+  "approach": "keep_english",
+  "notes": "Black Friday is fully established in the UK retail calendar, and this standard discount phrasing translates perfectly across the Atlantic without needing any localized vocabulary."
+}

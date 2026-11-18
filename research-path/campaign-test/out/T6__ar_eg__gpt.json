@@ -1,0 +1,12 @@
+{
+  "line": "T6",
+  "market": "ar_eg",
+  "model": "gpt",
+  "source": "Got milk?",
+  "raw": "{\n  \"literal\": \"هل لديك حليب؟\",\n  \"adaptation\": \"عندك لبن؟\",\n  \"back_translation\": \"Got milk?\",\n  \"approach\": \"adapted\",\n  \"notes\": \"استخدمنا «لبن» بدلًا من «حليب» لأنها الكلمة الطبيعية للحليب في اللهجة المصرية.\"\n}",
+  "literal": "هل لديك حليب؟",
+  "adaptation": "عندك لبن؟",
+  "back_translation": "Got milk?",
+  "approach": "adapted",
+  "notes": "استخدمنا «لبن» بدلًا من «حليب» لأنها الكلمة الطبيعية للحليب في اللهجة المصرية."
+}

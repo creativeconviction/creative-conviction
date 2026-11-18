@@ -1,0 +1,12 @@
+{
+  "line": "C4",
+  "market": "ar_eg",
+  "model": "saba",
+  "source": "Get beach-body ready this summer.",
+  "raw": "```json\n{\n  \"literal\": \"استعد بجسد الشاطئ هذا الصيف.\",\n  \"adaptation\": \"استعد لشكل اللياقة الفائق هذا الصيف.. في صالة الرياضة الأفضل.\",\n  \"back_translation\": \"Get yourself super fit this summer... at the best gym.\",\n  \"approach\": \"replaced\",\n  \"notes\": \"Direct translation of 'beach-body' might not resonate in Egypt, so replaced with a locally relevant fitness aspiration.\"\n}\n```",
+  "literal": "استعد بجسد الشاطئ هذا الصيف.",
+  "adaptation": "استعد لشكل اللياقة الفائق هذا الصيف.. في صالة الرياضة الأفضل.",
+  "back_translation": "Get yourself super fit this summer... at the best gym.",
+  "approach": "replaced",
+  "notes": "Direct translation of 'beach-body' might not resonate in Egypt, so replaced with a locally relevant fitness aspiration."
+}

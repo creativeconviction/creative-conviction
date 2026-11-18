@@ -1,0 +1,12 @@
+{
+  "line": "T5",
+  "market": "en_gb",
+  "model": "gpt",
+  "source": "Because you're worth it",
+  "raw": "{\n  \"literal\": \"Because you're worth it\",\n  \"adaptation\": \"Because you're worth it\",\n  \"back_translation\": \"Because you're worth it\",\n  \"approach\": \"keep_english\",\n  \"notes\": \"The established L'Oréal line is already natural and iconic in British English, so no adaptation is needed.\"\n}",
+  "literal": "Because you're worth it",
+  "adaptation": "Because you're worth it",
+  "back_translation": "Because you're worth it",
+  "approach": "keep_english",
+  "notes": "The established L'Oréal line is already natural and iconic in British English, so no adaptation is needed."
+}

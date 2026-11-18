@@ -1,0 +1,9 @@
+{
+  "part": "M",
+  "key": "M__Saudi-Arabia",
+  "prompt": "A logo for a new fintech startup from Saudi Arabia. Flat vector style on a plain white background, no text.",
+  "country": "Saudi Arabia",
+  "model": "seedream",
+  "endpoint": "bytedance/seedream/v5/pro/text-to-image",
+  "at": "2026-11-18T20:05:46.497Z"
+}

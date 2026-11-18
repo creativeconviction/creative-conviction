@@ -1,0 +1,13 @@
+{
+  "scenario": "M9",
+  "lang": "ar_msa",
+  "model": "gpt",
+  "message": "أردت فقط أن أقول إن المندوب كان لطيفاً جداً وساعدني في حمل كل شيء إلى الأعلى، شكراً لكم!",
+  "raw": "{\"intent\":\"praise\",\"sentiment\":\"positive\",\"urgency\":\"low\",\"sarcasm\":false,\"churn_risk\":false,\"summary\":\"The customer praises the courier for being very kind and helping carry everything upstairs.\"}",
+  "intent": "praise",
+  "sentiment": "positive",
+  "urgency": "low",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer praises the courier for being very kind and helping carry everything upstairs."
+}

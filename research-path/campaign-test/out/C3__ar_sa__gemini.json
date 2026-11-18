@@ -1,0 +1,12 @@
+{
+  "line": "C3",
+  "market": "ar_sa",
+  "model": "gemini",
+  "source": "Thanksgiving dinner, sorted. Order your turkey today.",
+  "raw": "{\n  \"literal\": \"عشاء عيد الشكر، تم ترتيبه. اطلب الديك الرومي اليوم.\",\n  \"adaptation\": \"عزيمتك علينا، اطلب الديك الرومي اليوم.\",\n  \"back_translation\": \"Your dinner party is on us [sorted], order your turkey today.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Thanksgiving is not celebrated by Saudi locals, so the occasion was adapted to an 'Azeema' (a traditional large family feast or dinner party) to resonate culturally while keeping the core product promotion.\"\n}",
+  "literal": "عشاء عيد الشكر، تم ترتيبه. اطلب الديك الرومي اليوم.",
+  "adaptation": "عزيمتك علينا، اطلب الديك الرومي اليوم.",
+  "back_translation": "Your dinner party is on us [sorted], order your turkey today.",
+  "approach": "adapted",
+  "notes": "Thanksgiving is not celebrated by Saudi locals, so the occasion was adapted to an 'Azeema' (a traditional large family feast or dinner party) to resonate culturally while keeping the core product promotion."
+}

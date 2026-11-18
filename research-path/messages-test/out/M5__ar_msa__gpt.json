@@ -1,0 +1,13 @@
+{
+  "scenario": "M5",
+  "lang": "ar_msa",
+  "model": "gpt",
+  "message": "مرحباً، أرغب في استرداد مبلغ الطلب رقم 48213 من فضلك. المنتجات لم تكن مطابقة للوصف.",
+  "raw": "{\"intent\":\"refund_request\",\"sentiment\":\"negative\",\"urgency\":\"medium\",\"sarcasm\":false,\"churn_risk\":false,\"summary\":\"The customer requests a refund for order 48213 because the products did not match their description.\"}",
+  "intent": "refund_request",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer requests a refund for order 48213 because the products did not match their description."
+}

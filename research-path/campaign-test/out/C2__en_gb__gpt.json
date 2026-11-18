@@ -1,0 +1,12 @@
+{
+  "line": "C2",
+  "market": "en_gb",
+  "model": "gpt",
+  "source": "Happy hour: 2-for-1 drinks from 5 to 7pm.",
+  "raw": "{\n  \"literal\": \"Happy hour: 2-for-1 drinks from 5 to 7pm.\",\n  \"adaptation\": \"Happy hour: 2-for-1 drinks, 5–7pm.\",\n  \"back_translation\": \"Happy hour: two drinks for the price of one, from 5 to 7pm.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"‘Happy hour’ and ‘2-for-1’ are familiar UK terms, with the time styling tightened for natural British advertising.\"\n}",
+  "literal": "Happy hour: 2-for-1 drinks from 5 to 7pm.",
+  "adaptation": "Happy hour: 2-for-1 drinks, 5–7pm.",
+  "back_translation": "Happy hour: two drinks for the price of one, from 5 to 7pm.",
+  "approach": "adapted",
+  "notes": "‘Happy hour’ and ‘2-for-1’ are familiar UK terms, with the time styling tightened for natural British advertising."
+}

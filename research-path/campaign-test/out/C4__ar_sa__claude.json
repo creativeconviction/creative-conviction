@@ -1,0 +1,12 @@
+{
+  "line": "C4",
+  "market": "ar_sa",
+  "model": "claude",
+  "source": "Get beach-body ready this summer.",
+  "raw": "```json\n{\n  \"literal\": \"استعد لجسم الشاطئ هذا الصيف\",\n  \"adaptation\": \"هالصيف.. خلّك بأقوى نسخة منك\",\n  \"back_translation\": \"This summer... be the strongest version of yourself.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"I replaced the 'beach body' idea, which centres on showing off the body in swimwear and clashes with local modesty norms, with a message about strength and personal best, written in a warm Saudi dialect that fits both men's and women's gyms.\"\n}\n```",
+  "literal": "استعد لجسم الشاطئ هذا الصيف",
+  "adaptation": "هالصيف.. خلّك بأقوى نسخة منك",
+  "back_translation": "This summer... be the strongest version of yourself.",
+  "approach": "adapted",
+  "notes": "I replaced the 'beach body' idea, which centres on showing off the body in swimwear and clashes with local modesty norms, with a message about strength and personal best, written in a warm Saudi dialect that fits both men's and women's gyms."
+}

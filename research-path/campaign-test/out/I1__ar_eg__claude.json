@@ -1,0 +1,12 @@
+{
+  "line": "I1",
+  "market": "ar_eg",
+  "model": "claude",
+  "source": "We deliver the goods. Literally.",
+  "raw": "```json\n{\n  \"literal\": \"نحن نوصّل البضائع. حرفيًا.\",\n  \"adaptation\": \"بنجيبلك التايهة… حرفيًا.\",\n  \"back_translation\": \"We bring you 'the lost one'… literally. (The Egyptian idiom 'he brings the lost one' means someone resourceful who can track down anything.)\",\n  \"approach\": \"adapted\",\n  \"notes\": \"The English pun on 'deliver the goods' doesn't work in Arabic, so I swapped it for the Egyptian colloquial idiom 'يجيب التايهة', which keeps the figurative-vs-literal joke about getting any item to you, and I used colloquial 'حرفيًا', which is popular with young urban Egyptians, instead of a stiff Modern Standard Arabic phrasing.\"\n}\n```",
+  "literal": "نحن نوصّل البضائع. حرفيًا.",
+  "adaptation": "بنجيبلك التايهة… حرفيًا.",
+  "back_translation": "We bring you 'the lost one'… literally. (The Egyptian idiom 'he brings the lost one' means someone resourceful who can track down anything.)",
+  "approach": "adapted",
+  "notes": "The English pun on 'deliver the goods' doesn't work in Arabic, so I swapped it for the Egyptian colloquial idiom 'يجيب التايهة', which keeps the figurative-vs-literal joke about getting any item to you, and I used colloquial 'حرفيًا', which is popular with young urban Egyptians, instead of a stiff Modern Standard Arabic phrasing."
+}

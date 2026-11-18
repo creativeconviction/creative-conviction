@@ -1,0 +1,12 @@
+{
+  "line": "T2",
+  "market": "ar_sa",
+  "model": "gemini",
+  "source": "Just Do It",
+  "raw": "{\n  \"literal\": \"فقط افعلها\",\n  \"adaptation\": \"سويها وبس\",\n  \"back_translation\": \"Do it and that's it\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Avoided rigid Modern Standard Arabic in favor of the punchy Khaleeji dialect to preserve the casual, action-oriented brand voice that resonates naturally with Saudi youth.\"\n}",
+  "literal": "فقط افعلها",
+  "adaptation": "سويها وبس",
+  "back_translation": "Do it and that's it",
+  "approach": "adapted",
+  "notes": "Avoided rigid Modern Standard Arabic in favor of the punchy Khaleeji dialect to preserve the casual, action-oriented brand voice that resonates naturally with Saudi youth."
+}

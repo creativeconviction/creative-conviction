@@ -1,0 +1,12 @@
+{
+  "line": "I1",
+  "market": "ar_sa",
+  "model": "gpt",
+  "source": "We deliver the goods. Literally.",
+  "raw": "{\n  \"literal\": \"نحن نوصّل البضاعة. حرفيًا.\",\n  \"adaptation\": \"كل اللي تحتاجه، نوصّله لك. حرفيًا.\",\n  \"back_translation\": \"Everything you need, we deliver it to you. Literally.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"عُدّلت التورية لأن عبارة «نوصّل البضاعة» لا تحمل المعنى المزدوج نفسه بالعربية، مع استخدام صياغة سعودية طبيعية.\"\n}",
+  "literal": "نحن نوصّل البضاعة. حرفيًا.",
+  "adaptation": "كل اللي تحتاجه، نوصّله لك. حرفيًا.",
+  "back_translation": "Everything you need, we deliver it to you. Literally.",
+  "approach": "adapted",
+  "notes": "عُدّلت التورية لأن عبارة «نوصّل البضاعة» لا تحمل المعنى المزدوج نفسه بالعربية، مع استخدام صياغة سعودية طبيعية."
+}

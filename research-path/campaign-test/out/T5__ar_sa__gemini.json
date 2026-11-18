@@ -1,0 +1,12 @@
+{
+  "line": "T5",
+  "market": "ar_sa",
+  "model": "gemini",
+  "source": "Because you're worth it",
+  "raw": "{\n  \"literal\": \"لأنكِ تستحقين ذلك\",\n  \"adaptation\": \"لأنكِ تستحقينه\",\n  \"back_translation\": \"Because you deserve it\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Shifted the English concept of 'worth' to the Arabic verb for 'deserve' (تستحقينه) for natural phrasing, while ensuring the feminine pronoun (كِ) is used to directly and respectfully address women.\"\n}",
+  "literal": "لأنكِ تستحقين ذلك",
+  "adaptation": "لأنكِ تستحقينه",
+  "back_translation": "Because you deserve it",
+  "approach": "adapted",
+  "notes": "Shifted the English concept of 'worth' to the Arabic verb for 'deserve' (تستحقينه) for natural phrasing, while ensuring the feminine pronoun (كِ) is used to directly and respectfully address women."
+}

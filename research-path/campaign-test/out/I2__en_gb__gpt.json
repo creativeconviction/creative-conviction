@@ -1,0 +1,12 @@
+{
+  "line": "I2",
+  "market": "en_gb",
+  "model": "gpt",
+  "source": "Rise and grind.",
+  "raw": "{\n  \"literal\": \"Rise and grind.\",\n  \"adaptation\": \"Rise and grind.\",\n  \"back_translation\": \"Rise and grind.\",\n  \"approach\": \"keep_english\",\n  \"notes\": \"The coffee-grinding pun works naturally in British English, so no localisation was needed.\"\n}",
+  "literal": "Rise and grind.",
+  "adaptation": "Rise and grind.",
+  "back_translation": "Rise and grind.",
+  "approach": "keep_english",
+  "notes": "The coffee-grinding pun works naturally in British English, so no localisation was needed."
+}

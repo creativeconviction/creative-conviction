@@ -1,0 +1,12 @@
+{
+  "line": "C5",
+  "market": "en_gb",
+  "model": "claude",
+  "source": "Your Friday night date starts here.",
+  "raw": "```json\n{\n  \"literal\": \"Your Friday night date starts here.\",\n  \"adaptation\": \"Your Friday night date starts here.\",\n  \"back_translation\": \"Your Friday night date starts here.\",\n  \"approach\": \"keep_english\",\n  \"notes\": \"The line already reads naturally in British English, with no US-only spellings or idioms, and its understated tone suits UK audiences, so I avoided adding Americanisms or over-eager hype that could feel cringeworthy.\"\n}\n```",
+  "literal": "Your Friday night date starts here.",
+  "adaptation": "Your Friday night date starts here.",
+  "back_translation": "Your Friday night date starts here.",
+  "approach": "keep_english",
+  "notes": "The line already reads naturally in British English, with no US-only spellings or idioms, and its understated tone suits UK audiences, so I avoided adding Americanisms or over-eager hype that could feel cringeworthy."
+}

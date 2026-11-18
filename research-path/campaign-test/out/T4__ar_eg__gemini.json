@@ -1,0 +1,12 @@
+{
+  "line": "T4",
+  "market": "ar_eg",
+  "model": "gemini",
+  "source": "Red Bull gives you wings",
+  "raw": "{\n  \"literal\": \"ريد بُل يعطيك أجنحة\",\n  \"adaptation\": \"ريد بُل بيديك جوانح\",\n  \"back_translation\": \"Red Bull gives you wings\",\n  \"approach\": \"adapted\",\n  \"notes\": \"We shifted from formal standard Arabic to colloquial Egyptian vocabulary ('بيديك' for gives you, and 'جوانح' for wings) to maintain the brand's youthful, energetic, and relatable personality in this specific market.\"\n}",
+  "literal": "ريد بُل يعطيك أجنحة",
+  "adaptation": "ريد بُل بيديك جوانح",
+  "back_translation": "Red Bull gives you wings",
+  "approach": "adapted",
+  "notes": "We shifted from formal standard Arabic to colloquial Egyptian vocabulary ('بيديك' for gives you, and 'جوانح' for wings) to maintain the brand's youthful, energetic, and relatable personality in this specific market."
+}

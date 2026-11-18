@@ -1,0 +1,12 @@
+{
+  "line": "C2",
+  "market": "ar_sa",
+  "model": "deepseek",
+  "source": "Happy hour: 2-for-1 drinks from 5 to 7pm.",
+  "raw": "{\n  \"literal\": \"ساعة السعادة: مشروبان بسعر واحد من الساعة 5 إلى 7 مساءً\",\n  \"adaptation\": \"عرض خاص: مشروبان بسعر واحد من 5 إلى 7 مساءً\",\n  \"back_translation\": \"Special offer: two drinks for the price of one from 5 to 7 PM\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Avoided the term 'happy hour' because it is widely associated with alcohol, which is culturally and legally impermissible in Saudi Arabia; all drinks are understood to be non-alcoholic.\"\n}",
+  "literal": "ساعة السعادة: مشروبان بسعر واحد من الساعة 5 إلى 7 مساءً",
+  "adaptation": "عرض خاص: مشروبان بسعر واحد من 5 إلى 7 مساءً",
+  "back_translation": "Special offer: two drinks for the price of one from 5 to 7 PM",
+  "approach": "adapted",
+  "notes": "Avoided the term 'happy hour' because it is widely associated with alcohol, which is culturally and legally impermissible in Saudi Arabia; all drinks are understood to be non-alcoholic."
+}

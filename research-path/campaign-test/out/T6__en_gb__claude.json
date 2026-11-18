@@ -1,0 +1,12 @@
+{
+  "line": "T6",
+  "market": "en_gb",
+  "model": "claude",
+  "source": "Got milk?",
+  "raw": "```json\n{\n  \"literal\": \"Got milk?\",\n  \"adaptation\": \"Got any milk?\",\n  \"back_translation\": \"Got any milk?\",\n  \"approach\": \"adapted\",\n  \"notes\": \"The bare 'Got milk?' reads as distinctly American to British ears, so I added 'any' to match natural UK speech while keeping the line short, casual and recognisably linked to the original.\"\n}\n```",
+  "literal": "Got milk?",
+  "adaptation": "Got any milk?",
+  "back_translation": "Got any milk?",
+  "approach": "adapted",
+  "notes": "The bare 'Got milk?' reads as distinctly American to British ears, so I added 'any' to match natural UK speech while keeping the line short, casual and recognisably linked to the original."
+}

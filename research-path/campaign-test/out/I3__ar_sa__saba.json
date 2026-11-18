@@ -1,0 +1,12 @@
+{
+  "line": "I3",
+  "market": "ar_sa",
+  "model": "saba",
+  "source": "Bring home the bacon with zero fees.",
+  "raw": "```json\n{\n  \"literal\": \"احضر لحم الخنزير إلى المنزل بلا رسوم\",\n  \"adaptation\": \"أَربِح بثقة صفر رسوم\",\n  \"back_translation\": \"Earn confidently with zero fees\",\n  \"approach\": \"adapted\",\n  \"notes\": \"The original phrase references 'bringing home the bacon,' an English idiom for financial success, which doesn’t exist in Arabic, so 'earn' was used instead.\"\n}\n```",
+  "literal": "احضر لحم الخنزير إلى المنزل بلا رسوم",
+  "adaptation": "أَربِح بثقة صفر رسوم",
+  "back_translation": "Earn confidently with zero fees",
+  "approach": "adapted",
+  "notes": "The original phrase references 'bringing home the bacon,' an English idiom for financial success, which doesn’t exist in Arabic, so 'earn' was used instead."
+}

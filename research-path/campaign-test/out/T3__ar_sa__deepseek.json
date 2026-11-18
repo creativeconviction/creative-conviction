@@ -1,0 +1,12 @@
+{
+  "line": "T3",
+  "market": "ar_sa",
+  "model": "deepseek",
+  "source": "Have a break, have a KitKat",
+  "raw": "{\n  \"literal\": \"خذ استراحة، تناول كيت كات\",\n  \"adaptation\": \"خذ بريك، كيت كات\",\n  \"back_translation\": \"Take a break, KitKat\",\n  \"approach\": \"adapted\",\n  \"notes\": \"The English word 'break' is transliterated as 'بريك' because this loanword is widely understood and retains the informal, catchy intent without a direct cultural equivalent for 'taking a break' in colloquial Saudi speech.\"\n}",
+  "literal": "خذ استراحة، تناول كيت كات",
+  "adaptation": "خذ بريك، كيت كات",
+  "back_translation": "Take a break, KitKat",
+  "approach": "adapted",
+  "notes": "The English word 'break' is transliterated as 'بريك' because this loanword is widely understood and retains the informal, catchy intent without a direct cultural equivalent for 'taking a break' in colloquial Saudi speech."
+}

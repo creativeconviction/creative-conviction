@@ -1,0 +1,13 @@
+{
+  "scenario": "M11",
+  "lang": "ar_ma",
+  "model": "claude",
+  "message": "بصراحة هادي آخر مرة نطلب منكم، كل سيمانة كاين شي مشكل",
+  "raw": "```json\n{\n  \"intent\": \"general_complaint\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"The customer, writing in Moroccan Arabic (Darija), says this is the last time they will order because there is a problem every week.\"\n}\n```",
+  "intent": "general_complaint",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "The customer, writing in Moroccan Arabic (Darija), says this is the last time they will order because there is a problem every week."
+}

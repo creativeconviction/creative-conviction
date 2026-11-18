@@ -1,0 +1,12 @@
+{
+  "line": "T5",
+  "market": "en_gb",
+  "model": "claude",
+  "source": "Because you're worth it",
+  "raw": "```json\n{\n  \"literal\": \"Because you're worth it\",\n  \"adaptation\": \"Because you're worth it\",\n  \"back_translation\": \"Because you're worth it\",\n  \"approach\": \"keep_english\",\n  \"notes\": \"No change is needed because the line has no US-specific spelling, idiom or cultural reference, and it is already L'Oréal's familiar UK tagline, so altering it would weaken brand recognition.\"\n}\n```",
+  "literal": "Because you're worth it",
+  "adaptation": "Because you're worth it",
+  "back_translation": "Because you're worth it",
+  "approach": "keep_english",
+  "notes": "No change is needed because the line has no US-specific spelling, idiom or cultural reference, and it is already L'Oréal's familiar UK tagline, so altering it would weaken brand recognition."
+}

@@ -1,0 +1,13 @@
+{
+  "scenario": "M12",
+  "lang": "arabizi",
+  "model": "deepseek",
+  "message": "shokran 3al tawseel el saree3! bas el 3eish kan bayet wel tamatem mef3asa",
+  "raw": "{\n  \"intent\": \"quality_issue\",\n  \"sentiment\": \"mixed\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"Customer thanks for fast delivery but reports stale bread and squashed tomatoes.\"\n}",
+  "intent": "quality_issue",
+  "sentiment": "mixed",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Customer thanks for fast delivery but reports stale bread and squashed tomatoes."
+}

@@ -1,0 +1,13 @@
+{
+  "scenario": "M6",
+  "lang": "arabizi",
+  "model": "gpt",
+  "message": "elghoo el order delwa2ty 7alan law sama7to, talabto 3ala 3enwan ghalat",
+  "raw": "{\"intent\":\"cancel_order\",\"sentiment\":\"neutral\",\"urgency\":\"high\",\"sarcasm\":false,\"churn_risk\":false,\"summary\":\"The customer urgently wants to cancel the order because it was placed with the wrong delivery address.\"}",
+  "intent": "cancel_order",
+  "sentiment": "neutral",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer urgently wants to cancel the order because it was placed with the wrong delivery address."
+}

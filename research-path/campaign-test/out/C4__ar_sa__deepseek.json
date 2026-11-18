@@ -1,0 +1,12 @@
+{
+  "line": "C4",
+  "market": "ar_sa",
+  "model": "deepseek",
+  "source": "Get beach-body ready this summer.",
+  "raw": "{\n  \"literal\": \"احصل على جسم الشاطئ هذا الصيف\",\n  \"adaptation\": \"احصل على جسمك المثالي هذا الصيف\",\n  \"back_translation\": \"Get your ideal body this summer\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Removed 'beach' to avoid implications of revealing swimwear, aligning with local modesty standards while keeping the summer fitness motivation.\"\n}",
+  "literal": "احصل على جسم الشاطئ هذا الصيف",
+  "adaptation": "احصل على جسمك المثالي هذا الصيف",
+  "back_translation": "Get your ideal body this summer",
+  "approach": "adapted",
+  "notes": "Removed 'beach' to avoid implications of revealing swimwear, aligning with local modesty standards while keeping the summer fitness motivation."
+}

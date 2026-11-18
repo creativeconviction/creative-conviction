@@ -1,0 +1,13 @@
+{
+  "scenario": "M7",
+  "lang": "ar_sa",
+  "model": "saba",
+  "message": "أرسلتوا بسكوت فيه زبدة فول سوداني بدال العادي، وولدي عنده حساسية مكسرات وأكل وحدة",
+  "raw": "```json\n{\n  \"intent\": \"quality_issue\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"Customer received peanut butter cookies instead of regular ones, and their child has a nut allergy.\"\n}\n```",
+  "intent": "quality_issue",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Customer received peanut butter cookies instead of regular ones, and their child has a nut allergy."
+}

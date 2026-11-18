@@ -1,0 +1,12 @@
+{
+  "line": "T4",
+  "market": "en_gb",
+  "model": "claude",
+  "source": "Red Bull gives you wings",
+  "raw": "```json\n{\n  \"literal\": \"Red Bull gives you wings\",\n  \"adaptation\": \"Red Bull gives you wings\",\n  \"back_translation\": \"Red Bull gives you wings\",\n  \"approach\": \"keep_english\",\n  \"notes\": \"The line needs no changes in spelling, idiom or tone for British English, and it is already well established in the UK, so the only thing to watch is that supporting copy stays clearly figurative and avoids implying any functional health or performance benefit beyond what UK advertising rules allow for caffeinated energy drinks.\"\n}\n```",
+  "literal": "Red Bull gives you wings",
+  "adaptation": "Red Bull gives you wings",
+  "back_translation": "Red Bull gives you wings",
+  "approach": "keep_english",
+  "notes": "The line needs no changes in spelling, idiom or tone for British English, and it is already well established in the UK, so the only thing to watch is that supporting copy stays clearly figurative and avoids implying any functional health or performance benefit beyond what UK advertising rules allow for caffeinated energy drinks."
+}

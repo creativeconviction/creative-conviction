@@ -1,0 +1,12 @@
+{
+  "line": "I3",
+  "market": "ar_sa",
+  "model": "claude",
+  "source": "Bring home the bacon with zero fees.",
+  "raw": "```json\n{\n  \"literal\": \"أحضر لحم الخنزير المقدد إلى المنزل بدون رسوم\",\n  \"adaptation\": \"رزقك يوصلك كامل… بدون أي رسوم\",\n  \"back_translation\": \"Your livelihood reaches you in full… with zero fees\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Bacon is pork and religiously prohibited in Saudi Arabia, so it would offend audiences and damage a bank's credibility; I swapped the idiom for the culturally resonant concept of 'rizq' (livelihood) while keeping the earn-and-keep-it-all message.\"\n}\n```",
+  "literal": "أحضر لحم الخنزير المقدد إلى المنزل بدون رسوم",
+  "adaptation": "رزقك يوصلك كامل… بدون أي رسوم",
+  "back_translation": "Your livelihood reaches you in full… with zero fees",
+  "approach": "adapted",
+  "notes": "Bacon is pork and religiously prohibited in Saudi Arabia, so it would offend audiences and damage a bank's credibility; I swapped the idiom for the culturally resonant concept of 'rizq' (livelihood) while keeping the earn-and-keep-it-all message."
+}

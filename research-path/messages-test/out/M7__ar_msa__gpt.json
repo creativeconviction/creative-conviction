@@ -1,0 +1,13 @@
+{
+  "scenario": "M7",
+  "lang": "ar_msa",
+  "model": "gpt",
+  "message": "أرسلتم بسكويت بزبدة الفول السوداني بدلاً من العادي، وابني لديه حساسية من المكسرات وقد أكل واحدة بالفعل",
+  "raw": "{\"intent\":\"wrong_item\",\"sentiment\":\"negative\",\"urgency\":\"high\",\"sarcasm\":false,\"churn_risk\":false,\"summary\":\"The customer received peanut butter biscuits instead of regular ones, and their nut-allergic child has already eaten one.\"}",
+  "intent": "wrong_item",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer received peanut butter biscuits instead of regular ones, and their nut-allergic child has already eaten one."
+}

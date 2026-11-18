@@ -1,0 +1,13 @@
+{
+  "scenario": "M6",
+  "lang": "arabizi",
+  "model": "deepseek",
+  "message": "elghoo el order delwa2ty 7alan law sama7to, talabto 3ala 3enwan ghalat",
+  "raw": "{\n  \"intent\": \"cancel_order\",\n  \"sentiment\": \"neutral\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"Customer requests immediate cancellation of the order because it was placed with the wrong address.\"\n}",
+  "intent": "cancel_order",
+  "sentiment": "neutral",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "Customer requests immediate cancellation of the order because it was placed with the wrong address."
+}

@@ -1,0 +1,12 @@
+{
+  "line": "I3",
+  "market": "ar_eg",
+  "model": "claude",
+  "source": "Bring home the bacon with zero fees.",
+  "raw": "```json\n{\n  \"literal\": \"أحضر لحم الخنزير المقدد إلى المنزل بدون رسوم.\",\n  \"adaptation\": \"لقمة عيشك توصل لبيتك كاملة.. ومن غير ولا قرش رسوم.\",\n  \"back_translation\": \"Your daily bread reaches your home in full... and without a single piaster in fees.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Bacon is pork, which is forbidden in Islam and offensive to most Egyptians, so I swapped it for the beloved Egyptian idiom 'لقمة العيش' (daily bread/livelihood), which keeps the 'earning a living' meaning, and used 'ولا قرش' to stress zero fees in local colloquial phrasing.\"\n}\n```",
+  "literal": "أحضر لحم الخنزير المقدد إلى المنزل بدون رسوم.",
+  "adaptation": "لقمة عيشك توصل لبيتك كاملة.. ومن غير ولا قرش رسوم.",
+  "back_translation": "Your daily bread reaches your home in full... and without a single piaster in fees.",
+  "approach": "adapted",
+  "notes": "Bacon is pork, which is forbidden in Islam and offensive to most Egyptians, so I swapped it for the beloved Egyptian idiom 'لقمة العيش' (daily bread/livelihood), which keeps the 'earning a living' meaning, and used 'ولا قرش' to stress zero fees in local colloquial phrasing."
+}

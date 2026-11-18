@@ -1,0 +1,13 @@
+{
+  "scenario": "M9",
+  "lang": "arabizi",
+  "model": "gpt",
+  "message": "7abbeit a2ool en el tayar kan zoo2 gedan w sa3edny atala3 el 7agat fo2, metshakreen!",
+  "raw": "{\"intent\":\"praise\",\"sentiment\":\"positive\",\"urgency\":\"low\",\"sarcasm\":false,\"churn_risk\":false,\"summary\":\"The customer praises the courteous delivery driver for helping carry the groceries upstairs.\"}",
+  "intent": "praise",
+  "sentiment": "positive",
+  "urgency": "low",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer praises the courteous delivery driver for helping carry the groceries upstairs."
+}

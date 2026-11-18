@@ -1,0 +1,12 @@
+{
+  "line": "C5",
+  "market": "ar_sa",
+  "model": "gpt",
+  "source": "Your Friday night date starts here.",
+  "raw": "{\"literal\":\"موعدك ليلة الجمعة يبدأ من هنا.\",\"adaptation\":\"تعارفك القادم يبدأ من هنا.\",\"back_translation\":\"Your next connection starts here.\",\"approach\":\"adapted\",\"notes\":\"استبدلنا الإشارة المباشرة إلى موعد غرامي ليلة الجمعة بصياغة أكثر تحفظًا وملاءمة للحساسيات الثقافية في السعودية.\"}",
+  "literal": "موعدك ليلة الجمعة يبدأ من هنا.",
+  "adaptation": "تعارفك القادم يبدأ من هنا.",
+  "back_translation": "Your next connection starts here.",
+  "approach": "adapted",
+  "notes": "استبدلنا الإشارة المباشرة إلى موعد غرامي ليلة الجمعة بصياغة أكثر تحفظًا وملاءمة للحساسيات الثقافية في السعودية."
+}

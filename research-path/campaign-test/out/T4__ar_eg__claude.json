@@ -1,0 +1,12 @@
+{
+  "line": "T4",
+  "market": "ar_eg",
+  "model": "claude",
+  "source": "Red Bull gives you wings",
+  "raw": "```json\n{\n  \"literal\": \"ريد بُل يعطيك أجنحة\",\n  \"adaptation\": \"ريد بُل بيدّيك أجنحة\",\n  \"back_translation\": \"Red Bull gives you wings\",\n  \"approach\": \"adapted\",\n  \"notes\": \"I kept the wings idea, which travels well, but moved it from formal Arabic into everyday Egyptian dialect so it sounds casual and youthful like the English, and I kept 'أجنحة' (wings) instead of the colloquial 'جناحات' so it stays aligned with Red Bull's regional Arabic tagline.\"\n}\n```",
+  "literal": "ريد بُل يعطيك أجنحة",
+  "adaptation": "ريد بُل بيدّيك أجنحة",
+  "back_translation": "Red Bull gives you wings",
+  "approach": "adapted",
+  "notes": "I kept the wings idea, which travels well, but moved it from formal Arabic into everyday Egyptian dialect so it sounds casual and youthful like the English, and I kept 'أجنحة' (wings) instead of the colloquial 'جناحات' so it stays aligned with Red Bull's regional Arabic tagline."
+}

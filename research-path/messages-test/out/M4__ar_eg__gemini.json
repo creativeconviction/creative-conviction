@@ -1,0 +1,13 @@
+{
+  "scenario": "M4",
+  "lang": "ar_eg",
+  "model": "gemini",
+  "message": "ربنا يسامحكم، تالت مرة الأوردر ييجي غلط",
+  "raw": "{\n  \"intent\": \"wrong_item\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": true,\n  \"churn_risk\": true,\n  \"summary\": \"The customer is expressing frustration because they received an incorrect order for the third time.\"\n}",
+  "intent": "wrong_item",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": true,
+  "churn_risk": true,
+  "summary": "The customer is expressing frustration because they received an incorrect order for the third time."
+}

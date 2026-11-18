@@ -1,0 +1,13 @@
+{
+  "scenario": "M4",
+  "lang": "ar_ma",
+  "model": "gpt",
+  "message": "الله يسمح ليكم، هادي تالت مرة الكوموند كتجي غالطة",
+  "raw": "{\"intent\":\"wrong_item\",\"sentiment\":\"negative\",\"urgency\":\"medium\",\"sarcasm\":false,\"churn_risk\":true,\"summary\":\"The customer says this is the third time their order has arrived incorrect.\"}",
+  "intent": "wrong_item",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "The customer says this is the third time their order has arrived incorrect."
+}

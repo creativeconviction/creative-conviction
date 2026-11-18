@@ -1,0 +1,12 @@
+{
+  "line": "I1",
+  "market": "en_gb",
+  "model": "gpt",
+  "source": "We deliver the goods. Literally.",
+  "raw": "{\n  \"literal\": \"We deliver the goods. Literally.\",\n  \"adaptation\": \"We deliver the goods. Literally.\",\n  \"back_translation\": \"We deliver the goods. Literally.\",\n  \"approach\": \"keep_english\",\n  \"notes\": \"The phrase works naturally in British English, retaining the familiar idiom and grocery-delivery wordplay.\"\n}",
+  "literal": "We deliver the goods. Literally.",
+  "adaptation": "We deliver the goods. Literally.",
+  "back_translation": "We deliver the goods. Literally.",
+  "approach": "keep_english",
+  "notes": "The phrase works naturally in British English, retaining the familiar idiom and grocery-delivery wordplay."
+}

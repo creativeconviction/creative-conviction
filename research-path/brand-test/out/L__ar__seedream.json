@@ -1,0 +1,12 @@
+{
+  "part": "L",
+  "key": "L__ar",
+  "text": "قريب | Nearby",
+  "native": "قريب",
+  "english": "Nearby",
+  "prompt": "A clean logo lockup for a grocery delivery app showing the brand name in two languages, «قريب» and «Nearby», on a plain white background. Both must be spelled exactly as given.",
+  "script": "ar",
+  "model": "seedream",
+  "endpoint": "bytedance/seedream/v5/pro/text-to-image",
+  "at": "2026-11-18T20:04:47.696Z"
+}

@@ -1,0 +1,13 @@
+{
+  "scenario": "M12",
+  "lang": "arabizi",
+  "model": "gpt",
+  "message": "shokran 3al tawseel el saree3! bas el 3eish kan bayet wel tamatem mef3asa",
+  "raw": "{\"intent\":\"quality_issue\",\"sentiment\":\"mixed\",\"urgency\":\"medium\",\"sarcasm\":false,\"churn_risk\":false,\"summary\":\"The customer appreciated the fast delivery but reported stale bread and squashed tomatoes.\"}",
+  "intent": "quality_issue",
+  "sentiment": "mixed",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer appreciated the fast delivery but reported stale bread and squashed tomatoes."
+}

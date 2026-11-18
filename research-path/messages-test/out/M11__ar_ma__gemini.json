@@ -1,0 +1,13 @@
+{
+  "scenario": "M11",
+  "lang": "ar_ma",
+  "model": "gemini",
+  "message": "بصراحة هادي آخر مرة نطلب منكم، كل سيمانة كاين شي مشكل",
+  "raw": "{\n  \"intent\": \"general_complaint\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"The customer is highly frustrated with recurring weekly issues and explicitly states they will never order from the app again.\"\n}",
+  "intent": "general_complaint",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "The customer is highly frustrated with recurring weekly issues and explicitly states they will never order from the app again."
+}

@@ -1,0 +1,9 @@
+{
+  "part": "M",
+  "key": "M__United-States",
+  "prompt": "A logo for a new fintech startup from United States. Flat vector style on a plain white background, no text.",
+  "country": "United States",
+  "model": "recraft",
+  "endpoint": "fal-ai/recraft/v4.1/pro/text-to-image",
+  "at": "2026-11-18T20:02:08.490Z"
+}

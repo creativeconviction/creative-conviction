@@ -1,0 +1,12 @@
+{
+  "line": "T6",
+  "market": "en_gb",
+  "model": "gpt",
+  "source": "Got milk?",
+  "raw": "{\n  \"literal\": \"Got milk?\",\n  \"adaptation\": \"Got milk?\",\n  \"back_translation\": \"Got milk?\",\n  \"approach\": \"keep_english\",\n  \"notes\": \"The iconic slogan is retained despite its American phrasing, as changing it would weaken brand recognition.\"\n}",
+  "literal": "Got milk?",
+  "adaptation": "Got milk?",
+  "back_translation": "Got milk?",
+  "approach": "keep_english",
+  "notes": "The iconic slogan is retained despite its American phrasing, as changing it would weaken brand recognition."
+}

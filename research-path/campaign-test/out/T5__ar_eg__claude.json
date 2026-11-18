@@ -1,0 +1,12 @@
+{
+  "line": "T5",
+  "market": "ar_eg",
+  "model": "claude",
+  "source": "Because you're worth it",
+  "raw": "```json\n{\n  \"literal\": \"لأنكِ تستحقين ذلك\",\n  \"adaptation\": \"لأنكِ تستحقين\",\n  \"back_translation\": \"Because you deserve\",\n  \"approach\": \"adapted\",\n  \"notes\": \"I dropped the awkward object 'ذلك' (it), used the feminine form for the brand's core female audience, and kept Modern Standard Arabic for brand consistency across the Arab world, while noting that the Egyptian colloquial 'عشان تستاهلي' could work for local social and digital executions.\"\n}\n```",
+  "literal": "لأنكِ تستحقين ذلك",
+  "adaptation": "لأنكِ تستحقين",
+  "back_translation": "Because you deserve",
+  "approach": "adapted",
+  "notes": "I dropped the awkward object 'ذلك' (it), used the feminine form for the brand's core female audience, and kept Modern Standard Arabic for brand consistency across the Arab world, while noting that the Egyptian colloquial 'عشان تستاهلي' could work for local social and digital executions."
+}

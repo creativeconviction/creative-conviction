@@ -1,0 +1,13 @@
+{
+  "scenario": "M8",
+  "lang": "ar_sa",
+  "model": "gpt",
+  "message": "انخصم مني المبلغ مرتين على نفس الطلب، 150 ريال مرتين من البطاقة",
+  "raw": "{\"intent\":\"billing_issue\",\"sentiment\":\"negative\",\"urgency\":\"high\",\"sarcasm\":false,\"churn_risk\":false,\"summary\":\"The customer was charged twice—150 SAR each time—for the same order.\"}",
+  "intent": "billing_issue",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer was charged twice—150 SAR each time—for the same order."
+}

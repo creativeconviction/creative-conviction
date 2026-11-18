@@ -1,0 +1,13 @@
+{
+  "scenario": "M5",
+  "lang": "arabizi",
+  "model": "gpt",
+  "message": "el salamo 3aleekom, 3ayez asterga3 felous el order 48213 law sama7t. el 7agat mesh zay el wasf.",
+  "raw": "{\"intent\":\"refund_request\",\"sentiment\":\"negative\",\"urgency\":\"medium\",\"sarcasm\":false,\"churn_risk\":false,\"summary\":\"The customer requests a refund for order 48213 because the items did not match their description.\"}",
+  "intent": "refund_request",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer requests a refund for order 48213 because the items did not match their description."
+}

@@ -1,0 +1,13 @@
+{
+  "scenario": "M8",
+  "lang": "ar_msa",
+  "model": "deepseek",
+  "message": "تم خصم المبلغ مرتين لنفس الطلب، 2 × 150 ريالاً من بطاقتي",
+  "raw": "{\"intent\":\"billing_issue\",\"sentiment\":\"negative\",\"urgency\":\"high\",\"sarcasm\":false,\"churn_risk\":true,\"summary\":\"Customer reports being charged twice for the same order, 2 x 150 riyals from their card.\"}",
+  "intent": "billing_issue",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Customer reports being charged twice for the same order, 2 x 150 riyals from their card."
+}

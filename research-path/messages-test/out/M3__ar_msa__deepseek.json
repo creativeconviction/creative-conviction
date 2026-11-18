@@ -1,0 +1,13 @@
+{
+  "scenario": "M3",
+  "lang": "ar_msa",
+  "model": "deepseek",
+  "message": "يا لها من خدمة رائعة، تأخير ساعتين فقط مرة أخرى 👏👏",
+  "raw": "{\n  \"intent\": \"late_delivery\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": true,\n  \"churn_risk\": true,\n  \"summary\": \"Customer sarcastically praises the service for another two-hour delay.\"\n}",
+  "intent": "late_delivery",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": true,
+  "churn_risk": true,
+  "summary": "Customer sarcastically praises the service for another two-hour delay."
+}

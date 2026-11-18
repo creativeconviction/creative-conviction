@@ -1,0 +1,12 @@
+{
+  "line": "I2",
+  "market": "en_gb",
+  "model": "saba",
+  "source": "Rise and grind.",
+  "raw": "{\n  \"literal\": \"Wake up and grind.\",\n  \"adaptation\": \"Start your day right. With a proper brew.\",\n  \"back_translation\": \"Begin your day properly. With a proper brew.\",\n  \"approach\": \"replaced\",\n  \"notes\": \"‘Rise and grind’ is overly Americanised slang; a gentler, more British coffee-chain sentiment avoids alienating older or traditional audiences.\"\n}",
+  "literal": "Wake up and grind.",
+  "adaptation": "Start your day right. With a proper brew.",
+  "back_translation": "Begin your day properly. With a proper brew.",
+  "approach": "replaced",
+  "notes": "‘Rise and grind’ is overly Americanised slang; a gentler, more British coffee-chain sentiment avoids alienating older or traditional audiences."
+}

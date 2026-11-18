@@ -1,0 +1,13 @@
+{
+  "scenario": "M8",
+  "lang": "en",
+  "model": "deepseek",
+  "message": "I was charged twice for the same order, 2 x $45 on my card",
+  "raw": "{\n  \"intent\": \"billing_issue\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"Customer reports being charged twice for the same order, $45 each time.\"\n}",
+  "intent": "billing_issue",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Customer reports being charged twice for the same order, $45 each time."
+}

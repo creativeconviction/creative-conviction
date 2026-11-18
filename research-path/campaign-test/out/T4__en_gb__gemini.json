@@ -1,0 +1,12 @@
+{
+  "line": "T4",
+  "market": "en_gb",
+  "model": "gemini",
+  "source": "Red Bull gives you wings",
+  "raw": "{\n  \"literal\": \"Red Bull gives you wings\",\n  \"adaptation\": \"Red Bull gives you wiiings\",\n  \"back_translation\": \"Red Bull gives you wings\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Although British English requires no linguistic translation, the brand globally mandates the spelling 'wiiings' to avoid false advertising lawsuits claiming the product doesn't provide literal physical wings.\"\n}",
+  "literal": "Red Bull gives you wings",
+  "adaptation": "Red Bull gives you wiiings",
+  "back_translation": "Red Bull gives you wings",
+  "approach": "adapted",
+  "notes": "Although British English requires no linguistic translation, the brand globally mandates the spelling 'wiiings' to avoid false advertising lawsuits claiming the product doesn't provide literal physical wings."
+}

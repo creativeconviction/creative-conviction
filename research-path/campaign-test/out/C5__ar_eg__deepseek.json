@@ -1,0 +1,12 @@
+{
+  "line": "C5",
+  "market": "ar_eg",
+  "model": "deepseek",
+  "source": "Your Friday night date starts here.",
+  "raw": "{\n  \"literal\": \"موعدك ليلة الجمعة يبدأ هنا\",\n  \"adaptation\": \"سهرة نهاية الأسبوع تبدأ هنا\",\n  \"back_translation\": \"Your weekend night out starts here.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Friday night is not a typical date night in Egypt due to its religious significance; weekend night (Friday/Saturday) is more appropriate and avoids potential cultural sensitivity.\"\n}",
+  "literal": "موعدك ليلة الجمعة يبدأ هنا",
+  "adaptation": "سهرة نهاية الأسبوع تبدأ هنا",
+  "back_translation": "Your weekend night out starts here.",
+  "approach": "adapted",
+  "notes": "Friday night is not a typical date night in Egypt due to its religious significance; weekend night (Friday/Saturday) is more appropriate and avoids potential cultural sensitivity."
+}

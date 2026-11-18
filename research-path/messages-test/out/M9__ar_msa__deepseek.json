@@ -1,0 +1,13 @@
+{
+  "scenario": "M9",
+  "lang": "ar_msa",
+  "model": "deepseek",
+  "message": "أردت فقط أن أقول إن المندوب كان لطيفاً جداً وساعدني في حمل كل شيء إلى الأعلى، شكراً لكم!",
+  "raw": "{\n  \"intent\": \"praise\",\n  \"sentiment\": \"positive\",\n  \"urgency\": \"low\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"The customer is praising the delivery representative for being kind and helping carry items upstairs.\"\n}",
+  "intent": "praise",
+  "sentiment": "positive",
+  "urgency": "low",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer is praising the delivery representative for being kind and helping carry items upstairs."
+}

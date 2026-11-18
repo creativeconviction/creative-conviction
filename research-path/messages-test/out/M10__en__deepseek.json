@@ -1,0 +1,13 @@
+{
+  "scenario": "M10",
+  "lang": "en",
+  "model": "deepseek",
+  "message": "do you deliver to Maple Heights? and is there a minimum order?",
+  "raw": "{\n  \"intent\": \"question\",\n  \"sentiment\": \"neutral\",\n  \"urgency\": \"low\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"Customer asks if delivery is available to Maple Heights and if there is a minimum order requirement.\"\n}",
+  "intent": "question",
+  "sentiment": "neutral",
+  "urgency": "low",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "Customer asks if delivery is available to Maple Heights and if there is a minimum order requirement."
+}

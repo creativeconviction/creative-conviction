@@ -1,0 +1,13 @@
+{
+  "scenario": "M6",
+  "lang": "ar_ma",
+  "model": "gemini",
+  "message": "عافاكم لغيو الكوموند دابا، درتها فعنوان غالط",
+  "raw": "```json\n{\n  \"intent\": \"cancel_order\",\n  \"sentiment\": \"neutral\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"The customer is requesting an immediate cancellation of their order because they accidentally entered the wrong delivery address.\"\n}\n```",
+  "intent": "cancel_order",
+  "sentiment": "neutral",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer is requesting an immediate cancellation of their order because they accidentally entered the wrong delivery address."
+}

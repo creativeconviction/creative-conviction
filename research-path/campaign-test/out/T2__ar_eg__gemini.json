@@ -1,0 +1,12 @@
+{
+  "line": "T2",
+  "market": "ar_eg",
+  "model": "gemini",
+  "source": "Just Do It",
+  "raw": "{\n  \"literal\": \"فقط افعلها\",\n  \"adaptation\": \"اعملها وبس\",\n  \"back_translation\": \"Do it and that's it\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Avoided the robotic Modern Standard Arabic 'فقط' in favor of the punchy Egyptian colloquial 'وبس' to maintain the bold, uncompromising attitude of the original brand voice.\"\n}",
+  "literal": "فقط افعلها",
+  "adaptation": "اعملها وبس",
+  "back_translation": "Do it and that's it",
+  "approach": "adapted",
+  "notes": "Avoided the robotic Modern Standard Arabic 'فقط' in favor of the punchy Egyptian colloquial 'وبس' to maintain the bold, uncompromising attitude of the original brand voice."
+}

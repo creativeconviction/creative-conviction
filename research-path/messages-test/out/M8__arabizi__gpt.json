@@ -1,0 +1,13 @@
+{
+  "scenario": "M8",
+  "lang": "arabizi",
+  "model": "gpt",
+  "message": "et5asam menny marteen 3ala nafs el order, 450 geneh marteen men el card",
+  "raw": "{\"intent\":\"billing_issue\",\"sentiment\":\"negative\",\"urgency\":\"high\",\"sarcasm\":false,\"churn_risk\":false,\"summary\":\"The customer was charged 450 EGP twice on their card for the same order.\"}",
+  "intent": "billing_issue",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer was charged 450 EGP twice on their card for the same order."
+}

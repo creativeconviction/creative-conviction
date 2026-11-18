@@ -1,0 +1,13 @@
+{
+  "scenario": "M6",
+  "lang": "ar_eg",
+  "model": "claude",
+  "message": "الغوا الأوردر دلوقتي حالاً لو سمحتوا، طلبته على عنوان غلط",
+  "raw": "```json\n{\n  \"intent\": \"cancel_order\",\n  \"sentiment\": \"neutral\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"The customer urgently asks to cancel their order immediately because they placed it to the wrong address.\"\n}\n```",
+  "intent": "cancel_order",
+  "sentiment": "neutral",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer urgently asks to cancel their order immediately because they placed it to the wrong address."
+}

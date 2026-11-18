@@ -1,0 +1,12 @@
+{
+  "line": "C2",
+  "market": "ar_eg",
+  "model": "gemini",
+  "source": "Happy hour: 2-for-1 drinks from 5 to 7pm.",
+  "raw": "{\n  \"literal\": \"ساعة سعيدة: ٢ مقابل ١ مشروبات من ٥ إلى ٧ مساءً.\",\n  \"adaptation\": \"ساعة الروقان: اطلب مشروب والتاني علينا من ٥ لـ ٧ مساءً.\",\n  \"back_translation\": \"Chill hour: order a drink and the second is on us from 5 to 7pm.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Replaced the literal 'happy hour' with the popular Egyptian concept of 'ساعة الروقان' (chill/relaxation hour) and framed the BOGO deal as 'the second is on us' to emphasize local hospitality while keeping the promotion culturally safe regardless of whether the drinks are alcoholic or not.\"\n}",
+  "literal": "ساعة سعيدة: ٢ مقابل ١ مشروبات من ٥ إلى ٧ مساءً.",
+  "adaptation": "ساعة الروقان: اطلب مشروب والتاني علينا من ٥ لـ ٧ مساءً.",
+  "back_translation": "Chill hour: order a drink and the second is on us from 5 to 7pm.",
+  "approach": "adapted",
+  "notes": "Replaced the literal 'happy hour' with the popular Egyptian concept of 'ساعة الروقان' (chill/relaxation hour) and framed the BOGO deal as 'the second is on us' to emphasize local hospitality while keeping the promotion culturally safe regardless of whether the drinks are alcoholic or not."
+}

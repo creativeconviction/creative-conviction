@@ -1,0 +1,13 @@
+{
+  "scenario": "M10",
+  "lang": "en",
+  "model": "gpt",
+  "message": "do you deliver to Maple Heights? and is there a minimum order?",
+  "raw": "{\"intent\":\"question\",\"sentiment\":\"neutral\",\"urgency\":\"low\",\"sarcasm\":false,\"churn_risk\":false,\"summary\":\"The customer asks whether delivery is available in Maple Heights and if there is a minimum order amount.\"}",
+  "intent": "question",
+  "sentiment": "neutral",
+  "urgency": "low",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer asks whether delivery is available in Maple Heights and if there is a minimum order amount."
+}

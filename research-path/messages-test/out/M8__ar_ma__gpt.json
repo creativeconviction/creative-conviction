@@ -1,0 +1,13 @@
+{
+  "scenario": "M8",
+  "lang": "ar_ma",
+  "model": "gpt",
+  "message": "تقطعو ليا الفلوس جوج مرات على نفس الكوموند، 300 درهم جوج مرات من الكارطة",
+  "raw": "{\"intent\":\"billing_issue\",\"sentiment\":\"negative\",\"urgency\":\"high\",\"sarcasm\":false,\"churn_risk\":false,\"summary\":\"The customer was charged twice for the same order, with two charges of 300 MAD on their card.\"}",
+  "intent": "billing_issue",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer was charged twice for the same order, with two charges of 300 MAD on their card."
+}

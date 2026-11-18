@@ -1,0 +1,12 @@
+{
+  "line": "T2",
+  "market": "ar_eg",
+  "model": "deepseek",
+  "source": "Just Do It",
+  "raw": "{\n  \"literal\": \"فقط افعلها\",\n  \"adaptation\": \"اعملها بس\",\n  \"back_translation\": \"Just do it\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Switched to Egyptian colloquial Arabic ('i'milha bass') to feel native and conversational, avoiding formal Modern Standard Arabic.\"\n}",
+  "literal": "فقط افعلها",
+  "adaptation": "اعملها بس",
+  "back_translation": "Just do it",
+  "approach": "adapted",
+  "notes": "Switched to Egyptian colloquial Arabic ('i'milha bass') to feel native and conversational, avoiding formal Modern Standard Arabic."
+}

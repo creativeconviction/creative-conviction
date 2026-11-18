@@ -1,0 +1,12 @@
+{
+  "line": "T5",
+  "market": "ar_eg",
+  "model": "gpt",
+  "source": "Because you're worth it",
+  "raw": "{\n  \"literal\": \"لأنك تستحقين ذلك\",\n  \"adaptation\": \"لأنك تستحقين الأفضل\",\n  \"back_translation\": \"Because you deserve the best\",\n  \"approach\": \"adapted\",\n  \"notes\": \"استخدمنا صيغة المؤنث المتداولة في خطاب لوريال، مع تعبير طبيعي وملهم يناسب الجمهور المصري.\"\n}",
+  "literal": "لأنك تستحقين ذلك",
+  "adaptation": "لأنك تستحقين الأفضل",
+  "back_translation": "Because you deserve the best",
+  "approach": "adapted",
+  "notes": "استخدمنا صيغة المؤنث المتداولة في خطاب لوريال، مع تعبير طبيعي وملهم يناسب الجمهور المصري."
+}

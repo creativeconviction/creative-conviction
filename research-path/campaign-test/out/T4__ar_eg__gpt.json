@@ -1,0 +1,12 @@
+{
+  "line": "T4",
+  "market": "ar_eg",
+  "model": "gpt",
+  "source": "Red Bull gives you wings",
+  "raw": "{\n  \"literal\": \"ريد بُل يمنحك أجنحة\",\n  \"adaptation\": \"ريد بُل بيديك جوانح\",\n  \"back_translation\": \"Red Bull gives you wings\",\n  \"approach\": \"adapted\",\n  \"notes\": \"استخدمنا اللهجة المصرية لتبدو العبارة طبيعية وقريبة من الجمهور، مع الحفاظ على فكرة الشعار الأصلية.\"\n}",
+  "literal": "ريد بُل يمنحك أجنحة",
+  "adaptation": "ريد بُل بيديك جوانح",
+  "back_translation": "Red Bull gives you wings",
+  "approach": "adapted",
+  "notes": "استخدمنا اللهجة المصرية لتبدو العبارة طبيعية وقريبة من الجمهور، مع الحفاظ على فكرة الشعار الأصلية."
+}

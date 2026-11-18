@@ -1,0 +1,12 @@
+{
+  "line": "I1",
+  "market": "en_gb",
+  "model": "deepseek",
+  "source": "We deliver the goods. Literally.",
+  "raw": "{\n  \"literal\": \"We deliver the goods. Literally.\",\n  \"adaptation\": \"We deliver the goods. Literally.\",\n  \"back_translation\": \"We deliver the goods. Literally.\",\n  \"approach\": \"keep_english\",\n  \"notes\": \"The pun on 'deliver the goods' is identical in British English, and the colloquial use of 'literally' carries the same playful tone, so no change was required.\"\n}",
+  "literal": "We deliver the goods. Literally.",
+  "adaptation": "We deliver the goods. Literally.",
+  "back_translation": "We deliver the goods. Literally.",
+  "approach": "keep_english",
+  "notes": "The pun on 'deliver the goods' is identical in British English, and the colloquial use of 'literally' carries the same playful tone, so no change was required."
+}

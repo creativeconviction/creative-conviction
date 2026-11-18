@@ -1,0 +1,12 @@
+{
+  "line": "I2",
+  "market": "ar_sa",
+  "model": "claude",
+  "source": "Rise and grind.",
+  "raw": "```json\n{\n  \"literal\": \"انهض واطحن.\",\n  \"adaptation\": \"صحصح مع أول رشفة.\",\n  \"back_translation\": \"Wake right up with the first sip.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"The pun on 'grind' (coffee grinding and hard work) doesn't survive in Arabic, where 'اطحن' just sounds like crushing something, so I kept the wake-up-and-get-going idea with the energetic Gulf colloquial 'صحصح' and tied it to the coffee ritual rather than hustle-culture slang.\"\n}\n```",
+  "literal": "انهض واطحن.",
+  "adaptation": "صحصح مع أول رشفة.",
+  "back_translation": "Wake right up with the first sip.",
+  "approach": "adapted",
+  "notes": "The pun on 'grind' (coffee grinding and hard work) doesn't survive in Arabic, where 'اطحن' just sounds like crushing something, so I kept the wake-up-and-get-going idea with the energetic Gulf colloquial 'صحصح' and tied it to the coffee ritual rather than hustle-culture slang."
+}

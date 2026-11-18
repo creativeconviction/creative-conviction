@@ -1,0 +1,13 @@
+{
+  "scenario": "M11",
+  "lang": "ar_ma",
+  "model": "saba",
+  "message": "بصراحة هادي آخر مرة نطلب منكم، كل سيمانة كاين شي مشكل",
+  "raw": "```json\n{\n  \"intent\": \"general_complaint\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"Customer expresses frustration and states this is the last time they will order from the service due to repeated issues.\"\n}\n```",
+  "intent": "general_complaint",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Customer expresses frustration and states this is the last time they will order from the service due to repeated issues."
+}

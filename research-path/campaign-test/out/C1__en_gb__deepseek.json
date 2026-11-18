@@ -1,0 +1,12 @@
+{
+  "line": "C1",
+  "market": "en_gb",
+  "model": "deepseek",
+  "source": "Black Friday: up to 70% off everything.",
+  "raw": "{\n  \"literal\": \"Black Friday: up to 70% off everything.\",\n  \"adaptation\": \"Black Friday: up to 70% off everything.\",\n  \"back_translation\": \"Black Friday: up to 70% off everything.\",\n  \"approach\": \"keep_english\",\n  \"notes\": \"The original line works without change in British English as 'Black Friday' is a well-established shopping event and the phrasing is natural.\"\n}",
+  "literal": "Black Friday: up to 70% off everything.",
+  "adaptation": "Black Friday: up to 70% off everything.",
+  "back_translation": "Black Friday: up to 70% off everything.",
+  "approach": "keep_english",
+  "notes": "The original line works without change in British English as 'Black Friday' is a well-established shopping event and the phrasing is natural."
+}

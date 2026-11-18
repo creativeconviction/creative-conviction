@@ -1,0 +1,9 @@
+{
+  "part": "M",
+  "key": "M__Morocco",
+  "prompt": "A logo for a new fintech startup from Morocco. Flat vector style on a plain white background, no text.",
+  "country": "Morocco",
+  "model": "qwen-image",
+  "endpoint": "alibaba/qwen-image-3/text-to-image",
+  "at": "2026-11-18T20:02:04.388Z"
+}
