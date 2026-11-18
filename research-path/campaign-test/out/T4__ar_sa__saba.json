@@ -1,0 +1,12 @@
+{
+  "line": "T4",
+  "market": "ar_sa",
+  "model": "saba",
+  "source": "Red Bull gives you wings",
+  "raw": "```json\n{\n  \"literal\": \"ريد بول يمنحك أجنحة\",\n  \"adaptation\": \"ريد بول يمنحك طاقة لا نهائية\",\n  \"back_translation\": \"Red Bull gives you infinite energy\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Avoids direct translation of 'wings' (جناح) due to potential religious/cultural interpretations.\"\n}\n```",
+  "literal": "ريد بول يمنحك أجنحة",
+  "adaptation": "ريد بول يمنحك طاقة لا نهائية",
+  "back_translation": "Red Bull gives you infinite energy",
+  "approach": "adapted",
+  "notes": "Avoids direct translation of 'wings' (جناح) due to potential religious/cultural interpretations."
+}

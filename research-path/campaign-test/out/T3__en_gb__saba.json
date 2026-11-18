@@ -1,0 +1,12 @@
+{
+  "line": "T3",
+  "market": "en_gb",
+  "model": "saba",
+  "source": "Have a break, have a KitKat",
+  "raw": "```json\n{\n  \"literal\": \"Have a break, have a KitKat\",\n  \"adaptation\": \"Have a break, have a KitKat\",\n  \"back_translation\": \"Have a break, have a KitKat\",\n  \"approach\": \"keep_english\",\n  \"notes\": \"The slogan is already widely recognized in the UK and requires no adaptation.\"\n}\n```",
+  "literal": "Have a break, have a KitKat",
+  "adaptation": "Have a break, have a KitKat",
+  "back_translation": "Have a break, have a KitKat",
+  "approach": "keep_english",
+  "notes": "The slogan is already widely recognized in the UK and requires no adaptation."
+}

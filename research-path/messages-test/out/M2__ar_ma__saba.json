@@ -1,0 +1,13 @@
+{
+  "scenario": "M2",
+  "lang": "ar_ma",
+  "model": "saba",
+  "message": "فين الكوموند ديالي؟؟ هادي جوج سوايع، هادشي ماشي معقول",
+  "raw": "```json\n{\n  \"intent\": \"late_delivery\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"Customer is angrily asking where their order is after waiting for two hours.\"\n}\n```",
+  "intent": "late_delivery",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Customer is angrily asking where their order is after waiting for two hours."
+}

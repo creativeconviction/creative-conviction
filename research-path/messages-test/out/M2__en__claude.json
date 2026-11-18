@@ -1,0 +1,13 @@
+{
+  "scenario": "M2",
+  "lang": "en",
+  "model": "claude",
+  "message": "WHERE IS MY ORDER?? it's been 2 hours, this is ridiculous",
+  "raw": "```json\n{\n  \"intent\": \"late_delivery\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"The customer is angry that their order still hasn't arrived after two hours and wants to know where it is.\"\n}\n```",
+  "intent": "late_delivery",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "The customer is angry that their order still hasn't arrived after two hours and wants to know where it is."
+}

@@ -1,0 +1,12 @@
+{
+  "line": "T1",
+  "market": "en_gb",
+  "model": "claude",
+  "source": "I'm lovin' it",
+  "raw": "```json\n{\n  \"literal\": \"I'm lovin' it\",\n  \"adaptation\": \"I'm lovin' it\",\n  \"back_translation\": \"I'm lovin' it\",\n  \"approach\": \"keep_english\",\n  \"notes\": \"The informal American-sounding contraction and continuous 'loving' might seem un-British, but the line is a global brand asset that UK audiences already know, so I kept it unchanged rather than formalising it to 'I'm loving it' or localising the idiom.\"\n}\n```",
+  "literal": "I'm lovin' it",
+  "adaptation": "I'm lovin' it",
+  "back_translation": "I'm lovin' it",
+  "approach": "keep_english",
+  "notes": "The informal American-sounding contraction and continuous 'loving' might seem un-British, but the line is a global brand asset that UK audiences already know, so I kept it unchanged rather than formalising it to 'I'm loving it' or localising the idiom."
+}

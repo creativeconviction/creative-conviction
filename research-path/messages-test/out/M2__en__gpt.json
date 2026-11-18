@@ -1,0 +1,13 @@
+{
+  "scenario": "M2",
+  "lang": "en",
+  "model": "gpt",
+  "message": "WHERE IS MY ORDER?? it's been 2 hours, this is ridiculous",
+  "raw": "{\"intent\":\"late_delivery\",\"sentiment\":\"negative\",\"urgency\":\"high\",\"sarcasm\":false,\"churn_risk\":false,\"summary\":\"The customer is upset that their order is two hours late and wants to know where it is.\"}",
+  "intent": "late_delivery",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer is upset that their order is two hours late and wants to know where it is."
+}

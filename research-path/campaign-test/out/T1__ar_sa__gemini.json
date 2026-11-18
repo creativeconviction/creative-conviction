@@ -1,0 +1,12 @@
+{
+  "line": "T1",
+  "market": "ar_sa",
+  "model": "gemini",
+  "source": "I'm lovin' it",
+  "raw": "{\n  \"literal\": \"أنا أحب ذلك\",\n  \"adaptation\": \"أنا أحبه\",\n  \"back_translation\": \"I love it\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Since Arabic grammar does not apply a present continuous tense to verbs of emotion, the slogan is adapted to the simple present to sound natural while perfectly fitting the rhythm of the iconic five-note jingle.\"\n}",
+  "literal": "أنا أحب ذلك",
+  "adaptation": "أنا أحبه",
+  "back_translation": "I love it",
+  "approach": "adapted",
+  "notes": "Since Arabic grammar does not apply a present continuous tense to verbs of emotion, the slogan is adapted to the simple present to sound natural while perfectly fitting the rhythm of the iconic five-note jingle."
+}

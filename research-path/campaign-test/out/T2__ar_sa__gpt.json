@@ -1,0 +1,12 @@
+{
+  "line": "T2",
+  "market": "ar_sa",
+  "model": "gpt",
+  "source": "Just Do It",
+  "raw": "{\n  \"literal\": \"فقط افعلها\",\n  \"adaptation\": \"يلا، سوّها\",\n  \"back_translation\": \"Come on, do it.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"استخدمنا تعبيرًا سعوديًا دارجًا يمنح العبارة طاقة تحفيزية طبيعية مع تجنّب الترجمة الحرفية الجامدة.\"\n}",
+  "literal": "فقط افعلها",
+  "adaptation": "يلا، سوّها",
+  "back_translation": "Come on, do it.",
+  "approach": "adapted",
+  "notes": "استخدمنا تعبيرًا سعوديًا دارجًا يمنح العبارة طاقة تحفيزية طبيعية مع تجنّب الترجمة الحرفية الجامدة."
+}

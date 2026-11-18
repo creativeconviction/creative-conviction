@@ -1,0 +1,12 @@
+{
+  "line": "T5",
+  "market": "en_gb",
+  "model": "saba",
+  "source": "Because you're worth it",
+  "raw": "```json\n{\n  \"literal\": \"Because you're worth it\",\n  \"adaptation\": \"Because you're worth it\",\n  \"back_translation\": \"Because you're worth it\",\n  \"approach\": \"keep_english\",\n  \"notes\": \"The original slogan is already ingrained in UK culture and resonates well, so no adaptation is needed.\"\n}\n```",
+  "literal": "Because you're worth it",
+  "adaptation": "Because you're worth it",
+  "back_translation": "Because you're worth it",
+  "approach": "keep_english",
+  "notes": "The original slogan is already ingrained in UK culture and resonates well, so no adaptation is needed."
+}

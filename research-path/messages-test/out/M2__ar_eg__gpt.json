@@ -1,0 +1,13 @@
+{
+  "scenario": "M2",
+  "lang": "ar_eg",
+  "model": "gpt",
+  "message": "الأوردر فين؟؟ بقاله ساعتين، ده تهريج",
+  "raw": "{\"intent\":\"late_delivery\",\"sentiment\":\"negative\",\"urgency\":\"high\",\"sarcasm\":false,\"churn_risk\":false,\"summary\":\"The customer is angrily asking where the order is after a two-hour delay.\"}",
+  "intent": "late_delivery",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer is angrily asking where the order is after a two-hour delay."
+}

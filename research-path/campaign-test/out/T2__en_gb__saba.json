@@ -1,0 +1,12 @@
+{
+  "line": "T2",
+  "market": "en_gb",
+  "model": "saba",
+  "source": "Just Do It",
+  "raw": "```json\n{\n  \"literal\": \"as Anti & Róbelo\",\n  \"adaptation\": \"Step Up – Just Do It\",\n  \"back_translation\": \"Increase Your Game – Just Do It\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Kept 'Just Do It' to preserve brand recognition while softening the tone for British acceptability.\"\n}\n```",
+  "literal": "as Anti & Róbelo",
+  "adaptation": "Step Up – Just Do It",
+  "back_translation": "Increase Your Game – Just Do It",
+  "approach": "adapted",
+  "notes": "Kept 'Just Do It' to preserve brand recognition while softening the tone for British acceptability."
+}

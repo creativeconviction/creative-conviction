@@ -1,0 +1,12 @@
+{
+  "line": "T1",
+  "market": "en_gb",
+  "model": "gpt",
+  "source": "I'm lovin' it",
+  "raw": "{\n  \"literal\": \"I'm lovin' it\",\n  \"adaptation\": \"I'm lovin' it\",\n  \"back_translation\": \"I'm lovin' it\",\n  \"approach\": \"keep_english\",\n  \"notes\": \"The established global slogan is already widely recognised and natural in the UK market.\"\n}",
+  "literal": "I'm lovin' it",
+  "adaptation": "I'm lovin' it",
+  "back_translation": "I'm lovin' it",
+  "approach": "keep_english",
+  "notes": "The established global slogan is already widely recognised and natural in the UK market."
+}

@@ -1,0 +1,13 @@
+{
+  "scenario": "M2",
+  "lang": "ar_ma",
+  "model": "gpt",
+  "message": "فين الكوموند ديالي؟؟ هادي جوج سوايع، هادشي ماشي معقول",
+  "raw": "{\"intent\":\"late_delivery\",\"sentiment\":\"negative\",\"urgency\":\"high\",\"sarcasm\":false,\"churn_risk\":false,\"summary\":\"The customer says their order is two hours late and finds the delay unacceptable.\"}",
+  "intent": "late_delivery",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer says their order is two hours late and finds the delay unacceptable."
+}

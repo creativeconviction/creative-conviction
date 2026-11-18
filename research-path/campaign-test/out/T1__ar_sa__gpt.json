@@ -1,0 +1,12 @@
+{
+  "line": "T1",
+  "market": "ar_sa",
+  "model": "gpt",
+  "source": "I'm lovin' it",
+  "raw": "{\n  \"literal\": \"أنا أحبّه\",\n  \"adaptation\": \"أنا أحبه\",\n  \"back_translation\": \"I’m lovin’ it\",\n  \"approach\": \"literal\",\n  \"notes\": \"استخدمنا الصياغة العربية المألوفة للعلامة، وهي واضحة وملائمة للجمهور السعودي دون لهجة محلية محددة.\"\n}",
+  "literal": "أنا أحبّه",
+  "adaptation": "أنا أحبه",
+  "back_translation": "I’m lovin’ it",
+  "approach": "literal",
+  "notes": "استخدمنا الصياغة العربية المألوفة للعلامة، وهي واضحة وملائمة للجمهور السعودي دون لهجة محلية محددة."
+}

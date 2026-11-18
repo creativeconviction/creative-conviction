@@ -1,0 +1,12 @@
+{
+  "line": "T1",
+  "market": "ar_eg",
+  "model": "claude",
+  "source": "I'm lovin' it",
+  "raw": "```json\n{\n  \"literal\": \"أنا أُحِبُّه\",\n  \"adaptation\": \"أنا بحبّه\",\n  \"back_translation\": \"I'm lovin' it (in everyday Egyptian speech: 'I love it')\",\n  \"approach\": \"adapted\",\n  \"notes\": \"I swapped stiff Modern Standard Arabic for warm, conversational Egyptian colloquial ('بحبّه') to keep the original's casual, slangy feel, which still fits the familiar 'ba-da-ba-ba-ba' jingle, while avoiding any romantic or overly formal reading of 'love'.\"\n}\n```",
+  "literal": "أنا أُحِبُّه",
+  "adaptation": "أنا بحبّه",
+  "back_translation": "I'm lovin' it (in everyday Egyptian speech: 'I love it')",
+  "approach": "adapted",
+  "notes": "I swapped stiff Modern Standard Arabic for warm, conversational Egyptian colloquial ('بحبّه') to keep the original's casual, slangy feel, which still fits the familiar 'ba-da-ba-ba-ba' jingle, while avoiding any romantic or overly formal reading of 'love'."
+}

@@ -1,0 +1,12 @@
+{
+  "line": "T3",
+  "market": "ar_eg",
+  "model": "gpt",
+  "source": "Have a break, have a KitKat",
+  "raw": "{\n  \"literal\": \"خُذ استراحة، خُذ كيت كات\",\n  \"adaptation\": \"خُد بريك... خُد كيت كات\",\n  \"back_translation\": \"Take a break... have a KitKat\",\n  \"approach\": \"adapted\",\n  \"notes\": \"استخدمنا العامية المصرية وكلمة «بريك» الشائعة محليًا للحفاظ على خفة الشعار وإيقاعه.\"\n}",
+  "literal": "خُذ استراحة، خُذ كيت كات",
+  "adaptation": "خُد بريك... خُد كيت كات",
+  "back_translation": "Take a break... have a KitKat",
+  "approach": "adapted",
+  "notes": "استخدمنا العامية المصرية وكلمة «بريك» الشائعة محليًا للحفاظ على خفة الشعار وإيقاعه."
+}

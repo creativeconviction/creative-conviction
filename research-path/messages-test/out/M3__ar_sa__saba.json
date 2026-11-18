@@ -1,0 +1,13 @@
+{
+  "scenario": "M3",
+  "lang": "ar_sa",
+  "model": "saba",
+  "message": "ما شاء الله عليكم خدمة ولا أروع، بس ساعتين تأخير مرة ثانية 👏👏",
+  "raw": "```json\n{\n  \"intent\": \"late_delivery\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": true,\n  \"churn_risk\": true,\n  \"summary\": \"Customer is sarcastically praising the service while complaining about a two-hour delay.\"\n}\n```",
+  "intent": "late_delivery",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": true,
+  "churn_risk": true,
+  "summary": "Customer is sarcastically praising the service while complaining about a two-hour delay."
+}

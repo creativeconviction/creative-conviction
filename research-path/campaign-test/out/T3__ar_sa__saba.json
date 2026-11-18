@@ -1,0 +1,12 @@
+{
+  "line": "T3",
+  "market": "ar_sa",
+  "model": "saba",
+  "source": "Have a break, have a KitKat",
+  "raw": "```json\n{\n  \"literal\": \"خذ قسطاً من الراحة، تناول كيت كات\",\n  \"adaptation\": \"ابدع في استراحة، استمتعбите كات كات\",\n  \"back_translation\": \"Get creative with your break, enjoy KitKat\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Localized to resonate with local creativity culture while keeping the break-taking essence.\"\n}\n```",
+  "literal": "خذ قسطاً من الراحة، تناول كيت كات",
+  "adaptation": "ابدع في استراحة، استمتعбите كات كات",
+  "back_translation": "Get creative with your break, enjoy KitKat",
+  "approach": "adapted",
+  "notes": "Localized to resonate with local creativity culture while keeping the break-taking essence."
+}

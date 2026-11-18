@@ -1,0 +1,12 @@
+{
+  "line": "T5",
+  "market": "ar_sa",
+  "model": "saba",
+  "source": "Because you're worth it",
+  "raw": "```json\n{\n  \"literal\": \"لأنك جديرة بهذا\",\n  \"adaptation\": \"لأن جمالك في راحتك\",\n  \"back_translation\": \"Because your beauty is in your comfort\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Shifted focus to 'comfort' (راحتك) to align with cultural values around modesty and personal care in Saudi Arabia.\"\n}\n```",
+  "literal": "لأنك جديرة بهذا",
+  "adaptation": "لأن جمالك في راحتك",
+  "back_translation": "Because your beauty is in your comfort",
+  "approach": "adapted",
+  "notes": "Shifted focus to 'comfort' (راحتك) to align with cultural values around modesty and personal care in Saudi Arabia."
+}

@@ -1,0 +1,13 @@
+{
+  "scenario": "M2",
+  "lang": "arabizi",
+  "model": "gpt",
+  "message": "el order fein?? ba2alo sa3teen, da tahreeg",
+  "raw": "{\"intent\":\"late_delivery\",\"sentiment\":\"negative\",\"urgency\":\"high\",\"sarcasm\":false,\"churn_risk\":false,\"summary\":\"The customer says the order is two hours late and expresses frustration.\"}",
+  "intent": "late_delivery",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer says the order is two hours late and expresses frustration."
+}
