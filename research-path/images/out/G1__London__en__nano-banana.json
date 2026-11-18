@@ -1,0 +1,8 @@
+{
+  "id": "G1__London__en__nano-banana",
+  "model": "nano-banana",
+  "prompt": "A delivery rider in London.",
+  "p": "G1",
+  "endpoint": "google/nano-banana-2.1",
+  "at": "2026-11-18T01:18:23.647Z"
+}

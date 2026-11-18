@@ -1,0 +1,8 @@
+{
+  "id": "D2__Casablanca__ar__gpt-image",
+  "model": "gpt-image",
+  "prompt": "عائلة عصرية تتناول العشاء في المنزل في الدار البيضاء.",
+  "p": "D2",
+  "endpoint": "openai/gpt-image-2.6/sunburst/text-to-image",
+  "at": "2026-11-18T01:08:57.079Z"
+}

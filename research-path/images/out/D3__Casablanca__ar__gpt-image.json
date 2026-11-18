@@ -1,0 +1,8 @@
+{
+  "id": "D3__Casablanca__ar__gpt-image",
+  "model": "gpt-image",
+  "prompt": "امرأة شابة محترفة في عملها في الدار البيضاء.",
+  "p": "D3",
+  "endpoint": "openai/gpt-image-2.6/sunburst/text-to-image",
+  "at": "2026-11-18T01:12:34.507Z"
+}

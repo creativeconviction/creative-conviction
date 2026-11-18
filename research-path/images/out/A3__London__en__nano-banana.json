@@ -1,0 +1,8 @@
+{
+  "id": "A3__London__en__nano-banana",
+  "model": "nano-banana",
+  "prompt": "A Ramadan campaign image for a grocery delivery app in London.",
+  "p": "A3",
+  "endpoint": "google/nano-banana-2.1",
+  "at": "2026-11-18T01:16:41.677Z"
+}

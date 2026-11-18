@@ -1,0 +1,8 @@
+{
+  "id": "D3__Cairo__en__gpt-image",
+  "model": "gpt-image",
+  "prompt": "A young professional woman at work in Cairo.",
+  "p": "D3",
+  "endpoint": "openai/gpt-image-2.6/sunburst/text-to-image",
+  "at": "2026-11-18T01:10:59.247Z"
+}

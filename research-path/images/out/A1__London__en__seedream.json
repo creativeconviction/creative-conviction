@@ -1,0 +1,8 @@
+{
+  "id": "A1__London__en__seedream",
+  "model": "seedream",
+  "prompt": "An advertising photo for a grocery delivery app in London: a rider handing a bag to a customer at the door.",
+  "p": "A1",
+  "endpoint": "bytedance/seedream/v5/pro/text-to-image",
+  "at": "2026-11-18T01:38:08.366Z"
+}

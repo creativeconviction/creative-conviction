@@ -1,0 +1,8 @@
+{
+  "id": "E2__Cairo__en__seedream",
+  "model": "seedream",
+  "prompt": "An Instagram post design in Arabic announcing 20-minute grocery delivery in Cairo.",
+  "p": "E2",
+  "endpoint": "bytedance/seedream/v5/pro/text-to-image",
+  "at": "2026-11-18T02:01:52.048Z"
+}

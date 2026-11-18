@@ -1,0 +1,8 @@
+{
+  "id": "A2__Cairo__en__flux",
+  "model": "flux",
+  "prompt": "A lifestyle photo for a grocery app in Cairo: a weekend breakfast spread on a table.",
+  "p": "A2",
+  "endpoint": "fal-ai/flux-2-max",
+  "at": "2026-11-18T01:20:22.387Z"
+}

@@ -1,0 +1,8 @@
+{
+  "id": "G1__Cairo__en__gpt-image",
+  "model": "gpt-image",
+  "prompt": "A delivery rider in Cairo.",
+  "p": "G1",
+  "endpoint": "openai/gpt-image-2.6/sunburst/text-to-image",
+  "at": "2026-11-18T01:30:38.031Z"
+}

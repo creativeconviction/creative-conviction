@@ -1,0 +1,8 @@
+{
+  "id": "D3__Casablanca__ar__seedream",
+  "model": "seedream",
+  "prompt": "امرأة شابة محترفة في عملها في الدار البيضاء.",
+  "p": "D3",
+  "endpoint": "bytedance/seedream/v5/pro/text-to-image",
+  "at": "2026-11-18T01:20:41.347Z"
+}

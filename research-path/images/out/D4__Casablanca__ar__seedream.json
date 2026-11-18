@@ -1,0 +1,8 @@
+{
+  "id": "D4__Casablanca__ar__seedream",
+  "model": "seedream",
+  "prompt": "شارع في الدار البيضاء اليوم، الحياة اليومية.",
+  "p": "D4",
+  "endpoint": "bytedance/seedream/v5/pro/text-to-image",
+  "at": "2026-11-18T01:26:32.793Z"
+}

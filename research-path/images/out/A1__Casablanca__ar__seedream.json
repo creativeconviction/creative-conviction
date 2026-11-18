@@ -1,0 +1,8 @@
+{
+  "id": "A1__Casablanca__ar__seedream",
+  "model": "seedream",
+  "prompt": "صورة إعلانية لتطبيق توصيل بقالة في الدار البيضاء: عامل توصيل يسلّم كيساً لعميل عند الباب.",
+  "p": "A1",
+  "endpoint": "bytedance/seedream/v5/pro/text-to-image",
+  "at": "2026-11-18T01:37:20.951Z"
+}

@@ -1,0 +1,8 @@
+{
+  "id": "D4__Casablanca__ar__gpt-image",
+  "model": "gpt-image",
+  "prompt": "شارع في الدار البيضاء اليوم، الحياة اليومية.",
+  "p": "D4",
+  "endpoint": "openai/gpt-image-2.6/sunburst/text-to-image",
+  "at": "2026-11-18T01:16:42.492Z"
+}

@@ -1,0 +1,8 @@
+{
+  "id": "E1__none__en__flux",
+  "model": "flux",
+  "prompt": "An app icon for an Arabic grocery delivery app called «قريب».",
+  "p": "E1",
+  "endpoint": "fal-ai/flux-2-max",
+  "at": "2026-11-18T01:30:06.516Z"
+}

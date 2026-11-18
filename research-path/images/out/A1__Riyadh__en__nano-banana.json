@@ -1,0 +1,8 @@
+{
+  "id": "A1__Riyadh__en__nano-banana",
+  "model": "nano-banana",
+  "prompt": "An advertising photo for a grocery delivery app in Riyadh: a rider handing a bag to a customer at the door.",
+  "p": "A1",
+  "endpoint": "google/nano-banana-2.1",
+  "at": "2026-11-18T01:11:45.043Z"
+}

@@ -1,0 +1,8 @@
+{
+  "id": "D4__Riyadh__en__nano-banana",
+  "model": "nano-banana",
+  "prompt": "A street in Riyadh today, everyday life.",
+  "p": "D4",
+  "endpoint": "google/nano-banana-2.1",
+  "at": "2026-11-18T01:08:21.388Z"
+}

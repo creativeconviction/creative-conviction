@@ -1,0 +1,8 @@
+{
+  "id": "G1__London__en__flux",
+  "model": "flux",
+  "prompt": "A delivery rider in London.",
+  "p": "G1",
+  "endpoint": "fal-ai/flux-2-max",
+  "at": "2026-11-18T01:26:31.363Z"
+}

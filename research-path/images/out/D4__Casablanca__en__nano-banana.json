@@ -1,0 +1,8 @@
+{
+  "id": "D4__Casablanca__en__nano-banana",
+  "model": "nano-banana",
+  "prompt": "A street in Casablanca today, everyday life.",
+  "p": "D4",
+  "endpoint": "google/nano-banana-2.1",
+  "at": "2026-11-18T01:09:33.023Z"
+}

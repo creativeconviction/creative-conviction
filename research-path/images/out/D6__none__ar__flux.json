@@ -1,0 +1,8 @@
+{
+  "id": "D6__none__ar__flux",
+  "model": "flux",
+  "prompt": "مراهق عربي نموذجي في غرفته.",
+  "p": "D6",
+  "endpoint": "fal-ai/flux-2-max",
+  "at": "2026-11-18T01:15:24.775Z"
+}

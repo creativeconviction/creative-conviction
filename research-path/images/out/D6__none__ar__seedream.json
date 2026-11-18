@@ -1,0 +1,8 @@
+{
+  "id": "D6__none__ar__seedream",
+  "model": "seedream",
+  "prompt": "مراهق عربي نموذجي في غرفته.",
+  "p": "D6",
+  "endpoint": "bytedance/seedream/v5/pro/text-to-image",
+  "at": "2026-11-18T01:30:47.709Z"
+}

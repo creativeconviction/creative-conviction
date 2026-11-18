@@ -1,0 +1,8 @@
+{
+  "id": "A2__London__en__nano-banana",
+  "model": "nano-banana",
+  "prompt": "A lifestyle photo for a grocery app in London: a weekend breakfast spread on a table.",
+  "p": "A2",
+  "endpoint": "google/nano-banana-2.1",
+  "at": "2026-11-18T01:15:17.548Z"
+}

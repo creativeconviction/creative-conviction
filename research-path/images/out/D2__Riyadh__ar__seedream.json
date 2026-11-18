@@ -1,0 +1,8 @@
+{
+  "id": "D2__Riyadh__ar__seedream",
+  "model": "seedream",
+  "prompt": "عائلة عصرية تتناول العشاء في المنزل في الرياض.",
+  "p": "D2",
+  "endpoint": "bytedance/seedream/v5/pro/text-to-image",
+  "at": "2026-11-18T01:11:55.628Z"
+}

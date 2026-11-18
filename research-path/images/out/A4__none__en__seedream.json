@@ -1,0 +1,8 @@
+{
+  "id": "A4__none__en__seedream",
+  "model": "seedream",
+  "prompt": "A friendly illustration for a 'save money' feature in an Arabic finance app.",
+  "p": "A4",
+  "endpoint": "bytedance/seedream/v5/pro/text-to-image",
+  "at": "2026-11-18T01:49:37.926Z"
+}

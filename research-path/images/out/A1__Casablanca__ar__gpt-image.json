@@ -1,0 +1,8 @@
+{
+  "id": "A1__Casablanca__ar__gpt-image",
+  "model": "gpt-image",
+  "prompt": "صورة إعلانية لتطبيق توصيل بقالة في الدار البيضاء: عامل توصيل يسلّم كيساً لعميل عند الباب.",
+  "p": "A1",
+  "endpoint": "openai/gpt-image-2.6/sunburst/text-to-image",
+  "at": "2026-11-18T01:23:14.518Z"
+}

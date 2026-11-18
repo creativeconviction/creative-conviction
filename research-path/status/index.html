@@ -86,6 +86,8 @@ th { font: 500 12px var(--font-mono); letter-spacing: 0.04em; text-transform: up
 .ok { color: var(--done); } .mid { color: var(--you); } .bad { color: #c2410c; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .bad { color: #ff8a5c; } }
 :root[data-theme="dark"] .bad { color: #ff8a5c; }
+.finding { margin: 12px 0 0; font-size: 15px; }
+.plate + .plate { margin-top: 40px; }
 .note { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--you); border-radius: 6px; padding: 12px 14px; font-size: 14px; color: var(--muted); margin-top: 14px; }
 
 .todo-list { display: grid; gap: 12px; margin-top: 14px; }
@@ -99,7 +101,7 @@ code { font: 13px var(--font-mono); background: var(--todo-bg); padding: 1px 5px
     <div class="eyebrow">Outliers · research status</div>
     <h1>Where AI breaks when we design and write for Arab users</h1>
     <p class="lede">We build one product, a grocery delivery app called Qareeb <span class="ar">(قريب)</span>, the way a real team would, using AI at every step, for Riyadh, Cairo and Casablanca. Every place the output wouldn't work for real users gets logged, explained, and turned into guidance for designers and writers.</p>
-    <p class="updated">Updated 18 Nov 2026 · imagery run in progress</p>
+    <p class="updated">Updated 18 Nov 2026 · all 292 imagery tests and 84 billboards generated</p>
   </header>
 
   <section class="col">
@@ -108,7 +110,7 @@ code { font: 13px var(--font-mono); background: var(--todo-bg); padding: 1px 5px
     <div class="phases">
       <div class="phase"><div class="n">0</div><div class="body"><h3>Set up</h3><p>Research question, product, cities, log workbook with 22 text prompts and 20 image prompts.</p></div><span class="pill done">Done</span></div>
       <div class="phase"><div class="n">1</div><div class="body"><h3>Build it with AI: text</h3><p>Run the 22 prompts (research, brand, copy, interface, support) in ChatGPT, Claude and Gemini per city; log every break.</p></div><span class="pill you">Your turn</span></div>
-      <div class="phase"><div class="n">1b</div><div class="body"><h3>Build it with AI: imagery</h3><p>20 image prompts × 7 image models, three cities plus London as a control, English and Arabic prompts.</p><div class="bar" aria-label="Imagery progress"><span style="width:30%"></span></div><p class="mono" style="margin-top:6px">88 / 292 images</p></div><span class="pill run">Running</span></div>
+      <div class="phase"><div class="n">1b</div><div class="body"><h3>Build it with AI: imagery</h3><p>20 image prompts × 7 image models, three cities plus London as a control, English and Arabic prompts. All generated; tagging is next.</p><div class="bar" aria-label="Imagery progress"><span style="width:100%;background:var(--done)"></span></div><p class="mono" style="margin-top:6px">292 / 292 images</p></div><span class="pill you">Tag them</span></div>
       <div class="phase"><div class="n">2</div><div class="body"><h3>Compare with real products</h3><p>Screenshot 4–6 leading regional apps per country at the same stages; read real Arabic reviews.</p></div><span class="pill todo">Not started</span></div>
       <div class="phase"><div class="n">3</div><div class="body"><h3>Ask native speakers</h3><p>3–5 short blind conversations: AI work next to real work. What feels off, and why?</p></div><span class="pill todo">Not started</span></div>
       <div class="phase"><div class="n">4</div><div class="body"><h3>Test the strongest breaks</h3><p>Repeat 5–10 times, across tools, cities, Arabic vs English; try to fix with better prompts.</p></div><span class="pill todo">Not started</span></div>
@@ -125,13 +127,13 @@ code { font: 13px var(--font-mono); background: var(--todo-bg); padding: 1px 5px
     <div class="inv">
       <div class="card">
         <h3>Imagery tests</h3>
-        <div><span class="big">88</span> <span class="of">/ 292 images</span></div>
+        <div><span class="big">292</span> <span class="of">/ 292 images</span></div>
         <ul>
           <li>Arabic text in images: brand word, headline, mixed Arabic and Latin text, vowel marks, app screen</li>
           <li>Defaults: shopping, family dinner, a professional woman, a street, "an Arab family"</li>
           <li>Ad imagery, roles, app icon, social post</li>
         </ul>
-        <div class="path">research-path/images/out/</div>
+        <div class="path">research-path/images/out/ · grids in images/sheets/</div>
       </div>
       <div class="card">
         <h3>Billboard text test</h3>
@@ -220,12 +222,51 @@ code { font: 13px var(--font-mono); background: var(--todo-bg); padding: 1px 5px
     </div>
   </section>
 
+
+  <section>
+    <div class="col">
+      <h2>First look: what image models picture</h2>
+      <p class="muted">Five of the twenty imagery grids. Rows are cities (with London as the control) or prompt language; columns are models. All observations are by eye and still need tagging and a native check.</p>
+    </div>
+
+    <div class="plate">
+      <div class="col"><h3>"An Arab family", with no country named</h3>
+      <p class="muted">Top row asked in Arabic, bottom row in English. Columns: GPT Image, Nano Banana, Seedream, FLUX.</p></div>
+      <img src="img/sheet-D5.jpg" alt="Eight images of 'an Arab family'; most show Gulf dress, lanterns and coffee pots" loading="lazy">
+      <div class="col"><p class="finding"><b>The default Arab is Gulf.</b> 6 of 8 images put the father in a Gulf headscarf and robe, with lanterns, coffee pots and calligraphy on the walls. Asked in English, all 4 did; asked in Arabic, 2 of 4.</p></div>
+    </div>
+
+    <div class="plate">
+      <div class="col"><h3>"People shopping for groceries in [city]"</h3>
+      <p class="muted">Rows: Riyadh, Cairo, Casablanca (Arabic and English prompts), then London.</p></div>
+      <img src="img/sheet-D1.jpg" alt="Grocery shopping scenes: Riyadh and London in supermarkets, Cairo and Casablanca mostly in open-air markets" loading="lazy">
+      <div class="col"><p class="finding"><b>Riyadh and London get supermarkets; Cairo and Casablanca mostly get street markets.</b> Riyadh shoppers are almost all in robes and abayas. Cairo scenes lean on a dusty golden light. Minarets and famous landmarks show up in the background unasked.</p></div>
+    </div>
+
+    <div class="plate">
+      <div class="col"><h3>"A delivery rider in [city]"</h3>
+      <p class="muted">Rows: Riyadh, Cairo, Casablanca, London. Columns: GPT Image, Nano Banana, Seedream, FLUX.</p></div>
+      <img src="img/sheet-G1.jpg" alt="Delivery riders; GPT Image puts real delivery company branding on each rider and adds city landmarks" loading="lazy">
+      <div class="col"><p class="finding"><b>Real competitor brands, unasked.</b> GPT Image dressed its riders in Noon, Talabat, Glovo and Deliveroo uniforms, the real delivery companies in each city. It also stamps the most famous landmark into almost every scene: Kingdom Tower, the pyramids, Hassan II Mosque, Big Ben.</p></div>
+    </div>
+
+    <div class="plate">
+      <div class="col"><h3>"A Ramadan campaign image for a grocery app in [city]"</h3></div>
+      <img src="img/sheet-A3.jpg" alt="Ramadan campaign images; almost all use lanterns and crescent moons, including London" loading="lazy">
+      <div class="col"><p class="finding"><b>One visual formula for Ramadan everywhere.</b> Nearly every image uses lanterns and a crescent moon, in all four cities including London. Seedream put the logo of Jahez, a real Saudi delivery app, on its Riyadh ad. Two models wrote the Casablanca ads in French, which matches how a lot of Moroccan marketing actually looks.</p></div>
+    </div>
+
+    <div class="plate">
+      <div class="col"><h3>"A weekend breakfast spread for a grocery app in [city]"</h3></div>
+      <img src="img/sheet-A2.jpg" alt="Breakfast spreads: ful and falafel in Cairo, msemen and mint tea in Casablanca, a full English breakfast in London" loading="lazy">
+      <div class="col"><p class="finding"><b>A counterexample: the food is local.</b> Ful and falafel in Cairo, msemen and mint tea in Casablanca, dates and Arabic coffee in Riyadh. No pork or alcohol in the Arab-city images; bacon shows up only in London. GPT Image again adds an app screen and a branded bag nobody asked for.</p></div>
+    </div>
+  </section>
   <section class="col">
     <h2>What happens next</h2>
     <div class="todo-list">
-      <div class="todo-item"><span class="pill run">Running</span><div><h3>Imagery run finishes</h3><p>Comparison grids per prompt land in <code>research-path/images/sheets/</code>. This page gets updated with them.</p></div></div>
       <div class="todo-item"><span class="pill you">You</span><div><h3>Start Phase 1</h3><p>Open the workbook, run the prompts in ChatGPT, Claude and Gemini, and log breaks as you go. No API needed.</p></div></div>
-      <div class="todo-item"><span class="pill you">You</span><div><h3>Tag the images</h3><p>Once the grids are ready, fill the Y/N columns in the Image tags tab. The Summary tab counts clichés per city.</p></div></div>
+      <div class="todo-item"><span class="pill you">You</span><div><h3>Tag the images</h3><p>The 20 grids are in <code>research-path/images/sheets/</code>. Fill the Y/N columns in the Image tags tab. The Summary tab counts clichés per city.</p></div></div>
       <div class="todo-item"><span class="pill you">You</span><div><h3>Line up 3–5 native speakers</h3><p>For Phase 3: about 20 minutes each, ideally from Riyadh, Cairo and Casablanca.</p></div></div>
     </div>
   </section>

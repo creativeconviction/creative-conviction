@@ -1,0 +1,8 @@
+{
+  "id": "G1__Casablanca__en__nano-banana",
+  "model": "nano-banana",
+  "prompt": "A delivery rider in Casablanca.",
+  "p": "G1",
+  "endpoint": "google/nano-banana-2.1",
+  "at": "2026-11-18T01:18:02.965Z"
+}

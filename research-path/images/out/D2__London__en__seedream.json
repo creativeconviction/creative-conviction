@@ -1,0 +1,8 @@
+{
+  "id": "D2__London__en__seedream",
+  "model": "seedream",
+  "prompt": "A modern family having dinner at home in London.",
+  "p": "D2",
+  "endpoint": "bytedance/seedream/v5/pro/text-to-image",
+  "at": "2026-11-18T01:16:06.968Z"
+}

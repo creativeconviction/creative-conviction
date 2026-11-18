@@ -1,0 +1,8 @@
+{
+  "id": "D3__London__en__flux",
+  "model": "flux",
+  "prompt": "A young professional woman at work in London.",
+  "p": "D3",
+  "endpoint": "fal-ai/flux-2-max",
+  "at": "2026-11-18T01:10:16.854Z"
+}

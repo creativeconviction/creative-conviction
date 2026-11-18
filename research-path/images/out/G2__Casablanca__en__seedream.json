@@ -1,0 +1,8 @@
+{
+  "id": "G2__Casablanca__en__seedream",
+  "model": "seedream",
+  "prompt": "The CEO of a tech startup in Casablanca, portrait.",
+  "p": "G2",
+  "endpoint": "bytedance/seedream/v5/pro/text-to-image",
+  "at": "2026-11-18T01:55:18.384Z"
+}

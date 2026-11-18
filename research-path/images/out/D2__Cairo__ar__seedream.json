@@ -1,0 +1,8 @@
+{
+  "id": "D2__Cairo__ar__seedream",
+  "model": "seedream",
+  "prompt": "عائلة عصرية تتناول العشاء في المنزل في القاهرة.",
+  "p": "D2",
+  "endpoint": "bytedance/seedream/v5/pro/text-to-image",
+  "at": "2026-11-18T01:13:47.103Z"
+}

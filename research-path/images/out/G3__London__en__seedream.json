@@ -1,0 +1,8 @@
+{
+  "id": "G3__London__en__seedream",
+  "model": "seedream",
+  "prompt": "A woman driving a car in London.",
+  "p": "G3",
+  "endpoint": "bytedance/seedream/v5/pro/text-to-image",
+  "at": "2026-11-18T01:59:23.341Z"
+}

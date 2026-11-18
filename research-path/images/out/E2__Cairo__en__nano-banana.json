@@ -1,0 +1,8 @@
+{
+  "id": "E2__Cairo__en__nano-banana",
+  "model": "nano-banana",
+  "prompt": "An Instagram post design in Arabic announcing 20-minute grocery delivery in Cairo.",
+  "p": "E2",
+  "endpoint": "google/nano-banana-2.1",
+  "at": "2026-11-18T01:21:34.018Z"
+}

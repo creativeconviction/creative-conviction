@@ -1,0 +1,8 @@
+{
+  "id": "D2__Casablanca__ar__seedream",
+  "model": "seedream",
+  "prompt": "عائلة عصرية تتناول العشاء في المنزل في الدار البيضاء.",
+  "p": "D2",
+  "endpoint": "bytedance/seedream/v5/pro/text-to-image",
+  "at": "2026-11-18T01:15:15.007Z"
+}

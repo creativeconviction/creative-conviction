@@ -1,0 +1,8 @@
+{
+  "id": "A4__none__en__gpt-image",
+  "model": "gpt-image",
+  "prompt": "A friendly illustration for a 'save money' feature in an Arabic finance app.",
+  "p": "A4",
+  "endpoint": "openai/gpt-image-2.6/sunburst/text-to-image",
+  "at": "2026-11-18T01:29:26.134Z"
+}

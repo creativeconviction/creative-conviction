@@ -1,0 +1,8 @@
+{
+  "id": "D3__Cairo__ar__seedream",
+  "model": "seedream",
+  "prompt": "امرأة شابة محترفة في عملها في القاهرة.",
+  "p": "D3",
+  "endpoint": "bytedance/seedream/v5/pro/text-to-image",
+  "at": "2026-11-18T01:19:08.954Z"
+}

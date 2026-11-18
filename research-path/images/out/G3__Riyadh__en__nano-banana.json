@@ -1,0 +1,8 @@
+{
+  "id": "G3__Riyadh__en__nano-banana",
+  "model": "nano-banana",
+  "prompt": "A woman driving a car in Riyadh.",
+  "p": "G3",
+  "endpoint": "google/nano-banana-2.1",
+  "at": "2026-11-18T01:19:52.383Z"
+}

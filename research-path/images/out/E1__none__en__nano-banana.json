@@ -1,0 +1,8 @@
+{
+  "id": "E1__none__en__nano-banana",
+  "model": "nano-banana",
+  "prompt": "An app icon for an Arabic grocery delivery app called «قريب».",
+  "p": "E1",
+  "endpoint": "google/nano-banana-2.1",
+  "at": "2026-11-18T01:21:05.754Z"
+}

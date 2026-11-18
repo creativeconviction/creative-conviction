@@ -1,0 +1,8 @@
+{
+  "id": "A2__Riyadh__en__seedream",
+  "model": "seedream",
+  "prompt": "A lifestyle photo for a grocery app in Riyadh: a weekend breakfast spread on a table.",
+  "p": "A2",
+  "endpoint": "bytedance/seedream/v5/pro/text-to-image",
+  "at": "2026-11-18T01:39:17.734Z"
+}

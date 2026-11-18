@@ -1,0 +1,8 @@
+{
+  "id": "A1__Casablanca__en__gpt-image",
+  "model": "gpt-image",
+  "prompt": "An advertising photo for a grocery delivery app in Casablanca: a rider handing a bag to a customer at the door.",
+  "p": "A1",
+  "endpoint": "openai/gpt-image-2.6/sunburst/text-to-image",
+  "at": "2026-11-18T01:22:38.476Z"
+}

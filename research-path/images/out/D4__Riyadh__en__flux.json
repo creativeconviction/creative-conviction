@@ -1,0 +1,8 @@
+{
+  "id": "D4__Riyadh__en__flux",
+  "model": "flux",
+  "prompt": "A street in Riyadh today, everyday life.",
+  "p": "D4",
+  "endpoint": "fal-ai/flux-2-max",
+  "at": "2026-11-18T01:10:48.655Z"
+}

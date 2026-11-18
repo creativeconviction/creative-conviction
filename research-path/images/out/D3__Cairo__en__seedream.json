@@ -1,0 +1,8 @@
+{
+  "id": "D3__Cairo__en__seedream",
+  "model": "seedream",
+  "prompt": "A young professional woman at work in Cairo.",
+  "p": "D3",
+  "endpoint": "bytedance/seedream/v5/pro/text-to-image",
+  "at": "2026-11-18T01:18:15.558Z"
+}

@@ -1,0 +1,8 @@
+{
+  "id": "D6__none__ar__gpt-image",
+  "model": "gpt-image",
+  "prompt": "مراهق عربي نموذجي في غرفته.",
+  "p": "D6",
+  "endpoint": "openai/gpt-image-2.6/sunburst/text-to-image",
+  "at": "2026-11-18T01:19:28.753Z"
+}

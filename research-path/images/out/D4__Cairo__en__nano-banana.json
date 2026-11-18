@@ -1,0 +1,8 @@
+{
+  "id": "D4__Cairo__en__nano-banana",
+  "model": "nano-banana",
+  "prompt": "A street in Cairo today, everyday life.",
+  "p": "D4",
+  "endpoint": "google/nano-banana-2.1",
+  "at": "2026-11-18T01:08:57.906Z"
+}

@@ -1,0 +1,8 @@
+{
+  "id": "D4__Riyadh__en__seedream",
+  "model": "seedream",
+  "prompt": "A street in Riyadh today, everyday life.",
+  "p": "D4",
+  "endpoint": "bytedance/seedream/v5/pro/text-to-image",
+  "at": "2026-11-18T01:22:23.522Z"
+}
