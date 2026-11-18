@@ -1,0 +1,14 @@
+{
+  "part": "B",
+  "cond": "en-Casablanca",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب). Write marketing copy for it in Arabic: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy. It is launching in Casablanca.",
+  "s": 1,
+  "prompt_lang": "en",
+  "city": "Casablanca",
+  "target_region": "Morocco",
+  "model": "deepseek",
+  "id": "B__en-Casablanca__deepseek__s1",
+  "model_id": "deepseek/deepseek-v4-pro",
+  "output": "قريب... توصيل البقالة لباب دارك\n\nعلاش تخرج؟ قريب يجيب لك الكل لباب دارك! 🛍️  \nمن السوبرمارشي لباب دارك في دقايق – قريب فـ الدار البيضاء!  \nأول توصيلة مجاناً! حمّل قريب واطلب دابا. 🚀  \n\nقريب بدا فـ الدار البيضاء! 🎉 توصيلتك الأولى مجاناً. تسوق دابا!",
+  "at": "2026-11-18T05:26:27.995Z"
+}

@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Riyadh",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Riyadh. Write marketing copy for it in Saudi (Najdi) Arabic, the way people in Riyadh actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 2,
+  "prompt_lang": "en",
+  "city": "Riyadh",
+  "target_region": "Gulf",
+  "target_city_code": "RIY",
+  "model": "saba",
+  "id": "C__Riyadh__saba__s2",
+  "model_id": "mistralai/mistral-saba",
+  "output": "**Tagline:**\n\"قريّب.. ووصلك lé أشبار!\"\n\n**Instagram Ads:**\n1. \"شراء الأكل ماRTD للفطر.. اقطّع مع قريّب!\"\n2. \"طلبت.. خس.. معجب.. سمن إني أقوم وزع؟ 😅 لقي قريّب يحطلك داخل 5 دقائق!\"\n3. \"شوف، تجارة.. 때문에 حلويات.. ماتنسى.. قريّب يجيبها! 🍪🍰 # adel असْتنى..\"\n\n**Push Notification:**\n\"قريّب جاء بالماكدونل مع أنفاسك! 🍟.. ماذا تنتظر؟\"",
+  "at": "2026-11-18T05:28:28.305Z"
+}

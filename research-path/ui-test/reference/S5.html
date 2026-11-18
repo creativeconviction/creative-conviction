@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f7f3">
+  <title>Track Order — Qareeb</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #1f7551;
+      --green-dark: #155b3d;
+      --green-soft: #e8f3ec;
+      --ink: #17231d;
+      --muted: #6f7b74;
+      --line: #dde4df;
+      --surface: #ffffff;
+      --background: #f4f6f2;
+      --orange: #f0a557;
+      --shadow: 0 12px 32px rgba(27, 52, 38, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      background: var(--background);
+      color: var(--ink);
+      font-family: "DM Sans", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 1080px;
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 18px 16px 36px;
+    }
+
+    .topbar {
+      display: grid;
+      grid-template-columns: 42px 1fr 42px;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .topbar h1 {
+      margin: 0;
+      text-align: center;
+      font-size: 18px;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .icon-button {
+      display: inline-grid;
+      width: 42px;
+      height: 42px;
+      padding: 0;
+      place-items: center;
+      color: var(--ink);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform 160ms ease, background-color 160ms ease;
+    }
+
+    .icon-button:hover {
+      background: var(--green-soft);
+      transform: translateY(-1px);
+    }
+
+    .icon-button svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .order-id {
+      justify-self: end;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .status-panel {
+      margin-bottom: 18px;
+      padding: 20px 16px 18px;
+      background: var(--surface);
+      border: 1px solid rgba(221, 228, 223, 0.9);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .status-heading {
+      margin: 0 0 20px;
+      font-size: 22px;
+      letter-spacing: -0.035em;
+    }
+
+    .stepper {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .step {
+      position: relative;
+      min-width: 0;
+      text-align: center;
+    }
+
+    .step:not(:last-child)::before {
+      position: absolute;
+      z-index: 0;
+      top: 14px;
+      left: calc(50% + 14px);
+      width: calc(100% - 28px);
+      height: 2px;
+      background: var(--line);
+      content: "";
+    }
+
+    .step.complete:not(:last-child)::before {
+      background: var(--green);
+    }
+
+    .step-dot {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      width: 28px;
+      height: 28px;
+      margin: 0 auto 9px;
+      place-items: center;
+      color: #9aa49e;
+      background: #eef1ee;
+      border: 2px solid #eef1ee;
+      border-radius: 50%;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .complete .step-dot {
+      color: #fff;
+      background: var(--green);
+      border-color: var(--green);
+    }
+
+    .current .step-dot {
+      color: #fff;
+      background: var(--green);
+      border: 4px solid #cce4d5;
+      box-shadow: 0 0 0 4px var(--green-soft);
+    }
+
+    .step-dot svg {
+      width: 13px;
+      height: 13px;
+    }
+
+    .step-label {
+      display: block;
+      color: #96a099;
+      font-size: 10px;
+      font-weight: 600;
+      line-height: 1.25;
+    }
+
+    .complete .step-label,
+    .current .step-label {
+      color: var(--ink);
+    }
+
+    .current .step-label {
+      font-weight: 700;
+    }
+
+    .desktop-layout {
+      display: grid;
+      gap: 18px;
+    }
+
+    .map-section {
+      overflow: hidden;
+      background: #e8eee8;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .eta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 17px 18px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eta-label {
+      margin: 0 0 3px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .eta-time {
+      margin: 0;
+      font-size: 25px;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+    }
+
+    .eta-badge {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 10px;
+      color: var(--green-dark);
+      background: var(--green-soft);
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .eta-badge svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .map {
+      position: relative;
+      height: 244px;
+      overflow: hidden;
+      background: #e8eee8;
+    }
+
+    .map svg.base-map {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .destination,
+    .courier-marker,
+    .restaurant-marker {
+      position: absolute;
+      display: grid;
+      place-items: center;
+      transform: translate(-50%, -50%);
+    }
+
+    .destination {
+      top: 29%;
+      left: 77%;
+    }
+
+    .restaurant-marker {
+      top: 74%;
+      left: 18%;
+    }
+
+    .marker-pin {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      color: #fff;
+      background: var(--ink);
+      border: 3px solid #fff;
+      border-radius: 50% 50% 50% 12%;
+      box-shadow: 0 6px 15px rgba(25, 43, 33, 0.25);
+      transform: rotate(45deg);
+    }
+
+    .marker-pin svg {
+      width: 15px;
+      height: 15px;
+      transform: rotate(-45deg);
+    }
+
+    .restaurant-marker .marker-pin {
+      background: var(--orange);
+    }
+
+    .courier-marker {
+      top: 52%;
+      left: 49%;
+    }
+
+    .courier-icon {
+      display: grid;
+      width: 48px;
+      height: 48px;
+      place-items: center;
+      color: #fff;
+      background: var(--green);
+      border: 4px solid #fff;
+      border-radius: 50%;
+      box-shadow: 0 7px 18px rgba(25, 77, 52, 0.28);
+    }
+
+    .courier-icon svg {
+      width: 23px;
+      height: 23px;
+    }
+
+    .map-label {
+      position: absolute;
+      padding: 5px 8px;
+      color: #69756d;
+      background: rgba(255, 255, 255, 0.78);
+      border-radius: 7px;
+      font-size: 9px;
+      font-weight: 700;
+      backdrop-filter: blur(4px);
+    }
+
+    .label-one {
+      top: 12%;
+      left: 7%;
+    }
+
+    .label-two {
+      right: 6%;
+      bottom: 13%;
+    }
+
+    .map-note {
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      padding: 5px 7px;
+      color: #68736d;
+      background: rgba(255,255,255,0.78);
+      border-radius: 7px;
+      font-size: 9px;
+      font-weight: 600;
+    }
+
+    .side-content {
+      display: grid;
+      align-content: start;
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .driver-card {
+      padding: 17px;
+    }
+
+    .driver-top {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .avatar-wrap {
+      position: relative;
+      flex: 0 0 auto;
+    }
+
+    .avatar {
+      display: grid;
+      width: 55px;
+      height: 55px;
+      place-items: center;
+      color: var(--green-dark);
+      background: linear-gradient(145deg, #dcebe1, #b8d6c4);
+      border: 3px solid #fff;
+      border-radius: 18px;
+      box-shadow: 0 3px 10px rgba(36, 65, 47, 0.12);
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .online {
+      position: absolute;
+      right: -2px;
+      bottom: -1px;
+      width: 13px;
+      height: 13px;
+      background: #37a76f;
+      border: 3px solid #fff;
+      border-radius: 50%;
+    }
+
+    .driver-info {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .driver-kicker {
+      margin: 0 0 2px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .driver-name {
+      margin: 0 0 5px;
+      font-size: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .rating {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .rating svg {
+      width: 13px;
+      height: 13px;
+      color: #efab45;
+      fill: currentColor;
+    }
+
+    .contact-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .contact-button {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      padding: 0;
+      place-items: center;
+      color: var(--green-dark);
+      background: var(--green-soft);
+      border: 0;
+      border-radius: 13px;
+      cursor: pointer;
+      transition: background-color 160ms ease, transform 160ms ease;
+    }
+
+    .contact-button:hover {
+      color: #fff;
+      background: var(--green);
+      transform: translateY(-1px);
+    }
+
+    .contact-button svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .vehicle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 15px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+    }
+
+    .vehicle-detail {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .vehicle-detail svg {
+      width: 19px;
+      height: 19px;
+      color: var(--ink);
+    }
+
+    .plate {
+      overflow: hidden;
+      background: #f8faf8;
+      border: 1px solid #cdd5cf;
+      border-radius: 7px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(25, 40, 31, 0.05);
+    }
+
+    .plate-en,
+    .plate-ar {
+      display: block;
+      padding: 2px 8px;
+      color: #27332c;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    .plate-ar {
+      padding-top: 1px;
+      background: #eef2ef;
+      border-top: 1px solid #dce2dd;
+      letter-spacing: 0;
+    }
+
+    .details-card {
+      overflow: hidden;
+    }
+
+    .details-toggle {
+      display: flex;
+      width: 100%;
+      padding: 17px 18px;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--ink);
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .details-title {
+      display: block;
+      margin-bottom: 3px;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .details-summary {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 500;
+    }
+
+    .chevron {
+      display: grid;
+      width: 31px;
+      height: 31px;
+      flex: 0 0 auto;
+      place-items: center;
+      color: var(--muted);
+      background: #f1f4f1;
+      border-radius: 10px;
+      transition: transform 220ms ease;
+    }
+
+    .chevron svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    .details-toggle[aria-expanded="true"] .chevron {
+      transform: rotate(180deg);
+    }
+
+    .details-content {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 240ms ease;
+    }
+
+    .details-content.open {
+      grid-template-rows: 1fr;
+    }
+
+    .details-inner {
+      overflow: hidden;
+    }
+
+    .details-list {
+      margin: 0 18px 17px;
+      padding-top: 15px;
+      border-top: 1px solid var(--line);
+    }
+
+    .line-item,
+    .total-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 11px;
+      font-size: 12px;
+    }
+
+    .item-name {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .item-quantity {
+      margin-right: 7px;
+      color: var(--muted);
+    }
+
+    .item-price {
+      flex: 0 0 auto;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .total-row {
+      margin: 14px 0 0;
+      padding-top: 13px;
+      border-top: 1px dashed var(--line);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .support-note {
+      margin: 2px 0 0;
+      color: var(--muted);
+      text-align: center;
+      font-size: 11px;
+    }
+
+    .support-note a {
+      color: var(--green-dark);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    @media (min-width: 720px) {
+      .app {
+        padding: 28px 28px 48px;
+      }
+
+      .topbar {
+        margin-bottom: 28px;
+      }
+
+      .topbar h1 {
+        font-size: 21px;
+      }
+
+      .status-panel {
+        padding: 24px 28px 22px;
+      }
+
+      .step-label {
+        font-size: 12px;
+      }
+
+      .desktop-layout {
+        grid-template-columns: minmax(0, 1.6fr) minmax(300px, 0.85fr);
+        align-items: start;
+      }
+
+      .map {
+        height: 430px;
+      }
+
+      .eta {
+        padding: 20px 22px;
+      }
+
+      .eta-time {
+        font-size: 30px;
+      }
+
+      .driver-card,
+      .details-toggle {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .details-list {
+        margin-left: 20px;
+        margin-right: 20px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .app {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+
+      .status-panel {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
+      .step-label {
+        font-size: 9px;
+      }
+
+      .driver-card {
+        padding: 14px;
+      }
+
+      .avatar {
+        width: 50px;
+        height: 50px;
+      }
+
+      .contact-button {
+        width: 38px;
+        height: 38px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <button class="icon-button" type="button" aria-label="Go back" onclick="history.back()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="m15 18-6-6 6-6"></path>
+        </svg>
+      </button>
+      <h1>Track your order</h1>
+      <span class="order-id">#Q2481</span>
+    </header>
+
+    <section class="status-panel" aria-labelledby="status-title">
+      <h2 class="status-heading" id="status-title">Your order is on the way</h2>
+      <ol class="stepper" aria-label="Order progress">
+        <li class="step complete">
+          <span class="step-dot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="m5 12 4 4L19 6"></path>
+            </svg>
+          </span>
+          <span class="step-label">Order placed</span>
+        </li>
+        <li class="step complete">
+          <span class="step-dot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="m5 12 4 4L19 6"></path>
+            </svg>
+          </span>
+          <span class="step-label">Being prepared</span>
+        </li>
+        <li class="step current" aria-current="step">
+          <span class="step-dot">3</span>
+          <span class="step-label">On the way</span>
+        </li>
+        <li class="step">
+          <span class="step-dot">4</span>
+          <span class="step-label">Delivered</span>
+        </li>
+      </ol>
+    </section>
+
+    <div class="desktop-layout">
+      <section class="map-section" aria-label="Delivery map and estimated arrival">
+        <div class="eta">
+          <div>
+            <p class="eta-label">Estimated arrival</p>
+            <p class="eta-time">12–18 min</p>
+          </div>
+          <div class="eta-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="9"></circle>
+              <path d="M12 7v5l3 2"></path>
+            </svg>
+            By 7:42 PM
+          </div>
+        </div>
+
+        <div class="map" role="img" aria-label="Map showing the courier traveling from the restaurant to your address">
+          <svg class="base-map" viewBox="0 0 650 430" preserveAspectRatio="none" aria-hidden="true">
+            <rect width="650" height="430" fill="#e8eee8"></rect>
+
+            <path d="M-20 72 C95 102 145 45 248 75 S445 134 680 61" fill="none" stroke="#d8e1da" stroke-width="55"></path>
+            <path d="M-20 72 C95 102 145 45 248 75 S445 134 680 61" fill="none" stroke="#fff" stroke-width="38"></path>
+            <path d="M-20 72 C95 102 145 45 248 75 S445 134 680 61" fill="none" stroke="#d9dfda" stroke-width="2" stroke-dasharray="10 10"></path>
+
+            <path d="M106 -20 C121 92 61 183 113 265 S181 382 151 460" fill="none" stroke="#d8e1da" stroke-width="48"></path>
+            <path d="M106 -20 C121 92 61 183 113 265 S181 382 151 460" fill="none" stroke="#fff" stroke-width="32"></path>
+
+            <path d="M468 -25 C426 83 515 145 469 248 S366 339 390 465" fill="none" stroke="#d8e1da" stroke-width="58"></path>
+            <path d="M468 -25 C426 83 515 145 469 248 S366 339 390 465" fill="none" stroke="#fff" stroke-width="40"></path>
+            <path d="M468 -25 C426 83 515 145 469 248 S366 339 390 465" fill="none" stroke="#d9dfda" stroke-width="2" stroke-dasharray="10 10"></path>
+
+            <path d="M-20 350 C109 308 222 348 319 319 S514 275 680 329" fill="none" stroke="#d8e1da" stroke-width="51"></path>
+            <path d="M-20 350 C109 308 222 348 319 319 S514 275 680 329" fill="none" stroke="#fff" stroke-width="35"></path>
+
+            <path d="M224 -10 L222 445" fill="none" stroke="#fff" stroke-width="22"></path>
+            <path d="M-20 205 C112 181 267 224 372 191 S545 180 680 218" fill="none" stroke="#fff" stroke-width="23"></path>
+
+            <rect x="265" y="94" width="92" height="63" rx="13" fill="#dfe9df"></rect>
+            <rect x="526" y="239" width="98" height="55" rx="11" fill="#dfe9df"></rect>
+            <rect x="17" y="229" width="57" height="69" rx="10" fill="#dfe9df"></rect>
+            <rect x="256" y="360" width="77" height="52" rx="10" fill="#dfe9df"></rect>
+
+            <path d="M118 321 C187 314 236 295 300 245 S390 231 478 151" fill="none" stroke="#b7c8ba" stroke-width="11" stroke-linecap="round" stroke-dasharray="1 20"></path>
+            <path d="M118 321 C187 314 236 295 300 245 S390 231 478 151" fill="none" stroke="#287b56" stroke-width="5" stroke-linecap="round" stroke-dasharray="8 9"></path>
+
+            <g fill="#bed1c1">
+              <circle cx="52" cy="133" r="8"></circle>
+              <circle cx="79" cy="152" r="6"></circle>
+              <circle cx="294" cy="188" r="7"></circle>
+              <circle cx="327" cy="177" r="5"></circle>
+              <circle cx="581" cy="116" r="8"></circle>
+              <circle cx="608" cy="139" r="6"></circle>
+              <circle cx="521" cy="372" r="8"></circle>
+              <circle cx="550" cy="386" r="6"></circle>
+            </g>
+          </svg>
+
+          <span class="map-label label-one">King Fahd Road</span>
+          <span class="map-label label-two">Al Olaya</span>
+
+          <div class="restaurant-marker" aria-hidden="true">
+            <span class="marker-pin">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 4v7"></path>
+                <path d="M4 4v4a3 3 0 0 0 6 0V4"></path>
+                <path d="M7 11v9"></path>
+                <path d="M16 4v16"></path>
+                <path d="M16 4c3 1 4 4 4 7h-4"></path>
+              </svg>
+            </span>
+          </div>
+
+          <div class="courier-marker" aria-hidden="true">
+            <span class="courier-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 17h14"></path>
+                <path d="m6 17-1-5 2-4h9l3 4v5"></path>
+                <circle cx="7" cy="17" r="2"></circle>
+                <circle cx="17" cy="17" r="2"></circle>
+                <path d="M7 12h10"></path>
+              </svg>
+            </span>
+          </div>
+
+          <div class="destination" aria-hidden="true">
+            <span class="marker-pin">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m4 11 8-7 8 7"></path>
+                <path d="M6 10v10h12V10"></path>
+                <path d="M10 20v-6h4v6"></path>
+              </svg>
+            </span>
+          </div>
+
+          <span class="map-note">Live route preview</span>
+        </div>
+      </section>
+
+      <div class="side-content">
+        <section class="driver-card card" aria-labelledby="driver-name">
+          <div class="driver-top">
+            <div class="avatar-wrap" aria-hidden="true">
+              <div class="avatar">OM</div>
+              <span class="online"></span>
+            </div>
+
+            <div class="driver-info">
+              <p class="driver-kicker">Your driver</p>
+              <h2 class="driver-name" id="driver-name">Omar Hassan</h2>
+              <span class="rating">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="m12 2.7 2.8 5.7 6.3.9-4.5 4.4 1.1 6.2-5.7-3-5.7 3 1.1-6.2-4.5-4.4 6.3-.9L12 2.7Z"></path>
+                </svg>
+                4.9 · 324 deliveries
+              </span>
+            </div>
+
+            <div class="contact-actions">
+              <button class="contact-button" type="button" aria-label="Call Omar Hassan">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.4 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.6 1.9Z"></path>
+                </svg>
+              </button>
+              <button class="contact-button" type="button" aria-label="Message Omar Hassan">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4Z"></path>
+                  <path d="M8 9h8M8 13h5"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="vehicle">
+            <span class="vehicle-detail">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 17h14"></path>
+                <path d="m6 17-1-5 2-4h9l3 4v5"></path>
+                <circle cx="7" cy="17" r="2"></circle>
+                <circle cx="17" cy="17" r="2"></circle>
+                <path d="M7 12h10"></path>
+              </svg>
+              White Toyota Camry
+            </span>
+            <span class="plate" aria-label="License plate ABC 1234">
+              <span class="plate-en">ABC 1234</span>
+              <span class="plate-ar" lang="ar" dir="rtl">أ ب ج ١٢٣٤</span>
+            </span>
+          </div>
+        </section>
+
+        <section class="details-card card">
+          <button class="details-toggle" type="button" aria-expanded="false" aria-controls="order-details">
+            <span>
+              <span class="details-title">Order details</span>
+              <span class="details-summary">3 items · SAR 82.00</span>
+            </span>
+            <span class="chevron" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m6 9 6 6 6-6"></path>
+              </svg>
+            </span>
+          </button>
+
+          <div class="details-content" id="order-details">
+            <div class="details-inner">
+              <div class="details-list">
+                <div class="line-item">
+                  <span class="item-name"><span class="item-quantity">1×</span>Chicken Shawarma Plate</span>
+                  <span class="item-price">SAR 38</span>
+                </div>
+                <div class="line-item">
+                  <span class="item-name"><span class="item-quantity">1×</span>Hummus</span>
+                  <span class="item-price">SAR 16</span>
+                </div>
+                <div class="line-item">
+                  <span class="item-name"><span class="item-quantity">2×</span>Fresh Lemon Mint</span>
+                  <span class="item-price">SAR 20</span>
+                </div>
+                <div class="line-item">
+                  <span class="item-name">Delivery fee</span>
+                  <span class="item-price">SAR 8</span>
+                </div>
+                <div class="total-row">
+                  <span>Total</span>
+                  <span>SAR 82.00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <p class="support-note">Need help? <a href="#">Contact support</a></p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const detailsToggle = document.querySelector(".details-toggle");
+    const detailsContent = document.querySelector(".details-content");
+
+    detailsToggle.addEventListener("click", () => {
+      const isOpen = detailsToggle.getAttribute("aria-expanded") === "true";
+      detailsToggle.setAttribute("aria-expanded", String(!isOpen));
+      detailsContent.classList.toggle("open", !isOpen);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Sanaa",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Sanaa. Write marketing copy for it in Yemeni (Sanaani) Arabic, the way people in Sanaa actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 2,
+  "prompt_lang": "en",
+  "city": "Sanaa",
+  "target_region": "Yemen",
+  "target_city_code": "SAN",
+  "model": "gpt",
+  "id": "C__Sanaa__gpt__s2",
+  "model_id": "openai/gpt-5.6-sol",
+  "output": "قريب... مقاضيك لحد باب بيتك.\n\nاشتي مقاضي؟ قريب يجيبها لحد عندك.\nلا عاد تشل هم الزحمة... اطلبها من قريب.\nمن الخضرة للخبز، كل اللي تشتيه يوصلك.\n\nناقصك حاجة للبيت؟ افتح قريب واطلبها دحين 🛒",
+  "at": "2026-11-18T05:28:08.969Z"
+}

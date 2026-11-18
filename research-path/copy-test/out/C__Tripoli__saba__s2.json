@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Tripoli",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Tripoli. Write marketing copy for it in Libyan Arabic, the way people in Tripoli actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 2,
+  "prompt_lang": "en",
+  "city": "Tripoli",
+  "target_region": "Libya",
+  "target_city_code": "TRI",
+  "model": "saba",
+  "id": "C__Tripoli__saba__s2",
+  "model_id": "mistralai/mistral-saba",
+  "output": "**Tagline:**\n\"قريب.. كل اللي بدّك تقربت!\"\n*(Everything you wanna be close to is right here!)*\n\n**Instagram Ad Lines:**\n1. \"طلevt مطالبتك اليوم؟ قريب جاهز يوصّلك كل اللي تاكله على طول!\"\n*(Craving something today? Qareeb delivers everything you wanna eat ASAP!)*\n\n2. \"كل المطاعم اللي بتحبيها.. منبّعت لك تلاقيه عندنا بقريب !\"\n*(All your favorite restaurants? We got ‘em right here in Qareeb!)*\n\n3. \"قريب.. مش بس توصيل، بل قرب! اشتري 되었고نا على طول!\"\n*(Qareeb isn’t just delivery—it’s being close! Shop and get it instantly!)*\n\n**Push Notification:**\n\"طزّلت طلبك؟ قريب لفظلك الي طلبتهون في نص ساعة!\" *(Ordered a bite? Qareeb delivers what you crave in half an hour!)*",
+  "at": "2026-11-18T05:29:18.628Z"
+}

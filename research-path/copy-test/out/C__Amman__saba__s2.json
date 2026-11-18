@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Amman",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Amman. Write marketing copy for it in Jordanian Arabic, the way people in Amman actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 2,
+  "prompt_lang": "en",
+  "city": "Amman",
+  "target_region": "Levant",
+  "target_city_code": "AMM",
+  "model": "saba",
+  "id": "C__Amman__saba__s2",
+  "model_id": "mistralai/mistral-saba",
+  "output": "**Tagline:**\n\"قريب - تسليم طلباتك بأسرع وقت وأكثر راحة!\"\n\n**Instagram Ads:**\n1. \"أنت مش شايلها؟ قريب يوصل طلباتك خلال دقائق!\"\n2. \"مش محتاج تخرج.. طلب واخد توصيل سلال بيتك!\"\n3. \"سوبر ماركتك عند باب بيتك.. قريب يوصلك!\n\n**Push Notification:**\n\"طلبك وصل! قفلت وانت في البيت، قريب ما بيفوتش! 🚛💨\"",
+  "at": "2026-11-18T05:29:13.693Z"
+}

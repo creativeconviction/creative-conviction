@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Beirut",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Beirut. Write marketing copy for it in Lebanese Arabic, the way people in Beirut actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 1,
+  "prompt_lang": "en",
+  "city": "Beirut",
+  "target_region": "Levant",
+  "target_city_code": "BEI",
+  "model": "saba",
+  "id": "C__Beirut__saba__s1",
+  "model_id": "mistralai/mistral-saba",
+  "output": "Tagline: \"عن قريب بدك تاكل؟ نقرّبلك طبخك! بين بين بين!\"\n\n---\nInstagram ads:\n\n1. \"ويني بقالي ثلاث أيام عمفكر بعكل؟ Qareeb بيني\n   📦\n   🚶\n   🏠\n   ⌚ 15 دقيقة بس!\"\n\n2. \"عايز تلفين نظيف؟ منقولك! Qareeb جايبلك\n   🥕 🍤 🥒\n   مفرمة، قشدة، بطيخة... أسهل من ما بتقول!\"\n\n3. \"خلصت الوردية؟ خلّص معانا. Qareeb\n   🛵 بجيبلك عشاءك\n   💃 من allein تا 3ام!\"\n\n---\nPush notification:\n\n\"Qareeb - شوف ريستورانك injel”",
+  "at": "2026-11-18T05:29:01.820Z"
+}

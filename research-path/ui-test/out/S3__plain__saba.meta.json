@@ -1,0 +1,9 @@
+{
+  "screen": "S3",
+  "cond": "plain",
+  "model": "saba",
+  "model_id": "mistralai/mistral-saba",
+  "raw_chars": 21960,
+  "complete": true,
+  "at": "2026-11-18T05:29:03.452Z"
+}

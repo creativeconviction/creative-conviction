@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Damascus",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Damascus. Write marketing copy for it in Syrian (Damascene) Arabic, the way people in Damascus actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 2,
+  "prompt_lang": "en",
+  "city": "Damascus",
+  "target_region": "Levant",
+  "target_city_code": "DAM",
+  "model": "gpt",
+  "id": "C__Damascus__gpt__s2",
+  "model_id": "openai/gpt-5.6-sol",
+  "output": "قريب... كل شي ناقصك، لعند بابك.\n\nناقصك شغلة؟ افتح قريب وخلي الباقي علينا.\n\nمن الخضرة للخبز، طلبك بيوصلك دغري.\n\nلا عجقة ولا شيل أكياس... قريب أريحلك.\n\nشو ناقص بالبيت؟ 🛒 اطلبه هلّق من قريب، ومنوصّلك ياه لعند الباب.",
+  "at": "2026-11-18T05:28:52.404Z"
+}

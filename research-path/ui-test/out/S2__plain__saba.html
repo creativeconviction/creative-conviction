@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إتمام الطلب - قارب</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2E5951;
+            --primary-light: #6FA89E;
+            --background: #F8F8F8;
+            --text-dark: #212121;
+            --text-light: #888888;
+            --border-color: #E0E0E0;
+            --error: #D32F2F;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            direction: rtl;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text-dark);
+            font-size: 16px;
+            line-height: 1.5;
+            padding-bottom: 70px;
+        }
+
+        .container {
+            max-width: 390px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            margin-top: 20px;
+        }
+
+        /* Checkout Header */
+        .checkout-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .checkout-header h1 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+        .checkout-header h1 sup {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+        .checkout-header .close-btn {
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        /* Sections */
+        .section {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-dark);
+        }
+
+        /* Address Card */
+        .address-card {
+            background-color: #F0F7F6;
+            border-radius: 8px;
+            padding: 16px;
+            position: relative;
+        }
+        .address-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .address-header h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+        .address-type {
+            padding: 4px 8px;
+            font-size: 12px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        .address-type.home { background-color: #E8F5F2; color: #00644D; }
+        .address-type.other { background-color: #FFF3E0; color: #EF6C00; }
+        .edit-btn {
+            background: none;
+            border: none;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--primary-light);
+            cursor: pointer;
+        }
+        .address-details {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 4px;
+        }
+        .address-details.phone {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        /* Delivery Time */
+        .time-option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+            cursor: pointer;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .time-option:first-child { border-top: 1px solid var(--border-color); }
+        .time-option:last-child { border-bottom: none; }
+        .time-option input[type="radio"] {
+            margin-left: 8px;
+        }
+        .time-option label {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .time-slot {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-top: 4px;
+        }
+        .time-slot.active { display: block; }
+        .time-slot:not(.active) { display: none; }
+        .time-option input[type="radio"]:checked ~ .time-slot {
+            color: var(--primary-light);
+        }
+
+        /* Promo Code & Payment */
+        .promo-code, .payment-methods {
+            padding: 0;
+        }
+        .promo-code-input {
+            display: flex;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+        .promo-code-input input {
+            flex-grow: 1;
+            border: none;
+            padding: 8px 0;
+            font-size: 16px;
+            font-family: inherit;
+            direction: ltr;
+            text-align: right;
+        }
+        .promo-code-input input::placeholder {
+            color: var(--text-light);
+        }
+        .apply-btn {
+            background: none;
+            border: none;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            cursor: pointer;
+            padding: 0 8px;
+        }
+        .payment-methods .method {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+        }
+        .method:last-child { border-bottom: none; }
+        .method input[type="radio"] {
+            margin-left: 8px;
+        }
+        .method label {
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .method-icon {
+            font-size: 24px;
+            color: var(--text-light);
+        }
+
+        /* Cart Summary */
+        .cart-summary .section {
+            padding: 0;
+        }
+        .cart-item {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .cart-item:last-child { border-bottom: none; }
+        .item-main {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        .item-name {
+            font-size: 14px;
+            font-weight: 500;
+            max-width: 60%;
+        }
+        .item-price {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+        .item-variant {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
+        .quantity-stepper {
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            width: fit-content;
+        }
+        .quantity-stepper button {
+            background: none;
+            border: none;
+            width: 28px;
+            height: 28px;
+            font-size: 18px;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+        .quantity-stepper button:hover {
+            color: var(--primary);
+        }
+        .quantity-stepper button:disabled {
+            color: #ccc;
+            cursor: not-allowed;
+        }
+        .quantity-stepper input {
+            width: 36px;
+            text-align: center;
+            border-left: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            font-family: inherit;
+            padding: 0;
+        }
+        .item-total {
+            text-align: left;
+            font-size: 12px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        /* Order Summary */
+        .order-summary {
+            padding: 16px;
+        }
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+        .summary-row.total {
+            font-weight: 700;
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
+            font-size: 16px;
+        }
+        .summary-row .label { color: var(--text-light); }
+        .summary-row .value { color: var(--text-dark); }
+        .grand-total .label { font-size: 18px; }
+        .grand-total .value { color: var(--primary); font-size: 20px; }
+        .place-order-btn {
+            width: 100%;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: 700;
+            border: none;
+            border-radius: 8px;
+            margin-top: 24px;
+            cursor: pointer;
+            background-color: var(--primary);
+            color: white;
+        }
+        .place-order-btn:disabled {
+            background-color: #A9C3BE;
+            cursor: not-allowed;
+        }
+
+        /* Responsive */
+        @media (min-width: 480px) {
+            :root {
+                font-size: 18px;
+            }
+            .container {
+                max-width: 450px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            :root {
+                font-size: 16px;
+            }
+            body {
+                padding: 30px 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                background-color: #e9ecef;
+            }
+            .container {
+                max-width: 420px;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header class="checkout-header">
+            <h1>إتمام الطلب<span> (3)</span></h1>
+            <button class="close-btn" aria-label="إغلاق">&times;</button>
+        </header>
+
+        <section class="section">
+            <h2 class="section-title">معلومات التوصيل</h2>
+            <div class="address-card">
+                <div class="address-header">
+                    <h3>المنزل</h3>
+                    <span class="address-type home">منزل</span>
+                </div>
+                <div class="address-details"> hoffa, 109962</div>
+                <div class="address-details phone">+966 50 000 0000</div>
+                <button class="edit-btn">تعديل</button>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">وقت التوصيل</h2>
+            <div>
+                <div class="time-option">
+                    <div>
+                        <label>اليوم</label>
+                        <div class="time-slot active">٣٠-٤٠ دقائق <br> (الطلب: ١١:٤٥)</div>
+                    </div>
+                    <input type="radio" name="delivery-time" id="today">
+                </div>
+                <div class="time-option">
+                    <div>
+                        <label>غدًا</label>
+                        <div class="time-slot">٦:٠٠م - ١٠:٠٠م</div>
+                    </div>
+                    <input type="radio" name="delivery-time" id="tomorrow">
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">ملخص السلة</h2>
+            <div class="cart-summary">
+                <div class="cart-item">
+                    <div class="item-main">
+                        <span class="item-name">دجاج البرغر</span>
+                        <span class="item-price">٣٨ ﷼</span>
+                    </div>
+                    <div class="item-variant">برغر صدور دجاج, مع صلصة الأوف، ١٨٠ جرام</div>
+                    <div style="display:flex; justify-content: space-between; align-items: center;">
+                        <div class="quantity-stepper">
+                            <button id="decrement-1" class="decrement" data-id="1">-</button>
+                            <input type="text" id="quantity-1" value="1" readonly>
+                            <button id="increment-1" class="increment" data-id="1">+</button>
+                        </div>
+                        <span class="item-total">الإجمالي ٣٨ ﷼</span>
+                    </div>
+                </div>
+                <div class="cart-item">
+                    <div class="item-main">
+                        <span class="item-name">على الطريقة العربية</span>
+                        <span class="item-price">٥٠ ﷼</span>
+                    </div>
+                    <div class="item-variant">ارز, لحم</div>
+                    <div style="display:flex; justify-content: space-between; align-items: center;">
+                        <div class="quantity-stepper">
+                            <button id="decrement-2" class="decrement" data-id="2">-</button>
+                            <input type="text" id="quantity-2" value="2" readonly>
+                            <button id="increment-2" class="increment" data-id="2">+</button>
+                        </div>
+                        <span class="item-total">الإجمالي ١٠٠ ﷼</span>
+                    </div>
+                </div>
+                <div class="cart-item">
+                    <div class="item-main">
+                        <span class="item-name">سلطة فواكه</span>
+                        <span class="item-price">١٠ ﷼</span>
+                    </div>
+                    <div class="item-variant">معه صلصة الكرز</div>
+                    <div style="display:flex; justify-content: space-between; align-items: center;">
+                        <div class="quantity-stepper">
+                            <button id="decrement-3" class="decrement" data-id="3">-</button>
+                            <input type="text" id="quantity-3" value="1" readonly>
+                            <button id="increment-3" class="increment" data-id="3">+</button>
+                        </div>
+                        <span class="item-total">الإجمالي ١٠ ﷼</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section promo-code">
+            <div class="promo-code-input">
+                <input type="text" placeholder="ادخل كوبون الخصم">
+                <button class="apply-btn">تطبيق</button>
+            </div>
+        </section>
+
+        <section class="section payment-methods">
+            <h2 class="section-title">طريقة الدفع</h2>
+            <div class="method">
+                <div>
+                    <input type="radio" name="payment" id="card" checked>
+                    <label for="card">البطاقة الائتمانية</label>
+                </div>
+                <span class="method-icon">💳</span>
+            </div>
+            <div class="method">
+                <div>
+                    <input type="radio" name="payment" id="apple-pay">
+                    <label for="apple-pay">apple pay</label>
+                </div>
+                <span class="method-icon">🍎</span>
+            </div>
+            <div class="method">
+                <div>
+                    <input type="radio" name="payment" id="cash">
+                    <label for="cash">الدفع عند الاستلام</label>
+                </div>
+                <span class="method-icon">💰</span>
+            </div>
+        </section>
+
+        <section class="section order-summary">
+            <div class="summary-row">
+                <span class="label">الإجمالي</span>
+                <span class="value">١٤٨ ﷼</span>
+            </div>
+            <div class="summary-row">
+                <span class="label">رسوم التوصيل</span>
+                <span class="value">مجاني</span>
+            </div>
+            <div class="summary-row">
+                <span class="label">ضريبة القيمة المضافة ١٥٪</span>
+                <span class="value">١٧ ﷼</span>
+            </div>
+            <div class="summary-row total grand-total">
+                <span class="label">الإجمالي المستحق</span>
+                <span class="value">١٦٥ ﷼</span>
+            </div>
+            <button class="place-order-btn">إضافة الطلب</button>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Quantity Steppers
+            const decrementButtons = document.querySelectorAll('.decrement');
+            const incrementButtons = document.querySelectorAll('.increment');
+            const quantityInputs = document.querySelectorAll('.quantity-stepper input');
+            const itemPrices = [38, 50, 10]; // prices for items 1,2,3
+            const applyBtn = document.querySelector('.apply-btn');
+            const promoInput = document.querySelector('.promo-code-input input');
+            const placeOrderBtn = document.querySelector('.place-order-btn');
+
+            // Delivery time options
+            const todayOpt = document.getElementById('today');
+            const tomorrowOpt = document.getElementById('tomorrow');
+
+            function updateQuantity(id, delta) {
+                const input = document.getElementById(`quantity-${id}`);
+                let value = parseInt(input.value);
+                if (delta === -1 && value > 1) {
+                    value--;
+                } else if (delta === 1) {
+                    value++;
+                }
+                input.value = value;
+                updateOrderSummary();
+            }
+
+            function updateOrderSummary() {
+                let subtotal = 0;
+                quantityInputs.forEach((input, index) => {
+                    const itemId = parseInt(input.id.split('-')[1]);
+                    const quantity = parseInt(input.value);
+                    const price = itemPrices[index];
+                    subtotal += price * quantity;
+                });
+
+                const vat = Math.round(subtotal * 0.15);
+                const total = subtotal + vat;
+
+                document.querySelectorAll('.summary-row')[0].querySelector('.value').textContent = `${subtotal} ﷼`;
+                document.querySelectorAll('.summary-row')[2].querySelector('.value').textContent = `${vat} ﷼`;
+                document.querySelector('.grand-total .value').textContent = `${total} ﷼`;
+            }
+
+            decrementButtons.forEach(button => {
+                button.addEventListener('click', () => updateQuantity(button.dataset.id, -1));
+            });
+            incrementButtons.forEach(button => {
+                button.addEventListener('click', () => updateQuantity(button.dataset.id, 1);
+            });
+
+            // Disable place order button if no payment method is selected
+            // But since one is always selected by default, this is a no-op in this UI state.
+            // For a real app, you'd check before submitting.
+
+            // Update summary on initial load
+            updateOrderSummary();
+
+            // Apply Promo Code (basic)
+            applyBtn.addEventListener('click', function() {
+                const promo = promoInput.value.trim();
+                if (promo) {
+                    alert('تم تطبيق الكوبون بنجاح');
+                    // In a real app, you'd apply a discount here.
+                } else {
+                    alert('من فضلك أدخل كوبون الخصم');
+                }
+            });
+
+        });
+    </script>
+
+</body>
+</html>

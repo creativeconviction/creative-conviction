@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قاريب - منتجاتنا</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #2E7D32;
+            --text-color: #333;
+            --light-gray: #f5f5f5;
+            --medium-gray: #e0e0e0;
+            --dark-gray: #757575;
+            --white: #ffffff;
+            --red: #D32F2F;
+            --orange: #FF5722;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+            direction: rtl;
+        }
+
+        body {
+            background-color: var(--light-gray);
+            color: var(--text-color);
+        }
+
+        .header {
+            background-color: var(--white);
+            padding: 1rem 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--medium-gray);
+            border-radius: 25px;
+            font-size: 1rem;
+            padding-right: 2.5rem;
+        }
+
+        .search-bar .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--dark-gray);
+        }
+
+        .cart-icon {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: var(--text-color);
+        }
+
+        .cart-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .cart-badge {
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .breadcrumb {
+            padding: 1rem 0;
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+        }
+
+        .breadcrumb ul {
+            display: flex;
+            gap: 0.5rem;
+            list-style: none;
+        }
+
+        .breadcrumb li:not(:last-child)::after {
+            content: '>';
+            margin: 0 0.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .main-content {
+            display: flex;
+            gap: 1.5rem;
+            padding-bottom: 2rem;
+        }
+
+        .filter-section {
+            background-color: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            min-width: 250px;
+        }
+
+        .filter-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .price-range {
+            margin-bottom: 1.5rem;
+        }
+
+        .price-range h3 {
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .range-inputs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .range-inputs input {
+            flex: 1;
+            padding: 0.5rem;
+            border: 1px solid var(--medium-gray);
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .slider-container {
+            position: relative;
+            height: 6px;
+            width: 100%;
+            background-color: var(--medium-gray);
+            border-radius: 3px;
+            margin-bottom: 1rem;
+        }
+
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: var(--primary-color);
+            outline: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            cursor: pointer;
+        }
+
+        .brands-section h3 {
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .brand-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .brand-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .brand-option input {
+            accent-color: var(--primary-color);
+        }
+
+        .products-section {
+            flex: 1;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .product-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .product-image {
+            height: 120px;
+            background-color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: var(--dark-gray);
+        }
+
+        .product-info {
+            padding: 1rem;
+        }
+
+        .product-name {
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .product-weight {
+            font-size: 0.85rem;
+            color: var(--dark-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .price-section {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .current-price {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .old-price {
+            font-size: 0.85rem;
+            color: var(--dark-gray);
+            text-decoration: line-through;
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 0.5rem;
+            left: 0.5rem;
+            background-color: var(--red);
+            color: var(--white);
+            padding: 0.3rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 0.6rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .add-to-cart:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .pagination button {
+            padding: 0.6rem 1.2rem;
+            border: 1px solid var(--medium-gray);
+            background-color: var(--white);
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .pagination button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .pagination span {
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+        }
+
+        @media (min-width: 768px) {
+            .header-content {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .search-bar {
+                order: 2;
+                max-width: 300px;
+            }
+
+            .main-content {
+                flex-direction: row;
+            }
+
+            .filter-section {
+                max-width: 280px;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+                gap: 1.5rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="https://via.placeholder.com/40x40/4CAF50/FFFFFF?text=Q" alt="شعار قاريب">
+                    <h1>قاريب</h1>
+                </div>
+
+                <div class="search-bar">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="ابحث عن منتجاتك هنا">
+                </div>
+
+                <a href="#" class="cart-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+                    </svg>
+                    <span class="cart-badge">3</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="breadcrumb">
+            <ul>
+                <li><a href="#">الرئيسية</a></li>
+                <li><a href="#">فواكه وخضروات</a></li>
+                <li>فواكه</li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <aside class="filter-section">
+                <h2 class="filter-title">الفلاتر</h2>
+
+                <div class="price-range">
+                    <h3>السعر</h3>
+                    <div class="range-inputs">
+                        <input type="number" placeholder="من" dir="ltr">
+                        <input type="number" placeholder="إلى" dir="ltr">
+                    </div>
+                    <div class="slider-container">
+                        <input type="range" min="0" max="1000" value="100" class="slider" id="priceSlider">
+                    </div>
+                    <div dir="ltr" style="display: flex; justify-content: space-between; font-size: 0.85rem;">
+                        <span>0 ر.س</span>
+                        <span>1000 ر.س</span>
+                    </div>
+                </div>
+
+                <div class="brands-section">
+                    <h3>العلامات التجارية</h3>
+                    <div class="brand-options">
+                        <label class="brand-option">
+                            <input type="checkbox" checked>
+                            <span>التجمع</span>
+                        </label>
+                        <label class="brand-option">
+                            <input type="checkbox">
+                            <span>الرياض</span>
+                        </label>
+                        <label class="brand-option">
+                            <input type="checkbox" checked>
+                            <span>كارفور</span>
+                        </label>
+                        <label class="brand-option">
+                            <input type="checkbox">
+                            <span>سبعينية</span>
+                        </label>
+                        <label class="brand-option">
+                            <input type="checkbox" checked>
+                            <span>السويدي</span>
+                        </label>
+                        <label class="brand-option">
+                            <input type="checkbox">
+                            <span>دانة</span>
+                        </label>
+                    </div>
+                </div>
+            </aside>
+
+            <section class="products-section">
+                <div class="products-grid">
+                    <!-- Product 1 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://via.placeholder.com/150x120/E0E0E0/666666?text=منتج" alt="تفاح أحمر" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">تفاح أحمر فائق النوعية من المزارع المحلية</h3>
+                            <p class="product-weight">500 جرام</p>
+                            <div class="price-section">
+                                <span class="current-price">٤٥ ر.س</span>
+                                <span class="old-price">50 ر.س</span>
+                            </div>
+                            <div class="discount-badge">خصم 10%</div>
+                            <button class="add-to-cart">أضف للسلة</button>
+                        </div>
+                    </div>
+
+                    <!-- Product 2 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://via.placeholder.com/150x120/E0E0E0/666666?text=منتج" alt="موز فضي" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">موز فضي فواكه طازجة من المزرعة</h3>
+                            <p class="product-weight">كيلو جرام</p>
+                            <div class="price-section">
+                                <span class="current-price">١٨ ر.س</span>
+                            </div>
+                            <button class="add-to-cart">أضف للسلة</button>
+                        </div>
+                    </div>
+
+                    <!-- Product 3 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://via.placeholder.com/150x120/E0E0E0/666666?text=منتج" alt="برتقال فروج" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">برتقال فروج من أفضل المزارع المحلية</h3>
+                            <p class="product-weight">كيلو جرام</p>
+                            <div class="price-section">
+                                <span class="current-price">٣٢ ر.س</span>
+                                <span class="old-price">35 ر.س</span>
+                            </div>
+                            <div class="discount-badge">خصم 10%</div>
+                            <button class="add-to-cart">أضف للسلة</button>
+                        </div>
+                    </div>
+
+                    <!-- Product 4 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://via.placeholder.com/150x120/E0E0E0/666666?text=منتج" alt="فراولة" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">فراولة طازجة من الحقول السعودية</h3>
+                            <p class="product-weight">250 جرام</p>
+                            <div class="price-section">
+                                <span class="current-price">25 ر.س</span>
+                            </div>
+                            <button class="add-to-cart">أضف للسلة</button>
+                        </div>
+                    </div>
+
+                    <!-- Product 5 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://via.placeholder.com/150x120/E0E0E0/666666?text=منتج" alt="عنب أحمر" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">عنب أحمر مكونات طبيعية 100%</h3>
+                            <p class="product-weight">كيلو جرام</p>
+                            <div class="price-section">
+                                <span class="current-price">40 ر.س</span>
+                            </div>
+                            <button class="add-to-cart">أضف للسلة</button>
+                        </div>
+                    </div>
+
+                    <!-- Product 6 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://via.placeholder.com/150x120/E0E0E0/666666?text=منتج" alt="تفاح أخضر" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">تفاح أخضر بدون مبيدات حشرية</h3>
+                            <p class="product-weight">400 جرام</p>
+                            <div class="price-section">
+                                <span class="current-price">65 ر.س</span>
+                                <span class="old-price">70 ر.س</span>
+                            </div>
+                            <div class="discount-badge">خصم 7%</div>
+                            <button class="add-to-cart">أضف للسلة</button>
+                        </div>
+                    </div>
+
+                    <!-- Product 7 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://via.placeholder.com/150x120/E0E0E0/666666?text=منتج" alt="كمثرى" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">كمثرى تركية ناضجة وحلوة</h3>
+                            <p class="product-weight">كيلو جرام</p>
+                            <div class="price-section">
+                                <span class="current-price">55 ر.س</span>
+                            </div>
+                            <button class="add-to-cart">أضف للسلة</button>
+                        </div>
+                    </div>
+
+                    <!-- Product 8 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://via.placeholder.com/150x120/E0E0E0/666666?text=منتج" alt="شمام" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">شمام أصفر مبستر بعناية فائقة</h3>
+                            <p class="product-weight">1.5 كيلوجرام</p>
+                            <div class="price-section">
+                                <span class="current-price">15 ر.س</span>
+                                <span class="old-price">20 ر.س</span>
+                            </div>
+                            <div class="discount-badge">خصم 25%</div>
+                            <button class="add-to-cart">أضف للسلة</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pagination">
+                    <button disabled>&lt;</button>
+                    <span> 1 / 5 </span>
+                    <button>&gt;</button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // Simple price range slider interaction
+        const priceSlider = document.getElementById('priceSlider');
+        const priceInputs = document.querySelectorAll('.range-inputs input');
+
+        if (priceSlider && priceInputs) {
+            priceSlider.addEventListener('input', function() {
+                // Sync slider with input values (simplified)
+                const minVal = parseInt(priceInputs[0].value) || 0;
+                const maxVal = parseInt(priceInputs[1].value) || 1000;
+
+                if (this.value < minVal) {
+                    this.value = minVal;
+                }
+                if (this.value > maxVal) {
+                    this.value = maxVal;
+                }
+            });
+
+            // Sync inputs with slider (optional)
+            priceInputs.forEach((input, index) => {
+                input.addEventListener('input', function() {
+                    if (index === 0) {
+                        priceSlider.min = this.value;
+                    } else {
+                        priceSlider.max = this.value;
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>
