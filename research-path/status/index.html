@@ -108,7 +108,7 @@ code { font: 13px var(--font-mono); background: var(--todo-bg); padding: 1px 5px
     <div class="phases">
       <div class="phase"><div class="n">0</div><div class="body"><h3>Set up</h3><p>Research question, product, cities, log workbook with 22 text prompts and 20 image prompts.</p></div><span class="pill done">Done</span></div>
       <div class="phase"><div class="n">1</div><div class="body"><h3>Build it with AI: text</h3><p>Run the 22 prompts (research, brand, copy, interface, support) in ChatGPT, Claude and Gemini per city; log every break.</p></div><span class="pill you">Your turn</span></div>
-      <div class="phase"><div class="n">1b</div><div class="body"><h3>Build it with AI: imagery</h3><p>20 image prompts × 7 image models, three cities plus London as a control, English and Arabic prompts.</p><div class="bar" aria-label="Imagery progress"><span style="width:4%"></span></div><p class="mono" style="margin-top:6px">12 / 292 images</p></div><span class="pill run">Running</span></div>
+      <div class="phase"><div class="n">1b</div><div class="body"><h3>Build it with AI: imagery</h3><p>20 image prompts × 7 image models, three cities plus London as a control, English and Arabic prompts.</p><div class="bar" aria-label="Imagery progress"><span style="width:30%"></span></div><p class="mono" style="margin-top:6px">88 / 292 images</p></div><span class="pill run">Running</span></div>
       <div class="phase"><div class="n">2</div><div class="body"><h3>Compare with real products</h3><p>Screenshot 4–6 leading regional apps per country at the same stages; read real Arabic reviews.</p></div><span class="pill todo">Not started</span></div>
       <div class="phase"><div class="n">3</div><div class="body"><h3>Ask native speakers</h3><p>3–5 short blind conversations: AI work next to real work. What feels off, and why?</p></div><span class="pill todo">Not started</span></div>
       <div class="phase"><div class="n">4</div><div class="body"><h3>Test the strongest breaks</h3><p>Repeat 5–10 times, across tools, cities, Arabic vs English; try to fix with better prompts.</p></div><span class="pill todo">Not started</span></div>
@@ -125,7 +125,7 @@ code { font: 13px var(--font-mono); background: var(--todo-bg); padding: 1px 5px
     <div class="inv">
       <div class="card">
         <h3>Imagery tests</h3>
-        <div><span class="big">12</span> <span class="of">/ 292 images</span></div>
+        <div><span class="big">88</span> <span class="of">/ 292 images</span></div>
         <ul>
           <li>Arabic text in images: brand word, headline, mixed Arabic and Latin text, vowel marks, app screen</li>
           <li>Defaults: shopping, family dinner, a professional woman, a street, "an Arab family"</li>
@@ -135,10 +135,10 @@ code { font: 13px var(--font-mono); background: var(--todo-bg); padding: 1px 5px
       </div>
       <div class="card">
         <h3>Billboard text test</h3>
-        <div><span class="big">73</span> <span class="of">/ 84 billboards</span></div>
+        <div><span class="big">84</span> <span class="of">/ 84 billboards</span></div>
         <ul>
           <li>4 fixed Arabic headlines per city × 7 image models</li>
-          <li>Missing 11 (Casablanca, from GPT Image and Seedream) are being filled now</li>
+          <li>Complete for all 3 cities and all 7 models</li>
           <li>Plus a 7-model Cairo spot test</li>
         </ul>
         <div class="path">arabic-launch-test/outputs/images/render/</div>
@@ -198,7 +198,7 @@ code { font: 13px var(--font-mono); background: var(--todo-bg); padding: 1px 5px
       <div class="col"><h3>Casablanca</h3></div>
       <div class="scroll"><div class="inner">
         <div class="cols"><span>GPT Image 2.6</span><span>Nano Banana 2.1</span><span>Seedream 5</span><span>Ideogram 4.5</span><span>Qwen Image 3</span><span>Recraft 4.1</span><span>FLUX 2 Max</span></div>
-        <img src="img/billboards-casablanca.jpg" alt="Grid of Casablanca billboards; two model columns not yet generated" loading="lazy">
+        <img src="img/billboards-casablanca.jpg" alt="Grid of 28 Casablanca billboards: 4 Arabic headlines rendered by 7 image models" loading="lazy">
       </div></div>
     </div>
 

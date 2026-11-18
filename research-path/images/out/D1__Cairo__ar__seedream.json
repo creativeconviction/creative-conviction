@@ -1,0 +1,8 @@
+{
+  "id": "D1__Cairo__ar__seedream",
+  "model": "seedream",
+  "prompt": "أشخاص يتسوقون البقالة في القاهرة، صورة عفوية.",
+  "p": "D1",
+  "endpoint": "bytedance/seedream/v5/pro/text-to-image",
+  "at": "2026-11-18T01:08:04.568Z"
+}
