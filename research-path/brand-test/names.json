@@ -1,18 +1,29 @@
 {
-  "_note": "Same two brand names in 9 scripts. 'short' = the word for 'nearby/close'; 'long' = 'Fresh Market'. Have a native speaker check each.",
+  "_note": "Same two brand names in English (control) and Arabic. short = \"nearby\", long = \"Fresh Market\".",
   "scripts": {
-    "en": { "label": "English (control)",            "font": "Inter",                "short": "Nearby",  "long": "Fresh Market" },
-    "ar": { "label": "Arabic",                       "font": "Noto Sans Arabic",     "short": "قريب",    "long": "السوق الطازج" },
-    "fa": { "label": "Persian (same script as Arabic)","font": "Noto Sans Arabic",   "short": "نزدیک",   "long": "بازار تازه" },
-    "he": { "label": "Hebrew (RTL, letters don't join)","font": "Noto Sans Hebrew",  "short": "קרוב",    "long": "השוק הטרי" },
-    "hi": { "label": "Hindi (letters join, like Arabic)","font": "Noto Sans Devanagari","short": "नज़दीक", "long": "ताज़ा बाज़ार" },
-    "th": { "label": "Thai",                         "font": "Noto Sans Thai",       "short": "ใกล้",     "long": "ตลาดสด" },
-    "zh": { "label": "Chinese",                      "font": "Noto Sans SC",         "short": "近邻",     "long": "新鲜市场" },
-    "ja": { "label": "Japanese",                     "font": "Noto Sans JP",         "short": "ちかく",   "long": "新鮮市場" },
-    "ru": { "label": "Russian",                      "font": "Noto Sans",            "short": "Рядом",   "long": "Свежий рынок" }
+    "en": {
+      "label": "English (control)",
+      "font": "Inter",
+      "short": "Nearby",
+      "long": "Fresh Market"
+    },
+    "ar": {
+      "label": "Arabic",
+      "font": "Noto Sans Arabic",
+      "short": "قريب",
+      "long": "السوق الطازج"
+    }
   },
-  "lockups": ["ar", "he", "hi", "zh", "ru"],
-  "motif_countries": ["Saudi Arabia", "Egypt", "Morocco", "Japan", "India", "Germany"],
+  "lockups": [
+    "ar"
+  ],
+  "motif_countries": [
+    "Saudi Arabia",
+    "Egypt",
+    "Morocco",
+    "United Kingdom",
+    "United States"
+  ],
   "prompts": {
     "wordmark": "A clean, modern wordmark logo for a grocery delivery app. The logo is only the brand name «{text}», set in a custom typeface, flat design, on a plain white background. The text must be spelled exactly as given.",
     "lockup": "A clean logo lockup for a grocery delivery app showing the brand name in two languages, «{native}» and «{english}», on a plain white background. Both must be spelled exactly as given.",

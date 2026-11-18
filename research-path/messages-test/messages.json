@@ -1,29 +1,249 @@
 {
   "_note": "12 support scenarios × 9 language variants. Same meaning in each, so the correct labels are the same. Non-English variants are drafts: have native speakers check them.",
   "languages": {
-    "en": "English (control)", "es": "Spanish (Mexico)", "hi": "Hindi (Devanagari)", "hinglish": "Hinglish (romanized Hindi-English)",
-    "ar_msa": "Arabic (formal)", "ar_sa": "Arabic (Saudi)", "ar_eg": "Arabic (Egyptian)", "ar_ma": "Arabic (Moroccan Darija)", "arabizi": "Arabizi (Egyptian, Latin letters)"
+    "en": "English (control)",
+    "ar_msa": "Arabic (formal)",
+    "ar_sa": "Arabic (Saudi)",
+    "ar_eg": "Arabic (Egyptian)",
+    "ar_ma": "Arabic (Moroccan Darija)",
+    "arabizi": "Arabizi (Egyptian, Latin letters)"
   },
   "gold": {
-    "M1":  { "about": "Missing items, calm",                        "intent": ["missing_item"],     "sentiment": ["negative"],             "urgency": ["medium"],          "sarcasm": [false], "churn_risk": [false, true] },
-    "M2":  { "about": "Very late, angry",                           "intent": ["late_delivery"],    "sentiment": ["negative"],             "urgency": ["high"],            "sarcasm": [false], "churn_risk": [false, true] },
-    "M3":  { "about": "Sarcastic praise about lateness",            "intent": ["late_delivery"],    "sentiment": ["negative"],             "urgency": ["medium", "high"],  "sarcasm": [true],  "churn_risk": [false, true] },
-    "M4":  { "about": "Complaint wrapped in a polite religious formula", "intent": ["wrong_item"], "sentiment": ["negative"],             "urgency": ["medium", "high"],  "sarcasm": [false, true], "churn_risk": [false, true] },
-    "M5":  { "about": "Formal refund request",                      "intent": ["refund_request"],   "sentiment": ["negative", "neutral"],  "urgency": ["medium", "low"],   "sarcasm": [false], "churn_risk": [false] },
-    "M6":  { "about": "Urgent cancellation, wrong address",         "intent": ["cancel_order"],     "sentiment": ["neutral", "negative"],  "urgency": ["high"],            "sarcasm": [false], "churn_risk": [false] },
-    "M7":  { "about": "Safety: nut allergy, child ate it",          "intent": ["wrong_item"],       "sentiment": ["negative"],             "urgency": ["high"],            "sarcasm": [false], "churn_risk": [false, true] },
-    "M8":  { "about": "Charged twice",                              "intent": ["billing_issue"],    "sentiment": ["negative"],             "urgency": ["high", "medium"],  "sarcasm": [false], "churn_risk": [false] },
-    "M9":  { "about": "Genuine praise for the driver",              "intent": ["praise"],           "sentiment": ["positive"],             "urgency": ["low"],             "sarcasm": [false], "churn_risk": [false] },
-    "M10": { "about": "Question: delivery area and minimum",        "intent": ["question"],         "sentiment": ["neutral"],              "urgency": ["low"],             "sarcasm": [false], "churn_risk": [false] },
-    "M11": { "about": "Churn threat",                               "intent": ["general_complaint"],"sentiment": ["negative"],             "urgency": ["medium", "high"],  "sarcasm": [false], "churn_risk": [true] },
-    "M12": { "about": "Thanks plus a complaint",                    "intent": ["quality_issue"],    "sentiment": ["mixed", "negative"],    "urgency": ["low", "medium"],   "sarcasm": [false], "churn_risk": [false] }
+    "M1": {
+      "about": "Missing items, calm",
+      "intent": [
+        "missing_item"
+      ],
+      "sentiment": [
+        "negative"
+      ],
+      "urgency": [
+        "medium"
+      ],
+      "sarcasm": [
+        false
+      ],
+      "churn_risk": [
+        false,
+        true
+      ]
+    },
+    "M2": {
+      "about": "Very late, angry",
+      "intent": [
+        "late_delivery"
+      ],
+      "sentiment": [
+        "negative"
+      ],
+      "urgency": [
+        "high"
+      ],
+      "sarcasm": [
+        false
+      ],
+      "churn_risk": [
+        false,
+        true
+      ]
+    },
+    "M3": {
+      "about": "Sarcastic praise about lateness",
+      "intent": [
+        "late_delivery"
+      ],
+      "sentiment": [
+        "negative"
+      ],
+      "urgency": [
+        "medium",
+        "high"
+      ],
+      "sarcasm": [
+        true
+      ],
+      "churn_risk": [
+        false,
+        true
+      ]
+    },
+    "M4": {
+      "about": "Complaint wrapped in a polite religious formula",
+      "intent": [
+        "wrong_item"
+      ],
+      "sentiment": [
+        "negative"
+      ],
+      "urgency": [
+        "medium",
+        "high"
+      ],
+      "sarcasm": [
+        false,
+        true
+      ],
+      "churn_risk": [
+        false,
+        true
+      ]
+    },
+    "M5": {
+      "about": "Formal refund request",
+      "intent": [
+        "refund_request"
+      ],
+      "sentiment": [
+        "negative",
+        "neutral"
+      ],
+      "urgency": [
+        "medium",
+        "low"
+      ],
+      "sarcasm": [
+        false
+      ],
+      "churn_risk": [
+        false
+      ]
+    },
+    "M6": {
+      "about": "Urgent cancellation, wrong address",
+      "intent": [
+        "cancel_order"
+      ],
+      "sentiment": [
+        "neutral",
+        "negative"
+      ],
+      "urgency": [
+        "high"
+      ],
+      "sarcasm": [
+        false
+      ],
+      "churn_risk": [
+        false
+      ]
+    },
+    "M7": {
+      "about": "Safety: nut allergy, child ate it",
+      "intent": [
+        "wrong_item"
+      ],
+      "sentiment": [
+        "negative"
+      ],
+      "urgency": [
+        "high"
+      ],
+      "sarcasm": [
+        false
+      ],
+      "churn_risk": [
+        false,
+        true
+      ]
+    },
+    "M8": {
+      "about": "Charged twice",
+      "intent": [
+        "billing_issue"
+      ],
+      "sentiment": [
+        "negative"
+      ],
+      "urgency": [
+        "high",
+        "medium"
+      ],
+      "sarcasm": [
+        false
+      ],
+      "churn_risk": [
+        false
+      ]
+    },
+    "M9": {
+      "about": "Genuine praise for the driver",
+      "intent": [
+        "praise"
+      ],
+      "sentiment": [
+        "positive"
+      ],
+      "urgency": [
+        "low"
+      ],
+      "sarcasm": [
+        false
+      ],
+      "churn_risk": [
+        false
+      ]
+    },
+    "M10": {
+      "about": "Question: delivery area and minimum",
+      "intent": [
+        "question"
+      ],
+      "sentiment": [
+        "neutral"
+      ],
+      "urgency": [
+        "low"
+      ],
+      "sarcasm": [
+        false
+      ],
+      "churn_risk": [
+        false
+      ]
+    },
+    "M11": {
+      "about": "Churn threat",
+      "intent": [
+        "general_complaint"
+      ],
+      "sentiment": [
+        "negative"
+      ],
+      "urgency": [
+        "medium",
+        "high"
+      ],
+      "sarcasm": [
+        false
+      ],
+      "churn_risk": [
+        true
+      ]
+    },
+    "M12": {
+      "about": "Thanks plus a complaint",
+      "intent": [
+        "quality_issue"
+      ],
+      "sentiment": [
+        "mixed",
+        "negative"
+      ],
+      "urgency": [
+        "low",
+        "medium"
+      ],
+      "sarcasm": [
+        false
+      ],
+      "churn_risk": [
+        false
+      ]
+    }
   },
   "messages": {
     "M1": {
       "en": "hi, my order came but the milk and bread are missing",
-      "es": "hola, me llegó el pedido pero falta la leche y el pan",
-      "hi": "नमस्ते, मेरा ऑर्डर आ गया लेकिन दूध और ब्रेड नहीं है",
-      "hinglish": "hi, mera order aa gaya par doodh aur bread missing hai",
       "ar_msa": "مرحباً، وصل طلبي لكن الحليب والخبز غير موجودين",
       "ar_sa": "هلا، طلبي وصل بس ما جاني الحليب والخبز",
       "ar_eg": "أهلاً، الأوردر وصل بس اللبن والعيش مش موجودين",
@@ -32,9 +252,6 @@
     },
     "M2": {
       "en": "WHERE IS MY ORDER?? it's been 2 hours, this is ridiculous",
-      "es": "¿¿DÓNDE ESTÁ MI PEDIDO?? ya van 2 horas, esto es ridículo",
-      "hi": "मेरा ऑर्डर कहाँ है?? 2 घंटे हो गए, ये बिल्कुल बेकार है",
-      "hinglish": "MERA ORDER KAHAN HAI?? 2 ghante ho gaye, ye kya mazaak hai",
       "ar_msa": "أين طلبي؟؟ مرت ساعتان، هذا أمر سخيف",
       "ar_sa": "وين طلبي؟؟ صار له ساعتين، شي يفشل",
       "ar_eg": "الأوردر فين؟؟ بقاله ساعتين، ده تهريج",
@@ -43,9 +260,6 @@
     },
     "M3": {
       "en": "wow amazing service, only 2 hours late again 👏👏",
-      "es": "wow qué servicio tan increíble, solo 2 horas tarde otra vez 👏👏",
-      "hi": "वाह क्या शानदार सर्विस है, फिर से सिर्फ़ 2 घंटे लेट 👏👏",
-      "hinglish": "wah kya amazing service hai, phir se sirf 2 ghante late 👏👏",
       "ar_msa": "يا لها من خدمة رائعة، تأخير ساعتين فقط مرة أخرى 👏👏",
       "ar_sa": "ما شاء الله عليكم خدمة ولا أروع، بس ساعتين تأخير مرة ثانية 👏👏",
       "ar_eg": "لا بجد خدمة تحفة، متأخرين ساعتين بس زي كل مرة 👏👏",
@@ -54,9 +268,6 @@
     },
     "M4": {
       "en": "Bless your heart, you got my order wrong for the third time",
-      "es": "Que Dios los perdone, es la tercera vez que me traen el pedido mal",
-      "hi": "भगवान आपको माफ़ करे, तीसरी बार मेरा ऑर्डर गलत आया है",
-      "hinglish": "bhagwan aapko maaf kare, teesri baar mera order galat aaya hai",
       "ar_msa": "سامحكم الله، هذه ثالث مرة يصلني الطلب خطأ",
       "ar_sa": "الله يسامحكم، ثالث مرة الطلب يجيني غلط",
       "ar_eg": "ربنا يسامحكم، تالت مرة الأوردر ييجي غلط",
@@ -65,9 +276,6 @@
     },
     "M5": {
       "en": "Hello, I would like a refund for order #48213 please. The items were not as described.",
-      "es": "Hola, quisiera un reembolso del pedido #48213 por favor. Los productos no eran como se describían.",
-      "hi": "नमस्ते, कृपया मुझे ऑर्डर #48213 का रिफ़ंड चाहिए। सामान वैसा नहीं था जैसा बताया गया था।",
-      "hinglish": "hello, mujhe order #48213 ka refund chahiye please. items waise nahi the jaise bataya tha.",
       "ar_msa": "مرحباً، أرغب في استرداد مبلغ الطلب رقم 48213 من فضلك. المنتجات لم تكن مطابقة للوصف.",
       "ar_sa": "السلام عليكم، أبغى أسترجع فلوس الطلب 48213 لو سمحت. الأغراض مو نفس الوصف.",
       "ar_eg": "السلام عليكم، عايز أسترجع فلوس الأوردر 48213 لو سمحت. الحاجات مش زي الوصف.",
@@ -76,9 +284,6 @@
     },
     "M6": {
       "en": "cancel my order NOW please, I ordered to the wrong address",
-      "es": "cancelen mi pedido YA por favor, lo pedí a la dirección equivocada",
-      "hi": "कृपया मेरा ऑर्डर अभी कैंसल करो, मैंने गलत पते पर ऑर्डर कर दिया",
-      "hinglish": "please mera order abhi cancel karo, galat address pe order ho gaya",
       "ar_msa": "ألغوا طلبي الآن من فضلكم، طلبته على العنوان الخطأ",
       "ar_sa": "تكفون ألغوا طلبي الحين، طلبته على عنوان غلط",
       "ar_eg": "الغوا الأوردر دلوقتي حالاً لو سمحتوا، طلبته على عنوان غلط",
@@ -87,9 +292,6 @@
     },
     "M7": {
       "en": "you sent peanut butter cookies instead of the plain ones and my son has a nut allergy, he already ate one",
-      "es": "mandaron galletas de crema de cacahuate en vez de las normales y mi hijo es alérgico al cacahuate, ya se comió una",
-      "hi": "आपने सादे बिस्कुट की जगह पीनट बटर वाले भेज दिए और मेरे बेटे को मूंगफली से एलर्जी है, उसने एक खा भी लिया",
-      "hinglish": "aapne plain cookies ki jagah peanut butter wale bhej diye aur mere bete ko peanut allergy hai, usne ek kha bhi liya",
       "ar_msa": "أرسلتم بسكويت بزبدة الفول السوداني بدلاً من العادي، وابني لديه حساسية من المكسرات وقد أكل واحدة بالفعل",
       "ar_sa": "أرسلتوا بسكوت فيه زبدة فول سوداني بدال العادي، وولدي عنده حساسية مكسرات وأكل وحدة",
       "ar_eg": "بعتوا بسكوت بزبدة الفول السوداني بدل العادي، وابني عنده حساسية من المكسرات وكل واحدة خلاص",
@@ -98,9 +300,6 @@
     },
     "M8": {
       "en": "I was charged twice for the same order, 2 x $45 on my card",
-      "es": "me cobraron dos veces el mismo pedido, 2 x $450 en mi tarjeta",
-      "hi": "एक ही ऑर्डर के लिए मुझसे दो बार पैसे कट गए, कार्ड पर 2 x ₹450",
-      "hinglish": "same order ke liye do baar paise kat gaye, card pe 2 x ₹450",
       "ar_msa": "تم خصم المبلغ مرتين لنفس الطلب، 2 × 150 ريالاً من بطاقتي",
       "ar_sa": "انخصم مني المبلغ مرتين على نفس الطلب، 150 ريال مرتين من البطاقة",
       "ar_eg": "اتخصم مني مرتين على نفس الأوردر، 450 جنيه مرتين من الكارت",
@@ -109,9 +308,6 @@
     },
     "M9": {
       "en": "just wanted to say the driver was super kind and helped me carry everything upstairs, thank you!",
-      "es": "solo quería decir que el repartidor fue súper amable y me ayudó a subir todo, ¡gracias!",
-      "hi": "बस इतना कहना था कि डिलीवरी वाले भैया बहुत अच्छे थे और सारा सामान ऊपर तक पहुँचाया, धन्यवाद!",
-      "hinglish": "bas itna kehna tha ki delivery bhaiya bahut ache the aur saara saman upar tak pahunchaya, thank you!",
       "ar_msa": "أردت فقط أن أقول إن المندوب كان لطيفاً جداً وساعدني في حمل كل شيء إلى الأعلى، شكراً لكم!",
       "ar_sa": "حبيت أقول إن المندوب كان مره ذوق وساعدني أطلع الأغراض فوق، يعطيكم العافية!",
       "ar_eg": "حبيت أقول إن الطيار كان ذوق جداً وساعدني أطلع الحاجات فوق، متشكرين!",
@@ -120,9 +316,6 @@
     },
     "M10": {
       "en": "do you deliver to Maple Heights? and is there a minimum order?",
-      "es": "¿hacen entregas en la colonia Del Valle? ¿hay pedido mínimo?",
-      "hi": "क्या आप द्वारका सेक्टर 12 में डिलीवरी करते हैं? और क्या कोई मिनिमम ऑर्डर है?",
-      "hinglish": "kya aap Dwarka sector 12 mein deliver karte ho? aur koi minimum order hai?",
       "ar_msa": "هل توصلون إلى حي النرجس؟ وهل يوجد حد أدنى للطلب؟",
       "ar_sa": "توصلون حي النرجس؟ وفيه حد أدنى للطلب؟",
       "ar_eg": "بتوصلوا التجمع الخامس؟ وفيه حد أدنى للأوردر؟",
@@ -131,9 +324,6 @@
     },
     "M11": {
       "en": "honestly this is the last time I'm ordering from you, something goes wrong every single week",
-      "es": "la verdad es la última vez que les pido, cada semana pasa algo",
-      "hi": "सच कहूँ तो ये आख़िरी बार है जब मैं आपसे ऑर्डर कर रहा हूँ, हर हफ़्ते कुछ न कुछ गड़बड़ होती है",
-      "hinglish": "sach kahun toh ye last time hai jab main aapse order kar raha hoon, har hafte kuch na kuch gadbad hoti hai",
       "ar_msa": "بصراحة هذه آخر مرة أطلب منكم، كل أسبوع تحدث مشكلة",
       "ar_sa": "والله هذي آخر مرة أطلب منكم، كل أسبوع فيه مشكلة",
       "ar_eg": "بصراحة دي آخر مرة أطلب منكم، كل أسبوع فيه مصيبة",
@@ -142,9 +332,6 @@
     },
     "M12": {
       "en": "thanks for the fast delivery! but the bread was stale and the tomatoes were squashed",
-      "es": "¡gracias por la entrega rápida! pero el pan estaba duro y los tomates aplastados",
-      "hi": "जल्दी डिलीवरी के लिए धन्यवाद! लेकिन ब्रेड बासी थी और टमाटर पिचके हुए थे",
-      "hinglish": "fast delivery ke liye thanks! lekin bread baasi thi aur tamatar pichke hue the",
       "ar_msa": "شكراً على التوصيل السريع! لكن الخبز كان قديماً والطماطم مهروسة",
       "ar_sa": "مشكورين على سرعة التوصيل! بس الخبز كان يابس والطماط مفعوص",
       "ar_eg": "شكراً على التوصيل السريع! بس العيش كان بايت والطماطم مفعصة",
