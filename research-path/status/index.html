@@ -1,0 +1,232 @@
+<title>Arabic AI Breakpoints</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a research notebook — one narrow reading column, wide image plates break out of it. */
+:root {
+  --bg: #f6f7f5;
+  --surface: #ffffff;
+  --ink: #18222b;
+  --muted: #5d6a73;
+  --line: #dde2e0;
+  --accent: #0f6b62;
+  --done: #1d7a46;   --done-bg: #e3f2e8;
+  --run: #1f5fbf;    --run-bg: #e4edfb;
+  --you: #9a5b00;    --you-bg: #fbefd9;
+  --todo: #66727a;   --todo-bg: #eceff0;
+  --font-body: "IBM Plex Sans", system-ui, sans-serif;
+  --font-ar: "IBM Plex Sans Arabic", "IBM Plex Sans", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #12181d; --surface: #1a2228; --ink: #e6ecef; --muted: #9aa7ae; --line: #2b363d; --accent: #4cc2b3;
+  --done: #6fd39a; --done-bg: #183324; --run: #8fb6f5; --run-bg: #1b2a40; --you: #f0b660; --you-bg: #3a2c14; --todo: #a3aeb4; --todo-bg: #252e34;
+  color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #12181d; --surface: #1a2228; --ink: #e6ecef; --muted: #9aa7ae; --line: #2b363d; --accent: #4cc2b3;
+  --done: #6fd39a; --done-bg: #183324; --run: #8fb6f5; --run-bg: #1b2a40; --you: #f0b660; --you-bg: #3a2c14; --todo: #a3aeb4; --todo-bg: #252e34;
+  color-scheme: dark }
+
+body { background: var(--bg); color: var(--ink); font: 15px/1.6 var(--font-body); }
+.wrap { max-width: 1100px; margin: 0 auto; padding-block: 40px 72px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.col { max-width: 720px; }
+h1 { font-size: clamp(28px, 4.4vw, 42px); line-height: 1.15; font-weight: 600; margin: 0 0 12px; text-wrap: balance; letter-spacing: -0.01em; }
+h2 { font-size: 21px; font-weight: 600; margin: 56px 0 6px; text-wrap: balance; }
+h3 { font-size: 16px; font-weight: 600; margin: 0 0 4px; }
+p { margin: 0 0 12px; }
+.eyebrow { font: 500 12px/1 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+.lede { font-size: 18px; color: var(--muted); }
+.ar { font-family: var(--font-ar); direction: rtl; unicode-bidi: isolate; }
+.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.muted { color: var(--muted); }
+.updated { font: 13px var(--font-mono); color: var(--muted); margin-top: 16px; }
+
+.pill { display: inline-block; font: 500 11.5px/1 var(--font-mono); letter-spacing: 0.04em; padding: 5px 8px; border-radius: 99px; white-space: nowrap; }
+.pill.done { color: var(--done); background: var(--done-bg); }
+.pill.run  { color: var(--run);  background: var(--run-bg); }
+.pill.you  { color: var(--you);  background: var(--you-bg); }
+.pill.todo { color: var(--todo); background: var(--todo-bg); }
+
+/* Phase tracker */
+.phases { display: grid; gap: 0; margin-top: 16px; border-top: 1px solid var(--line); }
+.phase { display: grid; grid-template-columns: 56px 1fr auto; gap: 16px; align-items: start; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.phase .n { font: 500 13px var(--font-mono); color: var(--muted); padding-top: 2px; }
+.phase .body { min-width: 0; }
+.phase p { margin: 0; color: var(--muted); font-size: 14px; }
+.bar { height: 6px; background: var(--todo-bg); border-radius: 3px; margin-top: 8px; max-width: 320px; overflow: hidden; }
+.bar > span { display: block; height: 100%; background: var(--run); }
+@media (max-width: 520px) { .phase { grid-template-columns: 1fr; gap: 6px; } .phase .n { padding: 0; } }
+
+/* Inventory */
+.inv { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 16px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; min-width: 0; }
+.card .big { font: 500 30px/1.1 var(--font-mono); font-variant-numeric: tabular-nums; }
+.card .of { font: 14px var(--font-mono); color: var(--muted); }
+.card ul { margin: 10px 0 0; padding-left: 18px; color: var(--muted); font-size: 14px; }
+.card .path { font: 12px var(--font-mono); color: var(--muted); margin-top: 10px; word-break: break-all; }
+
+/* Image plates */
+.plate { margin-top: 18px; }
+.plate .cols { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0; font: 500 11.5px/1.3 var(--font-mono); color: var(--muted); margin-bottom: 6px; }
+.plate .cols span { padding: 0 4px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.plate img { display: block; width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--line); }
+.scroll { overflow-x: auto; }
+.scroll > .inner { min-width: 720px; }
+.rows { margin: 10px 0 0; padding: 0; list-style: none; display: grid; gap: 4px; font-size: 14px; }
+.rows li { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+.rows .k { font: 500 12px var(--font-mono); color: var(--muted); min-width: 52px; }
+
+/* Findings */
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { text-align: left; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font: 500 12px var(--font-mono); letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
+.verdict { font-weight: 600; }
+.ok { color: var(--done); } .mid { color: var(--you); } .bad { color: #c2410c; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .bad { color: #ff8a5c; } }
+:root[data-theme="dark"] .bad { color: #ff8a5c; }
+.note { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--you); border-radius: 6px; padding: 12px 14px; font-size: 14px; color: var(--muted); margin-top: 14px; }
+
+.todo-list { display: grid; gap: 12px; margin-top: 14px; }
+.todo-item { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: start; }
+.todo-item p { margin: 2px 0 0; color: var(--muted); font-size: 14px; }
+code { font: 13px var(--font-mono); background: var(--todo-bg); padding: 1px 5px; border-radius: 4px; }
+</style>
+
+<div class="wrap">
+  <header class="col">
+    <div class="eyebrow">Outliers · research status</div>
+    <h1>Where AI breaks when we design and write for Arab users</h1>
+    <p class="lede">We build one product, a grocery delivery app called Qareeb <span class="ar">(قريب)</span>, the way a real team would, using AI at every step, for Riyadh, Cairo and Casablanca. Every place the output wouldn't work for real users gets logged, explained, and turned into guidance for designers and writers.</p>
+    <p class="updated">Updated 18 Nov 2026 · imagery run in progress</p>
+  </header>
+
+  <section class="col">
+    <h2>The research path</h2>
+    <p class="muted">Where each phase stands.</p>
+    <div class="phases">
+      <div class="phase"><div class="n">0</div><div class="body"><h3>Set up</h3><p>Research question, product, cities, log workbook with 22 text prompts and 20 image prompts.</p></div><span class="pill done">Done</span></div>
+      <div class="phase"><div class="n">1</div><div class="body"><h3>Build it with AI: text</h3><p>Run the 22 prompts (research, brand, copy, interface, support) in ChatGPT, Claude and Gemini per city; log every break.</p></div><span class="pill you">Your turn</span></div>
+      <div class="phase"><div class="n">1b</div><div class="body"><h3>Build it with AI: imagery</h3><p>20 image prompts × 7 image models, three cities plus London as a control, English and Arabic prompts.</p><div class="bar" aria-label="Imagery progress"><span style="width:4%"></span></div><p class="mono" style="margin-top:6px">12 / 292 images</p></div><span class="pill run">Running</span></div>
+      <div class="phase"><div class="n">2</div><div class="body"><h3>Compare with real products</h3><p>Screenshot 4–6 leading regional apps per country at the same stages; read real Arabic reviews.</p></div><span class="pill todo">Not started</span></div>
+      <div class="phase"><div class="n">3</div><div class="body"><h3>Ask native speakers</h3><p>3–5 short blind conversations: AI work next to real work. What feels off, and why?</p></div><span class="pill todo">Not started</span></div>
+      <div class="phase"><div class="n">4</div><div class="body"><h3>Test the strongest breaks</h3><p>Repeat 5–10 times, across tools, cities, Arabic vs English; try to fix with better prompts.</p></div><span class="pill todo">Not started</span></div>
+      <div class="phase"><div class="n">5</div><div class="body"><h3>Make sense of it</h3><p>Group breaks by cause; write guidelines for designers and writers.</p></div><span class="pill todo">Not started</span></div>
+      <div class="phase"><div class="n">6</div><div class="body"><h3>Write it up</h3><p>Example → method → findings → why → what to do → the bigger point.</p></div><span class="pill todo">Not started</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="col">
+      <h2>What's been generated so far</h2>
+      <p class="muted">Everything is saved in the repository on branch <code>claude/adoring-edison-8dj3kk</code>.</p>
+    </div>
+    <div class="inv">
+      <div class="card">
+        <h3>Imagery tests</h3>
+        <div><span class="big">12</span> <span class="of">/ 292 images</span></div>
+        <ul>
+          <li>Arabic text in images: brand word, headline, mixed Arabic and Latin text, vowel marks, app screen</li>
+          <li>Defaults: shopping, family dinner, a professional woman, a street, "an Arab family"</li>
+          <li>Ad imagery, roles, app icon, social post</li>
+        </ul>
+        <div class="path">research-path/images/out/</div>
+      </div>
+      <div class="card">
+        <h3>Billboard text test</h3>
+        <div><span class="big">73</span> <span class="of">/ 84 billboards</span></div>
+        <ul>
+          <li>4 fixed Arabic headlines per city × 7 image models</li>
+          <li>Missing 11 (Casablanca, from GPT Image and Seedream) are being filled now</li>
+          <li>Plus a 7-model Cairo spot test</li>
+        </ul>
+        <div class="path">arabic-launch-test/outputs/images/render/</div>
+      </div>
+      <div class="card">
+        <h3>Earlier pilot: text outputs</h3>
+        <div><span class="big">41</span> <span class="of">items</span></div>
+        <ul>
+          <li>16 AI-built landing pages</li>
+          <li>13 full campaigns (idea, visuals, Arabic copy)</li>
+          <li>12 six-turn support chats in local dialect</li>
+        </ul>
+        <div class="path">arabic-launch-test/outputs/</div>
+      </div>
+      <div class="card">
+        <h3>Your research log</h3>
+        <div><span class="big">0</span> <span class="of">breaks logged</span></div>
+        <ul>
+          <li>22 Phase 1 prompts ready in English and Arabic</li>
+          <li>292 image rows ready to tag</li>
+          <li>Summary tab fills in as you log</li>
+        </ul>
+        <div class="path">research-path/research-log.xlsx</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="col">
+      <h2>First look: Arabic text on billboards</h2>
+      <p class="muted">Each model was asked for a plain street billboard showing an exact Arabic headline. Columns are models; rows are the four headlines.</p>
+    </div>
+
+    <div class="plate">
+      <div class="col"><h3>Riyadh</h3></div>
+      <div class="scroll"><div class="inner">
+        <div class="cols"><span>GPT Image 2.6</span><span>Nano Banana 2.1</span><span>Seedream 5</span><span>Ideogram 4.5</span><span>Qwen Image 3</span><span>Recraft 4.1</span><span>FLUX 2 Max</span></div>
+        <img src="img/billboards-riyadh.jpg" alt="Grid of 28 Riyadh billboards: 4 Arabic headlines rendered by 7 image models" loading="lazy">
+      </div></div>
+      <ol class="rows">
+        <li><span class="k">Row 1</span><span class="ar">مقاضيك توصلك في ٢٠ دقيقة</span><span class="muted">your groceries in 20 minutes</span></li>
+        <li><span class="k">Row 2</span><span class="ar">من دكان الحارة لباب بيتك</span><span class="muted">from the corner shop to your door</span></li>
+        <li><span class="k">Row 3</span><span class="ar">اطلب الحين وادفع عند الاستلام</span><span class="muted">order now, pay on delivery</span></li>
+        <li><span class="k">Row 4</span><span class="ar">خصم 25% على أول طلب — كود: QAREEB25</span><span class="muted">mixed Arabic, Latin, digits</span></li>
+      </ol>
+    </div>
+
+    <div class="plate">
+      <div class="col"><h3>Cairo</h3></div>
+      <div class="scroll"><div class="inner">
+        <div class="cols"><span>GPT Image 2.6</span><span>Nano Banana 2.1</span><span>Seedream 5</span><span>Ideogram 4.5</span><span>Qwen Image 3</span><span>Recraft 4.1</span><span>FLUX 2 Max</span></div>
+        <img src="img/billboards-cairo.jpg" alt="Grid of Cairo billboards: 4 Arabic headlines rendered by 7 image models" loading="lazy">
+      </div></div>
+    </div>
+
+    <div class="plate">
+      <div class="col"><h3>Casablanca</h3></div>
+      <div class="scroll"><div class="inner">
+        <div class="cols"><span>GPT Image 2.6</span><span>Nano Banana 2.1</span><span>Seedream 5</span><span>Ideogram 4.5</span><span>Qwen Image 3</span><span>Recraft 4.1</span><span>FLUX 2 Max</span></div>
+        <img src="img/billboards-casablanca.jpg" alt="Grid of Casablanca billboards; two model columns not yet generated" loading="lazy">
+      </div></div>
+    </div>
+
+    <div class="col">
+      <h3 style="margin-top:28px">Early read, by eye</h3>
+      <div class="scroll"><table>
+        <thead><tr><th>Model</th><th>Arabic text</th><th>What goes wrong</th></tr></thead>
+        <tbody>
+          <tr><td>GPT Image 2.6</td><td class="verdict ok">Mostly right</td><td>Adds its own branding and layout around the text</td></tr>
+          <tr><td>Nano Banana 2.1</td><td class="verdict ok">Mostly right</td><td>Clean; occasional small layout liberties</td></tr>
+          <tr><td>Seedream 5</td><td class="verdict mid">Close</td><td>Stray punctuation; Latin code sometimes misspelled</td></tr>
+          <tr><td>Ideogram 4.5</td><td class="verdict mid">Close</td><td>Changed "20 minutes" to "22" in the Cairo spot test</td></tr>
+          <tr><td>Qwen Image 3</td><td class="verdict mid">Flawed</td><td>Swaps or drops letter dots (<span class="ar">مفاضيك</span> for <span class="ar">مقاضيك</span>), drops letters</td></tr>
+          <tr><td>Recraft 4.1 Pro</td><td class="verdict bad">Mostly broken</td><td>Real-looking Arabic shapes that spell non-words</td></tr>
+          <tr><td>FLUX 2 Max</td><td class="verdict bad">Broken</td><td>Arabic-looking gibberish on every headline</td></tr>
+        </tbody>
+      </table></div>
+      <div class="note">This is a first read by eye, not a verified score. A native speaker should check each billboard before any of it is quoted. Recraft and Ideogram are the two tools marketed for typography and design work.</div>
+    </div>
+  </section>
+
+  <section class="col">
+    <h2>What happens next</h2>
+    <div class="todo-list">
+      <div class="todo-item"><span class="pill run">Running</span><div><h3>Imagery run finishes</h3><p>Comparison grids per prompt land in <code>research-path/images/sheets/</code>. This page gets updated with them.</p></div></div>
+      <div class="todo-item"><span class="pill you">You</span><div><h3>Start Phase 1</h3><p>Open the workbook, run the prompts in ChatGPT, Claude and Gemini, and log breaks as you go. No API needed.</p></div></div>
+      <div class="todo-item"><span class="pill you">You</span><div><h3>Tag the images</h3><p>Once the grids are ready, fill the Y/N columns in the Image tags tab. The Summary tab counts clichés per city.</p></div></div>
+      <div class="todo-item"><span class="pill you">You</span><div><h3>Line up 3–5 native speakers</h3><p>For Phase 3: about 20 minutes each, ideally from Riyadh, Cairo and Casablanca.</p></div></div>
+    </div>
+  </section>
+</div>
