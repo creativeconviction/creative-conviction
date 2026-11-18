@@ -1,0 +1,12 @@
+{
+  "line": "T1",
+  "market": "en_gb",
+  "model": "deepseek",
+  "source": "I'm lovin' it",
+  "raw": "{\n  \"literal\": \"I'm lovin' it\",\n  \"adaptation\": \"I'm lovin' it\",\n  \"back_translation\": \"I'm lovin' it\",\n  \"approach\": \"keep_english\",\n  \"notes\": \"The original tagline is already in English and has been successfully used in the UK market without any cultural or linguistic adjustment needed.\"\n}",
+  "literal": "I'm lovin' it",
+  "adaptation": "I'm lovin' it",
+  "back_translation": "I'm lovin' it",
+  "approach": "keep_english",
+  "notes": "The original tagline is already in English and has been successfully used in the UK market without any cultural or linguistic adjustment needed."
+}

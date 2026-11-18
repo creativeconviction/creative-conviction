@@ -1,0 +1,12 @@
+{
+  "line": "I1",
+  "market": "ar_sa",
+  "model": "saba",
+  "source": "We deliver the goods. Literally.",
+  "raw": "```json\n{\n  \"literal\": \"نحن نوصّل البضائع. حرفيًا.\",\n  \"adaptation\": \"نوصّل طلباتك في طرفة عين!\",\n  \"back_translation\": \"We deliver your orders in the blink of an eye!\",\n  \"approach\": \"replaced\",\n  \"notes\": \"Added a sense of speed ('in the blink of an eye') to align with local expectations of rapid service in grocery delivery.\"\n}\n```",
+  "literal": "نحن نوصّل البضائع. حرفيًا.",
+  "adaptation": "نوصّل طلباتك في طرفة عين!",
+  "back_translation": "We deliver your orders in the blink of an eye!",
+  "approach": "replaced",
+  "notes": "Added a sense of speed ('in the blink of an eye') to align with local expectations of rapid service in grocery delivery."
+}

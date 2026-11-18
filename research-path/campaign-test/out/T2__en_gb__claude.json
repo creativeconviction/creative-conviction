@@ -1,0 +1,12 @@
+{
+  "line": "T2",
+  "market": "en_gb",
+  "model": "claude",
+  "source": "Just Do It",
+  "raw": "```json\n{\n  \"literal\": \"Just Do It\",\n  \"adaptation\": \"Just Do It\",\n  \"back_translation\": \"Just Do It\",\n  \"approach\": \"keep_english\",\n  \"notes\": \"No spelling or idiom changes are needed for British English, and Nike runs this trademarked tagline unchanged worldwide; the only thing to watch is that supporting UK copy stays understated rather than leaning into American-style hype, which British audiences can find off-putting.\"\n}\n```",
+  "literal": "Just Do It",
+  "adaptation": "Just Do It",
+  "back_translation": "Just Do It",
+  "approach": "keep_english",
+  "notes": "No spelling or idiom changes are needed for British English, and Nike runs this trademarked tagline unchanged worldwide; the only thing to watch is that supporting UK copy stays understated rather than leaning into American-style hype, which British audiences can find off-putting."
+}

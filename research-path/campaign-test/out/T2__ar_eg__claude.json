@@ -1,0 +1,12 @@
+{
+  "line": "T2",
+  "market": "ar_eg",
+  "model": "claude",
+  "source": "Just Do It",
+  "raw": "```json\n{\n  \"literal\": \"فقط افعلها\",\n  \"adaptation\": \"اعملها وخلاص\",\n  \"back_translation\": \"Just do it, and that's that.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"The literal Modern Standard Arabic version reads as stiff and preachy, so I used everyday Egyptian colloquial ('اعملها وخلاص') to keep the line's casual, no-excuses energy, and the original English 'Just Do It' can still sit beside it as the global brand mark that many Egyptian consumers already recognize.\"\n}\n```",
+  "literal": "فقط افعلها",
+  "adaptation": "اعملها وخلاص",
+  "back_translation": "Just do it, and that's that.",
+  "approach": "adapted",
+  "notes": "The literal Modern Standard Arabic version reads as stiff and preachy, so I used everyday Egyptian colloquial ('اعملها وخلاص') to keep the line's casual, no-excuses energy, and the original English 'Just Do It' can still sit beside it as the global brand mark that many Egyptian consumers already recognize."
+}

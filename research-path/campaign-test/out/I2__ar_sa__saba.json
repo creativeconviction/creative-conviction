@@ -1,0 +1,12 @@
+{
+  "line": "I2",
+  "market": "ar_sa",
+  "model": "saba",
+  "source": "Rise and grind.",
+  "raw": "```json\n{\n  \"literal\": \"انهض واطحن\",\n  \"adaptation\": \"سخن شاي نارك\",\n  \"back_translation\": \"Boil your tea fire\",\n  \"approach\": \"replaced\",\n  \"notes\": \"Swapped coffee/grind metaphor with a fiery tea idiom to align with Saudi/Southwest Asian drinking culture.\"\n}\n```",
+  "literal": "انهض واطحن",
+  "adaptation": "سخن شاي نارك",
+  "back_translation": "Boil your tea fire",
+  "approach": "replaced",
+  "notes": "Swapped coffee/grind metaphor with a fiery tea idiom to align with Saudi/Southwest Asian drinking culture."
+}

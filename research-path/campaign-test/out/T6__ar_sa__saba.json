@@ -1,0 +1,12 @@
+{
+  "line": "T6",
+  "market": "ar_sa",
+  "model": "saba",
+  "source": "Got milk?",
+  "raw": "```json\n{\n  \"literal\": \"هل لديك حليب؟\",\n  \"adaptation\": \"شربت الحليب؟\",\n  \"back_translation\": \"Did you drink milk?\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Changed phrasing to align with the local context where milk consumption is common and the idea of drinking milk is more natural.\"\n}\n```",
+  "literal": "هل لديك حليب؟",
+  "adaptation": "شربت الحليب؟",
+  "back_translation": "Did you drink milk?",
+  "approach": "adapted",
+  "notes": "Changed phrasing to align with the local context where milk consumption is common and the idea of drinking milk is more natural."
+}

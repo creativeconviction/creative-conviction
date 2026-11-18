@@ -1,0 +1,12 @@
+{
+  "line": "I1",
+  "market": "ar_eg",
+  "model": "saba",
+  "source": "We deliver the goods. Literally.",
+  "raw": "```json\n{\n  \"literal\": \"نحن نسلم البضائع. حرفيًا.\",\n  \"adaptation\": \"جاي على الطلعة بالموجود.\",\n  \"back_translation\": \"We come right away with what’s here.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Used a more colloquial Egyptian Arabic phrase to evoke immediate delivery urgency without a literal translation.\"\n}\n```",
+  "literal": "نحن نسلم البضائع. حرفيًا.",
+  "adaptation": "جاي على الطلعة بالموجود.",
+  "back_translation": "We come right away with what’s here.",
+  "approach": "adapted",
+  "notes": "Used a more colloquial Egyptian Arabic phrase to evoke immediate delivery urgency without a literal translation."
+}

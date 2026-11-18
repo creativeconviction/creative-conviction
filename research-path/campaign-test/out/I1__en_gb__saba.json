@@ -1,0 +1,12 @@
+{
+  "line": "I1",
+  "market": "en_gb",
+  "model": "saba",
+  "source": "We deliver the goods. Literally.",
+  "raw": "```json\n{\n  \"literal\": \"We deliver the goods. Literally.\",\n  \"adaptation\": \"We deliver the goods. Guaranteed.\",\n  \"back_translation\": \"We deliver the goods. Guaranteed.\",\n  \"approach\": \"replaced\",\n  \"notes\": \"Avoided American English 'literally' to prevent potential confusion with its informal usage in the UK.\"\n}\n```",
+  "literal": "We deliver the goods. Literally.",
+  "adaptation": "We deliver the goods. Guaranteed.",
+  "back_translation": "We deliver the goods. Guaranteed.",
+  "approach": "replaced",
+  "notes": "Avoided American English 'literally' to prevent potential confusion with its informal usage in the UK."
+}

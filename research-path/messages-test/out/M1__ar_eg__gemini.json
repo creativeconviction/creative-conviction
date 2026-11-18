@@ -1,0 +1,13 @@
+{
+  "scenario": "M1",
+  "lang": "ar_eg",
+  "model": "gemini",
+  "message": "أهلاً، الأوردر وصل بس اللبن والعيش مش موجودين",
+  "raw": "```json\n{\n  \"intent\": \"missing_item\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"The customer reported that milk and bread were missing from their recently delivered order.\"\n}\n```",
+  "intent": "missing_item",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer reported that milk and bread were missing from their recently delivered order."
+}

@@ -1,0 +1,12 @@
+{
+  "line": "T3",
+  "market": "en_gb",
+  "model": "gpt",
+  "source": "Have a break, have a KitKat",
+  "raw": "{\n  \"literal\": \"Have a break, have a KitKat\",\n  \"adaptation\": \"Have a break, have a KitKat\",\n  \"back_translation\": \"Have a break, have a KitKat\",\n  \"approach\": \"keep_english\",\n  \"notes\": \"The original is already an iconic British slogan, so no cultural adaptation is needed.\"\n}",
+  "literal": "Have a break, have a KitKat",
+  "adaptation": "Have a break, have a KitKat",
+  "back_translation": "Have a break, have a KitKat",
+  "approach": "keep_english",
+  "notes": "The original is already an iconic British slogan, so no cultural adaptation is needed."
+}

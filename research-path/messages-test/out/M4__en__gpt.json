@@ -1,0 +1,13 @@
+{
+  "scenario": "M4",
+  "lang": "en",
+  "model": "gpt",
+  "message": "Bless your heart, you got my order wrong for the third time",
+  "raw": "{\"intent\":\"wrong_item\",\"sentiment\":\"negative\",\"urgency\":\"medium\",\"sarcasm\":true,\"churn_risk\":true,\"summary\":\"The customer sarcastically complains that their order was incorrect for the third time.\"}",
+  "intent": "wrong_item",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": true,
+  "churn_risk": true,
+  "summary": "The customer sarcastically complains that their order was incorrect for the third time."
+}

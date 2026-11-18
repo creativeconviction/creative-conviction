@@ -1,0 +1,13 @@
+{
+  "scenario": "M4",
+  "lang": "ar_ma",
+  "model": "saba",
+  "message": "الله يسمح ليكم، هادي تالت مرة الكوموند كتجي غالطة",
+  "raw": "```json\n{\n  \"intent\": \"wrong_item\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"Customer reports receiving the wrong item for the third time.\"\n}\n```",
+  "intent": "wrong_item",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Customer reports receiving the wrong item for the third time."
+}

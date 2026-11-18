@@ -1,0 +1,13 @@
+{
+  "scenario": "M4",
+  "lang": "ar_eg",
+  "model": "saba",
+  "message": "ربنا يسامحكم، تالت مرة الأوردر ييجي غلط",
+  "raw": "```json\n{\n  \"intent\": \"wrong_item\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"Customer is frustrated after receiving the wrong order for the third time.\"\n}\n```",
+  "intent": "wrong_item",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Customer is frustrated after receiving the wrong order for the third time."
+}

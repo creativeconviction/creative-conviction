@@ -1,0 +1,13 @@
+{
+  "scenario": "M3",
+  "lang": "ar_ma",
+  "model": "gpt",
+  "message": "واو سيرفيس زوين بزاف، غير جوج سوايع ديال الروطار مرة أخرى 👏👏",
+  "raw": "{\"intent\":\"late_delivery\",\"sentiment\":\"negative\",\"urgency\":\"medium\",\"sarcasm\":true,\"churn_risk\":false,\"summary\":\"The customer sarcastically complains that the delivery was two hours late again.\"}",
+  "intent": "late_delivery",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": true,
+  "churn_risk": false,
+  "summary": "The customer sarcastically complains that the delivery was two hours late again."
+}
