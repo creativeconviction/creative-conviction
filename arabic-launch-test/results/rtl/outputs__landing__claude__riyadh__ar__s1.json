@@ -1,0 +1,146 @@
+{
+  "file": "outputs/landing/claude__riyadh__ar__s1.html",
+  "score": 84,
+  "checks": [
+    {
+      "id": "dir",
+      "label": "Page declares RTL (<html dir=\"rtl\"> or body direction rtl)",
+      "pass": true,
+      "detail": "html dir=rtl, body=rtl",
+      "weight": 2
+    },
+    {
+      "id": "lang",
+      "label": "Page declares Arabic language (lang=\"ar…\")",
+      "pass": true,
+      "detail": "lang=ar",
+      "weight": 1
+    },
+    {
+      "id": "align",
+      "label": "Arabic text is right/start aligned",
+      "pass": true,
+      "detail": [],
+      "weight": 2
+    },
+    {
+      "id": "font",
+      "label": "Arabic glyphs render in an intended font, not a system fallback",
+      "pass": true,
+      "detail": {
+        "IBM Plex Sans Arabic": 1284,
+        "Tajawal ExtraBold": 125,
+        "IBM Plex Sans Arabic Medium": 95,
+        "IBM Plex Sans Arabic SemiBold": 66,
+        "Tajawal": 114,
+        "Inter": 3,
+        "DejaVu Sans": 10,
+        "Noto Color Emoji": 1
+      },
+      "weight": 2
+    },
+    {
+      "id": "letterspacing",
+      "label": "No letter-spacing on Arabic (can break letter joins; engine-dependent)",
+      "pass": true,
+      "detail": [],
+      "weight": 1
+    },
+    {
+      "id": "italic",
+      "label": "No fake italic on Arabic",
+      "pass": true,
+      "detail": [],
+      "weight": 1
+    },
+    {
+      "id": "lineheight",
+      "label": "Arabic paragraphs have line-height ≥ 1.4 (room for marks)",
+      "pass": false,
+      "detail": [
+        "h1 \"مقاضي البيت من محلات حيّك… خلا\" lh=1.35",
+        "h2 \"كل طلب عاشر… توصيله علينا\" lh=1.35",
+        "li.stamp.free \"توصيل مجاني\" lh=1.20"
+      ],
+      "weight": 1
+    },
+    {
+      "id": "arrows",
+      "label": "Arrow glyphs in CTAs point the RTL way",
+      "pass": true,
+      "detail": [],
+      "weight": 1
+    },
+    {
+      "id": "icons",
+      "label": "Arrow/chevron icons are mirrored",
+      "pass": true,
+      "detail": [],
+      "weight": 1
+    },
+    {
+      "id": "logo",
+      "label": "Header is mirrored (logo/brand on the right)",
+      "pass": true,
+      "detail": "logo side=right",
+      "weight": 2
+    },
+    {
+      "id": "inputs",
+      "label": "Phone/email/URL inputs are LTR",
+      "pass": true,
+      "detail": "0/2 wrong",
+      "weight": 1
+    },
+    {
+      "id": "logicalcss",
+      "label": "CSS uses logical properties more than physical left/right",
+      "pass": false,
+      "detail": "physical=7, logical=5",
+      "weight": 1
+    },
+    {
+      "id": "numerals",
+      "label": "Numerals are consistent (not mixing ٠١٢ and 012)",
+      "pass": false,
+      "detail": "western=1, eastern=24",
+      "weight": 1
+    },
+    {
+      "id": "overflowMobile",
+      "label": "No horizontal scroll at phone width (390px)",
+      "pass": true,
+      "detail": "scrollWidth=390",
+      "weight": 2
+    }
+  ],
+  "mainFont": "IBM Plex Sans Arabic",
+  "raw": {
+    "htmlDir": "rtl",
+    "htmlLang": "ar",
+    "bodyDirection": "rtl",
+    "arabicElementCount": 73,
+    "leftAligned": [],
+    "letterSpaced": [],
+    "italic": [],
+    "tightLines": [
+      "h1 \"مقاضي البيت من محلات حيّك… خلا\" lh=1.35",
+      "h2 \"كل طلب عاشر… توصيله علينا\" lh=1.35",
+      "li.stamp.free \"توصيل مجاني\" lh=1.20"
+    ],
+    "westernDigits": 1,
+    "easternDigits": 24,
+    "mixedUnisolated": 1,
+    "wrongArrows": [],
+    "unmirroredIcons": [],
+    "logoSide": "right",
+    "ltrInputsTotal": 2,
+    "ltrInputsWrong": [],
+    "physicalCss": 7,
+    "logicalCss": 5,
+    "overflowX": false,
+    "scrollWidth": 1440,
+    "mobileOverflowX": false,
+    "mobileScrollWidth": 390
+  }
+}

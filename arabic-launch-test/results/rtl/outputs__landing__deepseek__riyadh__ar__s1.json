@@ -1,0 +1,149 @@
+{
+  "file": "outputs/landing/deepseek__riyadh__ar__s1.html",
+  "score": 68,
+  "checks": [
+    {
+      "id": "dir",
+      "label": "Page declares RTL (<html dir=\"rtl\"> or body direction rtl)",
+      "pass": true,
+      "detail": "html dir=rtl, body=rtl",
+      "weight": 2
+    },
+    {
+      "id": "lang",
+      "label": "Page declares Arabic language (lang=\"ar…\")",
+      "pass": true,
+      "detail": "lang=ar",
+      "weight": 1
+    },
+    {
+      "id": "align",
+      "label": "Arabic text is right/start aligned",
+      "pass": true,
+      "detail": [],
+      "weight": 2
+    },
+    {
+      "id": "font",
+      "label": "Arabic glyphs render in an intended font, not a system fallback",
+      "pass": true,
+      "detail": {
+        "Tajawal Black": 43,
+        "Tajawal": 143,
+        "Noto Color Emoji": 5,
+        "Tajawal Medium": 439,
+        "Tajawal ExtraBold": 125
+      },
+      "weight": 2
+    },
+    {
+      "id": "letterspacing",
+      "label": "No letter-spacing on Arabic (can break letter joins; engine-dependent)",
+      "pass": false,
+      "detail": [
+        "a.logo \"📦\n        قريب\" -0.3px",
+        "span.hero-badge \"🥇 الرياض أولاً\" 0.3px",
+        "h1.hero-title \"بقالة حيّك خلال ٢٠ دقيقة\" -0.5px",
+        "div.hero-image-placeholder \"📷صورة التطبيق / توصيل البقالة\" 1px"
+      ],
+      "weight": 1
+    },
+    {
+      "id": "italic",
+      "label": "No fake italic on Arabic",
+      "pass": true,
+      "detail": [],
+      "weight": 1
+    },
+    {
+      "id": "lineheight",
+      "label": "Arabic paragraphs have line-height ≥ 1.4 (room for marks)",
+      "pass": false,
+      "detail": [
+        "h1.hero-title \"بقالة حيّك خلال ٢٠ دقيقة\" lh=1.20"
+      ],
+      "weight": 1
+    },
+    {
+      "id": "arrows",
+      "label": "Arrow glyphs in CTAs point the RTL way",
+      "pass": true,
+      "detail": [],
+      "weight": 1
+    },
+    {
+      "id": "icons",
+      "label": "Arrow/chevron icons are mirrored",
+      "pass": true,
+      "detail": [],
+      "weight": 1
+    },
+    {
+      "id": "logo",
+      "label": "Header is mirrored (logo/brand on the right)",
+      "pass": true,
+      "detail": "logo side=right",
+      "weight": 2
+    },
+    {
+      "id": "inputs",
+      "label": "Phone/email/URL inputs are LTR",
+      "pass": true,
+      "detail": "0/2 wrong",
+      "weight": 1
+    },
+    {
+      "id": "logicalcss",
+      "label": "CSS uses logical properties more than physical left/right",
+      "pass": false,
+      "detail": "physical=2, logical=0",
+      "weight": 1
+    },
+    {
+      "id": "numerals",
+      "label": "Numerals are consistent (not mixing ٠١٢ and 012)",
+      "pass": false,
+      "detail": "western=4, eastern=4",
+      "weight": 1
+    },
+    {
+      "id": "overflowMobile",
+      "label": "No horizontal scroll at phone width (390px)",
+      "pass": false,
+      "detail": "scrollWidth=433",
+      "weight": 2
+    }
+  ],
+  "mainFont": "Tajawal Medium",
+  "raw": {
+    "htmlDir": "rtl",
+    "htmlLang": "ar",
+    "bodyDirection": "rtl",
+    "arabicElementCount": 32,
+    "leftAligned": [],
+    "letterSpaced": [
+      "a.logo \"📦\n        قريب\" -0.3px",
+      "span.hero-badge \"🥇 الرياض أولاً\" 0.3px",
+      "h1.hero-title \"بقالة حيّك خلال ٢٠ دقيقة\" -0.5px",
+      "div.hero-image-placeholder \"📷صورة التطبيق / توصيل البقالة\" 1px"
+    ],
+    "italic": [],
+    "tightLines": [
+      "h1.hero-title \"بقالة حيّك خلال ٢٠ دقيقة\" lh=1.20"
+    ],
+    "westernDigits": 4,
+    "easternDigits": 4,
+    "mixedUnisolated": 1,
+    "wrongArrows": [],
+    "unmirroredIcons": [],
+    "logoSide": "right",
+    "ltrInputsTotal": 2,
+    "ltrInputsWrong": [],
+    "physicalCss": 2,
+    "logicalCss": 0,
+    "overflowX": false,
+    "scrollWidth": 1440,
+    "mobileOverflowX": true,
+    "mobileScrollWidth": 433
+  }
+}

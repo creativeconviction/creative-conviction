@@ -1,0 +1,256 @@
+
+outputs/landing/claude__riyadh__ar__s1.html  →  84/100  (font: IBM Plex Sans Arabic)
+  ✓ Page declares RTL (<html dir="rtl"> or body direction rtl)
+  ✓ Page declares Arabic language (lang="ar…")
+  ✓ Arabic text is right/start aligned
+  ✓ Arabic glyphs render in an intended font, not a system fallback
+  ✓ No letter-spacing on Arabic (can break letter joins; engine-dependent)
+  ✓ No fake italic on Arabic
+  ✗ Arabic paragraphs have line-height ≥ 1.4 (room for marks)  — ["h1 \"مقاضي البيت من محلات حيّك… خلا\" lh=1.35","h2 \"كل طلب عاشر… توصيله علينا\" lh=1.35","li.stamp.free \"توصيل مجاني\" lh=1.20"]
+  ✓ Arrow glyphs in CTAs point the RTL way
+  ✓ Arrow/chevron icons are mirrored
+  ✓ Header is mirrored (logo/brand on the right)
+  ✓ Phone/email/URL inputs are LTR
+  ✗ CSS uses logical properties more than physical left/right  — "physical=7, logical=5"
+  ✗ Numerals are consistent (not mixing ٠١٢ and 012)  — "western=1, eastern=24"
+  ✓ No horizontal scroll at phone width (390px)
+
+outputs/landing/claude__riyadh__en__s1.html  →  95/100  (font: Tajawal)
+  ✓ Page declares RTL (<html dir="rtl"> or body direction rtl)
+  ✓ Page declares Arabic language (lang="ar…")
+  ✓ Arabic text is right/start aligned
+  ✓ Arabic glyphs render in an intended font, not a system fallback
+  ✓ No letter-spacing on Arabic (can break letter joins; engine-dependent)
+  ✓ No fake italic on Arabic
+  ✗ Arabic paragraphs have line-height ≥ 1.4 (room for marks)  — ["h1 \"مقاضيك من بقالة حيّكتوصلك خلال\" lh=1.35","div.stamp.free \"توصيلمجاني\" lh=1.30"]
+  ✓ Arrow glyphs in CTAs point the RTL way
+  ✓ Arrow/chevron icons are mirrored
+  ✓ Header is mirrored (logo/brand on the right)
+  ✓ Phone/email/URL inputs are LTR
+  ✓ CSS uses logical properties more than physical left/right
+  ✓ Numerals are consistent (not mixing ٠١٢ and 012)
+  ✓ No horizontal scroll at phone width (390px)
+
+outputs/landing/deepseek__riyadh__ar__s1.html  →  68/100  (font: Tajawal Medium)
+  ✓ Page declares RTL (<html dir="rtl"> or body direction rtl)
+  ✓ Page declares Arabic language (lang="ar…")
+  ✓ Arabic text is right/start aligned
+  ✓ Arabic glyphs render in an intended font, not a system fallback
+  ✗ No letter-spacing on Arabic (can break letter joins; engine-dependent)  — ["a.logo \"📦\n        قريب\" -0.3px","span.hero-badge \"🥇 الرياض أولاً\" 0.3px","h1.hero-title \"بقالة حيّك خلال ٢٠ دقيقة\" -0.5px","div.hero-image-placeholder \"📷صورة التطبيق / توصيل البقالة\" 1px"]
+  ✓ No fake italic on Arabic
+  ✗ Arabic paragraphs have line-height ≥ 1.4 (room for marks)  — ["h1.hero-title \"بقالة حيّك خلال ٢٠ دقيقة\" lh=1.20"]
+  ✓ Arrow glyphs in CTAs point the RTL way
+  ✓ Arrow/chevron icons are mirrored
+  ✓ Header is mirrored (logo/brand on the right)
+  ✓ Phone/email/URL inputs are LTR
+  ✗ CSS uses logical properties more than physical left/right  — "physical=2, logical=0"
+  ✗ Numerals are consistent (not mixing ٠١٢ and 012)  — "western=4, eastern=4"
+  ✗ No horizontal scroll at phone width (390px)  — "scrollWidth=433"
+
+outputs/landing/deepseek__riyadh__en__s1.html  →  84/100  (font: Tajawal Medium)
+  ✓ Page declares RTL (<html dir="rtl"> or body direction rtl)
+  ✓ Page declares Arabic language (lang="ar…")
+  ✓ Arabic text is right/start aligned
+  ✓ Arabic glyphs render in an intended font, not a system fallback
+  ✗ No letter-spacing on Arabic (can break letter joins; engine-dependent)  — ["span.logo-name \"قريب\" -0.5px","span.logo-tag \"توصيل البقالة\" 0.5px","div.hero-badge \"قريباً في الرياض\" -0.1px","h1 \"بقالة حيّك،عند بابك خلال ٢٠ دق\" -0.8px","span.highlight \"حيّك\" -0.8px"]
+  ✓ No fake italic on Arabic
+  ✗ Arabic paragraphs have line-height ≥ 1.4 (room for marks)  — ["h1 \"بقالة حيّك،عند بابك خلال ٢٠ دق\" lh=1.25","span.highlight \"٢٠ دقيقة\" lh=1.25"]
+  ✓ Arrow glyphs in CTAs point the RTL way
+  ✓ Arrow/chevron icons are mirrored
+  ✓ Header is mirrored (logo/brand on the right)
+  ✓ Phone/email/URL inputs are LTR
+  ✗ CSS uses logical properties more than physical left/right  — "physical=16, logical=0"
+  ✓ Numerals are consistent (not mixing ٠١٢ and 012)
+  ✓ No horizontal scroll at phone width (390px)
+
+outputs/landing/gemini__cairo__en__s1.html  →  89/100  (font: Cairo)
+  ✓ Page declares RTL (<html dir="rtl"> or body direction rtl)
+  ✓ Page declares Arabic language (lang="ar…")
+  ✓ Arabic text is right/start aligned
+  ✓ Arabic glyphs render in an intended font, not a system fallback
+  ✓ No letter-spacing on Arabic (can break letter joins; engine-dependent)
+  ✓ No fake italic on Arabic
+  ✗ Arabic paragraphs have line-height ≥ 1.4 (room for marks)  — ["h1 \"طلبات بيتك في 20 دقيقة، بأسعار\" lh=1.20","span \"20 دقيقة\" lh=1.20"]
+  ✓ Arrow glyphs in CTAs point the RTL way
+  ✓ Arrow/chevron icons are mirrored
+  ✓ Header is mirrored (logo/brand on the right)
+  ✓ Phone/email/URL inputs are LTR
+  ✗ CSS uses logical properties more than physical left/right  — "physical=1, logical=0"
+  ✓ Numerals are consistent (not mixing ٠١٢ and 012)
+  ✓ No horizontal scroll at phone width (390px)
+
+outputs/landing/gemini__riyadh__ar__s1.html  →  89/100  (font: Tajawal)
+  ✓ Page declares RTL (<html dir="rtl"> or body direction rtl)
+  ✓ Page declares Arabic language (lang="ar…")
+  ✓ Arabic text is right/start aligned
+  ✓ Arabic glyphs render in an intended font, not a system fallback
+  ✓ No letter-spacing on Arabic (can break letter joins; engine-dependent)
+  ✓ No fake italic on Arabic
+  ✗ Arabic paragraphs have line-height ≥ 1.4 (room for marks)  — ["h1.hero-title \"مقاضي البيت من بقالة حارتك.. ل\" lh=1.30"]
+  ✓ Arrow glyphs in CTAs point the RTL way
+  ✓ Arrow/chevron icons are mirrored
+  ✓ Header is mirrored (logo/brand on the right)
+  ✓ Phone/email/URL inputs are LTR
+  ✗ CSS uses logical properties more than physical left/right  — "physical=3, logical=0"
+  ✓ Numerals are consistent (not mixing ٠١٢ and 012)
+  ✓ No horizontal scroll at phone width (390px)
+
+outputs/landing/gemini__riyadh__en__s1.html  →  84/100  (font: Cairo)
+  ✓ Page declares RTL (<html dir="rtl"> or body direction rtl)
+  ✓ Page declares Arabic language (lang="ar…")
+  ✓ Arabic text is right/start aligned
+  ✓ Arabic glyphs render in an intended font, not a system fallback
+  ✗ No letter-spacing on Arabic (can break letter joins; engine-dependent)  — ["div.logo \"قريب\" -1px"]
+  ✓ No fake italic on Arabic
+  ✗ Arabic paragraphs have line-height ≥ 1.4 (room for marks)  — ["h1 \"مقاضيك من بقالة حارتك..لبيتك ف\" lh=1.20"]
+  ✓ Arrow glyphs in CTAs point the RTL way
+  ✓ Arrow/chevron icons are mirrored
+  ✓ Header is mirrored (logo/brand on the right)
+  ✓ Phone/email/URL inputs are LTR
+  ✗ CSS uses logical properties more than physical left/right  — "physical=4, logical=0"
+  ✓ Numerals are consistent (not mixing ٠١٢ and 012)
+  ✓ No horizontal scroll at phone width (390px)
+
+outputs/landing/gpt__cairo__ar__s1.html  →  79/100  (font: Cairo)
+  ✓ Page declares RTL (<html dir="rtl"> or body direction rtl)
+  ✓ Page declares Arabic language (lang="ar…")
+  ✓ Arabic text is right/start aligned
+  ✓ Arabic glyphs render in an intended font, not a system fallback
+  ✗ No letter-spacing on Arabic (can break letter joins; engine-dependent)  — ["h1 \"بقالة منطقتك، لحد بابك في نحو \" -3.132px","span \"لحد بابك\" -3.132px","h2 \"احتياجات البيت في ٣ خطوات بسيط\" -1.272px"]
+  ✓ No fake italic on Arabic
+  ✗ Arabic paragraphs have line-height ≥ 1.4 (room for marks)  — ["h1 \"بقالة منطقتك، لحد بابك في نحو \" lh=1.20","h2 \"احتياجات البيت في ٣ خطوات بسيط\" lh=1.30","h2 \"كل طلب عاشر، توصيله علينا\" lh=1.30","div.stamp.free \"توصيلمجاني\" lh=1.20","h2 \"خليك أول واحد يعرف\" lh=1.35"]
+  ✓ Arrow glyphs in CTAs point the RTL way
+  ✓ Arrow/chevron icons are mirrored
+  ✓ Header is mirrored (logo/brand on the right)
+  ✗ Phone/email/URL inputs are LTR  — "1/2 wrong"
+  ✗ CSS uses logical properties more than physical left/right  — "physical=6, logical=3"
+  ✓ Numerals are consistent (not mixing ٠١٢ and 012)
+  ✓ No horizontal scroll at phone width (390px)
+
+outputs/landing/gpt__cairo__en__s1.html  →  84/100  (font: Cairo)
+  ✓ Page declares RTL (<html dir="rtl"> or body direction rtl)
+  ✓ Page declares Arabic language (lang="ar…")
+  ✓ Arabic text is right/start aligned
+  ✓ Arabic glyphs render in an intended font, not a system fallback
+  ✗ No letter-spacing on Arabic (can break letter joins; engine-dependent)  — ["h1 \"مقاضي بيتك من محلات منطقتك في \" -2.784px","span \"محلات منطقتك\" -2.784px"]
+  ✓ No fake italic on Arabic
+  ✗ Arabic paragraphs have line-height ≥ 1.4 (room for marks)  — ["h1 \"مقاضي بيتك من محلات منطقتك في \" lh=1.18","h2 \"كل ما تطلب أكتر، توفّر أكتر\" lh=1.30"]
+  ✓ Arrow glyphs in CTAs point the RTL way
+  ✓ Arrow/chevron icons are mirrored
+  ✓ Header is mirrored (logo/brand on the right)
+  ✓ Phone/email/URL inputs are LTR
+  ✗ CSS uses logical properties more than physical left/right  — "physical=7, logical=6"
+  ✓ Numerals are consistent (not mixing ٠١٢ and 012)
+  ✓ No horizontal scroll at phone width (390px)
+
+outputs/landing/gpt__riyadh__ar__s1.html  →  84/100  (font: Tajawal)
+  ✓ Page declares RTL (<html dir="rtl"> or body direction rtl)
+  ✓ Page declares Arabic language (lang="ar…")
+  ✓ Arabic text is right/start aligned
+  ✓ Arabic glyphs render in an intended font, not a system fallback
+  ✗ No letter-spacing on Arabic (can break letter joins; engine-dependent)  — ["h1 \"بقالة حيك، عند بابك في نحو ٢٠ \" -3.072px","span \"٢٠ دقيقة\" -3.072px","h2 \"من بقالة الحي إلى باب بيتك\" -1.2px","h2 \"كل طلب عاشر، التوصيل علينا\" -1.2px","h2 \"خلّك من أوائل مستخدمي قريب\" -1.2px"]
+  ✓ No fake italic on Arabic
+  ✗ Arabic paragraphs have line-height ≥ 1.4 (room for marks)  — ["h1 \"بقالة حيك، عند بابك في نحو ٢٠ \" lh=1.13","h2 \"كل طلب عاشر، التوصيل علينا\" lh=1.25","h2 \"خلّك من أوائل مستخدمي قريب\" lh=1.25"]
+  ✓ Arrow glyphs in CTAs point the RTL way
+  ✓ Arrow/chevron icons are mirrored
+  ✓ Header is mirrored (logo/brand on the right)
+  ✓ Phone/email/URL inputs are LTR
+  ✗ CSS uses logical properties more than physical left/right  — "physical=6, logical=4"
+  ✓ Numerals are consistent (not mixing ٠١٢ and 012)
+  ✓ No horizontal scroll at phone width (390px)
+
+outputs/landing/gpt__riyadh__en__s1.html  →  84/100  (font: Tajawal)
+  ✓ Page declares RTL (<html dir="rtl"> or body direction rtl)
+  ✓ Page declares Arabic language (lang="ar…")
+  ✓ Arabic text is right/start aligned
+  ✓ Arabic glyphs render in an intended font, not a system fallback
+  ✗ No letter-spacing on Arabic (can break letter joins; engine-dependent)  — ["span \"قريب\" -1.088px","h1 \"مقاضي الحي، عند بابك في حوالي \" -3.96px","span.highlight \"حوالي 20 دقيقة\" -3.96px","h2 \"من محل الحي إلى باب بيتك\" -1.92px","h2 \"طلبك العاشر؟ التوصيل علينا\" -2.24px"]
+  ✓ No fake italic on Arabic
+  ✗ Arabic paragraphs have line-height ≥ 1.4 (room for marks)  — ["h1 \"مقاضي الحي، عند بابك في حوالي \" lh=1.12","h2 \"طلبك العاشر؟ التوصيل علينا\" lh=1.20","h2 \"كن أول من يعرف بوصول قريب لحيك\" lh=1.25"]
+  ✓ Arrow glyphs in CTAs point the RTL way
+  ✓ Arrow/chevron icons are mirrored
+  ✓ Header is mirrored (logo/brand on the right)
+  ✓ Phone/email/URL inputs are LTR
+  ✗ CSS uses logical properties more than physical left/right  — "physical=9, logical=7"
+  ✓ Numerals are consistent (not mixing ٠١٢ and 012)
+  ✓ No horizontal scroll at phone width (390px)
+
+outputs/landing/saba__cairo__ar__s1.html  →  89/100  (font: Cairo)
+  ✓ Page declares RTL (<html dir="rtl"> or body direction rtl)
+  ✓ Page declares Arabic language (lang="ar…")
+  ✓ Arabic text is right/start aligned
+  ✓ Arabic glyphs render in an intended font, not a system fallback
+  ✓ No letter-spacing on Arabic (can break letter joins; engine-dependent)
+  ✓ No fake italic on Arabic
+  ✓ Arabic paragraphs have line-height ≥ 1.4 (room for marks)
+  ✓ Arrow glyphs in CTAs point the RTL way
+  ✓ Arrow/chevron icons are mirrored
+  ✓ Header is mirrored (logo/brand on the right)
+  ✓ Phone/email/URL inputs are LTR
+  ✗ CSS uses logical properties more than physical left/right  — "physical=4, logical=0"
+  ✗ Numerals are consistent (not mixing ٠١٢ and 012)  — "western=4, eastern=6"
+  ✓ No horizontal scroll at phone width (390px)
+
+outputs/landing/saba__cairo__en__s1.html  →  79/100  (font: Tajawal)
+  ✓ Page declares RTL (<html dir="rtl"> or body direction rtl)
+  ✓ Page declares Arabic language (lang="ar…")
+  ✓ Arabic text is right/start aligned
+  ✓ Arabic glyphs render in an intended font, not a system fallback
+  ✓ No letter-spacing on Arabic (can break letter joins; engine-dependent)
+  ✓ No fake italic on Arabic
+  ✓ Arabic paragraphs have line-height ≥ 1.4 (room for marks)
+  ✓ Arrow glyphs in CTAs point the RTL way
+  ✓ Arrow/chevron icons are mirrored
+  ✓ Header is mirrored (logo/brand on the right)
+  ✗ Phone/email/URL inputs are LTR  — "1/3 wrong"
+  ✗ CSS uses logical properties more than physical left/right  — "physical=5, logical=0"
+  ✓ Numerals are consistent (not mixing ٠١٢ and 012)
+  ✗ No horizontal scroll at phone width (390px)  — "scrollWidth=404"
+
+outputs/landing/saba__casablanca__en__s1.html  →  84/100  (font: Tajawal)
+  ✓ Page declares RTL (<html dir="rtl"> or body direction rtl)
+  ✓ Page declares Arabic language (lang="ar…")
+  ✓ Arabic text is right/start aligned
+  ✓ Arabic glyphs render in an intended font, not a system fallback
+  ✓ No letter-spacing on Arabic (can break letter joins; engine-dependent)
+  ✓ No fake italic on Arabic
+  ✗ Arabic paragraphs have line-height ≥ 1.4 (room for marks)  — ["h1 \"توصيل البقالة إلى باب منزلك في\" lh=1.20"]
+  ✓ Arrow glyphs in CTAs point the RTL way
+  ✓ Arrow/chevron icons are mirrored
+  ✓ Header is mirrored (logo/brand on the right)
+  ✓ Phone/email/URL inputs are LTR
+  ✗ CSS uses logical properties more than physical left/right  — "physical=11, logical=0"
+  ✗ Numerals are consistent (not mixing ٠١٢ and 012)  — "western=4, eastern=6"
+  ✓ No horizontal scroll at phone width (390px)
+
+outputs/landing/saba__riyadh__ar__s1.html  →  79/100  (font: Tajawal)
+  ✓ Page declares RTL (<html dir="rtl"> or body direction rtl)
+  ✓ Page declares Arabic language (lang="ar…")
+  ✓ Arabic text is right/start aligned
+  ✓ Arabic glyphs render in an intended font, not a system fallback
+  ✓ No letter-spacing on Arabic (can break letter joins; engine-dependent)
+  ✓ No fake italic on Arabic
+  ✗ Arabic paragraphs have line-height ≥ 1.4 (room for marks)  — ["h1 \"توصيل البقالة في ٢٠ دقيقة** من\" lh=1.20"]
+  ✓ Arrow glyphs in CTAs point the RTL way
+  ✓ Arrow/chevron icons are mirrored
+  ✓ Header is mirrored (logo/brand on the right)
+  ✗ Phone/email/URL inputs are LTR  — "1/2 wrong"
+  ✗ CSS uses logical properties more than physical left/right  — "physical=7, logical=0"
+  ✗ Numerals are consistent (not mixing ٠١٢ and 012)  — "western=8, eastern=11"
+  ✓ No horizontal scroll at phone width (390px)
+
+outputs/landing/saba__riyadh__en__s1.html  →  89/100  (font: Tajawal)
+  ✓ Page declares RTL (<html dir="rtl"> or body direction rtl)
+  ✓ Page declares Arabic language (lang="ar…")
+  ✓ Arabic text is right/start aligned
+  ✓ Arabic glyphs render in an intended font, not a system fallback
+  ✓ No letter-spacing on Arabic (can break letter joins; engine-dependent)
+  ✓ No fake italic on Arabic
+  ✓ Arabic paragraphs have line-height ≥ 1.4 (room for marks)
+  ✓ Arrow glyphs in CTAs point the RTL way
+  ✓ Arrow/chevron icons are mirrored
+  ✓ Header is mirrored (logo/brand on the right)
+  ✗ Phone/email/URL inputs are LTR  — "1/2 wrong"
+  ✗ CSS uses logical properties more than physical left/right  — "physical=9, logical=0"
+  ✓ Numerals are consistent (not mixing ٠١٢ and 012)
+  ✓ No horizontal scroll at phone width (390px)

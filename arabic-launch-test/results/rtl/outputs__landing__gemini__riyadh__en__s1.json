@@ -1,0 +1,140 @@
+{
+  "file": "outputs/landing/gemini__riyadh__en__s1.html",
+  "score": 84,
+  "checks": [
+    {
+      "id": "dir",
+      "label": "Page declares RTL (<html dir=\"rtl\"> or body direction rtl)",
+      "pass": true,
+      "detail": "html dir=rtl, body=rtl",
+      "weight": 2
+    },
+    {
+      "id": "lang",
+      "label": "Page declares Arabic language (lang=\"ar…\")",
+      "pass": true,
+      "detail": "lang=ar",
+      "weight": 1
+    },
+    {
+      "id": "align",
+      "label": "Arabic text is right/start aligned",
+      "pass": true,
+      "detail": [],
+      "weight": 2
+    },
+    {
+      "id": "font",
+      "label": "Arabic glyphs render in an intended font, not a system fallback",
+      "pass": true,
+      "detail": {
+        "Cairo": 1197,
+        "Noto Color Emoji": 4
+      },
+      "weight": 2
+    },
+    {
+      "id": "letterspacing",
+      "label": "No letter-spacing on Arabic (can break letter joins; engine-dependent)",
+      "pass": false,
+      "detail": [
+        "div.logo \"قريب\" -1px"
+      ],
+      "weight": 1
+    },
+    {
+      "id": "italic",
+      "label": "No fake italic on Arabic",
+      "pass": true,
+      "detail": [],
+      "weight": 1
+    },
+    {
+      "id": "lineheight",
+      "label": "Arabic paragraphs have line-height ≥ 1.4 (room for marks)",
+      "pass": false,
+      "detail": [
+        "h1 \"مقاضيك من بقالة حارتك..لبيتك ف\" lh=1.20"
+      ],
+      "weight": 1
+    },
+    {
+      "id": "arrows",
+      "label": "Arrow glyphs in CTAs point the RTL way",
+      "pass": true,
+      "detail": [],
+      "weight": 1
+    },
+    {
+      "id": "icons",
+      "label": "Arrow/chevron icons are mirrored",
+      "pass": true,
+      "detail": [],
+      "weight": 1
+    },
+    {
+      "id": "logo",
+      "label": "Header is mirrored (logo/brand on the right)",
+      "pass": true,
+      "detail": "logo side=right",
+      "weight": 2
+    },
+    {
+      "id": "inputs",
+      "label": "Phone/email/URL inputs are LTR",
+      "pass": true,
+      "detail": "0/2 wrong",
+      "weight": 1
+    },
+    {
+      "id": "logicalcss",
+      "label": "CSS uses logical properties more than physical left/right",
+      "pass": false,
+      "detail": "physical=4, logical=0",
+      "weight": 1
+    },
+    {
+      "id": "numerals",
+      "label": "Numerals are consistent (not mixing ٠١٢ and 012)",
+      "pass": true,
+      "detail": "western=11, eastern=0",
+      "weight": 1
+    },
+    {
+      "id": "overflowMobile",
+      "label": "No horizontal scroll at phone width (390px)",
+      "pass": true,
+      "detail": "scrollWidth=390",
+      "weight": 2
+    }
+  ],
+  "mainFont": "Cairo",
+  "raw": {
+    "htmlDir": "rtl",
+    "htmlLang": "ar",
+    "bodyDirection": "rtl",
+    "arabicElementCount": 38,
+    "leftAligned": [],
+    "letterSpaced": [
+      "div.logo \"قريب\" -1px"
+    ],
+    "italic": [],
+    "tightLines": [
+      "h1 \"مقاضيك من بقالة حارتك..لبيتك ف\" lh=1.20"
+    ],
+    "westernDigits": 11,
+    "easternDigits": 0,
+    "mixedUnisolated": 5,
+    "wrongArrows": [],
+    "unmirroredIcons": [],
+    "logoSide": "right",
+    "ltrInputsTotal": 2,
+    "ltrInputsWrong": [],
+    "physicalCss": 4,
+    "logicalCss": 0,
+    "overflowX": false,
+    "scrollWidth": 1440,
+    "mobileOverflowX": false,
+    "mobileScrollWidth": 390
+  }
+}

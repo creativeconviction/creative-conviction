@@ -1,0 +1,174 @@
+{
+  "file": "outputs/landing/deepseek__riyadh__en__s1.html",
+  "score": 84,
+  "checks": [
+    {
+      "id": "dir",
+      "label": "Page declares RTL (<html dir=\"rtl\"> or body direction rtl)",
+      "pass": true,
+      "detail": "html dir=rtl, body=rtl",
+      "weight": 2
+    },
+    {
+      "id": "lang",
+      "label": "Page declares Arabic language (lang=\"ar…\")",
+      "pass": true,
+      "detail": "lang=ar",
+      "weight": 1
+    },
+    {
+      "id": "align",
+      "label": "Arabic text is right/start aligned",
+      "pass": true,
+      "detail": [],
+      "weight": 2
+    },
+    {
+      "id": "font",
+      "label": "Arabic glyphs render in an intended font, not a system fallback",
+      "pass": true,
+      "detail": {
+        "Tajawal Black": 137,
+        "Tajawal Medium": 1073,
+        "Tajawal": 467,
+        "Noto Color Emoji": 13,
+        "Tajawal ExtraBold": 90
+      },
+      "weight": 2
+    },
+    {
+      "id": "letterspacing",
+      "label": "No letter-spacing on Arabic (can break letter joins; engine-dependent)",
+      "pass": false,
+      "detail": [
+        "span.logo-name \"قريب\" -0.5px",
+        "span.logo-tag \"توصيل البقالة\" 0.5px",
+        "div.hero-badge \"قريباً في الرياض\" -0.1px",
+        "h1 \"بقالة حيّك،عند بابك خلال ٢٠ دق\" -0.8px",
+        "span.highlight \"حيّك\" -0.8px"
+      ],
+      "weight": 1
+    },
+    {
+      "id": "italic",
+      "label": "No fake italic on Arabic",
+      "pass": true,
+      "detail": [],
+      "weight": 1
+    },
+    {
+      "id": "lineheight",
+      "label": "Arabic paragraphs have line-height ≥ 1.4 (room for marks)",
+      "pass": false,
+      "detail": [
+        "h1 \"بقالة حيّك،عند بابك خلال ٢٠ دق\" lh=1.25",
+        "span.highlight \"٢٠ دقيقة\" lh=1.25"
+      ],
+      "weight": 1
+    },
+    {
+      "id": "arrows",
+      "label": "Arrow glyphs in CTAs point the RTL way",
+      "pass": true,
+      "detail": [],
+      "weight": 1
+    },
+    {
+      "id": "icons",
+      "label": "Arrow/chevron icons are mirrored",
+      "pass": true,
+      "detail": [],
+      "weight": 1
+    },
+    {
+      "id": "logo",
+      "label": "Header is mirrored (logo/brand on the right)",
+      "pass": true,
+      "detail": "logo side=right",
+      "weight": 2
+    },
+    {
+      "id": "inputs",
+      "label": "Phone/email/URL inputs are LTR",
+      "pass": true,
+      "detail": "0/2 wrong",
+      "weight": 1
+    },
+    {
+      "id": "logicalcss",
+      "label": "CSS uses logical properties more than physical left/right",
+      "pass": false,
+      "detail": "physical=16, logical=0",
+      "weight": 1
+    },
+    {
+      "id": "numerals",
+      "label": "Numerals are consistent (not mixing ٠١٢ and 012)",
+      "pass": true,
+      "detail": "western=0, eastern=27",
+      "weight": 1
+    },
+    {
+      "id": "overflowMobile",
+      "label": "No horizontal scroll at phone width (390px)",
+      "pass": true,
+      "detail": "scrollWidth=390",
+      "weight": 2
+    }
+  ],
+  "mainFont": "Tajawal Medium",
+  "raw": {
+    "htmlDir": "rtl",
+    "htmlLang": "ar",
+    "bodyDirection": "rtl",
+    "arabicElementCount": 68,
+    "leftAligned": [],
+    "letterSpaced": [
+      "span.logo-name \"قريب\" -0.5px",
+      "span.logo-tag \"توصيل البقالة\" 0.5px",
+      "div.hero-badge \"قريباً في الرياض\" -0.1px",
+      "h1 \"بقالة حيّك،عند بابك خلال ٢٠ دق\" -0.8px",
+      "span.highlight \"حيّك\" -0.8px",
+      "span.highlight \"٢٠ دقيقة\" -0.8px",
+      "a.btn.btn-primary \"📱 سجّل إيميلك وجوالك\" -0.2px",
+      "a.btn.btn-outline \"🔍 اكتشف الخدمة\" -0.2px",
+      "span.placeholder-text \"صورة التطبيق\" -0.2px",
+      "span.section-label \"🔍 كيف يعمل قريب؟\" 0.3px",
+      "h2.section-title \"ثلاث خطوات بسيطة\" -0.5px",
+      "h3 \"تصفّح متاجر حيّك\" -0.2px",
+      "h3 \"اختر أغراضك\" -0.2px",
+      "h3 \"استلم خلال ٢٠ دقيقة\" -0.2px",
+      "span.loyalty-badge \"🎁 برنامج الولاء\" 0.1px",
+      "h2 \"برنامجنا البسيط\" -0.4px",
+      "span.big-number \"١٠\" -2px",
+      "span.section-label \"📋 سجّل الآن\" 0.3px",
+      "h2.section-title \"كون من أوائل المستخدمين\" -0.5px",
+      "h2 \"🎉 اطلب من حيّك وخلّنا نوصل لك\" -0.4px",
+      "h3 \"📝 نموذج التسجيل\" -0.2px",
+      "button.btn-submit \"🚀 سجّل الآن مجانًا\" -0.2px",
+      "div.footer-logo \"📦 قريب\" -0.3px",
+      "h4 \"الخدمة\" -0.2px",
+      "h4 \"الدعم\" -0.2px",
+      "h4 \"قريب في\" -0.2px"
+    ],
+    "italic": [],
+    "tightLines": [
+      "h1 \"بقالة حيّك،عند بابك خلال ٢٠ دق\" lh=1.25",
+      "span.highlight \"٢٠ دقيقة\" lh=1.25"
+    ],
+    "westernDigits": 0,
+    "easternDigits": 27,
+    "mixedUnisolated": 0,
+    "wrongArrows": [],
+    "unmirroredIcons": [],
+    "logoSide": "right",
+    "ltrInputsTotal": 2,
+    "ltrInputsWrong": [],
+    "physicalCss": 16,
+    "logicalCss": 0,
+    "overflowX": false,
+    "scrollWidth": 1440,
+    "mobileOverflowX": false,
+    "mobileScrollWidth": 390
+  }
+}

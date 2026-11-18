@@ -1,0 +1,138 @@
+{
+  "file": "outputs/landing/saba__riyadh__en__s1.html",
+  "score": 89,
+  "checks": [
+    {
+      "id": "dir",
+      "label": "Page declares RTL (<html dir=\"rtl\"> or body direction rtl)",
+      "pass": true,
+      "detail": "html dir=rtl, body=rtl",
+      "weight": 2
+    },
+    {
+      "id": "lang",
+      "label": "Page declares Arabic language (lang=\"ar…\")",
+      "pass": true,
+      "detail": "lang=ar",
+      "weight": 1
+    },
+    {
+      "id": "align",
+      "label": "Arabic text is right/start aligned",
+      "pass": true,
+      "detail": [],
+      "weight": 2
+    },
+    {
+      "id": "font",
+      "label": "Arabic glyphs render in an intended font, not a system fallback",
+      "pass": true,
+      "detail": {
+        "Tajawal Medium": 65,
+        "Noto Color Emoji": 1,
+        "Tajawal ExtraBold": 58,
+        "Tajawal": 676,
+        "Liberation Sans": 50,
+        "DejaVu Sans": 6
+      },
+      "weight": 2
+    },
+    {
+      "id": "letterspacing",
+      "label": "No letter-spacing on Arabic (can break letter joins; engine-dependent)",
+      "pass": true,
+      "detail": [],
+      "weight": 1
+    },
+    {
+      "id": "italic",
+      "label": "No fake italic on Arabic",
+      "pass": true,
+      "detail": [],
+      "weight": 1
+    },
+    {
+      "id": "lineheight",
+      "label": "Arabic paragraphs have line-height ≥ 1.4 (room for marks)",
+      "pass": true,
+      "detail": [],
+      "weight": 1
+    },
+    {
+      "id": "arrows",
+      "label": "Arrow glyphs in CTAs point the RTL way",
+      "pass": true,
+      "detail": [],
+      "weight": 1
+    },
+    {
+      "id": "icons",
+      "label": "Arrow/chevron icons are mirrored",
+      "pass": true,
+      "detail": [],
+      "weight": 1
+    },
+    {
+      "id": "logo",
+      "label": "Header is mirrored (logo/brand on the right)",
+      "pass": true,
+      "detail": "logo side=right",
+      "weight": 2
+    },
+    {
+      "id": "inputs",
+      "label": "Phone/email/URL inputs are LTR",
+      "pass": false,
+      "detail": "1/2 wrong",
+      "weight": 1
+    },
+    {
+      "id": "logicalcss",
+      "label": "CSS uses logical properties more than physical left/right",
+      "pass": false,
+      "detail": "physical=9, logical=0",
+      "weight": 1
+    },
+    {
+      "id": "numerals",
+      "label": "Numerals are consistent (not mixing ٠١٢ and 012)",
+      "pass": true,
+      "detail": "western=16, eastern=0",
+      "weight": 1
+    },
+    {
+      "id": "overflowMobile",
+      "label": "No horizontal scroll at phone width (390px)",
+      "pass": true,
+      "detail": "scrollWidth=390",
+      "weight": 2
+    }
+  ],
+  "mainFont": "Tajawal",
+  "raw": {
+    "htmlDir": "rtl",
+    "htmlLang": "ar",
+    "bodyDirection": "rtl",
+    "arabicElementCount": 28,
+    "leftAligned": [],
+    "letterSpaced": [],
+    "italic": [],
+    "tightLines": [],
+    "westernDigits": 16,
+    "easternDigits": 0,
+    "mixedUnisolated": 7,
+    "wrongArrows": [],
+    "unmirroredIcons": [],
+    "logoSide": "right",
+    "ltrInputsTotal": 2,
+    "ltrInputsWrong": [
+      "input#email.form-control \"\""
+    ],
+    "physicalCss": 9,
+    "logicalCss": 0,
+    "overflowX": false,
+    "scrollWidth": 1440,
+    "mobileOverflowX": false,
+    "mobileScrollWidth": 390
+  }
+}

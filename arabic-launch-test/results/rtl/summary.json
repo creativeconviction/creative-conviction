@@ -1,0 +1,160 @@
+[
+  {
+    "file": "outputs/landing/claude__riyadh__ar__s1.html",
+    "score": 84,
+    "font": "IBM Plex Sans Arabic",
+    "failed": [
+      "lineheight",
+      "logicalcss",
+      "numerals"
+    ]
+  },
+  {
+    "file": "outputs/landing/claude__riyadh__en__s1.html",
+    "score": 95,
+    "font": "Tajawal",
+    "failed": [
+      "lineheight"
+    ]
+  },
+  {
+    "file": "outputs/landing/deepseek__riyadh__ar__s1.html",
+    "score": 68,
+    "font": "Tajawal Medium",
+    "failed": [
+      "letterspacing",
+      "lineheight",
+      "logicalcss",
+      "numerals",
+      "overflowMobile"
+    ]
+  },
+  {
+    "file": "outputs/landing/deepseek__riyadh__en__s1.html",
+    "score": 84,
+    "font": "Tajawal Medium",
+    "failed": [
+      "letterspacing",
+      "lineheight",
+      "logicalcss"
+    ]
+  },
+  {
+    "file": "outputs/landing/gemini__cairo__en__s1.html",
+    "score": 89,
+    "font": "Cairo",
+    "failed": [
+      "lineheight",
+      "logicalcss"
+    ]
+  },
+  {
+    "file": "outputs/landing/gemini__riyadh__ar__s1.html",
+    "score": 89,
+    "font": "Tajawal",
+    "failed": [
+      "lineheight",
+      "logicalcss"
+    ]
+  },
+  {
+    "file": "outputs/landing/gemini__riyadh__en__s1.html",
+    "score": 84,
+    "font": "Cairo",
+    "failed": [
+      "letterspacing",
+      "lineheight",
+      "logicalcss"
+    ]
+  },
+  {
+    "file": "outputs/landing/gpt__cairo__ar__s1.html",
+    "score": 79,
+    "font": "Cairo",
+    "failed": [
+      "letterspacing",
+      "lineheight",
+      "inputs",
+      "logicalcss"
+    ]
+  },
+  {
+    "file": "outputs/landing/gpt__cairo__en__s1.html",
+    "score": 84,
+    "font": "Cairo",
+    "failed": [
+      "letterspacing",
+      "lineheight",
+      "logicalcss"
+    ]
+  },
+  {
+    "file": "outputs/landing/gpt__riyadh__ar__s1.html",
+    "score": 84,
+    "font": "Tajawal",
+    "failed": [
+      "letterspacing",
+      "lineheight",
+      "logicalcss"
+    ]
+  },
+  {
+    "file": "outputs/landing/gpt__riyadh__en__s1.html",
+    "score": 84,
+    "font": "Tajawal",
+    "failed": [
+      "letterspacing",
+      "lineheight",
+      "logicalcss"
+    ]
+  },
+  {
+    "file": "outputs/landing/saba__cairo__ar__s1.html",
+    "score": 89,
+    "font": "Cairo",
+    "failed": [
+      "logicalcss",
+      "numerals"
+    ]
+  },
+  {
+    "file": "outputs/landing/saba__cairo__en__s1.html",
+    "score": 79,
+    "font": "Tajawal",
+    "failed": [
+      "inputs",
+      "logicalcss",
+      "overflowMobile"
+    ]
+  },
+  {
+    "file": "outputs/landing/saba__casablanca__en__s1.html",
+    "score": 84,
+    "font": "Tajawal",
+    "failed": [
+      "lineheight",
+      "logicalcss",
+      "numerals"
+    ]
+  },
+  {
+    "file": "outputs/landing/saba__riyadh__ar__s1.html",
+    "score": 79,
+    "font": "Tajawal",
+    "failed": [
+      "lineheight",
+      "inputs",
+      "logicalcss",
+      "numerals"
+    ]
+  },
+  {
+    "file": "outputs/landing/saba__riyadh__en__s1.html",
+    "score": 89,
+    "font": "Tajawal",
+    "failed": [
+      "inputs",
+      "logicalcss"
+    ]
+  }
+]

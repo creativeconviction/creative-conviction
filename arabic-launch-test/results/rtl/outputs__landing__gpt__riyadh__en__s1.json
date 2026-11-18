@@ -1,0 +1,154 @@
+{
+  "file": "outputs/landing/gpt__riyadh__en__s1.html",
+  "score": 84,
+  "checks": [
+    {
+      "id": "dir",
+      "label": "Page declares RTL (<html dir=\"rtl\"> or body direction rtl)",
+      "pass": true,
+      "detail": "html dir=rtl, body=rtl",
+      "weight": 2
+    },
+    {
+      "id": "lang",
+      "label": "Page declares Arabic language (lang=\"ar…\")",
+      "pass": true,
+      "detail": "lang=ar",
+      "weight": 1
+    },
+    {
+      "id": "align",
+      "label": "Arabic text is right/start aligned",
+      "pass": true,
+      "detail": [],
+      "weight": 2
+    },
+    {
+      "id": "font",
+      "label": "Arabic glyphs render in an intended font, not a system fallback",
+      "pass": true,
+      "detail": {
+        "Tajawal ExtraBold": 12,
+        "Tajawal": 1264
+      },
+      "weight": 2
+    },
+    {
+      "id": "letterspacing",
+      "label": "No letter-spacing on Arabic (can break letter joins; engine-dependent)",
+      "pass": false,
+      "detail": [
+        "span \"قريب\" -1.088px",
+        "h1 \"مقاضي الحي، عند بابك في حوالي \" -3.96px",
+        "span.highlight \"حوالي 20 دقيقة\" -3.96px",
+        "h2 \"من محل الحي إلى باب بيتك\" -1.92px",
+        "h2 \"طلبك العاشر؟ التوصيل علينا\" -2.24px"
+      ],
+      "weight": 1
+    },
+    {
+      "id": "italic",
+      "label": "No fake italic on Arabic",
+      "pass": true,
+      "detail": [],
+      "weight": 1
+    },
+    {
+      "id": "lineheight",
+      "label": "Arabic paragraphs have line-height ≥ 1.4 (room for marks)",
+      "pass": false,
+      "detail": [
+        "h1 \"مقاضي الحي، عند بابك في حوالي \" lh=1.12",
+        "h2 \"طلبك العاشر؟ التوصيل علينا\" lh=1.20",
+        "h2 \"كن أول من يعرف بوصول قريب لحيك\" lh=1.25"
+      ],
+      "weight": 1
+    },
+    {
+      "id": "arrows",
+      "label": "Arrow glyphs in CTAs point the RTL way",
+      "pass": true,
+      "detail": [],
+      "weight": 1
+    },
+    {
+      "id": "icons",
+      "label": "Arrow/chevron icons are mirrored",
+      "pass": true,
+      "detail": [],
+      "weight": 1
+    },
+    {
+      "id": "logo",
+      "label": "Header is mirrored (logo/brand on the right)",
+      "pass": true,
+      "detail": "logo side=right",
+      "weight": 2
+    },
+    {
+      "id": "inputs",
+      "label": "Phone/email/URL inputs are LTR",
+      "pass": true,
+      "detail": "0/2 wrong",
+      "weight": 1
+    },
+    {
+      "id": "logicalcss",
+      "label": "CSS uses logical properties more than physical left/right",
+      "pass": false,
+      "detail": "physical=9, logical=7",
+      "weight": 1
+    },
+    {
+      "id": "numerals",
+      "label": "Numerals are consistent (not mixing ٠١٢ and 012)",
+      "pass": true,
+      "detail": "western=10, eastern=0",
+      "weight": 1
+    },
+    {
+      "id": "overflowMobile",
+      "label": "No horizontal scroll at phone width (390px)",
+      "pass": true,
+      "detail": "scrollWidth=390",
+      "weight": 2
+    }
+  ],
+  "mainFont": "Tajawal",
+  "raw": {
+    "htmlDir": "rtl",
+    "htmlLang": "ar",
+    "bodyDirection": "rtl",
+    "arabicElementCount": 53,
+    "leftAligned": [],
+    "letterSpaced": [
+      "span \"قريب\" -1.088px",
+      "h1 \"مقاضي الحي، عند بابك في حوالي \" -3.96px",
+      "span.highlight \"حوالي 20 دقيقة\" -3.96px",
+      "h2 \"من محل الحي إلى باب بيتك\" -1.92px",
+      "h2 \"طلبك العاشر؟ التوصيل علينا\" -2.24px",
+      "h2 \"كن أول من يعرف بوصول قريب لحيك\" -1.92px",
+      "span \"قريب\" -1.088px"
+    ],
+    "italic": [],
+    "tightLines": [
+      "h1 \"مقاضي الحي، عند بابك في حوالي \" lh=1.12",
+      "h2 \"طلبك العاشر؟ التوصيل علينا\" lh=1.20",
+      "h2 \"كن أول من يعرف بوصول قريب لحيك\" lh=1.25"
+    ],
+    "westernDigits": 10,
+    "easternDigits": 0,
+    "mixedUnisolated": 4,
+    "wrongArrows": [],
+    "unmirroredIcons": [],
+    "logoSide": "right",
+    "ltrInputsTotal": 2,
+    "ltrInputsWrong": [],
+    "physicalCss": 9,
+    "logicalCss": 7,
+    "overflowX": false,
+    "scrollWidth": 1440,
+    "mobileOverflowX": false,
+    "mobileScrollWidth": 390
+  }
+}

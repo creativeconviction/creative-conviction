@@ -1,0 +1,155 @@
+{
+  "file": "outputs/landing/gpt__cairo__ar__s1.html",
+  "score": 79,
+  "checks": [
+    {
+      "id": "dir",
+      "label": "Page declares RTL (<html dir=\"rtl\"> or body direction rtl)",
+      "pass": true,
+      "detail": "html dir=rtl, body=rtl",
+      "weight": 2
+    },
+    {
+      "id": "lang",
+      "label": "Page declares Arabic language (lang=\"ar…\")",
+      "pass": true,
+      "detail": "lang=ar",
+      "weight": 1
+    },
+    {
+      "id": "align",
+      "label": "Arabic text is right/start aligned",
+      "pass": true,
+      "detail": [],
+      "weight": 2
+    },
+    {
+      "id": "font",
+      "label": "Arabic glyphs render in an intended font, not a system fallback",
+      "pass": true,
+      "detail": {
+        "Cairo": 1156,
+        "Noto Color Emoji": 2,
+        "DejaVu Sans": 1
+      },
+      "weight": 2
+    },
+    {
+      "id": "letterspacing",
+      "label": "No letter-spacing on Arabic (can break letter joins; engine-dependent)",
+      "pass": false,
+      "detail": [
+        "h1 \"بقالة منطقتك، لحد بابك في نحو \" -3.132px",
+        "span \"لحد بابك\" -3.132px",
+        "h2 \"احتياجات البيت في ٣ خطوات بسيط\" -1.272px"
+      ],
+      "weight": 1
+    },
+    {
+      "id": "italic",
+      "label": "No fake italic on Arabic",
+      "pass": true,
+      "detail": [],
+      "weight": 1
+    },
+    {
+      "id": "lineheight",
+      "label": "Arabic paragraphs have line-height ≥ 1.4 (room for marks)",
+      "pass": false,
+      "detail": [
+        "h1 \"بقالة منطقتك، لحد بابك في نحو \" lh=1.20",
+        "h2 \"احتياجات البيت في ٣ خطوات بسيط\" lh=1.30",
+        "h2 \"كل طلب عاشر، توصيله علينا\" lh=1.30",
+        "div.stamp.free \"توصيلمجاني\" lh=1.20",
+        "h2 \"خليك أول واحد يعرف\" lh=1.35"
+      ],
+      "weight": 1
+    },
+    {
+      "id": "arrows",
+      "label": "Arrow glyphs in CTAs point the RTL way",
+      "pass": true,
+      "detail": [],
+      "weight": 1
+    },
+    {
+      "id": "icons",
+      "label": "Arrow/chevron icons are mirrored",
+      "pass": true,
+      "detail": [],
+      "weight": 1
+    },
+    {
+      "id": "logo",
+      "label": "Header is mirrored (logo/brand on the right)",
+      "pass": true,
+      "detail": "logo side=right",
+      "weight": 2
+    },
+    {
+      "id": "inputs",
+      "label": "Phone/email/URL inputs are LTR",
+      "pass": false,
+      "detail": "1/2 wrong",
+      "weight": 1
+    },
+    {
+      "id": "logicalcss",
+      "label": "CSS uses logical properties more than physical left/right",
+      "pass": false,
+      "detail": "physical=6, logical=3",
+      "weight": 1
+    },
+    {
+      "id": "numerals",
+      "label": "Numerals are consistent (not mixing ٠١٢ and 012)",
+      "pass": true,
+      "detail": "western=0, eastern=18",
+      "weight": 1
+    },
+    {
+      "id": "overflowMobile",
+      "label": "No horizontal scroll at phone width (390px)",
+      "pass": true,
+      "detail": "scrollWidth=390",
+      "weight": 2
+    }
+  ],
+  "mainFont": "Cairo",
+  "raw": {
+    "htmlDir": "rtl",
+    "htmlLang": "ar",
+    "bodyDirection": "rtl",
+    "arabicElementCount": 51,
+    "leftAligned": [],
+    "letterSpaced": [
+      "h1 \"بقالة منطقتك، لحد بابك في نحو \" -3.132px",
+      "span \"لحد بابك\" -3.132px",
+      "h2 \"احتياجات البيت في ٣ خطوات بسيط\" -1.272px"
+    ],
+    "italic": [],
+    "tightLines": [
+      "h1 \"بقالة منطقتك، لحد بابك في نحو \" lh=1.20",
+      "h2 \"احتياجات البيت في ٣ خطوات بسيط\" lh=1.30",
+      "h2 \"كل طلب عاشر، توصيله علينا\" lh=1.30",
+      "div.stamp.free \"توصيلمجاني\" lh=1.20",
+      "h2 \"خليك أول واحد يعرف\" lh=1.35"
+    ],
+    "westernDigits": 0,
+    "easternDigits": 18,
+    "mixedUnisolated": 0,
+    "wrongArrows": [],
+    "unmirroredIcons": [],
+    "logoSide": "right",
+    "ltrInputsTotal": 2,
+    "ltrInputsWrong": [
+      "input#email \"\""
+    ],
+    "physicalCss": 6,
+    "logicalCss": 3,
+    "overflowX": false,
+    "scrollWidth": 1440,
+    "mobileOverflowX": false,
+    "mobileScrollWidth": 390
+  }
+}

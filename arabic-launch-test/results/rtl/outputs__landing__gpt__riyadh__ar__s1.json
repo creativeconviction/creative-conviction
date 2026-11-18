@@ -1,0 +1,155 @@
+{
+  "file": "outputs/landing/gpt__riyadh__ar__s1.html",
+  "score": 84,
+  "checks": [
+    {
+      "id": "dir",
+      "label": "Page declares RTL (<html dir=\"rtl\"> or body direction rtl)",
+      "pass": true,
+      "detail": "html dir=rtl, body=rtl",
+      "weight": 2
+    },
+    {
+      "id": "lang",
+      "label": "Page declares Arabic language (lang=\"ar…\")",
+      "pass": true,
+      "detail": "lang=ar",
+      "weight": 1
+    },
+    {
+      "id": "align",
+      "label": "Arabic text is right/start aligned",
+      "pass": true,
+      "detail": [],
+      "weight": 2
+    },
+    {
+      "id": "font",
+      "label": "Arabic glyphs render in an intended font, not a system fallback",
+      "pass": true,
+      "detail": {
+        "Tajawal ExtraBold": 60,
+        "Tajawal Medium": 34,
+        "Tajawal": 1022,
+        "Inter": 1,
+        "FreeSerif": 1
+      },
+      "weight": 2
+    },
+    {
+      "id": "letterspacing",
+      "label": "No letter-spacing on Arabic (can break letter joins; engine-dependent)",
+      "pass": false,
+      "detail": [
+        "h1 \"بقالة حيك، عند بابك في نحو ٢٠ \" -3.072px",
+        "span \"٢٠ دقيقة\" -3.072px",
+        "h2 \"من بقالة الحي إلى باب بيتك\" -1.2px",
+        "h2 \"كل طلب عاشر، التوصيل علينا\" -1.2px",
+        "h2 \"خلّك من أوائل مستخدمي قريب\" -1.2px"
+      ],
+      "weight": 1
+    },
+    {
+      "id": "italic",
+      "label": "No fake italic on Arabic",
+      "pass": true,
+      "detail": [],
+      "weight": 1
+    },
+    {
+      "id": "lineheight",
+      "label": "Arabic paragraphs have line-height ≥ 1.4 (room for marks)",
+      "pass": false,
+      "detail": [
+        "h1 \"بقالة حيك، عند بابك في نحو ٢٠ \" lh=1.13",
+        "h2 \"كل طلب عاشر، التوصيل علينا\" lh=1.25",
+        "h2 \"خلّك من أوائل مستخدمي قريب\" lh=1.25"
+      ],
+      "weight": 1
+    },
+    {
+      "id": "arrows",
+      "label": "Arrow glyphs in CTAs point the RTL way",
+      "pass": true,
+      "detail": [],
+      "weight": 1
+    },
+    {
+      "id": "icons",
+      "label": "Arrow/chevron icons are mirrored",
+      "pass": true,
+      "detail": [],
+      "weight": 1
+    },
+    {
+      "id": "logo",
+      "label": "Header is mirrored (logo/brand on the right)",
+      "pass": true,
+      "detail": "logo side=right",
+      "weight": 2
+    },
+    {
+      "id": "inputs",
+      "label": "Phone/email/URL inputs are LTR",
+      "pass": true,
+      "detail": "0/2 wrong",
+      "weight": 1
+    },
+    {
+      "id": "logicalcss",
+      "label": "CSS uses logical properties more than physical left/right",
+      "pass": false,
+      "detail": "physical=6, logical=4",
+      "weight": 1
+    },
+    {
+      "id": "numerals",
+      "label": "Numerals are consistent (not mixing ٠١٢ and 012)",
+      "pass": true,
+      "detail": "western=0, eastern=19",
+      "weight": 1
+    },
+    {
+      "id": "overflowMobile",
+      "label": "No horizontal scroll at phone width (390px)",
+      "pass": true,
+      "detail": "scrollWidth=390",
+      "weight": 2
+    }
+  ],
+  "mainFont": "Tajawal",
+  "raw": {
+    "htmlDir": "rtl",
+    "htmlLang": "ar",
+    "bodyDirection": "rtl",
+    "arabicElementCount": 48,
+    "leftAligned": [],
+    "letterSpaced": [
+      "h1 \"بقالة حيك، عند بابك في نحو ٢٠ \" -3.072px",
+      "span \"٢٠ دقيقة\" -3.072px",
+      "h2 \"من بقالة الحي إلى باب بيتك\" -1.2px",
+      "h2 \"كل طلب عاشر، التوصيل علينا\" -1.2px",
+      "h2 \"خلّك من أوائل مستخدمي قريب\" -1.2px"
+    ],
+    "italic": [],
+    "tightLines": [
+      "h1 \"بقالة حيك، عند بابك في نحو ٢٠ \" lh=1.13",
+      "h2 \"كل طلب عاشر، التوصيل علينا\" lh=1.25",
+      "h2 \"خلّك من أوائل مستخدمي قريب\" lh=1.25"
+    ],
+    "westernDigits": 0,
+    "easternDigits": 19,
+    "mixedUnisolated": 0,
+    "wrongArrows": [],
+    "unmirroredIcons": [],
+    "logoSide": "right",
+    "ltrInputsTotal": 2,
+    "ltrInputsWrong": [],
+    "physicalCss": 6,
+    "logicalCss": 4,
+    "overflowX": false,
+    "scrollWidth": 1440,
+    "mobileOverflowX": false,
+    "mobileScrollWidth": 390
+  }
+}
