@@ -1,0 +1,10 @@
+{
+  "part": "W",
+  "key": "W__ar__long",
+  "text": "السوق الطازج",
+  "prompt": "A clean, modern wordmark logo for a grocery delivery app. The logo is only the brand name «السوق الطازج», set in a custom typeface, flat design, on a plain white background. The text must be spelled exactly as given.",
+  "script": "ar",
+  "model": "ideogram",
+  "endpoint": "ideogram/v4.5",
+  "at": "2026-11-18T19:08:32.376Z"
+}

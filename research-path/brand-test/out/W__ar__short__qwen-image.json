@@ -1,0 +1,10 @@
+{
+  "part": "W",
+  "key": "W__ar__short",
+  "text": "قريب",
+  "prompt": "A clean, modern wordmark logo for a grocery delivery app. The logo is only the brand name «قريب», set in a custom typeface, flat design, on a plain white background. The text must be spelled exactly as given.",
+  "script": "ar",
+  "model": "qwen-image",
+  "endpoint": "alibaba/qwen-image-3/text-to-image",
+  "at": "2026-11-18T19:08:48.135Z"
+}
