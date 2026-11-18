@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تتبع الطلب - قريب</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #28a745;
+            --light-green: #d4edda;
+            --text-dark: #212529;
+            --text-light: #6c757d;
+            --bg-light: #f8f9fa;
+            --border-color: #dee2e6;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+            direction: rtl;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--white);
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        /* Step Progress Bar */
+        .step-container {
+            padding: 20px 15px;
+            position: relative;
+        }
+
+        .progress-stepper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .step {
+            flex: 1;
+            position: relative;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .step-number {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: var(--border-color);
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 8px;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .step-label {
+            font-size: 12px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .step.current .step-number {
+            background-color: var(--primary-green);
+            color: var(--white);
+        }
+
+        .step.current .step-label {
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        .step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            right: -50%;
+            height: 4px;
+            background-color: var(--border-color);
+            z-index: 0;
+        }
+
+        .step.current + .step::after, .step.completed + .step::after {
+            background-color: var(--light-green);
+        }
+
+        .step.completed .step-number {
+            background-color: var(--light-green);
+            color: var(--white);
+        }
+
+        .step.completed .step-label {
+            color: var(--text-dark);
+        }
+
+        /* Status Sections */
+        .status-info {
+            padding: 15px;
+        }
+
+        .expected-time, .delivery-location {
+            background-color: var(--white);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .expected-time {
+            display: flex;
+            align-items: center;
+        }
+
+        .icon-clock {
+            width: 24px;
+            height: 24px;
+            background-color: var(--light-green);
+            color: var(--primary-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+
+        .delivery-map {
+            height: 200px;
+            background-color: #e9ecef;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M50 0 L95 90 L40 70 L10 90 Z" fill="none" stroke="%23dee2e6" stroke-width="1"/></svg>');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 50px;
+        }
+
+        .map-overlay-text {
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        /* Delivery Person Card */
+        .delivery-person {
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .person-card {
+            background-color: var(--white);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+        }
+
+        .person-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--bg-light);
+            margin-left: 15px;
+            flex-shrink: 0;
+        }
+
+        .person-info {
+            flex-grow: 1;
+        }
+
+        .person-name {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .person-rating {
+            display: flex;
+            align-items: center;
+            color: #ffc107;
+            font-size: 14px;
+        }
+
+        .stars {
+            color: #ffc107;
+            margin-left: 4px;
+        }
+
+        .car-info {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-top: 6px;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-primary {
+            background-color: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .btn-primary:hover {
+            background-color: #bbdefb;
+        }
+
+        .btn-secondary {
+            background-color: #f5f5f5;
+            color: #424242;
+        }
+
+        .btn-secondary:hover {
+            background-color: #e0e0e0;
+        }
+
+        /* Order Details */
+        .order-details-toggle {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .toggle-btn {
+            background: none;
+            border: none;
+            color: var(--primary-green);
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .details-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .details-content.expanded {
+            max-height: 1000px;
+        }
+
+        .details-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .details-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 14px;
+        }
+
+        .details-table td:first-child {
+            color: var(--text-light);
+            width: 40%;
+        }
+
+        .details-table td:last-child {
+            text-align: end;
+        }
+
+        .page-footer {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .btn-back {
+            background: none;
+            border: none;
+            color: var(--primary-green);
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 10px 0;
+        }
+
+        /* Responsive adjustments */
+        @media (min-width: 600px) {
+            .container {
+                margin-top: 30px;
+                margin-bottom: 30px;
+            }
+
+            .step-container, .status-info, .delivery-person, .order-details-toggle, .page-footer {
+                padding-left: 30px;
+                padding-right: 30px;
+            }
+
+            .person-card {
+                padding: 20px;
+            }
+
+            .details-content .details-table td {
+                padding: 15px 20px;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Step Progress -->
+        <div class="step-container">
+            <div class="progress-stepper">
+                <div class="step current">
+                    <div class="step-number">1</div>
+                    <div class="step-label">تم استلام الطلب</div>
+                </div>
+                <div class="step completed">
+                    <div class="step-number">2</div>
+                    <div class="step-label">قيد التجهيز</div>
+                </div>
+                <div class="step completed">
+                    <div class="step-number">3</div>
+                    <div class="step-label">في الطريق</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-label">تم التوصيل</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Status Information -->
+        <div class="status-info">
+            <div class="expected-time">
+                <span>الوقت المتوقع لتوصيل الطلب</span>
+                <span class="icon-clock">≈</span>
+                <strong>35 دقيقة</strong>
+            </div>
+            <div class="delivery-location">
+                <span>موقع التوصيل: الرياض - العزيزية</span>
+            </div>
+        </div>
+
+        <!-- Map -->
+        <div class="delivery-map">
+            <div class="map-overlay-text">خريطة التوصيل</div>
+        </div>
+
+        <!-- Delivery Person -->
+        <div class="delivery-person">
+            <div class="person-card">
+                <div class="person-info">
+                    <div class="person-name">عبدالله بمن</div>
+                    <div class="person-rating">
+                        <span class="stars">★★★★★</span>
+                        <span>5.0</span>
+                    </div>
+                    <div class="car-info">سيارة: أ ب ج ١٢٣٤</div>
+                </div>
+                <div class="person-avatar"></div>
+            </div>
+            <div class="contact-buttons">
+                <button class="btn btn-primary">التواصل</button>
+                <button class="btn btn-secondary">مراسلة</button>
+            </div>
+        </div>
+
+        <!-- Order Details Toggle -->
+        <div class="order-details-toggle">
+            <button class="toggle-btn" onclick="toggleDetails()">
+                <span>تفاصيل الطلب</span>
+                <span id="details-icon">+</span>
+            </button>
+            <div class="details-content" id="details-content">
+                <table class="details-table">
+                    <tr>
+                        <td>رقم الطلب</td>
+                        <td>202500458741</td>
+                    </tr>
+                    <tr>
+                        <td>طريقة الدفع</td>
+                        <td>دفع نقدي عند الاستلام</td>
+                    </tr>
+                    <tr>
+                        <td>وقت الطلب</td>
+                        <td>منذ 55 دقيقة</td>
+                    </tr>
+                    <tr>
+                        <td>مندوب التوصيل</td>
+                        <td>عبدالله بمن</td>
+                    </tr>
+                    <tr>
+                        <td>مجموع المنتجات</td>
+                        <td>5 منتجات</td>
+                    </tr>
+                    <tr>
+                        <td>اجمالي الطلب</td>
+                        <td>58.50 SAR</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Back Button -->
+        <div class="page-footer">
+            <button class="btn-back">رجوع</button>
+        </div>
+    </div>
+
+    <script>
+        function toggleDetails() {
+            const content = document.getElementById('details-content');
+            const icon = document.getElementById('details-icon');
+            if (content.classList.contains('expanded')) {
+                content.classList.remove('expanded');
+                icon.textContent = '+';
+            } else {
+                content.classList.add('expanded');
+                icon.textContent = '-';
+            }
+        }
+
+        // A minimal script to add basic interactivity for the buttons
+        document.querySelector('.btn-back').onclick = () => window.history.back();
+        document.querySelectorAll('.contact-buttons .btn').forEach(btn => {
+            btn.onclick = () => alert('زر "' + btn.textContent + '" مضغوط. هذه فقط محاكاة.');
+        });
+    </script>
+
+</body>
+</html>

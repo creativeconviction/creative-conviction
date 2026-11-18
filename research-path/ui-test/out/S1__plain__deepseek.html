@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قريب - إنشاء حساب</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #F3F5F6;
+            --card-bg: #FFFFFF;
+            --primary: #0FAF5A;
+            --primary-hover: #0D9A4E;
+            --primary-light: #E8F8EF;
+            --text: #1A1D21;
+            --text-secondary: #6B7280;
+            --text-muted: #9CA3AF;
+            --border: #E2E5E9;
+            --border-focus: #0FAF5A;
+            --input-bg: #F9FAFB;
+            --error: #EF4444;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
+            --radius-sm: 10px;
+            --radius-md: 14px;
+            --radius-lg: 18px;
+            --radius-xl: 22px;
+            --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: #E8ECEF;
+            background-image:
+                radial-gradient(ellipse at 50% 0%, rgba(15, 175, 90, 0.06) 0%, transparent 55%),
+                radial-gradient(ellipse at 85% 100%, rgba(15, 175, 90, 0.04) 0%, transparent 50%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            direction: rtl;
+        }
+
+        /* Main Card */
+        .signup-card {
+            width: 100%;
+            max-width: 420px;
+            background: var(--card-bg);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg), 0 0 0 1px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+            position: relative;
+            animation: cardEntry 0.5s ease-out;
+        }
+
+        @keyframes cardEntry {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Subtle top accent bar */
+        .signup-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #0FAF5A 0%, #1CC76D 40%, #28DD80 100%);
+            z-index: 1;
+        }
+
+        /* Card inner */
+        .card-inner {
+            padding: 20px 22px 28px;
+        }
+
+        /* Header */
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .back-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1.5px solid var(--border);
+            background: var(--card-bg);
+            cursor: pointer;
+            transition: all var(--transition);
+            color: var(--text);
+            flex-shrink: 0;
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+        }
+
+        .back-btn:hover {
+            background: #F9FAFB;
+            border-color: #D1D5DB;
+            transform: scale(1.04);
+        }
+        .back-btn:active {
+            background: #F3F4F6;
+            transform: scale(0.96);
+            transition: 0.1s ease;
+        }
+
+        .back-btn svg {
+            width: 20px;
+            height: 20px;
+            transition: transform var(--transition);
+        }
+        .back-btn:hover svg {
+            transform: translateX(-2px);
+        }
+
+        /* Brand area */
+        .brand-area {
+            text-align: center;
+            margin-bottom: 22px;
+        }
+
+        .brand-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            background: var(--primary-light);
+            margin-bottom: 10px;
+        }
+
+        .brand-icon svg {
+            width: 26px;
+            height: 26px;
+            color: var(--primary);
+        }
+
+        .brand-name {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--text);
+            letter-spacing: -0.3px;
+            line-height: 1.2;
+        }
+        .brand-name .accent {
+            color: var(--primary);
+        }
+
+        .brand-subtitle {
+            font-size: 13.5px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        /* Form */
+        .signup-form {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        /* Form group */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+            letter-spacing: -0.1px;
+        }
+
+        /* Input wrapper */
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background: var(--input-bg);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-md);
+            transition: all var(--transition);
+            overflow: hidden;
+        }
+
+        .input-wrapper:focus-within {
+            border-color: var(--border-focus);
+            background: #FFFFFF;
+            box-shadow: 0 0 0 4px rgba(15, 175, 90, 0.07);
+        }
+
+        .input-wrapper input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            padding: 13px 16px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text);
+            outline: none;
+            width: 100%;
+            min-width: 0;
+            letter-spacing: -0.1px;
+            direction: rtl;
+            text-align: right;
+        }
+
+        .input-wrapper input::placeholder {
+            color: var(--text-muted);
+            font-weight: 400;
+            font-size: 14px;
+        }
+
+        /* Phone input specific */
+        .phone-wrapper {
+            direction: ltr;
+            text-align: left;
+        }
+        .phone-wrapper input {
+            direction: ltr;
+            text-align: left;
+            padding-left: 12px;
+        }
+        .phone-prefix {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 13px 8px 13px 12px;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text);
+            background: transparent;
+            white-space: nowrap;
+            border-right: 1.5px solid var(--border);
+            margin-right: 0;
+            letter-spacing: 0.2px;
+            cursor: default;
+            user-select: none;
+            flex-shrink: 0;
+            direction: ltr;
+        }
+        .phone-prefix .flag-icon {
+            font-size: 16px;
+            line-height: 1;
+        }
+
+        /* Password toggle */
+        .password-toggle {
+            position: absolute;
+            left: 6px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: all var(--transition);
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+            z-index: 2;
+            flex-shrink: 0;
+        }
+        .password-toggle:hover {
+            color: var(--text);
+            background: rgba(0, 0, 0, 0.04);
+        }
+        .password-toggle:active {
+            background: rgba(0, 0, 0, 0.08);
+            transform: translateY(-50%) scale(0.9);
+        }
+        .password-toggle svg {
+            width: 19px;
+            height: 19px;
+            transition: all var(--transition);
+            pointer-events: none;
+        }
+
+        /* Password input extra padding for toggle */
+        .input-wrapper.password-input-wrapper input {
+            padding-left: 44px;
+        }
+
+        /* Terms checkbox */
+        .terms-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-top: 2px;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .terms-checkbox {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            min-width: 20px;
+            border: 2px solid #D1D5DB;
+            border-radius: 6px;
+            background: #FFFFFF;
+            cursor: pointer;
+            transition: all var(--transition);
+            position: relative;
+            flex-shrink: 0;
+            margin-top: 1px;
+            outline: none;
+        }
+        .terms-checkbox:hover {
+            border-color: #9CA3AF;
+        }
+        .terms-checkbox:checked {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+        .terms-checkbox:checked::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 2px;
+            width: 5px;
+            height: 10px;
+            border: solid #FFFFFF;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        .terms-checkbox:focus-visible {
+            box-shadow: 0 0 0 3px rgba(15, 175, 90, 0.2);
+        }
+
+        .terms-text {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            user-select: none;
+            cursor: pointer;
+        }
+        .terms-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: color var(--transition);
+            position: relative;
+            white-space: nowrap;
+        }
+        .terms-link:hover {
+            color: var(--primary-hover);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+        .terms-link:focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 3px;
+            border-radius: 3px;
+        }
+
+        /* Submit button */
+        .submit-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 14px 24px;
+            background: var(--primary);
+            color: #FFFFFF;
+            border: none;
+            border-radius: var(--radius-md);
+            font-family: 'Cairo', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all var(--transition);
+            letter-spacing: -0.2px;
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+            position: relative;
+            overflow: hidden;
+            margin-top: 6px;
+            box-shadow: 0 4px 14px rgba(15, 175, 90, 0.3);
+        }
+        .submit-btn:hover {
+            background: var(--primary-hover);
+            box-shadow: 0 6px 20px rgba(15, 175, 90, 0.4);
+            transform: translateY(-1px);
+        }
+        .submit-btn:active {
+            background: #0B8A42;
+            transform: translateY(0) scale(0.985);
+            box-shadow: 0 2px 8px rgba(15, 175, 90, 0.25);
+            transition: 0.1s ease;
+        }
+        .submit-btn:focus-visible {
+            box-shadow: 0 0 0 4px rgba(15, 175, 90, 0.25), 0 4px 14px rgba(15, 175, 90, 0.3);
+        }
+
+        /* Login link */
+        .login-link-area {
+            text-align: center;
+            margin-top: 18px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+        .login-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 700;
+            cursor: pointer;
+            transition: color var(--transition);
+            position: relative;
+        }
+        .login-link:hover {
+            color: var(--primary-hover);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+        .login-link:focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 3px;
+            border-radius: 3px;
+        }
+
+        /* Responsive: Desktop */
+        @media (min-width: 440px) {
+            body {
+                padding: 24px;
+                background-color: #E8ECEF;
+                background-image:
+                    radial-gradient(ellipse at 30% 20%, rgba(15, 175, 90, 0.05) 0%, transparent 50%),
+                    radial-gradient(ellipse at 70% 80%, rgba(15, 175, 90, 0.04) 0%, transparent 50%),
+                    radial-gradient(ellipse at 50% 50%, rgba(15, 175, 90, 0.02) 0%, transparent 60%);
+            }
+            .signup-card {
+                border-radius: var(--radius-xl);
+                box-shadow: var(--shadow-lg), 0 0 0 1px rgba(0, 0, 0, 0.05);
+            }
+            .card-inner {
+                padding: 24px 28px 32px;
+            }
+            .signup-form {
+                gap: 16px;
+            }
+            .input-wrapper input {
+                padding: 14px 18px;
+                font-size: 15.5px;
+            }
+            .phone-prefix {
+                padding: 14px 10px 14px 14px;
+            }
+            .password-toggle {
+                left: 8px;
+            }
+            .input-wrapper.password-input-wrapper input {
+                padding-left: 48px;
+            }
+            .submit-btn {
+                padding: 15px 24px;
+                font-size: 17px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            body {
+                padding: 40px;
+            }
+            .signup-card {
+                max-width: 440px;
+            }
+            .card-inner {
+                padding: 28px 32px 36px;
+            }
+        }
+
+        /* Focus visible utility */
+        *:focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+        .input-wrapper:focus-within {
+            outline: none;
+            border-radius: var(--radius-md);
+        }
+        button:focus-visible,
+        .back-btn:focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+        input:focus-visible {
+            outline: none;
+        }
+
+        /* Toast / subtle feedback */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #1A1D21;
+            color: #FFFFFF;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            z-index: 1000;
+            pointer-events: none;
+            opacity: 0;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            white-space: nowrap;
+        }
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+        .toast.success {
+            background: #0FAF5A;
+        }
+
+        /* Disable state for button */
+        .submit-btn:disabled {
+            background: #A7DCC0;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="signup-card">
+        <div class="card-inner">
+            <!-- Header with back button -->
+            <div class="card-header">
+                <button class="back-btn" aria-label="رجوع" title="رجوع" onclick="history.back()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+                <!-- Spacer for balance -->
+                <div style="width:40px;height:40px;"></div>
+            </div>
+
+            <!-- Brand -->
+            <div class="brand-area">
+                <div class="brand-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1.5" fill="currentColor" stroke="none"/>
+                        <circle cx="20" cy="21" r="1.5" fill="currentColor" stroke="none"/>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                        <path d="M16 10l3 3 3-3" stroke-width="2" fill="none"/>
+                    </svg>
+                </div>
+                <div class="brand-name">ق<span class="accent">ريـ</span>ب</div>
+                <div class="brand-subtitle">توصيل البقالة - أنشئ حسابك</div>
+            </div>
+
+            <!-- Signup Form -->
+            <form class="signup-form" id="signupForm" novalidate>
+                <!-- Full Name -->
+                <div class="form-group">
+                    <label class="form-label" for="fullName">الاسم الكامل</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="fullName" name="fullName" placeholder="أدخل اسمك الكامل" autocomplete="name" required>
+                    </div>
+                </div>
+
+                <!-- Mobile Number -->
+                <div class="form-group">
+                    <label class="form-label" for="mobileNumber">رقم الجوال</label>
+                    <div class="input-wrapper phone-wrapper">
+                        <span class="phone-prefix">
+                            <span class="flag-icon">🇸🇦</span> +966
+                        </span>
+                        <input type="tel" id="mobileNumber" name="mobileNumber" placeholder="5XXXXXXXX" maxlength="9" inputmode="numeric" pattern="[0-9]{9}" autocomplete="tel-national" required dir="ltr">
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label class="form-label" for="email">البريد الإلكتروني</label>
+                    <div class="input-wrapper">
+                        <input type="email" id="email" name="email" placeholder="example@email.com" autocomplete="email" dir="ltr" style="text-align:right;">
+                    </div>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <label class="form-label" for="password">كلمة المرور</label>
+                    <div class="input-wrapper password-input-wrapper">
+                        <input type="password" id="password" name="password" placeholder="أدخل كلمة المرور" autocomplete="new-password" required minlength="6">
+                        <button type="button" class="password-toggle" id="passwordToggle" aria-label="إظهار كلمة المرور" title="إظهار كلمة المرور">
+                            <!-- Closed eye (default - password hidden) -->
+                            <svg id="eyeClosed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>
+                                <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>
+                                <path d="M14.12 14.12a3 3 0 1 1-4.24-4.24"/>
+                                <line x1="1" y1="1" x2="23" y2="23"/>
+                            </svg>
+                            <!-- Open eye (shown when password visible) -->
+                            <svg id="eyeOpen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Terms Checkbox -->
+                <div class="terms-group" id="termsGroup">
+                    <input type="checkbox" id="termsCheckbox" name="termsCheckbox" class="terms-checkbox" required>
+                    <label for="termsCheckbox" class="terms-text" id="termsLabel">
+                        أوافق على <a href="#" class="terms-link" id="termsLink">الشروط والأحكام</a>
+                    </label>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    إنشاء حساب
+                </button>
+            </form>
+
+            <!-- Login Link -->
+            <div class="login-link-area">
+                لديك حساب بالفعل؟ <a href="#" class="login-link" id="loginLink">تسجيل الدخول</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        (function() {
+            // Elements
+            const passwordInput = document.getElementById('password');
+            const passwordToggle = document.getElementById('passwordToggle');
+            const eyeClosed = document.getElementById('eyeClosed');
+            const eyeOpen = document.getElementById('eyeOpen');
+            const signupForm = document.getElementById('signupForm');
+            const termsCheckbox = document.getElementById('termsCheckbox');
+            const termsLink = document.getElementById('termsLink');
+            const termsGroup = document.getElementById('termsGroup');
+            const submitBtn = document.getElementById('submitBtn');
+            const loginLink = document.getElementById('loginLink');
+            const toast = document.getElementById('toast');
+            const mobileInput = document.getElementById('mobileNumber');
+
+            let passwordVisible = false;
+            let toastTimer = null;
+
+            // Show toast
+            function showToast(message, type) {
+                if (toastTimer) clearTimeout(toastTimer);
+                toast.textContent = message;
+                toast.className = 'toast ' + (type || '');
+                // Force reflow
+                toast.offsetHeight;
+                toast.classList.add('show');
+                toastTimer = setTimeout(function() {
+                    toast.classList.remove('show');
+                }, 2200);
+            }
+
+            // Password toggle
+            passwordToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                passwordVisible = !passwordVisible;
+                if (passwordVisible) {
+                    passwordInput.type = 'text';
+                    eyeClosed.style.display = 'none';
+                    eyeOpen.style.display = 'block';
+                    passwordToggle.setAttribute('aria-label', 'إخفاء كلمة المرور');
+                    passwordToggle.setAttribute('title', 'إخفاء كلمة المرور');
+                } else {
+                    passwordInput.type = 'password';
+                    eyeClosed.style.display = 'block';
+                    eyeOpen.style.display = 'none';
+                    passwordToggle.setAttribute('aria-label', 'إظهار كلمة المرور');
+                    passwordToggle.setAttribute('title', 'إظهار كلمة المرور');
+                }
+                // Keep focus on input
+                passwordInput.focus();
+            });
+
+            // Prevent toggle button from stealing focus improperly
+            passwordToggle.addEventListener('mousedown', function(e) {
+                e.preventDefault();
+            });
+
+            // Terms checkbox - allow clicking the whole group
+            termsGroup.addEventListener('click', function(e) {
+                // Don't toggle if the link was clicked
+                if (e.target === termsLink || termsLink.contains(e.target)) {
+                    return;
+                }
+                termsCheckbox.checked = !termsCheckbox.checked;
+                // Dispatch change event
+                termsCheckbox.dispatchEvent(new Event('change', { bubbles: true }));
+            });
+
+            // Terms link click
+            termsLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                showToast('سيتم فتح صفحة الشروط والأحكام', '');
+            });
+
+            // Login link click
+            loginLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                showToast('الانتقال إلى صفحة تسجيل الدخول...', '');
+            });
+
+            // Mobile input - allow only digits
+            mobileInput.addEventListener('input', function() {
+                this.value = this.value.replace(/[^0-9]/g, '');
+                // Limit to 9 digits
+                if (this.value.length > 9) {
+                    this.value = this.value.slice(0, 9);
+                }
+            });
+
+            // Form submission
+            signupForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                // Basic validation
+                const fullName = document.getElementById('fullName').value.trim();
+                const mobileNumber = mobileInput.value.trim();
+                const email = document.getElementById('email').value.trim();
+                const password = passwordInput.value;
+                const termsAccepted = termsCheckbox.checked;
+
+                if (!fullName) {
+                    showToast('يرجى إدخال الاسم الكامل', '');
+                    document.getElementById('fullName').focus();
+                    return;
+                }
+                if (!mobileNumber || mobileNumber.length < 9) {
+                    showToast('يرجى إدخال رقم جوال صحيح', '');
+                    mobileInput.focus();
+                    return;
+                }
+                if (!email) {
+                    showToast('يرجى إدخال البريد الإلكتروني', '');
+                    document.getElementById('email').focus();
+                    return;
+                }
+                // Simple email check
+                if (!/\S+@\S+\.\S+/.test(email)) {
+                    showToast('يرجى إدخال بريد إلكتروني صحيح', '');
+                    document.getElementById('email').focus();
+                    return;
+                }
+                if (!password || password.length < 6) {
+                    showToast('كلمة المرور يجب أن تكون 6 أحرف على الأقل', '');
+                    passwordInput.focus();
+                    return;
+                }
+                if (!termsAccepted) {
+                    showToast('يرجى الموافقة على الشروط والأحكام', '');
+                    termsCheckbox.focus();
+                    return;
+                }
+
+                // Simulate account creation
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'جارٍ إنشاء الحساب...';
+                showToast('✅ تم إنشاء الحساب بنجاح!', 'success');
+
+                // Reset after delay (demo)
+                setTimeout(function() {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'إنشاء حساب';
+                }, 2500);
+            });
+
+            // Back button is handled inline via onclick="history.back()"
+            // If there's no history, it does nothing noticeable
+            const backBtn = document.querySelector('.back-btn');
+            backBtn.addEventListener('click', function(e) {
+                if (document.referrer === '' && window.history.length <= 1) {
+                    // No history, show a subtle indication
+                    e.preventDefault();
+                    showToast('هذه هي الصفحة الرئيسية', '');
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

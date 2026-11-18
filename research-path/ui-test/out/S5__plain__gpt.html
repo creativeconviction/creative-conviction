@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0f766e">
+  <title>تتبّع الطلب | قريب</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0f766e;
+      --primary-dark: #0b5e58;
+      --primary-soft: #e4f5f1;
+      --ink: #17201f;
+      --muted: #72807e;
+      --line: #dbe4e2;
+      --surface: #ffffff;
+      --background: #f5f7f6;
+      --warning: #f5a524;
+      --shadow: 0 14px 34px rgba(28, 55, 51, .09);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      background: var(--background);
+      color: var(--ink);
+      font-family: "Tajawal", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    svg {
+      display: block;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 680px;
+      min-height: 100vh;
+      margin: 0 auto;
+      background: var(--surface);
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: grid;
+      grid-template-columns: 42px 1fr 42px;
+      align-items: center;
+      min-height: 68px;
+      padding: 10px 16px;
+      background: rgba(255, 255, 255, .94);
+      border-bottom: 1px solid #edf1f0;
+      backdrop-filter: blur(12px);
+    }
+
+    .topbar-title {
+      margin: 0;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .icon-button {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      padding: 0;
+      color: var(--ink);
+      background: #f4f7f6;
+      border: 0;
+      border-radius: 13px;
+      cursor: pointer;
+      transition: background .2s, transform .2s;
+    }
+
+    .icon-button:hover {
+      background: var(--primary-soft);
+    }
+
+    .icon-button:active {
+      transform: scale(.96);
+    }
+
+    .brand {
+      color: var(--primary);
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    main {
+      padding: 18px 16px 36px;
+    }
+
+    .order-heading {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow {
+      margin: 0 0 4px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .order-heading h2 {
+      margin: 0;
+      font-size: 23px;
+      line-height: 1.35;
+      font-weight: 800;
+    }
+
+    .live-badge {
+      flex: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 4px;
+      padding: 7px 10px;
+      color: var(--primary-dark);
+      background: var(--primary-soft);
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .live-dot {
+      width: 7px;
+      height: 7px;
+      background: #1ca88f;
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(28, 168, 143, .12);
+    }
+
+    .progress-card,
+    .driver-card,
+    .details-card {
+      background: var(--surface);
+      border: 1px solid #e8eeec;
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(25, 55, 50, .055);
+    }
+
+    .progress-card {
+      padding: 20px 13px 18px;
+    }
+
+    .stepper {
+      display: flex;
+      direction: rtl;
+      align-items: flex-start;
+      width: 100%;
+    }
+
+    .step {
+      position: relative;
+      z-index: 1;
+      flex: 1;
+      min-width: 0;
+      text-align: center;
+    }
+
+    .step:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: 16px;
+      right: calc(50% + 17px);
+      width: calc(100% - 34px);
+      height: 3px;
+      background: var(--line);
+      border-radius: 4px;
+    }
+
+    .step.done:not(:last-child)::after,
+    .step.current:not(:last-child)::after {
+      background: var(--primary);
+    }
+
+    .step-circle {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      margin: 0 auto 9px;
+      color: #98a4a2;
+      background: #eef2f1;
+      border: 2px solid #eef2f1;
+      border-radius: 50%;
+    }
+
+    .step.done .step-circle {
+      color: #fff;
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .step.current .step-circle {
+      color: var(--primary);
+      background: #fff;
+      border: 3px solid var(--primary);
+      box-shadow: 0 0 0 5px var(--primary-soft);
+    }
+
+    .step-label {
+      display: block;
+      color: #8b9694;
+      font-size: 11px;
+      line-height: 1.35;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .step.done .step-label,
+    .step.current .step-label {
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .arrival {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin: 20px 3px 0;
+      padding-top: 17px;
+      border-top: 1px solid #edf1f0;
+    }
+
+    .arrival-copy {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+
+    .arrival-icon {
+      display: grid;
+      place-items: center;
+      flex: none;
+      width: 39px;
+      height: 39px;
+      color: var(--primary);
+      background: var(--primary-soft);
+      border-radius: 12px;
+    }
+
+    .arrival-label {
+      margin: 0 0 2px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .arrival-time {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .arrival-minutes {
+      flex: none;
+      color: var(--primary-dark);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .map {
+      position: relative;
+      height: 238px;
+      margin-top: 16px;
+      overflow: hidden;
+      background: #e7eeeb;
+      border: 1px solid #e1e9e6;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .map-art {
+      width: 100%;
+      height: 100%;
+    }
+
+    .map-label {
+      position: absolute;
+      padding: 5px 8px;
+      color: #70807c;
+      background: rgba(255,255,255,.8);
+      border-radius: 7px;
+      font-size: 10px;
+      font-weight: 600;
+      backdrop-filter: blur(3px);
+    }
+
+    .map-label.one {
+      top: 17px;
+      right: 18px;
+    }
+
+    .map-label.two {
+      bottom: 20px;
+      left: 14px;
+    }
+
+    .destination-pin,
+    .driver-pin {
+      position: absolute;
+      display: grid;
+      place-items: center;
+      filter: drop-shadow(0 5px 6px rgba(17, 45, 41, .2));
+    }
+
+    .destination-pin {
+      top: 36px;
+      left: 25%;
+      width: 40px;
+      height: 40px;
+      color: #fff;
+      background: #1e2a28;
+      border: 3px solid #fff;
+      border-radius: 50% 50% 50% 8px;
+      transform: rotate(-45deg);
+    }
+
+    .destination-pin svg {
+      transform: rotate(45deg);
+    }
+
+    .driver-pin {
+      right: 29%;
+      bottom: 45px;
+      width: 48px;
+      height: 48px;
+      color: #fff;
+      background: var(--primary);
+      border: 4px solid #fff;
+      border-radius: 50%;
+    }
+
+    .map-status {
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 11px;
+      color: var(--ink);
+      background: rgba(255,255,255,.94);
+      border-radius: 11px;
+      box-shadow: 0 5px 15px rgba(33, 56, 52, .12);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .section-title {
+      margin: 25px 2px 11px;
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .driver-card {
+      padding: 16px;
+    }
+
+    .driver-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .avatar {
+      position: relative;
+      display: grid;
+      place-items: center;
+      flex: none;
+      width: 55px;
+      height: 55px;
+      overflow: hidden;
+      color: #fff;
+      background: linear-gradient(145deg, #1b8b80, #0a5c55);
+      border: 3px solid #edf8f5;
+      border-radius: 50%;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .online {
+      position: absolute;
+      right: 2px;
+      bottom: 1px;
+      width: 12px;
+      height: 12px;
+      background: #24b786;
+      border: 2px solid #fff;
+      border-radius: 50%;
+    }
+
+    .driver-info {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .driver-name {
+      margin: 0 0 4px;
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    .rating {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .rating svg {
+      color: var(--warning);
+      fill: currentColor;
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .action-button {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      padding: 0;
+      color: var(--primary);
+      background: var(--primary-soft);
+      border: 0;
+      border-radius: 13px;
+      cursor: pointer;
+      transition: background .2s, transform .2s;
+    }
+
+    .action-button:hover {
+      color: #fff;
+      background: var(--primary);
+    }
+
+    .action-button:active {
+      transform: scale(.95);
+    }
+
+    .vehicle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin-top: 15px;
+      padding: 12px 13px;
+      background: #f6f8f7;
+      border-radius: 14px;
+    }
+
+    .vehicle-copy {
+      min-width: 0;
+    }
+
+    .vehicle-name {
+      margin: 0 0 2px;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .vehicle-type {
+      margin: 0;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .plate {
+      direction: ltr;
+      flex: none;
+      padding: 6px 9px;
+      color: #1e2826;
+      background: #fff;
+      border: 1px solid #ccd5d3;
+      border-radius: 8px;
+      font-size: 11px;
+      line-height: 1.35;
+      text-align: center;
+      font-weight: 800;
+      box-shadow: inset 0 0 0 2px #f1f3f2;
+    }
+
+    .plate span {
+      display: block;
+    }
+
+    .details-card {
+      margin-top: 16px;
+      overflow: hidden;
+    }
+
+    .details-toggle {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      padding: 17px;
+      color: var(--ink);
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      text-align: right;
+    }
+
+    .details-toggle .bag {
+      display: grid;
+      place-items: center;
+      flex: none;
+      width: 38px;
+      height: 38px;
+      margin-left: 11px;
+      color: var(--primary);
+      background: var(--primary-soft);
+      border-radius: 11px;
+    }
+
+    .details-title {
+      flex: 1;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .details-summary {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 500;
+    }
+
+    .chevron {
+      color: var(--muted);
+      transition: transform .25s ease;
+    }
+
+    .details-card.open .chevron {
+      transform: rotate(180deg);
+    }
+
+    .details-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .3s ease;
+    }
+
+    .details-card.open .details-content {
+      max-height: 330px;
+    }
+
+    .details-inner {
+      padding: 0 17px 17px;
+      border-top: 1px solid #edf1f0;
+    }
+
+    .item,
+    .total-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .item {
+      padding-top: 13px;
+      color: #505c5a;
+      font-size: 13px;
+    }
+
+    .item-name {
+      display: flex;
+      gap: 8px;
+    }
+
+    .quantity {
+      color: var(--primary);
+      font-weight: 800;
+    }
+
+    .total-row {
+      margin-top: 13px;
+      padding-top: 13px;
+      border-top: 1px dashed #dbe2e0;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .help-note {
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    @media (min-width: 700px) {
+      body {
+        padding: 28px 0;
+        background:
+          radial-gradient(circle at 15% 10%, #dff1ec 0, transparent 25%),
+          radial-gradient(circle at 85% 85%, #e9f4f1 0, transparent 25%),
+          var(--background);
+      }
+
+      .app {
+        min-height: auto;
+        overflow: hidden;
+        border: 1px solid #e6ecea;
+        border-radius: 28px;
+        box-shadow: 0 25px 70px rgba(28, 52, 49, .12);
+      }
+
+      .topbar {
+        position: relative;
+      }
+
+      main {
+        padding: 24px 28px 42px;
+      }
+
+      .map {
+        height: 290px;
+      }
+
+      .step-label {
+        font-size: 12px;
+      }
+    }
+
+    @media (max-width: 355px) {
+      .step-label {
+        font-size: 9.5px;
+      }
+
+      .progress-card {
+        padding-inline: 8px;
+      }
+
+      .actions {
+        gap: 5px;
+      }
+
+      .action-button {
+        width: 38px;
+        height: 38px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <button class="icon-button" type="button" aria-label="العودة" onclick="history.back()">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <h1 class="topbar-title">تتبّع الطلب</h1>
+      <div class="brand" aria-label="قريب">قريب</div>
+    </header>
+
+    <main>
+      <div class="order-heading">
+        <div>
+          <p class="eyebrow">الطلب رقم #QAR-4821</p>
+          <h2>طلبك في الطريق إليك</h2>
+        </div>
+        <div class="live-badge">
+          <span class="live-dot"></span>
+          مباشر
+        </div>
+      </div>
+
+      <section class="progress-card" aria-label="حالة الطلب">
+        <div class="stepper">
+          <div class="step done">
+            <div class="step-circle">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M5 12.5l4 4L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <span class="step-label">تم استلام الطلب</span>
+          </div>
+
+          <div class="step done">
+            <div class="step-circle">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M5 12.5l4 4L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <span class="step-label">قيد التحضير</span>
+          </div>
+
+          <div class="step current" aria-current="step">
+            <div class="step-circle">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M3.5 15.5h2l1.5-6h9l2.5 6H20a1 1 0 011 1v1.5H3v-1.5a1 1 0 01.5-1z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                <circle cx="7" cy="18.5" r="1.6" fill="currentColor"/>
+                <circle cx="17.5" cy="18.5" r="1.6" fill="currentColor"/>
+                <path d="M9 12h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span class="step-label">في الطريق</span>
+          </div>
+
+          <div class="step">
+            <div class="step-circle">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M4 10l8-6 8 6v9a1 1 0 01-1 1H5a1 1 0 01-1-1v-9z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                <path d="M9 20v-6h6v6" stroke="currentColor" stroke-width="1.8"/>
+              </svg>
+            </div>
+            <span class="step-label">تم التوصيل</span>
+          </div>
+        </div>
+
+        <div class="arrival">
+          <div class="arrival-copy">
+            <div class="arrival-icon">
+              <svg width="21" height="21" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <p class="arrival-label">موعد الوصول المتوقع</p>
+              <p class="arrival-time">٨:٣٥ م</p>
+            </div>
+          </div>
+          <span class="arrival-minutes">خلال ١٢–١٧ دقيقة</span>
+        </div>
+      </section>
+
+      <section class="map" aria-label="موقع السائق على الخريطة">
+        <svg class="map-art" viewBox="0 0 600 300" preserveAspectRatio="none" aria-hidden="true">
+          <rect width="600" height="300" fill="#E8EFEC"/>
+          <path d="M0 82C98 102 161 69 243 78c106 11 172 73 357 41" fill="none" stroke="#D8E2DE" stroke-width="48"/>
+          <path d="M-20 255C89 188 170 203 247 165c81-40 123-114 202-144 52-20 96-18 171-7" fill="none" stroke="#F9FBFA" stroke-width="31"/>
+          <path d="M-20 255C89 188 170 203 247 165c81-40 123-114 202-144 52-20 96-18 171-7" fill="none" stroke="#CCD8D4" stroke-width="2" stroke-dasharray="10 8"/>
+          <path d="M37-15c54 71 79 111 103 180 17 47 26 91 30 150" fill="none" stroke="#F9FBFA" stroke-width="24"/>
+          <path d="M37-15c54 71 79 111 103 180 17 47 26 91 30 150" fill="none" stroke="#D2DCD9" stroke-width="2"/>
+          <path d="M470 0c-27 79-35 149-15 214 10 32 29 62 60 99" fill="none" stroke="#FAFBFB" stroke-width="26"/>
+          <path d="M470 0c-27 79-35 149-15 214 10 32 29 62 60 99" fill="none" stroke="#D2DCD9" stroke-width="2"/>
+          <path d="M243 78c106 11 172 73 357 41" fill="none" stroke="#F8FAF9" stroke-width="21"/>
+          <path d="M243 78c106 11 172 73 357 41" fill="none" stroke="#D2DCD9" stroke-width="2"/>
+          <rect x="272" y="188" width="54" height="32" rx="5" fill="#D5E1DD" transform="rotate(-19 272 188)"/>
+          <rect x="335" y="211" width="69" height="31" rx="5" fill="#D5E1DD" transform="rotate(-10 335 211)"/>
+          <rect x="202" y="20" width="67" height="29" rx="5" fill="#D5E1DD" transform="rotate(5 202 20)"/>
+          <rect x="68" y="208" width="51" height="27" rx="5" fill="#D5E1DD" transform="rotate(-13 68 208)"/>
+          <path d="M434 244c-62-17-109-21-151-5" fill="none" stroke="#0F766E" stroke-width="5" stroke-linecap="round" stroke-dasharray="3 10"/>
+        </svg>
+
+        <span class="map-label one">طريق الملك فهد</span>
+        <span class="map-label two">شارع العليا</span>
+
+        <div class="destination-pin" aria-label="عنوان التوصيل">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 10l8-6 8 6v9H4v-9z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M9 19v-5h6v5" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </div>
+
+        <div class="driver-pin" aria-label="موقع السائق">
+          <svg width="23" height="23" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M3.5 14.5h2l1.6-6h8.8l2.6 6H20a1 1 0 011 1V18H3v-2.5a1 1 0 01.5-1z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+            <circle cx="7" cy="18.5" r="1.5" fill="currentColor"/>
+            <circle cx="17.5" cy="18.5" r="1.5" fill="currentColor"/>
+          </svg>
+        </div>
+
+        <div class="map-status">
+          <span class="live-dot"></span>
+          تم تحديث الموقع الآن
+        </div>
+      </section>
+
+      <h3 class="section-title">السائق</h3>
+      <section class="driver-card" aria-label="معلومات السائق">
+        <div class="driver-top">
+          <div class="avatar">
+            م ع
+            <span class="online"></span>
+          </div>
+
+          <div class="driver-info">
+            <h4 class="driver-name">محمد العتيبي</h4>
+            <div class="rating">
+              <svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2.8l2.8 5.7 6.3.9-4.6 4.4 1.1 6.3-5.6-3-5.6 3 1.1-6.3-4.6-4.4 6.3-.9L12 2.8z"/>
+              </svg>
+              <span>٤٫٩</span>
+              <span>• ٣٢٨ توصيلاً</span>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button class="action-button" type="button" aria-label="مراسلة السائق">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M20 15a3 3 0 01-3 3H9l-5 3v-6a3 3 0 01-1-2.2V7a3 3 0 013-3h11a3 3 0 013 3v8z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button class="action-button" type="button" aria-label="الاتصال بالسائق">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M7.1 3.5l2.1 4.2-2.1 1.7c1.2 3.2 3.3 5.3 6.5 6.5l1.7-2.1 4.2 2.1-.7 3.4c-.2.9-1 1.5-1.9 1.5C9.3 20.8 3.2 14.7 3.2 7.1c0-.9.6-1.7 1.5-1.9l2.4-.7z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="vehicle">
+          <div class="vehicle-copy">
+            <p class="vehicle-name">تويوتا كورولا بيضاء</p>
+            <p class="vehicle-type">سيارة التوصيل</p>
+          </div>
+          <div class="plate" aria-label="رقم اللوحة ABC 1234، أ ب ج ١٢٣٤">
+            <span>ABC 1234</span>
+            <span dir="rtl">أ ب ج ١٢٣٤</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="details-card" id="orderDetails">
+        <button class="details-toggle" type="button" aria-expanded="false" aria-controls="detailsContent">
+          <span class="bag">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M5 8h14l-1 12H6L5 8z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M9 9V6a3 3 0 016 0v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="details-title">
+            تفاصيل الطلب
+            <span class="details-summary">٣ منتجات • ٨٧٫٥٠ ر.س</span>
+          </span>
+          <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <div class="details-content" id="detailsContent">
+          <div class="details-inner">
+            <div class="item">
+              <span class="item-name"><span class="quantity">١×</span> برجر دجاج مقرمش</span>
+              <span>٣٢٫٠٠ ر.س</span>
+            </div>
+            <div class="item">
+              <span class="item-name"><span class="quantity">١×</span> بطاطس مقلية</span>
+              <span>١٢٫٥٠ ر.س</span>
+            </div>
+            <div class="item">
+              <span class="item-name"><span class="quantity">١×</span> مشروب غازي</span>
+              <span>٨٫٠٠ ر.س</span>
+            </div>
+            <div class="item">
+              <span>رسوم التوصيل والخدمة</span>
+              <span>٣٥٫٠٠ ر.س</span>
+            </div>
+            <div class="total-row">
+              <span>الإجمالي</span>
+              <span>٨٧٫٥٠ ر.س</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <p class="help-note">هل تواجه مشكلة في طلبك؟ تواصل مع دعم قريب</p>
+    </main>
+  </div>
+
+  <script>
+    const card = document.getElementById('orderDetails');
+    const toggle = card.querySelector('.details-toggle');
+
+    toggle.addEventListener('click', () => {
+      const isOpen = card.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(isOpen));
+    });
+  </script>
+</body>
+</html>

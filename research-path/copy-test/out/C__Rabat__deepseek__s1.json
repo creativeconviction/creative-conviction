@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Rabat",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Rabat. Write marketing copy for it in Moroccan Arabic (Darija), the way people in Rabat actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 1,
+  "prompt_lang": "en",
+  "city": "Rabat",
+  "target_region": "Morocco",
+  "target_city_code": "RAB",
+  "model": "deepseek",
+  "id": "C__Rabat__deepseek__s1",
+  "model_id": "deepseek/deepseek-v4-pro",
+  "output": "**Tagline:**  \nقريب: السوق فجيبك.\n\n**Instagram ad lines:**  \n1. تسواق فالصون! نقرة على قريب و غرضك لي بغيتي حدّاك فالدار فظرف 30 دقيقة. ماشي بحال لي واقف فالفياخ.  \n2. خضرا و فواكه طازة من مارشي الجملة، لحمة من لحمامة ديال حومتك؟ قريب جايب ليك الأصيل للدار. آجي شوف!  \n3. أول طلبية توصيل مجاني! استعمل كود WELCOME و شري بلا مصاريف الليفرزون. حي الله فقريب!\n\n**Push notification:**  \nيا قريبة! 🛒 خصم 20% على أول طلبية + توصيل مجاني. اطلب دابا و غرضك يوصل فظرف 30 دقيقة. استعمل كود RABAT20.",
+  "at": "2026-11-18T05:49:32.991Z"
+}

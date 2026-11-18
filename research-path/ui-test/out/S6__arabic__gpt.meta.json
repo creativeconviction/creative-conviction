@@ -1,0 +1,9 @@
+{
+  "screen": "S6",
+  "cond": "arabic",
+  "model": "gpt",
+  "model_id": "openai/gpt-5.6-sol",
+  "raw_chars": 37383,
+  "complete": true,
+  "at": "2026-11-18T05:42:58.875Z"
+}

@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#6C55E1">
+  <title>مرحباً بك في قريب</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #6c55e1;
+      --primary-dark: #5540c2;
+      --primary-soft: #f0edff;
+      --ink: #211d33;
+      --muted: #716d7e;
+      --line: #e9e6f2;
+      --surface: #ffffff;
+      --page: #f4f2fa;
+      --success: #20a875;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+    }
+
+    body {
+      min-height: 100dvh;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at 15% 10%, #e8e2ff 0, transparent 29%),
+        radial-gradient(circle at 85% 90%, #dff5ef 0, transparent 25%),
+        var(--page);
+      color: var(--ink);
+      font-family: "Tajawal", sans-serif;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .app {
+      position: relative;
+      width: min(100%, 430px);
+      min-height: 100dvh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      background: var(--surface);
+      isolation: isolate;
+    }
+
+    .blob {
+      position: absolute;
+      z-index: -1;
+      border-radius: 999px;
+      filter: blur(1px);
+      pointer-events: none;
+    }
+
+    .blob-one {
+      width: 230px;
+      height: 230px;
+      top: -115px;
+      right: -105px;
+      background: #eeeaff;
+    }
+
+    .blob-two {
+      width: 115px;
+      height: 115px;
+      top: 34%;
+      left: -74px;
+      background: #e7f8f2;
+    }
+
+    .topbar {
+      min-height: 72px;
+      padding: max(18px, env(safe-area-inset-top)) 24px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-weight: 800;
+      font-size: 21px;
+      color: var(--ink);
+    }
+
+    .brand-mark {
+      width: 33px;
+      height: 33px;
+      display: grid;
+      place-items: center;
+      border-radius: 11px 11px 11px 4px;
+      color: white;
+      background: linear-gradient(145deg, #806cf0, #5740c6);
+      box-shadow: 0 8px 18px rgba(108, 85, 225, .25);
+    }
+
+    .skip {
+      border: 0;
+      padding: 8px 4px;
+      color: var(--muted);
+      background: transparent;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 15px;
+      transition: color .2s, opacity .2s;
+    }
+
+    .skip:hover {
+      color: var(--primary);
+    }
+
+    .skip:focus-visible,
+    .dot:focus-visible,
+    .action:focus-visible {
+      outline: 3px solid rgba(108, 85, 225, .25);
+      outline-offset: 3px;
+    }
+
+    .skip.is-hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .slides {
+      flex: 1;
+      min-height: 0;
+      position: relative;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      padding: 2px 25px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(-28px);
+      transition:
+        opacity .38s ease,
+        transform .38s ease,
+        visibility .38s;
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0);
+    }
+
+    .slide.from-right {
+      transform: translateX(28px);
+    }
+
+    .illustration {
+      width: 100%;
+      max-width: 330px;
+      height: clamp(245px, 39dvh, 330px);
+      display: grid;
+      place-items: center;
+    }
+
+    .illustration svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    .copy {
+      max-width: 350px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 10px;
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 18px;
+      height: 2px;
+      border-radius: 5px;
+      background: currentColor;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(27px, 7.4vw, 34px);
+      line-height: 1.25;
+      letter-spacing: -.7px;
+    }
+
+    .description {
+      margin: 0 auto;
+      max-width: 335px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .footer {
+      padding: 18px 24px max(24px, env(safe-area-inset-bottom));
+    }
+
+    .dots {
+      height: 20px;
+      margin-bottom: 20px;
+      display: flex;
+      direction: rtl;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      padding: 0;
+      border: 0;
+      border-radius: 20px;
+      background: #d7d3e4;
+      cursor: pointer;
+      transition: width .25s ease, background .25s ease;
+    }
+
+    .dot.active {
+      width: 28px;
+      background: var(--primary);
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1.35fr;
+      gap: 11px;
+    }
+
+    .action {
+      min-height: 54px;
+      border-radius: 16px;
+      border: 1.5px solid var(--line);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 16px;
+      transition: transform .18s, box-shadow .18s, background .18s, opacity .18s;
+    }
+
+    .action:active {
+      transform: scale(.98);
+    }
+
+    .previous {
+      color: var(--ink);
+      background: white;
+    }
+
+    .previous:hover:not(:disabled) {
+      background: #f8f7fc;
+      border-color: #d8d2e7;
+    }
+
+    .previous:disabled {
+      opacity: .42;
+      cursor: not-allowed;
+    }
+
+    .next,
+    .start {
+      color: white;
+      border-color: var(--primary);
+      background: linear-gradient(135deg, #7964e8, #5b43ca);
+      box-shadow: 0 10px 24px rgba(108, 85, 225, .25);
+    }
+
+    .next:hover,
+    .start:hover {
+      box-shadow: 0 13px 28px rgba(108, 85, 225, .34);
+      transform: translateY(-1px);
+    }
+
+    .start {
+      display: none;
+    }
+
+    .actions.final .next {
+      display: none;
+    }
+
+    .actions.final .start {
+      display: inline-flex;
+    }
+
+    .toast {
+      position: absolute;
+      z-index: 10;
+      right: 22px;
+      left: 22px;
+      bottom: max(22px, env(safe-area-inset-bottom));
+      min-height: 58px;
+      padding: 12px 16px;
+      border-radius: 17px;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      color: white;
+      background: #252132;
+      box-shadow: 0 15px 40px rgba(25, 20, 46, .25);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(20px);
+      transition: opacity .25s, transform .25s;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .toast-icon {
+      flex: 0 0 auto;
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: white;
+      background: var(--success);
+    }
+
+    .toast strong {
+      display: block;
+      font-size: 15px;
+    }
+
+    .toast span {
+      display: block;
+      margin-top: 1px;
+      color: #d5d1df;
+      font-size: 13px;
+    }
+
+    @media (min-width: 600px) {
+      body {
+        padding: 28px;
+      }
+
+      .app {
+        min-height: 760px;
+        height: min(820px, calc(100dvh - 56px));
+        border: 1px solid rgba(76, 64, 118, .08);
+        border-radius: 32px;
+        box-shadow: 0 25px 70px rgba(57, 45, 99, .15);
+      }
+    }
+
+    @media (max-height: 690px) {
+      .topbar {
+        min-height: 60px;
+        padding-top: max(12px, env(safe-area-inset-top));
+      }
+
+      .illustration {
+        height: 235px;
+      }
+
+      .eyebrow {
+        margin-bottom: 6px;
+      }
+
+      h1 {
+        margin-bottom: 7px;
+        font-size: 27px;
+      }
+
+      .description {
+        font-size: 15px;
+        line-height: 1.6;
+      }
+
+      .footer {
+        padding-top: 12px;
+      }
+
+      .dots {
+        margin-bottom: 12px;
+      }
+
+      .action {
+        min-height: 50px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="app" aria-label="شاشات الترحيب بتطبيق قريب">
+    <div class="blob blob-one"></div>
+    <div class="blob blob-two"></div>
+
+    <header class="topbar">
+      <div class="brand" aria-label="قريب">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path d="M12 21s7-5.1 7-12a7 7 0 1 0-14 0c0 6.9 7 12 7 12Z" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="9" r="2.4" fill="currentColor"/>
+          </svg>
+        </span>
+        <span>قريب</span>
+      </div>
+
+      <button class="skip" id="skipButton" type="button">تخطي</button>
+    </header>
+
+    <section class="slides" aria-live="polite">
+      <article class="slide active" aria-hidden="false">
+        <div class="illustration" aria-hidden="true">
+          <svg viewBox="0 0 360 330" fill="none">
+            <ellipse cx="180" cy="285" rx="120" ry="17" fill="#F0EDFA"/>
+            <path d="M55 89 151 54l87 35 67-25v176l-67 25-87-35-96 35V89Z" fill="#F9F8FD" stroke="#DDD7EE" stroke-width="3" stroke-linejoin="round"/>
+            <path d="m151 54-1 176M238 89v176" stroke="#DDD7EE" stroke-width="3"/>
+            <path d="M77 211c36-47 61-51 96-12 25 27 50-1 87-52" stroke="#6C55E1" stroke-width="8" stroke-linecap="round" stroke-dasharray="2 15"/>
+            <circle cx="78" cy="211" r="10" fill="#2BB58B" stroke="white" stroke-width="5"/>
+            <circle cx="258" cy="147" r="10" fill="#2BB58B" stroke="white" stroke-width="5"/>
+            <path d="M208 92c0 29-34 57-34 57s-34-28-34-57a34 34 0 1 1 68 0Z" fill="#6C55E1"/>
+            <circle cx="174" cy="92" r="12" fill="white"/>
+            <path d="M271 74c0 14-17 28-17 28s-17-14-17-28a17 17 0 1 1 34 0Z" fill="#FFC968"/>
+            <circle cx="254" cy="74" r="6" fill="white"/>
+            <path d="M105 254c11 4 23 6 35 6M269 230c8-3 15-8 21-14" stroke="#C9C1E5" stroke-width="5" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <div class="copy">
+          <div class="eyebrow">اكتشف ما حولك</div>
+          <h1>كل ما تحتاجه أصبح أقرب</h1>
+          <p class="description">
+            اعثر على الأماكن والخدمات والتجارب القريبة منك، أينما كنت وفي الوقت المناسب.
+          </p>
+        </div>
+      </article>
+
+      <article class="slide" aria-hidden="true">
+        <div class="illustration" aria-hidden="true">
+          <svg viewBox="0 0 360 330" fill="none">
+            <ellipse cx="181" cy="286" rx="118" ry="17" fill="#F0EDFA"/>
+            <circle cx="180" cy="157" r="113" fill="#F5F2FF"/>
+            <path d="M78 107c0-21 17-38 38-38h94c21 0 38 17 38 38v55c0 21-17 38-38 38h-51l-41 31 7-31h-9c-21 0-38-17-38-38v-55Z" fill="white" stroke="#D9D2EF" stroke-width="3"/>
+            <path d="M158 126c0-18 15-33 33-33h61c18 0 33 15 33 33v38c0 18-15 33-33 33h-4l5 25-32-25h-30c-18 0-33-15-33-33v-38Z" fill="#6C55E1"/>
+            <circle cx="190" cy="146" r="6" fill="white"/>
+            <circle cx="221" cy="146" r="6" fill="white"/>
+            <circle cx="252" cy="146" r="6" fill="white"/>
+            <circle cx="116" cy="135" r="22" fill="#FFC968"/>
+            <path d="M87 181c5-22 17-34 29-34s25 12 30 34H87Z" fill="#2BB58B"/>
+            <path d="M294 86v-18M285 77h18M61 213v-18M52 204h18" stroke="#FFC968" stroke-width="5" stroke-linecap="round"/>
+            <path d="m273 244 8 8 17-19" stroke="#2BB58B" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="282" cy="243" r="27" stroke="#2BB58B" stroke-width="3"/>
+          </svg>
+        </div>
+
+        <div class="copy">
+          <div class="eyebrow">تواصل بسهولة</div>
+          <h1>اسأل، تواصل، واتخذ قرارك</h1>
+          <p class="description">
+            تواصل مباشرة مع مقدمي الخدمات والأشخاص القريبين واحصل على إجابات سريعة وواضحة.
+          </p>
+        </div>
+      </article>
+
+      <article class="slide" aria-hidden="true">
+        <div class="illustration" aria-hidden="true">
+          <svg viewBox="0 0 360 330" fill="none">
+            <ellipse cx="180" cy="286" rx="117" ry="17" fill="#F0EDFA"/>
+            <circle cx="180" cy="157" r="113" fill="#EEFAF6"/>
+            <path d="M180 48c30 24 64 29 91 31v73c0 67-42 103-91 126-49-23-91-59-91-126V79c27-2 61-7 91-31Z" fill="white" stroke="#D5EDE5" stroke-width="4" stroke-linejoin="round"/>
+            <path d="M180 73c23 18 47 22 68 24v56c0 48-29 76-68 96-39-20-68-48-68-96V97c21-2 45-6 68-24Z" fill="#6C55E1"/>
+            <rect x="148" y="143" width="64" height="54" rx="13" fill="white"/>
+            <path d="M160 144v-13c0-12 9-22 20-22s20 10 20 22v13" stroke="white" stroke-width="10" stroke-linecap="round"/>
+            <circle cx="180" cy="167" r="7" fill="#6C55E1"/>
+            <path d="M180 174v10" stroke="#6C55E1" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="87" cy="113" r="23" fill="#FFC968"/>
+            <path d="m77 113 7 7 13-16" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="273" cy="217" r="24" fill="#2BB58B"/>
+            <path d="m263 217 7 7 14-17" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M66 173h20M76 163v20M285 99h16M293 91v16" stroke="#BEB4E2" stroke-width="5" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <div class="copy">
+          <div class="eyebrow">خصوصيتك أولاً</div>
+          <h1>تجربة قريبة وآمنة</h1>
+          <p class="description">
+            أنت المتحكم دائماً في بياناتك وموقعك، لتستمتع بتجربة موثوقة بكل راحة واطمئنان.
+          </p>
+        </div>
+      </article>
+    </section>
+
+    <footer class="footer">
+      <div class="dots" role="tablist" aria-label="اختيار شريحة">
+        <button class="dot active" type="button" role="tab" aria-label="الشريحة الأولى" aria-selected="true"></button>
+        <button class="dot" type="button" role="tab" aria-label="الشريحة الثانية" aria-selected="false"></button>
+        <button class="dot" type="button" role="tab" aria-label="الشريحة الثالثة" aria-selected="false"></button>
+      </div>
+
+      <div class="actions">
+        <button class="action previous" id="previousButton" type="button" disabled>
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          السابق
+        </button>
+
+        <button class="action next" id="nextButton" type="button">
+          التالي
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="m15 18-6-6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <button class="action start" id="startButton" type="button">
+          ابدأ الآن
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="m15 18-6-6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite">
+      <span class="toast-icon" aria-hidden="true">✓</span>
+      <div>
+        <strong>أهلاً بك في قريب!</strong>
+        <span>كل شيء جاهز، نتمنى لك تجربة رائعة.</span>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const slides = [...document.querySelectorAll(".slide")];
+    const dots = [...document.querySelectorAll(".dot")];
+    const previousButton = document.getElementById("previousButton");
+    const nextButton = document.getElementById("nextButton");
+    const startButton = document.getElementById("startButton");
+    const skipButton = document.getElementById("skipButton");
+    const actions = document.querySelector(".actions");
+    const toast = document.getElementById("toast");
+
+    let currentSlide = 0;
+    let toastTimer;
+
+    function showSlide(index) {
+      const nextIndex = Math.max(0, Math.min(index, slides.length - 1));
+      const movingBack = nextIndex < currentSlide;
+
+      slides.forEach((slide, i) => {
+        slide.classList.remove("active", "from-right");
+        slide.setAttribute("aria-hidden", i === nextIndex ? "false" : "true");
+
+        if (i === nextIndex) {
+          if (movingBack) slide.classList.add("from-right");
+          requestAnimationFrame(() => slide.classList.add("active"));
+        }
+      });
+
+      dots.forEach((dot, i) => {
+        const active = i === nextIndex;
+        dot.classList.toggle("active", active);
+        dot.setAttribute("aria-selected", String(active));
+      });
+
+      currentSlide = nextIndex;
+      previousButton.disabled = currentSlide === 0;
+
+      const isFinal = currentSlide === slides.length - 1;
+      actions.classList.toggle("final", isFinal);
+      skipButton.classList.toggle("is-hidden", isFinal);
+    }
+
+    previousButton.addEventListener("click", () => showSlide(currentSlide - 1));
+    nextButton.addEventListener("click", () => showSlide(currentSlide + 1));
+    skipButton.addEventListener("click", () => showSlide(slides.length - 1));
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener("click", () => showSlide(index));
+    });
+
+    startButton.addEventListener("click", () => {
+      try {
+        localStorage.setItem("qareebOnboardingCompleted", "true");
+      } catch (_) {}
+
+      history.replaceState(null, "", "#start");
+      toast.classList.add("show");
+      startButton.textContent = "تمّ، لنبدأ!";
+      startButton.disabled = true;
+
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("show"), 3200);
+    });
+
+    let touchStartX = 0;
+
+    document.querySelector(".slides").addEventListener("touchstart", (event) => {
+      touchStartX = event.changedTouches[0].clientX;
+    }, { passive: true });
+
+    document.querySelector(".slides").addEventListener("touchend", (event) => {
+      const distance = event.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(distance) < 55) return;
+
+      if (distance < 0 && currentSlide > 0) {
+        showSlide(currentSlide - 1);
+      } else if (distance > 0 && currentSlide < slides.length - 1) {
+        showSlide(currentSlide + 1);
+      }
+    }, { passive: true });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft" && currentSlide < slides.length - 1) {
+        showSlide(currentSlide + 1);
+      }
+      if (event.key === "ArrowRight" && currentSlide > 0) {
+        showSlide(currentSlide - 1);
+      }
+    });
+  </script>
+</body>
+</html>

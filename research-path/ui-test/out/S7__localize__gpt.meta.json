@@ -1,0 +1,9 @@
+{
+  "screen": "S7",
+  "cond": "localize",
+  "model": "gpt",
+  "model_id": "openai/gpt-5.6-sol",
+  "raw_chars": 18340,
+  "complete": true,
+  "at": "2026-11-18T05:37:58.798Z"
+}

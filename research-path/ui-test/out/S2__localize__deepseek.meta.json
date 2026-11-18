@@ -1,0 +1,9 @@
+{
+  "screen": "S2",
+  "cond": "localize",
+  "model": "deepseek",
+  "model_id": "deepseek/deepseek-v4-pro",
+  "raw_chars": 32020,
+  "complete": true,
+  "at": "2026-11-18T05:49:53.859Z"
+}

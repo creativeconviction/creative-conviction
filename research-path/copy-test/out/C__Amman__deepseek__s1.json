@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Amman",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Amman. Write marketing copy for it in Jordanian Arabic, the way people in Amman actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 1,
+  "prompt_lang": "en",
+  "city": "Amman",
+  "target_region": "Levant",
+  "target_city_code": "AMM",
+  "model": "deepseek",
+  "id": "C__Amman__deepseek__s1",
+  "model_id": "deepseek/deepseek-v4-pro",
+  "output": "دايمًا قريب\n\nنسيت تشتري خبز الصبح؟ ولا يهمّك، قريب بيوصّل لك إياه قبل ما يبرد الشاي.\n\nالبيت فاضي وما في نَفَس تروح عالبقالة؟ قريب أسرع من طلعة الدرج.\n\nمقاضي البيت كاملة، من الخبز للشامبو، قريب بيجبلك إيّاها والكيس ببلاش.\n\nيا هلا والله! توصيل مجاني لأول طلب الك، حمّل قريب وجرّب.",
+  "at": "2026-11-18T05:45:37.908Z"
+}

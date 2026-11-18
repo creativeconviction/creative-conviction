@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سلة المشتريات - قارب</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0d6ba7;
+            --primary-dark: #0a5a8a;
+            --primary-darker: #084d77;
+            --success: #28a745;
+            --danger: #dc3545;
+            --text: #212529;
+            --text-light: #495057;
+            --background: #f8f9fa;
+            --surface: #ffffff;
+            --border: #dee2e6;
+            --shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            --shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            direction: rtl;
+            text-align: right;
+        }
+
+        .container {
+            max-width: 540px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .page-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        /* Card: المفضلة */
+        .card {
+            background-color: var(--surface);
+            border-radius: 0.5rem;
+            box-shadow: var(--shadow-sm);
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .address-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .address-info {
+            flex-grow: 1;
+        }
+
+        .address-type {
+            background-color: rgba(13, 107, 167, 0.1);
+            color: var(--primary);
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
+            margin-bottom: 0.25rem;
+            display: inline-block;
+        }
+
+        .address-details {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            line-height: 1.4;
+        }
+
+        .address-details span {
+            display: block;
+        }
+
+        .edit-btn {
+            background: none;
+            border: none;
+            font-size: 0.875rem;
+            color: var(--primary);
+            cursor: pointer;
+            font-weight: 500;
+            padding: 0.5rem;
+        }
+
+        /* Card: وقت التسليم */
+        .delivery-time-card .card-title {
+            margin-bottom: 0.75rem;
+        }
+
+        .delivery-options {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .delivery-option {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .delivery-option.selected {
+            color: var(--surface);
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .time-slots {
+            margin-top: 0.75rem;
+        }
+
+        .time-slot {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .time-slot-button {
+            flex: 1;
+            padding: 0.5rem;
+            border: 1px solid var(--border);
+            background-color: var(--surface);
+            color: var(--text);
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            cursor: pointer;
+        }
+
+        .time-slot-button.selected {
+            background-color: var(--primary);
+            color: var(--surface);
+            border-color: var(--primary);
+        }
+
+        .time-slot-button:not(.selected):hover {
+            background-color: rgba(13, 107, 167, 0.05);
+        }
+
+        /* Cart Items */
+        .items-card {
+            margin-bottom: 1.5rem;
+        }
+
+        .item-list {
+            list-style: none;
+        }
+
+        .item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+            align-items: flex-start;
+        }
+
+        .item:first-child {
+            padding-top: 0;
+        }
+
+        .item-image {
+            width: 5rem;
+            height: 5rem;
+            border-radius: 0.5rem;
+            background-color: var(--border);
+            flex-shrink: 0;
+        }
+
+        .item-info {
+            flex-grow: 1;
+        }
+
+        .item-title {
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 0.25rem;
+        }
+
+        .item-price {
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .item-option {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            margin-bottom: 0.75rem;
+        }
+
+        .quantity-stepper {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .stepper-btn {
+            width: 1.5rem;
+            height: 1.5rem;
+            border: 1px solid var(--border);
+            background-color: var(--surface);
+            color: var(--text);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 1rem;
+            line-height: 1;
+        }
+
+        .stepper-btn:hover {
+            background-color: var(--border);
+        }
+
+        .stepper-value {
+            padding: 0 0.5rem;
+            min-width: 1.5rem;
+            text-align: center;
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: var(--danger);
+            cursor: pointer;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        /* Promo Code */
+        .promo-card {
+            margin-bottom: 1.5rem;
+        }
+
+        .promo-input-group {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .promo-input {
+            flex-grow: 1;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .promo-button {
+            background-color: var(--surface);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .promo-button:hover {
+            background-color: rgba(13, 107, 167, 0.1);
+        }
+
+        /* Payment Method */
+        .payment-card .card-title {
+            margin-bottom: 0.75rem;
+        }
+
+        .payment-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .payment-option {
+            border: 1px solid var(--border);
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-grow: 1;
+            min-width: 120px;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .payment-option input[type="radio"] {
+            margin: 0;
+        }
+
+        .payment-option.selected {
+            border-color: var(--primary);
+            background-color: rgba(13, 107, 167, 0.1);
+        }
+
+        .payment-option img {
+            height: 24px;
+            object-fit: contain;
+        }
+
+        /* Order Summary */
+        .summary-card .card-title {
+            margin-bottom: 0.75rem;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+
+        .summary-row.total {
+            font-weight: 700;
+            font-size: 1rem;
+            padding-top: 0.5rem;
+            border-top: 2px solid var(--primary);
+            color: var(--text);
+        }
+
+        .labeled-amount {
+            font-size: 1rem;
+        }
+
+        .labeled-amount .label {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            display: block;
+        }
+
+        /* Primary Button */
+        .place-order-btn {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-bottom: 1rem;
+        }
+
+        .place-order-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* RTL Images & icons */
+        .stepper-btn::after {
+            content: '−';
+        }
+        .stepper-btn.increment::after {
+            content: '+';
+        }
+
+        /* General resets for RTL */
+        [dir="rtl"] .ltr-align {
+            text-align: left;
+        }
+        .ltr-number {
+            font-variant-numeric: tabular-nums;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="page-title">السلة</h1>
+
+        <!-- Card: المفضلة -->
+        <div class="card address-card">
+            <div class="address-info">
+                <span class="address-type">مفضل</span>
+                <div class="address-details">
+                    <span>منزل</span>
+                    <span>عمار بن ياسر، العليا، الرياض 12623</span>
+                    <span>د. عبد الله بن عبد العزيز بوصالح - 0551234567</span>
+                </div>
+            </div>
+            <button class="edit-btn">تعديل</button>
+        </div>
+
+        <!-- Card: وقت التسليم -->
+        <div class="card delivery-time-card">
+            <h3 class="card-title">وقت التسليم</h3>
+            <div class="delivery-options">
+                <label class="delivery-option selected">
+                    <input type="radio" name="delivery-date" value="today" checked hidden>
+                    اليوم
+                </label>
+                <label class="delivery-option">
+                    <input type="radio" name="delivery-date" value="tomorrow" hidden>
+                    غدًا
+                </label>
+            </div>
+            <div class="time-slots">
+                <div class="time-slot">
+                    <button class="time-slot-button">٨:٠٠ ص - ١٠:٠٠ ص</button>
+                </div>
+                <div class="time-slot">
+                    <button class="time-slot-button">١٠:٠٠ ص - ١٢:٠٠ م</button>
+                </div>
+                <div class="time-slot">
+                    <button class="time-slot-button">١٢:٠٠ م - ٠٢:٠٠ م</button>
+                </div>
+                <div class="time-slot">
+                    <button class="time-slot-button">٠٧:٠٠ م - ٠٩:٠٠ م</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: السلة -->
+        <div class="card items-card">
+            <ul class="item-list">
+                <li class="item">
+                    <div class="item-image"></div>
+                    <div class="item-info">
+                        <h4 class="item-title"> Schott Zwiesel by Nachtmann فنجان شوتز فايزل 260 مل</h4>
+                        <p class="item-price">السعر: <span class="ltr-number">120</span> ر.س</p>
+                        <p class="item-option">الكمية: 250 جرام</p>
+                        <div class="quantity-stepper">
+                            <button class="stepper-btn" data-action="decrement">−</button>
+                            <span class="stepper-value" data-quantity>2</span>
+                            <button class="stepper-btn increment" data-action="increment">+</button>
+                        </div>
+                        <button class="remove-item">ازالة</button>
+                    </div>
+                </li>
+                <li class="item">
+                    <div class="item-image"></div>
+                    <div class="item-info">
+                        <h4 class="item-title">جلد كندي - ناعم - GRADE-A - 1 متر / الجلدة</h4>
+                        <p class="item-price">السعر: <span class="ltr-number">105</span> ر.س</p>
+                        <p class="item-option">نوع الجلد: جلد ناعم</p>
+                        <div class="quantity-stepper">
+                            <button class="stepper-btn" data-action="decrement">−</button>
+                            <span class="stepper-value" data-quantity>1</span>
+                            <button class="stepper-btn increment" data-action="increment">+</button>
+                        </div>
+                        <button class="remove-item">ازالة</button>
+                    </div>
+                </li>
+                <li class="item">
+                    <div class="item-image"></div>
+                    <div class="item-info">
+                        <h4 class="item-title">1527  بيروني - منشار و تبختر عام - 16 سم</h4>
+                        <p class="item-price">السعر: <span class="ltr-number">631</span> ر.س</p>
+                        <p class="item-option">نوع المنشار: تبختر عام</p>
+                        <div class="quantity-stepper">
+                            <button class="stepper-btn" data-action="decrement">−</button>
+                            <span class="stepper-value" data-quantity>1</span>
+                            <button class="stepper-btn increment" data-action="increment">+</button>
+                        </div>
+                        <button class="remove-item">ازالة</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Card: كود الخصم -->
+        <div class="card promo-card">
+            <div class="promo-input-group">
+                <input type="text" class="promo-input" placeholder="ادخل كود الخصم">
+                <button class="promo-button">تطبيق</button>
+            </div>
+        </div>
+
+        <!-- Card: طرق الدفع -->
+        <div class="card payment-card">
+            <h3 class="card-title">طرق الدفع</h3>
+            <div class="payment-options">
+                <label class="payment-option selected">
+                    <input type="radio" name="payment-method" value="card" checked hidden>
+                    <span>فيزا/ ماستر كارد</span>
+                </label>
+                <label class="payment-option">
+                    <input type="radio" name="payment-method" value="apple-pay" hidden>
+                    <span>Apple Pay</span>
+                </label>
+                <label class="payment-option">
+                    <input type="radio" name="payment-method" value="cash" hidden>
+                    <span>الدفع عند الاستلام</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Card: ملخص الطلب -->
+        <div class="card summary-card">
+            <h3 class="card-title">ملخص الطلب</h3>
+            <div class="summary-row">
+                <span>الإجمالي</span>
+                <span class="labeled-amount"> <span class="ltr-number">1,225</span> <span class="label">ر.س</span></span>
+            </div>
+            <div class="summary-row">
+                <span>رسوم التوصيل</span>
+                <span class="labeled-amount"> <span class="ltr-number">20</span> <span class="label">ر.س</span></span>
+            </div>
+            <div class="summary-row">
+                <span>ضريبة القيمة المضافة 15%</span>
+                <span class="labeled-amount"> <span class="ltr-number">186.94</span> <span class="label">ر.س</span></span>
+            </div>
+            <div class="summary-row total">
+                <span>الإجمالي</span>
+                <span class="labeled-amount"> <span class="ltr-number">1,431.94</span> <span class="label">ر.س</span></span>
+            </div>
+        </div>
+
+        <!-- Primary Button -->
+        <button class="place-order-btn">إتمام الطلب</button>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Quantity Steppers
+            const steppers = document.querySelectorAll('.quantity-stepper');
+            steppers.forEach(stepper => {
+                const decreaseBtn = stepper.querySelector('[data-action="decrement"]');
+                const increaseBtn = stepper.querySelector('[data-action="increment"]');
+                const quantityDisplay = stepper.querySelector('[data-quantity]');
+
+                decreaseBtn.addEventListener('click', () => {
+                    let currentValue = parseInt(quantityDisplay.textContent, 10);
+                    if (currentValue > 1) {
+                        quantityDisplay.textContent = currentValue - 1;
+                    }
+                });
+
+                increaseBtn.addEventListener('click', () => {
+                    let currentValue = parseInt(quantityDisplay.textContent, 10);
+                    quantityDisplay.textContent = currentValue + 1;
+                });
+            });
+
+            // Delivery Time Slots
+            const deliveryOptions = document.querySelectorAll('.time-slot-button');
+            deliveryOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    document.querySelectorAll('.time-slot-button').forEach(opt => opt.classList.remove('selected'));
+                    option.classList.add('selected');
+                });
+            });
+
+            // Payment Method
+            const paymentOptions = document.querySelectorAll('.payment-option input');
+            paymentOptions.forEach(input => {
+                const label = input.closest('.payment-option');
+                input.addEventListener('change', () => {
+                    document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
+                    if (input.checked) {
+                        label.classList.add('selected');
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

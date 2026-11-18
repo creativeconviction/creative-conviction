@@ -1,0 +1,9 @@
+{
+  "screen": "S5",
+  "cond": "localize",
+  "model": "deepseek",
+  "model_id": "deepseek/deepseek-v4-pro",
+  "raw_chars": 26005,
+  "complete": true,
+  "at": "2026-11-18T05:54:49.436Z"
+}

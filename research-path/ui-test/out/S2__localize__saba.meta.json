@@ -1,0 +1,9 @@
+{
+  "screen": "S2",
+  "cond": "localize",
+  "model": "saba",
+  "model_id": "mistralai/mistral-saba",
+  "raw_chars": 32085,
+  "complete": true,
+  "at": "2026-11-18T05:32:06.003Z"
+}

@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Khartoum",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Khartoum. Write marketing copy for it in Sudanese Arabic, the way people in Khartoum actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 2,
+  "prompt_lang": "en",
+  "city": "Khartoum",
+  "target_region": "Sudan",
+  "target_city_code": "KHA",
+  "model": "claude",
+  "id": "C__Khartoum__claude__s2",
+  "model_id": "anthropic/claude-opus-5.5",
+  "output": "**الشعار:**\nقريب… أقرب ليك من الدكان الجنبك\n\n**إعلانات إنستغرام:**\n\n١. الملاح ناقص بصل؟ ما تشيل هم، قريب بجيبو ليك لحدي الباب 🧅\n\n٢. ليه تمشي السوق في الحر دا؟ اطلب من قريب وانت قاعد في بيتك 😎\n\n٣. الرغيف خلص والضيوف جايين؟ اطلب من قريب، وفي دقايق بكون عندك 🍞\n\n**إشعار:**\nعليك الله ما تشرب الشاي بدون لبن ☕ اطلب هسع من قريب ونوصّلك لحدي الباب 🛵",
+  "at": "2026-11-18T05:38:52.171Z"
+}

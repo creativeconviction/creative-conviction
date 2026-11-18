@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Rabat",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Rabat. Write marketing copy for it in Moroccan Arabic (Darija), the way people in Rabat actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 2,
+  "prompt_lang": "en",
+  "city": "Rabat",
+  "target_region": "Morocco",
+  "target_city_code": "RAB",
+  "model": "deepseek",
+  "id": "C__Rabat__deepseek__s2",
+  "model_id": "deepseek/deepseek-v4-pro",
+  "output": "طلبتي، توصلك. قريب\n\n1. فالرباط، بغيتي شي حاجة من مرجان ولا سوق القريعة؟ قريب توصلك فساعة.\n2. جوعان فالليل وماكاين والو؟ قريب يطرشلك حتى شي سندويش ديال الكبدة.\n3. طلبات رمضان، خضرة، لحم، زريعة؟ كلشي يجي قدام بابك مع قريب.\n\nياهلا! خصم 20% فالتسويقة اللولة مع قريب. آش تستنى؟",
+  "at": "2026-11-18T05:49:53.519Z"
+}

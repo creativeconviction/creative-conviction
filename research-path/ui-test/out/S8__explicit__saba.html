@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الإعدادات - قريب</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --text-primary: #0f172a;
+            --text-secondary: #64748b;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            --radius-sm: 0.25rem;
+            --radius-md: 0.375rem;
+        }
+
+        [dir="rtl"] body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.5;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            direction: rtl;
+            text-align: right;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 100%;
+            padding: 0 1rem;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                max-width: 720px;
+                padding: 0 2rem;
+            }
+        }
+
+        header {
+            text-align: center;
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .avatar {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+            margin: 0 auto 1rem;
+        }
+
+        .user-name {
+            font-size: 1.125rem;
+            font-weight: 500;
+            margin: 0 0 0.25rem;
+        }
+
+        .user-email {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        section {
+            margin-block: 2rem 1.5rem;
+        }
+
+        .section-title {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin: 0 0 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .list {
+            background-color: var(--bg-primary);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .list-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .list-item:last-child {
+            border-bottom: none;
+        }
+
+        .list-item:hover {
+            background-color: var(--bg-secondary);
+        }
+
+        .list-item__icon {
+            width: 24px;
+            height: 24px;
+            color: var(--text-secondary);
+            flex-shrink: 0;
+        }
+
+        .list-item__content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-grow: 1;
+            margin-right: 1rem;
+        }
+
+        .list-item__info {
+            flex-grow: 1;
+        }
+
+        .list-item__title {
+            font-size: 0.9375rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            min-width: 140px; /* Ensures space for title */
+        }
+
+        .list-item__value {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .list-item__chevron {
+            width: 20px;
+            height: 20px;
+            color: var(--text-secondary);
+        }
+
+        /* Toggle Switch */
+        .toggle-container {
+            margin-left: auto;
+        }
+
+        .toggle-switch {
+            --toggle-width: 2.75rem;
+            --toggle-height: 1.5rem;
+            --toggle-circle-size: calc(var(--toggle-height) - 0.75rem);
+            position: relative;
+            display: inline-block;
+            width: var(--toggle-width);
+            height: var(--toggle-height);
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--border-color);
+            transition: var(--toggle-transition, 0.2s);
+            border-radius: var(--toggle-height);
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: var(--toggle-circle-size);
+            width: var(--toggle-circle-size);
+            left: 0.25rem;
+            bottom: 0.25rem;
+            background-color: white;
+            transition: var(--toggle-transition, 0.2s);
+            border-radius: 50%;
+        }
+
+        input:checked + .toggle-slider {
+            background-color: var(--primary-color);
+        }
+
+        input:checked + .toggle-slider:before {
+            transform: translateX(calc(var(--toggle-width) - var(--toggle-height)));
+        }
+
+        /* Language Selector */
+        .language-popup {
+            display: none;
+            position: absolute;
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            z-index: 10;
+            min-width: 120px;
+            top: 100%;
+            left: auto;
+            right: 0;
+            margin-top: 0.25rem;
+        }
+
+        .language-popup.show {
+            display: block;
+        }
+
+        .language-popup li {
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .language-popup li:hover {
+            background-color: var(--bg-secondary);
+        }
+
+        .language-popup li.active {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .language-selector-wrapper {
+            position: relative;
+        }
+
+        .language-selected {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .language-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        @media (min-width: 768px) {
+            .detail-screen-layout {
+                background-color: var(--bg-primary);
+                border-radius: var(--radius-md);
+                box-shadow: var(--shadow-sm);
+                padding: 2rem;
+                max-width: 400px;
+                margin: 2rem auto 0;
+                text-align: right;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <img src="https://i.pravatar.cc/72?u=a042581f4e29026704d" alt="الصورة الشخصية" class="avatar">
+            <h1 class="user-name">احمد يوسف</h1>
+            <p class="user-email">ahmad.yousef@example.com</p>
+        </header>
+
+        <main>
+            <!-- Account Section -->
+            <section>
+                <h2 class="section-title">الحساب</h2>
+                <ul class="list" role="list">
+                    <li class="list-item" tabindex="0">
+                        <div class="list-item__content">
+                            <svg class="list-item__icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></svg>
+                            <div class="list-item__info">
+                                <h3 class="list-item__title">العناوين</h3>
+                            </div>
+                        </div>
+                        <svg class="list-item__chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+                    </li>
+                    <li class="list-item" tabindex="0">
+                        <div class="list-item__content">
+                            <svg class="list-item__icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15A2.25 2.25 0 0 0 2.25 6.75v10.5A2.25 2.25 0 0 0 4.5 19.5Z" /></svg>
+                            <div class="list-item__info">
+                                <h3 class="list-item__title">طرق الدفع</h3>
+                            </div>
+                        </div>
+                        <svg class="list-item__chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Settings Section -->
+            <section>
+                <h2 class="section-title">الإعدادات</h2>
+                <ul class="list" role="list">
+                    <li class="list-item">
+                        <div class="list-item__content">
+                            <svg class="list-item__icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+                            <div class="list-item__info">
+                                <h3 class="list-item__title">الإشعارات</h3>
+                                <p class="list-item__value">إشعارات الدردشة و الرسائل</p>
+                            </div>
+                        </div>
+                        <div class="toggle-container">
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </li>
+                    <li class="list-item language-selector-wrapper">
+                        <div class="list-item__content">
+                            <svg class="list-item__icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M18.92 9.08a21.33 21.33 0 0 1-4.68 5.47M15.33 3.67a21.33 21.33 0 0 1 3.06 4.73M8.06 15.94a21.33 21.33 0 0 1-1.74-5.29M3.67 18.92a21.33 21.33 0 0 1 5.47-4.68M12 3a9 9 0 0 0 0 18 9 9 0 0 0 0-18Z" /></svg>
+                            <div class="list-item__info">
+                                <h3 class="list-item__title">اللغة</h3>
+                                <div class="language-selected">
+                                    <img src="https://flagcdn.com/eg.svg" alt="العربية" class="language-icon">
+                                    <span>العربية</span>
+                                </div>
+                            </div>
+                        </div>
+                        <svg class="list-item__chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+
+                        <ul class="language-popup" role="listbox">
+                            <li class="language-option" data-value="ar" tabindex="0" role="option" aria-selected="true">
+                                <div class="language-selected">
+                                    <img src="https://flagcdn.com/eg.svg" alt="العربية" class="language-icon">
+                                    <span>العربية</span>
+                                </div>
+                            </li>
+                            <li class="language-option" data-value="en" tabindex="0" role="option" aria-selected="false">
+                                <div class="language-selected">
+                                    <img src="https://flagcdn.com/gb.svg" alt="English" class="language-icon">
+                                    <span>English</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="list-item">
+                        <div class="list-item__content">
+                            <svg class="list-item__icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-.372.014-.734.04-.11a6.05 6.05 0 0 1 .048-1.352l2.294-2.294a1.5 1.5 0 0 1 2.121 0l2.758 2.758a.375.375 0 0 1 0 .53l-1.903 1.903a.375.375 0 0 1-.53 0l1.903-1.903a2.25 2.25 0 0 0-2.65-2.65L6.3 11.85a2.25 2.25 0 0 0-1.625-.88l-2.143.532a1.5 1.5 0 0 0-.935 1.767l.532 2.143a2.25 2.25 0 0 0 .88 1.625l11.4-11.4a.375.375 0 0 1 .53 0Zm-12.65 10.93 4.873-4.873a.375.375 0 0 1 .53 0l3.373 3.373a.375.375 0 0 1 0 .53l-1.903 1.903a.375.375 0 0 1-.53 0l-2.758-2.758a.375.375 0 0 1 0-.53l1.903-1.903a.375.375 0 0 0 0-.53Z" /></svg>
+                            <div class="list-item__info">
+                                <h3 class="list-item__title">الوضوح</h3>
+                                <p class="list-item__value">داكن</p>
+                            </div>
+                        </div>
+                        <div class="toggle-container">
+                             <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Support Section -->
+            <section>
+                <h2 class="section-title">الدعم</h2>
+                <ul class="list" role="list">
+                    <li class="list-item" tabindex="0">
+                        <div class="list-item__content">
+                            <svg class="list-item__icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM3 20.25h18M3 12h18M3 4.5h18" /></svg>
+                            <div class="list-item__info">
+                                <h3 class="list-item__title">مساعدة</h3>
+                            </div>
+                        </div>
+                        <svg class="list-item__chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Logout Section -->
+            <section>
+                <ul class="list" role="list">
+                    <li class="list-item" tabindex="0">
+                        <div class="list-item__content">
+                            <svg class="list-item__icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" /></svg>
+                            <div class="list-item__info">
+                                <h3 class="list-item__title">تسجيل الخروج</h3>
+                            </div>
+                        </div>
+                        <svg class="list-item__chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+                    </li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const languageSelector = document.querySelector('.language-selector-wrapper');
+            const languagePopup = languageSelector.querySelector('.language-popup');
+            const languageOptions = languageSelector.querySelectorAll('.language-option');
+            const languageSelectedIcon = languageSelector.querySelector('.language-selected img');
+            const languageSelectedText = languageSelector.querySelector('.language-selected span');
+
+            function showLanguagePopup() {
+                languagePopup.classList.add('show');
+            }
+
+            function hideLanguagePopup() {
+                languagePopup.classList.remove('show');
+            }
+
+            function updateLanguageDisplay(value, text, flagUrl) {
+                languageSelectedIcon.src = flagUrl;
+                languageSelectedIcon.alt = text;
+                languageSelectedText.textContent = text;
+                document.querySelector('.language-option[data-value="' + value + '"]').setAttribute('aria-selected', 'true');
+                document.querySelector('.language-option:not([data-value="' + value + '"])').setAttribute('aria-selected', 'false');
+            }
+
+            // Click outside to close
+            document.addEventListener('click', function (event) {
+                if (!languageSelector.contains(event.target)) {
+                    hideLanguagePopup();
+                }
+            });
+
+            // Keyboard navigation for options
+            languageOptions.forEach(option => {
+                option.addEventListener('keydown', function(event) {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        const value = this.dataset.value;
+                        const text = this.querySelector('span').textContent;
+                        let flagUrl = '';
+                        if (value === 'ar') {
+                            flagUrl = 'https://flagcdn.com/eg.svg';
+                        } else if (value === 'en') {
+                            flagUrl = 'https://flagcdn.com/gb.svg';
+                        }
+                        updateLanguageDisplay(value, text, flagUrl);
+                        hideLanguagePopup();
+                    }
+                });
+
+                option.addEventListener('click', function() {
+                    const value = this.dataset.value;
+                    const text = this.querySelector('span').textContent;
+                    let flagUrl = '';
+                    if (value === 'ar') {
+                        flagUrl = 'https://flagcdn.com/eg.svg';
+                    } else if (value === 'en') {
+                        flagUrl = 'https://flagcdn.com/gb.svg';
+                    }
+                    updateLanguageDisplay(value, text, flagUrl);
+                    hideLanguagePopup();
+                });
+            });
+
+            // Toggle switches
+            const toggles = document.querySelectorAll('.toggle-switch input');
+            toggles.forEach(toggle => {
+                toggle.addEventListener('change', function() {
+                    // In a real app, this would toggle a class on the html or body tag for dark mode
+                    // and persist the preference, e.g., using localStorage.
+                    console.log('Toggle switched:', this.checked);
+                });
+            });
+
+            // List item navigation for info pages and other actions
+            const interactiveItems = document.querySelectorAll('.list-item[tabindex="0"], .list-item .toggle-switch');
+            interactiveItems.forEach(item => {
+                item.addEventListener('keydown', function(event) {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        this.click();
+                    }
+                });
+            });
+
+            // Language selector open/close
+            languageSelector.addEventListener('click', function(event) {
+                event.stopPropagation();
+                if (languagePopup.classList.contains('show')) {
+                    hideLanguagePopup();
+                } else {
+                    showLanguagePopup();
+                    // Focus the first option for better accessibility
+                    setTimeout(() => {
+                        languageOptions[0].focus();
+                    }, 0);
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

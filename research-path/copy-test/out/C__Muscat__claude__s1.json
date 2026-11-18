@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Muscat",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Muscat. Write marketing copy for it in Omani Arabic, the way people in Muscat actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 1,
+  "prompt_lang": "en",
+  "city": "Muscat",
+  "target_region": "Gulf",
+  "target_city_code": "MUS",
+  "model": "claude",
+  "id": "C__Muscat__claude__s1",
+  "model_id": "anthropic/claude-opus-5.5",
+  "output": "**الشعار:**\nقريب… كل شي تباه لين باب بيتك\n\n**إعلانات إنستغرام:**\n١. نسيت الحليب؟ لا تهتم، قريب يوصله لك قبل لا يبرد الشاي ☕\n٢. الحر واجد برع؟ خلك في البيت، وقريب يجيب لك المقاضي 🛒\n٣. من السيب لين مطرح، أغراضك توصلك على طول 🚚\n\n**إشعار:**\nيالله عاد! الثلاجة فاضية؟ اطلب تو من قريب 😉",
+  "at": "2026-11-18T05:36:30.846Z"
+}

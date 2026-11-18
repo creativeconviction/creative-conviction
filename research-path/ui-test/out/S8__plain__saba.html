@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الإعدادات - قارب</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-primary: #1a1a1a;
+            --text-secondary: #6c757d;
+            --border-color: #e9ecef;
+            --icon-color: #adb5bd;
+            --toggle-off: #e9ecef;
+            --toggle-on: #4d90fe;
+            --divider-color: #f1f3f4;
+        }
+
+        .dark {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-primary: #e8e8e8;
+            --text-secondary: #a0a0a0;
+            --border-color: #333333;
+            --icon-color: #787878;
+            --divider-color: #282828;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            direction: rtl;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        header {
+            padding: 24px 0;
+            text-align: center;
+        }
+
+        .avatar {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        h2 {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin: 0;
+            padding: 0 16px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+
+        .list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .list-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .list-item:last-child {
+            border-bottom: none;
+        }
+        .list-item:hover {
+            background-color: var(--divider-color);
+        }
+
+        .list-item-icon {
+            width: 24px;
+            height: 24px;
+            color: var(--icon-color);
+        }
+
+        .list-item-text {
+            flex-grow: 1;
+            margin-right: 12px;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .list-item-chevron {
+            width: 24px;
+            height: 24px;
+            color: var(--icon-color);
+            transition: transform 0.2s;
+        }
+        .list-item[aria-expanded="true"] .list-item-chevron {
+            transform: rotate(90deg);
+        }
+
+        .toggle-container {
+            position: relative;
+            width: 48px;
+            height: 24px;
+        }
+
+        .toggle-switch {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--toggle-off);
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .toggle-switch {
+            background-color: var(--toggle-on);
+        }
+
+        input:checked + .toggle-switch .toggle-slider {
+            transform: translateX(24px);
+        }
+
+        .toggle-wrapper {
+            position: relative;
+        }
+
+        @media (min-width: 600px) {
+            .list-item {
+                padding: 16px 20px;
+            }
+            .list-item-text {
+                margin-right: 16px;
+            }
+        }
+
+        /* Sun/Moon Icons */
+        .icon-sun, .icon-moon {
+            width: 24px;
+            height: 24px;
+        }
+        .icon-sun { display: none; }
+        .dark .icon-sun { display: block; }
+        .dark .icon-moon { display: none; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <img src="https://i.pravatar.cc/150?u=user1" alt="الصورة الشخصية" class="avatar">
+            <h1>قاربيب</h1>
+        </header>
+
+        <main>
+            <!-- Notifications -->
+            <div class="card">
+                <ul class="list">
+                    <li class="list-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="list-item-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M19.998 5.34c-.02-1.113-.3-2.185-.955-3.139l-2.25.75c-.43-.79-1.125-1.5-2.063-1.835-1.03-.367-2.17-.44-3.25-.24-1.07.19-2.05.73-2.79 1.52l-2.25-.75c-.65.954-.88 2.026-.73 3.075 3.34.305 6.135 1.82 7.845 4.355l2.025-1.68c-.61-1.44-.015-3.185 1.71-4.295.11-.065.225-.12.345-.17v2.045h3.12v-9.01h-2.835l.003-1.98z"/></svg>
+                        <span class="list-item-text">الإشعارات</span>
+                        <label class="toggle-container toggle-wrapper">
+                            <input type="checkbox" checked>
+                            <span class="toggle-switch">
+                                <span class="toggle-slider"></span>
+                            </span>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Sections -->
+            <h2>عام</h2>
+            <div class="card">
+                <ul class="list">
+                    <li class="list-item" aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="list-item-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                        <span class="list-item-text">العناوين</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="list-item-chevron" viewBox="0 0 24 24" fill="currentColor"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+                    </li>
+                    <li class="list-item" aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="list-item-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12s4.48 10 10 10 10-4.48 10-10zm-10 8c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/><path d="M12.5 6V4c0-1.1-.9-2-2-2s-2 .9-2 2v2H8c-1.1 0-2 .9-2 2s.9 2 2 2h2.5v2c0 1.1.9 2 2 2s2-.9 2-2v-2H14c1.1 0 2-.9 2-2s-.9-2-2-2h-1.5zm-4 8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>
+                        <span class="list-item-text">طرق الدفع</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="list-item-chevron" viewBox="0 0 24 24" fill="currentColor"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+                    </li>
+                </ul>
+            </div>
+
+            <h2>تفضيلات</h2>
+            <div class="card">
+                <ul class="list">
+                    <li class="list-item" aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="list-item-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12.47,13.23c-1.47,0-2.65-1.18-2.65-2.65s1.18-2.65,2.65-2.65s2.65,1.18,2.65,2.65S13.94,13.23,12.47,13.23z M12,3.5 c-2.35,0-4.5,1.57-4.5,4.5s1.57,4.5,4.5,4.5s4.5-1.57,4.5-4.5S14.35,3.5,12,3.5z M12,11.3c-1.12,0-2-.88-2-2s.88-2,2-2s2,.88,2,2S13.12,11.3,12,11.3z M18.36,12.94 c-1.47,0-2.65-1.18-2.65-2.65s1.18-2.65,2.65-2.65s2.65,1.18,2.65,2.65S19.83,12.94,18.36,12.94z"/></svg>
+                        <span class="list-item-text">اللغة</span>
+                        <span>العربية <svg xmlns="http://www.w3.org/2000/svg" class="list-item-chevron" viewBox="0 0 24 24" fill="currentColor"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></span>
+                    </li>
+                    <li class="list-item toggle-container">
+                        <svg class="list-item-icon icon-moon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
+                        <svg class="list-item-icon icon-sun" viewBox="0 0 24 24" fill="currentColor"><path d="M12 18c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6zm0-10c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm6 6.5l-1.4 1.4-2.1-2.1-1.4-1.4-2 2 1.4 1.4 2.1 2.1 2.1-2.1z"/></svg>
+                        <span class="list-item-text">الوضع الليلي</span>
+                        <label>
+                            <input type="checkbox">
+                            <span class="toggle-switch">
+                                <span class="toggle-slider"></span>
+                            </span>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+
+            <h2>حساب</h2>
+            <div class="card">
+                <ul class="list">
+                    <li class="list-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="list-item-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.08V19h2v-4.92c1.62.7 2.83 2.13 3.34 3.85.13-.3.26-.6.39-.9.13.3.26.6.39.9 0.51-1.72 1.72-3.15 3.34-3.85V19h2v-4.92c1.62.7 2.83 2.13 3.34 3.85.13-.3.26-.6.39-.9 0 0 0 0 0 0 0 0 0 0 0 0-.51-1.72-1.72-3.15-3.34-3.85V8.92H11z"/></svg>
+                        <span class="list-item-text">المساعدة</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="list-item-chevron" viewBox="0 0 24 24" fill="currentColor"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+                    </li>
+                    <li class="list-item" style="border-bottom: none;">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="list-item-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M16 9v10H8V9l-5.5 5.5L4 17l8-8 8 8-1.5 1.5L16 9z"/></svg>
+                        <span class="list-item-text">تسجيل الخروج</span>
+                    </li>
+                </ul>
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أنشئ حسابك مع قارب</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #00875a;
+            --primary-red: #eb233b;
+            --primary-red-light: #ff6b7a;
+            --text-dark: #1f2125;
+            --text-light: #5c616a;
+            --border-color: #d9dbdf;
+            --bg-color: #ffffff;
+            --form-bg: #fafafa;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            direction: rtl;
+            text-align: right;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 390px;
+            margin: 0 auto;
+            background-color: var(--bg-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        header {
+            padding: 16px 16px 0 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        .back-btn {
+            background-color: transparent;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+            color: var(--text-dark);
+            font-size: 24px;
+            line-height: 1;
+        }
+
+        .header-title {
+            flex-grow: 1;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-green);
+        }
+
+        .page-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 24px 16px;
+        }
+
+        .page-title {
+            font-size: 28px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 32px;
+            color: var(--text-dark);
+        }
+
+        .input-field {
+            margin-bottom: 20px;
+        }
+
+        .input-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 6px;
+            color: var(--text-dark);
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            padding: 14px 48px 14px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 16px;
+            background-color: var(--form-bg);
+            color: var(--text-dark);
+        }
+        .input-wrapper input::placeholder {
+            color: #a9aeb8;
+        }
+
+        .input-wrapper input:focus {
+            outline: none;
+            border-color: var(--primary-green);
+            box-shadow: 0 0 0 2px rgba(0, 135, 90, 0.2);
+        }
+
+        .input-prefix {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 14px;
+            color: var(--text-light);
+        }
+        .input-prefix + input {
+            padding-right: 50px;
+            padding-left: 16px;
+        }
+
+        .toggle-password-btn {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+        .toggle-password-btn.focusable:focus {
+            outline: none;
+            color: var(--primary-green);
+        }
+
+        .checkbox-field {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 24px;
+        }
+        .checkbox-field .input-label {
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+        .checkbox-input {
+            margin-left: 8px;
+            margin-top: 4px;
+            accent-color: var(--primary-green);
+        }
+
+        .terms-text {
+            color: var(--text-light);
+        }
+        .terms-text a {
+            color: var(--primary-red);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            font-size: 18px;
+            font-weight: 700;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            background-color: var(--primary-green);
+            color: white;
+        }
+        .submit-btn:hover {
+            background-color: #00714a;
+        }
+        .submit-btn:active {
+            background-color: #005e3e;
+        }
+        .submit-btn:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 135, 90, 0.3);
+        }
+        .submit-btn:disabled {
+            background-color: var(--text-light);
+            cursor: not-allowed;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: auto;
+            padding-top: 32px;
+            padding-bottom: 16px;
+        }
+        .login-link a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 15px;
+        }
+        .login-link a:hover {
+            color: var(--text-dark);
+        }
+        .login-link a:focus {
+            outline: none;
+            color: var(--text-dark);
+        }
+
+        .error-message {
+            font-size: 12px;
+            color: var(--primary-red);
+            margin-top: 6px;
+            text-align: right;
+            height: 16px; /* Reserve space for error */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <button class="back-btn" aria-label="العودة">&#x2190;</button>
+            <h1 class="header-title">قارـيـب</h1>
+            <span style="width: 24px; display: inline-block;" aria-hidden="true">&#8203;</span>
+        </header>
+
+        <main class="page-content">
+            <h1 class="page-title">أنشئ حسابك مع قارب</h1>
+
+            <form id="signup-form">
+                <div class="input-field">
+                    <label class="input-label" for="fullname">الاسم الكامل</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="fullname" name="fullname" placeholder="ادخل الاسم الكامل" required>
+                    </div>
+                    <div class="error-message" id="fullname-error"></div>
+                </div>
+
+                <div class="input-field">
+                    <label class="input-label" for="mobile">رقم الجوال</label>
+                    <div class="input-wrapper">
+                        <span class="input-prefix">+966</span>
+                        <input type="tel" id="mobile" name="mobile" dir="ltr" inputmode="tel" placeholder="5XXXXXXXX" pattern="5\\d{8}" required>
+                    </div>
+                    <div class="error-message" id="mobile-error"></div>
+                </div>
+
+                <div class="input-field">
+                    <label class="input-label" for="email">البريد الإلكتروني</label>
+                    <div class="input-wrapper">
+                        <input type="email" id="email" name="email" placeholder="ادخل بريدك الإلكتروني" required>
+                    </div>
+                    <div class="error-message" id="email-error"></div>
+                </div>
+
+                <div class="input-field">
+                    <label class="input-label" for="password">كلمة السر</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="password" name="password" placeholder="ادخل كلمة السر" minlength="8" required>
+                        <button type="button" class="toggle-password-btn" aria-label="إظهار/إخفاء كلمة السر">&#x1F441;&#xFE0F;</button>
+                    </div>
+                    <div class="error-message" id="password-error"></div>
+                </div>
+
+                <div class="checkbox-field">
+                    <input type="checkbox" id="terms" class="checkbox-input" name="terms" required>
+                    <label class="input-label" for="terms">
+                        أوافق على <a href="#" target="_blank" rel="noopener noreferrer">الشروط و الأحكام</a>
+                    </label>
+                </div>
+
+                <button type="submit" class="submit-btn">إنشاء حساب</button>
+            </form>
+        </main>
+
+        <div class="login-link">
+            لديك حساب من قبل؟ <a href="#">تسجيل الدخول</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('signup-form');
+            const passwordInput = document.getElementById('password');
+            const togglePasswordBtn = document.querySelector('.toggle-password-btn');
+            const passwordErrorMsg = document.getElementById('password-error');
+            const mobileInput = document.getElementById('mobile');
+
+            // Toggle password visibility
+            togglePasswordBtn.addEventListener('click', function () {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                this.textContent = type === 'password' ? '&#x1F441;&#xFE0F;' : '&#x1F576;&#xFE0F;';
+            });
+
+            // Format mobile input as user types
+            mobileInput.addEventListener('input', function () {
+                // This basic formatter ensures the number starts with 5 and is 10 digits long when submitted.
+                // A more complex formatter could be used for better UX.
+                let value = this.value.replace(/\D/g, '');
+                if (value.length > 10) {
+                    value = value.substring(0, 10);
+                }
+                if (value && value[0] !== '5') {
+                    value = '5' + value;
+                }
+                this.value = value;
+            });
+
+            // Form submission handling
+            form.addEventListener('submit', function (event) {
+                // Basic client-side validation
+                let isValid = true;
+
+                // Reset errors
+                document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+
+                // Full Name validation
+                const fullName = document.getElementById('fullname').value.trim();
+                if (!fullName) {
+                    document.getElementById('fullname-error').textContent = 'يجب إدخال الاسم الكامل';
+                    isValid = false;
+                }
+
+                // Mobile validation
+                const mobile = mobileInput.value.trim();
+                const mobilePattern = /^5\d{9}$/;
+                if (!mobilePattern.test(mobile)) {
+                    document.getElementById('mobile-error').textContent = 'يجب أن يكون الجوال 10 أرقام ويبدأ بـ 5';
+                    isValid = false;
+                }
+
+                // Email validation
+                const email = document.getElementById('email').value.trim();
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(email)) {
+                    document.getElementById('email-error').textContent = 'يجب إدخال بريد إلكتروني صالح';
+                    isValid = false;
+                }
+
+                // Password validation
+                const password = passwordInput.value;
+                const passwordErrorLabel = 'يجب أن تكون 8 أرقام أو أحرف على الأقل';
+                if (password.length < 8) {
+                    passwordErrorMsg.textContent = passwordErrorLabel;
+                    isValid = false;
+                } else if (!/[A-Za-z]/.test(password) || !/[0-9]/.test(password)) {
+                     passwordErrorMsg.textContent = passwordErrorLabel + ' (يجب أن تضم كل من الحروف والأرقام)';
+                     isValid = false;
+                }
+
+                // Terms validation
+                if (!document.getElementById('terms').checked) {
+                    alert('يجب الموافقة على الشروط والأحكام');
+                    isValid = false;
+                }
+
+                if (!isValid) {
+                    event.preventDefault();
+                } else {
+                    // In a real app, you would submit the form to the server here.
+                    event.preventDefault();
+                    alert('تم إرسال النموذج (هذًا محاكاة). سيتم إرسال véritable طلب في بيئة الإنتاج.');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

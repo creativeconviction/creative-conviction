@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>قريب | لوحة تحكم المتجر</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brand:#0E7C66;
+    --brand-600:#0A6754;
+    --brand-50:#E7F4F0;
+    --ink:#14211D;
+    --ink-2:#4B5B56;
+    --ink-3:#83918C;
+    --line:#E4EAE7;
+    --bg:#F4F7F5;
+    --card:#FFFFFF;
+    --up:#12805C;
+    --up-bg:#E3F5EC;
+    --down:#C2412D;
+    --down-bg:#FBE9E5;
+    --warn:#A15C07;
+    --warn-bg:#FEF3DC;
+    --info:#1E5FA8;
+    --info-bg:#E4EEFA;
+    --radius:14px;
+    --shadow:0 1px 2px rgba(20,33,29,.05),0 4px 14px rgba(20,33,29,.04);
+    --sidebar-w:248px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;
+    background:var(--bg);color:var(--ink);
+    font-size:15px;line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  button,input{font:inherit;color:inherit}
+  svg{display:block}
+  .num{font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate;display:inline-block}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  :focus-visible{outline:2px solid var(--brand);outline-offset:2px;border-radius:8px}
+
+  /* ---------- Sidebar ---------- */
+  .sidebar{
+    position:fixed;inset-block:0;inset-inline-start:0;z-index:40;
+    width:var(--sidebar-w);background:#0F2A23;color:#D5E4DF;
+    display:flex;flex-direction:column;padding:20px 14px;
+    transform:translateX(100%);transition:transform .25s ease;
+  }
+  .sidebar.open{transform:none}
+  .brand{display:flex;align-items:center;gap:10px;padding:4px 8px 22px}
+  .brand-mark{width:38px;height:38px;border-radius:11px;background:var(--brand);display:grid;place-items:center;color:#fff}
+  .brand-name{font-weight:700;font-size:20px;color:#fff;line-height:1.1}
+  .brand-sub{font-size:12px;color:#8FB1A6}
+  .nav{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
+  .nav a{
+    display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:10px;
+    color:#C3D6D0;text-decoration:none;font-weight:500;font-size:14.5px;
+  }
+  .nav a:hover{background:rgba(255,255,255,.06);color:#fff}
+  .nav a[aria-current="page"]{background:var(--brand);color:#fff}
+  .nav .count{margin-inline-start:auto;background:rgba(255,255,255,.14);font-size:12px;padding:1px 8px;border-radius:20px}
+  .nav-label{font-size:11.5px;color:#7A9A90;margin:18px 12px 6px;letter-spacing:.02em}
+  .sidebar-foot{margin-top:auto;background:rgba(255,255,255,.05);border-radius:12px;padding:14px;font-size:13px}
+  .sidebar-foot strong{display:block;color:#fff;margin-bottom:2px}
+  .store-status{display:inline-flex;align-items:center;gap:6px;color:#7FE0BC;font-size:12.5px;margin-top:6px}
+  .store-status::before{content:"";width:8px;height:8px;border-radius:50%;background:#34D399}
+  .scrim{position:fixed;inset:0;background:rgba(10,20,17,.45);z-index:30;opacity:0;pointer-events:none;transition:opacity .25s}
+  .scrim.show{opacity:1;pointer-events:auto}
+
+  /* ---------- Topbar ---------- */
+  .main{min-height:100vh}
+  .topbar{
+    position:sticky;top:0;z-index:20;background:rgba(244,247,245,.92);backdrop-filter:blur(8px);
+    display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line);
+  }
+  .icon-btn{
+    width:40px;height:40px;flex:none;border:1px solid var(--line);background:var(--card);border-radius:11px;
+    display:grid;place-items:center;cursor:pointer;color:var(--ink-2);position:relative;
+  }
+  .icon-btn:hover{color:var(--ink);border-color:#cfd9d5}
+  .dot{position:absolute;top:8px;inset-inline-end:9px;width:8px;height:8px;border-radius:50%;background:var(--down);border:2px solid #fff}
+  .search{flex:1;min-width:0;position:relative}
+  .search input{
+    width:100%;height:40px;border:1px solid var(--line);background:var(--card);border-radius:11px;
+    padding-inline:38px 12px;font-size:14px;outline:none;
+  }
+  .search input:focus{border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-50)}
+  .search svg{position:absolute;inset-inline-start:11px;top:50%;transform:translateY(-50%);color:var(--ink-3);pointer-events:none}
+  .profile{display:flex;align-items:center;gap:10px;border:0;background:none;padding:0;cursor:pointer}
+  .avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#F5B455,#E07B39);color:#fff;font-weight:700;display:grid;place-items:center;font-size:15px}
+  .profile-text{display:none;text-align:start;line-height:1.25}
+  .profile-text b{display:block;font-size:14px}
+  .profile-text span{font-size:12px;color:var(--ink-3)}
+  .hide-mobile{display:none}
+
+  /* ---------- Content ---------- */
+  .content{padding:18px 16px 40px;max-width:1280px;margin-inline:auto}
+  .page-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px;margin-bottom:16px}
+  .page-head h1{font-size:22px;margin:0;font-weight:700}
+  .page-head p{margin:2px 0 0;color:var(--ink-3);font-size:13.5px}
+  .chip{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--line);padding:7px 12px;border-radius:10px;font-size:13px;color:var(--ink-2)}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+  .kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:16px}
+  .kpi{padding:14px}
+  .kpi-top{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:10px}
+  .kpi-icon{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--brand-50);color:var(--brand)}
+  .kpi-label{font-size:13px;color:var(--ink-2);margin:0 0 2px;font-weight:500}
+  .kpi-value{font-size:21px;font-weight:700;margin:0;letter-spacing:-.01em;line-height:1.3}
+  .kpi-value small{font-size:12px;font-weight:500;color:var(--ink-3);margin-inline-start:3px}
+  .delta{display:inline-flex;align-items:center;gap:2px;font-size:12px;font-weight:600;padding:2px 7px;border-radius:20px}
+  .delta.good{color:var(--up);background:var(--up-bg)}
+  .delta.bad{color:var(--down);background:var(--down-bg)}
+  .kpi-foot{font-size:11.5px;color:var(--ink-3);margin-top:4px}
+
+  .grid{display:grid;gap:16px}
+  .panel{padding:16px}
+  .panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:12px}
+  .panel-head h2{font-size:16px;margin:0;font-weight:700}
+  .panel-head p{margin:2px 0 0;font-size:12.5px;color:var(--ink-3)}
+  .total{text-align:end}
+  .total b{font-size:18px;display:block;line-height:1.2}
+  .total span{font-size:12px;color:var(--up);font-weight:600}
+
+  .chart-wrap{position:relative}
+  #chart{width:100%;height:240px}
+  #chart .bar{fill:#BFE0D6;transition:fill .15s;cursor:pointer}
+  #chart .bar.today{fill:var(--brand)}
+  #chart .bar:hover,#chart .bar:focus{fill:var(--brand-600);outline:none}
+  #chart text{font-family:inherit}
+  .tooltip{
+    position:absolute;pointer-events:none;background:var(--ink);color:#fff;font-size:12.5px;padding:6px 10px;border-radius:8px;
+    transform:translate(50%,-100%);white-space:nowrap;opacity:0;transition:opacity .12s;box-shadow:0 6px 18px rgba(0,0,0,.18)
+  }
+  .tooltip.show{opacity:1}
+  .tooltip b{display:block;font-size:13.5px}
+
+  .side-stats{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
+  .side-stats li{display:flex;flex-direction:column;gap:6px}
+  .side-stats .row{display:flex;justify-content:space-between;font-size:13.5px}
+  .side-stats .row span:last-child{color:var(--ink-2);font-weight:600}
+  .meter{height:8px;background:#EEF2F0;border-radius:8px;overflow:hidden}
+  .meter i{display:block;height:100%;background:var(--brand);border-radius:8px}
+
+  /* ---------- Table ---------- */
+  .table-panel{padding:0;overflow:hidden}
+  .table-panel .panel-head{padding:16px 16px 4px;margin:0}
+  .link{color:var(--brand);font-weight:600;font-size:13.5px;text-decoration:none;white-space:nowrap}
+  .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{width:100%;border-collapse:collapse;min-width:620px}
+  th,td{padding:12px 16px;text-align:start;white-space:nowrap}
+  thead th{font-size:12.5px;color:var(--ink-3);font-weight:600;border-bottom:1px solid var(--line);background:#FAFCFB}
+  tbody td{font-size:14px;border-bottom:1px solid var(--line)}
+  tbody tr:last-child td{border-bottom:0}
+  tbody tr:hover{background:#F8FBFA}
+  .sort-btn{display:inline-flex;align-items:center;gap:6px;background:none;border:0;padding:4px 0;cursor:pointer;color:inherit;font-weight:inherit;font-size:inherit}
+  .sort-btn:hover{color:var(--ink)}
+  .arrows{display:flex;flex-direction:column;gap:1px}
+  .arrows svg{color:#C4CFCB}
+  th[aria-sort="ascending"] .arrows .a-up,
+  th[aria-sort="descending"] .arrows .a-down{color:var(--brand)}
+  th[aria-sort="ascending"],th[aria-sort="descending"]{color:var(--ink)}
+  .oid{font-weight:600;color:var(--ink)}
+  .cust{display:flex;align-items:center;gap:10px}
+  .cust-av{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:700;flex:none}
+  .muted{color:var(--ink-3);font-size:13px}
+  .amount{font-weight:600}
+  .badge{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;padding:3px 10px;border-radius:20px}
+  .badge::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+  .b-done{color:var(--up);background:var(--up-bg)}
+  .b-ship{color:var(--info);background:var(--info-bg)}
+  .b-prep{color:var(--warn);background:var(--warn-bg)}
+  .b-cancel{color:var(--down);background:var(--down-bg)}
+  .empty{text-align:center;color:var(--ink-3);padding:28px 16px}
+  .table-foot{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink-3)}
+
+  /* ---------- Larger screens ---------- */
+  @media (min-width:640px){
+    .kpis{gap:14px}
+    .kpi{padding:18px}
+    .kpi-value{font-size:24px}
+    .profile-text{display:block}
+    .content{padding:24px 24px 48px}
+    .topbar{padding:14px 24px}
+    .hide-mobile{display:grid}
+  }
+  @media (min-width:900px){
+    .kpis{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .grid.two{grid-template-columns:minmax(0,2fr) minmax(0,1fr)}
+    #chart{height:280px}
+  }
+  @media (min-width:1024px){
+    .sidebar{transform:none}
+    .scrim{display:none}
+    .main{margin-inline-start:var(--sidebar-w)}
+    .menu-btn{display:none}
+    .search{max-width:420px}
+    .topbar-spacer{flex:1}
+    .page-head h1{font-size:26px}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar" aria-label="القائمة الرئيسية">
+  <div class="brand">
+    <div class="brand-mark" aria-hidden="true">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+    </div>
+    <div>
+      <div class="brand-name">قريب</div>
+      <div class="brand-sub">لوحة تحكم المتجر</div>
+    </div>
+  </div>
+  <nav>
+    <ul class="nav">
+      <li><a href="#" aria-current="page">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+        الرئيسية</a></li>
+      <li><a href="#">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        الطلبات <span class="count">12</span></a></li>
+      <li><a href="#">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4a2 2 0 0 0 1-1.7z"/><path d="M3.3 7 12 12l8.7-5"/><path d="M12 22V12"/></svg>
+        المنتجات</a></li>
+      <li><a href="#">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></svg>
+        العملاء</a></li>
+      <li><a href="#">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg>
+        التقارير</a></li>
+      <li><a href="#">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"/><circle cx="7" cy="7" r="1.5"/></svg>
+        العروض والكوبونات</a></li>
+    </ul>
+    <div class="nav-label">الحساب</div>
+    <ul class="nav">
+      <li><a href="#">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+        المدفوعات</a></li>
+      <li><a href="#">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+        الإعدادات</a></li>
+    </ul>
+  </nav>
+  <div class="sidebar-foot">
+    <strong>بقالة الحي – فرع النخيل</strong>
+    ساعات العمل: 7 ص – 12 م
+    <div class="store-status">المتجر مفتوح الآن</div>
+  </div>
+</aside>
+<div class="scrim" id="scrim"></div>
+
+<div class="main">
+  <!-- Top bar -->
+  <header class="topbar">
+    <button class="icon-btn menu-btn" id="menuBtn" aria-label="فتح القائمة" aria-controls="sidebar" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <div class="search" role="search">
+      <label for="q" class="sr-only">بحث</label>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="ابحث عن طلب أو عميل…" autocomplete="off">
+    </div>
+    <div class="topbar-spacer"></div>
+    <button class="icon-btn" aria-label="الإشعارات، 3 جديدة">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+      <span class="dot"></span>
+    </button>
+    <button class="profile" aria-label="الملف الشخصي: عبدالله الحربي">
+      <span class="avatar" aria-hidden="true">ع</span>
+      <span class="profile-text"><b>عبدالله الحربي</b><span>مالك المتجر</span></span>
+    </button>
+  </header>
+
+  <main class="content">
+    <div class="page-head">
+      <div>
+        <h1>صباح الخير، عبدالله 👋</h1>
+        <p>إليك ملخص أداء متجرك اليوم</p>
+      </div>
+      <span class="chip">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        <span id="todayLabel">اليوم</span>
+      </span>
+    </div>
+
+    <!-- KPIs -->
+    <section class="kpis" aria-label="مؤشرات الأداء">
+      <article class="card kpi">
+        <div class="kpi-top">
+          <span class="kpi-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span>
+          <span class="delta good" aria-label="ارتفاع 12.5٪">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+            <span class="num">12.5%</span>
+          </span>
+        </div>
+        <p class="kpi-label">طلبات اليوم</p>
+        <p class="kpi-value"><span class="num">128</span></p>
+        <div class="kpi-foot">مقارنة بأمس (114)</div>
+      </article>
+
+      <article class="card kpi">
+        <div class="kpi-top">
+          <span class="kpi-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg></span>
+          <span class="delta good" aria-label="ارتفاع 8.2٪">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+            <span class="num">8.2%</span>
+          </span>
+        </div>
+        <p class="kpi-label">الإيرادات</p>
+        <p class="kpi-value"><span class="num">18,450</span><small>ر.س</small></p>
+        <div class="kpi-foot">مقارنة بأمس</div>
+      </article>
+
+      <article class="card kpi">
+        <div class="kpi-top">
+          <span class="kpi-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg></span>
+          <span class="delta bad" aria-label="انخفاض 3.1٪">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+            <span class="num">3.1%</span>
+          </span>
+        </div>
+        <p class="kpi-label">متوسط السلة</p>
+        <p class="kpi-value"><span class="num">144.1</span><small>ر.س</small></p>
+        <div class="kpi-foot">مقارنة بأمس</div>
+      </article>
+
+      <article class="card kpi">
+        <div class="kpi-top">
+          <span class="kpi-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/></svg></span>
+          <span class="delta good" aria-label="انخفاض 0.6 نقطة، تحسن">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+            <span class="num">0.6%</span>
+          </span>
+        </div>
+        <p class="kpi-label">معدل الإلغاء</p>
+        <p class="kpi-value"><span class="num">2.4%</span></p>
+        <div class="kpi-foot">انخفاض الإلغاء مؤشر إيجابي</div>
+      </article>
+    </section>
+
+    <!-- Chart + side stats -->
+    <div class="grid two" style="margin-bottom:16px">
+      <section class="card panel" aria-labelledby="chartTitle">
+        <div class="panel-head">
+          <div>
+            <h2 id="chartTitle">المبيعات خلال آخر 7 أيام</h2>
+            <p>بالريال السعودي</p>
+          </div>
+          <div class="total">
+            <b class="num" id="weekTotal">0</b>
+            <span>▲ 6.4% عن الأسبوع الماضي</span>
+          </div>
+        </div>
+        <div class="chart-wrap" id="chartWrap">
+          <svg id="chart" role="img" aria-labelledby="chartTitle chartDesc"><desc id="chartDesc"></desc></svg>
+          <div class="tooltip" id="tip" role="status" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="card panel" aria-labelledby="catTitle">
+        <div class="panel-head">
+          <div>
+            <h2 id="catTitle">الأقسام الأكثر مبيعاً</h2>
+            <p>نسبة من إيرادات الأسبوع</p>
+          </div>
+        </div>
+        <ul class="side-stats">
+          <li><div class="row"><span>الخضار والفواكه</span><span class="num">34%</span></div><div class="meter"><i style="width:34%"></i></div></li>
+          <li><div class="row"><span>الألبان والأجبان</span><span class="num">22%</span></div><div class="meter"><i style="width:22%"></i></div></li>
+          <li><div class="row"><span>المخبوزات</span><span class="num">18%</span></div><div class="meter"><i style="width:18%"></i></div></li>
+          <li><div class="row"><span>المشروبات</span><span class="num">15%</span></div><div class="meter"><i style="width:15%"></i></div></li>
+          <li><div class="row"><span>المنظفات</span><span class="num">11%</span></div><div class="meter"><i style="width:11%"></i></div></li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Orders table -->
+    <section class="card table-panel" aria-labelledby="ordersTitle">
+      <div class="panel-head">
+        <div>
+          <h2 id="ordersTitle">أحدث الطلبات</h2>
+          <p>اضغط على عنوان العمود للترتيب</p>
+        </div>
+        <a href="#" class="link">عرض الكل ←</a>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <caption class="sr-only">جدول أحدث الطلبات</caption>
+          <thead>
+            <tr>
+              <th scope="col" data-key="id" aria-sort="none"><button class="sort-btn">رقم الطلب<span class="arrows" aria-hidden="true"><svg class="a-up" width="9" height="6" viewBox="0 0 10 6"><path d="M5 0 10 6H0z" fill="currentColor"/></svg><svg class="a-down" width="9" height="6" viewBox="0 0 10 6"><path d="M5 6 0 0h10z" fill="currentColor"/></svg></span></button></th>
+              <th scope="col" data-key="customer" aria-sort="none"><button class="sort-btn">العميل<span class="arrows" aria-hidden="true"><svg class="a-up" width="9" height="6" viewBox="0 0 10 6"><path d="M5 0 10 6H0z" fill="currentColor"/></svg><svg class="a-down" width="9" height="6" viewBox="0 0 10 6"><path d="M5 6 0 0h10z" fill="currentColor"/></svg></span></button></th>
+              <th scope="col" data-key="date" aria-sort="descending"><button class="sort-btn">التاريخ<span class="arrows" aria-hidden="true"><svg class="a-up" width="9" height="6" viewBox="0 0 10 6"><path d="M5 0 10 6H0z" fill="currentColor"/></svg><svg class="a-down" width="9" height="6" viewBox="0 0 10 6"><path d="M5 6 0 0h10z" fill="currentColor"/></svg></span></button></th>
+              <th scope="col" data-key="amount" aria-sort="none"><button class="sort-btn">المبلغ<span class="arrows" aria-hidden="true"><svg class="a-up" width="9" height="6" viewBox="0 0 10 6"><path d="M5 0 10 6H0z" fill="currentColor"/></svg><svg class="a-down" width="9" height="6" viewBox="0 0 10 6"><path d="M5 6 0 0h10z" fill="currentColor"/></svg></span></button></th>
+              <th scope="col" data-key="status" aria-sort="none"><button class="sort-btn">الحالة<span class="arrows" aria-hidden="true"><svg class="a-up" width="9" height="6" viewBox="0 0 10 6"><path d="M5 0 10 6H0z" fill="currentColor"/></svg><svg class="a-down" width="9" height="6" viewBox="0 0 10 6"><path d="M5 6 0 0h10z" fill="currentColor"/></svg></span></button></th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+      <div class="table-foot"><span id="countLabel"></span><span>آخر تحديث: قبل دقيقة</span></div>
+    </section>
+  </main>
+</div>
+
+<script>
+(function(){
+  /* ---------- Sidebar toggle ---------- */
+  const sidebar=document.getElementById('sidebar'),scrim=document.getElementById('scrim'),menuBtn=document.getElementById('menuBtn');
+  function setMenu(open){
+    sidebar.classList.toggle('open',open);scrim.classList.toggle('show',open);
+    menuBtn.setAttribute('aria-expanded',open);
+  }
+  menuBtn.addEventListener('click',()=>setMenu(!sidebar.classList.contains('open')));
+  scrim.addEventListener('click',()=>setMenu(false));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')setMenu(false)});
+
+  const fmt=n=>n.toLocaleString('en-US');
+  const now=new Date();
+  document.getElementById('todayLabel').textContent=
+    new Intl.DateTimeFormat('ar-u-nu-latn',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).format(now);
+
+  /* ---------- Chart ---------- */
+  const dayNames=['الأحد','الإثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
+  const values=[14200,15850,13900,17300,21600,19800,18450];
+  const days=values.map((v,i)=>{
+    const d=new Date(now);d.setDate(now.getDate()-(6-i));
+    return {label:i===6?'اليوم':dayNames[d.getDay()],full:dayNames[d.getDay()],date:d,value:v,today:i===6};
+  });
+  document.getElementById('weekTotal').textContent=fmt(values.reduce((a,b)=>a+b,0))+' ر.س';
+  document.getElementById('chartDesc').textContent=
+    days.map(d=>d.full+': '+fmt(d.value)+' ريال').join('، ');
+
+  const svg=document.getElementById('chart'),wrap=document.getElementById('chartWrap'),tip=document.getElementById('tip');
+  const NS='http://www.w3.org/2000/svg';
+  function el(tag,attrs,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!=null)e.textContent=text;return e;}
+
+  function drawChart(){
+    const W=wrap.clientWidth,H=svg.clientHeight;
+    svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+    svg.querySelectorAll(':scope > :not(desc)').forEach(n=>n.remove());
+    const padR=40,padL=6,padT=22,padB=30;               // y-axis labels on the right (RTL)
+    const cw=W-padR-padL,ch=H-padT-padB;
+    const max=Math.ceil(Math.max(...values)/5000)*5000;
+    const ticks=4;
+    for(let i=0;i<=ticks;i++){
+      const v=max/ticks*i,y=padT+ch-(v/max)*ch;
+      svg.appendChild(el('line',{x1:padL,x2:W-padR,y1:y,y2:y,stroke:i===0?'#D5DEDA':'#EDF1EF','stroke-dasharray':i===0?'':'4 4'}));
+      svg.appendChild(el('text',{x:W-padR+8,y:y+4,'font-size':11,fill:'#83918C','text-anchor':'start'},v===0?'0':(v/1000)+'k'));
+    }
+    const slot=cw/days.length,bw=Math.min(slot*0.56,46);
+    days.forEach((d,i)=>{
+      // oldest on the right, today on the left (RTL time flow)
+      const cx=W-padR-slot*(i+0.5);
+      const h=(d.value/max)*ch,y=padT+ch-h;
+      const r=Math.min(7,bw/3);
+      const path=`M${cx-bw/2},${padT+ch} V${y+r} Q${cx-bw/2},${y} ${cx-bw/2+r},${y} H${cx+bw/2-r} Q${cx+bw/2},${y} ${cx+bw/2},${y+r} V${padT+ch} Z`;
+      const bar=el('path',{d:path,class:'bar'+(d.today?' today':''),tabindex:0,'aria-label':`${d.full}: ${fmt(d.value)} ريال`});
+      const show=()=>{
+        tip.innerHTML=`${d.full}<b>${fmt(d.value)} ر.س</b>`;
+        tip.style.left=(cx)+'px';tip.style.top=(y-8)+'px';
+        tip.style.transform='translate(-50%,-100%)';
+        tip.classList.add('show');
+      };
+      const hide=()=>tip.classList.remove('show');
+      bar.addEventListener('mouseenter',show);bar.addEventListener('focus',show);
+      bar.addEventListener('click',show);
+      bar.addEventListener('mouseleave',hide);bar.addEventListener('blur',hide);
+      svg.appendChild(bar);
+      if(W>480||d.today){
+        svg.appendChild(el('text',{x:cx,y:y-7,'font-size':11,'font-weight':600,fill:d.today?'#0E7C66':'#4B5B56','text-anchor':'middle'},(d.value/1000).toFixed(1)+'k'));
+      }
+      svg.appendChild(el('text',{x:cx,y:H-9,'font-size':W<420?10.5:12,fill:d.today?'#14211D':'#83918C','font-weight':d.today?700:500,'text-anchor':'middle'},
+        W<420&&!d.today?d.label.replace('ال',''):d.label));
+    });
+  }
+  drawChart();
+  let rt;window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(drawChart,80)});
+  document.addEventListener('click',e=>{if(!e.target.closest('#chart'))tip.classList.remove('show')});
+
+  /* ---------- Orders table ---------- */
+  const statuses={
+    prep:{t:'قيد التجهيز',c:'b-prep',o:1},
+    ship:{t:'قيد التوصيل',c:'b-ship',o:2},
+    done:{t:'مكتمل',c:'b-done',o:3},
+    cancel:{t:'ملغي',c:'b-cancel',o:4}
+  };
+  const avColors=[['#E7F4F0','#0E7C66'],['#FEF3DC','#A15C07'],['#E4EEFA','#1E5FA8'],['#F3E8FB','#7A3BA8'],['#FBE9E5','#C2412D']];
+  const mins=m=>new Date(now.getTime()-m*60000);
+  const orders=[
+    {id:10492,customer:'نورة القحطاني',area:'حي النخيل',date:mins(6),amount:212.5,status:'prep'},
+    {id:10491,customer:'فهد العتيبي',area:'حي الملقا',date:mins(18),amount:87,status:'ship'},
+    {id:10490,customer:'سارة الدوسري',area:'حي الياسمين',date:mins(34),amount:356.75,status:'ship'},
+    {id:10489,customer:'محمد الشهري',area:'حي النخيل',date:mins(52),amount:64.25,status:'done'},
+    {id:10488,customer:'ريم الزهراني',area:'حي العارض',date:mins(75),amount:149,status:'cancel'},
+    {id:10487,customer:'خالد المطيري',area:'حي الملقا',date:mins(98),amount:498.9,status:'done'},
+    {id:10486,customer:'أمل السبيعي',area:'حي الياسمين',date:mins(130),amount:121.4,status:'done'},
+    {id:10485,customer:'بدر الغامدي',area:'حي النخيل',date:mins(170),amount:39.5,status:'done'}
+  ];
+  const dtf=new Intl.DateTimeFormat('ar-u-nu-latn',{day:'numeric',month:'short'});
+  const tf=new Intl.DateTimeFormat('ar-u-nu-latn',{hour:'numeric',minute:'2-digit'});
+  const tbody=document.getElementById('tbody'),countLabel=document.getElementById('countLabel');
+  let sortKey='date',sortDir=-1,query='';
+
+  function render(){
+    const q=query.trim().toLowerCase();
+    let rows=orders.filter(o=>!q||String(o.id).includes(q.replace(/\D/g,'')||'§')||o.customer.includes(query.trim()));
+    rows.sort((a,b)=>{
+      let x=a[sortKey],y=b[sortKey];
+      if(sortKey==='customer')return x.localeCompare(y,'ar')*sortDir;
+      if(sortKey==='status'){x=statuses[x].o;y=statuses[y].o}
+      return (x>y?1:x<y?-1:0)*sortDir;
+    });
+    if(!rows.length){
+      tbody.innerHTML=`<tr><td colspan="5" class="empty">لا توجد طلبات مطابقة لبحثك</td></tr>`;
+    }else{
+      tbody.innerHTML=rows.map(o=>{
+        const s=statuses[o.status],c=avColors[o.id%avColors.length];
+        return `<tr>
+          <td><span class="oid num">#QR-${o.id}</span></td>
+          <td><div class="cust"><span class="cust-av" style="background:${c[0]};color:${c[1]}">${o.customer.charAt(0)}</span>
+            <div><div>${o.customer}</div><div class="muted">${o.area}</div></div></div></td>
+          <td><div>${dtf.format(o.date)}</div><div class="muted">${tf.format(o.date)}</div></td>
+          <td class="amount"><span class="num">${o.amount.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}</span> ر.س</td>
+          <td><span class="badge ${s.c}">${s.t}</span></td>
+        </tr>`;
+      }).join('');
+    }
+    countLabel.textContent=`عرض ${rows.length} من ${orders.length} طلبات`;
+    document.querySelectorAll('thead th').forEach(th=>{
+      th.setAttribute('aria-sort',th.dataset.key===sortKey?(sortDir===1?'ascending':'descending'):'none');
+    });
+  }
+  document.querySelectorAll('thead th').forEach(th=>{
+    th.querySelector('button').addEventListener('click',()=>{
+      const k=th.dataset.key;
+      if(sortKey===k)sortDir*=-1;
+      else{sortKey=k;sortDir=(k==='date'||k==='amount')?-1:1;}
+      render();
+    });
+  });
+  document.getElementById('q').addEventListener('input',e=>{query=e.target.value;render();});
+  render();
+})();
+</script>
+</body>
+</html>

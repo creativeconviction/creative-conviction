@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Baghdad",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Baghdad. Write marketing copy for it in Iraqi (Baghdadi) Arabic, the way people in Baghdad actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 2,
+  "prompt_lang": "en",
+  "city": "Baghdad",
+  "target_region": "Iraq",
+  "target_city_code": "BAG",
+  "model": "deepseek",
+  "id": "C__Baghdad__deepseek__s2",
+  "model_id": "deepseek/deepseek-v4-pro",
+  "output": "قريب ... أسرع من گهوتك!\n\nتعبت من الزحمة والسوك؟ حمل قريب وخلي كل شي يوصل لعند الباب، بلا وجع راس.\n\nخضره، فواكه، ومواد تنظيف... شكو ما تحتاج؟ قريب يوصّلهم بالثواني.\n\nأول طلبية توصيل بلاش! شتنتظر؟ حمل التطبيق هسه ودلل نفسك.\n\nعروض خاصة لليوم فقط! خصم 30% على جميع الطلبيات. أطلب هسة من قريب، لا تفوت!",
+  "at": "2026-11-18T05:41:25.428Z"
+}

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الإعدادات - تطبيق قريب</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --background-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-primary: #212529;
+            --text-secondary: #6c757d;
+            --border-color: #dee2e6;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 390px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            min-height: 100vh;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-section {
+            padding: 32px 24px 24px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary-color), #3a56d4);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-section::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            right: -50px;
+            bottom: -50px;
+            background: linear-gradient(135deg, var(--primary-color), #3a56d4);
+            opacity: 0.8;
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .profile-pic {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 16px;
+            overflow: hidden;
+            border: 3px solid white;
+            z-index: 1;
+        }
+
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-name {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-email {
+            font-size: 14px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .settings-section {
+            padding: 24px;
+        }
+
+        .settings-item {
+            display: flex;
+            align-items: center;
+            padding: 16px 8px;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: background-color 0.2s;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .settings-item:hover {
+            background-color: rgba(67, 97, 238, 0.05);
+        }
+
+        .settings-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 16px;
+            color: var(--primary-color);
+            flex-shrink: 0;
+        }
+
+        .item-title {
+            flex: 1;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .item-value {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-left: 8px;
+        }
+
+        .chekbox-toggle {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .chekbox-toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--primary-color);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        .logout-btn {
+            background-color: var(--danger-color);
+            color: white;
+            border-radius: 8px;
+            padding: 12px 16px;
+            text-align: center;
+            font-weight: 500;
+            margin-top: 16px;
+            display: block;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+
+        .logout-btn:hover {
+            background-color: #c82333;
+        }
+
+        .section-title {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            font-weight: 500;
+            padding: 0 8px;
+        }
+
+        @media (min-width: 600px) {
+            .container {
+                max-width: 500px;
+                margin: 32px auto;
+            }
+
+            .profile-section {
+                padding: 48px 32px 32px;
+            }
+
+            .settings-item {
+                padding: 18px 16px;
+            }
+
+            .profile-pic {
+                width: 96px;
+                height: 96px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-section">
+            <div class="profile-pic">
+                <img src="https://via.placeholder.com/150/4361ee/ffffff?text=👤" alt="الصورة الشخصية">
+            </div>
+            <div class="profile-name">محمد أحمد</div>
+            <div class="profile-email">mohamed.ahmed@example.com</div>
+        </div>
+
+        <div class="settings-section">
+            <h3 class="section-title">الملف الشخصي</h3>
+
+            <a href="#" class="settings-item">
+                <svg class="item-icon" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+                <span class="item-title">العنوان الأساسي</span>
+                <svg class="item-icon" fill="currentColor" viewBox="0 0 24 24" style="color: var(--text-secondary);">
+                    <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+                </svg>
+            </a>
+
+            <a href="#" class="settings-item">
+                <svg class="item-icon" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20 4H4c-1.11 0-2 .9-2 2v12c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-1 15h-7v-6h2v4h2v-4h2v6zM5 18V6h14v12H5z"/>
+                </svg>
+                <span class="item-title">طرق الدفع</span>
+                <svg class="item-icon" fill="currentColor" viewBox="0 0 24 24" style="color: var(--text-secondary);">
+                    <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+                </svg>
+            </a>
+
+            <div class="settings-item">
+                <svg class="item-icon" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M11.5 14c1.38 0 2.5 1.12 2.5 2.5s-1.12 2.5-2.5 2.5S9 17.88 9 16.5s1.12-2.5 2.5-2.5m-4.5 2.5c1.38 0 2.5 1.12 2.5 2.5s-1.12 2.5-2.5 2.5S7 17.88 7 16.5s1.12-2.5 2.5-2.5m9 0c1.38 0 2.5 1.12 2.5 2.5s-1.12 2.5-2.5 2.5S14 17.88 14 16.5s1.12-2.5 2.5-2.5z"/>
+                </svg>
+                <span class="item-title">الإشعارات</span>
+                <label class="chekbox-toggle">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <div class="settings-item">
+                <svg class="item-icon" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6 13.5L12 6.5 5.99 15.5H11.99v2h-6v-4h6v-2z"/>
+                </svg>
+                <span class="item-title">اللغة</span>
+                <span class="item-value">العربية</span>
+                <svg class="item-icon" fill="currentColor" viewBox="0 0 24 24" style="color: var(--text-secondary);">
+                    <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+                </svg>
+            </a>
+
+            <div class="settings-item">
+                <svg class="item-icon" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 21c2.1 0 3.79-.75 4.9-2H7.1c1.11 1.25 2.8 2 4.9 2zm6.9-2.12c.42-.63.66-1.37.66-2.12 0-2.87-2.33-4.3-5.91-4.3-1.86 0-3.3.54-4.38 1.38-.18-.18-.49-.49-.81-.81C9.48 9.27 8.14 7.5 8.14 5.5 8.14 3.28 10.28 2 12 2s3.86 1.28 4.04 3.5c.32-.32.63-.63.81-.81C16.38 5.04 16.92 4.5 17.76 4.5c2.87 0 5.14 1.43 5.14 4.3 0 .75.24 1.49.66 2.12z"/>
+                </svg>
+                <span class="item-title">الوضع الداكن</span>
+                <label class="chekbox-toggle">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <a href="#" class="settings-item">
+                <svg class="item-icon" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/>
+                </svg>
+                <span class="item-title">المساعدة</span>
+                <svg class="item-icon" fill="currentColor" viewBox="0 0 24 24" style="color: var(--text-secondary);">
+                    <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+                </svg>
+            </a>
+
+            <a href="#" class="logout-btn">
+                تسجيل الخروج
+            </a>
+        </div>
+    </div>
+</body>
+</html>

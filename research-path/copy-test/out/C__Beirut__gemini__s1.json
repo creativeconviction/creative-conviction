@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Beirut",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Beirut. Write marketing copy for it in Lebanese Arabic, the way people in Beirut actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 1,
+  "prompt_lang": "en",
+  "city": "Beirut",
+  "target_region": "Levant",
+  "target_city_code": "BEI",
+  "model": "gemini",
+  "id": "C__Beirut__gemini__s1",
+  "model_id": "google/gemini-3.1-pro-preview",
+  "output": "**الـ Tagline:**\nقريب... غراضك عالباب، بلا عجقة ولا عذاب!\n\n**إعلانات إنستغرام (Instagram Ads):**\n١. ما إلك جلادة تدوّر ع باركينغ وتعلق بعجقة بيروت؟ خليك مرتاح بالبيت، السوبرماركت صار بجيبتك مع تطبيق قريب!\n٢. عبالك سناك عالسهرة ومكسّل تنزل؟ أو ناقصك كم غرض للطبخة؟ اطلب من قريب وريّح راسك، بيوصلوك بلمحة بصر.\n٣. كل شي بعوزو البيت صار \"قريب\" منك. من الخضرة الفريش لأغراض السوبرماركت، كبسة زر وكلن بيوصلوك طيّارة! 🚀\n\n**إشعار التطبيق (Push Notification):**\nقاعد ومكسّل تنزل؟ 🛋️ عجقة بيروت ما بترحم! اطلب غراضك من قريب وما تعتل همّ، هلّق منوصّلك ياهن ع باب بيتك 🛵💨",
+  "at": "2026-11-18T05:51:17.436Z"
+}

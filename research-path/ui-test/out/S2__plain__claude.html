@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>قريب | إتمام الطلب</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --primary:#0B7A5C;
+    --primary-dark:#075C45;
+    --primary-soft:#E6F3EE;
+    --accent:#F5B700;
+    --bg:#F3F5F4;
+    --card:#FFFFFF;
+    --text:#14211C;
+    --muted:#6B7A74;
+    --line:#E4E9E7;
+    --danger:#D23F3F;
+    --radius:16px;
+    --shadow:0 1px 2px rgba(20,33,28,.04),0 4px 16px rgba(20,33,28,.05);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;
+    background:var(--bg);color:var(--text);
+    font-size:15px;line-height:1.55;
+    min-height:100vh;
+  }
+  button,input{font-family:inherit;font-size:inherit;color:inherit}
+  button{cursor:pointer;border:none;background:none}
+  .num{font-feature-settings:"tnum";direction:ltr;unicode-bidi:isolate;display:inline-block}
+
+  /* Header */
+  header{
+    position:sticky;top:0;z-index:20;
+    background:rgba(255,255,255,.92);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .header-inner{
+    max-width:1080px;margin:0 auto;
+    display:flex;align-items:center;gap:12px;
+    padding:12px 16px;
+  }
+  .icon-btn{
+    width:40px;height:40px;border-radius:12px;
+    display:grid;place-items:center;background:var(--bg);
+    transition:background .15s;
+  }
+  .icon-btn:hover{background:var(--line)}
+  .header-title{flex:1}
+  .header-title h1{font-size:18px;font-weight:700;line-height:1.3}
+  .header-title p{font-size:12px;color:var(--muted)}
+  .brand{
+    font-weight:700;color:var(--primary);font-size:20px;
+    display:flex;align-items:center;gap:6px;
+  }
+  .brand-dot{width:10px;height:10px;border-radius:50%;background:var(--accent)}
+
+  /* Layout */
+  main{
+    max-width:1080px;margin:0 auto;
+    padding:16px 16px 140px;
+    display:grid;gap:14px;
+  }
+  .col{display:grid;gap:14px;align-content:start}
+
+  .card{
+    background:var(--card);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:16px;
+  }
+  .card-head{
+    display:flex;align-items:center;justify-content:space-between;
+    margin-bottom:12px;gap:8px;
+  }
+  .card-head h2{font-size:16px;font-weight:700;display:flex;align-items:center;gap:8px}
+  .card-head h2 .ic{
+    width:30px;height:30px;border-radius:9px;background:var(--primary-soft);
+    color:var(--primary);display:grid;place-items:center;flex-shrink:0;
+  }
+  .link{
+    color:var(--primary);font-weight:600;font-size:14px;
+    padding:4px 8px;border-radius:8px;
+  }
+  .link:hover{background:var(--primary-soft)}
+
+  /* Address */
+  .address{display:flex;gap:12px;align-items:flex-start}
+  .map-thumb{
+    width:64px;height:64px;border-radius:12px;flex-shrink:0;
+    background:
+      linear-gradient(90deg,transparent 46%,#fff 46%,#fff 54%,transparent 54%),
+      linear-gradient(0deg,transparent 60%,#fff 60%,#fff 66%,transparent 66%),
+      #DCEBE4;
+    position:relative;
+  }
+  .map-thumb::after{
+    content:"";position:absolute;left:50%;top:44%;
+    width:16px;height:16px;border-radius:50% 50% 50% 0;
+    background:var(--primary);transform:translate(-50%,-50%) rotate(-45deg);
+    box-shadow:0 2px 6px rgba(11,122,92,.4);
+  }
+  .address-body{flex:1;min-width:0}
+  .tag{
+    display:inline-block;font-size:12px;font-weight:600;
+    background:var(--primary-soft);color:var(--primary);
+    padding:2px 10px;border-radius:999px;margin-bottom:4px;
+  }
+  .address-line{font-weight:600}
+  .address-sub{color:var(--muted);font-size:13px}
+  .address-edit{display:none;margin-top:10px;gap:8px}
+  .address-edit.open{display:flex}
+  .address-edit input{flex:1}
+
+  /* Inputs */
+  .input{
+    height:46px;border:1.5px solid var(--line);border-radius:12px;
+    padding:0 14px;background:#fff;outline:none;width:100%;
+    transition:border-color .15s, box-shadow .15s;
+  }
+  .input:focus{border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-soft)}
+  .btn{
+    height:46px;padding:0 18px;border-radius:12px;font-weight:600;
+    background:var(--primary);color:#fff;white-space:nowrap;
+    transition:background .15s, transform .1s;
+  }
+  .btn:hover{background:var(--primary-dark)}
+  .btn:active{transform:scale(.98)}
+  .btn:disabled{background:#B8C4BF;cursor:not-allowed}
+  .btn-ghost{background:var(--bg);color:var(--text)}
+  .btn-ghost:hover{background:var(--line)}
+
+  /* Segmented */
+  .segmented{
+    display:grid;grid-template-columns:1fr 1fr;
+    background:var(--bg);border-radius:12px;padding:4px;margin-bottom:12px;
+  }
+  .segmented button{
+    height:40px;border-radius:9px;font-weight:600;color:var(--muted);
+    transition:all .15s;
+  }
+  .segmented button small{font-weight:400;font-size:12px;margin-inline-start:4px}
+  .segmented button[aria-pressed="true"]{background:#fff;color:var(--text);box-shadow:0 1px 4px rgba(0,0,0,.08)}
+
+  .slots{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+  .slot{
+    border:1.5px solid var(--line);border-radius:12px;padding:10px 8px;
+    text-align:center;font-weight:600;font-size:14px;transition:all .15s;
+    background:#fff;
+  }
+  .slot small{display:block;font-weight:400;font-size:11px;color:var(--muted)}
+  .slot:hover:not(:disabled){border-color:var(--primary)}
+  .slot[aria-pressed="true"]{border-color:var(--primary);background:var(--primary-soft);color:var(--primary-dark)}
+  .slot[aria-pressed="true"] small{color:var(--primary)}
+  .slot:disabled{opacity:.45;cursor:not-allowed;text-decoration:line-through}
+  .slot:disabled small{text-decoration:none}
+
+  /* Cart */
+  .free-ship{
+    background:linear-gradient(90deg,#FFF8E1,#FFFDF5);
+    border:1px solid #F7E3A1;border-radius:12px;
+    padding:10px 12px;font-size:13px;margin-bottom:12px;
+  }
+  .bar{height:6px;background:#F3E6BC;border-radius:99px;margin-top:6px;overflow:hidden}
+  .bar span{display:block;height:100%;background:var(--accent);border-radius:99px;transition:width .3s}
+
+  .item{display:flex;gap:12px;align-items:center;padding:12px 0;border-top:1px solid var(--line)}
+  .item:first-child{border-top:none;padding-top:0}
+  .thumb{
+    width:62px;height:62px;border-radius:12px;flex-shrink:0;
+    display:grid;place-items:center;font-size:30px;
+  }
+  .item-info{flex:1;min-width:0}
+  .item-name{font-weight:600;font-size:14px;line-height:1.4}
+  .item-desc{color:var(--muted);font-size:12px}
+  .item-price{font-weight:700;margin-top:4px;font-size:14px}
+  .item-price .unit{font-weight:400;color:var(--muted);font-size:12px}
+  .item-side{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+  .stepper{
+    display:flex;align-items:center;border:1.5px solid var(--line);
+    border-radius:10px;height:36px;overflow:hidden;
+  }
+  .stepper button{
+    width:34px;height:100%;display:grid;place-items:center;color:var(--primary);
+    font-size:18px;font-weight:600;
+  }
+  .stepper button:hover:not(:disabled){background:var(--primary-soft)}
+  .stepper button:disabled{color:#C3CCC8;cursor:not-allowed}
+  .stepper output{min-width:26px;text-align:center;font-weight:700}
+  .remove{color:var(--muted);font-size:12px;display:flex;align-items:center;gap:4px}
+  .remove:hover{color:var(--danger)}
+  .empty{text-align:center;color:var(--muted);padding:20px 0}
+
+  /* Promo */
+  .promo-row{display:flex;gap:8px}
+  .promo-row .input{text-transform:uppercase;direction:ltr;text-align:right}
+  .promo-row .input::placeholder{text-transform:none;direction:rtl}
+  .msg{font-size:13px;margin-top:8px;min-height:0}
+  .msg.err{color:var(--danger)}
+  .msg.ok{color:var(--primary)}
+  .promo-applied{
+    display:none;align-items:center;justify-content:space-between;gap:8px;
+    background:var(--primary-soft);border:1.5px dashed var(--primary);
+    border-radius:12px;padding:10px 12px;
+  }
+  .promo-applied.show{display:flex}
+  .promo-applied strong{direction:ltr;display:inline-block}
+  .hint{font-size:12px;color:var(--muted);margin-top:8px}
+  .hint code{background:var(--bg);padding:1px 6px;border-radius:6px;font-family:inherit;font-weight:600}
+
+  /* Payment */
+  .pay-list{display:grid;gap:8px}
+  .pay{
+    display:flex;align-items:center;gap:12px;
+    border:1.5px solid var(--line);border-radius:12px;padding:12px;
+    cursor:pointer;transition:all .15s;position:relative;
+  }
+  .pay:hover{border-color:#BFD9CE}
+  .pay input{position:absolute;opacity:0;pointer-events:none}
+  .pay .radio{
+    width:20px;height:20px;border-radius:50%;border:2px solid #C3CCC8;
+    flex-shrink:0;display:grid;place-items:center;transition:all .15s;
+  }
+  .pay .radio::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--primary);transform:scale(0);transition:transform .15s}
+  .pay input:checked ~ .radio{border-color:var(--primary)}
+  .pay input:checked ~ .radio::after{transform:scale(1)}
+  .pay:has(input:checked){border-color:var(--primary);background:#F7FBF9}
+  .pay input:focus-visible ~ .radio{box-shadow:0 0 0 3px var(--primary-soft)}
+  .pay-icon{
+    width:44px;height:30px;border-radius:6px;display:grid;place-items:center;
+    flex-shrink:0;font-size:12px;font-weight:700;
+  }
+  .pay-text{flex:1}
+  .pay-text b{display:block;font-size:14px;font-weight:600}
+  .pay-text span{font-size:12px;color:var(--muted)}
+
+  /* Summary */
+  .rows{display:grid;gap:10px}
+  .row{display:flex;justify-content:space-between;align-items:center;font-size:14px}
+  .row span:first-child{color:var(--muted)}
+  .row.discount span{color:var(--primary)!important;font-weight:600}
+  .row .free{color:var(--primary);font-weight:600}
+  .divider{height:1px;background:var(--line);margin:4px 0}
+  .row.total{font-size:17px;font-weight:700}
+  .row.total span:first-child{color:var(--text)}
+  .vat-note{font-size:12px;color:var(--muted)}
+  .sar{font-size:.8em;font-weight:500;margin-inline-start:3px}
+
+  /* Checkout bar */
+  .checkout-bar{
+    position:fixed;inset-inline:0;bottom:0;z-index:30;
+    background:#fff;border-top:1px solid var(--line);
+    padding:12px 16px calc(12px + env(safe-area-inset-bottom));
+    display:flex;align-items:center;gap:12px;
+    box-shadow:0 -6px 20px rgba(20,33,28,.06);
+  }
+  .bar-total{display:flex;flex-direction:column;line-height:1.3}
+  .bar-total small{font-size:12px;color:var(--muted)}
+  .bar-total strong{font-size:18px}
+  .place{
+    flex:1;height:52px;border-radius:14px;font-size:16px;font-weight:700;
+    background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;gap:8px;
+    transition:background .15s, transform .1s;
+  }
+  .place:hover{background:var(--primary-dark)}
+  .place:active{transform:scale(.98)}
+  .place:disabled{background:#B8C4BF;cursor:not-allowed}
+  .spinner{width:18px;height:18px;border:2.5px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .secure{display:none}
+
+  /* Modal */
+  .overlay{
+    position:fixed;inset:0;background:rgba(10,20,16,.5);z-index:50;
+    display:none;align-items:flex-end;justify-content:center;
+  }
+  .overlay.show{display:flex;animation:fade .2s}
+  .sheet{
+    background:#fff;width:100%;max-width:440px;border-radius:24px 24px 0 0;
+    padding:28px 20px calc(20px + env(safe-area-inset-bottom));text-align:center;
+    animation:up .3s cubic-bezier(.2,.8,.2,1);
+  }
+  .check{
+    width:72px;height:72px;border-radius:50%;background:var(--primary-soft);
+    color:var(--primary);display:grid;place-items:center;margin:0 auto 14px;
+  }
+  .sheet h3{font-size:20px;margin-bottom:6px}
+  .sheet p{color:var(--muted);font-size:14px}
+  .sheet .details{background:var(--bg);border-radius:12px;padding:12px;margin:16px 0;text-align:right;display:grid;gap:6px;font-size:14px}
+  @keyframes fade{from{opacity:0}}
+  @keyframes up{from{transform:translateY(40px);opacity:0}}
+
+  .toast{
+    position:fixed;left:50%;bottom:100px;transform:translateX(-50%) translateY(20px);
+    background:var(--text);color:#fff;padding:10px 16px;border-radius:12px;font-size:14px;
+    opacity:0;pointer-events:none;transition:all .25s;z-index:60;white-space:nowrap;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  /* Desktop */
+  @media (min-width:600px){
+    .slots{grid-template-columns:repeat(3,1fr)}
+  }
+  @media (min-width:900px){
+    main{grid-template-columns:1fr 380px;gap:20px;padding:24px 24px 48px;align-items:start}
+    .side{position:sticky;top:84px}
+    .checkout-bar{
+      position:static;box-shadow:none;border:none;padding:0;margin-top:16px;
+      flex-direction:column;align-items:stretch;background:none;
+    }
+    .bar-total{display:none}
+    .secure{display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;color:var(--muted);margin-top:4px}
+    .overlay{align-items:center}
+    .sheet{border-radius:24px}
+    .toast{bottom:32px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <button class="icon-btn" aria-label="رجوع">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+    <div class="header-title">
+      <h1>إتمام الطلب</h1>
+      <p>راجع طلبك قبل التأكيد</p>
+    </div>
+    <div class="brand"><span class="brand-dot"></span>قريب</div>
+  </div>
+</header>
+
+<main>
+  <div class="col">
+    <!-- Address -->
+    <section class="card" aria-labelledby="addr-h">
+      <div class="card-head">
+        <h2 id="addr-h"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s7-6.2 7-12a7 7 0 10-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></span>عنوان التوصيل</h2>
+        <button class="link" id="editAddr" aria-expanded="false">تعديل</button>
+      </div>
+      <div class="address">
+        <div class="map-thumb" aria-hidden="true"></div>
+        <div class="address-body">
+          <span class="tag">المنزل</span>
+          <div class="address-line" id="addrLine">حي النرجس، شارع الأمير سعود بن محمد</div>
+          <div class="address-sub">الرياض 13327 · فيلا 14 · <span class="num">+966 55 123 4567</span></div>
+        </div>
+      </div>
+      <div class="address-edit" id="addrEdit">
+        <input class="input" id="addrInput" aria-label="العنوان">
+        <button class="btn" id="saveAddr">حفظ</button>
+      </div>
+    </section>
+
+    <!-- Delivery time -->
+    <section class="card" aria-labelledby="time-h">
+      <div class="card-head">
+        <h2 id="time-h"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>وقت التوصيل</h2>
+      </div>
+      <div class="segmented" role="group" aria-label="اليوم">
+        <button type="button" data-day="today" aria-pressed="true">اليوم</button>
+        <button type="button" data-day="tomorrow" aria-pressed="false">غداً</button>
+      </div>
+      <div class="slots" id="slots" role="group" aria-label="الفترة الزمنية"></div>
+    </section>
+
+    <!-- Cart -->
+    <section class="card" aria-labelledby="cart-h">
+      <div class="card-head">
+        <h2 id="cart-h"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6L5 3H2"/><circle cx="9" cy="20" r="1.3"/><circle cx="18" cy="20" r="1.3"/></svg></span>سلة المشتريات</h2>
+        <span class="vat-note" id="itemCount"></span>
+      </div>
+      <div class="free-ship" id="freeShip"></div>
+      <div id="cart"></div>
+    </section>
+
+    <!-- Promo -->
+    <section class="card" aria-labelledby="promo-h">
+      <div class="card-head">
+        <h2 id="promo-h"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.3"/></svg></span>كود الخصم</h2>
+      </div>
+      <form class="promo-row" id="promoForm" novalidate>
+        <input class="input" id="promoInput" placeholder="أدخل كود الخصم" aria-label="كود الخصم" autocomplete="off">
+        <button class="btn" type="submit" id="applyBtn">تطبيق</button>
+      </form>
+      <div class="promo-applied" id="promoApplied">
+        <div><strong id="promoCode"></strong> · <span id="promoDesc"></span></div>
+        <button class="link" id="removePromo" style="color:var(--danger)">إزالة</button>
+      </div>
+      <div class="msg" id="promoMsg" role="status" aria-live="polite"></div>
+      <p class="hint">جرّب: <code>QAREEB10</code> لخصم 10٪ أو <code>FREEDEL</code> لتوصيل مجاني</p>
+    </section>
+
+    <!-- Payment -->
+    <section class="card" aria-labelledby="pay-h">
+      <div class="card-head">
+        <h2 id="pay-h"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19"/></svg></span>طريقة الدفع</h2>
+      </div>
+      <div class="pay-list" role="radiogroup" aria-labelledby="pay-h">
+        <label class="pay">
+          <input type="radio" name="pay" value="card" checked>
+          <span class="radio"></span>
+          <span class="pay-text"><b>بطاقة مدى / ائتمانية</b><span>تنتهي بـ <span class="num">4242</span></span></span>
+          <span class="pay-icon" style="background:#1A1F71;color:#fff">mada</span>
+        </label>
+        <label class="pay">
+          <input type="radio" name="pay" value="apple">
+          <span class="radio"></span>
+          <span class="pay-text"><b>Apple Pay</b><span>ادفع بسرعة وأمان</span></span>
+          <span class="pay-icon" style="background:#000;color:#fff">
+            <svg width="30" height="14" viewBox="0 0 60 26" fill="#fff"><path d="M11.2 3.4c-.7.8-1.8 1.5-2.9 1.4-.1-1.1.4-2.3 1.1-3C10 1 11.2.4 12.2.3c.1 1.2-.3 2.3-1 3.1zm1 1.6c-1.6-.1-3 .9-3.7.9-.8 0-1.9-.9-3.2-.8C3.7 5.1 2.2 6.1 1.4 7.6c-1.7 3-.4 7.3 1.2 9.7.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8s2.1-1.2 2.9-2.4c.9-1.3 1.3-2.6 1.3-2.7 0 0-2.5-1-2.5-3.9 0-2.4 2-3.6 2.1-3.7-1.2-1.7-2.9-1.9-3.5-2z"/><text x="20" y="18" font-size="15" font-family="Arial" font-weight="600">Pay</text></svg>
+          </span>
+        </label>
+        <label class="pay">
+          <input type="radio" name="pay" value="cod">
+          <span class="radio"></span>
+          <span class="pay-text"><b>الدفع عند الاستلام</b><span>نقداً أو بالبطاقة للمندوب</span></span>
+          <span class="pay-icon" style="background:var(--primary-soft);color:var(--primary)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/></svg>
+          </span>
+        </label>
+      </div>
+    </section>
+  </div>
+
+  <!-- Summary -->
+  <aside class="col side">
+    <section class="card" aria-labelledby="sum-h">
+      <div class="card-head"><h2 id="sum-h">ملخص الطلب</h2></div>
+      <div class="rows">
+        <div class="row"><span>المجموع الفرعي</span><span id="subtotal"></span></div>
+        <div class="row discount" id="discountRow" hidden><span>الخصم</span><span id="discount"></span></div>
+        <div class="row"><span>رسوم التوصيل</span><span id="delivery"></span></div>
+        <div class="row"><span>ضريبة القيمة المضافة (15٪)</span><span id="vat"></span></div>
+        <div class="divider"></div>
+        <div class="row total"><span>الإجمالي</span><span id="total"></span></div>
+        <div class="vat-note" id="slotNote"></div>
+      </div>
+
+      <div class="checkout-bar">
+        <div class="bar-total"><small>الإجمالي</small><strong id="barTotal"></strong></div>
+        <button class="place" id="placeBtn">تأكيد الطلب</button>
+        <div class="secure">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>
+          دفع آمن ومشفّر
+        </div>
+      </div>
+    </section>
+  </aside>
+</main>
+
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="ok-h">
+  <div class="sheet">
+    <div class="check"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+    <h3 id="ok-h">تم استلام طلبك!</h3>
+    <p>رقم الطلب <b class="num" id="orderNo"></b></p>
+    <div class="details" id="orderDetails"></div>
+    <button class="place" id="closeModal" style="width:100%">تتبّع الطلب</button>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+  const $ = id => document.getElementById(id);
+  const FREE_THRESHOLD = 100, DELIVERY_FEE = 9, VAT = 0.15;
+
+  const items = [
+    {id:1, name:'حليب المراعي كامل الدسم', desc:'2 لتر', price:11.50, qty:2, emoji:'🥛', bg:'#EAF3FB'},
+    {id:2, name:'تمر سكري القصيم فاخر', desc:'1 كجم', price:32.00, qty:1, emoji:'🌴', bg:'#FBF1E4'},
+    {id:3, name:'خبز بر أسمر من لوسين', desc:'6 قطع', price:6.75, qty:3, emoji:'🍞', bg:'#FDF5E6'}
+  ];
+
+  const slotsData = {
+    today:[
+      {t:'2:00 - 3:00 م', n:'ممتلئ', off:true},
+      {t:'4:00 - 5:00 م', n:'متاح'},
+      {t:'5:00 - 6:00 م', n:'متاح'},
+      {t:'7:00 - 8:00 م', n:'متبقي 2'},
+      {t:'8:00 - 9:00 م', n:'متاح'},
+      {t:'10:00 - 11:00 م', n:'ممتلئ', off:true}
+    ],
+    tomorrow:[
+      {t:'9:00 - 10:00 ص', n:'متاح'},
+      {t:'11:00 - 12:00 م', n:'متاح'},
+      {t:'1:00 - 2:00 م', n:'متاح'},
+      {t:'4:00 - 5:00 م', n:'متبقي 3'},
+      {t:'7:00 - 8:00 م', n:'متاح'},
+      {t:'9:00 - 10:00 م', n:'متاح'}
+    ]
+  };
+
+  const promos = {
+    QAREEB10:{type:'pct', value:.10, desc:'خصم 10٪ على المنتجات'},
+    FREEDEL:{type:'ship', desc:'توصيل مجاني'}
+  };
+
+  let state = {day:'today', slot:'4:00 - 5:00 م', promo:null};
+
+  const money = n => `<span class="num">${n.toFixed(2)}</span><span class="sar">ر.س</span>`;
+
+  function toast(msg){
+    const t = $('toast'); t.textContent = msg; t.classList.add('show');
+    clearTimeout(t._h); t._h = setTimeout(()=>t.classList.remove('show'), 2200);
+  }
+
+  /* Slots */
+  function renderSlots(){
+    $('slots').innerHTML = slotsData[state.day].map(s =>
+      `<button type="button" class="slot" ${s.off?'disabled':''} aria-pressed="${s.t===state.slot}" data-t="${s.t}">
+        <span class="num" style="direction:rtl">${s.t}</span><small>${s.n}</small>
+      </button>`).join('');
+    updateSlotNote();
+  }
+  $('slots').addEventListener('click', e=>{
+    const b = e.target.closest('.slot'); if(!b || b.disabled) return;
+    state.slot = b.dataset.t; renderSlots();
+  });
+  document.querySelectorAll('.segmented button').forEach(b=>{
+    b.addEventListener('click', ()=>{
+      state.day = b.dataset.day;
+      document.querySelectorAll('.segmented button').forEach(x=>x.setAttribute('aria-pressed', x===b));
+      const first = slotsData[state.day].find(s=>!s.off);
+      state.slot = first ? first.t : null;
+      renderSlots();
+    });
+  });
+  function updateSlotNote(){
+    $('slotNote').textContent = state.slot ? `التوصيل ${state.day==='today'?'اليوم':'غداً'} · ${state.slot}` : 'اختر وقت التوصيل';
+  }
+
+  /* Cart */
+  function renderCart(){
+    const cart = $('cart');
+    if(!items.length){
+      cart.innerHTML = '<div class="empty">سلتك فارغة 🛒</div>';
+    } else {
+      cart.innerHTML = items.map(it => `
+        <div class="item">
+          <div class="thumb" style="background:${it.bg}" aria-hidden="true">${it.emoji}</div>
+          <div class="item-info">
+            <div class="item-name">${it.name}</div>
+            <div class="item-desc">${it.desc}</div>
+            <div class="item-price">${money(it.price*it.qty)} ${it.qty>1?`<span class="unit">(${it.price.toFixed(2)} للقطعة)</span>`:''}</div>
+          </div>
+          <div class="item-side">
+            <div class="stepper">
+              <button type="button" data-act="inc" data-id="${it.id}" aria-label="زيادة الكمية" ${it.qty>=10?'disabled':''}>+</button>
+              <output class="num" aria-live="polite">${it.qty}</output>
+              <button type="button" data-act="dec" data-id="${it.id}" aria-label="تقليل الكمية" ${it.qty<=1?'disabled':''}>−</button>
+            </div>
+            <button type="button" class="remove" data-act="del" data-id="${it.id}">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg>حذف
+            </button>
+          </div>
+        </div>`).join('');
+    }
+    const count = items.reduce((a,i)=>a+i.qty,0);
+    $('itemCount').textContent = `${items.length} منتجات · ${count} قطعة`;
+    updateTotals();
+  }
+  $('cart').addEventListener('click', e=>{
+    const b = e.target.closest('button[data-act]'); if(!b) return;
+    const idx = items.findIndex(i=>i.id==b.dataset.id); if(idx<0) return;
+    const act = b.dataset.act;
+    if(act==='inc') items[idx].qty = Math.min(10, items[idx].qty+1);
+    if(act==='dec') items[idx].qty = Math.max(1, items[idx].qty-1);
+    if(act==='del'){ toast(`تم حذف ${items[idx].name}`); items.splice(idx,1); }
+    renderCart();
+  });
+
+  /* Totals */
+  function calc(){
+    const subtotal = items.reduce((a,i)=>a+i.price*i.qty,0);
+    const p = state.promo && promos[state.promo];
+    const discount = p && p.type==='pct' ? subtotal*p.value : 0;
+    let delivery = subtotal >= FREE_THRESHOLD || (p && p.type==='ship') || !items.length ? 0 : DELIVERY_FEE;
+    const vat = (subtotal - discount + delivery) * VAT;
+    return {subtotal, discount, delivery, vat, total: subtotal - discount + delivery + vat};
+  }
+  function updateTotals(){
+    const c = calc();
+    $('subtotal').innerHTML = money(c.subtotal);
+    $('discountRow').hidden = !c.discount;
+    $('discount').innerHTML = '−' + money(c.discount);
+    $('delivery').innerHTML = c.delivery ? money(c.delivery) : '<span class="free">مجاني</span>';
+    $('vat').innerHTML = money(c.vat);
+    $('total').innerHTML = money(c.total);
+    $('barTotal').innerHTML = money(c.total);
+    $('placeBtn').disabled = !items.length;
+
+    const remain = FREE_THRESHOLD - c.subtotal;
+    const pct = Math.min(100, c.subtotal/FREE_THRESHOLD*100);
+    $('freeShip').innerHTML = (remain > 0
+      ? `أضف <b>${money(remain)}</b> واحصل على <b>توصيل مجاني</b> 🚚`
+      : `🎉 مبروك! حصلت على <b>توصيل مجاني</b>`) +
+      `<div class="bar"><span style="width:${pct}%"></span></div>`;
+    $('freeShip').hidden = !items.length;
+  }
+
+  /* Promo */
+  $('promoForm').addEventListener('submit', e=>{
+    e.preventDefault();
+    const code = $('promoInput').value.trim().toUpperCase();
+    const msg = $('promoMsg');
+    if(!code){ msg.className='msg err'; msg.textContent='الرجاء إدخال كود الخصم'; return; }
+    if(!promos[code]){ msg.className='msg err'; msg.textContent='كود الخصم غير صالح أو منتهي الصلاحية'; return; }
+    state.promo = code;
+    msg.className='msg ok'; msg.textContent='تم تطبيق كود الخصم بنجاح ✓';
+    $('promoCode').textContent = code;
+    $('promoDesc').textContent = promos[code].desc;
+    $('promoForm').style.display='none';
+    $('promoApplied').classList.add('show');
+    updateTotals();
+  });
+  $('removePromo').addEventListener('click', ()=>{
+    state.promo = null;
+    $('promoApplied').classList.remove('show');
+    $('promoForm').style.display='';
+    $('promoInput').value=''; $('promoMsg').textContent='';
+    updateTotals();
+  });
+
+  /* Address */
+  $('editAddr').addEventListener('click', ()=>{
+    const box = $('addrEdit'), open = !box.classList.contains('open');
+    box.classList.toggle('open', open);
+    $('editAddr').setAttribute('aria-expanded', open);
+    $('editAddr').textContent = open ? 'إلغاء' : 'تعديل';
+    if(open){ $('addrInput').value = $('addrLine').textContent; $('addrInput').focus(); }
+  });
+  $('saveAddr').addEventListener('click', ()=>{
+    const v = $('addrInput').value.trim();
+    if(v) $('addrLine').textContent = v;
+    $('editAddr').click();
+    toast('تم تحديث العنوان');
+  });
+
+  /* Place order */
+  $('placeBtn').addEventListener('click', ()=>{
+    if(!state.slot){ toast('الرجاء اختيار وقت التوصيل'); return; }
+    const btn = $('placeBtn');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span> جاري تأكيد الطلب...';
+    setTimeout(()=>{
+      const c = calc();
+      const payLabels = {card:'بطاقة تنتهي بـ 4242', apple:'Apple Pay', cod:'الدفع عند الاستلام'};
+      const pay = document.querySelector('input[name="pay"]:checked').value;
+      $('orderNo').textContent = '#QR-' + Math.floor(100000 + Math.random()*900000);
+      $('orderDetails').innerHTML = `
+        <div class="row"><span>موعد التوصيل</span><span>${state.day==='today'?'اليوم':'غداً'} · ${state.slot}</span></div>
+        <div class="row"><span>طريقة الدفع</span><span>${payLabels[pay]}</span></div>
+        <div class="row total"><span>الإجمالي</span><span>${money(c.total)}</span></div>`;
+      $('overlay').classList.add('show');
+      $('closeModal').focus();
+      btn.disabled = false;
+      btn.textContent = 'تأكيد الطلب';
+    }, 1200);
+  });
+  $('closeModal').addEventListener('click', ()=>$('overlay').classList.remove('show'));
+  $('overlay').addEventListener('click', e=>{ if(e.target.id==='overlay') $('overlay').classList.remove('show'); });
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape') $('overlay').classList.remove('show'); });
+
+  renderSlots();
+  renderCart();
+</script>
+</body>
+</html>

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الفواكه | قريب</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#0f8a5f;
+    --green-dark:#0a6b49;
+    --green-soft:#e7f5ee;
+    --red:#e5484d;
+    --ink:#1b1f23;
+    --muted:#6b7280;
+    --line:#e6e8eb;
+    --bg:#f6f7f8;
+    --card:#ffffff;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  button,input{font:inherit;color:inherit}
+  button{cursor:pointer}
+  a{color:inherit;text-decoration:none}
+  .container{max-width:1240px;margin:0 auto;padding:0 16px}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+  /* Header */
+  header{
+    background:#fff;
+    border-bottom:1px solid var(--line);
+    position:sticky;top:0;z-index:30;
+  }
+  .header-inner{
+    display:grid;
+    grid-template-columns:1fr auto;
+    grid-template-areas:"logo cart" "search search";
+    gap:12px;
+    padding-top:12px;padding-bottom:12px;
+    align-items:center;
+  }
+  .logo{grid-area:logo;display:flex;align-items:center;gap:8px;font-weight:700;font-size:22px;color:var(--green)}
+  .logo-mark{
+    width:36px;height:36px;border-radius:10px;background:var(--green);
+    display:grid;place-items:center;color:#fff;
+  }
+  .search{grid-area:search;position:relative}
+  .search input{
+    width:100%;height:46px;border:1.5px solid var(--line);border-radius:12px;
+    background:var(--bg);padding:0 46px 0 14px;font-size:15px;outline:none;transition:.2s;
+  }
+  .search input:focus{border-color:var(--green);background:#fff;box-shadow:0 0 0 4px var(--green-soft)}
+  .search svg{position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}
+  .cart-btn{
+    grid-area:cart;position:relative;width:46px;height:46px;border-radius:12px;
+    border:1.5px solid var(--line);background:#fff;display:grid;place-items:center;transition:.2s;
+  }
+  .cart-btn:hover{border-color:var(--green);color:var(--green)}
+  .badge{
+    position:absolute;top:-7px;left:-7px;min-width:22px;height:22px;padding:0 6px;border-radius:11px;
+    background:var(--red);color:#fff;font-size:12px;font-weight:700;display:grid;place-items:center;
+    border:2px solid #fff;
+  }
+  .badge.bump{animation:bump .4s ease}
+  @keyframes bump{40%{transform:scale(1.35)}}
+
+  /* Breadcrumbs */
+  .breadcrumbs{padding:14px 0 6px;font-size:13px;color:var(--muted)}
+  .breadcrumbs ol{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+  .breadcrumbs li{display:flex;align-items:center;gap:6px}
+  .breadcrumbs a:hover{color:var(--green)}
+  .breadcrumbs [aria-current]{color:var(--ink);font-weight:600}
+
+  .page-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:6px 0 14px}
+  .page-head h1{font-size:22px;font-weight:700}
+  .page-head p{font-size:13px;color:var(--muted)}
+  .filter-toggle{
+    display:inline-flex;align-items:center;gap:6px;height:40px;padding:0 14px;border-radius:10px;
+    border:1.5px solid var(--line);background:#fff;font-size:14px;font-weight:600;
+  }
+
+  /* Layout */
+  .layout{display:block;padding-bottom:40px}
+
+  /* Sidebar */
+  .sidebar{
+    position:fixed;inset:0 0 0 auto;width:min(320px,86vw);background:#fff;z-index:50;
+    transform:translateX(100%);transition:transform .3s ease;overflow-y:auto;padding:18px;
+    box-shadow:-10px 0 30px rgba(0,0,0,.08);
+  }
+  .sidebar.open{transform:none}
+  .overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:40;opacity:0;pointer-events:none;transition:.3s}
+  .overlay.show{opacity:1;pointer-events:auto}
+  .sidebar-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+  .sidebar-head h2{font-size:18px}
+  .close-btn{width:36px;height:36px;border-radius:10px;border:none;background:var(--bg);font-size:20px}
+  .filter-group{padding:16px 0;border-top:1px solid var(--line)}
+  .filter-group h3{font-size:15px;margin-bottom:12px}
+  .price-inputs{display:flex;gap:8px;align-items:center;margin-bottom:14px}
+  .price-inputs label{flex:1;font-size:12px;color:var(--muted)}
+  .price-inputs input{
+    width:100%;height:40px;border:1.5px solid var(--line);border-radius:10px;padding:0 10px;margin-top:4px;
+    font-size:14px;outline:none;color:var(--ink);
+  }
+  .price-inputs input:focus{border-color:var(--green)}
+  input[type=range]{width:100%;accent-color:var(--green)}
+  .range-labels{display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}
+  .check{display:flex;align-items:center;gap:10px;padding:7px 0;font-size:14px;cursor:pointer}
+  .check input{width:18px;height:18px;accent-color:var(--green)}
+  .check .count{margin-inline-start:auto;color:var(--muted);font-size:12px;background:var(--bg);padding:1px 8px;border-radius:20px}
+  .reset-btn{
+    width:100%;height:42px;border-radius:10px;border:1.5px solid var(--line);background:#fff;font-weight:600;margin-top:6px;
+  }
+  .reset-btn:hover{border-color:var(--green);color:var(--green)}
+
+  /* Grid */
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:10px;display:flex;flex-direction:column;position:relative;transition:.2s;
+  }
+  .card:hover{box-shadow:0 8px 24px rgba(16,24,40,.08);transform:translateY(-2px)}
+  .discount{
+    position:absolute;top:16px;right:16px;background:var(--red);color:#fff;font-size:12px;font-weight:700;
+    padding:2px 8px;border-radius:8px;z-index:1;
+  }
+  .thumb{
+    aspect-ratio:1;border-radius:10px;display:grid;place-items:center;margin-bottom:10px;
+    font-size:52px;position:relative;overflow:hidden;
+  }
+  .thumb::after{
+    content:"";position:absolute;inset:0;
+    background:repeating-linear-gradient(45deg,rgba(255,255,255,.18) 0 10px,transparent 10px 20px);
+  }
+  .brand{font-size:11px;color:var(--muted)}
+  .name{font-size:14px;font-weight:600;margin:2px 0;line-height:1.4;min-height:2.8em}
+  .weight{font-size:12px;color:var(--muted);margin-bottom:8px}
+  .prices{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;margin-bottom:10px;margin-top:auto}
+  .price{font-size:17px;font-weight:700;color:var(--green-dark)}
+  .price small{font-size:11px;font-weight:500}
+  .old{font-size:12px;color:var(--muted);text-decoration:line-through}
+  .add-btn{
+    height:40px;border:none;border-radius:10px;background:var(--green);color:#fff;font-weight:600;font-size:14px;
+    display:flex;align-items:center;justify-content:center;gap:6px;transition:.2s;
+  }
+  .add-btn:hover{background:var(--green-dark)}
+  .add-btn.added{background:var(--green-soft);color:var(--green-dark)}
+  .empty{grid-column:1/-1;text-align:center;padding:48px 16px;background:#fff;border-radius:var(--radius);border:1px dashed var(--line);color:var(--muted)}
+  .empty strong{display:block;color:var(--ink);font-size:16px;margin-bottom:4px}
+
+  /* Pagination */
+  .pagination{display:flex;justify-content:center;align-items:center;gap:6px;margin-top:28px;flex-wrap:wrap}
+  .pagination button{
+    min-width:40px;height:40px;padding:0 12px;border-radius:10px;border:1.5px solid var(--line);background:#fff;
+    font-weight:600;font-size:14px;display:inline-flex;align-items:center;gap:4px;
+  }
+  .pagination button:hover:not(:disabled){border-color:var(--green);color:var(--green)}
+  .pagination button[aria-current="page"]{background:var(--green);border-color:var(--green);color:#fff}
+  .pagination button:disabled{opacity:.4;cursor:not-allowed}
+
+  .toast{
+    position:fixed;bottom:20px;left:50%;transform:translate(-50%,120px);background:var(--ink);color:#fff;
+    padding:10px 18px;border-radius:12px;font-size:14px;transition:.3s;z-index:60;white-space:nowrap;
+  }
+  .toast.show{transform:translate(-50%,0)}
+
+  :focus-visible{outline:2px solid var(--green);outline-offset:2px}
+
+  @media (min-width:640px){
+    .grid{grid-template-columns:repeat(3,1fr);gap:16px}
+  }
+  @media (min-width:900px){
+    .header-inner{grid-template-columns:auto 1fr auto;grid-template-areas:"logo search cart";gap:24px}
+    .search{max-width:560px;width:100%;justify-self:center}
+    .filter-toggle,.close-btn,.overlay{display:none}
+    .layout{display:grid;grid-template-columns:260px 1fr;gap:24px;align-items:start}
+    .sidebar{
+      position:sticky;top:94px;transform:none;width:auto;box-shadow:none;border:1px solid var(--line);
+      border-radius:var(--radius);z-index:1;
+    }
+    .page-head h1{font-size:26px}
+  }
+  @media (min-width:1100px){
+    .grid{grid-template-columns:repeat(4,1fr)}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a href="#" class="logo" aria-label="قريب - الصفحة الرئيسية">
+      <span class="logo-mark">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+      </span>
+      قريب
+    </a>
+    <form class="search" role="search" onsubmit="event.preventDefault()">
+      <label for="q" class="sr-only">ابحث عن المنتجات</label>
+      <input id="q" type="search" placeholder="ابحث عن فواكه، خضار، ومنتجات أخرى...">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    </form>
+    <button class="cart-btn" aria-label="سلة التسوق">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.6 12.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.5L21.5 8H6"/></svg>
+      <span class="badge" id="cartCount" aria-live="polite">3</span>
+    </button>
+  </div>
+</header>
+
+<main class="container">
+  <nav class="breadcrumbs" aria-label="مسار التنقل">
+    <ol>
+      <li><a href="#">الرئيسية</a><span aria-hidden="true">‹</span></li>
+      <li><a href="#">الفواكه والخضروات</a><span aria-hidden="true">‹</span></li>
+      <li><span aria-current="page">الفواكه</span></li>
+    </ol>
+  </nav>
+
+  <div class="page-head">
+    <div>
+      <h1>الفواكه</h1>
+      <p id="resultCount">عرض 8 منتجات</p>
+    </div>
+    <button class="filter-toggle" id="openFilters" aria-controls="sidebar" aria-expanded="false">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+      تصفية
+    </button>
+  </div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar" aria-label="عوامل التصفية">
+      <div class="sidebar-head">
+        <h2>تصفية النتائج</h2>
+        <button class="close-btn" id="closeFilters" aria-label="إغلاق">×</button>
+      </div>
+
+      <div class="filter-group">
+        <h3>نطاق السعر (ر.س)</h3>
+        <div class="price-inputs">
+          <label>من<input type="number" id="minPrice" value="0" min="0" max="50" inputmode="numeric"></label>
+          <label>إلى<input type="number" id="maxPrice" value="50" min="0" max="50" inputmode="numeric"></label>
+        </div>
+        <input type="range" id="priceRange" min="0" max="50" value="50" aria-label="الحد الأعلى للسعر">
+        <div class="range-labels"><span>0 ر.س</span><span>50 ر.س</span></div>
+      </div>
+
+      <div class="filter-group">
+        <h3>العلامة التجارية</h3>
+        <div id="brandList"></div>
+      </div>
+
+      <button class="reset-btn" id="resetFilters">إعادة تعيين الفلاتر</button>
+    </aside>
+
+    <section aria-label="قائمة المنتجات">
+      <div class="grid" id="grid"></div>
+      <nav class="pagination" aria-label="ترقيم الصفحات" id="pagination"></nav>
+    </section>
+  </div>
+</main>
+
+<div class="overlay" id="overlay"></div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const products = [
+  {name:"تفاح أحمر فاخر", brand:"مزارع قريب", weight:"1 كجم", price:9.5, old:12.95, emoji:"🍎", bg:"#fde2e2"},
+  {name:"موز إكوادوري", brand:"الوادي الأخضر", weight:"1 كجم", price:6.25, old:7.5, emoji:"🍌", bg:"#fff4c7"},
+  {name:"برتقال أبو صرة", brand:"نضرة", weight:"2 كجم", price:11, old:14.5, emoji:"🍊", bg:"#ffe6cc"},
+  {name:"عنب أحمر بدون بذور", brand:"بستان", weight:"500 جم", price:13.75, old:16, emoji:"🍇", bg:"#ece3f7"},
+  {name:"فراولة طازجة", brand:"مزارع قريب", weight:"250 جم", price:8.95, old:11.5, emoji:"🍓", bg:"#ffe0e6"},
+  {name:"مانجو هندي", brand:"نضرة", weight:"1 كجم", price:18.5, old:24, emoji:"🥭", bg:"#ffefc9"},
+  {name:"رمان طائفي", brand:"بستان", weight:"1 كجم", price:15, old:19.95, emoji:"🍎", bg:"#f9d9dc"},
+  {name:"كيوي أخضر", brand:"الوادي الأخضر", weight:"500 جم", price:7.25, old:9, emoji:"🥝", bg:"#e3f3d6"},
+];
+const brands = [...new Set(products.map(p=>p.brand))];
+const totalPages = 3;
+let page = 1, cart = 3;
+
+const $ = id => document.getElementById(id);
+const grid = $("grid"), minI = $("minPrice"), maxI = $("maxPrice"), range = $("priceRange");
+
+$("brandList").innerHTML = brands.map(b=>`
+  <label class="check"><input type="checkbox" value="${b}"> ${b}
+  <span class="count">${products.filter(p=>p.brand===b).length}</span></label>`).join("");
+
+const fmt = n => n.toFixed(2);
+
+function render(){
+  const min = +minI.value || 0, max = maxI.value === "" ? 50 : +maxI.value;
+  const checked = [...document.querySelectorAll("#brandList input:checked")].map(c=>c.value);
+  const q = $("q").value.trim();
+  // rotate list per page to simulate different pages
+  const off = ((page-1)*3) % products.length;
+  const list = [...products.slice(off), ...products.slice(0,off)].filter(p =>
+    p.price >= min && p.price <= max &&
+    (!checked.length || checked.includes(p.brand)) &&
+    (!q || p.name.includes(q) || p.brand.includes(q))
+  );
+  $("resultCount").textContent = list.length ? `عرض ${list.length} منتجات` : "لا توجد نتائج";
+  grid.innerHTML = list.length ? list.map(p=>{
+    const d = Math.round((1 - p.price/p.old)*100);
+    return `<article class="card">
+      <span class="discount">-${d}%</span>
+      <div class="thumb" style="background:${p.bg}" role="img" aria-label="صورة ${p.name}">${p.emoji}</div>
+      <span class="brand">${p.brand}</span>
+      <h3 class="name">${p.name}</h3>
+      <span class="weight">${p.weight}</span>
+      <div class="prices">
+        <span class="price">${fmt(p.price)} <small>ر.س</small></span>
+        <span class="old"><span class="sr-only">السعر السابق </span>${fmt(p.old)} ر.س</span>
+      </div>
+      <button class="add-btn" data-name="${p.name}">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        أضف للسلة
+      </button>
+    </article>`;
+  }).join("") : `<div class="empty"><strong>لا توجد منتجات مطابقة</strong>جرّب تعديل نطاق السعر أو العلامات التجارية.</div>`;
+  renderPagination();
+}
+
+function renderPagination(){
+  let html = `<button data-p="${page-1}" ${page===1?"disabled":""}>› السابق</button>`;
+  for(let i=1;i<=totalPages;i++) html += `<button data-p="${i}" ${i===page?'aria-current="page"':""}>${i}</button>`;
+  html += `<button data-p="${page+1}" ${page===totalPages?"disabled":""}>التالي ‹</button>`;
+  $("pagination").innerHTML = html;
+}
+
+$("pagination").addEventListener("click", e=>{
+  const b = e.target.closest("button");
+  if(!b || b.disabled) return;
+  page = +b.dataset.p; render();
+  window.scrollTo({top:0,behavior:"smooth"});
+});
+
+let toastTimer;
+grid.addEventListener("click", e=>{
+  const b = e.target.closest(".add-btn");
+  if(!b) return;
+  cart++;
+  const badge = $("cartCount");
+  badge.textContent = cart;
+  badge.classList.remove("bump"); void badge.offsetWidth; badge.classList.add("bump");
+  b.classList.add("added"); b.innerHTML = "✓ تمت الإضافة";
+  setTimeout(()=>{ b.classList.remove("added");
+    b.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg> أضف للسلة'; },1400);
+  const t = $("toast"); t.textContent = `أُضيف «${b.dataset.name}» إلى السلة`;
+  t.classList.add("show"); clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove("show"),1800);
+});
+
+range.addEventListener("input", ()=>{ maxI.value = range.value; render(); });
+maxI.addEventListener("input", ()=>{ range.value = maxI.value || 50; render(); });
+minI.addEventListener("input", render);
+$("brandList").addEventListener("change", render);
+$("q").addEventListener("input", render);
+$("resetFilters").addEventListener("click", ()=>{
+  minI.value = 0; maxI.value = 50; range.value = 50;
+  document.querySelectorAll("#brandList input").forEach(c=>c.checked=false);
+  render();
+});
+
+const sidebar = $("sidebar"), overlay = $("overlay"), openBtn = $("openFilters");
+function toggle(open){
+  sidebar.classList.toggle("open",open); overlay.classList.toggle("show",open);
+  openBtn.setAttribute("aria-expanded",open);
+  document.body.style.overflow = open ? "hidden" : "";
+}
+openBtn.addEventListener("click",()=>toggle(true));
+$("closeFilters").addEventListener("click",()=>toggle(false));
+overlay.addEventListener("click",()=>toggle(false));
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") toggle(false); });
+
+render();
+</script>
+</body>
+</html>

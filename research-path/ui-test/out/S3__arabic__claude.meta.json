@@ -1,0 +1,9 @@
+{
+  "screen": "S3",
+  "cond": "arabic",
+  "model": "claude",
+  "model_id": "anthropic/claude-opus-5.5",
+  "raw_chars": 22114,
+  "complete": true,
+  "at": "2026-11-18T05:57:38.093Z"
+}

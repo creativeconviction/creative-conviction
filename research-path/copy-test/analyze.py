@@ -95,7 +95,7 @@ if B:
         for c in cities:
             g = [r for r in B if r["prompt_lang"] == l and r["city"] == c]
             fc = sum(r["detected_region"] == r["target_region"] for r in g)
-            fp = sum(r["prompt_region"] and r["detected_region"] == r["prompt_region"] and r["prompt_region"] != r["target_region"] for r in g)
+            fp = sum(bool(r["prompt_region"]) and r["detected_region"] == r["prompt_region"] and r["prompt_region"] != r["target_region"] for r in g)
             ms = sum(r["detected_region"] == "MSA" for r in g)
             cells.append(f"{pct(fc, len(g))} / {pct(fp, len(g))} / {pct(ms, len(g))}")
         md.append(f"| {l} | " + " | ".join(cells) + " |")

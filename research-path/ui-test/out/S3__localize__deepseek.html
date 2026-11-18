@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>فواكه | قريب</title>
+  <style>
+    :root {
+      --green: #168a54;
+      --green-dark: #0d6b3d;
+      --green-light: #e9f7ef;
+      --orange: #ff8a34;
+      --text: #1d2923;
+      --muted: #6b756f;
+      --line: #e2e8e4;
+      --surface: #ffffff;
+      --background: #f7f9f7;
+      --shadow: 0 8px 24px rgba(19, 65, 41, 0.08);
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background: var(--background);
+      font-family: Tajawal, Almarai, Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button,
+    label,
+    input[type="checkbox"],
+    input[type="range"] {
+      cursor: pointer;
+    }
+
+    button:focus-visible,
+    input:focus-visible,
+    a:focus-visible {
+      outline: 3px solid rgba(22, 138, 84, 0.25);
+      outline-offset: 2px;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+
+    .header-inner {
+      width: min(1180px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 12px 0;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 11px 14px;
+      align-items: center;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--green-dark);
+      text-decoration: none;
+      font-size: 23px;
+      font-weight: 800;
+      letter-spacing: -0.7px;
+    }
+
+    .logo-mark {
+      position: relative;
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: var(--green);
+      border-radius: 10px 10px 4px 10px;
+      box-shadow: 0 5px 12px rgba(22, 138, 84, 0.22);
+    }
+
+    .logo-mark::after {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border: 3px solid currentColor;
+      border-radius: 50%;
+    }
+
+    .search {
+      grid-column: 1 / -1;
+      position: relative;
+    }
+
+    .search svg {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      width: 19px;
+      height: 19px;
+      color: #79847d;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    .search input {
+      width: 100%;
+      height: 45px;
+      padding: 0 43px 0 16px;
+      color: var(--text);
+      background: #f4f7f5;
+      border: 1px solid transparent;
+      border-radius: 12px;
+      outline: none;
+      transition: 0.2s ease;
+    }
+
+    .search input:focus {
+      background: #fff;
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(22, 138, 84, 0.1);
+    }
+
+    .cart-button {
+      position: relative;
+      width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      color: var(--text);
+      background: var(--green-light);
+      border: 0;
+      border-radius: 12px;
+    }
+
+    .cart-button svg {
+      width: 21px;
+      height: 21px;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      min-width: 20px;
+      height: 20px;
+      padding: 0 5px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: var(--orange);
+      border: 2px solid #fff;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 18px 0 42px;
+    }
+
+    .breadcrumbs {
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      overflow-x: auto;
+      color: var(--muted);
+      font-size: 12px;
+      white-space: nowrap;
+      scrollbar-width: none;
+    }
+
+    .breadcrumbs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .breadcrumbs a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .breadcrumbs a:hover {
+      color: var(--green);
+    }
+
+    .breadcrumbs svg {
+      width: 13px;
+      flex: 0 0 auto;
+    }
+
+    .breadcrumbs span:last-child {
+      color: var(--green-dark);
+      font-weight: 700;
+    }
+
+    .page-heading {
+      margin-bottom: 17px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 12px;
+    }
+
+    .page-heading h1 {
+      margin: 0;
+      font-size: 25px;
+      line-height: 1.15;
+      letter-spacing: -0.7px;
+    }
+
+    .page-heading p {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .filter-toggle {
+      flex: 0 0 auto;
+      height: 40px;
+      padding: 0 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--green-dark);
+      background: var(--green-light);
+      border: 0;
+      border-radius: 11px;
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .filter-toggle svg {
+      width: 17px;
+    }
+
+    .catalog-layout {
+      display: grid;
+      gap: 18px;
+    }
+
+    .filters {
+      display: none;
+      padding: 19px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .filters.open {
+      display: block;
+    }
+
+    .filters-header {
+      padding-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .filters-header h2 {
+      margin: 0;
+      font-size: 17px;
+    }
+
+    .reset-button {
+      padding: 3px;
+      color: var(--green);
+      background: none;
+      border: 0;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .filter-section {
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .filter-section:last-child {
+      padding-bottom: 0;
+      border: 0;
+    }
+
+    .filter-section h3 {
+      margin: 0 0 14px;
+      font-size: 14px;
+    }
+
+    .price-values {
+      margin-bottom: 9px;
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 650;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      height: 5px;
+      accent-color: var(--green);
+    }
+
+    .checkbox-list {
+      display: grid;
+      gap: 11px;
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #465149;
+      font-size: 13px;
+    }
+
+    .checkbox-row input {
+      width: 17px;
+      height: 17px;
+      margin: 0;
+      accent-color: var(--green);
+    }
+
+    .checkbox-row .amount {
+      margin-right: auto;
+      color: #98a19b;
+      font-size: 11px;
+    }
+
+    .results {
+      min-width: 0;
+    }
+
+    .results-bar {
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .results-bar strong {
+      color: var(--text);
+    }
+
+    .sort-select {
+      padding: 7px 9px 7px 25px;
+      color: #546058;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      font-size: 11px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .product-card {
+      position: relative;
+      min-width: 0;
+      padding: 9px;
+      display: flex;
+      flex-direction: column;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      box-shadow: 0 4px 16px rgba(26, 63, 43, 0.045);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .discount-badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      z-index: 2;
+      padding: 4px 7px;
+      color: #fff;
+      background: var(--orange);
+      border-radius: 7px;
+      font-size: 9px;
+      font-weight: 800;
+    }
+
+    .favorite {
+      position: absolute;
+      top: 13px;
+      left: 13px;
+      z-index: 2;
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      color: #829087;
+      background: rgba(255, 255, 255, 0.9);
+      border: 0;
+      border-radius: 50%;
+    }
+
+    .favorite svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .product-image {
+      height: 122px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: linear-gradient(145deg, #f3f8f3, #e8f2e9);
+      border-radius: 11px;
+    }
+
+    .product-image span {
+      filter: drop-shadow(0 10px 8px rgba(34, 73, 46, 0.16));
+      font-size: 61px;
+      transform: translateY(2px);
+      transition: transform 0.25s ease;
+    }
+
+    .product-card:hover .product-image span {
+      transform: translateY(0) scale(1.06) rotate(2deg);
+    }
+
+    .product-info {
+      padding: 11px 2px 2px;
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+    }
+
+    .product-name {
+      margin: 0;
+      overflow: hidden;
+      font-size: 13px;
+      font-weight: 750;
+      line-height: 1.35;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .weight {
+      margin: 4px 0 9px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .price-row {
+      margin-top: auto;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .price {
+      color: var(--green-dark);
+      font-size: 15px;
+      font-weight: 850;
+    }
+
+    .old-price {
+      color: #9ba39e;
+      font-size: 10px;
+      text-decoration: line-through;
+    }
+
+    .add-button {
+      width: 100%;
+      min-height: 36px;
+      margin-top: 10px;
+      padding: 7px 5px;
+      color: var(--green);
+      background: var(--green-light);
+      border: 1px solid rgba(22, 138, 84, 0.15);
+      border-radius: 9px;
+      font-size: 11px;
+      font-weight: 800;
+      transition: 0.2s ease;
+    }
+
+    .add-button:hover {
+      color: #fff;
+      background: var(--green);
+      border-color: var(--green);
+    }
+
+    .add-button.added {
+      color: #fff;
+      background: var(--green);
+      border-color: var(--green);
+    }
+
+    .pagination {
+      margin-top: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .page-button {
+      height: 38px;
+      min-width: 38px;
+      padding: 0 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      color: #4e5b52;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .page-button.active {
+      color: #fff;
+      background: var(--green);
+      border-color: var(--green);
+    }
+
+    .page-button:disabled {
+      color: #abb2ad;
+      background: #f2f4f2;
+      cursor: not-allowed;
+    }
+
+    .page-button svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .page-label {
+      display: none;
+    }
+
+    @media (min-width: 700px) {
+      .header-inner {
+        grid-template-columns: auto minmax(280px, 1fr) auto;
+        padding: 14px 0;
+      }
+
+      .search {
+        grid-column: auto;
+        max-width: 650px;
+        width: 100%;
+        justify-self: center;
+      }
+
+      .page {
+        padding-top: 25px;
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .product-card {
+        padding: 11px;
+      }
+
+      .product-image {
+        height: 155px;
+      }
+
+      .product-name {
+        font-size: 14px;
+      }
+
+      .page-label {
+        display: inline;
+      }
+    }
+
+    @media (min-width: 940px) {
+      .page-heading h1 {
+        font-size: 30px;
+      }
+
+      .filter-toggle {
+        display: none;
+      }
+
+      .catalog-layout {
+        grid-template-columns: 220px minmax(0, 1fr);
+        gap: 24px;
+        align-items: start;
+      }
+
+      .filters {
+        display: block;
+        position: sticky;
+        top: 91px;
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .product-image {
+        height: 165px;
+      }
+
+      .product-image span {
+        font-size: 73px;
+      }
+
+      .add-button {
+        min-height: 39px;
+        font-size: 12px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .page,
+      .header-inner {
+        width: min(100% - 20px, 1180px);
+      }
+
+      .product-grid {
+        gap: 8px;
+      }
+
+      .product-image {
+        height: 112px;
+      }
+
+      .product-image span {
+        font-size: 54px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#" class="logo" aria-label="الرئيسية - قريب">
+        <span class="logo-mark" aria-hidden="true"></span>
+        <span>Qareeb</span>
+      </a>
+
+      <div class="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"></circle>
+          <path d="m20 20-4-4"></path>
+        </svg>
+        <input type="search" aria-label="البحث عن منتجات" placeholder="ابحث عن منتجات طازجة...">
+      </div>
+
+      <button class="cart-button" type="button" aria-label="فتح السلة، منتجان">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true">
+          <path d="M3 4h2l2.2 10.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 2-1.6L20.5 8H6.1"></path>
+          <circle cx="9.5" cy="20" r="1.2"></circle>
+          <circle cx="17.5" cy="20" r="1.2"></circle>
+        </svg>
+        <span class="cart-count" id="cartCount">2</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="page">
+    <nav class="breadcrumbs" aria-label="مسار التنقل">
+      <a href="#">الرئيسية</a>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="m15 18-6-6 6-6"></path>
+      </svg>
+      <a href="#">فواكه وخضروات</a>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="m15 18-6-6 6-6"></path>
+      </svg>
+      <span aria-current="page">فواكه</span>
+    </nav>
+
+    <div class="page-heading">
+      <div>
+        <h1>فواكه طازجة</h1>
+        <p>نضارة مختارة بعناية، تصلك إلى باب منزلك.</p>
+      </div>
+      <button class="filter-toggle" id="filterToggle" type="button" aria-expanded="false" aria-controls="filters">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M4 6h16M7 12h10M10 18h4"></path>
+        </svg>
+        تصفية
+      </button>
+    </div>
+
+    <div class="catalog-layout">
+      <aside class="filters" id="filters" aria-label="تصفية المنتجات">
+        <div class="filters-header">
+          <h2>تصفية</h2>
+          <button class="reset-button" id="resetFilters" type="button">إعادة ضبط الكل</button>
+        </div>
+
+        <section class="filter-section">
+          <h3>نطاق السعر</h3>
+          <div class="price-values">
+            <span>0 ر.س</span>
+            <span id="priceValue">25 ر.س</span>
+          </div>
+          <input id="priceRange" type="range" min="5" max="50" value="25" aria-label="السعر الأقصى">
+        </section>
+
+        <section class="filter-section">
+          <h3>العلامة التجارية</h3>
+          <div class="checkbox-list">
+            <label class="checkbox-row">
+              <input type="checkbox" checked>
+              <span>مزارع طازجة</span>
+              <span class="amount">12</span>
+            </label>
+            <label class="checkbox-row">
+              <input type="checkbox">
+              <span>سلة الطبيعة</span>
+              <span class="amount">8</span>
+            </label>
+            <label class="checkbox-row">
+              <input type="checkbox">
+              <span>الوادي الأخضر</span>
+              <span class="amount">6</span>
+            </label>
+            <label class="checkbox-row">
+              <input type="checkbox">
+              <span>جذور عضوية</span>
+              <span class="amount">5</span>
+            </label>
+          </div>
+        </section>
+      </aside>
+
+      <section class="results" aria-label="منتجات الفواكه">
+        <div class="results-bar">
+          <span>عرض <strong>8</strong> من 31 منتج</span>
+          <select class="sort-select" aria-label="ترتيب المنتجات">
+            <option>الأكثر شيوعاً</option>
+            <option>السعر: من الأقل إلى الأعلى</option>
+            <option>السعر: من الأعلى إلى الأقل</option>
+            <option>الأحدث</option>
+          </select>
+        </div>
+
+        <div class="product-grid">
+          <article class="product-card">
+            <span class="discount-badge">خصم 20%</span>
+            <button class="favorite" type="button" aria-label="إضافة تفاح جالا إلى المفضلة">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"></path></svg>
+            </button>
+            <div class="product-image" role="img" aria-label="تفاح جالا"><span>🍎</span></div>
+            <div class="product-info">
+              <h2 class="product-name">تفاح جالا</h2>
+              <p class="weight">عبوة 1 كجم</p>
+              <div class="price-row">
+                <span class="price">3.99 ر.س</span>
+                <span class="old-price">4.99 ر.س</span>
+              </div>
+              <button class="add-button" type="button">+ أضف إلى السلة</button>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <span class="discount-badge">خصم 15%</span>
+            <button class="favorite" type="button" aria-label="إضافة موز حلو إلى المفضلة">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"></path></svg>
+            </button>
+            <div class="product-image" role="img" aria-label="موز"><span>🍌</span></div>
+            <div class="product-info">
+              <h2 class="product-name">موز حلو</h2>
+              <p class="weight">6 حبات</p>
+              <div class="price-row">
+                <span class="price">2.49 ر.س</span>
+                <span class="old-price">2.95 ر.س</span>
+              </div>
+              <button class="add-button" type="button">+ أضف إلى السلة</button>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <span class="discount-badge">خصم 18%</span>
+            <button class="favorite" type="button" aria-label="إضافة برتقال أبو سرة إلى المفضلة">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"></path></svg>
+            </button>
+            <div class="product-image" role="img" aria-label="برتقال أبو سرة"><span>🍊</span></div>
+            <div class="product-info">
+              <h2 class="product-name">برتقال أبو سرة</h2>
+              <p class="weight">عبوة 1 كجم</p>
+              <div class="price-row">
+                <span class="price">4.49 ر.س</span>
+                <span class="old-price">5.49 ر.س</span>
+              </div>
+              <button class="add-button" type="button">+ أضف إلى السلة</button>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <span class="discount-badge">خصم 25%</span>
+            <button class="favorite" type="button" aria-label="إضافة فراولة طازجة إلى المفضلة">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"></path></svg>
+            </button>
+            <div class="product-image" role="img" aria-label="فراولة"><span>🍓</span></div>
+            <div class="product-info">
+              <h2 class="product-name">فراولة طازجة</h2>
+              <p class="weight">علبة 250 جم</p>
+              <div class="price-row">
+                <span class="price">3.75 ر.س</span>
+                <span class="old-price">4.99 ر.س</span>
+              </div>
+              <button class="add-button" type="button">+ أضف إلى السلة</button>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <span class="discount-badge">خصم 12%</span>
+            <button class="favorite" type="button" aria-label="إضافة عنب بدون بذور إلى المفضلة">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"></path></svg>
+            </button>
+            <div class="product-image" role="img" aria-label="عنب بدون بذور"><span>🍇</span></div>
+            <div class="product-info">
+              <h2 class="product-name">عنب بدون بذور</h2>
+              <p class="weight">عبوة 500 جم</p>
+              <div class="price-row">
+                <span class="price">4.39 ر.س</span>
+                <span class="old-price">4.99 ر.س</span>
+              </div>
+              <button class="add-button" type="button">+ أضف إلى السلة</button>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <span class="discount-badge">خصم 10%</span>
+            <button class="favorite" type="button" aria-label="إضافة أناناس ذهبي إلى المفضلة">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"></path></svg>
+            </button>
+            <div class="product-image" role="img" aria-label="أناناس ذهبي"><span>🍍</span></div>
+            <div class="product-info">
+              <h2 class="product-name">أناناس ذهبي</h2>
+              <p class="weight">حبة واحدة</p>
+              <div class="price-row">
+                <span class="price">5.39 ر.س</span>
+                <span class="old-price">5.99 ر.س</span>
+              </div>
+              <button class="add-button" type="button">+ أضف إلى السلة</button>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <span class="discount-badge">خصم 22%</span>
+            <button class="favorite" type="button" aria-label="إضافة بطيخ عصيري إلى المفضلة">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"></path></svg>
+            </button>
+            <div class="product-image" role="img" aria-label="بطيخ"><span>🍉</span></div>
+            <div class="product-info">
+              <h2 class="product-name">بطيخ عصيري</h2>
+              <p class="weight">حوالي 3 كجم</p>
+              <div class="price-row">
+                <span class="price">6.99 ر.س</span>
+                <span class="old-price">8.99 ر.س</span>
+              </div>
+              <button class="add-button" type="button">+ أضف إلى السلة</button>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <span class="discount-badge">خصم 16%</span>
+            <button class="favorite" type="button" aria-label="إضافة كمثرى خضراء إلى المفضلة">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"></path></svg>
+            </button>
+            <div class="product-image" role="img" aria-label="كمثرى خضراء"><span>🍐</span></div>
+            <div class="product-info">
+              <h2 class="product-name">كمثرى خضراء</h2>
+              <p class="weight">عبوة 750 جم</p>
+              <div class="price-row">
+                <span class="price">4.19 ر.س</span>
+                <span class="old-price">4.99 ر.س</span>
+              </div>
+              <button class="add-button" type="button">+ أضف إلى السلة</button>
+            </div>
+          </article>
+        </div>
+
+        <nav class="pagination" aria-label="صفحات المنتجات">
+          <button class="page-button" type="button" disabled>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"></path></svg>
+            <span class="page-label">السابق</span>
+          </button>
+          <button class="page-button active" type="button" aria-current="page">1</button>
+          <button class="page-button" type="button">2</button>
+          <button class="page-button" type="button">3</button>
+          <button class="page-button" type="button">
+            <span class="page-label">التالي</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"></path></svg>
+          </button>
+        </nav>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    const filterToggle = document.getElementById('filterToggle');
+    const filters = document.getElementById('filters');
+    const priceRange = document.getElementById('priceRange');
+    const priceValue = document.getElementById('priceValue');
+    const resetFilters = document.getElementById('resetFilters');
+    const cartCount = document.getElementById('cartCount');
+
+    filterToggle.addEventListener('click', () => {
+      const isOpen = filters.classList.toggle('open');
+      filterToggle.setAttribute('aria-expanded', isOpen);
+      filterToggle.innerHTML = isOpen
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 6 12 12M18 6 6 18"></path></svg> إغلاق'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M7 12h10M10 18h4"></path></svg> تصفية';
+    });
+
+    priceRange.addEventListener('input', () => {
+      priceValue.textContent = priceRange.value + ' ر.س';
+    });
+
+    resetFilters.addEventListener('click', () => {
+      priceRange.value = 25;
+      priceValue.textContent = '25 ر.س';
+      filters.querySelectorAll('input[type="checkbox"]').forEach((box, index) => {
+        box.checked = index === 0;
+      });
+    });
+
+    document.querySelectorAll('.add-button').forEach(button => {
+      button.addEventListener('click', () => {
+        if (button.classList.contains('added')) return;
+        button.classList.add('added');
+        button.textContent = '✓ أُضيف للسلة';
+        cartCount.textContent = Number(cartCount.textContent) + 1;
+      });
+    });
+
+    document.querySelectorAll('.favorite').forEach(button => {
+      button.addEventListener('click', () => {
+        const active = button.classList.toggle('active');
+        button.style.color = active ? '#e65353' : '#829087';
+        button.querySelector('svg').style.fill = active ? 'currentColor' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>

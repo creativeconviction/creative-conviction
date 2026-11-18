@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كويرب - المنتجات</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2E7D32;
+            --primary-light: #4CAF50;
+            --text-color: #333;
+            --text-light: #666;
+            --background: #F5F5F5;
+            --card-bg: #FFFFFF;
+            --border-color: #E0E0E0;
+            --success: #4CAF50;
+            --light-gray: #F9F9F9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%; /* Prevent font scaling in landscape on iOS */
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--background);
+            color: var(--text-color);
+            line-height: 1.6;
+            direction: rtl;
+            text-align: right;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul, ol {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header */
+        .main-header {
+            background-color: var(--card-bg);
+            padding: 1rem 0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 28px;
+            height: 28px;
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 500px;
+            margin-inline: auto;
+        }
+
+        .search-wrapper {
+            display: flex;
+            align-items: center;
+            background-color: #f1f3f4;
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .search-bar input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            color: var(--text-color);
+            font-size: 1rem;
+            padding: 0.5rem;
+            direction: ltr; /* Input field for search term, which can contain LTR text */
+            text-align: left;
+        }
+
+        .search-bar input:focus {
+            outline: none;
+        }
+
+        .search-icon {
+            color: var(--text-light);
+            font-size: 1.25rem;
+            margin-inline-start: 0.75rem;
+        }
+
+        .cart-icon {
+            position: relative;
+            font-size: 1.7rem;
+            color: var(--text-light);
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            start: -8px;
+            background-color: var(--success);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding-block: 2rem 1.5rem;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb-item {
+            display: inline-block;
+        }
+
+        .breadcrumb-item:not(:last-child)::after {
+            content: '›';
+            margin-inline: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .breadcrumb-link {
+            color: var(--text-light);
+        }
+
+        .breadcrumb-link:hover {
+            color: var(--primary-color);
+        }
+
+        .breadcrumb-current {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        /* Layout */
+        .page-layout {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .main-grid {
+            flex: 1;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+        }
+
+        /* Filters */
+        .filter-group {
+            margin-bottom: 2rem;
+        }
+
+        .filter-group-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .price-slider {
+            direction: ltr; /* Range input is an exception */
+        }
+
+        .price-values {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .brand-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .brand-checkbox {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 1.1rem;
+            height: 1.1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 4px;
+            margin-left: 0.75rem;
+            cursor: pointer;
+            position: relative;
+            top: 1px;
+        }
+
+        .brand-checkbox:checked {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .brand-checkbox:checked::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .product-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .product-image {
+            background-color: var(--light-gray);
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--border-color);
+        }
+
+        .product-info {
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-title {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: #9e9e9e;
+        }
+
+        .price {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 0.75rem;
+            start: 0.75rem;
+            background-color: #FF5722;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        .add-to-cart-btn {
+            width: 100%;
+            margin-top: auto;
+            padding-block: 0.75rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: var(--primary-light);
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .pagination-btn {
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+
+        .pagination-btn:hover:not(:disabled) {
+            background-color: #E0F2F1;
+            color: var(--primary-color);
+        }
+
+        .pagination-btn:disabled {
+            color: var(--text-light);
+            cursor: not-allowed;
+        }
+
+        .pagination-info {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .search-bar {
+                margin-inline: 1rem;
+            }
+            .page-layout {
+                flex-direction: row;
+            }
+            .product-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .product-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
+        @media (min-width: 1280px) {
+             .product-grid {
+                grid-template-columns: repeat(6, 1fr);
+            }
+        }
+
+        @media (min-width: 1440px) {
+             .product-grid {
+                grid-template-columns: repeat(8, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container header-content">
+            <a href="#" class="logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2Z" stroke="#2E7D32" stroke-width="1.5"/>
+                    <path d="M12 6V12H18" stroke="#2E7D32" stroke-width="1.5"/>
+                </svg>
+                <span>كويرب</span>
+            </a>
+            <div class="search-bar">
+                <div class="search-wrapper">
+                    <input type="text" placeholder="ابحث هنا">
+                    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                    </svg>
+                </div>
+            </div>
+            <a href="#" class="cart-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M7 4a2 2 0 0 0-2 2v1H2a1 1 0 0 0 0 2h1v2H2a1 1 0 1 0 0 2h1v2H2a1 1 0 1 0 0 2h1v2H2a1 1 0 1 0 0 2h1v1a2 2 0 0 0 2 2h15a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1v-1a1 1 0 1 0-2 0v1H7V4zM0 6.5A1.5 1.5 0 0 1 1.5 5h13a1.5 1.5 0 0 1 1.5 1.5V8a1.5 1.5 0 0 1-1.5 1.5H1.5A1.5 1.5 0 0 1 0 8V6.5zM15.5 16a1.5 1.5 0 0 1-1.5-1.5V11a1.5 1.5 0 0 1 3 0v3.5c0 .828-.672 1.5-1.5 1.5z"/>
+                </svg>
+                <span class="cart-badge">3</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <nav class="breadcrumb">
+                <ul>
+                    <li class="breadcrumb-item">
+                        <a href="#" class="breadcrumb-link">الرئيسية</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="#" class="breadcrumb-link">فواكه و خضروات</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <span class="breadcrumb-current">فواكه</span>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="page-layout">
+                <aside class="sidebar">
+                    <div class="filter-group">
+                        <h3 class="filter-group-title">السعر</h3>
+                        <div class="price-slider">
+                            <input type="range" min="0" max="1000" value="500" class="slider">
+                        </div>
+                        <div class="price-values">
+                            <span>0 ₪</span>
+                            <span>1000+ ₪</span>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <h3 class="filter-group-title">العلامة التجارية</h3>
+                        <div class="brand-list">
+                            <label class="brand-item">
+                                <input type="checkbox" class="brand-checkbox">
+                                <span>كويكر</span>
+                            </label>
+                            <label class="brand-item">
+                                <input type="checkbox" class="brand-checkbox">
+                                <span>سانو</span>
+                            </label>
+                            <label class="brand-item">
+                                <input type="checkbox" class="brand-checkbox" checked>
+                                <span>تسوق</span>
+                            </label>
+                            <label class="brand-item">
+                                <input type="checkbox" class="brand-checkbox">
+                                <span>كويكر</span>
+                            </label>
+                            <label class="brand-item">
+                                <input type="checkbox" class="brand-checkbox">
+                                <span> fazza™</span>
+                            </label>
+                             <label class="brand-item">
+                                <input type="checkbox" class="brand-checkbox">
+                                <span>M brand</span>
+                            </label>
+                        </div>
+                    </div>
+                </aside>
+
+                <div class="main-grid">
+                    <div class="product-grid">
+                        <!-- Sample Product Card -->
+                        <article class="product-card">
+                            <div class="product-image">📸</div>
+                            <div class="product-info">
+                                <span class="discount-badge">20%</span>
+                                <h3 class="product-title">دراس قتا جزيرة صغيرة 80 جرام</h3>
+                                <div class="product-meta">
+                                    <span>80 جم</span>
+                                    <span><span class="old-price">2.38 SAR</span> <span class="price">1.90 SAR</span></span>
+                                </div>
+                                <button class="add-to-cart-btn">إضافة إلى السلة</button>
+                            </div>
+                        </article>
+                        <article class="product-card">
+                            <div class="product-image">📸</div>
+                            <div class="product-info">
+                                <span class="discount-badge">5%</span>
+                                <h3 class="product-title"> Olivella Olives مذيل مع يو</h3>
+                                <div class="product-meta">
+                                    <span>210 جم</span>
+                                    <span><span class="old-price">35.69 SAR</span> <span class="price">33.90 SAR</span></span>
+                                </div>
+                                <button class="add-to-cart-btn">إضافة إلى السلة</button>
+                            </div>
+                        </article>
+                        <article class="product-card">
+                            <div class="product-image">📸</div>
+                            <div class="product-info">
+                                <span class="discount-badge">15%</span>
+                                <h3 class="product-title">باريلا نودلز فراولة 125 جرام</h3>
+                                <div class="product-meta">
+                                    <span>125 جم</span>
+                                    <span><span class="old-price">9.87 SAR</span> <span class="price">8.39 SAR</span></span>
+                                </div>
+                                <button class="add-to-cart-btn">إضافة إلى السلة</button>
+                            </div>
+                        </article>
+                        <article class="product-card">
+                            <div class="product-image">📸</div>
+                            <div class="product-info">
+                                <h3 class="product-title">بابا مور nicht цукери</h3>
+                                <div class="product-meta">
+                                    <span>يناير 500</span>
+                                    <span><span class="old-price">19.30 SAR</span> <span class="price">18.30 SAR</span></span>
+                                </div>
+                                <button class="add-to-cart-btn">إضافة إلى السلة</button>
+                            </div>
+                        </article>
+                        <article class="product-card">
+                            <div class="product-image">📸</div>
+                            <div class="product-info">
+                                <span class="discount-badge">20%</span>
+                                <h3 class="product-title"> Pulsar حبوب الزنجبيل</h3>
+                                <div class="product-meta">
+                                    <span>300 قرص</span>
+                                    <span><span class="old-price">65.70 SAR</span> <span class="price">52.56 SAR</span></span>
+                                </div>
+                                <button class="add-to-cart-btn">إضافة إلى السلة</button>
+                            </div>
+                        </article>
+                        <article class="product-card">
+                            <div class="product-image">📸</div>
+                            <div class="product-info">
+                                <span class="discount-badge">2%</span>
+                                <h3 class="product-title"> Pharco 준비 قيصر</h3>
+                                <div class="product-meta">
+                                    <span>1литр</span>
+                                    <span><span class="old-price">15.70 SAR</span> <span class="price">15.38 SAR</span></span>
+                                </div>
+                                <button class="add-to-cart-btn">إضافة إلى السلة</button>
+                            </div>
+                        </article>
+                        <article class="product-card">
+                            <div class="product-image">📸</div>
+                            <div class="product-info">
+                                <h3 class="product-title"> Haut Cuisine جوز الهند المبشور 100 جرام</h3>
+                                <div class="product-meta">
+                                    <span>100 جم</span>
+                                    <span class="price">14.04 SAR</span>
+                                </div>
+                                <button class="add-to-cart-btn">إضافة إلى السلة</button>
+                            </div>
+                        </article>
+                        <article class="product-card">
+                            <div class="product-image">📸</div>
+                            <div class="product-info">
+                                <span class="discount-badge">15%</span>
+                                <h3 class="product-title">لورا 50 ألواح كاشى مركب سندويشات</h3>
+                                <div class="product-meta">
+                                    <span>50 قطعة</span>
+                                    <span><span class="old-price">30.85 SAR</span> <span class="price">26.22 SAR</span></span>
+                                </div>
+                                <button class="add-to-cart-btn">إضافة إلى السلة</button>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="pagination">
+                        <button class="pagination-btn" disabled>السابق</button>
+                        <span class="pagination-info">الصفحة 1 من 3</span>
+                        <button class="pagination-btn">التالي</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

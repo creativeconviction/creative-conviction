@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Baghdad",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Baghdad. Write marketing copy for it in Iraqi (Baghdadi) Arabic, the way people in Baghdad actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 2,
+  "prompt_lang": "en",
+  "city": "Baghdad",
+  "target_region": "Iraq",
+  "target_city_code": "BAG",
+  "model": "claude",
+  "id": "C__Baghdad__claude__s2",
+  "model_id": "anthropic/claude-opus-5.5",
+  "output": "**Tagline:**\nقريب… السوگ يجيك لحد الباب 🛒\n\n**Instagram:**\n1. الدنيا نار برّا، ليش تطلع؟ اطلب من قريب وخلّي الأغراض تجيك وانت گاعد بالبارد ❄️\n2. لا زحمة، لا سيطرات، ولا وگفة بالسرة… دوس اطلب وارتاح، قريب يتكفّل بالباقي 😎\n3. من الصمّون الحار للخضرة الطازة، كلشي اكو! بس اطلب وانتظر الباب يندگ 🚪\n\n**Push notification:**\nالغدا قرّب وبعدك ما جايب الطماطة؟ 🍅 اطلب هسة من قريب ونوصّلها لبابك بالعجل 🛵",
+  "at": "2026-11-18T05:37:56.361Z"
+}

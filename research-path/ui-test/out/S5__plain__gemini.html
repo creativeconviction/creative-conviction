@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Qareeb - تتبع الطلب</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00b289;
+            --primary-light: #e6f7f3;
+            --text-main: #1d2939;
+            --text-secondary: #667085;
+            --bg-body: #f2f4f7;
+            --bg-card: #ffffff;
+            --border: #eaecf0;
+            --warning: #f79009;
+            --font-family: 'Cairo', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 480px; /* Desktop constraint */
+            background-color: var(--bg-card);
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- Map & Header --- */
+        .map-section {
+            position: relative;
+            height: 45vh;
+            background-color: #e5e3df;
+            background-image: radial-gradient(#d5d3cf 1px, transparent 1px);
+            background-size: 20px 20px;
+            overflow: hidden;
+        }
+
+        /* Simulated Route Line */
+        .map-route {
+            position: absolute;
+            top: 40%;
+            left: 20%;
+            width: 60%;
+            height: 40%;
+            border-top: 4px dashed var(--primary);
+            border-right: 4px dashed var(--primary);
+            border-top-right-radius: 30px;
+            transform: rotate(-15deg);
+            opacity: 0.6;
+        }
+
+        .map-pin {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 48px;
+            height: 48px;
+            background: rgba(0, 178, 137, 0.15);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: pulse 2s infinite;
+        }
+
+        .map-pin svg {
+            width: 32px;
+            height: 32px;
+            fill: var(--primary);
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+        }
+
+        @keyframes pulse {
+            0% { transform: translate(-50%, -50%) scale(0.95); box-shadow: 0 0 0 0 rgba(0, 178, 137, 0.4); }
+            70% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 0 20px rgba(0, 178, 137, 0); }
+            100% { transform: translate(-50%, -50%) scale(0.95); box-shadow: 0 0 0 0 rgba(0, 178, 137, 0); }
+        }
+
+        .header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 24px 20px;
+            display: flex;
+            align-items: center;
+            z-index: 10;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 100%);
+        }
+
+        .back-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            cursor: pointer;
+            outline: none;
+        }
+
+        .back-btn svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--text-main);
+        }
+
+        /* --- Bottom Sheet --- */
+        .bottom-sheet {
+            background-color: var(--bg-card);
+            border-radius: 28px 28px 0 0;
+            padding: 20px 24px 40px;
+            position: relative;
+            z-index: 20;
+            margin-top: -40px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+        }
+
+        .drag-handle {
+            width: 40px;
+            height: 4px;
+            background-color: #d0d5dd;
+            border-radius: 4px;
+            margin: 0 auto 20px;
+        }
+
+        /* --- ETA --- */
+        .eta-section {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .eta-section h1 {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1.2;
+        }
+
+        .eta-section p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        /* --- Stepper --- */
+        .stepper {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 32px;
+        }
+
+        .stepper::before {
+            content: '';
+            position: absolute;
+            top: 14px;
+            right: 15px;
+            left: 15px;
+            height: 3px;
+            background-color: var(--border);
+            z-index: 1;
+        }
+
+        .stepper-progress {
+            position: absolute;
+            top: 14px;
+            right: 15px;
+            height: 3px;
+            background-color: var(--primary);
+            z-index: 2;
+            width: 66.66%; /* 3rd step active */
+            transition: width 0.3s ease;
+        }
+
+        .step {
+            position: relative;
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+        }
+
+        .step-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: var(--border);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .step-icon svg {
+            width: 14px;
+            height: 14px;
+            fill: #fff;
+            opacity: 0;
+        }
+
+        .step-text {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-align: center;
+            max-width: 60px;
+        }
+
+        /* Done Step */
+        .step.done .step-icon {
+            background-color: var(--primary);
+        }
+        .step.done .step-icon svg {
+            opacity: 1;
+        }
+        .step.done .step-text {
+            color: var(--text-main);
+        }
+
+        /* Active Step */
+        .step.active .step-icon {
+            background-color: var(--primary);
+            box-shadow: 0 0 0 4px var(--primary-light);
+        }
+        .step.active .step-icon::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: #fff;
+            border-radius: 50%;
+        }
+        .step.active .step-text {
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        .divider {
+            height: 1px;
+            background-color: var(--border);
+            margin: 0 -24px 24px;
+        }
+
+        /* --- Driver Card --- */
+        .driver-card {
+            display: flex;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .driver-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            margin-left: 16px;
+            overflow: hidden;
+            border: 2px solid var(--primary-light);
+        }
+
+        .driver-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .driver-info {
+            flex: 1;
+        }
+
+        .driver-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .driver-name {
+            font-size: 16px;
+            font-weight: 700;
+            margin-left: 8px;
+        }
+
+        .driver-rating {
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-main);
+            background: #fff9ed;
+            padding: 2px 6px;
+            border-radius: 12px;
+        }
+
+        .driver-rating svg {
+            width: 14px;
+            height: 14px;
+            fill: var(--warning);
+            margin-left: 4px;
+        }
+
+        /* Saudi License Plate Design */
+        .license-plate {
+            display: inline-flex;
+            border: 1px solid #111;
+            border-radius: 4px;
+            background: #fff;
+            font-family: monospace;
+            align-items: stretch;
+            height: 28px;
+            overflow: hidden;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .plate-ksa {
+            background-color: #fff;
+            padding: 0 4px;
+            display: flex;
+            align-items: center;
+            border-left: 1px solid #111;
+        }
+        
+        .plate-ksa-logo {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 1px solid #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 6px;
+            font-weight: bold;
+        }
+
+        .plate-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 8px;
+            background: #fff;
+        }
+
+        .plate-section.letters {
+            border-right: 1px solid #111;
+        }
+
+        .plate-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            font-weight: bold;
+            line-height: 1.1;
+            color: #111;
+            letter-spacing: 1px;
+        }
+
+        .plate-row.ar { font-family: 'Cairo', sans-serif; font-size: 9px; }
+
+        .driver-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .action-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+
+        .action-btn:active { transform: scale(0.95); }
+
+        .btn-call {
+            background-color: var(--primary-light);
+        }
+        .btn-call svg { fill: var(--primary); width: 20px; height: 20px; }
+
+        .btn-msg {
+            background-color: #f2f4f7;
+        }
+        .btn-msg svg { fill: var(--text-main); width: 20px; height: 20px; }
+
+
+        /* --- Order Details Accordion --- */
+        .order-details {
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fafafa;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .accordion-title {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .accordion-title svg {
+            width: 18px;
+            height: 18px;
+            margin-left: 8px;
+            stroke: var(--text-secondary);
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .chevron {
+            width: 20px;
+            height: 20px;
+            stroke: var(--text-secondary);
+            stroke-width: 2;
+            fill: none;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background: #fff;
+        }
+
+        .order-items {
+            padding: 0 16px;
+        }
+
+        .item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px dashed var(--border);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .item:last-child {
+            border-bottom: none;
+        }
+
+        .item-qty {
+            color: var(--primary);
+            margin-left: 4px;
+        }
+        
+        .item-price {
+            font-weight: 700;
+        }
+
+        .order-total {
+            background: var(--primary-light);
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            font-weight: 800;
+            font-size: 16px;
+            color: var(--primary);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <div class="header">
+            <button class="back-btn" aria-label="رجوع">
+                <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18l6-6-6-6" />
+                </svg>
+            </button>
+        </div>
+
+        <div class="map-section">
+            <div class="map-route"></div>
+            <div class="map-pin">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+            </div>
+        </div>
+
+        <div class="bottom-sheet">
+            <div class="drag-handle"></div>
+            
+            <div class="eta-section">
+                <h1>12 دقيقة</h1>
+                <p>وقت الوصول المتوقع</p>
+            </div>
+
+            <div class="stepper">
+                <div class="stepper-progress"></div>
+                
+                <div class="step done">
+                    <div class="step-icon">
+                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    </div>
+                    <span class="step-text">تم الطلب</span>
+                </div>
+                
+                <div class="step done">
+                    <div class="step-icon">
+                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    </div>
+                    <span class="step-text">جاري التجهيز</span>
+                </div>
+                
+                <div class="step active">
+                    <div class="step-icon"></div>
+                    <span class="step-text">في الطريق</span>
+                </div>
+                
+                <div class="step">
+                    <div class="step-icon"></div>
+                    <span class="step-text">تم التوصيل</span>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="driver-card">
+                <div class="driver-avatar">
+                    <!-- Placeholder using a generic avatar SVG -->
+                    <svg viewBox="0 0 24 24" style="width:100%; height:100%; fill:#c0c4cc; background:#f2f4f7;"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                </div>
+                <div class="driver-info">
+                    <div class="driver-header">
+                        <span class="driver-name">أحمد محمد</span>
+                        <span class="driver-rating">
+                            4.8
+                            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        </span>
+                    </div>
+                    
+                    <!-- LTR forced for accurate plate representation -->
+                    <div dir="ltr" class="license-plate">
+                        <div class="plate-ksa">
+                            <div class="plate-ksa-logo">KSA</div>
+                        </div>
+                        <div class="plate-section numbers">
+                            <div class="plate-row ar">١٢٣٤</div>
+                            <div class="plate-row">1234</div>
+                        </div>
+                        <div class="plate-section letters">
+                            <div class="plate-row ar">أ&nbsp;ب&nbsp;ج</div>
+                            <div class="plate-row">A&nbsp;B&nbsp;C</div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="driver-actions">
+                    <button class="action-btn btn-msg" aria-label="مراسلة">
+                        <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+                    </button>
+                    <button class="action-btn btn-call" aria-label="اتصال">
+                        <svg viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="order-details">
+                <div class="accordion-header" onclick="toggleDetails()">
+                    <div class="accordion-title">
+                        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                        تفاصيل الطلب
+                    </div>
+                    <svg class="chevron" id="chevron-icon" viewBox="0 0 24 24">
+                        <path d="M6 9l6 6 6-6" />
+                    </svg>
+                </div>
+                <div class="accordion-content" id="order-content">
+                    <div class="order-items">
+                        <div class="item">
+                            <span><span class="item-qty">2x</span> شاورما دجاج صاروخ</span>
+                            <span class="item-price">36 ر.س</span>
+                        </div>
+                        <div class="item">
+                            <span><span class="item-qty">1x</span> بطاطس بالجبنة</span>
+                            <span class="item-price">12 ر.س</span>
+                        </div>
+                        <div class="item">
+                            <span>رسوم التوصيل</span>
+                            <span class="item-price">9 ر.س</span>
+                        </div>
+                    </div>
+                    <div class="order-total">
+                        <span>الإجمالي</span>
+                        <span>57 ر.س</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function toggleDetails() {
+            const content = document.getElementById("order-content");
+            const icon = document.getElementById("chevron-icon");
+            
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                icon.style.transform = "rotate(0deg)";
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                icon.style.transform = "rotate(180deg)";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "screen": "S3",
+  "cond": "localize",
+  "model": "deepseek",
+  "model_id": "deepseek/deepseek-v4-pro",
+  "raw_chars": 27485,
+  "complete": true,
+  "at": "2026-11-18T05:52:01.706Z"
+}

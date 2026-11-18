@@ -15,17 +15,18 @@
   --run: #1f5fbf;    --run-bg: #e4edfb;
   --you: #9a5b00;    --you-bg: #fbefd9;
   --todo: #66727a;   --todo-bg: #eceff0;
+  --bad: #b4380b;    --bad-bg: #fbe5dc;
   --font-body: "IBM Plex Sans", system-ui, sans-serif;
   --font-ar: "IBM Plex Sans Arabic", "IBM Plex Sans", sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
   --bg: #12181d; --surface: #1a2228; --ink: #e6ecef; --muted: #9aa7ae; --line: #2b363d; --accent: #4cc2b3;
-  --done: #6fd39a; --done-bg: #183324; --run: #8fb6f5; --run-bg: #1b2a40; --you: #f0b660; --you-bg: #3a2c14; --todo: #a3aeb4; --todo-bg: #252e34;
+  --done: #6fd39a; --done-bg: #183324; --run: #8fb6f5; --run-bg: #1b2a40; --you: #f0b660; --you-bg: #3a2c14; --todo: #a3aeb4; --todo-bg: #252e34; --bad: #ff9b70; --bad-bg: #3d2117;
   color-scheme: dark } }
 :root[data-theme="dark"] {
   --bg: #12181d; --surface: #1a2228; --ink: #e6ecef; --muted: #9aa7ae; --line: #2b363d; --accent: #4cc2b3;
-  --done: #6fd39a; --done-bg: #183324; --run: #8fb6f5; --run-bg: #1b2a40; --you: #f0b660; --you-bg: #3a2c14; --todo: #a3aeb4; --todo-bg: #252e34;
+  --done: #6fd39a; --done-bg: #183324; --run: #8fb6f5; --run-bg: #1b2a40; --you: #f0b660; --you-bg: #3a2c14; --todo: #a3aeb4; --todo-bg: #252e34; --bad: #ff9b70; --bad-bg: #3d2117;
   color-scheme: dark }
 
 body { background: var(--bg); color: var(--ink); font: 15px/1.6 var(--font-body); }
@@ -88,6 +89,27 @@ th { font: 500 12px var(--font-mono); letter-spacing: 0.04em; text-transform: up
 :root[data-theme="dark"] .bad { color: #ff8a5c; }
 .finding { margin: 12px 0 0; font-size: 15px; }
 .plate + .plate { margin-top: 40px; }
+
+.bars { display: grid; gap: 8px; margin: 12px 0 10px; max-width: 520px; }
+.barrow { display: grid; grid-template-columns: 130px 1fr 48px; gap: 10px; align-items: center; font-size: 14px; }
+.barrow .track { height: 10px; background: var(--todo-bg); border-radius: 5px; overflow: hidden; }
+.barrow i { display: block; height: 100%; background: var(--accent); }
+.barrow b { font: 500 13px var(--font-mono); text-align: end; }
+table.heat { min-width: 560px; }
+table.heat th[scope=row] { font-weight: 500; white-space: nowrap; }
+table.heat .sub { display: block; font-size: 12px; color: var(--muted); font-weight: 400; }
+table.heat td { text-align: center; font: 500 13px var(--font-mono); padding: 8px 6px; border-left: 2px solid var(--bg); }
+table.heat td.h3 { background: var(--done-bg); color: var(--done); }
+table.heat td.h2 { background: var(--you-bg); color: var(--you); }
+table.heat td.h1, table.heat td.h0 { background: var(--bad-bg); color: var(--bad); }
+table.heat td.tot { background: transparent; color: var(--ink); }
+table.heat th.dim { color: var(--muted); opacity: .7; }
+.quotes { display: grid; gap: 14px; margin-top: 12px; }
+.quotes figure { margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; }
+.quotes figcaption { font: 500 12px var(--font-mono); color: var(--muted); letter-spacing: .03em; text-transform: uppercase; }
+.quotes blockquote { margin: 8px 0; font-size: 17px; line-height: 1.9; }
+.quotes p { margin: 0; font-size: 14px; color: var(--muted); }
+
 .note { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--you); border-radius: 6px; padding: 12px 14px; font-size: 14px; color: var(--muted); margin-top: 14px; }
 
 .todo-list { display: grid; gap: 12px; margin-top: 14px; }
@@ -101,7 +123,7 @@ code { font: 13px var(--font-mono); background: var(--todo-bg); padding: 1px 5px
     <div class="eyebrow">Outliers · research status</div>
     <h1>Where AI breaks when we design and write for Arab users</h1>
     <p class="lede">We build one product, a grocery delivery app called Qareeb <span class="ar">(قريب)</span>, the way a real team would, using AI at every step, for Riyadh, Cairo and Casablanca. Every place the output wouldn't work for real users gets logged, explained, and turned into guidance for designers and writers.</p>
-    <p class="updated">Updated 18 Nov 2026 · all 292 imagery tests and 84 billboards generated</p>
+    <p class="updated">Updated 18 Nov 2026 · imagery done · copy experiment done · interface experiment running</p>
   </header>
 
   <section class="col">
@@ -111,6 +133,8 @@ code { font: 13px var(--font-mono); background: var(--todo-bg); padding: 1px 5px
       <div class="phase"><div class="n">0</div><div class="body"><h3>Set up</h3><p>Research question, product, cities, log workbook with 22 text prompts and 20 image prompts.</p></div><span class="pill done">Done</span></div>
       <div class="phase"><div class="n">1</div><div class="body"><h3>Build it with AI: text</h3><p>Run the 22 prompts (research, brand, copy, interface, support) in ChatGPT, Claude and Gemini per city; log every break.</p></div><span class="pill you">Your turn</span></div>
       <div class="phase"><div class="n">1b</div><div class="body"><h3>Build it with AI: imagery</h3><p>20 image prompts × 7 image models, three cities plus London as a control, English and Arabic prompts. All generated; tagging is next.</p><div class="bar" aria-label="Imagery progress"><span style="width:100%;background:var(--done)"></span></div><p class="mono" style="margin-top:6px">292 / 292 images</p></div><span class="pill you">Tag them</span></div>
+      <div class="phase"><div class="n">1c</div><div class="body"><h3>Experiment: marketing copy and dialect</h3><p>470 outputs: prompt language × launch city × 14 requested dialects, scored by an independent dialect identifier.</p></div><span class="pill done">Done</span></div>
+      <div class="phase"><div class="n">1d</div><div class="body"><h3>Experiment: right-to-left interfaces</h3><p>8 product screens × 4 ways of asking × 5 models, with a deep browser audit and tokenization analysis.</p></div><span class="pill run">Running</span></div>
       <div class="phase"><div class="n">2</div><div class="body"><h3>Compare with real products</h3><p>Screenshot 4–6 leading regional apps per country at the same stages; read real Arabic reviews.</p></div><span class="pill todo">Not started</span></div>
       <div class="phase"><div class="n">3</div><div class="body"><h3>Ask native speakers</h3><p>3–5 short blind conversations: AI work next to real work. What feels off, and why?</p></div><span class="pill todo">Not started</span></div>
       <div class="phase"><div class="n">4</div><div class="body"><h3>Test the strongest breaks</h3><p>Repeat 5–10 times, across tools, cities, Arabic vs English; try to fix with better prompts.</p></div><span class="pill todo">Not started</span></div>
@@ -260,6 +284,50 @@ code { font: 13px var(--font-mono); background: var(--todo-bg); padding: 1px 5px
       <div class="col"><h3>"A weekend breakfast spread for a grocery app in [city]"</h3></div>
       <img src="img/sheet-A2.jpg" alt="Breakfast spreads: ful and falafel in Cairo, msemen and mint tea in Casablanca, a full English breakfast in London" loading="lazy">
       <div class="col"><p class="finding"><b>A counterexample: the food is local.</b> Ful and falafel in Cairo, msemen and mint tea in Casablanca, dates and Arabic coffee in Riyadh. No pork or alcohol in the Arab-city images; bacon shows up only in London. GPT Image again adds an app screen and a branded bag nobody asked for.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="col">
+      <div class="eyebrow" style="margin-top:56px">Experiment · 470 pieces of marketing copy</div>
+      <h2 style="margin-top:0">Which Arabic do you get?</h2>
+      <p class="muted">Every model was asked for the same thing: a tagline, three Instagram ads and a push notification for Qareeb. We changed only the language of the prompt, whether a launch city was named, and whether a dialect was requested. Dialect was identified by the CAMeL Lab's open-source dialect identifier (NYU Abu Dhabi), not by an AI chatbot. Numbers below are for Claude, GPT, Gemini and DeepSeek unless noted.</p>
+
+      <h3 style="margin-top:28px">1. Ask for "Arabic" in English and you get Gulf or formal Arabic</h3>
+      <p>With no city named, 6 of 15 outputs came back Gulf and 5 formal. Claude wrote formal Arabic every time. Almost none came back Egyptian, even though Egypt is the largest Arabic-speaking country.</p>
+
+      <h3 style="margin-top:22px">2. Write in a dialect and the model writes back in it</h3>
+      <div class="bars">
+        <div class="barrow"><span>Moroccan Darija</span><div class="track"><i style="width:100%"></i></div><b>12/12</b></div>
+        <div class="barrow"><span>Levantine</span><div class="track"><i style="width:83%"></i></div><b>10/12</b></div>
+        <div class="barrow"><span>Egyptian</span><div class="track"><i style="width:67%"></i></div><b>8/12</b></div>
+        <div class="barrow"><span>Saudi</span><div class="track"><i style="width:58%"></i></div><b>7/12</b></div>
+        <div class="barrow"><span>Formal Arabic</span><div class="track"><i style="width:42%"></i></div><b>5/12</b></div>
+      </div>
+      <p class="muted">Share of outputs in the same dialect as the prompt, with no city named. The dialect a team member happens to type in becomes the brand's voice. Claude mirrored every dialect every time; DeepSeek rarely did.</p>
+
+      <h3 style="margin-top:22px">3. Name the city and the city wins</h3>
+      <p>Adding one line, "launching in Cairo", made 90% of outputs (173 of 192) switch to that city's dialect, whatever language the prompt was in. Cairo got Egyptian 48/48 times, Beirut Levantine 47/48, Casablanca Darija 44/48. <b>Riyadh is the exception:</b> only 34/48 came back Gulf and 11 came back formal. Saudi copy drifts formal even when asked for in Saudi dialect.</p>
+
+      <h3 style="margin-top:22px">4. Ask for a specific dialect: big dialects work, smaller ones get absorbed by their neighbours</h3>
+    </div>
+    <div class="col"><div class="scroll"><table class="heat"><thead><tr><th>City (dialect asked for)</th><th>Claude</th><th>GPT</th><th>Gemini</th><th>DeepSeek</th><th class="dim">Saba</th><th>Big four</th></tr></thead><tbody><tr><th scope="row">Riyadh<span class="sub">Saudi (Najdi)</span></th><td class="h3">2/2</td><td class="h3">2/2</td><td class="h3">2/2</td><td class="h3">2/2</td><td class="h0">0/2</td><td class="tot">100%</td></tr><tr><th scope="row">Doha<span class="sub">Qatari</span></th><td class="h3">2/2</td><td class="h3">2/2</td><td class="h3">2/2</td><td class="h3">2/2</td><td class="h0">0/2</td><td class="tot">100%</td></tr><tr><th scope="row">Cairo<span class="sub">Egyptian</span></th><td class="h3">2/2</td><td class="h3">2/2</td><td class="h3">2/2</td><td class="h3">2/2</td><td class="h3">2/2</td><td class="tot">100%</td></tr><tr><th scope="row">Beirut<span class="sub">Lebanese</span></th><td class="h3">2/2</td><td class="h3">2/2</td><td class="h3">2/2</td><td class="h3">2/2</td><td class="h3">2/2</td><td class="tot">100%</td></tr><tr><th scope="row">Damascus<span class="sub">Syrian (Damascene)</span></th><td class="h3">2/2</td><td class="h3">2/2</td><td class="h3">2/2</td><td class="h3">2/2</td><td class="h3">2/2</td><td class="tot">100%</td></tr><tr><th scope="row">Amman<span class="sub">Jordanian</span></th><td class="h3">2/2</td><td class="h3">2/2</td><td class="h3">2/2</td><td class="h3">2/2</td><td class="h2">1/2</td><td class="tot">100%</td></tr><tr><th scope="row">Rabat<span class="sub">Moroccan (Darija)</span></th><td class="h3">2/2</td><td class="h3">2/2</td><td class="h3">2/2</td><td class="h3">2/2</td><td class="h0">0/2</td><td class="tot">100%</td></tr><tr><th scope="row">Muscat<span class="sub">Omani</span></th><td class="h3">2/2</td><td class="h3">2/2</td><td class="h2">1/2</td><td class="h3">2/2</td><td class="h0">0/2</td><td class="tot">88%</td></tr><tr><th scope="row">Baghdad<span class="sub">Iraqi (Baghdadi)</span></th><td class="h3">2/2</td><td class="h3">2/2</td><td class="h3">2/2</td><td class="h2">1/2</td><td class="h2">1/2</td><td class="tot">88%</td></tr><tr><th scope="row">Tunis<span class="sub">Tunisian</span></th><td class="h3">2/2</td><td class="h3">2/2</td><td class="h3">2/2</td><td class="h2">1/2</td><td class="h0">0/2</td><td class="tot">88%</td></tr><tr><th scope="row">Algiers<span class="sub">Algerian</span></th><td class="h3">2/2</td><td class="h2">1/2</td><td class="h3">2/2</td><td class="h2">1/2</td><td class="h0">0/2</td><td class="tot">75%</td></tr><tr><th scope="row">Khartoum<span class="sub">Sudanese</span></th><td class="h3">2/2</td><td class="h2">1/2</td><td class="h2">1/2</td><td class="h2">1/2</td><td class="h0">0/2</td><td class="tot">62%</td></tr><tr><th scope="row">Sanaa<span class="sub">Yemeni (Sanaani)</span></th><td class="h3">2/2</td><td class="h2">1/2</td><td class="h2">1/2</td><td class="h0">0/2</td><td class="h0">0/2</td><td class="tot">50%</td></tr><tr><th scope="row">Tripoli<span class="sub">Libyan</span></th><td class="h0">0/2</td><td class="h3">2/2</td><td class="h2">1/2</td><td class="h2">1/2</td><td class="h0">0/2</td><td class="tot">50%</td></tr></tbody></table></div>
+      <p class="muted" style="margin-top:8px">Outputs identified as the requested dialect region, 2 per model per city. Most common misses: Yemeni came back Gulf, Sudanese came back Egyptian, Libyan came back Tunisian.</p>
+    </div>
+
+    <div class="col">
+      <h3 style="margin-top:28px">5. Dialect as costume</h3>
+      <p>Reading the outputs shows a difference the numbers hide. Some copy is genuinely local; some is generic Gulf Arabic with one famous local word pasted on.</p>
+      <div class="quotes">
+        <figure><figcaption>Claude, asked for Sudanese</figcaption><blockquote class="ar">ملاح الليلة لسه ما اتحدد؟ اطلب خضارك من قريب ويجيك لحدي الباب.<br>يا زول الشاي خلص؟ ما تشيل هم، اطلب هسي وقريب جايك طوالي!</blockquote><p>Everyday Sudanese words throughout: <span class="ar">ملاح</span> (stew), <span class="ar">هسي</span> (now), <span class="ar">طوالي</span> (right away).</p></figure>
+        <figure><figcaption>GPT, asked for Sudanese</figcaption><blockquote class="ar">مقاضيك من غير مشوار… اطلبها من قريب.<br>يا زول، ناقصك شنو؟ افتح قريب وخلّي مقاضيك تجيك لحدي الباب</blockquote><p>A Gulf word for groceries (<span class="ar">مقاضيك</span>) with the best-known Sudanese word, <span class="ar">يا زول</span>, added on top.</p></figure>
+        <figure><figcaption>Claude, asked for Libyan</figcaption><blockquote class="ar">قريب منك هلبا… توا يوصلك من قريب</blockquote><p>Real Libyan (<span class="ar">هلبا</span> "a lot", <span class="ar">توا</span> "now"). The detector labeled it Tunisian, a close neighbour, so some "misses" in the table are the detector's, not the model's.</p></figure>
+      </div>
+
+      <h3 style="margin-top:22px">6. The model built for Arabic is the one that breaks</h3>
+      <p>Mistral Saba, marketed for Middle Eastern languages, put foreign-script characters (Russian, Korean, Chinese) in <b>63%</b> of its outputs and English words in <b>86%</b>. The four general models: 0% foreign script, under 5% English.</p>
+
+      <div class="note">How much to trust this: the dialect identifier was right on all five calibration prompts, but in six spot checks two of its labels looked wrong to me (one Gulf ad labeled Egyptian, one Libyan ad labeled Tunisian). The patterns across hundreds of outputs are robust; individual cells need a native speaker. Costume vs genuine dialect can only be judged by natives.</div>
     </div>
   </section>
   <section class="col">

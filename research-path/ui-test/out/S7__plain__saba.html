@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دليل onboard - Qareeb</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap');
+
+        :root {
+            --primary-color: #4361ee;
+            --primary-hover: #3a56d4;
+            --text-color: #2b2d42;
+            --light-gray: #f8f9fa;
+            --border-radius: 12px;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Amiri', serif;
+            background-color: var(--light-gray);
+            color: var(--text-color);
+            direction: rtl;
+            text-align: right;
+        }
+
+        .carousel-container {
+            max-width: 390px;
+            margin: 0 auto;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .carousel-slide {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            text-align: center;
+        }
+
+        .carousel-slide.active {
+            display: flex;
+        }
+
+        .illustration {
+            margin-bottom: 32px;
+            max-width: 240px;
+            width: 100%;
+        }
+
+        .illustration img {
+            width: 100%;
+            height: auto;
+        }
+
+        .slide-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-color);
+        }
+
+        .slide-description {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #5a5a5a;
+            max-width: 320px;
+            margin-bottom: 24px;
+        }
+
+        .slide-description strong {
+            color: var(--text-color);
+        }
+
+        .carousel-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            width: 100%;
+            max-width: 350px;
+        }
+
+        .skip-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .dots-container {
+            display: flex;
+            gap: 8px;
+            margin: 0 10px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #ced4da;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background-color: var(--primary-color);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .nav-button {
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .back-button {
+            background-color: var(--light-gray);
+            color: var(--text-color);
+            border: 1px solid #dee2e6;
+        }
+
+        .back-button:hover {
+            background-color: #e9ecef;
+        }
+
+        .next-button {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .next-button:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .get-started-button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 14px 28px;
+            font-size: 16px;
+            margin-top: 24px;
+        }
+
+        .get-started-button:hover {
+            background-color: var(--primary-hover);
+        }
+
+        @media (min-width: 768px) {
+            .carousel-container {
+                padding: 40px;
+            }
+
+            .slide-title {
+                font-size: 28px;
+            }
+
+            .slide-description {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="carousel-container" id="carousel">
+        <!-- Slide 1 -->
+        <div class="carousel-slide active" data-slide="0">
+            <div class="illustration">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'%3E%3Crect fill='%23f0f0f0' width='240' height='240'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='20' fill='%23ccc'%3Eبحث وتصفح%3C/text%3E%3C/svg%3E" alt="رسم توضيحي للبحث">
+            </div>
+            <h2 class="slide-title">استكشف الخدمات القريبة منك</h2>
+            <p class="slide-description">
+                اكتشف قائمة واسعة من <strong>الخدمات المحلية</strong> والأعمال من حولك بسهولة، مع تقييمات حقيقية من الزبائن السابقين لتختار الأفضل.
+            </p>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="carousel-slide" data-slide="1">
+            <div class="illustration">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'%3E%3Crect fill='%23f0f0f0' width='240' height='240'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='20' fill='%23ccc'%3Eطلب خدمة%3C/text%3E%3C/svg%3E" alt="رسم توضيحي للطلب">
+            </div>
+            <h2 class="slide-title">اطلب الخدمة مباشرة من التطبيق</h2>
+            <p class="slide-description">
+                احجز من خلال التطبيق <strong>بخطوات بسيطة</strong>، ومتابعة طلبك حتى اكتمال الخدمة بكل ثقة وأمان.
+            </p>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="carousel-slide" data-slide="2">
+            <div class="illustration">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'%3E%3Crect fill='%23f0f0f0' width='240' height='240'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='20' fill='%23ccc'%3Eدعم فوري%3C/text%3E%3C/svg%3E" alt="رسم توضيحي للدعم">
+            </div>
+            <h2 class="slide-title">دعم فني على مدار الساعة</h2>
+            <p class="slide-description">
+                نحن هنا لمساعدتك في أي وقت،Designed with iOS and Android users in mind، نحن هنا للمساعدة في أي مشكلة أو استفسار.
+            </p>
+            <button class="get-started-button" onclick="window.location.href='#'">البدء الآن</button>
+        </div>
+
+        <!-- Controls -->
+        <div class="carousel-controls">
+            <a href="#" class="skip-link">تخطي</a>
+            <div class="dots-container">
+                <div class="dot active" data-slide="0"></div>
+                <div class="dot" data-slide="1"></div>
+                <div class="dot" data-slide="2"></div>
+            </div>
+            <div class="nav-buttons">
+                <button class="nav-button back-button" onclick="previousSlide()">السابق</button>
+                <button class="nav-button next-button" onclick="nextSlide()">التالي</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const totalSlides = document.querySelectorAll('.carousel-slide').length;
+
+        function showSlide(index) {
+            document.querySelectorAll('.carousel-slide').forEach(slide => {
+                slide.classList.remove('active');
+            });
+
+            document.querySelectorAll('.dot').forEach(dot => {
+                dot.classList.remove('active');
+            });
+
+            document.querySelectorAll(`.carousel-slide[data-slide="${index}"]`).forEach(slide => {
+                slide.classList.add('active');
+            });
+
+            document.querySelectorAll(`.dot[data-slide="${index}"]`).forEach(dot => {
+                dot.classList.add('active');
+            });
+
+            currentSlide = index;
+        }
+
+        function nextSlide() {
+            const nextIndex = (currentSlide + 1) % totalSlides;
+            showSlide(nextIndex);
+        }
+
+        function previousSlide() {
+            const prevIndex = (currentSlide - 1 + totalSlides) % totalSlides;
+            showSlide(prevIndex);
+        }
+
+        // Dot navigation
+        document.querySelectorAll('.dot').forEach(dot => {
+            dot.addEventListener('click', function() {
+                const slideIndex = parseInt(this.getAttribute('data-slide'));
+                showSlide(slideIndex);
+            });
+        });
+
+        // Skip link
+        document.querySelector('.skip-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            showSlide(totalSlides - 1); // Show last slide
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            showSlide(0);
+        });
+    </script>
+</body>
+</html>

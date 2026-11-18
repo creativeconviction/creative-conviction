@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#167A4A">
+  <title>إنشاء حساب | قريب</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --green: #177a4b;
+      --green-dark: #0f6039;
+      --green-soft: #e9f5ef;
+      --text: #17221c;
+      --muted: #68756d;
+      --border: #dbe3de;
+      --background: #f4f8f5;
+      --white: #ffffff;
+      --error: #c63f3f;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      background: var(--background);
+      font-family: "DM Sans", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button,
+    a,
+    input,
+    label {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+    }
+
+    .shell {
+      width: 100%;
+      min-height: 100vh;
+      padding: 0 20px 32px;
+      background: var(--white);
+    }
+
+    .header {
+      height: 72px;
+      display: grid;
+      grid-template-columns: 44px 1fr 44px;
+      align-items: center;
+    }
+
+    .back-button {
+      width: 42px;
+      height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      color: var(--text);
+      background: var(--white);
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, transform 0.15s;
+    }
+
+    .back-button:hover {
+      background: #f7faf8;
+      border-color: #cbd7d0;
+    }
+
+    .back-button:active {
+      transform: scale(0.96);
+    }
+
+    .brand {
+      display: inline-flex;
+      justify-self: center;
+      align-items: center;
+      gap: 8px;
+      color: var(--green);
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .brand-mark {
+      width: 28px;
+      height: 28px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--green);
+    }
+
+    main {
+      padding-top: 20px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 13px;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 7px;
+      height: 7px;
+      content: "";
+      border-radius: 50%;
+      background: #e8a73b;
+      box-shadow: 0 0 0 4px #fff4df;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--text);
+      font-size: 31px;
+      line-height: 1.15;
+      letter-spacing: -1px;
+    }
+
+    .intro {
+      margin: 10px 0 27px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .field {
+      margin-bottom: 17px;
+    }
+
+    .field-label {
+      display: block;
+      margin-bottom: 8px;
+      color: #2d3932;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .input-wrap {
+      height: 54px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      background: var(--white);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .input-wrap:focus-within {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(23, 122, 75, 0.11);
+    }
+
+    .input-wrap input {
+      width: 100%;
+      height: 100%;
+      min-width: 0;
+      padding: 0 15px;
+      border: 0;
+      outline: 0;
+      color: var(--text);
+      background: transparent;
+      font-size: 16px;
+    }
+
+    .input-wrap input::placeholder {
+      color: #9ba69f;
+    }
+
+    .phone-prefix {
+      height: 26px;
+      display: inline-flex;
+      flex-shrink: 0;
+      align-items: center;
+      margin-left: 15px;
+      padding-right: 12px;
+      border-right: 1px solid var(--border);
+      color: #344139;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .phone-input input {
+      padding-left: 12px;
+    }
+
+    .password-toggle {
+      height: 100%;
+      display: inline-flex;
+      flex-shrink: 0;
+      align-items: center;
+      gap: 6px;
+      padding: 0 15px 0 10px;
+      border: 0;
+      color: var(--green);
+      background: transparent;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .password-toggle svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .terms {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      margin: 5px 0 22px;
+      color: var(--muted);
+      font-size: 13.5px;
+      line-height: 1.5;
+      cursor: pointer;
+    }
+
+    .terms input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .checkmark {
+      width: 20px;
+      height: 20px;
+      display: inline-flex;
+      flex: 0 0 20px;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+      border: 1.5px solid #b8c5bd;
+      border-radius: 6px;
+      background: var(--white);
+      transition: all 0.2s;
+    }
+
+    .checkmark svg {
+      width: 13px;
+      height: 13px;
+      opacity: 0;
+      transform: scale(0.6);
+      transition: all 0.2s;
+    }
+
+    .terms input:checked + .checkmark {
+      border-color: var(--green);
+      background: var(--green);
+    }
+
+    .terms input:checked + .checkmark svg {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .terms input:focus-visible + .checkmark {
+      box-shadow: 0 0 0 3px rgba(23, 122, 75, 0.15);
+    }
+
+    .terms a {
+      color: var(--green);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .terms a:hover {
+      text-decoration: underline;
+    }
+
+    .submit-button {
+      width: 100%;
+      height: 55px;
+      border: 0;
+      border-radius: 14px;
+      color: var(--white);
+      background: var(--green);
+      box-shadow: 0 8px 18px rgba(23, 122, 75, 0.19);
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+
+    .submit-button:hover {
+      background: var(--green-dark);
+      box-shadow: 0 10px 22px rgba(23, 122, 75, 0.24);
+    }
+
+    .submit-button:active {
+      transform: translateY(1px);
+    }
+
+    .login {
+      margin: 22px 0 0;
+      color: var(--muted);
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .login a {
+      margin-right: 4px;
+      color: var(--green);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .login a:hover {
+      text-decoration: underline;
+    }
+
+    .error-message {
+      display: none;
+      margin: 7px 0 0;
+      color: var(--error);
+      font-size: 12px;
+    }
+
+    .field.invalid .input-wrap {
+      border-color: var(--error);
+    }
+
+    .field.invalid .error-message {
+      display: block;
+    }
+
+    @media (min-width: 700px) {
+      body {
+        background:
+          radial-gradient(circle at 12% 14%, rgba(232, 167, 59, 0.11) 0 100px, transparent 101px),
+          radial-gradient(circle at 88% 82%, rgba(23, 122, 75, 0.09) 0 180px, transparent 181px),
+          var(--background);
+      }
+
+      .page {
+        align-items: center;
+        padding: 42px 20px;
+      }
+
+      .shell {
+        width: 480px;
+        min-height: 0;
+        padding: 0 42px 38px;
+        border: 1px solid #e2e9e4;
+        border-radius: 24px;
+        box-shadow: 0 20px 55px rgba(27, 55, 38, 0.1);
+      }
+
+      .header {
+        height: 78px;
+      }
+
+      main {
+        padding-top: 12px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .shell {
+        padding-right: 16px;
+        padding-left: 16px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="shell" aria-labelledby="page-title">
+      <header class="header">
+        <button class="back-button" type="button" aria-label="العودة للخلف" onclick="history.back()">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <div class="brand" aria-label="قريب">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none">
+              <path d="M16 3.5c-6.2 0-11.2 4.8-11.2 10.9C4.8 22.1 16 29 16 29s11.2-6.9 11.2-14.6C27.2 8.3 22.2 3.5 16 3.5Z" fill="currentColor"/>
+              <path d="M11.2 15.8h9.6l1.2-5.2H10l1.2 5.2Z" fill="white"/>
+              <path d="M12.3 10.6 14 8.8M19.7 10.6 18 8.8" stroke="white" stroke-width="1.4" stroke-linecap="round"/>
+              <circle cx="13.2" cy="18.2" r="1.1" fill="white"/>
+              <circle cx="19.2" cy="18.2" r="1.1" fill="white"/>
+            </svg>
+          </span>
+          قريب
+        </div>
+        <span aria-hidden="true"></span>
+      </header>
+
+      <main>
+        <div class="eyebrow">قريب منك دوماً بأجود المنتجات</div>
+        <h1 id="page-title">إنشاء حسابك</h1>
+        <p class="intro">سجل الآن للحصول على خدمات توصيل البقالة والمستلزمات اليومية إلى عتبة داركم.</p>
+
+        <form id="signup-form" novalidate>
+          <div class="field">
+            <label class="field-label" for="full-name">الإسم الكامل</label>
+            <div class="input-wrap">
+              <input id="full-name" name="name" type="text" autocomplete="name" placeholder="أدخل إسمك الكامل" required>
+            </div>
+            <p class="error-message">يرجى إدخال الإسم الكامل.</p>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="mobile">رقم الجوال</label>
+            <div class="input-wrap phone-input">
+              <span class="phone-prefix">+966</span>
+              <input dir="ltr" id="mobile" name="mobile" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="5X XXX XXXX" maxlength="12" required aria-label="رقم الجوال السعودي">
+            </div>
+            <p class="error-message">يرجى إدخال رقم جوال سعودي صالح.</p>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="email">البريد الإلكتروني</label>
+            <div class="input-wrap">
+              <input id="email" name="email" type="email" autocomplete="email" placeholder="name@example.com" required>
+            </div>
+            <p class="error-message">يرجى إدخال بريد إلكتروني صالح.</p>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="password">كلمة المرور</label>
+            <div class="input-wrap">
+              <input id="password" name="password" type="password" autocomplete="new-password" placeholder="8 أحرف على الأقل" minlength="8" required>
+              <button class="password-toggle" id="password-toggle" type="button" aria-label="إظهار كلمة المرور" aria-pressed="false">
+                <svg id="eye-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                  <circle cx="12" cy="12" r="2.7" stroke="currentColor" stroke-width="1.8"/>
+                </svg>
+                <span id="toggle-text">إظهار</span>
+              </button>
+            </div>
+            <p class="error-message">يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل.</p>
+          </div>
+
+          <label class="terms">
+            <input id="terms" name="terms" type="checkbox" required>
+            <span class="checkmark" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none">
+                <path d="m3 8.2 3.1 3.1L13 4.7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span>أوافق على <a href="#" onclick="event.stopPropagation()">الشروط والأحكام</a> و <a href="#" onclick="event.stopPropagation()">سياسة الخصوصية</a> لقريب.</span>
+          </label>
+
+          <button class="submit-button" type="submit">إنشاء حساب</button>
+        </form>
+
+        <p class="login">هل لديك حساب مسبقاً؟<a href="#">تسجيل الدخول</a></p>
+      </main>
+    </section>
+  </div>
+
+  <script>
+    const form = document.getElementById("signup-form");
+    const password = document.getElementById("password");
+    const toggle = document.getElementById("password-toggle");
+    const toggleText = document.getElementById("toggle-text");
+
+    toggle.addEventListener("click", () => {
+      const isVisible = password.type === "text";
+      password.type = isVisible ? "password" : "text";
+      toggleText.textContent = isVisible ? "إظهار" : "إخفاء";
+      toggle.setAttribute("aria-label", isVisible ? "إظهار كلمة المرور" : "إخفاء كلمة المرور");
+      toggle.setAttribute("aria-pressed", String(!isVisible));
+      password.focus();
+    });
+
+    form.addEventListener("submit", (event) => {
+      let valid = true;
+      const fields = form.querySelectorAll(".field");
+
+      fields.forEach((field) => {
+        const input = field.querySelector("input");
+        let inputValid = input.checkValidity();
+
+        if (input.id === "mobile") {
+          const digits = input.value.replace(/\D/g, "");
+          inputValid = /^5\d{8}$/.test(digits);
+        }
+
+        field.classList.toggle("invalid", !inputValid);
+        valid = valid && inputValid;
+      });
+
+      if (!document.getElementById("terms").checked) {
+        valid = false;
+      }
+
+      if (!valid) {
+        event.preventDefault();
+        const firstInvalid = form.querySelector(".field.invalid input");
+        if (firstInvalid) firstInvalid.focus();
+      } else {
+        event.preventDefault();
+      }
+    });
+
+    form.querySelectorAll(".field input").forEach((input) => {
+      input.addEventListener("input", () => {
+        input.closest(".field").classList.remove("invalid");
+      });
+    });
+  </script>
+</body>
+</html>

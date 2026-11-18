@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم قريب</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563EB;
+            --primary-dark: #1D4ED8;
+            --success: #10B981;
+            --danger: #EF4444;
+            --warning: #F59E0B;
+            --light: #F9FAFB;
+            --dark: #1F2937;
+            --gray: #6B7280;
+            --border: #E5E7EB;
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --font-main: 'Cairo', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            direction: rtl;
+            color: var(--dark);
+            background-color: #F3F4F6;
+            line-height: 1.5;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            background-color: var(--dark);
+            color: white;
+            padding: 1.5rem 0;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 65px;
+            z-index: 50;
+            transition: transform 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .sidebar.expanded {
+            width: 250px;
+        }
+
+        .sidebar-header {
+            padding: 0 1rem 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .sidebar-logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .menu-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.25rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            margin-right: 0.5rem;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+        }
+
+        .sidebar-nav li {
+            padding: 0.75rem 1rem;
+            transition: background-color 0.2s;
+        }
+
+        .sidebar-nav li:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+        }
+
+        .sidebar-nav .icon {
+            font-size: 1.25rem;
+        }
+
+        .sidebar-nav .arrow {
+            margin-inline-start: auto;
+            transition: transform 0.2s;
+        }
+
+        .sidebar.expanded .sidebar-nav .arrow {
+            transform: rotate(180deg);
+        }
+
+        .main-content {
+            margin-inline-start: 65px;
+            transition: margin 0.3s ease;
+        }
+
+        .sidebar.expanded ~ .main-content {
+            margin-inline-start: 250px;
+        }
+
+        .topbar {
+            background-color: white;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 40;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            background-color: #F3F4F6;
+            border-radius: 0.5rem;
+            padding: 0.5rem 1rem;
+            flex-grow: 1;
+            margin-inline-end: 1rem;
+            max-width: 400px;
+        }
+
+        .search-input {
+            background: transparent;
+            border: none;
+            outline: none;
+            width: 100%;
+            font-family: var(--font-main);
+            direction: rtl;
+        }
+
+        .search-icon {
+            color: var(--gray);
+            font-size: 1.25rem;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .user-info h4 {
+            font-weight: 600;
+            margin-bottom: 0.125rem;
+        }
+
+        .user-info p {
+            font-size: 0.875rem;
+            color: var(--gray);
+            white-space: nowrap;
+        }
+
+        .page-header {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .page-header h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .page-header p {
+            color: var(--gray);
+        }
+
+        .kpi-container {
+            padding: 0 1.5rem 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .kpi-card {
+            background-color: white;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
+            clip-path: polygon(100% 0, 0 0, 100% 100%);
+        }
+
+        .kpi-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .kpi-label {
+            color: var(--gray);
+            font-size: 0.875rem;
+        }
+
+        .kpi-change {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            margin-top: 1rem;
+        }
+
+        .kpi-change.positive {
+            color: var(--success);
+        }
+
+        .kpi-change.negative {
+            color: var(--danger);
+        }
+
+        .change-value {
+            font-weight: 600;
+        }
+
+        .change-icon {
+            font-size: 0.875rem;
+        }
+
+        .chart-section {
+            background-color: white;
+            margin: 0 1.5rem 1.5rem;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .chart-title {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .chart-container {
+            height: 300px;
+            position: relative;
+        }
+
+        .bar-chart {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            height: 100%;
+            gap: 0.5rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .bar {
+            width: 15%;
+            height: 100%;
+            transition: height 0.3s ease;
+        }
+
+        .bar-label {
+            text-align: center;
+            margin-top: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--gray);
+        }
+
+        .y-axis {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding: 1rem 0;
+            font-size: 0.75rem;
+            color: var(--gray);
+        }
+
+        .y-tick {
+            height: 20%;
+        }
+
+        .table-section {
+            background-color: white;
+            padding: 0 1.5rem 1.5rem;
+            box-shadow: var(--shadow);
+            margin: 0 1.5rem;
+            border-radius: 0.5rem;
+        }
+
+        .table-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .table-title {
+            font-weight: 600;
+        }
+
+        .table-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 1rem 0.75rem;
+            text-align: right;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            font-weight: 600;
+            color: var(--gray);
+            font-size: 0.875rem;
+            white-space: nowrap;
+        }
+
+        .sort-icon {
+            margin-inline-start: 0.5rem;
+        }
+
+        .header-sort {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .header-sort:hover {
+            color: var(--dark);
+        }
+
+        tr:hover {
+            background-color: #F9FAFB;
+        }
+
+        .order-id {
+            font-weight: 500;
+        }
+
+        .customer {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .status-pending {
+            background-color: #FEF3C7;
+            color: #92400E;
+        }
+
+        .status-completed {
+            background-color: #D1FAE5;
+            color: #065F46;
+        }
+
+        .status-cancelled {
+            background-color: #FEE2E2;
+            color: #991B1B;
+        }
+
+        .status-pending:before {
+            content: 'قيد الانتظار';
+        }
+
+        .status-completed:before {
+            content: 'مكتملة';
+        }
+
+        .status-cancelled:before {
+            content: 'ملغاة';
+        }
+
+        .status-unknown {
+            background-color: #DBEAFE;
+            color: #1E40AF;
+        }
+
+        .status-unknown:before {
+            content: 'غير معروف';
+        }
+
+        .amount {
+            font-weight: 600;
+        }
+
+        .actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn {
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background-color: var(--light);
+            color: var(--dark);
+            border-color: var(--border);
+        }
+
+        .btn-secondary:hover {
+            background-color: #E5E7EB;
+        }
+
+        .icon {
+            font-size: 1rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .main-content {
+                margin-inline-start: 250px;
+            }
+
+            .sidebar {
+                width: 250px;
+            }
+
+            .sidebar.expanded ~ .main-content {
+                margin-inline-start: 250px;
+            }
+
+            .kpi-container {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .chart-section, .table-section {
+                margin: 0 0 1.5rem;
+            }
+
+            .hidden-mobile {
+                display: none;
+            }
+        }
+
+        /* RTL Specific Styles */
+        [dir="rtl"] .sidebar.nav-expanded {
+            transform: translateX(0);
+        }
+
+        [dir="rtl"] .chart-axis {
+            right: auto;
+            left: 0;
+        }
+
+        /* ICONFONT (using Google Material Icons) */
+        .material-icons {
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            -moz-osx-font-smoothing: grayscale;
+            font-feature-settings: 'liga';
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <button class="menu-toggle" id="menuToggle" aria-label="قائمة التنقل">
+                    <span class="material-icons">menu</span>
+                </button>
+                <h2 class="sidebar-logo">قريب</h2>
+            </div>
+            <nav>
+                <ul class="sidebar-nav">
+                    <li><a href="#" class="active"><span class="icon material-icons">dashboard</span><span class="label">لوحة التحكم</span></a></li>
+                    <li><a href="#"><span class="icon material-icons">shopping_cart</span><span class="label">الطلبات</span></a></li>
+                    <li><a href="#"><span class="icon material-icons">storefront</span><span class="label">منتجاتي</span></a></li>
+                    <li><a href="#"><span class="icon material-icons">local_offer</span><span class="label">العروض</span></a></li>
+                    <li><a href="#"><span class="icon material-icons">people</span><span class="label">العملاء</span></a></li>
+                    <li><a href="#"><span class="icon material-icons">receipt</span><span class="label">الفواتير</span></a></li>
+                    <li><a href="#"><span class="icon material-icons">analytics</span><span class="label">تقارير</span><span class="arrow material-icons">arrow_drop_down</span></a></li>
+                    <li><a href="#"><span class="icon material-icons">settings</span><span class="label">الإعدادات</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div class="search-container">
+                    <span class="search-icon material-icons">search</span>
+                    <input type="text" class="search-input" placeholder="بحث..." aria-label="بحث">
+                </div>
+                <div class="user-profile">
+                    <div class="user-avatar">H</div>
+                    <div class="user-info">
+                        <h4>هيلانة Smith</h4>
+                        <p>0102 334 5567</p>
+                    </div>
+                </div>
+            </header>
+
+            <div class="page-header">
+                <h1>الصفحة الرئيسية</h1>
+                <p>نظرة عامة على جميع المتاجر</p>
+            </div>
+
+            <div class="kpi-container">
+                <div class="kpi-card">
+                    <div class="kpi-value">47</div>
+                    <div class="kpi-label">طلبات اليوم</div>
+                    <div class="kpi-change positive">
+                        <span class="change-value">+12.5%</span>
+                        <span class="change-icon material-icons">trending_up</span>
+                    </div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-value">1,245.80 <span style="font-size: 1.2rem;">ج.م.</span></div>
+                    <div class="kpi-label">إجمالي المبيعات</div>
+                    <div class="kpi-change positive">
+                        <span class="change-value">+5.2%</span>
+                        <span class="change-icon material-icons">trending_up</span>
+                    </div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-value">230.50 <span style="font-size: 1.2rem;">ج.م.</span></div>
+                    <div class="kpi-label">متوسط السلة</div>
+                    <div class="kpi-change positive">
+                        <span class="change-value">+2.8%</span>
+                        <span class="change-icon material-icons">trending_up</span>
+                    </div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-value">8.2%</div>
+                    <div class="kpi-label">معدل الإلغاء</div>
+                    <div class="kpi-change negative">
+                        <span class="change-value">-3.1%</span>
+                        <span class="change-icon material-icons">trending_down</span>
+                    </div>
+                </div>
+            </div>
+
+            <section class="chart-section">
+                <div class="chart-header">
+                    <h3 class="chart-title">مبيعات الأسبوع الماضي</h3>
+                    <div>
+                        <button class="btn btn-secondary" aria-label="شهر">
+                            <span class="material-icons">calendar_month</span>
+                            <span>شهر</span>
+                            <span class="material-icons" style="font-size: 0.8rem;">arrow_drop_down</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <svg viewBox="0 0 800 350" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.8"/>
+                                <stop offset="100%" stop-color="#3B82F6" stop-opacity="0.1"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- Y Axis -->
+                        <g class="y-axis">
+                            <text x="45" y="50" text-anchor="end" class="y-tick">1000+</text>
+                            <text x="45" y="120" text-anchor="end" class="y-tick">750</text>
+                            <text x="45" y="190" text-anchor="end" class="y-tick">500</text>
+                            <text x="45" y="260" text-anchor="end" class="y-tick">250</text>
+                            <text x="45" y="330" text-anchor="end" class="y-tick">0</text>
+                        </g>
+                        <!-- Bars -->
+                        <g transform="translate(50, 50)">
+                            <rect x="30" y="250" width="60" height="80" fill="url(#gradient)" />
+                            <text x="60" y="345" text-anchor="middle" class="bar-label">السبت</text>
+                            <text x="60" y="240" text-anchor="middle" class="bar-label" style="font-size: 0.8rem;">142</text>
+
+                            <rect x="120" y="200" width="60" height="130" fill="url(#gradient)" />
+                            <text x="150" y="345" text-anchor="middle" class="bar-label">الأحد</text>
+                            <text x="150" y="190" text-anchor="middle" class="bar-label" style="font-size: 0.8rem;">284</text>
+
+                            <rect x="210" y="150" width="60" height="180" fill="url(#gradient)" />
+                            <text x="240" y="345" text-anchor="middle" class="bar-label">الاثنين</text>
+                            <text x="240" y="140" text-anchor="middle" class="bar-label" style="font-size: 0.8rem;">312</text>
+
+                            <rect x="300" y="220" width="60" height="110" fill="url(#gradient)" />
+                            <text x="330" y="345" text-anchor="middle" class="bar-label">الثلاثاء</text>
+                            <text x="330" y="210" text-anchor="middle" class="bar-label" style="font-size: 0.8rem;">97</text>
+
+                            <rect x="390" y="180" width="60" height="150" fill="url(#gradient)" />
+                            <text x="420" y="345" text-anchor="middle" class="bar-label">الأربعاء</text>
+                            <text x="420" y="170" text-anchor="middle" class="bar-label" style="font-size: 0.8rem;">201</text>
+
+                            <rect x="480" y="120" width="60" height="210" fill="url(#gradient)" />
+                            <text x="510" y="345" text-anchor="middle" class="bar-label">الخميس</text>
+                            <text x="510" y="110" text-anchor="middle" class="bar-label" style="font-size: 0.8rem;">492</text>
+
+                            <rect x="570" y="280" width="60" height="50" fill="url(#gradient)" />
+                            <text x="600" y="345" text-anchor="middle" class="bar-label">الجمعة</text>
+                            <text x="600" y="270" text-anchor="middle" class="bar-label" style="font-size: 0.8rem;">68</text>
+                        </g>
+                    </svg>
+                </div>
+            </section>
+
+            <section class="table-section">
+                <div class="table-controls">
+                    <h3 class="table-title">آخر الطلبات</h3>
+                    <div class="table-actions">
+                        <button class="btn btn-secondary hidden-mobile">
+                            <span class="material-icons">download</span>
+                            <span>تصدير</span>
+                        </button>
+                        <button class="btn btn-primary hidden-mobile">
+                            <span class="material-icons">add</span>
+                            <span>طلب جديد</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="header-sort" data-sort="id">
+                                    رقم الطلبية
+                                    <span class="sort-icon material-icons">sort</span>
+                                </th>
+                                <th class="header-sort" data-sort="customer">
+                                    العميل
+                                    <span class="sort-icon material-icons">sort</span>
+                                </th>
+                                <th class="header-sort" data-sort="date">
+                                    التاريخ
+                                    <span class="sort-icon material-icons">sort</span>
+                                </th>
+                                <th class="header-sort" data-sort="amount">
+                                    القيمة
+                                    <span class="sort-icon material-icons">sort</span>
+                                </th>
+                                <th>الحالة</th>
+                                <th>الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="order-id">ORD-2023-0548</td>
+                                <td class="customer">
+                                    <div class="avatar" style="width: 32px; height: 32px; border-radius: 50%; background-color: #10B981; color: white; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">S</div>
+                                    <span class="customer-name">سامر حسين</span>
+                                </td>
+                                <td class="date">2023/11/15</td>
+                                <td class="amount">345.60 ج.م.</td>
+                                <td><span class="status-badge status-completed"></span></td>
+                                <td class="actions">
+                                    <button class="btn btn-secondary" aria-label="عرض">
+                                        <span class="material-icons">visibility</span>
+                                    </button>
+                                    <button class="btn btn-primary" aria-label="الغاء/اعادة">
+                                        <span class="material-icons">autorenew</span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="order-id">ORD-2023-0547</td>
+                                <td class="customer">
+                                    <div class="avatar" style="width: 32px; height: 32px; border-radius: 50%; background-color: #3B82F6; color: white; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">M</div>
+                                    <span class="customer-name">محمد علي</span>
+                                </td>
+                                <td class="date">2023/11/14</td>
+                                <td class="amount">412.80 ج.م.</td>
+                                <td><span class="status-badge status-pending"></span></td>
+                                <td class="actions">
+                                    <button class="btn btn-secondary" aria-label="عرض">
+                                        <span class="material-icons">visibility</span>
+                                    </button>
+                                    <button class="btn btn-primary" aria-label="الغاء/اعادة">
+                                        <span class="material-icons">autorenew</span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="order-id">ORD-2023-0546</td>
+                                <td class="customer">
+                                    <div class="avatar" style="width: 32px; height: 32px; border-radius: 50%; background-color: #EF4444; color: white; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">Z</div>
+                                    <span class="customer-name">زينب عادل</span>
+                                </td>
+                                <td class="date">2023/11/14</td>
+                                <td class="amount">189.00 ج.م.</td>
+                                <td><span class="status-badge status-cancelled"></span></td>
+                                <td class="actions">
+                                    <button class="btn btn-secondary" aria-label="عرض">
+                                        <span class="material-icons">visibility</span>
+                                    </button>
+                                    <button class="btn btn-primary" aria-label="الغاء/اعادة">
+                                        <span class="material-icons">autorenew</span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="order-id">ORD-2023-0545</td>
+                                <td class="customer">
+                                    <div class="avatar" style="width: 32px; height: 32px; border-radius: 50%; background-color: #F59E0B; color: white; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">L</div>
+                                    <span class="customer-name">ليلى إبراهيم</span>
+                                </td>
+                                <td class="date">2023/11/13</td>
+                                <td class="amount">523.45 ج.م.</td>
+                                <td><span class="status-badge status-completed"></span></td>
+                                <td class="actions">
+                                    <button class="btn btn-secondary" aria-label="عرض">
+                                        <span class="material-icons">visibility</span>
+                                    </button>
+                                    <button class="btn btn-primary" aria-label="الغاء/اعادة">
+                                        <span class="material-icons">autorenew</span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="order-id">ORD-2023-0544</td>
+                                <td class="customer">
+                                    <div class="avatar" style="width: 32px; height: 32px; border-radius: 50%; background-color: #8B5CF6; color: white; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">K</div>
+                                    <span class="customer-name">كمال راشد</span>
+                                </td>
+                                <td class="date">2023/11/12</td>
+                                <td class="amount">278.90 ج.م.</td>
+                                <td><span class="status-badge status-pending"></span></td>
+                                <td class="actions">
+                                    <button class="btn btn-secondary" aria-label="عرض">
+                                        <span class="material-icons">visibility</span>
+                                    </button>
+                                    <button class="btn btn-primary" aria-label="الغاء/اعادة">
+                                        <span class="material-icons">autorenew</span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Toggle sidebar
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+
+        menuToggle.addEventListener('click', function() {
+            sidebar.classList.toggle('expanded');
+        });
+
+        // Simple table sorting functionality
+        document.querySelectorAll('.header-sort').forEach(header => {
+            header.addEventListener('click', function() {
+                const column = this.getAttribute('data-sort');
+                const table = this.closest('table');
+                const tbody = table.querySelector('tbody');
+                const rows = Array.from(tbody.querySelectorAll('tr'));
+
+                rows.sort((a, b) => {
+                    const aValue = a.querySelector(`td:nth-child(${Array.from(table.querySelector('tr:nth-child(1) td').keys())[Array.from(this.parentNode.children).indexOf(this)] + 1})`).textContent;
+                    const bValue = b.querySelector(`td:nth-child(${Array.from(table.querySelector('tr:nth-child(1) td').keys())[Array.from(this.parentNode.children).indexOf(this)] + 1})`).textContent;
+
+                    if (column === 'id' || column === 'amount') {
+                        // Numeric comparison
+                        const aNum = parseFloat(aValue.replace(/[^\d]/g, ''));
+                        const bNum = parseFloat(bValue.replace(/[^\d]/g, ''));
+                        return aNum - bNum;
+                    } else if (column === 'date') {
+                        // Date comparison
+                        return new Date(aValue) - new Date(bValue);
+                    } else {
+                        // String comparison
+                        return aValue.localeCompare(bValue);
+                    }
+                });
+
+                // Rebuild table
+                rows.forEach(row => tbody.appendChild(row));
+            });
+        });
+    </script>
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</body>
+</html>

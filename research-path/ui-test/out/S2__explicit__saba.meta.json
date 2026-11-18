@@ -1,0 +1,9 @@
+{
+  "screen": "S2",
+  "cond": "explicit",
+  "model": "saba",
+  "model_id": "mistralai/mistral-saba",
+  "raw_chars": 18620,
+  "complete": true,
+  "at": "2026-11-18T05:39:01.013Z"
+}

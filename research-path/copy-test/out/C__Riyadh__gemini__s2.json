@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Riyadh",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Riyadh. Write marketing copy for it in Saudi (Najdi) Arabic, the way people in Riyadh actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 2,
+  "prompt_lang": "en",
+  "city": "Riyadh",
+  "target_region": "Gulf",
+  "target_city_code": "RIY",
+  "model": "gemini",
+  "id": "C__Riyadh__gemini__s2",
+  "model_id": "google/gemini-3.1-pro-preview",
+  "output": "الشعار:\nقريب.. مقاضيك زاهبة، وحنا حولك.\n\nإعلانات إنستقرام:\n١. متكي بالبيت وناقصك أغراض؟ زهلها، اطلب من قريب ودقايق وهي عند بابك.\n٢. وشوله تطلع بالزحمة؟ ريح راسك، مقاضي البيت كلها بتجيك من قريب.. اطلب الحين!\n٣. حايس وودك تتقضى؟ تطبيق قريب يضبطك، كل اللي بخاطرك يوصلك للباب ولا تشيل هم.\n\nإشعار التطبيق (Push Notification):\nمتكي؟ 🛋️ وشوله تطلع وتتعب عمرك، مقاضيك كلها في قريب.. اطلب الحين ونجيك طيران 🚀",
+  "at": "2026-11-18T05:45:56.497Z"
+}

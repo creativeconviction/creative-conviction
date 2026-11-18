@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f8faf7">
+  <title>مرحبًا بك في قريب</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #176b4d;
+      --primary-dark: #0f513a;
+      --primary-soft: #e7f4ee;
+      --accent: #f0a84b;
+      --text: #17322a;
+      --muted: #6e7f78;
+      --surface: #ffffff;
+      --background: #eef3ef;
+      --border: #dfe8e3;
+      --shadow: 0 24px 60px rgba(26, 69, 53, 0.14);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+    }
+
+    body {
+      background: var(--background);
+      color: var(--text);
+      font-family: "Tajawal", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button,
+    a {
+      font: inherit;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button {
+      border: 0;
+    }
+
+    .app-shell {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      min-height: 100vh;
+      min-height: 100dvh;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(240, 168, 75, 0.09), transparent 24%),
+        linear-gradient(180deg, #fbfcfa 0%, #ffffff 100%);
+    }
+
+    .topbar {
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: calc(20px + env(safe-area-inset-top)) 22px 8px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--primary);
+      font-size: 21px;
+      font-weight: 800;
+    }
+
+    .brand-mark {
+      position: relative;
+      width: 31px;
+      height: 31px;
+      border-radius: 10px 10px 10px 3px;
+      background: var(--primary);
+      box-shadow: 0 7px 16px rgba(23, 107, 77, 0.2);
+    }
+
+    .brand-mark::before {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 10px;
+      height: 10px;
+      content: "";
+      border: 3px solid #fff;
+      border-radius: 50%;
+    }
+
+    .brand-mark::after {
+      position: absolute;
+      right: 13px;
+      bottom: 6px;
+      width: 3px;
+      height: 6px;
+      content: "";
+      border-radius: 2px;
+      background: #fff;
+      transform: rotate(-38deg);
+      transform-origin: top center;
+    }
+
+    .skip {
+      padding: 8px 2px;
+      color: var(--muted);
+      background: transparent;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .skip:hover {
+      color: var(--primary);
+    }
+
+    .viewport {
+      position: relative;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .track {
+      display: flex;
+      width: 300%;
+      height: 100%;
+      transition: transform 450ms cubic-bezier(.22, .75, .25, 1);
+    }
+
+    .slide {
+      display: flex;
+      flex: 0 0 33.3333%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 24px 14px;
+      text-align: center;
+    }
+
+    .illustration {
+      position: relative;
+      display: grid;
+      width: min(100%, 310px);
+      aspect-ratio: 1.3;
+      margin-bottom: clamp(22px, 5vh, 38px);
+      place-items: center;
+      overflow: hidden;
+      border: 1px solid rgba(23, 107, 77, 0.05);
+      border-radius: 32px;
+      background: var(--primary-soft);
+    }
+
+    .illustration::before,
+    .illustration::after {
+      position: absolute;
+      content: "";
+      border-radius: 50%;
+    }
+
+    .illustration::before {
+      top: -36px;
+      left: -30px;
+      width: 120px;
+      height: 120px;
+      background: rgba(240, 168, 75, 0.16);
+    }
+
+    .illustration::after {
+      right: -25px;
+      bottom: -45px;
+      width: 130px;
+      height: 130px;
+      background: rgba(23, 107, 77, 0.08);
+    }
+
+    .illustration svg {
+      z-index: 1;
+      width: 78%;
+      height: 78%;
+      overflow: visible;
+    }
+
+    h1 {
+      max-width: 330px;
+      margin: 0 0 12px;
+      color: var(--text);
+      font-size: clamp(25px, 7vw, 31px);
+      font-weight: 800;
+      line-height: 1.35;
+      letter-spacing: -0.5px;
+    }
+
+    .description {
+      max-width: 330px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.85;
+    }
+
+    .footer {
+      z-index: 2;
+      padding: 8px 22px calc(20px + env(safe-area-inset-bottom));
+    }
+
+    .dots {
+      display: flex;
+      justify-content: center;
+      gap: 7px;
+      margin-bottom: 19px;
+      direction: rtl;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      padding: 0;
+      border-radius: 999px;
+      background: #cbd8d1;
+      cursor: pointer;
+      transition: width 250ms ease, background 250ms ease;
+    }
+
+    .dot.active {
+      width: 25px;
+      background: var(--primary);
+    }
+
+    .actions {
+      display: flex;
+      gap: 11px;
+      direction: rtl;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 54px;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 17px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: transform 150ms ease, background 150ms ease, opacity 150ms ease;
+    }
+
+    .button:active {
+      transform: scale(0.98);
+    }
+
+    .next {
+      flex: 1;
+      color: #fff;
+      background: var(--primary);
+      box-shadow: 0 10px 22px rgba(23, 107, 77, 0.22);
+    }
+
+    .next:hover {
+      background: var(--primary-dark);
+    }
+
+    .back {
+      width: 76px;
+      color: var(--primary);
+      border: 1px solid var(--border);
+      background: #fff;
+    }
+
+    .back:hover {
+      background: var(--primary-soft);
+    }
+
+    .back[hidden] {
+      display: none;
+    }
+
+    .arrow {
+      font-size: 21px;
+      line-height: 1;
+    }
+
+    .toast {
+      position: fixed;
+      z-index: 10;
+      right: 50%;
+      bottom: max(28px, env(safe-area-inset-bottom));
+      width: max-content;
+      max-width: calc(100% - 32px);
+      padding: 13px 18px;
+      color: #fff;
+      border-radius: 14px;
+      background: var(--text);
+      box-shadow: 0 14px 34px rgba(23, 50, 42, 0.25);
+      font-weight: 600;
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(50%, 20px);
+      transition: opacity 220ms ease, transform 220ms ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(50%, 0);
+    }
+
+    button:focus-visible {
+      outline: 3px solid rgba(240, 168, 75, 0.65);
+      outline-offset: 3px;
+    }
+
+    @media (min-width: 700px) {
+      body {
+        display: grid;
+        min-height: 100vh;
+        padding: 28px;
+        place-items: center;
+      }
+
+      .app-shell {
+        width: 390px;
+        min-height: min(844px, calc(100vh - 56px));
+        max-height: 844px;
+        border: 1px solid rgba(23, 107, 77, 0.07);
+        border-radius: 34px;
+        box-shadow: var(--shadow);
+      }
+    }
+
+    @media (max-height: 700px) {
+      .topbar {
+        padding-top: calc(14px + env(safe-area-inset-top));
+      }
+
+      .slide {
+        justify-content: flex-start;
+        padding-top: 4px;
+      }
+
+      .illustration {
+        width: min(100%, 245px);
+        margin-bottom: 17px;
+      }
+
+      h1 {
+        margin-bottom: 6px;
+        font-size: 24px;
+      }
+
+      .description {
+        font-size: 14.5px;
+        line-height: 1.65;
+      }
+
+      .footer {
+        padding-bottom: calc(13px + env(safe-area-inset-bottom));
+      }
+
+      .dots {
+        margin-bottom: 11px;
+      }
+
+      .button {
+        min-height: 49px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .track,
+      .dot,
+      .toast {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app-shell" aria-label="التعريف بتطبيق قريب">
+    <header class="topbar">
+      <div class="brand" aria-label="قريب">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>قريب</span>
+      </div>
+      <button class="skip" id="skipButton" type="button">تخطي</button>
+    </header>
+
+    <section class="viewport" aria-live="polite">
+      <div class="track" id="track">
+        <article class="slide" aria-labelledby="slide-title-1">
+          <div class="illustration" aria-hidden="true">
+            <svg viewBox="0 0 260 190" fill="none">
+              <path d="M31 145C68 126 98 151 131 135C164 119 181 91 226 91" stroke="#BED8CC" stroke-width="8" stroke-linecap="round" stroke-dasharray="3 16"/>
+              <path d="M157 56C157 35.6 173.6 19 194 19C214.4 19 231 35.6 231 56C231 85 194 119 194 119C194 119 157 85 157 56Z" fill="#176B4D"/>
+              <circle cx="194" cy="56" r="13" fill="white"/>
+              <rect x="31" y="64" width="100" height="81" rx="17" fill="white" stroke="#D2E5DC" stroke-width="3"/>
+              <path d="M47 84L70 74L95 85L116 75V126L94 136L70 125L47 136V84Z" fill="#E8F4EE"/>
+              <path d="M70 74V125M95 85V136" stroke="#9CC7B5" stroke-width="3"/>
+              <circle cx="70" cy="100" r="9" fill="#F0A84B"/>
+              <path d="M70 91C65 91 61 95 61 100C61 107 70 114 70 114C70 114 79 107 79 100C79 95 75 91 70 91Z" fill="#F0A84B"/>
+              <circle cx="70" cy="100" r="3" fill="white"/>
+            </svg>
+          </div>
+          <h1 id="slide-title-1">كل ما حولك صار أقرب</h1>
+          <p class="description">اكتشف الخدمات والمتاجر القريبة منك بسهولة، واعثر على ما تحتاجه في لحظات.</p>
+        </article>
+
+        <article class="slide" aria-labelledby="slide-title-2">
+          <div class="illustration" aria-hidden="true">
+            <svg viewBox="0 0 260 190" fill="none">
+              <circle cx="130" cy="94" r="70" fill="#DCEEE6"/>
+              <rect x="79" y="24" width="102" height="143" rx="22" fill="white" stroke="#176B4D" stroke-width="4"/>
+              <rect x="113" y="33" width="34" height="5" rx="2.5" fill="#BED8CC"/>
+              <rect x="95" y="55" width="70" height="43" rx="12" fill="#E7F4EE"/>
+              <path d="M113 72H147M113 82H137" stroke="#176B4D" stroke-width="5" stroke-linecap="round"/>
+              <rect x="95" y="111" width="70" height="36" rx="12" fill="#176B4D"/>
+              <path d="M118 129L127 137L143 120" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="198" cy="66" r="23" fill="#F0A84B"/>
+              <path d="M198 54V68L207 73" stroke="white" stroke-width="4" stroke-linecap="round"/>
+              <circle cx="59" cy="126" r="18" fill="white" stroke="#D2E5DC" stroke-width="3"/>
+              <path d="M52 126L57 131L67 120" stroke="#176B4D" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h1 id="slide-title-2">اطلب بكل سهولة</h1>
+          <p class="description">خطوات بسيطة وتجربة واضحة تساعدك على إتمام طلبك بسرعة ومن دون تعقيد.</p>
+        </article>
+
+        <article class="slide" aria-labelledby="slide-title-3">
+          <div class="illustration" aria-hidden="true">
+            <svg viewBox="0 0 260 190" fill="none">
+              <circle cx="130" cy="96" r="74" fill="#DCEEE6"/>
+              <path d="M78 73L130 45L182 73V119C182 141 159 158 130 168C101 158 78 141 78 119V73Z" fill="white" stroke="#176B4D" stroke-width="4"/>
+              <path d="M105 104L123 121L157 87" stroke="#176B4D" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="190" cy="47" r="22" fill="#F0A84B"/>
+              <path d="M190 35L193.5 43L202 44L195.5 50L197 59L190 54.5L183 59L184.5 50L178 44L186.5 43L190 35Z" fill="white"/>
+              <circle cx="64" cy="136" r="20" fill="#176B4D"/>
+              <path d="M54 136L61 143L75 128" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h1 id="slide-title-3">تجربة موثوقة وآمنة</h1>
+          <p class="description">خدمات موثوقة، معلومات واضحة، ودعم حاضر ليمنحك تجربة مطمئنة في كل مرة.</p>
+        </article>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="dots" role="tablist" aria-label="شرائح التعريف">
+        <button class="dot active" type="button" role="tab" aria-label="الشريحة الأولى" aria-selected="true" data-index="0"></button>
+        <button class="dot" type="button" role="tab" aria-label="الشريحة الثانية" aria-selected="false" data-index="1"></button>
+        <button class="dot" type="button" role="tab" aria-label="الشريحة الثالثة" aria-selected="false" data-index="2"></button>
+      </div>
+
+      <div class="actions">
+        <button class="button next" id="nextButton" type="button">
+          <span id="nextLabel">التالي</span>
+          <span class="arrow" id="nextArrow" aria-hidden="true">←</span>
+        </button>
+        <button class="button back" id="backButton" type="button" hidden>
+          <span aria-hidden="true">→</span>
+          <span>رجوع</span>
+        </button>
+      </div>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast" role="status">أهلًا بك في قريب! يمكنك البدء الآن.</div>
+
+  <script>
+    (() => {
+      const track = document.getElementById("track");
+      const dots = [...document.querySelectorAll(".dot")];
+      const skipButton = document.getElementById("skipButton");
+      const backButton = document.getElementById("backButton");
+      const nextButton = document.getElementById("nextButton");
+      const nextLabel = document.getElementById("nextLabel");
+      const nextArrow = document.getElementById("nextArrow");
+      const toast = document.getElementById("toast");
+      const totalSlides = 3;
+      let current = 0;
+      let touchStartX = 0;
+
+      function render() {
+        track.style.transform = `translateX(${current * 33.3333}%)`;
+
+        dots.forEach((dot, index) => {
+          const active = index === current;
+          dot.classList.toggle("active", active);
+          dot.setAttribute("aria-selected", String(active));
+        });
+
+        backButton.hidden = current === 0;
+        skipButton.style.visibility = current === totalSlides - 1 ? "hidden" : "visible";
+
+        const isLast = current === totalSlides - 1;
+        nextLabel.textContent = isLast ? "ابدأ الآن" : "التالي";
+        nextArrow.textContent = isLast ? "✓" : "←";
+        nextButton.setAttribute("aria-label", isLast ? "ابدأ استخدام قريب" : "الانتقال إلى الشريحة التالية");
+      }
+
+      function goTo(index) {
+        current = Math.max(0, Math.min(index, totalSlides - 1));
+        render();
+      }
+
+      nextButton.addEventListener("click", () => {
+        if (current < totalSlides - 1) {
+          goTo(current + 1);
+        } else {
+          try {
+            localStorage.setItem("qareebOnboardingComplete", "true");
+          } catch (_) {}
+          toast.classList.add("show");
+          setTimeout(() => toast.classList.remove("show"), 2600);
+        }
+      });
+
+      backButton.addEventListener("click", () => goTo(current - 1));
+      skipButton.addEventListener("click", () => goTo(totalSlides - 1));
+
+      dots.forEach(dot => {
+        dot.addEventListener("click", () => goTo(Number(dot.dataset.index)));
+      });
+
+      track.addEventListener("touchstart", event => {
+        touchStartX = event.changedTouches[0].clientX;
+      }, { passive: true });
+
+      track.addEventListener("touchend", event => {
+        const distance = event.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(distance) < 45) return;
+        if (distance > 0) goTo(current + 1);
+        else goTo(current - 1);
+      }, { passive: true });
+
+      document.addEventListener("keydown", event => {
+        if (event.key === "ArrowLeft") goTo(current + 1);
+        if (event.key === "ArrowRight") goTo(current - 1);
+      });
+
+      render();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Sanaa",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Sanaa. Write marketing copy for it in Yemeni (Sanaani) Arabic, the way people in Sanaa actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 1,
+  "prompt_lang": "en",
+  "city": "Sanaa",
+  "target_region": "Yemen",
+  "target_city_code": "SAN",
+  "model": "deepseek",
+  "id": "C__Sanaa__deepseek__s1",
+  "model_id": "deepseek/deepseek-v4-pro",
+  "output": "Tagline:  \nقريب... خلّ الزحمة علينا واحنا نجيب لك طلباتك.\n\nInstagram Ads:  \n١. تعبت من طلعات الدكان؟ مع قريب، مقاضيك توصل لعندك وأنت في بيتك.  \n٢. يا زلمة، زحمة صنعاء شينة! قريب يوصلك طلباتك بسرعة، لا تشيل هم.  \n٣. كل شي قريب. اطلب اللي تحتاجه من البقالة على طول، واحنا نوصّله لعند الباب.\n\nPush Notification:  \nمقاضيك خلصت؟ لا تطلع من البيت، افتح قريب واطلبها الحين! توصلك بسرعة 🚀",
+  "at": "2026-11-18T05:38:15.431Z"
+}

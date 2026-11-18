@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>قريب – الدعم الفني</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brand:#0E8F6E;
+    --brand-dark:#0A6E55;
+    --brand-soft:#E3F4EE;
+    --bg:#F3F5F4;
+    --surface:#FFFFFF;
+    --text:#14211D;
+    --muted:#6B7A75;
+    --line:#E3E8E6;
+    --out:#0E8F6E;
+    --out-text:#FFFFFF;
+    --in:#FFFFFF;
+    --read:#53BDEB;
+    --radius:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;
+    background:#DCE4E1;
+    color:var(--text);
+    display:flex;justify-content:center;
+    -webkit-font-smoothing:antialiased;
+  }
+  .ltr{
+    direction:ltr;unicode-bidi:isolate;
+    font-family:"Inter","IBM Plex Sans Arabic",sans-serif;
+    font-size:.94em;
+  }
+  .app{
+    width:100%;max-width:100%;
+    height:100dvh;
+    display:flex;flex-direction:column;
+    background:var(--bg);
+    position:relative;
+  }
+  @media (min-width:700px){
+    body{align-items:center;padding:24px}
+    .app{
+      max-width:760px;height:min(880px,calc(100dvh - 48px));
+      border-radius:24px;overflow:hidden;
+      box-shadow:0 20px 60px rgba(10,60,45,.18);
+    }
+  }
+
+  /* Header */
+  header{
+    display:flex;align-items:center;gap:10px;
+    padding:12px 12px 12px 16px;
+    padding-top:max(12px, env(safe-area-inset-top));
+    background:var(--surface);
+    border-bottom:1px solid var(--line);
+    z-index:2;
+  }
+  .icon-btn{
+    width:40px;height:40px;border-radius:50%;
+    border:none;background:transparent;color:var(--text);
+    display:grid;place-items:center;cursor:pointer;flex-shrink:0;
+    transition:background .15s;
+  }
+  .icon-btn:hover{background:#EEF2F0}
+  .icon-btn:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+  .icon-btn svg{width:22px;height:22px}
+  .avatar{
+    position:relative;width:42px;height:42px;border-radius:50%;
+    background:linear-gradient(135deg,#13A882,#0A6E55);
+    color:#fff;display:grid;place-items:center;
+    font-weight:700;font-size:17px;flex-shrink:0;
+  }
+  .avatar::after{
+    content:"";position:absolute;bottom:1px;left:1px;
+    width:11px;height:11px;border-radius:50%;
+    background:#22C55E;border:2px solid var(--surface);
+  }
+  .agent{flex:1;min-width:0}
+  .agent h1{font-size:16px;font-weight:600;line-height:1.3;display:flex;align-items:center;gap:6px}
+  .badge{
+    font-size:11px;font-weight:500;color:var(--brand-dark);
+    background:var(--brand-soft);padding:1px 8px;border-radius:999px;
+  }
+  .status{font-size:12.5px;color:#16A34A;display:flex;align-items:center;gap:5px}
+  .status .dot{width:6px;height:6px;border-radius:50%;background:#22C55E}
+
+  /* Messages */
+  main{
+    flex:1;overflow-y:auto;
+    padding:16px 14px 8px;
+    display:flex;flex-direction:column;gap:6px;
+    background-color:var(--bg);
+    background-image:radial-gradient(rgba(14,143,110,.06) 1px,transparent 1px);
+    background-size:18px 18px;
+  }
+  .day{
+    align-self:center;font-size:12px;color:var(--muted);
+    background:rgba(255,255,255,.85);padding:4px 12px;border-radius:999px;
+    margin:4px 0 10px;
+  }
+  .notice{
+    align-self:center;text-align:center;font-size:12px;color:var(--muted);
+    max-width:300px;line-height:1.6;margin-bottom:8px;
+  }
+  .msg{
+    max-width:82%;
+    padding:8px 12px 6px;
+    border-radius:var(--radius);
+    font-size:15px;line-height:1.65;
+    position:relative;
+    box-shadow:0 1px 1.5px rgba(0,0,0,.06);
+    animation:pop .22s ease-out;
+    word-wrap:break-word;overflow-wrap:anywhere;
+  }
+  @keyframes pop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  @media (min-width:700px){.msg{max-width:65%}}
+  /* RTL: incoming on the right (start), outgoing on the left (end) */
+  .msg.in{align-self:flex-start;background:var(--in);border-start-start-radius:6px}
+  .msg.out{align-self:flex-end;background:var(--out);color:var(--out-text);border-start-end-radius:6px}
+  .msg.in + .msg.in{border-start-start-radius:var(--radius)}
+  .msg.out + .msg.out{border-start-end-radius:var(--radius)}
+  .group-gap{margin-top:8px}
+
+  .meta{
+    display:flex;align-items:center;justify-content:flex-end;gap:4px;
+    font-size:11px;margin-top:2px;
+    color:var(--muted);
+  }
+  .out .meta{color:rgba(255,255,255,.78)}
+  .meta time{font-family:"Inter",sans-serif;direction:ltr;unicode-bidi:isolate}
+  .tick{width:17px;height:12px;flex-shrink:0}
+  .tick.read{color:var(--read)}
+  .out .tick.read{color:#A7E8FF}
+
+  .chip{
+    display:inline-block;direction:ltr;unicode-bidi:isolate;
+    font-family:"Inter",sans-serif;font-weight:600;font-size:13.5px;
+    padding:0 7px;border-radius:6px;
+    background:var(--brand-soft);color:var(--brand-dark);
+  }
+  .out .chip{background:rgba(255,255,255,.2);color:#fff}
+  .product{
+    direction:ltr;unicode-bidi:isolate;
+    font-family:"Inter",sans-serif;font-weight:600;font-size:14px;
+  }
+  a.phone{
+    direction:ltr;unicode-bidi:isolate;display:inline-block;
+    font-family:"Inter",sans-serif;font-size:14px;font-weight:500;
+    color:inherit;text-decoration:underline;text-underline-offset:3px;
+    white-space:nowrap;
+  }
+  .in a.phone{color:var(--brand-dark)}
+
+  .product-card{
+    display:flex;align-items:center;gap:10px;
+    background:#F5F8F7;border:1px solid var(--line);
+    border-radius:12px;padding:8px;margin:6px 0 4px;
+  }
+  .product-card .thumb{
+    width:44px;height:44px;border-radius:10px;flex-shrink:0;
+    background:linear-gradient(160deg,#EAF3FF,#CFE2F7);
+    display:grid;place-items:center;
+  }
+  .product-card .info{min-width:0;line-height:1.4}
+  .product-card .name{display:block}
+  .product-card .sub{font-size:12px;color:#B45309}
+
+  .typing{
+    align-self:flex-start;background:var(--in);
+    padding:12px 14px;border-radius:var(--radius);border-start-start-radius:6px;
+    display:none;gap:4px;box-shadow:0 1px 1.5px rgba(0,0,0,.06);
+  }
+  .typing.show{display:flex}
+  .typing span{width:7px;height:7px;border-radius:50%;background:#A3B1AC;animation:blink 1.2s infinite}
+  .typing span:nth-child(2){animation-delay:.2s}
+  .typing span:nth-child(3){animation-delay:.4s}
+  @keyframes blink{0%,60%,100%{opacity:.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
+
+  /* Composer */
+  footer{
+    background:var(--surface);
+    border-top:1px solid var(--line);
+    padding:10px 10px;
+    padding-bottom:max(10px, env(safe-area-inset-bottom));
+  }
+  form{display:flex;align-items:flex-end;gap:8px}
+  .field{
+    flex:1;display:flex;align-items:flex-end;
+    background:#F1F4F3;border-radius:22px;
+    padding:4px 4px 4px 14px;
+    border:1.5px solid transparent;transition:border-color .15s;
+  }
+  .field:focus-within{border-color:var(--brand);background:#fff}
+  textarea{
+    flex:1;resize:none;border:none;background:transparent;outline:none;
+    font:inherit;font-size:15px;line-height:1.5;color:var(--text);
+    padding:7px 4px;max-height:120px;min-height:36px;
+  }
+  textarea::placeholder{color:#8C9A95}
+  .attach{width:36px;height:36px;color:var(--muted)}
+  .send{
+    width:46px;height:46px;border-radius:50%;border:none;cursor:pointer;
+    background:var(--brand);color:#fff;display:grid;place-items:center;flex-shrink:0;
+    transition:background .15s,transform .1s;
+  }
+  .send:hover{background:var(--brand-dark)}
+  .send:active{transform:scale(.94)}
+  .send:disabled{background:#B9C7C2;cursor:default}
+  .send:focus-visible{outline:2px solid var(--brand);outline-offset:3px}
+  .send svg{width:21px;height:21px;transform:scaleX(-1)} /* points left in RTL */
+  .toast{
+    position:absolute;bottom:84px;left:50%;transform:translateX(-50%);
+    background:#14211D;color:#fff;font-size:13px;padding:8px 14px;border-radius:10px;
+    opacity:0;pointer-events:none;transition:opacity .2s;
+  }
+  .toast.show{opacity:.92}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <button class="icon-btn" aria-label="رجوع" type="button">
+      <!-- In RTL, "back" points to the right -->
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+    </button>
+    <div class="avatar" aria-hidden="true">س</div>
+    <div class="agent">
+      <h1>سارة العتيبي <span class="badge">دعم قريب</span></h1>
+      <div class="status" id="status"><span class="dot"></span><span id="statusText">متصلة الآن</span></div>
+    </div>
+    <button class="icon-btn" aria-label="اتصال" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+    </button>
+  </header>
+
+  <main id="chat" role="log" aria-live="polite" aria-label="المحادثة">
+    <div class="day">اليوم</div>
+    <p class="notice">تم ربطك بفريق دعم قريب. المحادثة مشفّرة ويتم حفظها لتحسين الخدمة.</p>
+
+    <!-- 1: Customer -->
+    <div class="msg out">
+      السلام عليكم، طلبي رقم <span class="chip">#QR-48213</span> تأخّر عن الموعد المحدد. متى يوصل؟
+      <div class="meta"><time>10:41 ص</time><svg class="tick read" viewBox="0 0 18 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="مقروءة"><path d="M1 6.5l3.2 3.2L11 2.5"/><path d="M7.5 9.2l.5.5L16.5 2.5"/></svg></div>
+    </div>
+
+    <!-- 2: Agent -->
+    <div class="msg in group-gap">
+      وعليكم السلام، أهلاً بك في دعم قريب! معك سارة 👋 لحظات وأتحقق من حالة الطلب.
+      <div class="meta"><time>10:42 ص</time></div>
+    </div>
+
+    <!-- 3: Agent -->
+    <div class="msg in">
+      طلبك <span class="chip">#QR-48213</span> مع المندوب الآن، ومن المتوقع وصوله خلال ١٥ دقيقة تقريباً.
+      لاحظت أن أحد المنتجات غير متوفر حالياً:
+      <div class="product-card">
+        <div class="thumb" aria-hidden="true">
+          <svg width="22" height="30" viewBox="0 0 22 30" fill="none"><path d="M6 1h10v4l4 5v18a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V10l4-5V1z" fill="#fff" stroke="#3B82C4" stroke-width="1.4"/><rect x="2.7" y="14" width="16.6" height="8" fill="#3B82C4" opacity=".85"/></svg>
+        </div>
+        <div class="info">
+          <span class="product name">Almarai Fresh Milk 1L</span>
+          <span class="sub">غير متوفر في المتجر</span>
+        </div>
+      </div>
+      هل تفضّل استبداله بمنتج مشابه؟
+      <div class="meta"><time>10:43 ص</time></div>
+    </div>
+
+    <!-- 4: Customer -->
+    <div class="msg out group-gap">
+      نعم، أي حليب طازج بنفس الحجم يكفي. وممكن المندوب يتصل علي عند الوصول؟ رقمي <a class="phone" href="tel:+966551234567">+966 55 123 4567</a>
+      <div class="meta"><time>10:44 ص</time><svg class="tick read" viewBox="0 0 18 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="مقروءة"><path d="M1 6.5l3.2 3.2L11 2.5"/><path d="M7.5 9.2l.5.5L16.5 2.5"/></svg></div>
+    </div>
+
+    <!-- 5: Agent -->
+    <div class="msg in group-gap">
+      تم ✅ استبدلنا <span class="product">Almarai Fresh Milk 1L</span> بحليب طازج من نفس الحجم وبنفس السعر، وأبلغت المندوب يتصل بك على <a class="phone" href="tel:+966551234567">+966 55 123 4567</a> قبل الوصول.
+      <div class="meta"><time>10:45 ص</time></div>
+    </div>
+
+    <!-- 6: Customer -->
+    <div class="msg out group-gap">
+      شكراً جزيلاً على سرعة التجاوب 🌷
+      <div class="meta"><time>10:46 ص</time><svg class="tick read" viewBox="0 0 18 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="مقروءة"><path d="M1 6.5l3.2 3.2L11 2.5"/><path d="M7.5 9.2l.5.5L16.5 2.5"/></svg></div>
+    </div>
+
+    <div class="typing" id="typing" aria-label="سارة تكتب"><span></span><span></span><span></span></div>
+  </main>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <footer>
+    <form id="composer" autocomplete="off">
+      <div class="field">
+        <label for="input" class="sr-only">اكتب رسالتك</label>
+        <textarea id="input" rows="1" placeholder="اكتب رسالتك…" dir="auto"></textarea>
+        <button class="icon-btn attach" type="button" id="attach" aria-label="إرفاق ملف">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21.4 11.1l-9.2 9.2a6 6 0 0 1-8.5-8.5l9.2-9.2a4 4 0 0 1 5.7 5.7l-9.2 9.2a2 2 0 0 1-2.8-2.8l8.5-8.5"/></svg>
+        </button>
+        <input type="file" id="file" hidden>
+      </div>
+      <button class="send" type="submit" id="send" aria-label="إرسال" disabled>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+      </button>
+    </form>
+  </footer>
+</div>
+
+<script>
+(() => {
+  const chat = document.getElementById('chat');
+  const form = document.getElementById('composer');
+  const input = document.getElementById('input');
+  const send = document.getElementById('send');
+  const typing = document.getElementById('typing');
+  const statusText = document.getElementById('statusText');
+  const toast = document.getElementById('toast');
+  const file = document.getElementById('file');
+
+  const tick = (state) => {
+    const second = state === 'sent' ? '' : '<path d="M7.5 9.2l.5.5L16.5 2.5"/>';
+    const label = {sent:'مرسلة', delivered:'تم التسليم', read:'مقروءة'}[state];
+    return `<svg class="tick ${state==='read'?'read':''}" viewBox="0 0 18 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="${label}"><path d="M1 6.5l3.2 3.2L11 2.5"/>${second}</svg>`;
+  };
+  const now = () => {
+    const d = new Date(); let h = d.getHours(); const m = String(d.getMinutes()).padStart(2,'0');
+    const p = h < 12 ? 'ص' : 'م'; h = h % 12 || 12; return `${h}:${m} ${p}`;
+  };
+  const esc = s => s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const scrollDown = () => chat.scrollTo({top: chat.scrollHeight, behavior:'smooth'});
+  const lastIsOut = () => {
+    const msgs = chat.querySelectorAll('.msg'); const l = msgs[msgs.length-1];
+    return l && l.classList.contains('out');
+  };
+
+  function addMessage(html, out){
+    const el = document.createElement('div');
+    el.className = 'msg ' + (out ? 'out' : 'in');
+    if ((out && !lastIsOut()) || (!out && lastIsOut())) el.classList.add('group-gap');
+    el.innerHTML = `<span dir="auto" style="white-space:pre-wrap">${html}</span><div class="meta"><time>${now()}</time>${out ? tick('sent') : ''}</div>`;
+    chat.insertBefore(el, typing);
+    scrollDown();
+    return el;
+  }
+  function setTick(el, state){
+    const old = el.querySelector('.tick'); if (old) old.outerHTML = tick(state);
+  }
+
+  function autosize(){
+    input.style.height = 'auto';
+    input.style.height = Math.min(input.scrollHeight, 120) + 'px';
+    send.disabled = !input.value.trim();
+  }
+  input.addEventListener('input', autosize);
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !e.shiftKey && !e.isComposing){ e.preventDefault(); form.requestSubmit(); }
+  });
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const text = input.value.trim(); if (!text) return;
+    const el = addMessage(esc(text), true);
+    input.value = ''; autosize(); input.focus();
+    setTimeout(() => setTick(el, 'delivered'), 600);
+    setTimeout(() => {
+      setTick(el, 'read');
+      typing.classList.add('show'); statusText.textContent = 'تكتب الآن…'; scrollDown();
+    }, 1300);
+    setTimeout(() => {
+      typing.classList.remove('show'); statusText.textContent = 'متصلة الآن';
+      addMessage('العفو! سعدنا بخدمتك 😊 إذا احتجت أي مساعدة بخصوص طلبك <span class="chip">#QR-48213</span> أنا موجودة هنا.', false);
+    }, 3000);
+  });
+
+  document.getElementById('attach').addEventListener('click', () => file.click());
+  file.addEventListener('change', () => {
+    if (!file.files.length) return;
+    const name = file.files[0].name;
+    const el = addMessage(`📎 <span class="ltr">${esc(name)}</span>`, true);
+    setTimeout(() => setTick(el, 'delivered'), 700);
+    file.value = '';
+    toast.textContent = 'تم إرفاق الملف'; toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 1800);
+  });
+
+  chat.scrollTop = chat.scrollHeight;
+})();
+</script>
+</body>
+</html>

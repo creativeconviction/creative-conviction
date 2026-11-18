@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Sanaa",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Sanaa. Write marketing copy for it in Yemeni (Sanaani) Arabic, the way people in Sanaa actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 2,
+  "prompt_lang": "en",
+  "city": "Sanaa",
+  "target_region": "Yemen",
+  "target_city_code": "SAN",
+  "model": "gemini",
+  "id": "C__Sanaa__gemini__s2",
+  "model_id": "google/gemini-3.1-pro-preview",
+  "output": "**الشعار (Tagline):**\nتطبيق قريب.. مقاضيك لندى بابك، قطّاف ساع البرق!\n\n**إعلانات إنستجرام (Instagram Ads):**\n\n1. مخزّن ومِتْكِي في الديوان ونسيت مقاضي البيت؟ ما عليك، اطلب من \"قريب\" وكل شيء يوصلك لندى بابك وأنت مرتاح! 🍃\n2. لا عاد تتعب نفسك وتدعي من زحمة الشوارع.. افتح \"قريب\"، اختار اللي تشتيه، ومقاضيك عندك لساعك. 🛒🛵\n3. ناقصك جعالة للجهال؟ أو ثلاجة البيت فاضية؟ ابسر تطبيق \"قريب\" واطلب كل اللي في نفسك، إحنا جنبك وقريب منك قوي! 🍎🍫\n\n**إشعار التطبيق (Push Notification):**\nيا حيا ومسهلا! 👋 ناقصك شيء للبيت أو تشتي جعالة؟ ادخل \"قريب\" واطلب الآن، وعنوصلها لك لندى بابك ساع البرق! 🚀🛒",
+  "at": "2026-11-18T05:48:39.066Z"
+}

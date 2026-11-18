@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <title>دعم قريب</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #16a36a;
+      --primary-dark: #0e8052;
+      --primary-soft: #e7f7f0;
+      --ink: #17201d;
+      --muted: #7d8985;
+      --line: #e8ecea;
+      --surface: #ffffff;
+      --chat-bg: #f5f8f7;
+      --incoming: #ffffff;
+      --outgoing: #dcf7eb;
+      --shadow: 0 18px 48px rgba(24, 57, 45, .14);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      font-family: "Noto Kufi Arabic", system-ui, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 8%, rgba(22, 163, 106, .12), transparent 28rem),
+        #edf3f0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+    }
+
+    .app {
+      width: 100%;
+      height: 100dvh;
+      background: var(--surface);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .header {
+      min-height: 82px;
+      padding: max(13px, env(safe-area-inset-top)) 16px 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255, 255, 255, .96);
+      border-bottom: 1px solid var(--line);
+      z-index: 5;
+    }
+
+    .back-button,
+    .icon-button {
+      width: 42px;
+      height: 42px;
+      flex: 0 0 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      color: #26342f;
+      background: #f2f5f4;
+      transition: transform .15s ease, background .15s ease;
+    }
+
+    .back-button:active,
+    .icon-button:active,
+    .send-button:active {
+      transform: scale(.94);
+    }
+
+    .agent-avatar {
+      position: relative;
+      width: 46px;
+      height: 46px;
+      flex: 0 0 46px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(145deg, #35bd85, #118756);
+      color: #fff;
+      font-size: 17px;
+      font-weight: 700;
+      box-shadow: 0 7px 16px rgba(22, 163, 106, .23);
+    }
+
+    .agent-avatar::after {
+      content: "";
+      position: absolute;
+      bottom: 1px;
+      left: 1px;
+      width: 11px;
+      height: 11px;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      background: #28c76f;
+    }
+
+    .agent-info {
+      min-width: 0;
+      flex: 1;
+      line-height: 1.4;
+    }
+
+    .agent-name {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .agent-status {
+      margin-top: 3px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--primary);
+      font-size: 11px;
+      font-weight: 500;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #24bf6b;
+      box-shadow: 0 0 0 3px rgba(36, 191, 107, .12);
+    }
+
+    .brand {
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .chat {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      padding: 18px 14px 20px;
+      background-color: var(--chat-bg);
+      background-image:
+        radial-gradient(rgba(22, 163, 106, .055) 1px, transparent 1px);
+      background-size: 20px 20px;
+      scrollbar-width: thin;
+      scrollbar-color: #cbd6d2 transparent;
+    }
+
+    .date-divider {
+      width: max-content;
+      margin: 0 auto 20px;
+      padding: 6px 12px;
+      border: 1px solid rgba(217, 226, 222, .8);
+      border-radius: 999px;
+      color: #71807b;
+      background: rgba(255, 255, 255, .9);
+      font-size: 10px;
+      box-shadow: 0 4px 12px rgba(31, 60, 49, .04);
+    }
+
+    .messages {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .message {
+      position: relative;
+      max-width: 84%;
+      padding: 11px 13px 7px;
+      border-radius: 17px;
+      font-size: 12.5px;
+      line-height: 1.9;
+      overflow-wrap: anywhere;
+      box-shadow: 0 3px 12px rgba(28, 56, 46, .06);
+      animation: appear .25s ease both;
+    }
+
+    .message.incoming {
+      align-self: flex-start;
+      background: var(--incoming);
+      border: 1px solid #e5ebe8;
+      border-top-right-radius: 5px;
+    }
+
+    .message.outgoing {
+      align-self: flex-end;
+      background: var(--outgoing);
+      border: 1px solid #cbeedf;
+      border-top-left-radius: 5px;
+    }
+
+    .message p {
+      margin: 0;
+    }
+
+    .meta {
+      min-height: 17px;
+      margin-top: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 4px;
+      color: #8b9793;
+      font-size: 9.5px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .checks {
+      display: inline-flex;
+      color: #0d9e87;
+    }
+
+    .checks svg {
+      width: 17px;
+      height: 13px;
+    }
+
+    .code,
+    .phone,
+    .product {
+      direction: ltr;
+      unicode-bidi: isolate;
+      display: inline-block;
+      font-family: Arial, sans-serif;
+      font-weight: 600;
+    }
+
+    .code {
+      color: #087b51;
+    }
+
+    .product-card {
+      margin: 7px 0 2px;
+      padding: 9px 10px;
+      direction: ltr;
+      text-align: left;
+      border-radius: 11px;
+      background: #f4faf7;
+      border: 1px solid #dbece4;
+      color: #254239;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .composer {
+      padding: 10px 12px max(10px, env(safe-area-inset-bottom));
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      background: #fff;
+      border-top: 1px solid var(--line);
+      box-shadow: 0 -8px 24px rgba(29, 55, 46, .04);
+    }
+
+    .input-wrap {
+      min-height: 48px;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 5px 3px 8px;
+      background: #f3f6f5;
+      border: 1px solid #e3e9e6;
+      border-radius: 17px;
+      transition: border-color .2s ease, box-shadow .2s ease;
+    }
+
+    .input-wrap:focus-within {
+      border-color: rgba(22, 163, 106, .55);
+      box-shadow: 0 0 0 3px rgba(22, 163, 106, .09);
+    }
+
+    .message-input {
+      min-width: 0;
+      height: 42px;
+      flex: 1;
+      padding: 0 7px;
+      border: 0;
+      outline: 0;
+      color: var(--ink);
+      background: transparent;
+      font-size: 12px;
+    }
+
+    .message-input::placeholder {
+      color: #9aa4a0;
+    }
+
+    .attach-button {
+      width: 38px;
+      height: 38px;
+      flex: 0 0 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      color: #74807c;
+      background: transparent;
+    }
+
+    .send-button {
+      width: 48px;
+      height: 48px;
+      flex: 0 0 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      color: #fff;
+      background: linear-gradient(145deg, #1db878, #118654);
+      box-shadow: 0 8px 18px rgba(22, 163, 106, .27);
+      transition: transform .15s ease, opacity .15s ease;
+    }
+
+    .send-button:disabled {
+      opacity: .55;
+      box-shadow: none;
+      cursor: default;
+    }
+
+    svg {
+      display: block;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(5px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (min-width: 600px) {
+      body {
+        display: grid;
+        place-items: center;
+        padding: 24px;
+      }
+
+      .app {
+        width: min(100%, 480px);
+        height: min(840px, calc(100dvh - 48px));
+        border: 1px solid rgba(215, 225, 221, .9);
+        border-radius: 28px;
+        box-shadow: var(--shadow);
+      }
+
+      .header {
+        border-radius: 28px 28px 0 0;
+      }
+
+      .composer {
+        border-radius: 0 0 28px 28px;
+      }
+
+      .chat {
+        padding-inline: 20px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        scroll-behavior: auto !important;
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app" aria-label="محادثة دعم عملاء قريب">
+    <header class="header">
+      <button class="back-button" type="button" aria-label="رجوع">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <div class="agent-avatar" aria-hidden="true">س</div>
+
+      <div class="agent-info">
+        <h1 class="agent-name">سارة من فريق الدعم</h1>
+        <div class="agent-status">
+          <span class="status-dot"></span>
+          <span>متصلة الآن</span>
+        </div>
+      </div>
+
+      <div class="brand">قريب</div>
+    </header>
+
+    <section class="chat" id="chat" aria-live="polite">
+      <div class="date-divider">اليوم</div>
+
+      <div class="messages" id="messages">
+        <article class="message incoming">
+          <p>مرحباً بك في دعم قريب 👋 أنا سارة، كيف يمكنني مساعدتك اليوم؟</p>
+          <div class="meta">
+            <time datetime="2025-02-18T10:18">١٠:١٨ ص</time>
+          </div>
+        </article>
+
+        <article class="message outgoing">
+          <p>مرحباً سارة، طلبي رقم <span class="code">#QR-48213</span> لم يصل حتى الآن. هل يمكنك التحقق منه؟</p>
+          <div class="meta">
+            <time datetime="2025-02-18T10:19">١٠:١٩ ص</time>
+            <span class="checks" aria-label="تمت القراءة">
+              <svg viewBox="0 0 20 14" fill="none" aria-hidden="true">
+                <path d="M1.5 7.5l3 3L10 4.8M7.4 9.7l1 1L15.8 3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </article>
+
+        <article class="message incoming">
+          <p>بالتأكيد. للتأكد من بيانات الطلب، فضلاً أرسل رقم الجوال المرتبط بالحساب.</p>
+          <div class="meta">
+            <time datetime="2025-02-18T10:20">١٠:٢٠ ص</time>
+          </div>
+        </article>
+
+        <article class="message outgoing">
+          <p>رقم الجوال هو <span class="phone">+966 55 123 4567</span></p>
+          <div class="meta">
+            <time datetime="2025-02-18T10:21">١٠:٢١ ص</time>
+            <span class="checks" aria-label="تمت القراءة">
+              <svg viewBox="0 0 20 14" fill="none" aria-hidden="true">
+                <path d="M1.5 7.5l3 3L10 4.8M7.4 9.7l1 1L15.8 3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </article>
+
+        <article class="message incoming">
+          <p>شكراً لك. تحققت من الطلب، وهو الآن مع المندوب. حدث تأخير بسيط أثناء تجهيز المنتج التالي:</p>
+          <div class="product-card">Almarai Fresh Milk 1L</div>
+          <p>من المتوقع وصوله خلال ٣٠ إلى ٤٥ دقيقة.</p>
+          <div class="meta">
+            <time datetime="2025-02-18T10:23">١٠:٢٣ ص</time>
+          </div>
+        </article>
+
+        <article class="message outgoing">
+          <p>ممتاز، شكراً لك على المتابعة والتوضيح.</p>
+          <div class="meta">
+            <time datetime="2025-02-18T10:24">١٠:٢٤ ص</time>
+            <span class="checks" aria-label="تمت القراءة">
+              <svg viewBox="0 0 20 14" fill="none" aria-hidden="true">
+                <path d="M1.5 7.5l3 3L10 4.8M7.4 9.7l1 1L15.8 3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <form class="composer" id="composer">
+      <div class="input-wrap">
+        <button class="attach-button" type="button" id="attachButton" aria-label="إرفاق ملف">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M8.5 12.8l6.2-6.2a3.2 3.2 0 014.5 4.5l-8.3 8.3a5 5 0 01-7.1-7.1l8.1-8.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M7.2 15.5l7.5-7.5a1.4 1.4 0 012 2l-7.5 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <input
+          class="message-input"
+          id="messageInput"
+          type="text"
+          placeholder="اكتب رسالتك..."
+          autocomplete="off"
+          aria-label="اكتب رسالتك"
+        >
+        <input id="fileInput" type="file" hidden>
+      </div>
+
+      <button class="send-button" type="submit" aria-label="إرسال الرسالة">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 4l17 8-17 8 3.2-8L4 4z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+          <path d="M7.2 12H21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </form>
+  </main>
+
+  <script>
+    const composer = document.getElementById("composer");
+    const input = document.getElementById("messageInput");
+    const messages = document.getElementById("messages");
+    const chat = document.getElementById("chat");
+    const attachButton = document.getElementById("attachButton");
+    const fileInput = document.getElementById("fileInput");
+
+    attachButton.addEventListener("click", () => fileInput.click());
+
+    fileInput.addEventListener("change", () => {
+      if (fileInput.files.length) {
+        input.value = "مرفق: " + fileInput.files[0].name;
+        input.focus();
+      }
+    });
+
+    composer.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const text = input.value.trim();
+      if (!text) return;
+
+      const now = new Date();
+      const time = now.toLocaleTimeString("ar-SA", {
+        hour: "numeric",
+        minute: "2-digit"
+      });
+
+      const article = document.createElement("article");
+      article.className = "message outgoing";
+
+      const paragraph = document.createElement("p");
+      paragraph.textContent = text;
+
+      const meta = document.createElement("div");
+      meta.className = "meta";
+      meta.innerHTML = `
+        <time>${time}</time>
+        <span class="checks" aria-label="تم الإرسال">
+          <svg viewBox="0 0 20 14" fill="none" aria-hidden="true">
+            <path d="M1.5 7.5l3 3L10 4.8M7.4 9.7l1 1L15.8 3"
+              stroke="currentColor" stroke-width="1.7"
+              stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>`;
+
+      article.append(paragraph, meta);
+      messages.appendChild(article);
+      input.value = "";
+      fileInput.value = "";
+      chat.scrollTo({ top: chat.scrollHeight, behavior: "smooth" });
+    });
+
+    window.addEventListener("load", () => {
+      chat.scrollTop = chat.scrollHeight;
+    });
+  </script>
+</body>
+</html>

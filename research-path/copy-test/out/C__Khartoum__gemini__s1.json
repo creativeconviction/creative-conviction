@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Khartoum",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Khartoum. Write marketing copy for it in Sudanese Arabic, the way people in Khartoum actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 1,
+  "prompt_lang": "en",
+  "city": "Khartoum",
+  "target_region": "Sudan",
+  "target_city_code": "KHA",
+  "model": "gemini",
+  "id": "C__Khartoum__gemini__s1",
+  "model_id": "google/gemini-3.1-pro-preview",
+  "output": "**Tagline:**\nقريب.. دكان الحلة في جيبك، وطلباتك بتجيك طوالي!\n\n**Instagram Ad Lines:**\n1. داير مقاضي البيت ومكسّل تطلع؟ أطلب هسي من \"قريب\" ونجيك مسافة السكة!\n2. شمس الخرطوم حارة والزحمة كعبة؟ ريّح بالك وخلي مشوار الدكان علينا، نزّل \"قريب\" هسي.\n3. من الرغيف للبن، ما تشيل هم المشوار. كل البتحتاجو بيجيك لحدي باب البيت مع \"قريب\".\n\n**Push Notification:**\nيا زول ما تشقي نفسك! مقاضي البيت كلها بتجيك لحدي عندك هسي، أفتح \"قريب\" وأطلب طوالي 🛒💨",
+  "at": "2026-11-18T05:50:21.746Z"
+}

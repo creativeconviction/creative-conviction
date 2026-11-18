@@ -1,0 +1,14 @@
+{
+  "part": "B",
+  "cond": "en-Beirut",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب). Write marketing copy for it in Arabic: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy. It is launching in Beirut.",
+  "s": 1,
+  "prompt_lang": "en",
+  "city": "Beirut",
+  "target_region": "Levant",
+  "model": "gemini",
+  "id": "B__en-Beirut__gemini__s1",
+  "model_id": "google/gemini-3.1-pro-preview",
+  "output": "**الشعار (Tagline):**\nقريب... دايماً حدّك، وأغراضك عندك.\n\n**إعلانات إنستغرام (Instagram Ads):**\n١. علقان بعجقة بيروت وما لحّقت السوبرماركت؟ ريّح بالك، تطبيق \"قريب\" بيوصلك كل أغراضك لعندك بدقايق! 🛵💨\n٢. برّادك فاضي وناقصك إشيا للبيت؟ من الخضرة الطازة للتسالي، كل طلباتك صارت بكبسة زر مع \"قريب\". 🛒📱\n٣. أسرع دليفري سوبرماركت صار ببيروت! حمّل تطبيق \"قريب\" هلق، اطلب يلي عبالك، وخلّي أول توصيلة علينا. 🎁📍\n\n**إشعار الهاتف (Push Notification):**\nعبالك شي والبرّاد فاضي؟ 🤔 لا تعتل همّ عجقة بيروت! افتح \"قريب\" واطلب هلق، نحن مسافة طريق ومنكون على بابك 🚀🛍️",
+  "at": "2026-11-18T05:30:11.246Z"
+}

@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Muscat",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Muscat. Write marketing copy for it in Omani Arabic, the way people in Muscat actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 2,
+  "prompt_lang": "en",
+  "city": "Muscat",
+  "target_region": "Gulf",
+  "target_city_code": "MUS",
+  "model": "gemini",
+  "id": "C__Muscat__gemini__s2",
+  "model_id": "google/gemini-3.1-pro-preview",
+  "output": "**الشعار:**\nقريب.. ما يخلصك تطلع؟ أغراضك عند بابك.\n\n**إعلانات إنستقرام:**\n١. زحمة الشوارع ودوارة الباركنات ما تخلص! ريح راسك واطلب من تطبيق \"قريب\"، وأغراض البيت توصلك فرش لين باب بيتك.\n٢. ناقصتنك أغراض للطبخة ومتعايز تطلع؟ لا تحاتي ولا تعور راسك! افتح \"قريب\" وكل اللي ناقصنك يوصلك مسافة الطريق.\n٣. جالس مع الربع وخلصت السناكات؟ تطبيق \"قريب\" يفزع لك! اطلب الحين وخلك مكانك، طلبك واصل في دقايق.\n\n**إشعار الهاتف (Push Notification):**\nمتعايز تطلع وتضرب زحمة مسقط؟ 😩 ريّح راسك، افتح \"قريب\" واطلب مقاضيك الحين وتوصلك لين عندك! 🛒🚗💨",
+  "at": "2026-11-18T05:47:35.800Z"
+}

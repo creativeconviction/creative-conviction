@@ -1,0 +1,9 @@
+{
+  "screen": "S2",
+  "cond": "localize",
+  "model": "claude",
+  "model_id": "anthropic/claude-opus-5.5",
+  "raw_chars": 32411,
+  "complete": true,
+  "at": "2026-11-18T05:44:05.264Z"
+}

@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Muscat",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Muscat. Write marketing copy for it in Omani Arabic, the way people in Muscat actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 2,
+  "prompt_lang": "en",
+  "city": "Muscat",
+  "target_region": "Gulf",
+  "target_city_code": "MUS",
+  "model": "deepseek",
+  "id": "C__Muscat__deepseek__s2",
+  "model_id": "deepseek/deepseek-v4-pro",
+  "output": "قريب، لكل شي تبيه… قريب!\n\nما تشيل هم التعب، افتح قريب واطلب، وبيوصلك كل شي لين باب البيت.\n\nمقاضي البيت صارت بضغطة زر! حمّل قريب وخلّ التوصيل علينا.\n\nمن الخضار لمواد التنظيف، قريب يوصلك كل شي وانت بمكانك.\n\nوصلنا مسقط! حمّل تطبيق قريب واطلب اللي تباه، أول توصيلة علينا.",
+  "at": "2026-11-18T05:37:41.566Z"
+}

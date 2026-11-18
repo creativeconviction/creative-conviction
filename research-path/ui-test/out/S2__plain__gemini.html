@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>قريب - إتمام الطلب</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00B36B;
+            --primary-hover: #00965A;
+            --bg-color: #F5F7FA;
+            --card-bg: #FFFFFF;
+            --text-main: #1A1D1F;
+            --text-muted: #6F767E;
+            --border-color: #EFEFEF;
+            --danger: #FF6B6B;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.5;
+            display: flex;
+            justify-content: center;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 450px; /* Desktop constrained view */
+            background-color: var(--bg-color);
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--card-bg);
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        header h1 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-right: 16px;
+            flex-grow: 1;
+        }
+
+        /* Main Content */
+        main {
+            padding: 16px;
+            padding-bottom: 100px; /* Space for fixed bottom bar */
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-main);
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        /* Address */
+        .address-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        
+        .address-info {
+            display: flex;
+            gap: 12px;
+        }
+
+        .icon-box {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(0, 179, 107, 0.1);
+            color: var(--primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .address-details h3 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .address-details p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .edit-link {
+            color: var(--primary);
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        /* Delivery Time */
+        .time-tabs {
+            display: flex;
+            background-color: var(--bg-color);
+            border-radius: 10px;
+            padding: 4px;
+            margin-bottom: 16px;
+        }
+
+        .time-tab {
+            flex: 1;
+            text-align: center;
+            padding: 8px 0;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-muted);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .time-tab.active {
+            background-color: var(--card-bg);
+            color: var(--primary);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .time-slots {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .time-slot {
+            flex: 1 1 calc(50% - 5px);
+            text-align: center;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-main);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .time-slot.active {
+            border-color: var(--primary);
+            background-color: rgba(0, 179, 107, 0.05);
+            color: var(--primary);
+        }
+
+        /* Cart Items */
+        .cart-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .cart-item:last-child {
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .item-img {
+            width: 60px;
+            height: 60px;
+            background-color: var(--bg-color);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .item-details {
+            flex-grow: 1;
+        }
+
+        .item-name {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .item-price {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .currency {
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .stepper {
+            display: flex;
+            align-items: center;
+            background-color: var(--bg-color);
+            border-radius: 8px;
+            padding: 4px;
+        }
+
+        .stepper button {
+            width: 28px;
+            height: 28px;
+            background-color: var(--card-bg);
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--text-main);
+            cursor: pointer;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .stepper button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .stepper span {
+            width: 28px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        /* Promo Code */
+        .promo-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        .promo-input {
+            flex-grow: 1;
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .promo-input:focus {
+            border-color: var(--primary);
+        }
+
+        .promo-btn {
+            background-color: var(--text-main);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 0 20px;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        /* Payment Methods */
+        .payment-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .payment-label {
+            display: flex;
+            align-items: center;
+            padding: 14px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .payment-label:hover {
+            background-color: rgba(0,0,0,0.01);
+        }
+
+        .payment-label.selected {
+            border-color: var(--primary);
+            background-color: rgba(0, 179, 107, 0.03);
+        }
+
+        .payment-label input {
+            display: none;
+        }
+
+        .radio-custom {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #CCC;
+            border-radius: 50%;
+            margin-left: 12px;
+            position: relative;
+        }
+
+        .payment-label.selected .radio-custom {
+            border-color: var(--primary);
+        }
+
+        .payment-label.selected .radio-custom::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .payment-icon {
+            width: 32px;
+            height: 24px;
+            margin-left: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .payment-name {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Order Breakdown */
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .summary-row.total {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px dashed var(--border-color);
+            margin-bottom: 0;
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        .summary-val {
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .summary-row.total .summary-val {
+            color: var(--primary);
+        }
+
+        /* Bottom Action Bar */
+        .bottom-bar {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            max-width: 450px;
+            background-color: var(--card-bg);
+            padding: 16px;
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
+            z-index: 20;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+
+        .place-order-btn {
+            width: 100%;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 16px;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+
+        .place-order-btn:active {
+            background-color: var(--primary-hover);
+            transform: scale(0.98);
+        }
+
+        .btn-price {
+            background-color: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        /* SVG Icons Utility */
+        svg {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    
+    <header>
+        <button class="back-btn" aria-label="رجوع">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px;">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+        </button>
+        <h1>إتمام الطلب</h1>
+    </header>
+
+    <main>
+        <!-- Address Section -->
+        <div class="card address-card">
+            <div class="address-info">
+                <div class="icon-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px;">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                </div>
+                <div class="address-details">
+                    <h3>المنزل</h3>
+                    <p>شارع الملك فهد، حي الملقا، الرياض</p>
+                </div>
+            </div>
+            <a href="#" class="edit-link">تعديل</a>
+        </div>
+
+        <!-- Delivery Time Section -->
+        <div class="card">
+            <h2 class="section-title">وقت التوصيل</h2>
+            <div class="time-tabs">
+                <div class="time-tab active" onclick="selectTab(this)">اليوم</div>
+                <div class="time-tab" onclick="selectTab(this)">غداً</div>
+            </div>
+            <div class="time-slots">
+                <div class="time-slot active" onclick="selectSlot(this)">10:00 ص - 11:00 ص</div>
+                <div class="time-slot" onclick="selectSlot(this)">11:00 ص - 12:00 م</div>
+                <div class="time-slot" onclick="selectSlot(this)">12:00 م - 01:00 م</div>
+                <div class="time-slot" onclick="selectSlot(this)">01:00 م - 02:00 م</div>
+            </div>
+        </div>
+
+        <!-- Cart Summary -->
+        <div class="card">
+            <h2 class="section-title">ملخص الطلب</h2>
+            <div class="cart-list">
+                <!-- Item 1 -->
+                <div class="cart-item" data-price="12">
+                    <div class="item-img">🍏</div>
+                    <div class="item-details">
+                        <div class="item-name">تفاح أخضر طازج (1 كجم)</div>
+                        <div class="item-price">12 <span class="currency">ر.س</span></div>
+                    </div>
+                    <div class="stepper">
+                        <button onclick="updateQty(this, 1)">+</button>
+                        <span class="qty-val">2</span>
+                        <button onclick="updateQty(this, -1)">−</button>
+                    </div>
+                </div>
+                <!-- Item 2 -->
+                <div class="cart-item" data-price="7.5">
+                    <div class="item-img">🥛</div>
+                    <div class="item-details">
+                        <div class="item-name">حليب المراعي كامل الدسم (1 لتر)</div>
+                        <div class="item-price">7.5 <span class="currency">ر.س</span></div>
+                    </div>
+                    <div class="stepper">
+                        <button onclick="updateQty(this, 1)">+</button>
+                        <span class="qty-val">1</span>
+                        <button onclick="updateQty(this, -1)" disabled>−</button>
+                    </div>
+                </div>
+                <!-- Item 3 -->
+                <div class="cart-item" data-price="4">
+                    <div class="item-img">🍞</div>
+                    <div class="item-details">
+                        <div class="item-name">خبز أبيض شرائح (كيس)</div>
+                        <div class="item-price">4 <span class="currency">ر.س</span></div>
+                    </div>
+                    <div class="stepper">
+                        <button onclick="updateQty(this, 1)">+</button>
+                        <span class="qty-val">1</span>
+                        <button onclick="updateQty(this, -1)" disabled>−</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Promo Code -->
+        <div class="card">
+            <h2 class="section-title">كوبون الخصم</h2>
+            <div class="promo-container">
+                <input type="text" class="promo-input" placeholder="أدخل كود الخصم هنا">
+                <button class="promo-btn">تطبيق</button>
+            </div>
+        </div>
+
+        <!-- Payment Method -->
+        <div class="card">
+            <h2 class="section-title">طريقة الدفع</h2>
+            <div class="payment-options">
+                <label class="payment-label selected" onclick="selectPayment(this)">
+                    <input type="radio" name="payment" checked>
+                    <div class="radio-custom"></div>
+                    <div class="payment-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                            <line x1="1" y1="10" x2="23" y2="10"></line>
+                        </svg>
+                    </div>
+                    <div class="payment-name">بطاقة ائتمانية / مدى</div>
+                </label>
+                
+                <label class="payment-label" onclick="selectPayment(this)">
+                    <input type="radio" name="payment">
+                    <div class="radio-custom"></div>
+                    <div class="payment-icon">
+                        <svg viewBox="0 0 24 24" fill="#000">
+                           <path d="M14.722 7.744c-.722.011-1.633-.422-2.122-.922-.522-.533-.922-1.356-.811-2.144.756.033 1.633.511 2.156 1.056.467.489.922 1.344.778 2.01zM16.144 8.233c-1.378-.044-2.5.833-3.133.833-.667 0-1.6-.767-2.656-.744-1.378.022-2.656.811-3.367 2.056-1.444 2.522-.367 6.256 1.044 8.311.689 1.011 1.5 2.144 2.6 2.111 1.067-.044 1.489-.689 2.767-.689 1.289 0 1.667.689 2.789.667 1.144-.022 1.844-1.044 2.533-2.044.789-1.167 1.111-2.3 1.133-2.356-.022-.011-2.2-.844-2.222-3.367-.022-2.111 1.722-3.122 1.8-3.167-.978-1.422-2.489-1.589-3.089-1.611z"/>
+                        </svg>
+                    </div>
+                    <div class="payment-name">Apple Pay</div>
+                </label>
+
+                <label class="payment-label" onclick="selectPayment(this)">
+                    <input type="radio" name="payment">
+                    <div class="radio-custom"></div>
+                    <div class="payment-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#00B36B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="6" width="20" height="12" rx="2"></rect>
+                            <circle cx="12" cy="12" r="2"></circle>
+                            <path d="M6 12h.01M18 12h.01"></path>
+                        </svg>
+                    </div>
+                    <div class="payment-name">الدفع عند الاستلام</div>
+                </label>
+            </div>
+        </div>
+
+        <!-- Order Breakdown -->
+        <div class="card">
+            <h2 class="section-title">تفاصيل الدفع</h2>
+            <div class="summary-row">
+                <span>المجموع الفرعي</span>
+                <span class="summary-val"><span id="subtotal">0</span> ر.س</span>
+            </div>
+            <div class="summary-row">
+                <span>رسوم التوصيل</span>
+                <span class="summary-val"><span id="delivery">10.00</span> ر.س</span>
+            </div>
+            <div class="summary-row">
+                <span>ضريبة القيمة المضافة (15%)</span>
+                <span class="summary-val"><span id="vat">0</span> ر.س</span>
+            </div>
+            <div class="summary-row total">
+                <span>الإجمالي</span>
+                <span class="summary-val"><span id="total">0</span> ر.س</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Bar -->
+    <div class="bottom-bar">
+        <button class="place-order-btn">
+            <span>تأكيد الطلب</span>
+            <div class="btn-price"><span id="btn-total">0</span> ر.س</div>
+        </button>
+    </div>
+
+</div>
+
+<script>
+    // Tab and Slot selection
+    function selectTab(element) {
+        document.querySelectorAll('.time-tab').forEach(el => el.classList.remove('active'));
+        element.classList.add('active');
+    }
+
+    function selectSlot(element) {
+        document.querySelectorAll('.time-slot').forEach(el => el.classList.remove('active'));
+        element.classList.add('active');
+    }
+
+    // Payment selection
+    function selectPayment(element) {
+        document.querySelectorAll('.payment-label').forEach(el => el.classList.remove('selected'));
+        element.classList.add('selected');
+        element.querySelector('input').checked = true;
+    }
+
+    // Quantity Stepper and Total Calculation
+    function updateQty(btn, change) {
+        const stepper = btn.parentElement;
+        const valSpan = stepper.querySelector('.qty-val');
+        const minusBtn = stepper.querySelectorAll('button')[1]; // Second button is minus in RTL layout
+        
+        let currentVal = parseInt(valSpan.innerText);
+        let newVal = currentVal + change;
+
+        if (newVal >= 1) {
+            valSpan.innerText = newVal;
+            // Disable minus button if value is 1
+            minusBtn.disabled = (newVal === 1);
+            calculateTotals();
+        }
+    }
+
+    function calculateTotals() {
+        let subtotal = 0;
+        const delivery = 10.00;
+        
+        // Sum items
+        document.querySelectorAll('.cart-item').forEach(item => {
+            const price = parseFloat(item.getAttribute('data-price'));
+            const qty = parseInt(item.querySelector('.qty-val').innerText);
+            subtotal += (price * qty);
+        });
+
+        // Calculate VAT (15% of subtotal + delivery for standard KSA logic, simplified here to just items)
+        const vat = subtotal * 0.15;
+        const total = subtotal + delivery + vat;
+
+        // Update DOM
+        document.getElementById('subtotal').innerText = subtotal.toFixed(2);
+        document.getElementById('vat').innerText = vat.toFixed(2);
+        document.getElementById('total').innerText = total.toFixed(2);
+        document.getElementById('btn-total').innerText = total.toFixed(2);
+    }
+
+    // Initial calculation on load
+    window.onload = calculateTotals;
+</script>
+
+</body>
+</html>
