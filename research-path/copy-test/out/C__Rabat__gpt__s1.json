@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Rabat",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Rabat. Write marketing copy for it in Moroccan Arabic (Darija), the way people in Rabat actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 1,
+  "prompt_lang": "en",
+  "city": "Rabat",
+  "target_region": "Morocco",
+  "target_city_code": "RAB",
+  "model": "gpt",
+  "id": "C__Rabat__gpt__s1",
+  "model_id": "openai/gpt-5.6-sol",
+  "output": "قريب — قْضيانك حتى لباب دارك.\n\nناقصك شي حاجة فالدار؟ طلبها من قريب وتوصلك دغيا.\n\nخضرة، فواكه، وحوايج الدار… كلشي فتيليفونك.\n\nبلا زحام بلا صداع الراس، قريب يجيبها حتى لعندك.\n\nآش ناقصك اليوم؟ طلب دابا من قريب وخليه يوصل حتى لباب دارك 🛵",
+  "at": "2026-11-18T05:29:34.160Z"
+}

@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Algiers",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Algiers. Write marketing copy for it in Algerian Arabic, the way people in Algiers actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 2,
+  "prompt_lang": "en",
+  "city": "Algiers",
+  "target_region": "Algeria",
+  "target_city_code": "ALG",
+  "model": "saba",
+  "id": "C__Algiers__saba__s2",
+  "model_id": "mistralai/mistral-saba",
+  "output": "**Tagline:**\n\"قريب من قلبك، جايلك البقال في دقيقتين!\"\n\n**Instagram Ad Lines:**\n1. \"ساهل وجميل: كل احتياجاتك من السوبرماركت واصلينلك على الطريقة!\n🔥 مع قريب: طلبك قبل 5 دقايق؟ 100%★★★★★\"\n\n2. \"ما عاد في هم: جايلك الطماطم والخضر و… كل حاجة، من غير ما تطلع!\n✅ توصيل فوري ☑️ دقة 100%\n💸 مش כול التكاليف – تسليم فايس\"\n\n3. \"كيفك ويايا: طلبك قبل 10 دقايق؟ ونحن في الطريق!\n🚀 قريب: سوبرماركتك 손ك في 2 دقيقة!\"\n\n**Push Notification:**\n\"ياCompatible! عندك 10 دقايق خبر؟ طلبك واصلينلك بعد 5 دقايق، حتجيبه قريب! 🥕🍎 #قريب_دوميني_الغذا\"",
+  "at": "2026-11-18T05:29:30.415Z"
+}
