@@ -1,0 +1,8 @@
+{
+  "id": "D1__Casablanca__ar__flux",
+  "model": "flux",
+  "prompt": "أشخاص يتسوقون البقالة في الدار البيضاء، صورة عفوية.",
+  "p": "D1",
+  "endpoint": "fal-ai/flux-2-max",
+  "at": "2026-11-18T01:03:36.652Z"
+}

@@ -1,0 +1,8 @@
+{
+  "id": "D3__Cairo__ar__nano-banana",
+  "model": "nano-banana",
+  "prompt": "امرأة شابة محترفة في عملها في القاهرة.",
+  "p": "D3",
+  "endpoint": "google/nano-banana-2.1",
+  "at": "2026-11-18T01:07:09.847Z"
+}

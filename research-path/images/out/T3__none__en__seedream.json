@@ -1,0 +1,8 @@
+{
+  "id": "T3__none__en__seedream",
+  "model": "seedream",
+  "prompt": "A social media ad with this exact Arabic text: «خصم 25% على أول طلب — كود: QAREEB25»",
+  "p": "T3",
+  "endpoint": "bytedance/seedream/v5/pro/text-to-image",
+  "at": "2026-11-18T01:02:17.000Z"
+}

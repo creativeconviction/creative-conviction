@@ -1,0 +1,8 @@
+{
+  "id": "T5__none__en__seedream",
+  "model": "seedream",
+  "prompt": "A mobile app screen for an Arabic grocery delivery app, showing a product list with prices and an add-to-cart button.",
+  "p": "T5",
+  "endpoint": "bytedance/seedream/v5/pro/text-to-image",
+  "at": "2026-11-18T01:05:01.603Z"
+}

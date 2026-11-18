@@ -1,0 +1,8 @@
+{
+  "id": "D1__London__en__gpt-image",
+  "model": "gpt-image",
+  "prompt": "People shopping for groceries in London, candid photo.",
+  "p": "D1",
+  "endpoint": "openai/gpt-image-2.6/sunburst/text-to-image",
+  "at": "2026-11-18T01:05:29.596Z"
+}

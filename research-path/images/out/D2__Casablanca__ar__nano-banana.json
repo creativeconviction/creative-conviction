@@ -1,0 +1,8 @@
+{
+  "id": "D2__Casablanca__ar__nano-banana",
+  "model": "nano-banana",
+  "prompt": "عائلة عصرية تتناول العشاء في المنزل في الدار البيضاء.",
+  "p": "D2",
+  "endpoint": "google/nano-banana-2.1",
+  "at": "2026-11-18T01:05:38.310Z"
+}

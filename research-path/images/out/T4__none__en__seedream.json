@@ -1,0 +1,8 @@
+{
+  "id": "T4__none__en__seedream",
+  "model": "seedream",
+  "prompt": "An elegant poster with this Arabic phrase with full vowel marks: «اشْتَرِ الآنَ وادْفَعْ لاحِقاً»",
+  "p": "T4",
+  "endpoint": "bytedance/seedream/v5/pro/text-to-image",
+  "at": "2026-11-18T01:03:38.810Z"
+}

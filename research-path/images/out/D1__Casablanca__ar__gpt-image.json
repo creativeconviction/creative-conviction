@@ -1,0 +1,8 @@
+{
+  "id": "D1__Casablanca__ar__gpt-image",
+  "model": "gpt-image",
+  "prompt": "أشخاص يتسوقون البقالة في الدار البيضاء، صورة عفوية.",
+  "p": "D1",
+  "endpoint": "openai/gpt-image-2.6/sunburst/text-to-image",
+  "at": "2026-11-18T01:04:49.079Z"
+}

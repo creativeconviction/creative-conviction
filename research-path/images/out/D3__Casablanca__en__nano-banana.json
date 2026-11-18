@@ -1,0 +1,8 @@
+{
+  "id": "D3__Casablanca__en__nano-banana",
+  "model": "nano-banana",
+  "prompt": "A young professional woman at work in Casablanca.",
+  "p": "D3",
+  "endpoint": "google/nano-banana-2.1",
+  "at": "2026-11-18T01:07:28.947Z"
+}

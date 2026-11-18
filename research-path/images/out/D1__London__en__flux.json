@@ -1,0 +1,8 @@
+{
+  "id": "D1__London__en__flux",
+  "model": "flux",
+  "prompt": "People shopping for groceries in London, candid photo.",
+  "p": "D1",
+  "endpoint": "fal-ai/flux-2-max",
+  "at": "2026-11-18T01:04:05.116Z"
+}

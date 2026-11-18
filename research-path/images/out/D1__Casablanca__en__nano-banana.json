@@ -1,0 +1,8 @@
+{
+  "id": "D1__Casablanca__en__nano-banana",
+  "model": "nano-banana",
+  "prompt": "People shopping for groceries in Casablanca, candid photo.",
+  "p": "D1",
+  "endpoint": "google/nano-banana-2.1",
+  "at": "2026-11-18T01:02:37.815Z"
+}

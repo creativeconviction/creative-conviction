@@ -1,0 +1,8 @@
+{
+  "id": "D2__Riyadh__ar__nano-banana",
+  "model": "nano-banana",
+  "prompt": "عائلة عصرية تتناول العشاء في المنزل في الرياض.",
+  "p": "D2",
+  "endpoint": "google/nano-banana-2.1",
+  "at": "2026-11-18T01:04:14.129Z"
+}

@@ -1,0 +1,8 @@
+{
+  "id": "A4__none__en__qwen-image",
+  "model": "qwen-image",
+  "prompt": "A friendly illustration for a 'save money' feature in an Arabic finance app.",
+  "p": "A4",
+  "endpoint": "alibaba/qwen-image-3/text-to-image",
+  "at": "2026-11-18T01:01:09.619Z"
+}

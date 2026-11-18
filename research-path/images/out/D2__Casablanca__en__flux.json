@@ -1,0 +1,8 @@
+{
+  "id": "D2__Casablanca__en__flux",
+  "model": "flux",
+  "prompt": "A modern family having dinner at home in Casablanca.",
+  "p": "D2",
+  "endpoint": "fal-ai/flux-2-max",
+  "at": "2026-11-18T01:06:32.865Z"
+}

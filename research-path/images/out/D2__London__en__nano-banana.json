@@ -1,0 +1,8 @@
+{
+  "id": "D2__London__en__nano-banana",
+  "model": "nano-banana",
+  "prompt": "A modern family having dinner at home in London.",
+  "p": "D2",
+  "endpoint": "google/nano-banana-2.1",
+  "at": "2026-11-18T01:05:58.077Z"
+}
