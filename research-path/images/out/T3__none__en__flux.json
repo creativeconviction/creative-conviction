@@ -1,0 +1,8 @@
+{
+  "id": "T3__none__en__flux",
+  "model": "flux",
+  "prompt": "A social media ad with this exact Arabic text: «خصم 25% على أول طلب — كود: QAREEB25»",
+  "p": "T3",
+  "endpoint": "fal-ai/flux-2-max",
+  "at": "2026-11-18T01:00:03.842Z"
+}

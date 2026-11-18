@@ -1,0 +1,8 @@
+{
+  "id": "T2__Cairo__en__seedream",
+  "model": "seedream",
+  "prompt": "A street billboard in Cairo for a grocery app. The billboard shows only this Arabic text, exactly: «طلباتك توصلك في ٢٠ دقيقة». Photorealistic.",
+  "p": "T2",
+  "endpoint": "bytedance/seedream/v5/pro/text-to-image",
+  "at": "2026-11-18T01:00:49.720Z"
+}

@@ -2,3 +2,4 @@ outputs-mock/
 results-mock/
 results/rtl-demo/
 logs/
+outputs/images/**/*.png

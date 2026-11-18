@@ -1,0 +1,8 @@
+{
+  "id": "T5__none__en__recraft",
+  "model": "recraft",
+  "prompt": "A mobile app screen for an Arabic grocery delivery app, showing a product list with prices and an add-to-cart button.",
+  "p": "T5",
+  "endpoint": "fal-ai/recraft/v4.1/pro/text-to-image",
+  "at": "2026-11-18T00:59:41.524Z"
+}

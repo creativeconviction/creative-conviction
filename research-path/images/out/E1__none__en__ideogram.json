@@ -1,0 +1,8 @@
+{
+  "id": "E1__none__en__ideogram",
+  "model": "ideogram",
+  "prompt": "An app icon for an Arabic grocery delivery app called «قريب».",
+  "p": "E1",
+  "endpoint": "ideogram/v4.5",
+  "at": "2026-11-18T01:00:31.736Z"
+}

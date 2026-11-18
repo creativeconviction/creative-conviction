@@ -1,0 +1,8 @@
+{
+  "id": "A4__none__en__recraft",
+  "model": "recraft",
+  "prompt": "A friendly illustration for a 'save money' feature in an Arabic finance app.",
+  "p": "A4",
+  "endpoint": "fal-ai/recraft/v4.1/pro/text-to-image",
+  "at": "2026-11-18T00:59:53.763Z"
+}

@@ -1,0 +1,8 @@
+{
+  "id": "T3__none__en__qwen-image",
+  "model": "qwen-image",
+  "prompt": "A social media ad with this exact Arabic text: «خصم 25% على أول طلب — كود: QAREEB25»",
+  "p": "T3",
+  "endpoint": "alibaba/qwen-image-3/text-to-image",
+  "at": "2026-11-18T01:00:31.847Z"
+}

@@ -1,0 +1,8 @@
+{
+  "id": "T1__none__en__ideogram",
+  "model": "ideogram",
+  "prompt": "A clean shop sign that says «قريب» in large Arabic letters, photorealistic.",
+  "p": "T1",
+  "endpoint": "ideogram/v4.5",
+  "at": "2026-11-18T00:58:57.198Z"
+}

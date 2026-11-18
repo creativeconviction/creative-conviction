@@ -1,0 +1,8 @@
+{
+  "id": "T4__none__en__qwen-image",
+  "model": "qwen-image",
+  "prompt": "An elegant poster with this Arabic phrase with full vowel marks: «اشْتَرِ الآنَ وادْفَعْ لاحِقاً»",
+  "p": "T4",
+  "endpoint": "alibaba/qwen-image-3/text-to-image",
+  "at": "2026-11-18T01:00:48.479Z"
+}

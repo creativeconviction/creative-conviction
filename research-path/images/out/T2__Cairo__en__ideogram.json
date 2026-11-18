@@ -1,0 +1,8 @@
+{
+  "id": "T2__Cairo__en__ideogram",
+  "model": "ideogram",
+  "prompt": "A street billboard in Cairo for a grocery app. The billboard shows only this Arabic text, exactly: «طلباتك توصلك في ٢٠ دقيقة». Photorealistic.",
+  "p": "T2",
+  "endpoint": "ideogram/v4.5",
+  "at": "2026-11-18T00:59:08.160Z"
+}

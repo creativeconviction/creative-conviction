@@ -1,0 +1,8 @@
+{
+  "id": "T2__Cairo__en__qwen-image",
+  "model": "qwen-image",
+  "prompt": "A street billboard in Cairo for a grocery app. The billboard shows only this Arabic text, exactly: «طلباتك توصلك في ٢٠ دقيقة». Photorealistic.",
+  "p": "T2",
+  "endpoint": "alibaba/qwen-image-3/text-to-image",
+  "at": "2026-11-18T00:59:52.376Z"
+}

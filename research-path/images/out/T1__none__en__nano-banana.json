@@ -1,0 +1,8 @@
+{
+  "id": "T1__none__en__nano-banana",
+  "model": "nano-banana",
+  "prompt": "A clean shop sign that says «قريب» in large Arabic letters, photorealistic.",
+  "p": "T1",
+  "endpoint": "google/nano-banana-2.1",
+  "at": "2026-11-18T00:59:15.409Z"
+}

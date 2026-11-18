@@ -1,0 +1,8 @@
+{
+  "id": "T4__none__en__flux",
+  "model": "flux",
+  "prompt": "An elegant poster with this Arabic phrase with full vowel marks: «اشْتَرِ الآنَ وادْفَعْ لاحِقاً»",
+  "p": "T4",
+  "endpoint": "fal-ai/flux-2-max",
+  "at": "2026-11-18T01:00:18.909Z"
+}

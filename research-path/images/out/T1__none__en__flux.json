@@ -1,0 +1,8 @@
+{
+  "id": "T1__none__en__flux",
+  "model": "flux",
+  "prompt": "A clean shop sign that says «قريب» in large Arabic letters, photorealistic.",
+  "p": "T1",
+  "endpoint": "fal-ai/flux-2-max",
+  "at": "2026-11-18T00:59:20.517Z"
+}

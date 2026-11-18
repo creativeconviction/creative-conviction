@@ -1,0 +1,8 @@
+{
+  "id": "T1__none__en__qwen-image",
+  "model": "qwen-image",
+  "prompt": "A clean shop sign that says «قريب» in large Arabic letters, photorealistic.",
+  "p": "T1",
+  "endpoint": "alibaba/qwen-image-3/text-to-image",
+  "at": "2026-11-18T00:59:27.699Z"
+}
