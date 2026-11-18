@@ -111,6 +111,7 @@ table.heat th.dim { color: var(--muted); opacity: .7; }
 .quotes p { margin: 0; font-size: 14px; color: var(--muted); }
 
 .shot { margin: 18px 0 0; }
+.shot.wide img { width: 100%; }
 .shot img { display: block; max-width: 100%; width: 420px; border-radius: 8px; border: 1px solid var(--line); }
 .shot figcaption { font-size: 14px; color: var(--muted); margin-top: 8px; max-width: 620px; }
 ul.tight { margin: 6px 0 12px; padding-left: 20px; display: grid; gap: 6px; }
@@ -354,7 +355,6 @@ code { font: 13px var(--font-mono); background: var(--todo-bg); padding: 1px 5px
           <tr><td>Arabic text too small</td><td class="mono">49%</td><td>Over a quarter of the text under 13px; Arabic needs more size than Latin to read the same</td></tr>
           <tr><td>Letter-spacing on Arabic</td><td class="mono">31%</td><td>Spacing pulls apart a script whose letters are meant to join</td></tr>
           <tr><td>Two numeral systems on one screen</td><td class="mono">26%</td><td><span class="ar">٢٠</span> and 20 side by side</td></tr>
-          <tr><td>Carousel "next" moves the wrong way</td><td class="mono">4 of 20</td><td>The progress dots advance left-to-right (Claude and DeepSeek, only when RTL wasn't mentioned)</td></tr>
           <tr><td>Phone number displayed scrambled</td><td class="mono">5 pages</td><td>See below</td></tr>
         </tbody>
       </table></div>
@@ -364,6 +364,13 @@ code { font: 13px var(--font-mono); background: var(--todo-bg); padding: 1px 5px
         <figcaption>DeepSeek's support chat. The customer's number, +966 55 123 4567, displays as <b>4567 123 55 966+</b>: the classic bug where an LTR run inside Arabic text is reordered. Claude's version of the same screen kept the order.</figcaption>
       </figure>
 
+
+      <h3 style="margin-top:28px">The worst pages</h3>
+      <p>The audit score and what you see don't always line up: some pages score low on invisible problems (hard-coded styling, letter-spacing) and still look fine. These are the ones that are visibly broken.</p>
+      <figure class="shot wide">
+        <img src="img/worst/worst-gallery.jpg" alt="Four broken Arabic screens: a chat laid out left-to-right, a chat with a scrambled order ID, a checkout with a reversed phone number, and a checkout mixing numeral systems" loading="lazy">
+        <figcaption><b>Saba, localized chat:</b> the whole conversation runs left-to-right, so full stops land at the start of lines and the back arrow points the wrong way. <b>Saba, support chat:</b> the order number appears as QR-48213# and "QR-# 48213", and "1L" in a product name turned into the Arabic letter alef, which looks like a 1. <b>Saba, checkout:</b> the placeholder phone number shows reversed, next to an invented address. <b>DeepSeek, checkout:</b> clean overall, but prices mix 70 and <span class="ar">٣٥</span> on the same row, and the back button sits on the left.</figcaption>
+      </figure>
       <h3 style="margin-top:28px">How you ask matters more than which model you use</h3>
       <div class="bars">
         <div class="barrow"><span>Asks for RTL best practices</span><div class="track"><i style="width:87%"></i></div><b>87</b></div>
@@ -396,7 +403,7 @@ code { font: 13px var(--font-mono); background: var(--todo-bg); padding: 1px 5px
       <p>Arabic interface text costs 24–58% more tokens than the same English text, except with Jais, whose tokenizer was built for Arabic and reaches parity. But a whole page costs only about 2% more, because the code itself is English and dwarfs the visible text. No page was cut off. So the token tax matters for copy-heavy work, but it does not explain the RTL failures; those come from habits learned on English interfaces.</p>
       <p>Where tokenization does show up is in spelling. Of 1,784 distinct Arabic words across all pages, only 2% weren't recognized by Arabic dictionaries, and most of those were real loanwords and names (<span class="ar">برجر، أفوكادو، ماستركارد</span>). The genuine errors clustered on the brand name: given only "Qareeb" in Latin letters, Saba spelled it <span class="ar">قاريب</span>, <span class="ar">كويرب</span> and <span class="ar">جاريب</span>. The other four models wrote <span class="ar">قريب</span>. Unrecognized words were split into more pieces on average (3.1 vs 2.4), which fits the idea that heavily fragmented words are easier to get wrong, though the sample is small.</p>
 
-      <div class="note">How much to trust this: every check is a measurement in a real browser, and the suspicious ones were verified by hand (the scrambled phone number is shown above). The "text too small" and "line height" thresholds are judgement calls; a designer should confirm them on the screenshots in <code>research-path/ui-test/results/shots/</code>.</div>
+      <div class="note">How much to trust this: every check is a measurement in a real browser, and the suspicious ones were verified by hand. One check failed that test: an early carousel check flagged 4 carousels as moving the wrong way, but clicking through them showed all four work correctly, so it was removed. The "text too small" and "line height" thresholds are judgement calls; a designer should confirm them on the screenshots in <code>research-path/ui-test/results/shots/</code>.</div>
     </div>
   </section>
   <section class="col">
