@@ -154,7 +154,7 @@ code { font: 13px var(--font-mono); background: var(--todo-bg); padding: 1px 5px
       <h2 style="margin-top:0">AI doesn't localize. It mirrors.</h2>
       <p>The models know Arabic well: they can write convincing Saudi, Egyptian or Libyan copy, and they know every right-to-left best practice. But they rarely <i>decide</i> anything for an Arab audience. Each Arabic-specific choice is set by whatever input they were handed:</p>
       <ul class="tight">
-        <li><b>Dialect</b> follows the dialect of the prompt: write in Darija and you get Darija, 12 times out of 12.</li>
+        <li><b>Dialect</b> follows the dialect of the prompt when no market is named: write in Darija and you get Darija, 12 times out of 12. Name a different city and the city wins: across 96 such cases, the four main models never kept the prompt's dialect.</li>
         <li><b>Digits</b> follow the language of the prompt: Arabic brief, <span class="ar">٢٠</span>; English brief, 20, for the same city.</li>
         <li><b>Fonts, line spacing and even customers</b> follow the English page being localized: Olivia Thompson stays Olivia Thompson, in Arabic letters, in a Saudi dashboard.</li>
         <li><b>Right-to-left craft</b> appears only when asked for: hard-coded left/right styling drops from 75% to 13%, flipped order numbers from 8 of 14 pages to 1 of 12.</li>
