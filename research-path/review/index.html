@@ -88,7 +88,7 @@ section.block > header { display: grid; gap: 4px; margin-bottom: 12px; }
     <div class="eyebrow">Outliers research · native-speaker review</div>
     <h1>Check what AI wrote in Arabic</h1>
     <p class="lede">We tested how AI models write, design and localize for Arab users. Before publishing, we need native speakers to check the Arabic. You'll judge logos, ad copy and messages the AI produced. There are no right answers; your instinct as a native speaker is the point.</p>
-    <p class="muted">About 20–25 minutes. Answers save as you go, so you can stop and come back. Skip anything you're unsure about.</p>
+    <p class="muted">About 15–20 minutes. Answers save as you go, so you can stop and come back. Skip anything you're unsure about.</p>
     <div id="saveBanner" class="banner" hidden></div>
   </header>
 
@@ -142,18 +142,14 @@ section.block > header { display: grid; gap: 4px; margin-bottom: 12px; }
   const MSG_LANG = { ar_msa: 'Formal Arabic', ar_sa: 'Saudi', ar_eg: 'Egyptian', ar_ma: 'Moroccan Darija', arabizi: 'Arabizi (Egyptian, Latin letters)' };
   const MARKET = { ar_sa: 'Saudi Arabia', ar_eg: 'Egypt' };
   const SECTIONS = [
-    { key: 'logos', title: 'Logos', lead: 'Each logo was supposed to say exactly the name shown. Is the Arabic spelled correctly?',
-      options: [['correct', 'Correct'], ['small', 'Small error'], ['wrong', 'A different word'], ['unreadable', 'Unreadable']], note: 'If it isn\'t correct, what does it actually say?' },
-    { key: 'motifs', title: 'Country logos', lead: 'The AI was asked for "a logo for a new fintech startup from" each country. How does it land?',
-      options: [['fits', 'Fits well'], ['cliche', 'Clichéd'], ['wrong', 'Wrong or offensive'], ['unsure', 'Not sure']], note: 'Anything specific? (optional)' },
-    { key: 'dialect', title: 'Dialect', lead: 'Ad copy the AI wrote when asked for a specific local dialect. Does it sound like people from that city?',
+    { key: 'dialect', title: 'Dialect', lead: 'Same brief as above (a grocery delivery app launching in a city), but here the AI was told which dialect to write in. Does it sound like people from that city, or like generic Arabic with a few local words added?',
       options: [['local', 'Genuinely local'], ['mostly', 'Mostly local'], ['costume', 'Generic Arabic with a few local words'], ['wrongdialect', 'Wrong dialect'], ['formal', 'Formal Arabic']], note: 'What gives it away? (optional)' },
-    { key: 'votes', title: 'Which ad?', lead: 'Two versions of the same ad, written by different AI models. Which would you rather see?',
+    { key: 'votes', title: 'Which ad?', lead: 'Each AI model was given the same brief: Qareeb, a new grocery delivery app that brings shopping from neighbourhood stores to your door in about 20 minutes, is launching in this city. Write a tagline, 3 short Instagram ads and 1 push notification, in the local dialect. Below are two models\' answers side by side. Which set would you rather see from a real brand?',
       options: [['a', 'Prefer A'], ['b', 'Prefer B'], ['both', 'Both fine'], ['neither', 'Neither works']], note: 'Why? (optional)' },
     { key: 'messages', title: 'Customer messages', lead: 'We wrote these customer-support messages to test the AI. Would a real customer write it this way?',
       options: [['natural', 'Natural'], ['off', 'Understandable but off'], ['unnatural', 'Unnatural']], note: 'How would you write it? (optional)' },
-    { key: 'campaign', title: 'Campaign lines', lead: 'English marketing lines the AI adapted for an Arab market. Would this run there?',
-      options: [['yes', 'Yes, as is'], ['edits', 'With small edits'], ['no', 'No']], note: 'What would you change? (optional)' },
+    { key: 'campaign', title: 'Campaign lines', lead: 'We gave the AI American ad lines that don\'t fit the region on purpose (Black Friday, Thanksgiving, beach bodies, Friday-night dates) to see whether it would translate them blindly or adapt them. Judge only the Arabic version: would it work for a real brand in this market?',
+      options: [['yes', 'Works as is'], ['edits', 'Works with small edits'], ['no', 'Doesn\'t work']], note: 'What would you change? (optional)' },
   ];
 
   let ITEMS = null;
@@ -207,7 +203,8 @@ section.block > header { display: grid; gap: 4px; margin-bottom: 12px; }
     if (key === 'campaign') {
       const markets = new Set(regs.map((r) => ITEMS.regions[r].market).filter(Boolean));
       const pick = {}; // one model's version per line and market, rotated by reviewer
-      for (const x of ITEMS.campaign.filter((c) => markets.has(c.market))) {
+      const KEEP = new Set(['C1', 'C3', 'C4', 'C5', 'T1', 'I1']);
+      for (const x of ITEMS.campaign.filter((c) => markets.has(c.market) && KEEP.has(c.id.split('-')[1]))) {
         const line = x.id.split('-')[1], k = line + x.market; (pick[k] ||= []).push(x);
       }
       return Object.values(pick).map((arr) => arr.sort((a, b) => a.id.localeCompare(b.id))[hash(seed + arr[0].id) % arr.length]);
@@ -219,9 +216,9 @@ section.block > header { display: grid; gap: 4px; margin-bottom: 12px; }
     if (key === 'logos') return `<img src="${esc(x.img)}" alt="AI-generated logo" loading="lazy"><p class="q">Should say: <span class="ar" style="font-size:20px;color:var(--ink)">${esc(x.requested)}</span>${x.lockup ? ' (next to "Nearby")' : ''}</p>`;
     if (key === 'motifs') return `<img src="${esc(x.img)}" alt="AI-generated fintech logo for ${esc(x.country)}" loading="lazy" style="max-width:260px"><p class="q">A fintech startup from <b style="color:var(--ink)">${esc(x.country)}</b></p>`;
     if (key === 'dialect') return `<p class="q">Asked to sound like people from <b style="color:var(--ink)">${esc(x.city)}</b></p><div class="copy ar">${esc(x.text)}</div>`;
-    if (key === 'votes') return `<p class="q">Ads for <b style="color:var(--ink)">${esc(x.city)}</b></p><div class="pair"><div><div class="tag">A</div><div class="copy ar">${esc(x.a)}</div></div><div><div class="tag">B</div><div class="copy ar">${esc(x.b)}</div></div></div>`;
+    if (key === 'votes') return `<p class="q">Grocery delivery app launching in <b style="color:var(--ink)">${esc(x.city)}</b>: tagline, 3 Instagram ads, 1 push notification</p><div class="pair"><div><div class="tag">A</div><div class="copy ar">${esc(x.a)}</div></div><div><div class="tag">B</div><div class="copy ar">${esc(x.b)}</div></div></div>`;
     if (key === 'messages') return `<p class="q">${esc(MSG_LANG[x.lang])} · ${esc(x.about)}</p><div class="copy ${x.lang === 'arabizi' ? '' : 'ar'}">${esc(x.text)}</div>`;
-    if (key === 'campaign') return `<p class="src">English original: "${esc(x.source)}"</p><p class="q">Adapted for <b style="color:var(--ink)">${esc(MARKET[x.market])}</b></p><div class="copy ar">${esc(x.text)}</div>`;
+    if (key === 'campaign') return `<p class="src">American original (deliberately a poor fit): "${esc(x.source)}"</p><p class="q">The AI\'s version for <b style="color:var(--ink)">${esc(MARKET[x.market])}</b></p><div class="copy ar">${esc(x.text)}</div>`;
   }
 
   function renderBlocks() {
