@@ -98,7 +98,7 @@ section.block > header { display: grid; gap: 8px; margin-bottom: 8px; padding-bo
     <h2>About you</h2>
     <p class="muted" style="margin-top:4px">This decides which items you see: dialect questions only show for regions you choose.</p>
     <div class="field">
-      <span class="label" id="lblRegions">Which Arabic do you speak natively? Choose all that apply.</span>
+      <span class="label" id="lblRegions">Which Arabic do you speak natively? Choose the one you know best.</span>
       <div class="chips" id="regions" role="group" aria-labelledby="lblRegions"></div>
     </div>
     <div class="field">
@@ -180,7 +180,7 @@ section.block > header { display: grid; gap: 8px; margin-bottom: 8px; padding-bo
   function renderAbout() {
     const regs = ITEMS ? REGION_ORDER.map((k) => [k, ITEMS.regions[k].label]) : [];
     chipGroup($('regions'), regs, state.profile.regions, (v) => {
-      const r = state.profile.regions; state.profile.regions = r.includes(v) ? r.filter((x) => x !== v) : [...r, v];
+      state.profile.regions = state.profile.regions[0] === v ? [] : [v];
       changed(); renderAbout(); renderBlocks();
     }, true);
     chipGroup($('level'), LEVELS, state.profile.level, (v) => { state.profile.level = v; changed(); renderAbout(); }, false);
@@ -334,6 +334,7 @@ section.block > header { display: grid; gap: 8px; margin-bottom: 8px; padding-bo
       if (snap.exists) {
         const d = snap.data();
         state = { profile: { ...state.profile, ...(d.profile || {}) }, answers: { ...state.answers, ...(d.answers || {}) } };
+        state.profile.regions = (state.profile.regions || []).slice(0, 1);
         $('saveState').textContent = 'Saved';
         renderAbout(); renderBlocks();
       }
