@@ -1,157 +1,164 @@
 <title>Arabic AI Breakpoints</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600&family=Inter+Tight:wght@400;500;600&family=Noto+Naskh+Arabic:wght@400;600&display=swap">
 <style>
-/* Layout: a research notebook — one narrow reading column, wide image plates break out of it. */
+/* Layout: a single editorial column; sections divided by hairlines, images run full width. No cards, no pills. */
 :root {
-  --bg: #f6f7f5;
-  --surface: #ffffff;
-  --ink: #18222b;
-  --muted: #5d6a73;
-  --line: #dde2e0;
-  --accent: #0f6b62;
-  --done: #1d7a46;   --done-bg: #e3f2e8;
-  --run: #1f5fbf;    --run-bg: #e4edfb;
-  --you: #9a5b00;    --you-bg: #fbefd9;
-  --todo: #66727a;   --todo-bg: #eceff0;
-  --bad: #b4380b;    --bad-bg: #fbe5dc;
-  --font-body: "IBM Plex Sans", system-ui, sans-serif;
-  --font-ar: "IBM Plex Sans Arabic", "IBM Plex Sans", sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --bg: #ffffff;
+  --ink: #15191c;
+  --muted: #5d666b;
+  --line: #e2e5e3;
+  --soft: #f3f5f4;
+  --accent: #1f5c4a;
+  --good: #2b6b3e; --good-bg: #e6f1e9;
+  --warn: #8a5a00; --warn-bg: #f8eed9;
+  --bad: #a8361a;  --bad-bg: #f8e4dd;
+  --font-title: "EB Garamond", Georgia, serif;
+  --font-body: "Inter Tight", system-ui, sans-serif;
+  --font-ar: "Noto Naskh Arabic", "EB Garamond", serif;
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
-  --bg: #12181d; --surface: #1a2228; --ink: #e6ecef; --muted: #9aa7ae; --line: #2b363d; --accent: #4cc2b3;
-  --done: #6fd39a; --done-bg: #183324; --run: #8fb6f5; --run-bg: #1b2a40; --you: #f0b660; --you-bg: #3a2c14; --todo: #a3aeb4; --todo-bg: #252e34; --bad: #ff9b70; --bad-bg: #3d2117;
-  color-scheme: dark } }
+  --bg: #121517; --ink: #e8ecee; --muted: #9ba5aa; --line: #2a3034; --soft: #1a1f22; --accent: #7cc4a8;
+  --good: #8fd3a2; --good-bg: #1a2f22; --warn: #f0bf6a; --warn-bg: #352a14; --bad: #ff9a78; --bad-bg: #3a2018; color-scheme: dark } }
 :root[data-theme="dark"] {
-  --bg: #12181d; --surface: #1a2228; --ink: #e6ecef; --muted: #9aa7ae; --line: #2b363d; --accent: #4cc2b3;
-  --done: #6fd39a; --done-bg: #183324; --run: #8fb6f5; --run-bg: #1b2a40; --you: #f0b660; --you-bg: #3a2c14; --todo: #a3aeb4; --todo-bg: #252e34; --bad: #ff9b70; --bad-bg: #3d2117;
-  color-scheme: dark }
+  --bg: #121517; --ink: #e8ecee; --muted: #9ba5aa; --line: #2a3034; --soft: #1a1f22; --accent: #7cc4a8;
+  --good: #8fd3a2; --good-bg: #1a2f22; --warn: #f0bf6a; --warn-bg: #352a14; --bad: #ff9a78; --bad-bg: #3a2018; color-scheme: dark }
 
-body { background: var(--bg); color: var(--ink); font: 15px/1.6 var(--font-body); }
-.wrap { max-width: 1100px; margin: 0 auto; padding-block: 40px 72px;
+body { background: var(--bg); color: var(--ink); font: 16px/1.6 var(--font-body); font-variant-numeric: tabular-nums; }
+.wrap { max-width: 1100px; margin: 0 auto; padding-block: 56px 96px;
   padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
-.col { max-width: 720px; }
-h1 { font-size: clamp(28px, 4.4vw, 42px); line-height: 1.15; font-weight: 600; margin: 0 0 12px; text-wrap: balance; letter-spacing: -0.01em; }
-h2 { font-size: 21px; font-weight: 600; margin: 56px 0 6px; text-wrap: balance; }
-h3 { font-size: 16px; font-weight: 600; margin: 0 0 4px; }
-p { margin: 0 0 12px; }
-.eyebrow { font: 500 12px/1 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
-.lede { font-size: 18px; color: var(--muted); }
+.col { max-width: 700px; }
+h1, h2, h3, h4 { font-family: var(--font-title); font-weight: 600; text-wrap: balance; letter-spacing: 0; }
+h1 { font-size: clamp(34px, 5.4vw, 54px); line-height: 1.05; margin: 0 0 18px; font-weight: 500; }
+h2 { font-size: clamp(26px, 3.4vw, 34px); line-height: 1.15; margin: 0 0 10px; font-weight: 500; }
+h3 { font-size: 22px; line-height: 1.25; margin: 0 0 6px; }
+h4 { font-size: 19px; margin: 28px 0 10px; }
+p { margin: 0 0 14px; }
+a { color: var(--accent); }
+section { border-top: 1px solid var(--line); margin-top: 64px; padding-top: 40px; }
+.lede { font-size: 19px; color: var(--muted); }
+.updated { font-size: 14px; color: var(--muted); margin-top: 18px; }
 .ar { font-family: var(--font-ar); direction: rtl; unicode-bidi: isolate; }
-.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.mono { font-variant-numeric: tabular-nums; }
 .muted { color: var(--muted); }
-.updated { font: 13px var(--font-mono); color: var(--muted); margin-top: 16px; }
+code { font: 14px ui-monospace, monospace; background: var(--soft); padding: 1px 5px; }
+img { max-width: 100%; }
 
-.pill { display: inline-block; font: 500 11.5px/1 var(--font-mono); letter-spacing: 0.04em; padding: 5px 8px; border-radius: 99px; white-space: nowrap; }
-.pill.done { color: var(--done); background: var(--done-bg); }
-.pill.run  { color: var(--run);  background: var(--run-bg); }
-.pill.you  { color: var(--you);  background: var(--you-bg); }
-.pill.todo { color: var(--todo); background: var(--todo-bg); }
+/* Headline insight: set off by type and rules, not a box */
+.insight { border-top: 2px solid var(--ink); border-bottom: 1px solid var(--line); padding-block: 28px 18px; }
+.insight h2 { font-size: clamp(30px, 4.4vw, 44px); }
+section:has(> .insight) { border-top: 0; padding-top: 0; margin-top: 48px; }
 
-/* Phase tracker */
-.phases { display: grid; gap: 0; margin-top: 16px; border-top: 1px solid var(--line); }
-.phase { display: grid; grid-template-columns: 56px 1fr auto; gap: 16px; align-items: start; padding: 14px 0; border-bottom: 1px solid var(--line); }
-.phase .n { font: 500 13px var(--font-mono); color: var(--muted); padding-top: 2px; }
+/* Status words instead of pills */
+.pill { font-size: 13px; font-weight: 600; white-space: nowrap; }
+.pill.done { color: var(--good); }
+.pill.run { color: var(--accent); }
+.pill.you { color: var(--warn); }
+.pill.todo { color: var(--muted); font-weight: 500; }
+
+.phases { margin-top: 18px; border-top: 1px solid var(--line); }
+.phase { display: grid; grid-template-columns: 44px 1fr auto; gap: 16px; align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.phase .n { font-size: 14px; color: var(--muted); }
 .phase .body { min-width: 0; }
-.phase p { margin: 0; color: var(--muted); font-size: 14px; }
-.bar { height: 6px; background: var(--todo-bg); border-radius: 3px; margin-top: 8px; max-width: 320px; overflow: hidden; }
-.bar > span { display: block; height: 100%; background: var(--run); }
-@media (max-width: 520px) { .phase { grid-template-columns: 1fr; gap: 6px; } .phase .n { padding: 0; } }
+.phase h3 { font-size: 19px; }
+.phase p { margin: 0; color: var(--muted); font-size: 15px; }
+.bar { height: 3px; background: var(--line); margin-top: 8px; max-width: 320px; }
+.bar > span { display: block; height: 100%; background: var(--accent); }
+@media (max-width: 520px) { .phase { grid-template-columns: 1fr; gap: 4px; } }
 
-/* Inventory */
-.inv { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 16px; }
-.card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; min-width: 0; }
-.card .big { font: 500 30px/1.1 var(--font-mono); font-variant-numeric: tabular-nums; }
-.card .of { font: 14px var(--font-mono); color: var(--muted); }
-.card ul { margin: 10px 0 0; padding-left: 18px; color: var(--muted); font-size: 14px; }
-.card .path { font: 12px var(--font-mono); color: var(--muted); margin-top: 10px; word-break: break-all; }
+/* Inventory: columns divided by rules */
+.inv { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0 32px; margin-top: 18px; }
+.card { border-top: 1px solid var(--ink); padding-top: 14px; padding-bottom: 18px; min-width: 0; }
+.card h3 { font-size: 19px; }
+.card .big { font-family: var(--font-title); font-size: 40px; line-height: 1.1; }
+.card .of { font-size: 14px; color: var(--muted); }
+.card ul { margin: 10px 0 0; padding-left: 18px; color: var(--muted); font-size: 15px; }
+.card .path { font: 12.5px ui-monospace, monospace; color: var(--muted); margin-top: 10px; word-break: break-all; }
 
 /* Image plates */
-.plate { margin-top: 18px; }
-.plate .cols { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0; font: 500 11.5px/1.3 var(--font-mono); color: var(--muted); margin-bottom: 6px; }
+.plate { margin-top: 22px; }
+.plate + .plate { margin-top: 44px; }
+.plate .cols { display: grid; grid-template-columns: repeat(7, 1fr); font-size: 12.5px; color: var(--muted); margin-bottom: 6px; }
 .plate .cols span { padding: 0 4px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.plate img { display: block; width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--line); }
+.plate img, .shot img { display: block; width: 100%; height: auto; border: 1px solid var(--line); }
 .scroll { overflow-x: auto; }
 .scroll > .inner { min-width: 720px; }
-.rows { margin: 10px 0 0; padding: 0; list-style: none; display: grid; gap: 4px; font-size: 14px; }
+.rows { margin: 12px 0 0; padding: 0; list-style: none; display: grid; gap: 4px; font-size: 15px; }
 .rows li { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
-.rows .k { font: 500 12px var(--font-mono); color: var(--muted); min-width: 52px; }
+.rows .k { font-size: 13px; color: var(--muted); min-width: 52px; }
+.finding { margin: 12px 0 0; }
+.shot { margin: 22px 0 0; }
+.shot img { max-width: 440px; }
+.shot.wide img { max-width: 100%; }
+.shot figcaption { font-size: 14px; color: var(--muted); margin-top: 8px; max-width: 680px; }
 
-/* Findings */
-table { border-collapse: collapse; width: 100%; font-size: 14px; }
-th, td { text-align: left; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
-th { font: 500 12px var(--font-mono); letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
+/* Tables */
+table { border-collapse: collapse; width: 100%; font-size: 15px; }
+th, td { text-align: left; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: 13px; font-weight: 600; color: var(--muted); border-bottom-color: var(--ink); }
 .verdict { font-weight: 600; }
-.ok { color: var(--done); } .mid { color: var(--you); } .bad { color: #c2410c; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .bad { color: #ff8a5c; } }
-:root[data-theme="dark"] .bad { color: #ff8a5c; }
-.finding { margin: 12px 0 0; font-size: 15px; }
-.plate + .plate { margin-top: 40px; }
-
-.bars { display: grid; gap: 8px; margin: 12px 0 10px; max-width: 520px; }
-.barrow { display: grid; grid-template-columns: 130px 1fr 48px; gap: 10px; align-items: center; font-size: 14px; }
-.barrow .track { height: 10px; background: var(--todo-bg); border-radius: 5px; overflow: hidden; }
-.barrow i { display: block; height: 100%; background: var(--accent); }
-.barrow b { font: 500 13px var(--font-mono); text-align: end; }
+.ok { color: var(--good); } .mid { color: var(--warn); } .bad { color: var(--bad); }
 table.heat { min-width: 560px; }
-table.heat th[scope=row] { font-weight: 500; white-space: nowrap; }
-table.heat .sub { display: block; font-size: 12px; color: var(--muted); font-weight: 400; }
-table.heat td { text-align: center; font: 500 13px var(--font-mono); padding: 8px 6px; border-left: 2px solid var(--bg); }
-table.heat td.h3 { background: var(--done-bg); color: var(--done); }
-table.heat td.h2 { background: var(--you-bg); color: var(--you); }
+table.heat th[scope=row] { font-weight: 500; color: var(--ink); white-space: nowrap; border-bottom-color: var(--line); }
+table.heat .sub { display: block; font-size: 12.5px; color: var(--muted); font-weight: 400; }
+table.heat td { text-align: center; padding: 8px 6px; border-left: 2px solid var(--bg); font-size: 14px; }
+table.heat td.h3 { background: var(--good-bg); color: var(--good); }
+table.heat td.h2 { background: var(--warn-bg); color: var(--warn); }
 table.heat td.h1, table.heat td.h0 { background: var(--bad-bg); color: var(--bad); }
 table.heat td.tot { background: transparent; color: var(--ink); }
-table.heat th.dim { color: var(--muted); opacity: .7; }
-.quotes { display: grid; gap: 14px; margin-top: 12px; }
-.quotes figure { margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; }
-.quotes figcaption { font: 500 12px var(--font-mono); color: var(--muted); letter-spacing: .03em; text-transform: uppercase; }
-.quotes blockquote { margin: 8px 0; font-size: 17px; line-height: 1.9; }
-.quotes p { margin: 0; font-size: 14px; color: var(--muted); }
+table.heat th.dim { opacity: .7; }
 
-.shot { margin: 18px 0 0; }
-.shot.wide img { width: 100%; }
-.shot img { display: block; max-width: 100%; width: 420px; border-radius: 8px; border: 1px solid var(--line); }
-.shot figcaption { font-size: 14px; color: var(--muted); margin-top: 8px; max-width: 620px; }
-ul.tight { margin: 6px 0 12px; padding-left: 20px; display: grid; gap: 6px; }
+/* Bars */
+.bars { display: grid; gap: 10px; margin: 14px 0 12px; max-width: 540px; }
+.barrow { display: grid; grid-template-columns: 170px 1fr 52px; gap: 12px; align-items: center; font-size: 15px; }
+.barrow .track { height: 6px; background: var(--line); }
+.barrow i { display: block; height: 100%; background: var(--accent); }
+.barrow b { font-weight: 600; text-align: right; }
+@media (max-width: 480px) { .barrow { grid-template-columns: 120px 1fr 44px; } }
 
-.insight { background: var(--surface); border: 1px solid var(--line); border-top: 3px solid var(--accent); border-radius: 10px; padding: 22px 22px 18px; margin-top: 32px; }
-.insight h2 { font-size: clamp(22px, 3.4vw, 28px); }
-h4 { font-size: 15px; font-weight: 600; margin: 22px 0 8px; }
-.uigrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
-.uigrid.two { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-.uicard { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; color: inherit; text-decoration: none; min-width: 0; }
-.uicard:hover, .uicard:focus-visible { border-color: var(--accent); }
-.uicard:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.uicard img { display: block; width: 100%; aspect-ratio: 390 / 560; object-fit: cover; object-position: top; border-bottom: 1px solid var(--line); }
+/* Quotes: rules, not boxes */
+.quotes { display: grid; gap: 0; margin-top: 14px; border-top: 1px solid var(--line); }
+.quotes figure { margin: 0; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.quotes figcaption { font-size: 13px; font-weight: 600; color: var(--muted); }
+.quotes blockquote { margin: 8px 0; font-size: 20px; line-height: 1.9; }
+.quotes p { margin: 0; font-size: 15px; color: var(--muted); }
+
+/* Notes: plain text under a rule */
+.note { border-top: 1px solid var(--line); padding-top: 12px; margin-top: 22px; font-size: 14px; color: var(--muted); }
+.note::before { content: "How much to trust this. "; font-weight: 600; color: var(--ink); }
+ul.tight { margin: 6px 0 14px; padding-left: 20px; display: grid; gap: 6px; }
+
+/* Interface gallery: image + caption, no frames beyond a hairline */
+.uigrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 24px 18px; }
+.uigrid.two { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+.uicard { display: flex; flex-direction: column; color: inherit; text-decoration: none; min-width: 0; }
+.uicard img { display: block; width: 100%; aspect-ratio: 390 / 560; object-fit: cover; object-position: top; border: 1px solid var(--line); }
 .uicard.wide img { aspect-ratio: auto; }
-.uicard .cap { padding: 8px 10px 10px; font-size: 13px; display: grid; gap: 2px; }
-.uicard .cap b { font-size: 13.5px; }
+.uicard:hover img, .uicard:focus-visible img { border-color: var(--accent); }
+.uicard:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.uicard .cap { padding-top: 8px; font-size: 14px; display: grid; gap: 2px; }
 .uicard .cap span { color: var(--muted); }
-.uicard .sc { font: 500 12px var(--font-mono); color: var(--accent); }
+.uicard .sc { color: var(--accent); font-weight: 600; }
 
-.note { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--you); border-radius: 6px; padding: 12px 14px; font-size: 14px; color: var(--muted); margin-top: 14px; }
-
-.todo-list { display: grid; gap: 12px; margin-top: 14px; }
-.todo-item { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: start; }
-.todo-item p { margin: 2px 0 0; color: var(--muted); font-size: 14px; }
-code { font: 13px var(--font-mono); background: var(--todo-bg); padding: 1px 5px; border-radius: 4px; }
+.todo-list { display: grid; margin-top: 14px; border-top: 1px solid var(--line); }
+.todo-item { display: grid; grid-template-columns: 96px 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+.todo-item h3 { font-size: 19px; }
+.todo-item p { margin: 2px 0 0; color: var(--muted); font-size: 15px; }
+@media (max-width: 520px) { .todo-item { grid-template-columns: 1fr; gap: 2px; } }
 </style>
 
 <div class="wrap">
   <header class="col">
-    <div class="eyebrow">Outliers · research status</div>
     <h1>Where AI breaks when we design and write for Arab users</h1>
     <p class="lede">We build one product, a grocery delivery app called Qareeb <span class="ar">(قريب)</span>, the way a real team would, using AI at every step, for Riyadh, Cairo and Casablanca. Every place the output wouldn't work for real users gets logged, explained, and turned into guidance for designers and writers.</p>
-    <p class="updated">Updated 19 Nov 2026 · imagery, copy and interface experiments done; native check and tagging next</p>
+    <p class="updated">Updated 23 Nov 2026 · all experiments done; first native review in</p>
   </header>
 
 
   <section class="col">
     <div class="insight">
-      <div class="eyebrow">The headline so far</div>
-      <h2 style="margin-top:0">AI doesn't localize. It mirrors.</h2>
+      <h2>AI doesn't localize. It mirrors.</h2>
       <p>The models know Arabic well: they can write convincing Saudi, Egyptian or Libyan copy, and they know every right-to-left best practice. But they rarely <i>decide</i> anything for an Arab audience. Each Arabic-specific choice is set by whatever input they were handed:</p>
       <ul class="tight">
         <li><b>Dialect</b> follows the dialect of the prompt when no market is named: write in Darija and you get Darija, 12 times out of 12. Name a different city and the city wins: across 96 such cases, the four main models never kept the prompt's dialect.</li>
@@ -163,18 +170,36 @@ code { font: 13px var(--font-mono); background: var(--todo-bg); padding: 1px 5px
       <p class="muted" style="margin:0">Runners-up: the model built for Arabic (Mistral Saba) broke most often; and in smaller dialects some "local" copy is a costume, generic Gulf Arabic with one famous local word added.</p>
     </div>
   </section>
+
+  <section class="col">
+    <h2>What a native speaker said</h2>
+    <p class="muted">First native review through the review page: one Gulf reviewer who works in design and marketing. More reviewers, especially from Egypt, the Maghreb, Sudan and Yemen, are still needed.</p>
+
+    <h3 style="margin-top:24px">Logo spelling: confirmed</h3>
+    <p>The reviewer marked the same <b>15 of 21</b> Arabic logos correct that the study found. The six failures, in their words: FLUX "made up Arabic words" in all three of its logos; Recraft wrote the wrong letter in <span class="ar">قريب</span> ("an N instead of a B") and put the dots of the <span class="ar">ج</span> in <span class="ar">الطازج</span> in the wrong place; Qwen drew the <span class="ar">ي</span> incorrectly. English: 21 of 21 correct.</p>
+
+    <h3 style="margin-top:24px">Country logos: the clichés were fine, the design wasn't</h3>
+    <p>The study called the pyramids, stars and palm trees postcard clichés. The native reviewer disagreed: <b>10 of 21</b> logos "fit", pyramids and palms included ("clearly shows fintech and pyramids"). Only one was marked a cliché. The real problem was quality: <b>9 of 21</b> were rated bad or unclear, described as "random", "nothing to do with the country or fintech" or "badly designed". Recraft's three were all in that group.</p>
+    <p>One was marked <b>wrong</b>: Seedream's logo for Morocco uses a six-pointed star the reviewer read as the Star of David, a real cultural mistake for a Moroccan brand.</p>
+
+    <h3 style="margin-top:24px">The test messages: natural</h3>
+    <p>11 of 12 Saudi customer messages used in the customer-message test read as natural. The exception, <span class="ar">شي يفشل</span> ("it's embarrassing") about a late order, was flagged as an odd fit. The test material holds up.</p>
+
+    <h3 style="margin-top:24px">Still open</h3>
+    <p>Ad preference votes and campaign-line ratings have only just started (one of each). Dialect authenticity, the "costume" Sudanese and the smaller dialects need reviewers from those regions.</p>
+  </section>
   <section class="col">
     <h2>The research path</h2>
     <p class="muted">Where each phase stands.</p>
     <div class="phases">
       <div class="phase"><div class="n">0</div><div class="body"><h3>Set up</h3><p>Research question, product, cities, log workbook with 22 text prompts and 20 image prompts.</p></div><span class="pill done">Done</span></div>
-      <div class="phase"><div class="n">1</div><div class="body"><h3>Build it with AI: text</h3><p>Run the 22 prompts (research, brand, copy, interface, support) in ChatGPT, Claude and Gemini per city; log every break.</p></div><span class="pill you">Your turn</span></div>
-      <div class="phase"><div class="n">1b</div><div class="body"><h3>Build it with AI: imagery</h3><p>20 image prompts × 7 image models, three cities plus London as a control, English and Arabic prompts. All generated; tagging is next.</p><div class="bar" aria-label="Imagery progress"><span style="width:100%;background:var(--done)"></span></div><p class="mono" style="margin-top:6px">292 / 292 images</p></div><span class="pill you">Tag them</span></div>
+      <div class="phase"><div class="n">1</div><div class="body"><h3>Build it with AI: text</h3><p>Replaced by the automated experiments below; the workbook is optional.</p></div><span class="pill todo">Covered</span></div>
+      <div class="phase"><div class="n">1b</div><div class="body"><h3>Build it with AI: imagery</h3><p>20 image prompts × 7 image models, three cities plus London as a control, English and Arabic prompts. All generated; tagging is next.</p><div class="bar" aria-label="Imagery progress"><span style="width:100%;background:var(--good)"></span></div><p class="mono" style="margin-top:6px">292 / 292 images</p></div><span class="pill todo">Optional</span></div>
       <div class="phase"><div class="n">1c</div><div class="body"><h3>Experiment: marketing copy and dialect</h3><p>470 outputs: prompt language × launch city × 14 requested dialects, scored by an independent dialect identifier.</p></div><span class="pill done">Done</span></div>
       <div class="phase"><div class="n">1d</div><div class="body"><h3>Experiment: right-to-left interfaces</h3><p>8 product screens × 4 ways of asking × 5 models, with a deep browser audit and tokenization analysis.</p></div><span class="pill done">Done</span></div>
       <div class="phase"><div class="n">1e</div><div class="body"><h3>Experiments: logos, customer messages, campaign adaptation</h3><p>Arabic vs English: 77 logos, 360 message triages, 210 campaign adaptations.</p></div><span class="pill done">Done</span></div>
       <div class="phase"><div class="n">2</div><div class="body"><h3>Compare with real products</h3><p>Screenshot 4–6 leading regional apps per country at the same stages; read real Arabic reviews.</p></div><span class="pill todo">Not started</span></div>
-      <div class="phase"><div class="n">3</div><div class="body"><h3>Ask native speakers</h3><p>3–5 short blind conversations: AI work next to real work. What feels off, and why?</p></div><span class="pill todo">Not started</span></div>
+      <div class="phase"><div class="n">3</div><div class="body"><h3>Ask native speakers</h3><p>Review page live: dialect, ad votes, customer messages, campaign lines. One Gulf reviewer so far.</p></div><span class="pill run">In progress</span></div>
       <div class="phase"><div class="n">4</div><div class="body"><h3>Test the strongest breaks</h3><p>Repeat 5–10 times, across tools, cities, Arabic vs English; try to fix with better prompts.</p></div><span class="pill todo">Not started</span></div>
       <div class="phase"><div class="n">5</div><div class="body"><h3>Make sense of it</h3><p>Group breaks by cause; write guidelines for designers and writers.</p></div><span class="pill todo">Not started</span></div>
       <div class="phase"><div class="n">6</div><div class="body"><h3>Write it up</h3><p>Example → method → findings → why → what to do → the bigger point.</p></div><span class="pill todo">Not started</span></div>
@@ -327,8 +352,7 @@ code { font: 13px var(--font-mono); background: var(--todo-bg); padding: 1px 5px
 
   <section>
     <div class="col">
-      <div class="eyebrow" style="margin-top:56px">Experiment · 470 pieces of marketing copy</div>
-      <h2 style="margin-top:0">Which Arabic do you get?</h2>
+      <h2>Which Arabic do you get?</h2>
       <p class="muted">Every model was asked for the same thing: a tagline, three Instagram ads and a push notification for Qareeb. We changed only the language of the prompt, whether a launch city was named, and whether a dialect was requested. Dialect was identified by the CAMeL Lab's open-source dialect identifier (NYU Abu Dhabi), not by an AI chatbot. Numbers below are for Claude, GPT, Gemini and DeepSeek unless noted.</p>
 
       <h3 style="margin-top:28px">1. Ask for "Arabic" in English and you get Gulf or formal Arabic</h3>
@@ -371,8 +395,7 @@ code { font: 13px var(--font-mono); background: var(--todo-bg); padding: 1px 5px
 
   <section>
     <div class="col">
-      <div class="eyebrow" style="margin-top:56px">Experiment · 160 AI-built interface screens</div>
-      <h2 style="margin-top:0">Can AI build a right-to-left interface?</h2>
+      <h2>Can AI build a right-to-left interface?</h2>
       <p class="muted">Five models built eight real product screens: sign-up, checkout, product listing, support chat, order tracking, a dashboard, an onboarding carousel and settings. They were asked four ways: an English prompt for an Arabic interface, the same in Arabic, an English prompt that explicitly asks for RTL best practices, and the everyday workflow of handing over an existing English page to localize. Each page was opened in a real browser at phone and desktop width and checked on 21 things a user would notice.</p>
 
       <h3 style="margin-top:28px">What it gets right</h3>
@@ -476,8 +499,7 @@ code { font: 13px var(--font-mono); background: var(--todo-bg); padding: 1px 5px
 
   <section>
     <div class="col">
-      <div class="eyebrow" style="margin-top:56px">Three controlled tests · Arabic vs English</div>
-      <h2 style="margin-top:0">Brand identity, customer messages, campaign adaptation</h2>
+      <h2>Brand identity, customer messages, campaign adaptation</h2>
       <p class="muted">Each test runs the same task in English and Arabic, so a gap shows what is specific to Arabic and not just hard in general.</p>
 
       <h3 style="margin-top:28px">1. Logos: English always comes out right, Arabic doesn't, and the mistakes are real words</h3>
@@ -486,7 +508,7 @@ code { font: 13px var(--font-mono); background: var(--todo-bg); padding: 1px 5px
     <figure class="shot wide"><img src="img/brand/wordmarks.jpg" alt="Grid of Arabic and English wordmarks from seven image models" loading="lazy">
       <figcaption>Rows: Arabic "Nearby", Arabic "Fresh Market", Arabic + English lockup, English "Nearby", English "Fresh Market". Columns: GPT Image, Nano Banana, Ideogram, Recraft, Seedream, Qwen Image, FLUX.</figcaption></figure>
     <div class="col">
-      <p style="margin-top:18px"><b>Ask for a fintech logo "from" a country and Arab countries get their postcard.</b> Egypt got pyramids in 5 of 7 logos, Morocco a star in 6 of 7 (one of them a six-pointed star most viewers would read as a Star of David), Saudi Arabia palm trees, a falcon and the Kingdom Tower. The UK got its flag about half the time; the US mostly got generic shields and arrows, as if American were the neutral default.</p>
+      <p style="margin-top:18px"><b>Ask for a fintech logo "from" a country and Arab countries get their national symbols.</b> Egypt got pyramids in 5 of 7 logos, Morocco a star in 6 of 7, Saudi Arabia palm trees, a falcon and the Kingdom Tower; the US mostly got generic shields and arrows. A native reviewer found most of the symbols acceptable. What failed was the design: 9 of 21 were rated random or bad, and one, a six-pointed star for Morocco, was read as the Star of David.</p>
     </div>
     <figure class="shot wide"><img src="img/brand/motifs.jpg" alt="Fintech logos for Saudi Arabia, Egypt, Morocco, the UK and the US from seven image models" loading="lazy">
       <figcaption>"A logo for a new fintech startup from [country]", no text. Rows: Saudi Arabia, Egypt, Morocco, UK, USA.</figcaption></figure>
@@ -529,9 +551,9 @@ code { font: 13px var(--font-mono); background: var(--todo-bg); padding: 1px 5px
   <section class="col">
     <h2>What happens next</h2>
     <div class="todo-list">
-      <div class="todo-item"><span class="pill you">You</span><div><h3>Start Phase 1</h3><p>Open the workbook, run the prompts in ChatGPT, Claude and Gemini, and log breaks as you go. No API needed.</p></div></div>
-      <div class="todo-item"><span class="pill you">You</span><div><h3>Tag the images</h3><p>The 20 grids are in <code>research-path/images/sheets/</code>. Fill the Y/N columns in the Image tags tab. The Summary tab counts clichés per city.</p></div></div>
-      <div class="todo-item"><span class="pill you">You</span><div><h3>Line up 3–5 native speakers</h3><p>For Phase 3: about 20 minutes each, ideally from Riyadh, Cairo and Casablanca.</p></div></div>
+      <div class="todo-item"><span class="pill run">In progress</span><div><h3>More native reviewers</h3><p>Two or three per region through the review page, especially Egypt, the Maghreb, Sudan and Yemen, where the dialect findings need confirming.</p></div></div>
+      <div class="todo-item"><span class="pill you">You</span><div><h3>A human baseline</h3><p>One native copywriter per market writes the same short ad, so the ad votes can compare AI with a person, not only AI with AI.</p></div></div>
+      <div class="todo-item"><span class="pill todo">Next</span><div><h3>Write it up</h3><p>Angle, structure and the five insights as the spine, using the native-checked findings.</p></div></div>
     </div>
   </section>
 </div>
