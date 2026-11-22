@@ -1,91 +1,93 @@
 <title>Arabic Native Review</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600&family=Inter+Tight:wght@400;500;600&family=Noto+Naskh+Arabic:wght@400;600&display=swap">
 <style>
-/* Layout: one reading column; each item is a card with the evidence on top and answer chips below. */
+/* Layout: one reading column; items separated by hairlines; answers are square-edged toggles. No cards, no pills. */
 :root {
-  --bg: #f4f6f5;
-  --surface: #ffffff;
-  --ink: #17232b;
-  --muted: #5b6a71;
-  --line: #d9e0dd;
-  --accent: #0f6b62;
+  --bg: #ffffff;
+  --ink: #15191c;
+  --muted: #5d666b;
+  --line: #e2e5e3;
+  --soft: #f3f5f4;
+  --accent: #1f5c4a;
   --accent-ink: #ffffff;
-  --accent-soft: #e2f1ee;
-  --warn: #9a5b00; --warn-bg: #fbefd9;
-  --font-body: "IBM Plex Sans", system-ui, sans-serif;
-  --font-ar: "IBM Plex Sans Arabic", "IBM Plex Sans", sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --warn: #8a5a00;
+  --font-title: "EB Garamond", Georgia, serif;
+  --font-body: "Inter Tight", system-ui, sans-serif;
+  --font-ar: "Noto Naskh Arabic", "EB Garamond", serif;
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
-  --bg: #121a1e; --surface: #1a242a; --ink: #e5ecee; --muted: #9aa8ae; --line: #2b383e;
-  --accent: #4cc2b3; --accent-ink: #0c1a18; --accent-soft: #173330; --warn: #f0b660; --warn-bg: #3a2c14; color-scheme: dark } }
+  --bg: #121517; --ink: #e8ecee; --muted: #9ba5aa; --line: #2a3034; --soft: #1a1f22; --accent: #7cc4a8; --accent-ink: #0d1a15; --warn: #f0bf6a; color-scheme: dark } }
 :root[data-theme="dark"] {
-  --bg: #121a1e; --surface: #1a242a; --ink: #e5ecee; --muted: #9aa8ae; --line: #2b383e;
-  --accent: #4cc2b3; --accent-ink: #0c1a18; --accent-soft: #173330; --warn: #f0b660; --warn-bg: #3a2c14; color-scheme: dark }
+  --bg: #121517; --ink: #e8ecee; --muted: #9ba5aa; --line: #2a3034; --soft: #1a1f22; --accent: #7cc4a8; --accent-ink: #0d1a15; --warn: #f0bf6a; color-scheme: dark }
 
-body { background: var(--bg); color: var(--ink); font: 15px/1.55 var(--font-body); }
-.wrap { max-width: 760px; margin: 0 auto; padding-block: 36px 96px;
+body { background: var(--bg); color: var(--ink); font: 16px/1.6 var(--font-body); font-variant-numeric: tabular-nums; }
+.wrap { max-width: 720px; margin: 0 auto; padding-block: 56px 96px;
   padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
-h1 { font-size: clamp(26px, 4.6vw, 36px); line-height: 1.15; margin: 0 0 10px; font-weight: 600; text-wrap: balance; }
-h2 { font-size: 20px; margin: 0; font-weight: 600; }
-h3 { font-size: 15px; margin: 0 0 4px; font-weight: 600; }
-p { margin: 0 0 10px; }
-.eyebrow { font: 500 12px/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+h1, h2, h3 { font-family: var(--font-title); font-weight: 500; text-wrap: balance; }
+h1 { font-size: clamp(34px, 5.4vw, 50px); line-height: 1.05; margin: 0 0 18px; }
+h2 { font-size: clamp(26px, 3.6vw, 32px); line-height: 1.15; margin: 0; }
+h3 { font-size: 20px; margin: 0 0 4px; font-weight: 600; }
+p { margin: 0 0 12px; }
+.eyebrow { display: none; }
 .muted { color: var(--muted); }
 .ar { font-family: var(--font-ar); direction: rtl; unicode-bidi: isolate; }
-.lede { font-size: 17px; color: var(--muted); max-width: 62ch; }
+.lede { font-size: 19px; color: var(--muted); max-width: 62ch; }
 
-.banner { border: 1px solid var(--line); border-left: 3px solid var(--warn); background: var(--warn-bg); color: var(--ink); border-radius: 6px; padding: 10px 12px; font-size: 14px; margin-top: 14px; }
-.save { font: 500 12px var(--font-mono); color: var(--muted); }
+.banner { border-top: 1px solid var(--warn); padding-top: 10px; color: var(--warn); font-size: 15px; margin-top: 16px; }
+.save { font-size: 13px; color: var(--muted); }
 
-.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; margin-top: 22px; }
-.field { display: grid; gap: 8px; margin-top: 14px; }
-.field > label, .field > .label { font-weight: 600; font-size: 14px; }
-input[type=text], textarea { font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; width: 100%; box-sizing: border-box; }
-textarea { min-height: 38px; resize: vertical; }
-input:focus-visible, textarea:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+/* Former boxes are now ruled sections */
+.panel { border-top: 2px solid var(--ink); padding-top: 20px; margin-top: 36px; }
+.field { display: grid; gap: 8px; margin-top: 18px; }
+.field > label, .field > .label { font-weight: 600; font-size: 15px; }
+input[type=text], textarea { font: inherit; font-size: 15px; color: var(--ink); background: transparent; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; padding: 6px 0; width: 100%; box-sizing: border-box; }
+textarea { min-height: 34px; resize: vertical; }
+input:focus-visible, textarea:focus-visible { outline: none; border-bottom-color: var(--accent); }
+button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
-.chips { display: flex; flex-wrap: wrap; gap: 8px; }
-.chip { font: 500 13.5px var(--font-body); color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 99px; padding: 7px 12px; cursor: pointer; }
-.chip:hover { border-color: var(--accent); }
-.chip[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+/* Answers: square-edged toggles */
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font: 500 14px var(--font-body); color: var(--ink); background: transparent; border: 1px solid var(--line); border-radius: 0; padding: 7px 12px; cursor: pointer; }
+.chip:hover { border-color: var(--ink); }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
 
-nav.sections { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); padding-block: 10px; margin-top: 18px; border-bottom: 1px solid var(--line); }
+/* Section index: plain links with counts */
+nav.sections { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); padding-block: 12px; margin-top: 32px; border-bottom: 1px solid var(--line); }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
-nav.sections .row { display: flex; gap: 6px; overflow-x: auto; }
-nav.sections a { white-space: nowrap; text-decoration: none; color: var(--ink); font-size: 13px; border: 1px solid var(--line); border-radius: 99px; padding: 5px 10px; background: var(--surface); }
-nav.sections a .n { font-family: var(--font-mono); color: var(--muted); margin-inline-start: 4px; }
-nav.sections a.done { border-color: var(--accent); }
+nav.sections .row { display: flex; gap: 22px; overflow-x: auto; }
+nav.sections a { white-space: nowrap; text-decoration: none; color: var(--muted); font-size: 14px; font-weight: 500; }
+nav.sections a:hover { color: var(--ink); }
+nav.sections a .n { margin-inline-start: 6px; color: var(--muted); font-weight: 400; }
+nav.sections a.done { color: var(--accent); }
 nav.sections a.done .n { color: var(--accent); }
 
-section.block { margin-top: 34px; scroll-margin-top: 70px; }
-section.block > header { display: grid; gap: 4px; margin-bottom: 12px; }
-.items { display: grid; gap: 14px; }
-.item { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px; display: grid; gap: 10px; min-width: 0; }
-.item.answered { border-color: var(--accent); }
-.item .q { font-size: 14px; color: var(--muted); }
-.item img { display: block; width: 100%; max-width: 420px; height: auto; border-radius: 6px; border: 1px solid var(--line); background: #fff; }
-.copy { font-size: 18px; line-height: 1.85; white-space: pre-wrap; background: var(--bg); border-radius: 6px; padding: 12px 14px; }
-.src { font-size: 14px; color: var(--muted); }
-.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.pair .copy { font-size: 16px; }
-.pair .tag { font: 500 12px var(--font-mono); color: var(--muted); margin-bottom: 4px; }
+section.block { margin-top: 48px; scroll-margin-top: 70px; }
+section.block > header { display: grid; gap: 8px; margin-bottom: 8px; padding-bottom: 14px; border-bottom: 2px solid var(--ink); }
+.items { display: grid; }
+.item { padding: 22px 0; border-bottom: 1px solid var(--line); display: grid; gap: 12px; min-width: 0; }
+.item.answered .chips::after { content: "Answered"; font-size: 13px; color: var(--accent); align-self: center; margin-inline-start: 6px; }
+.item .q { font-size: 15px; color: var(--muted); margin: 0; }
+.item img { display: block; width: 100%; max-width: 420px; height: auto; border: 1px solid var(--line); background: #fff; }
+.copy { font-size: 20px; line-height: 1.9; white-space: pre-wrap; background: var(--soft); padding: 14px 16px; }
+.src { font-size: 15px; color: var(--muted); margin: 0; }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.pair .copy { font-size: 17px; }
+.pair .tag { font-family: var(--font-title); font-size: 22px; margin-bottom: 4px; }
 @media (max-width: 560px) { .pair { grid-template-columns: 1fr; } }
-.empty { color: var(--muted); font-size: 14px; background: var(--surface); border: 1px dashed var(--line); border-radius: 10px; padding: 14px; }
+.empty { color: var(--muted); font-size: 15px; padding: 18px 0; border-bottom: 1px solid var(--line); }
 
-.btn { font: 600 14px var(--font-body); background: var(--accent); color: var(--accent-ink); border: 0; border-radius: 8px; padding: 10px 16px; cursor: pointer; }
-.btn.ghost { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
-.results table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
-.results th, .results td { text-align: start; padding: 6px 8px 6px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+.btn { font: 600 15px var(--font-body); background: var(--ink); color: var(--bg); border: 0; border-radius: 0; padding: 11px 18px; cursor: pointer; }
+.btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+.results table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.results th, .results td { text-align: start; padding: 8px 12px 8px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+.results th { font-size: 13px; color: var(--muted); border-bottom-color: var(--ink); }
 .results .scroll { overflow-x: auto; }
-@media (prefers-reduced-motion: no-preference) { .item { transition: border-color .15s; } }
 </style>
 
 <div class="wrap">
   <header>
-    <div class="eyebrow">Outliers research · native-speaker review</div>
     <h1>Check what AI wrote in Arabic</h1>
     <p class="lede">We tested how AI models write, design and localize for Arab users. Before publishing, we need native speakers to check the Arabic. You'll judge logos, ad copy and messages the AI produced. There are no right answers; your instinct as a native speaker is the point.</p>
     <p class="muted">About 15–20 minutes. Answers save as you go, so you can stop and come back. Skip anything you're unsure about.</p>
