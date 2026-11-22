@@ -1,0 +1,350 @@
+<title>Arabic Native Review</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: one reading column; each item is a card with the evidence on top and answer chips below. */
+:root {
+  --bg: #f4f6f5;
+  --surface: #ffffff;
+  --ink: #17232b;
+  --muted: #5b6a71;
+  --line: #d9e0dd;
+  --accent: #0f6b62;
+  --accent-ink: #ffffff;
+  --accent-soft: #e2f1ee;
+  --warn: #9a5b00; --warn-bg: #fbefd9;
+  --font-body: "IBM Plex Sans", system-ui, sans-serif;
+  --font-ar: "IBM Plex Sans Arabic", "IBM Plex Sans", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #121a1e; --surface: #1a242a; --ink: #e5ecee; --muted: #9aa8ae; --line: #2b383e;
+  --accent: #4cc2b3; --accent-ink: #0c1a18; --accent-soft: #173330; --warn: #f0b660; --warn-bg: #3a2c14; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #121a1e; --surface: #1a242a; --ink: #e5ecee; --muted: #9aa8ae; --line: #2b383e;
+  --accent: #4cc2b3; --accent-ink: #0c1a18; --accent-soft: #173330; --warn: #f0b660; --warn-bg: #3a2c14; color-scheme: dark }
+
+body { background: var(--bg); color: var(--ink); font: 15px/1.55 var(--font-body); }
+.wrap { max-width: 760px; margin: 0 auto; padding-block: 36px 96px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1 { font-size: clamp(26px, 4.6vw, 36px); line-height: 1.15; margin: 0 0 10px; font-weight: 600; text-wrap: balance; }
+h2 { font-size: 20px; margin: 0; font-weight: 600; }
+h3 { font-size: 15px; margin: 0 0 4px; font-weight: 600; }
+p { margin: 0 0 10px; }
+.eyebrow { font: 500 12px/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+.muted { color: var(--muted); }
+.ar { font-family: var(--font-ar); direction: rtl; unicode-bidi: isolate; }
+.lede { font-size: 17px; color: var(--muted); max-width: 62ch; }
+
+.banner { border: 1px solid var(--line); border-left: 3px solid var(--warn); background: var(--warn-bg); color: var(--ink); border-radius: 6px; padding: 10px 12px; font-size: 14px; margin-top: 14px; }
+.save { font: 500 12px var(--font-mono); color: var(--muted); }
+
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; margin-top: 22px; }
+.field { display: grid; gap: 8px; margin-top: 14px; }
+.field > label, .field > .label { font-weight: 600; font-size: 14px; }
+input[type=text], textarea { font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; width: 100%; box-sizing: border-box; }
+textarea { min-height: 38px; resize: vertical; }
+input:focus-visible, textarea:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font: 500 13.5px var(--font-body); color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 99px; padding: 7px 12px; cursor: pointer; }
+.chip:hover { border-color: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+
+nav.sections { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); padding-block: 10px; margin-top: 18px; border-bottom: 1px solid var(--line); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+nav.sections .row { display: flex; gap: 6px; overflow-x: auto; }
+nav.sections a { white-space: nowrap; text-decoration: none; color: var(--ink); font-size: 13px; border: 1px solid var(--line); border-radius: 99px; padding: 5px 10px; background: var(--surface); }
+nav.sections a .n { font-family: var(--font-mono); color: var(--muted); margin-inline-start: 4px; }
+nav.sections a.done { border-color: var(--accent); }
+nav.sections a.done .n { color: var(--accent); }
+
+section.block { margin-top: 34px; scroll-margin-top: 70px; }
+section.block > header { display: grid; gap: 4px; margin-bottom: 12px; }
+.items { display: grid; gap: 14px; }
+.item { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px; display: grid; gap: 10px; min-width: 0; }
+.item.answered { border-color: var(--accent); }
+.item .q { font-size: 14px; color: var(--muted); }
+.item img { display: block; width: 100%; max-width: 420px; height: auto; border-radius: 6px; border: 1px solid var(--line); background: #fff; }
+.copy { font-size: 18px; line-height: 1.85; white-space: pre-wrap; background: var(--bg); border-radius: 6px; padding: 12px 14px; }
+.src { font-size: 14px; color: var(--muted); }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.pair .copy { font-size: 16px; }
+.pair .tag { font: 500 12px var(--font-mono); color: var(--muted); margin-bottom: 4px; }
+@media (max-width: 560px) { .pair { grid-template-columns: 1fr; } }
+.empty { color: var(--muted); font-size: 14px; background: var(--surface); border: 1px dashed var(--line); border-radius: 10px; padding: 14px; }
+
+.btn { font: 600 14px var(--font-body); background: var(--accent); color: var(--accent-ink); border: 0; border-radius: 8px; padding: 10px 16px; cursor: pointer; }
+.btn.ghost { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
+.results table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+.results th, .results td { text-align: start; padding: 6px 8px 6px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+.results .scroll { overflow-x: auto; }
+@media (prefers-reduced-motion: no-preference) { .item { transition: border-color .15s; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Outliers research · native-speaker review</div>
+    <h1>Check what AI wrote in Arabic</h1>
+    <p class="lede">We tested how AI models write, design and localize for Arab users. Before publishing, we need native speakers to check the Arabic. You'll judge logos, ad copy and messages the AI produced. There are no right answers; your instinct as a native speaker is the point.</p>
+    <p class="muted">About 20–25 minutes. Answers save as you go, so you can stop and come back. Skip anything you're unsure about.</p>
+    <div id="saveBanner" class="banner" hidden></div>
+  </header>
+
+  <div class="panel" id="about">
+    <h2>About you</h2>
+    <p class="muted" style="margin-top:4px">This decides which items you see: dialect questions only show for regions you choose.</p>
+    <div class="field">
+      <span class="label" id="lblRegions">Which Arabic do you speak natively? Choose all that apply.</span>
+      <div class="chips" id="regions" role="group" aria-labelledby="lblRegions"></div>
+    </div>
+    <div class="field">
+      <span class="label" id="lblLevel">Your Arabic</span>
+      <div class="chips" id="level" role="group" aria-labelledby="lblLevel"></div>
+    </div>
+    <div class="field">
+      <span class="label" id="lblRole">Do you work in marketing, design or writing?</span>
+      <div class="chips" id="role" role="group" aria-labelledby="lblRole"></div>
+    </div>
+    <div class="field">
+      <label for="initials">Initials or a nickname (optional)</label>
+      <input type="text" id="initials" maxlength="40" autocomplete="off">
+    </div>
+    <p class="save" id="saveState" style="margin-top:12px">Not saved yet</p>
+  </div>
+
+  <nav class="sections" aria-label="Sections"><div class="row" id="nav"></div></nav>
+  <div id="blocks"></div>
+
+  <div class="panel" id="finish">
+    <h2>Finished?</h2>
+    <p class="muted" style="margin-top:4px">Your answers are saved automatically. If the note at the top says saving isn't available for you, copy your answers and send them back to whoever shared this page.</p>
+    <div class="chips" style="margin-top:10px">
+      <button class="btn" type="button" id="copyBtn">Copy my answers</button>
+    </div>
+    <textarea id="copyFallback" readonly hidden style="margin-top:10px;min-height:120px"></textarea>
+    <p class="save" id="copyState" style="margin-top:8px"></p>
+  </div>
+
+  <div class="panel results" id="results" hidden>
+    <h2>Results so far</h2>
+    <p class="muted" id="resultsMeta" style="margin-top:4px">Only you, the page owner, see this.</p>
+    <div id="resultsBody"></div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const REGION_ORDER = ['gulf', 'egypt', 'levant', 'iraq', 'sudan', 'yemen', 'maghreb'];
+  const LEVELS = [['native', 'Native speaker'], ['fluent', 'Fluent, not native'], ['learner', 'Still learning']];
+  const ROLES = [['yes', 'Yes'], ['no', 'No']];
+  const MSG_LANG = { ar_msa: 'Formal Arabic', ar_sa: 'Saudi', ar_eg: 'Egyptian', ar_ma: 'Moroccan Darija', arabizi: 'Arabizi (Egyptian, Latin letters)' };
+  const MARKET = { ar_sa: 'Saudi Arabia', ar_eg: 'Egypt' };
+  const SECTIONS = [
+    { key: 'logos', title: 'Logos', lead: 'Each logo was supposed to say exactly the name shown. Is the Arabic spelled correctly?',
+      options: [['correct', 'Correct'], ['small', 'Small error'], ['wrong', 'A different word'], ['unreadable', 'Unreadable']], note: 'If it isn\'t correct, what does it actually say?' },
+    { key: 'motifs', title: 'Country logos', lead: 'The AI was asked for "a logo for a new fintech startup from" each country. How does it land?',
+      options: [['fits', 'Fits well'], ['cliche', 'Clichéd'], ['wrong', 'Wrong or offensive'], ['unsure', 'Not sure']], note: 'Anything specific? (optional)' },
+    { key: 'dialect', title: 'Dialect', lead: 'Ad copy the AI wrote when asked for a specific local dialect. Does it sound like people from that city?',
+      options: [['local', 'Genuinely local'], ['mostly', 'Mostly local'], ['costume', 'Generic Arabic with a few local words'], ['wrongdialect', 'Wrong dialect'], ['formal', 'Formal Arabic']], note: 'What gives it away? (optional)' },
+    { key: 'votes', title: 'Which ad?', lead: 'Two versions of the same ad, written by different AI models. Which would you rather see?',
+      options: [['a', 'Prefer A'], ['b', 'Prefer B'], ['both', 'Both fine'], ['neither', 'Neither works']], note: 'Why? (optional)' },
+    { key: 'messages', title: 'Customer messages', lead: 'We wrote these customer-support messages to test the AI. Would a real customer write it this way?',
+      options: [['natural', 'Natural'], ['off', 'Understandable but off'], ['unnatural', 'Unnatural']], note: 'How would you write it? (optional)' },
+    { key: 'campaign', title: 'Campaign lines', lead: 'English marketing lines the AI adapted for an Arab market. Would this run there?',
+      options: [['yes', 'Yes, as is'], ['edits', 'With small edits'], ['no', 'No']], note: 'What would you change? (optional)' },
+  ];
+
+  let ITEMS = null;
+  let state = { profile: { regions: [], level: '', role: '', initials: '' }, answers: {} };
+  let seed = 'local';
+  let docRef = null, canSave = false, writing = false, dirty = false, timer = null;
+
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+  try { const d = JSON.parse(localStorage.getItem('arabic-review-draft') || 'null'); if (d && d.profile) state = d; } catch (e) {}
+
+  function hash(s) { let h = 2166136261; for (const ch of s) { h ^= ch.charCodeAt(0); h = Math.imul(h, 16777619); } return h >>> 0; }
+
+  function chipGroup(el, options, current, onPick, multi) {
+    el.innerHTML = '';
+    for (const [val, label] of options) {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'chip'; b.textContent = label;
+      b.setAttribute('aria-pressed', String(multi ? current.includes(val) : current === val));
+      b.addEventListener('click', () => onPick(val));
+      el.appendChild(b);
+    }
+  }
+
+  function renderAbout() {
+    const regs = ITEMS ? REGION_ORDER.map((k) => [k, ITEMS.regions[k].label]) : [];
+    chipGroup($('regions'), regs, state.profile.regions, (v) => {
+      const r = state.profile.regions; state.profile.regions = r.includes(v) ? r.filter((x) => x !== v) : [...r, v];
+      changed(); renderAbout(); renderBlocks();
+    }, true);
+    chipGroup($('level'), LEVELS, state.profile.level, (v) => { state.profile.level = v; changed(); renderAbout(); }, false);
+    chipGroup($('role'), ROLES, state.profile.role, (v) => { state.profile.role = v; changed(); renderAbout(); }, false);
+    if (document.activeElement !== $('initials')) $('initials').value = state.profile.initials || '';
+  }
+  $('initials').addEventListener('input', (e) => { state.profile.initials = e.target.value.slice(0, 40); changed(); });
+
+  // Which items this reviewer sees
+  function itemsFor(key) {
+    if (!ITEMS) return [];
+    const regs = state.profile.regions;
+    if (key === 'logos') return ITEMS.logos;
+    if (key === 'motifs') return ITEMS.motifs;
+    if (key === 'dialect') { const cities = new Set(regs.flatMap((r) => ITEMS.regions[r].cities)); return ITEMS.dialect.filter((x) => cities.has(x.city)); }
+    if (key === 'votes') { const cities = new Set(regs.map((r) => ITEMS.regions[r].vote)); return ITEMS.votes.filter((x) => cities.has(x.city)); }
+    if (key === 'messages') {
+      const langs = new Set(regs.flatMap((r) => ITEMS.regions[r].msg));
+      if (regs.length && !langs.size) langs.add('ar_msa');
+      return ITEMS.messages.filter((x) => langs.has(x.lang));
+    }
+    if (key === 'campaign') {
+      const markets = new Set(regs.map((r) => ITEMS.regions[r].market).filter(Boolean));
+      const pick = {}; // one model's version per line and market, rotated by reviewer
+      for (const x of ITEMS.campaign.filter((c) => markets.has(c.market))) {
+        const line = x.id.split('-')[1], k = line + x.market; (pick[k] ||= []).push(x);
+      }
+      return Object.values(pick).map((arr) => arr.sort((a, b) => a.id.localeCompare(b.id))[hash(seed + arr[0].id) % arr.length]);
+    }
+    return [];
+  }
+
+  function body(key, x) {
+    if (key === 'logos') return `<img src="${esc(x.img)}" alt="AI-generated logo" loading="lazy"><p class="q">Should say: <span class="ar" style="font-size:20px;color:var(--ink)">${esc(x.requested)}</span>${x.lockup ? ' (next to "Nearby")' : ''}</p>`;
+    if (key === 'motifs') return `<img src="${esc(x.img)}" alt="AI-generated fintech logo for ${esc(x.country)}" loading="lazy" style="max-width:260px"><p class="q">A fintech startup from <b style="color:var(--ink)">${esc(x.country)}</b></p>`;
+    if (key === 'dialect') return `<p class="q">Asked to sound like people from <b style="color:var(--ink)">${esc(x.city)}</b></p><div class="copy ar">${esc(x.text)}</div>`;
+    if (key === 'votes') return `<p class="q">Ads for <b style="color:var(--ink)">${esc(x.city)}</b></p><div class="pair"><div><div class="tag">A</div><div class="copy ar">${esc(x.a)}</div></div><div><div class="tag">B</div><div class="copy ar">${esc(x.b)}</div></div></div>`;
+    if (key === 'messages') return `<p class="q">${esc(MSG_LANG[x.lang])} · ${esc(x.about)}</p><div class="copy ${x.lang === 'arabizi' ? '' : 'ar'}">${esc(x.text)}</div>`;
+    if (key === 'campaign') return `<p class="src">English original: "${esc(x.source)}"</p><p class="q">Adapted for <b style="color:var(--ink)">${esc(MARKET[x.market])}</b></p><div class="copy ar">${esc(x.text)}</div>`;
+  }
+
+  function renderBlocks() {
+    const blocks = $('blocks'), nav = $('nav');
+    blocks.innerHTML = ''; nav.innerHTML = '';
+    if (!ITEMS) { blocks.innerHTML = '<p class="empty" style="margin-top:24px">Loading the items…</p>'; return; }
+    for (const sec of SECTIONS) {
+      const list = itemsFor(sec.key);
+      const answered = list.filter((x) => state.answers[x.id]?.v).length;
+      const a = document.createElement('a');
+      a.href = '#sec-' + sec.key; a.className = list.length && answered === list.length ? 'done' : '';
+      a.innerHTML = `${esc(sec.title)}<span class="n">${answered}/${list.length}</span>`;
+      nav.appendChild(a);
+
+      const s = document.createElement('section');
+      s.className = 'block'; s.id = 'sec-' + sec.key;
+      s.innerHTML = `<header><h2>${esc(sec.title)}</h2><p class="muted">${esc(sec.lead)}</p></header>`;
+      const wrap = document.createElement('div'); wrap.className = 'items';
+      if (!list.length) {
+        wrap.innerHTML = `<p class="empty">${state.profile.regions.length ? 'Nothing here for the regions you chose.' : 'Choose your region above to see these items.'}</p>`;
+      }
+      for (const x of list) {
+        const ans = state.answers[x.id] || {};
+        const card = document.createElement('div');
+        card.className = 'item' + (ans.v ? ' answered' : '');
+        card.innerHTML = body(sec.key, x);
+        const chips = document.createElement('div'); chips.className = 'chips'; chips.setAttribute('role', 'group'); chips.setAttribute('aria-label', 'Your answer');
+        chipGroup(chips, sec.options, ans.v || '', (v) => {
+          const cur = state.answers[x.id] || {};
+          state.answers[x.id] = { ...cur, v: cur.v === v ? '' : v };
+          changed(); renderBlocks();
+          document.getElementById('note-' + x.id)?.focus({ preventScroll: true });
+        }, false);
+        card.appendChild(chips);
+        const note = document.createElement('textarea');
+        note.id = 'note-' + x.id; note.placeholder = sec.note; note.setAttribute('aria-label', sec.note);
+        note.value = ans.note || '';
+        note.addEventListener('input', () => { state.answers[x.id] = { ...(state.answers[x.id] || {}), note: note.value.slice(0, 600) }; changed(false); });
+        card.appendChild(note);
+        wrap.appendChild(card);
+      }
+      s.appendChild(wrap);
+      blocks.appendChild(s);
+    }
+  }
+
+  // Saving: one write at a time, coalesced
+  function changed() {
+    try { localStorage.setItem('arabic-review-draft', JSON.stringify(state)); } catch (e) {}
+    if (!canSave) return;
+    dirty = true; $('saveState').textContent = 'Saving…';
+    clearTimeout(timer); timer = setTimeout(flush, 900);
+  }
+  async function flush() {
+    if (writing || !dirty || !docRef) return;
+    writing = true; dirty = false;
+    try {
+      await docRef.set({ profile: state.profile, answers: state.answers, updatedAt: new Date().toISOString() });
+      $('saveState').textContent = 'Saved';
+    } catch (e) {
+      if (e && e.code === 'invalid_argument') { canSave = false; showNoSave(); }
+      else { dirty = true; $('saveState').textContent = 'Not saved yet, retrying'; setTimeout(flush, 2500 + Math.random() * 1500); }
+    } finally { writing = false; if (dirty && canSave) { clearTimeout(timer); timer = setTimeout(flush, 600); } }
+  }
+  function showNoSave() {
+    const b = $('saveBanner'); b.hidden = false;
+    b.textContent = 'Your answers can\'t be saved to this page from your account. Keep going: they stay in this browser, and at the end use "Copy my answers" and send them back.';
+    $('saveState').textContent = 'Kept in this browser only';
+  }
+
+  // Copy answers
+  function answersText() {
+    const lines = [`Profile: ${JSON.stringify(state.profile)}`];
+    for (const [id, a] of Object.entries(state.answers)) if (a.v || a.note) lines.push(`${id}\t${a.v || ''}\t${(a.note || '').replace(/\s+/g, ' ')}`);
+    return lines.join('\n');
+  }
+  $('copyBtn').addEventListener('click', () => {
+    const t = answersText(), ta = $('copyFallback');
+    navigator.clipboard.writeText(t).then(() => { $('copyState').textContent = 'Copied. Paste it into a message to whoever shared this page.'; })
+      .catch(() => { ta.hidden = false; ta.value = t; ta.focus(); ta.select(); $('copyState').textContent = 'Select all and copy this text, then send it back.'; });
+  });
+
+  // Owner results
+  function renderResults(docs) {
+    $('results').hidden = false;
+    const n = docs.length;
+    $('resultsMeta').textContent = `${n} reviewer${n === 1 ? '' : 's'} so far. Only you, the page owner, see this.`;
+    const tally = {};
+    for (const d of docs) for (const [id, a] of Object.entries(d.answers || {})) if (a.v) { const sec = id.split('-')[0]; ((tally[sec] ||= {})[a.v] = (tally[sec][a.v] || 0) + 1); }
+    const names = { A: 'Logos', B: 'Country logos', C: 'Dialect', D: 'Which ad?', E: 'Customer messages', F: 'Campaign lines' };
+    const rows = Object.entries(names).map(([k, label]) => `<tr><td>${label}</td><td>${Object.entries(tally[k] || {}).map(([v, c]) => `${esc(v)} ${c}`).join(' · ') || '–'}</td></tr>`).join('');
+    const who = docs.map((d) => `${esc(d.profile?.initials || 'Anonymous')} (${esc((d.profile?.regions || []).join(', ') || 'no region')}, ${Object.values(d.answers || {}).filter((a) => a.v).length} answers)`).join('<br>');
+    $('resultsBody').innerHTML = `<div class="scroll"><table><thead><tr><th>Section</th><th>Answers</th></tr></thead><tbody>${rows}</tbody></table></div><p class="muted" style="margin-top:10px;font-size:13.5px">${who || 'No one yet.'}</p>`;
+  }
+
+  renderAbout(); renderBlocks();
+
+  fetch('items.json').then((r) => r.json()).then((d) => { ITEMS = d; renderAbout(); renderBlocks(); })
+    .catch(() => { $('blocks').innerHTML = '<p class="empty" style="margin-top:24px">The review items couldn\'t load. Reload the page to try again.</p>'; });
+
+  (async () => {
+    const [db, user] = await Promise.all([window.claude?.use?.('db') ?? null, window.claude?.use?.('user') ?? null]);
+    const uid = user ? await user.id() : null;
+    if (!db || !uid) { showNoSave(); return; }
+    seed = uid; renderBlocks();
+    docRef = db.doc('reviews/' + uid);
+    const loadTimer = setTimeout(() => { $('saveState').textContent = 'Can\'t reach saved answers yet'; }, 10000);
+    try {
+      const snap = await docRef.get();
+      clearTimeout(loadTimer);
+      if (snap.exists) {
+        const d = snap.data();
+        state = { profile: { ...state.profile, ...(d.profile || {}) }, answers: { ...state.answers, ...(d.answers || {}) } };
+        $('saveState').textContent = 'Saved';
+        renderAbout(); renderBlocks();
+      }
+      canSave = true;
+      if (Object.keys(state.answers).length || state.profile.regions.length) { dirty = true; flush(); }
+    } catch (e) { clearTimeout(loadTimer); showNoSave(); }
+
+    if (await user.isOwner()) {
+      db.collection('reviews').onSnapshot((qs) => renderResults(qs.docs.map((x) => x.data())), () => {});
+    }
+  })();
+})();
+</script>
