@@ -34,7 +34,7 @@
 
     /* Top bar: logo, section name, progress as a hairline along the bottom edge */
     .top { position: sticky; top: 0; z-index: 5; display: flex; justify-content: space-between; align-items: center; gap: 16px;
-      padding: max(16px, env(safe-area-inset-top)) var(--pad) 16px; background: var(--paper); border-bottom: 1px solid var(--rule); }
+      padding: max(16px, env(safe-area-inset-top)) var(--pad) 16px; background: var(--paper); }
     .logo { font-family: var(--serif); font-size: 20px; line-height: 1; color: var(--ink); text-decoration: none; white-space: nowrap; }
     .logo em { font-style: italic; color: var(--pink); }
     @media (max-width: 720px) { .logo { font-size: 18px; } }
@@ -87,8 +87,8 @@
     .chip.wi input::placeholder { color: var(--ink-3); }
 
     /* Options: rows with a radio dot, separated by hairlines */
-    .opts { display: flex; flex-direction: column; border-top: 1px solid var(--rule); }
-    .big { display: flex; gap: 14px; align-items: baseline; text-align: left; width: 100%; padding: 16px 0; border: 0; border-bottom: 1px solid var(--rule); background: none; cursor: pointer; }
+    .opts { display: flex; flex-direction: column; gap: 4px; }
+    .big { display: flex; gap: 14px; align-items: baseline; text-align: left; width: 100%; padding: 12px 0; border: 0; background: none; cursor: pointer; }
     .big b { display: block; font-family: var(--serif); font-weight: 400; font-size: 21px; line-height: 1.2; transition: color .15s ease; }
     .big small { display: block; margin-top: 2px; font-size: 13px; color: var(--ink-2); }
     .big:hover b { color: var(--magenta); }
@@ -100,7 +100,7 @@
     .add:hover, .linkish:hover { color: var(--ink); text-decoration-color: var(--magenta); }
 
     /* Footer: always visible, Back on the left, error and Next on the right */
-    .foot { position: sticky; bottom: 0; z-index: 4; background: var(--paper); border-top: 1px solid var(--rule); }
+    .foot { position: sticky; bottom: 0; z-index: 4; background: var(--paper); }
     .foot-in { max-width: 1200px; margin: 0 auto; padding: 12px var(--pad) max(12px, env(safe-area-inset-bottom));
       display: flex; align-items: center; gap: 16px; }
     .back { font-size: 14px; background: none; border: 0; padding: 10px 0; color: var(--ink-2); cursor: pointer; }
@@ -123,7 +123,7 @@
     /* The note slides up from the bottom */
     .veil { position: fixed; inset: 0; z-index: 40; background: color-mix(in srgb, var(--paper) 80%, transparent); opacity: 0; visibility: hidden; transition: opacity .35s ease, visibility 0s linear .35s; }
     .drawer { position: fixed; left: 0; right: 0; bottom: 0; z-index: 41; height: min(560px, 80vh); height: min(560px, 80dvh); display: flex; flex-direction: column;
-      border-top: 1px solid var(--rule); background: var(--paper); transform: translateY(102%); visibility: hidden; transition: transform .7s var(--ease), visibility 0s linear .7s; }
+      background: var(--paper); box-shadow: 0 -24px 48px -24px rgba(22,21,20,.12); transform: translateY(102%); visibility: hidden; transition: transform .7s var(--ease), visibility 0s linear .7s; }
     body.letter .veil { opacity: 1; visibility: visible; transition: opacity .35s ease; }
     body.letter .drawer { transform: none; visibility: visible; transition: transform .7s var(--ease); }
     .write { flex: 1; min-height: 0; width: 100%; max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; padding: 32px var(--pad) max(20px, env(safe-area-inset-bottom)); }
