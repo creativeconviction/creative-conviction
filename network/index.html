@@ -15,14 +15,20 @@
   <meta name="theme-color" content="#F8F6F2" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@400;500&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..700&family=Inter:wght@400..700&display=swap" />
+  <script>document.documentElement.setAttribute("data-bg","paper")</script>
+  <!-- The homepage's own top line, paper, print colours, grain and cursor -->
+  <link rel="stylesheet" href="../assets/topline.css" />
+  <link rel="stylesheet" href="../assets/cursor.css" />
   <style>
-    /* Creative Conviction Talent Network: one full-screen panel, three flows (creatives, nominations, founders). */
-    :root { --paper: #F8F6F2; --ink: #161514; --ink-2: #4A4641; --ink-3: #807B73; --rule: #D9D3C8;
+    /* Creative Conviction Talent Network: one full-screen panel, three flows (creatives, referrals, founders). */
+    :root { --paper: var(--cc-paper, #F1EFEA); --ink: #161514; --ink-2: #4A4641; --ink-3: #6E6A63; --rule: #D9D3C8; --on-accent: #F8F6F2;
       --magenta: #D8016A; --magenta-deep: #B80059; --pink: #F37DB6; --pink-tint: #FBE0EC;
       --serif: "EB Garamond", Garamond, "Iowan Old Style", Georgia, serif; --sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
       --ease: cubic-bezier(.16, 1, .3, 1); --pad: 48px; color-scheme: light; }
-    @media (max-width: 720px) { :root { --pad: 18px; } }
+    @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --paper: #151412; --ink: #F1EFEA; --ink-2: #C9C3B8; --ink-3: #9B958B; --rule: #3A362F; color-scheme: dark; } }
+    :root[data-theme="dark"] { --paper: #151412; --ink: #F1EFEA; --ink-2: #C9C3B8; --ink-3: #9B958B; --rule: #3A362F; color-scheme: dark; }
+    @media (max-width: 720px) { :root { --pad: 20px; } }
     * { box-sizing: border-box; }
     [hidden] { display: none !important; }
     html, body { margin: 0; background: var(--paper); color: var(--ink); }
@@ -32,15 +38,9 @@
     button { font: inherit; color: inherit; }
     :focus-visible { outline: 1px solid var(--ink); outline-offset: 3px; }
 
-    /* Top bar: logo, section name, progress as a hairline along the bottom edge */
-    .top { position: sticky; top: 0; z-index: 5; display: flex; justify-content: space-between; align-items: center; gap: 16px;
-      padding: max(16px, env(safe-area-inset-top)) var(--pad) 16px; background: var(--paper); }
-    .logo { font-family: var(--serif); font-size: 20px; line-height: 1; color: var(--ink); text-decoration: none; white-space: nowrap; }
-    .logo em { font-style: italic; color: var(--pink); }
-    @media (max-width: 720px) { .logo { font-size: 18px; } }
-    .net { font-size: 12px; color: var(--ink-3); white-space: nowrap; }
-    .net b { font-weight: 400; color: var(--ink); }
-    .meter { position: absolute; left: 0; bottom: -1px; height: 2px; background: var(--ink); width: 0; transition: width .5s var(--ease); }
+    /* The top line comes from the homepage (topline.css); body.has-top leaves room for it */
+    .cc-top { background: var(--paper); }
+    .cc-top .cc-top-mark { color: var(--ink); }
 
     /* The panel fills the screen */
     form { flex: 1; display: flex; flex-direction: column; }
@@ -54,7 +54,7 @@
       display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 32px 80px; align-content: start; }
     @media (max-width: 900px) { .wrap { grid-template-columns: 1fr; padding-top: 32px; gap: 28px; } }
     .head { display: flex; flex-direction: column; gap: 12px; }
-    @media (min-width: 901px) { .head { position: sticky; top: 120px; align-self: start; } }
+    @media (min-width: 901px) { .head { position: sticky; top: 104px; align-self: start; } }
     h1 { font-family: var(--serif); font-weight: 400; font-size: 44px; line-height: 1.04; letter-spacing: -.02em; margin: 0; text-wrap: balance; }
     h1:focus { outline: none; }
     @media (max-width: 720px) { h1 { font-size: 34px; } }
@@ -106,7 +106,7 @@
     .back { font-size: 14px; background: none; border: 0; padding: 10px 0; color: var(--ink-2); cursor: pointer; }
     .back:hover { color: var(--ink); }
     .err { flex: 1; margin: 0; text-align: right; font-size: 13px; color: var(--magenta-deep); }
-    .next { flex: none; display: inline-flex; align-items: center; gap: 8px; height: 42px; padding: 0 22px; border: 0; background: var(--magenta); color: var(--paper); font-size: 14px; font-weight: 500; cursor: pointer; transition: background .2s ease; }
+    .next { flex: none; display: inline-flex; align-items: center; gap: 8px; height: 42px; padding: 0 22px; border: 0; background: var(--magenta); color: var(--on-accent); font-size: 14px; font-weight: 500; cursor: pointer; transition: background .2s ease; }
     .next:hover { background: var(--magenta-deep); }
     .next[disabled] { opacity: .6; cursor: default; }
     .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
@@ -134,12 +134,27 @@
     .wf { display: flex; justify-content: space-between; align-items: center; }
   </style>
 </head>
-<body>
-<header class="top">
-  <a class="logo" href="/">Creative <em>Conviction</em></a>
-  <span class="net"><b>Talent Network</b><span id="count"></span></span>
-  <span class="meter" id="meter" aria-hidden="true"></span>
-</header>
+<body class="has-top no-hero">
+<div class="cc-top" id="topline">
+  <button class="cc-index-btn" type="button" aria-expanded="false" aria-controls="cc-index-menu"><i aria-hidden="true"></i>Index</button>
+  <a class="cc-top-mark" href="../#interviews">Creative <em>Conviction</em></a>
+  <div class="cc-right">
+    <a class="cc-act" href="./" aria-current="page">Talent Network</a>
+    <a class="cc-act" href="mailto:libbiefrost@gmail.com,rayoufalhumedhi@gmail.com?subject=Collaborating%20with%20Creative%20Conviction">Collaborate</a>
+    <a class="cc-act cc-top-sub" href="https://creativeconvictionpress.substack.com/" target="_blank" rel="noopener">Subscribe</a>
+    <button class="cc-signup" type="button" aria-expanded="false" aria-controls="cc-signup-menu">Sign up</button>
+    <div class="cc-signup-menu" id="cc-signup-menu" hidden><a href="https://creativeconvictionpress.substack.com/" target="_blank" rel="noopener"><span>Subscribe</span></a><a href="./" aria-current="page"><span>Talent Network</span></a><a href="mailto:libbiefrost@gmail.com,rayoufalhumedhi@gmail.com?subject=Collaborating%20with%20Creative%20Conviction"><span>Collaborate</span></a></div>
+  </div>
+  <div class="cc-index-menu" id="cc-index-menu" role="navigation" aria-label="Site" hidden>
+    <div class="cc-index-list">
+      <a href="../#interviews"><span>Interviews</span></a>
+      <a href="../writing/"><span>Writing</span></a>
+      <a href="../community/"><span>Community</span></a>
+      <a href="../#library"><span>Library</span></a>
+      <a href="../about/"><span>About</span></a>
+    </div>
+  </div>
+</div>
 
 <form id="form" novalidate autocomplete="on">
   <div class="hp" aria-hidden="true"><label>Website <input name="website" tabindex="-1" autocomplete="off"></label></div>
@@ -154,7 +169,7 @@
       <div class="body">
         <div class="opts" role="radiogroup" aria-label="Who is this for">
           <button type="button" class="big" data-pick="who" data-value="me" aria-pressed="true"><span class="dot"></span><span><b>I'm a creative</b><small>I make things and want to work with founders building something great.</small></span></button>
-          <button type="button" class="big" data-pick="who" data-value="friend" aria-pressed="false"><span class="dot"></span><span><b>I'm nominating someone</b><small>Their work deserves more eyes. We reach out first and share nothing without their yes.</small></span></button>
+          <button type="button" class="big" data-pick="who" data-value="friend" aria-pressed="false"><span class="dot"></span><span><b>I'm referring someone</b><small>Their work deserves more eyes. We reach out first and share nothing without their yes.</small></span></button>
           <button type="button" class="big" data-pick="who" data-value="founder" aria-pressed="false"><span class="dot"></span><span><b>I'm hiring</b><small>A startup looking for creative talent.</small></span></button>
         </div>
       </div>
@@ -237,11 +252,11 @@
     <div class="foot"><div class="foot-in"><button type="button" class="back" data-back>Back</button><p class="err" role="alert"></p><button type="button" class="next" data-submit="creative">Submit</button></div></div>
   </section>
 
-  <!-- Nominate someone -->
+  <!-- Refer someone -->
   <section class="step" data-step="nominate">
     <div class="wrap">
       <div class="head">
-        <h1>Who should we know about?</h1>
+        <h1>Who are you referring?</h1>
         <p class="sub">We reach out to them first. Nothing is shared without their yes.</p>
       </div>
       <div class="body">
@@ -337,23 +352,12 @@
   const src = params.get("src") || params.get("ref") || params.get("utm_source") || (document.referrer ? new URL(document.referrer).hostname : "direct");
   let submitted = null, done = false;
 
-  // Progress lives in the top bar: "· 2 of 3" and a hairline along its bottom edge
-  const meter = document.getElementById("meter"), count = document.getElementById("count");
-  const progress = name => {
-    const seq = flows[flow].filter(s => s !== "start"), i = seq.indexOf(name);
-    if (name === "thanks") { meter.style.width = "100%"; count.textContent = ""; return; }
-    if (i < 0) { meter.style.width = "0"; count.textContent = ""; return; }
-    meter.style.width = ((i + 1) / seq.length * 100) + "%";
-    count.textContent = seq.length > 1 ? ` · ${i + 1} of ${seq.length}` : "";
-  };
-
   const show = (name, push = true) => {
     const cur = steps.find(s => s.classList.contains("on"));
     if (push && cur) trail.push(cur.dataset.step);
     steps.forEach(s => s.classList.toggle("on", s.dataset.step === name));
     const el = steps.find(s => s.dataset.step === name);
     const b = el.querySelector("[data-back]"); if (b) b.style.visibility = trail.length ? "visible" : "hidden";
-    progress(name);
     window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
     const h = el.querySelector("h1"); if (h) { h.setAttribute("tabindex", "-1"); h.focus({ preventScroll: true }); }
     try { const st = { step: name, trail: [...trail], flow }; if (push) window.history.pushState(st, ""); else window.history.replaceState(st, ""); } catch {}
@@ -553,5 +557,6 @@
   form.addEventListener("click", () => setTimeout(saveDraft, 0));
 })();
 </script>
+<script src="../assets/topline.js"></script>
 </body>
 </html>
