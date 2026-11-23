@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <link rel="icon" type="image/x-icon" href="../favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
+  <title>Talent Network — Creative Conviction</title>
+  <meta name="description" content="The Creative Conviction Talent Network. Every profile is read by hand." />
+  <link rel="canonical" href="https://creativeconviction.ai/network/" />
+  <meta property="og:title" content="Creative Conviction Talent Network" />
+  <meta property="og:description" content="Every profile is read by hand." />
+  <meta property="og:url" content="https://creativeconviction.ai/network/" />
+  <meta name="theme-color" content="#F8F6F2" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@400;500&display=swap" />
+  <style>
+    /* Creative Conviction Talent Network: one full-screen panel, three flows (creatives, nominations, founders). */
+    :root { --paper: #F8F6F2; --ink: #161514; --ink-2: #4A4641; --ink-3: #807B73; --rule: #D9D3C8;
+      --magenta: #D8016A; --magenta-deep: #B80059; --pink-tint: #FBE0EC;
+      --serif: "EB Garamond", Garamond, "Iowan Old Style", Georgia, serif; --sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+      --ease: cubic-bezier(.16, 1, .3, 1); --pad: 48px; color-scheme: light; }
+    @media (max-width: 720px) { :root { --pad: 18px; } }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html, body { margin: 0; background: var(--paper); color: var(--ink); }
+    body { font-family: var(--sans); font-size: 14px; line-height: 1.5; -webkit-font-smoothing: antialiased;
+      min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; }
+    a { color: inherit; }
+    button { font: inherit; color: inherit; }
+    :focus-visible { outline: 1px solid var(--ink); outline-offset: 3px; }
+
+    /* Top bar: logo, section name, progress as a hairline along the bottom edge */
+    .top { position: sticky; top: 0; z-index: 5; display: flex; justify-content: space-between; align-items: center; gap: 16px;
+      padding: max(16px, env(safe-area-inset-top)) var(--pad) 16px; background: var(--paper); border-bottom: 1px solid var(--rule); }
+    .logo { display: block; line-height: 0; }
+    .logo img { height: 18px; width: auto; }
+    @media (max-width: 720px) { .logo img { height: 14px; } }
+    .net { font-size: 12px; color: var(--ink-3); white-space: nowrap; }
+    .net b { font-weight: 400; color: var(--ink); }
+    .meter { position: absolute; left: 0; bottom: -1px; height: 2px; background: var(--ink); width: 0; transition: width .5s var(--ease); }
+
+    /* The panel fills the screen */
+    form { flex: 1; display: flex; flex-direction: column; }
+    .step { display: none; flex: 1; flex-direction: column; }
+    .step.on { display: flex; }
+    .step.on .wrap { animation: rise .45s var(--ease); }
+    @keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) { .step.on .wrap { animation: none; } }
+
+    .wrap { flex: 1; width: 100%; max-width: 1200px; margin: 0 auto; padding: 56px var(--pad) 48px;
+      display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 32px 80px; align-content: start; }
+    @media (max-width: 900px) { .wrap { grid-template-columns: 1fr; padding-top: 32px; gap: 28px; } }
+    .head { display: flex; flex-direction: column; gap: 12px; }
+    @media (min-width: 901px) { .head { position: sticky; top: 120px; align-self: start; } }
+    h1 { font-family: var(--serif); font-weight: 400; font-size: 44px; line-height: 1.04; letter-spacing: -.02em; margin: 0; text-wrap: balance; }
+    h1:focus { outline: none; }
+    @media (max-width: 720px) { h1 { font-size: 34px; } }
+    .sub { margin: 0; max-width: 34ch; color: var(--ink-2); font-size: 14px; text-wrap: pretty; }
+    .body { display: flex; flex-direction: column; gap: 28px; min-width: 0; max-width: 640px; }
+
+    /* Fields: labels on top, one hairline underneath, no boxes */
+    .field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+    .row2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 24px; }
+    @media (max-width: 520px) { .row2.stack { grid-template-columns: 1fr; } }
+    .lab { font-size: 12px; font-weight: 500; color: var(--ink-2); }
+    .opt, .hint { font-weight: 400; color: var(--ink-3); }
+    .opt { margin-left: 6px; }
+    .in { display: flex; align-items: baseline; min-height: 38px; border-bottom: 1px solid var(--rule); transition: border-color .2s ease; }
+    .in:focus-within, .ta:focus-within { border-color: var(--ink); }
+    .in input { all: unset; flex: 1; min-width: 0; padding: 8px 0; color: var(--ink); font: inherit; font-size: 16px; }
+    .in input::placeholder, .ta textarea::placeholder { color: var(--ink-3); opacity: .75; }
+    .in .pre { flex: none; color: var(--ink-3); font-size: 16px; }
+    .ta { display: flex; border-bottom: 1px solid var(--rule); transition: border-color .2s ease; }
+    .ta textarea { all: unset; flex: 1; min-height: 84px; padding: 8px 0; color: var(--ink); font: inherit; font-size: 16px; line-height: 1.5; white-space: pre-wrap; }
+    @media (min-width: 721px) { .in input, .in .pre, .ta textarea { font-size: 15px; } }
+
+    /* Chips */
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+    .chip { display: inline-flex; align-items: center; min-height: 32px; padding: 0 11px; border: 1px solid var(--rule); background: transparent; font-size: 13px; cursor: pointer; transition: border-color .15s ease, background .15s ease; }
+    .chip:hover { border-color: var(--ink-3); }
+    .chip[aria-pressed="true"], .chip.wi.filled { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+    .chip.wi { cursor: text; border-style: dashed; }
+    .chip.wi input { all: unset; display: block; width: 116px; font-size: 13px; color: inherit; }
+    .chip.wi input::placeholder { color: var(--ink-3); }
+
+    /* Options: rows with a radio dot, separated by hairlines */
+    .opts { display: flex; flex-direction: column; border-top: 1px solid var(--rule); }
+    .big { display: flex; gap: 14px; align-items: baseline; text-align: left; width: 100%; padding: 16px 0; border: 0; border-bottom: 1px solid var(--rule); background: none; cursor: pointer; }
+    .big b { display: block; font-family: var(--serif); font-weight: 400; font-size: 21px; line-height: 1.2; transition: color .15s ease; }
+    .big small { display: block; margin-top: 2px; font-size: 13px; color: var(--ink-2); }
+    .big:hover b { color: var(--magenta); }
+    .dot { flex: none; position: relative; top: 1px; width: 12px; height: 12px; border: 1px solid var(--ink-3); border-radius: 50%; }
+    .big[aria-pressed="true"] .dot { border-color: var(--magenta); background: var(--magenta); box-shadow: inset 0 0 0 2px var(--paper); }
+
+    .add, .linkish { align-self: flex-start; background: none; border: 0; padding: 2px 0; font-size: 13px; color: var(--ink-2); cursor: pointer;
+      text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 3px; }
+    .add:hover, .linkish:hover { color: var(--ink); text-decoration-color: var(--magenta); }
+
+    /* Footer: always visible, Back on the left, error and Next on the right */
+    .foot { position: sticky; bottom: 0; z-index: 4; background: var(--paper); border-top: 1px solid var(--rule); }
+    .foot-in { max-width: 1200px; margin: 0 auto; padding: 12px var(--pad) max(12px, env(safe-area-inset-bottom));
+      display: flex; align-items: center; gap: 16px; }
+    .back { font-size: 14px; background: none; border: 0; padding: 10px 0; color: var(--ink-2); cursor: pointer; }
+    .back:hover { color: var(--ink); }
+    .err { flex: 1; margin: 0; text-align: right; font-size: 13px; color: var(--magenta-deep); }
+    .next { flex: none; display: inline-flex; align-items: center; gap: 8px; height: 42px; padding: 0 22px; border: 0; background: var(--magenta); color: var(--paper); font-size: 14px; font-weight: 500; cursor: pointer; transition: background .2s ease; }
+    .next:hover { background: var(--magenta-deep); }
+    .next[disabled] { opacity: .6; cursor: default; }
+    .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+    /* Thank you */
+    .ty { display: flex; flex-direction: column; gap: 18px; max-width: 560px; }
+    .ty h1 { font-size: 80px; line-height: .95; letter-spacing: -.03em; }
+    @media (max-width: 720px) { .ty h1 { font-size: 56px; } }
+    .ty p { margin: 0; font-family: var(--serif); font-size: 21px; line-height: 1.4; text-wrap: pretty; }
+    .ty p a { text-decoration-color: var(--magenta); text-underline-offset: 3px; }
+    .ty .linkish { font-size: 14px; margin-top: 8px; }
+    .sentline { font-size: 14px; color: var(--ink-2); }
+
+    /* The note slides up from the bottom */
+    .veil { position: fixed; inset: 0; z-index: 40; background: color-mix(in srgb, var(--paper) 80%, transparent); opacity: 0; visibility: hidden; transition: opacity .35s ease, visibility 0s linear .35s; }
+    .drawer { position: fixed; left: 0; right: 0; bottom: 0; z-index: 41; height: min(560px, 80vh); height: min(560px, 80dvh); display: flex; flex-direction: column;
+      border-top: 1px solid var(--rule); background: var(--paper); transform: translateY(102%); visibility: hidden; transition: transform .7s var(--ease), visibility 0s linear .7s; }
+    body.letter .veil { opacity: 1; visibility: visible; transition: opacity .35s ease; }
+    body.letter .drawer { transform: none; visibility: visible; transition: transform .7s var(--ease); }
+    .write { flex: 1; min-height: 0; width: 100%; max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; padding: 32px var(--pad) max(20px, env(safe-area-inset-bottom)); }
+    .dear { font-family: var(--serif); font-size: 24px; line-height: 1.2; }
+    .write textarea { flex: 1; min-height: 0; width: 100%; border: 0; outline: none; resize: none; padding: 0; margin: 0; background: none;
+      font-family: var(--serif); font-size: 20px; line-height: 1.6; color: var(--ink); }
+    .write textarea::placeholder { color: var(--ink-3); }
+    .wf { display: flex; justify-content: space-between; align-items: center; }
+  </style>
+</head>
+<body>
+<header class="top">
+  <a class="logo" href="/"><img src="../assets/cc-logo.png" alt="Creative Conviction" width="1089" height="113"></a>
+  <span class="net"><b>Talent Network</b><span id="count"></span></span>
+  <span class="meter" id="meter" aria-hidden="true"></span>
+</header>
+
+<form id="form" novalidate autocomplete="on">
+  <div class="hp" aria-hidden="true"><label>Website <input name="website" tabindex="-1" autocomplete="off"></label></div>
+
+  <!-- 0 · Who's it for -->
+  <section class="step" data-step="start">
+    <div class="wrap">
+      <div class="head">
+        <h1>Join the network</h1>
+        <p class="sub">A small, hand-read network of creatives and the startups that need them.</p>
+      </div>
+      <div class="body">
+        <div class="opts" role="radiogroup" aria-label="Who is this for">
+          <button type="button" class="big" data-pick="who" data-value="me" aria-pressed="true"><span class="dot"></span><span><b>I'm a creative</b><small>I make things and want to work with founders building something great.</small></span></button>
+          <button type="button" class="big" data-pick="who" data-value="friend" aria-pressed="false"><span class="dot"></span><span><b>I'm nominating someone</b><small>Their work deserves more eyes. We reach out first and share nothing without their yes.</small></span></button>
+          <button type="button" class="big" data-pick="who" data-value="founder" aria-pressed="false"><span class="dot"></span><span><b>I'm hiring</b><small>A startup looking for creative talent.</small></span></button>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><div class="foot-in"><span class="grow"></span><p class="err" role="alert"></p><button type="button" class="next" data-next>Continue</button></div></div>
+  </section>
+
+  <!-- Creative 1 · Work -->
+  <section class="step" data-step="work">
+    <div class="wrap">
+      <div class="head">
+        <h1>What work are you proud of?</h1>
+        <p class="sub">Links first. We look at the work before anything else.</p>
+      </div>
+      <div class="body">
+        <div class="field"><label class="lab" for="portfolio">Portfolio</label><div class="in"><input id="portfolio" name="portfolio" type="url" inputmode="url" placeholder="yoursite.com" data-url required></div></div>
+        <div class="row2 stack">
+          <div class="field"><label class="lab" for="x">X<span class="opt">Optional</span></label><div class="in"><span class="pre">x.com/</span><input id="x" name="x" placeholder="handle" data-handle="x.com" autocapitalize="off" autocorrect="off" spellcheck="false"></div></div>
+          <div class="field"><label class="lab" for="instagram">Instagram<span class="opt">Optional</span></label><div class="in"><span class="pre">instagram.com/</span><input id="instagram" name="instagram" placeholder="handle" data-handle="instagram.com" autocapitalize="off" autocorrect="off" spellcheck="false"></div></div>
+        </div>
+        <div class="field">
+          <span class="lab" id="sp-lab">What's your superpower? <span class="hint">Pick any</span></span>
+          <div class="chips" data-multi="category" role="group" aria-labelledby="sp-lab"><button type="button" class="chip" aria-pressed="false">Brand design</button><button type="button" class="chip" aria-pressed="false">Product design</button><button type="button" class="chip" aria-pressed="false">Design engineering</button><button type="button" class="chip" aria-pressed="false">Motion</button><button type="button" class="chip" aria-pressed="false">Illustration</button><button type="button" class="chip" aria-pressed="false">Creative direction</button><button type="button" class="chip" aria-pressed="false">Writing and narrative</button><button type="button" class="chip" aria-pressed="false">Social media</button><button type="button" class="chip" aria-pressed="false">Film</button><label class="chip wi"><input id="category_other" name="category_other" placeholder="Something else" aria-label="Something else, write it in"></label></div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><div class="foot-in"><button type="button" class="back" data-back>Back</button><p class="err" role="alert"></p><button type="button" class="next" data-next>Next</button></div></div>
+  </section>
+
+  <!-- Creative 2 · Open to -->
+  <section class="step" data-step="open">
+    <div class="wrap">
+      <div class="head">
+        <h1>What are you open to?</h1>
+      </div>
+      <div class="body">
+        <div class="opts" role="radiogroup" aria-label="What you're open to">
+          <button type="button" class="big" data-pick="open_to" data-value="project" aria-pressed="false"><span class="dot"></span><span><b>Project work with startups</b><small>Freelance or a defined project, with teams we vet.</small></span></button>
+          <button type="button" class="big" data-pick="open_to" data-value="fulltime" aria-pressed="false"><span class="dot"></span><span><b>The right full-time role</b><small>Not looking, but you'd take the call for something great.</small></span></button>
+          <button type="button" class="big" data-pick="open_to" data-value="later" aria-pressed="false"><span class="dot"></span><span><b>Nothing now, maybe later</b><small>Keep me close and check back.</small></span></button>
+        </div>
+        <div class="field" id="checkback" hidden><span class="lab" id="cb-lab">When should we check back?</span>
+          <div class="chips" data-single="check_back" role="group" aria-labelledby="cb-lab"><button type="button" class="chip" aria-pressed="false">In 3 months</button><button type="button" class="chip" aria-pressed="false">In 6 months</button><label class="chip wi"><input name="check_back_other" placeholder="Another time" aria-label="Another time, write it in"></label></div>
+        </div>
+        <div class="field"><span class="lab" id="lvl-lab">Level</span><div class="chips" data-multi="level" role="group" aria-labelledby="lvl-lab"><button type="button" class="chip" aria-pressed="false">Individual contributor</button><button type="button" class="chip" aria-pressed="false">Manager</button></div></div>
+        <div class="field"><span class="lab" id="loc-lab">Where are you based?</span><div class="chips" data-single="location" role="group" aria-labelledby="loc-lab"><button type="button" class="chip" aria-pressed="false">San Francisco</button><button type="button" class="chip" aria-pressed="false">New York</button><button type="button" class="chip" aria-pressed="false">Los Angeles</button><button type="button" class="chip" aria-pressed="false">Seattle</button><button type="button" class="chip" aria-pressed="false">Austin</button><button type="button" class="chip" aria-pressed="false">Boston</button><button type="button" class="chip" aria-pressed="false">London</button><button type="button" class="chip" aria-pressed="false">Paris</button><button type="button" class="chip" aria-pressed="false">Berlin</button><button type="button" class="chip" aria-pressed="false">Toronto</button><label class="chip wi"><input id="location" name="location" placeholder="Somewhere else" aria-label="Somewhere else, write it in" autocomplete="address-level2"></label></div></div>
+        <div class="field"><span class="lab" id="rel-lab">Open to other locations?</span><div class="chips" data-single="relocate" role="group" aria-labelledby="rel-lab"><button type="button" class="chip" aria-pressed="false">Yes</button><button type="button" class="chip" aria-pressed="false">No</button></div></div>
+        <div class="field" id="relocWhere" hidden><label class="lab" for="relocate_where">Where?</label><div class="in"><input id="relocate_where" name="relocate_where" placeholder="SF, London, anywhere in Europe"></div></div>
+      </div>
+    </div>
+    <div class="foot"><div class="foot-in"><button type="button" class="back" data-back>Back</button><p class="err" role="alert"></p><button type="button" class="next" data-next>Next</button></div></div>
+  </section>
+
+  <!-- Creative 3 · You -->
+  <section class="step" data-step="you">
+    <div class="wrap">
+      <div class="head">
+        <h1>Who are you?</h1>
+      </div>
+      <div class="body">
+        <div class="row2">
+          <div class="field"><label class="lab" for="first_name">First name</label><div class="in"><input id="first_name" name="first_name" autocomplete="given-name" required></div></div>
+          <div class="field"><label class="lab" for="last_name">Last name</label><div class="in"><input id="last_name" name="last_name" autocomplete="family-name"></div></div>
+        </div>
+        <div class="field"><label class="lab" for="email">Email</label><div class="in"><input id="email" name="email" type="email" inputmode="email" placeholder="you@email.com" autocomplete="email" required></div></div>
+        <div class="row2 stack">
+          <div class="field"><label class="lab" for="current_role">Current role<span class="opt">Optional</span></label><div class="in"><input id="current_role" name="current_role" placeholder="Product Designer" autocomplete="organization-title"></div></div>
+          <div class="field"><label class="lab" for="current_company">Company website<span class="opt">Optional</span></label><div class="in"><input id="current_company" name="current_company" inputmode="url" placeholder="linear.app" data-url autocapitalize="off" spellcheck="false"></div></div>
+        </div>
+        <div class="field" id="admire">
+          <span class="lab">Who's the most creative person you've worked with?<span class="opt">Optional</span></span>
+          <div class="row2 stack admire-row">
+            <div class="in"><input name="admire_name_1" placeholder="Their name" aria-label="Their name"></div>
+            <div class="in"><input name="admire_link_1" inputmode="url" placeholder="Link to their work" aria-label="Link to their work or social" data-url></div>
+          </div>
+          <button type="button" class="add" id="addAdmire">Add another</button>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><div class="foot-in"><button type="button" class="back" data-back>Back</button><p class="err" role="alert"></p><button type="button" class="next" data-submit="creative">Submit</button></div></div>
+  </section>
+
+  <!-- Nominate someone -->
+  <section class="step" data-step="nominate">
+    <div class="wrap">
+      <div class="head">
+        <h1>Who should we know about?</h1>
+        <p class="sub">We reach out to them first. Nothing is shared without their yes.</p>
+      </div>
+      <div class="body">
+        <div class="row2 stack">
+          <div class="field"><label class="lab" for="nominee_name">Their name</label><div class="in"><input id="nominee_name" name="nominee_name" required></div></div>
+          <div class="field"><label class="lab" for="nominee_social">Their X, Instagram, or LinkedIn<span class="opt">Optional</span></label><div class="in"><input id="nominee_social" name="nominee_social" inputmode="url" placeholder="x.com/them" data-url="x.com"></div></div>
+        </div>
+        <div class="field"><label class="lab" for="nominee_work">Link to their work</label><div class="in"><input id="nominee_work" name="nominee_work" inputmode="url" placeholder="theirsite.com" data-url required></div></div>
+        <div class="field"><label class="lab" for="nominee_why">Why them? <span class="hint">The more specific, the better.</span></label><div class="ta"><textarea id="nominee_why" name="nominee_why" placeholder="She researches HCI, plays drums in a rock band, and writes about her songwriting process."></textarea></div></div>
+        <div class="row2 stack">
+          <div class="field"><label class="lab" for="nominator_name">Your name</label><div class="in"><input id="nominator_name" name="nominator_name" autocomplete="name" required></div></div>
+          <div class="field"><label class="lab" for="nominator_email">Your email</label><div class="in"><input id="nominator_email" name="nominator_email" type="email" inputmode="email" placeholder="you@email.com" autocomplete="email" required></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><div class="foot-in"><button type="button" class="back" data-back>Back</button><p class="err" role="alert"></p><button type="button" class="next" data-submit="nomination">Submit</button></div></div>
+  </section>
+
+  <!-- Founders 1 · Need -->
+  <section class="step" data-step="need">
+    <div class="wrap">
+      <div class="head">
+        <h1>What are you looking for?</h1>
+        <p class="sub">Specific requests get matched faster.</p>
+      </div>
+      <div class="body">
+        <div class="field"><span class="lab" id="role-lab">Role <span class="hint">Pick any</span></span><div class="chips" data-multi="role" role="group" aria-labelledby="role-lab"><button type="button" class="chip" aria-pressed="false">Brand design</button><button type="button" class="chip" aria-pressed="false">Founding designer</button><button type="button" class="chip" aria-pressed="false">Design engineer</button><button type="button" class="chip" aria-pressed="false">Product design</button><button type="button" class="chip" aria-pressed="false">Comms and narrative</button><button type="button" class="chip" aria-pressed="false">Motion</button><label class="chip wi"><input name="role_other" placeholder="Something else" aria-label="Something else, write it in"></label></div></div>
+        <div class="row2 stack">
+          <div class="field"><span class="lab" id="shape-lab">Shape</span><div class="chips" data-single="shape" role="group" aria-labelledby="shape-lab"><button type="button" class="chip" aria-pressed="false">Project</button><button type="button" class="chip" aria-pressed="false">Full time</button><button type="button" class="chip" aria-pressed="false">Either</button></div></div>
+          <div class="field"><span class="lab" id="when-lab">When</span><div class="chips" data-single="timing" role="group" aria-labelledby="when-lab"><button type="button" class="chip" aria-pressed="false">ASAP</button><button type="button" class="chip" aria-pressed="false">This quarter</button><label class="chip wi"><input name="timing_other" placeholder="Another time" aria-label="Another time, write it in"></label></div></div>
+        </div>
+        <div class="field"><label class="lab" for="problem">What's the creative problem, and why now?</label><div class="ta"><textarea id="problem" name="problem" placeholder="We're 10 engineers, just raised our seed, and need to come out of stealth by June. We need brand and launch help." required></textarea></div></div>
+      </div>
+    </div>
+    <div class="foot"><div class="foot-in"><button type="button" class="back" data-back>Back</button><p class="err" role="alert"></p><button type="button" class="next" data-next>Next</button></div></div>
+  </section>
+
+  <!-- Founders 2 · Who -->
+  <section class="step" data-step="who">
+    <div class="wrap">
+      <div class="head">
+        <h1>Who's behind it?</h1>
+      </div>
+      <div class="body">
+        <div class="row2">
+          <div class="field"><label class="lab" for="f_first_name">First name</label><div class="in"><input id="f_first_name" name="f_first_name" autocomplete="given-name" required></div></div>
+          <div class="field"><label class="lab" for="f_last_name">Last name</label><div class="in"><input id="f_last_name" name="f_last_name" autocomplete="family-name"></div></div>
+        </div>
+        <div class="field"><label class="lab" for="f_email">Work email</label><div class="in"><input id="f_email" name="f_email" type="email" inputmode="email" placeholder="you@company.com" autocomplete="email" required></div></div>
+        <div class="row2 stack">
+          <div class="field"><label class="lab" for="company">Company website</label><div class="in"><input id="company" name="company" inputmode="url" placeholder="company.com" data-url required></div></div>
+          <div class="field"><label class="lab" for="f_social">Your LinkedIn or X<span class="opt">Optional</span></label><div class="in"><input id="f_social" name="f_social" inputmode="url" placeholder="x.com/you" data-url="x.com"></div></div>
+        </div>
+        <div class="field"><label class="lab" for="decision">Why does this matter to you, and how will you decide?<span class="opt">Optional</span></label><div class="ta"><textarea id="decision" name="decision" placeholder="I'm Head of Product. I review portfolios and take the first meeting, then introduce our founder."></textarea></div></div>
+      </div>
+    </div>
+    <div class="foot"><div class="foot-in"><button type="button" class="back" data-back>Back</button><p class="err" role="alert"></p><button type="button" class="next" data-submit="founder">Submit</button></div></div>
+  </section>
+
+  <!-- Thank you -->
+  <section class="step" data-step="thanks">
+    <div class="wrap">
+      <div class="ty">
+        <h1 tabindex="-1">Thank you.</h1>
+        <p id="ty-promise">We'll read every profile. If we think you should meet someone, you'll hear from us directly.</p>
+        <p>We started Creative Conviction to inspire creative technologists. We also publish <a href="/#interviews" target="_blank" rel="noopener">interviews</a> and <a href="/writing/" target="_blank" rel="noopener">writing</a>, and co-host <a href="/community/" target="_blank" rel="noopener">events</a>.</p>
+        <button type="button" class="linkish" id="openLetter">Tell us what we could do better</button>
+        <span class="sentline" id="sentline" hidden>Received. Thank you.</span>
+      </div>
+    </div>
+  </section>
+</form>
+
+<div class="veil" id="veil"></div>
+<div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Write us a note">
+  <div class="write">
+    <div class="dear">Dear LF + RA,</div>
+    <textarea id="letter" aria-label="Your note to Creative Conviction" placeholder="What do you love? What could be better?"></textarea>
+    <div class="wf"><button type="button" class="back" id="closeLetter">Not now</button><button type="button" class="next" id="sendLetter">Send</button></div>
+  </div>
+</div>
+
+<script>
+(() => {
+  // Google Apps Script web app URL (Deploy › Web app › URL ending in /exec).
+  const ENDPOINT = "https://script.google.com/macros/s/AKfycbx3VTr3_rSWWKqctYFgMja1MKDT3zo7fgAPg7LNGKwgOQnb19O-5E5viY29oSQ1eR1KSA/exec";
+
+  const form = document.getElementById("form");
+  const steps = [...form.querySelectorAll(".step")];
+  const flows = { me: ["start", "work", "open", "you"], friend: ["start", "nominate"], founder: ["start", "need", "who"] };
+  let flow = "me", trail = [];
+  const params = new URLSearchParams(location.search);
+  const src = params.get("src") || params.get("ref") || params.get("utm_source") || (document.referrer ? new URL(document.referrer).hostname : "direct");
+  let submitted = null, done = false;
+
+  // Progress lives in the top bar: "· 2 of 3" and a hairline along its bottom edge
+  const meter = document.getElementById("meter"), count = document.getElementById("count");
+  const progress = name => {
+    const seq = flows[flow].filter(s => s !== "start"), i = seq.indexOf(name);
+    if (name === "thanks") { meter.style.width = "100%"; count.textContent = ""; return; }
+    if (i < 0) { meter.style.width = "0"; count.textContent = ""; return; }
+    meter.style.width = ((i + 1) / seq.length * 100) + "%";
+    count.textContent = seq.length > 1 ? ` · ${i + 1} of ${seq.length}` : "";
+  };
+
+  const show = (name, push = true) => {
+    const cur = steps.find(s => s.classList.contains("on"));
+    if (push && cur) trail.push(cur.dataset.step);
+    steps.forEach(s => s.classList.toggle("on", s.dataset.step === name));
+    const el = steps.find(s => s.dataset.step === name);
+    const b = el.querySelector("[data-back]"); if (b) b.style.visibility = trail.length ? "visible" : "hidden";
+    progress(name);
+    window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
+    const h = el.querySelector("h1"); if (h) { h.setAttribute("tabindex", "-1"); h.focus({ preventScroll: true }); }
+    try { const st = { step: name, trail: [...trail], flow }; if (push) window.history.pushState(st, ""); else window.history.replaceState(st, ""); } catch {}
+    saveDraft();
+  };
+  // The browser's back and forward buttons move between pages of the form instead of leaving it
+  addEventListener("popstate", e => {
+    const st = e.state; if (!st || !st.step) return;
+    if (done) { show("thanks", false); return; }
+    trail = st.trail || []; flow = st.flow || flow; show(st.step, false);
+  });
+
+  // Drafts: answers are kept in this browser until the form is sent. Cleared on submit; forgotten after 7 days.
+  const KEY = "cc-network-draft";
+  let restoring = false;
+  function saveDraft() {
+    if (restoring || done) return;
+    const cur = steps.find(x => x.classList.contains("on")); if (!cur || cur.dataset.step === "thanks") return;
+    const fields = {}; form.querySelectorAll("input[name], textarea[name]").forEach(i => { if (i.name !== "website" && i.value) fields[i.name] = i.value; });
+    const pressedBy = {}; form.querySelectorAll("[data-multi], [data-single]").forEach(g => { const k = g.dataset.multi || g.dataset.single; pressedBy[k] = [...g.querySelectorAll('.chip[aria-pressed="true"]')].map(c => c.textContent.trim()); });
+    const bigs = {}; form.querySelectorAll('.big[aria-pressed="true"]').forEach(b => bigs[b.dataset.pick] = b.dataset.value);
+    try { localStorage.setItem(KEY, JSON.stringify({ at: Date.now(), flow, step: cur.dataset.step, trail, fields, pressedBy, bigs, admireN })); } catch {}
+  }
+  function loadDraft() { try { const d = JSON.parse(localStorage.getItem(KEY) || "null"); return d && Date.now() - d.at < 7 * 864e5 ? d : null; } catch { return null; } }
+  function clearDraft() { try { localStorage.removeItem(KEY); } catch {} }
+  function restoreDraft(d) {
+    if (!steps.some(x => x.dataset.step === d.step) || d.step === "thanks") return false;
+    restoring = true;
+    try {
+      while (admireN < (d.admireN || 1)) document.getElementById("addAdmire").click();
+      Object.entries(d.fields || {}).forEach(([n, v]) => { const el = form.elements[n]; if (el && "value" in el) { el.value = v; const w = el.closest(".chip.wi"); if (w) w.classList.toggle("filled", !!v); } });
+      Object.entries(d.pressedBy || {}).forEach(([k, list]) => form.querySelectorAll(`[data-multi="${k}"] .chip:not(.wi), [data-single="${k}"] .chip:not(.wi)`).forEach(c => c.setAttribute("aria-pressed", list.includes(c.textContent.trim()) ? "true" : "false")));
+      Object.entries(d.bigs || {}).forEach(([pick, v]) => form.querySelectorAll(`.big[data-pick="${pick}"]`).forEach(b => b.setAttribute("aria-pressed", b.dataset.value === v ? "true" : "false")));
+      document.getElementById("checkback").hidden = (d.bigs || {}).open_to !== "later";
+      document.getElementById("relocWhere").hidden = !((d.pressedBy || {}).relocate || []).includes("Yes");
+      flow = d.flow || "me"; trail = d.trail || [];
+    } finally { restoring = false; }
+    return true;
+  }
+
+  // Chips: single and multi select
+  form.querySelectorAll("[data-multi] .chip:not(.wi), [data-single] .chip:not(.wi)").forEach(chip => {
+    chip.addEventListener("click", () => {
+      const group = chip.parentElement;
+      const on = chip.getAttribute("aria-pressed") === "true";
+      if (group.dataset.single) {
+        group.querySelectorAll(".chip:not(.wi)").forEach(c => c.setAttribute("aria-pressed", "false"));
+        const w = group.querySelector(".chip.wi input"); if (w) { w.value = ""; w.parentElement.classList.remove("filled"); }
+      }
+      chip.setAttribute("aria-pressed", on ? "false" : "true");
+      if (group.dataset.single === "relocate") document.getElementById("relocWhere").hidden = !(chip.textContent.trim() === "Yes" && !on);
+    });
+  });
+  form.querySelectorAll(".chip.wi input").forEach(inp => inp.addEventListener("input", () => {
+    const group = inp.closest("[data-single]");
+    if (group && inp.value) group.querySelectorAll(".chip:not(.wi)").forEach(c => c.setAttribute("aria-pressed", "false"));
+    inp.parentElement.classList.toggle("filled", !!inp.value);
+  }));
+
+  // Option rows (radio behaviour)
+  form.querySelectorAll(".big").forEach(b => b.addEventListener("click", () => {
+    form.querySelectorAll(`.big[data-pick="${b.dataset.pick}"]`).forEach(x => x.setAttribute("aria-pressed", "false"));
+    b.setAttribute("aria-pressed", "true");
+    if (b.dataset.pick === "who") flow = b.dataset.value;
+    if (b.dataset.pick === "open_to") document.getElementById("checkback").hidden = b.dataset.value !== "later";
+  }));
+
+  // Add another admired creative
+  let admireN = 1;
+  document.getElementById("addAdmire").addEventListener("click", () => {
+    if (admireN >= 5) return;
+    admireN++;
+    const row = form.querySelector(".admire-row").cloneNode(true);
+    row.querySelectorAll("input").forEach(i => { i.value = ""; i.name = i.name.replace(/_\d+$/, "_" + admireN); });
+    document.getElementById("addAdmire").before(row);
+    if (!restoring) row.querySelector("input").focus();
+    if (admireN >= 5) document.getElementById("addAdmire").hidden = true;
+  });
+
+  // Links: turn "@name" or "x.com/name" into a full https URL so every cell in the Sheet is clickable
+  const toUrl = (v, host) => {
+    v = (v || "").trim(); if (!v) return "";
+    if (/^@?[A-Za-z0-9_.]+$/.test(v) && host && !v.includes(".")) return `https://${host}/${v.replace(/^@/, "")}`;
+    if (/^@[A-Za-z0-9_.]+$/.test(v) && host) return `https://${host}/${v.slice(1)}`;
+    if (!/^https?:\/\//i.test(v)) v = "https://" + v.replace(/^\/+/, "");
+    return v;
+  };
+  // X and Instagram: the address is shown before the box, so people only type their handle.
+  form.querySelectorAll("[data-handle]").forEach(i => {
+    const hosts = i.dataset.handle === "x.com" ? "(?:x|twitter)\\.com" : "instagram\\.com";
+    const re = new RegExp("^\\s*(?:https?:\\/\\/)?(?:www\\.)?" + hosts + "\\/", "i");
+    i.addEventListener("input", () => { const v = i.value.replace(re, "").replace(/^@/, "").replace(/[\/?#].*$/, "").trim(); if (v !== i.value) i.value = v; });
+  });
+  form.querySelectorAll("[data-url]").forEach(i => i.addEventListener("blur", () => { i.value = toUrl(i.value, i.dataset.url || ""); }));
+
+  form.addEventListener("input", e => { const st = e.target.closest(".step"); const el = st && st.querySelector(".err"); if (el) el.textContent = ""; });
+  form.addEventListener("click", e => { if (e.target.closest(".chip, .big")) { const st = e.target.closest(".step"); const el = st && st.querySelector(".err"); if (el) el.textContent = ""; } }, true);
+  const err = (step, msg) => { const e = step.querySelector(".err"); if (e) e.textContent = msg || ""; };
+  const emailOk = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+  const validate = step => {
+    for (const i of step.querySelectorAll("input[required], textarea[required]")) {
+      if (!i.value.trim()) { const l = form.querySelector(`label[for="${i.id}"]`); err(step, (l ? l.firstChild.textContent.trim() : "This") + " is missing."); i.focus(); return false; }
+      if (i.type === "email" && !emailOk(i.value.trim())) { err(step, "That email doesn't look right."); i.focus(); return false; }
+    }
+    if (step.dataset.step === "work" && !step.querySelector('.chip[aria-pressed="true"]') && !form.category_other.value.trim()) { err(step, "Pick a superpower, or write your own."); return false; }
+    if (step.dataset.step === "need" && !step.querySelector('[data-multi="role"] .chip[aria-pressed="true"]') && !form.role_other.value.trim()) { err(step, "Pick a role, or write your own."); return false; }
+    err(step, ""); return true;
+  };
+
+  const nextOf = name => { const f = flows[flow]; const i = f.indexOf(name); return f[i + 1]; };
+  form.addEventListener("click", e => {
+    const t = e.target.closest("button"); if (!t) return;
+    const step = t.closest(".step");
+    if (t.hasAttribute("data-next")) { if (!validate(step)) return; show(nextOf(step.dataset.step)); }
+    else if (t.hasAttribute("data-back")) { const prev = trail.pop(); if (prev) show(prev, false); }
+    else if (t.dataset.submit) { if (validate(step)) submit(t.dataset.submit, t); }
+  });
+  form.addEventListener("keydown", e => {
+    if (e.key !== "Enter" || e.target.tagName === "TEXTAREA" || e.target.tagName === "BUTTON") return;
+    e.preventDefault();
+    const step = e.target.closest(".step"); const b = step && step.querySelector("[data-next],[data-submit]"); if (b) b.click();
+  });
+
+  const pressed = sel => [...form.querySelectorAll(sel + ' .chip[aria-pressed="true"]')].map(c => c.textContent.trim());
+  const val = n => (form.elements[n] ? form.elements[n].value.trim() : "");
+
+  const payload = type => {
+    const d = { type, src, page: location.href, website: val("website"), submitted_at: new Date().toISOString() };
+    if (type === "creative") {
+      Object.assign(d, {
+        first_name: val("first_name"), last_name: val("last_name"), email: val("email"),
+        portfolio: toUrl(val("portfolio")), x: val("x") ? "https://x.com/" + val("x") : "", instagram: val("instagram") ? "https://instagram.com/" + val("instagram") : "",
+        category: pressed('[data-multi="category"]').join(", "), category_other: val("category_other"),
+        open_to: (form.querySelector('.big[data-pick="open_to"][aria-pressed="true"]') || {}).dataset?.value || "",
+        check_back: pressed('[data-single="check_back"]').join("") || val("check_back_other"),
+        location: pressed('[data-single="location"]').join("") || val("location"), current_role: val("current_role"), current_company: toUrl(val("current_company")),
+        level: pressed('[data-multi="level"]').join(", "),
+        relocate: pressed('[data-single="relocate"]').join(""), relocate_where: val("relocate_where"),
+        admire: [...Array(admireN)].map((_, k) => [val("admire_name_" + (k + 1)), toUrl(val("admire_link_" + (k + 1)))].filter(Boolean).join(" — ")).filter(Boolean).join("\n")
+      });
+    } else if (type === "nomination") {
+      Object.assign(d, { nominee_name: val("nominee_name"), nominee_social: toUrl(val("nominee_social"), "x.com"), nominee_work: toUrl(val("nominee_work")),
+        nominee_why: val("nominee_why"), nominator_name: val("nominator_name"), nominator_email: val("nominator_email") });
+    } else if (type === "founder") {
+      Object.assign(d, { first_name: val("f_first_name"), last_name: val("f_last_name"), email: val("f_email"), company: toUrl(val("company")), social: toUrl(val("f_social"), "x.com"),
+        role: [...pressed('[data-multi="role"]'), val("role_other")].filter(Boolean).join(", "), shape: pressed('[data-single="shape"]').join(""), timing: pressed('[data-single="timing"]').join("") || val("timing_other"),
+        problem: val("problem"), decision: val("decision") });
+    }
+    return d;
+  };
+
+  const post = async d => {
+    if (!ENDPOINT) throw new Error("not connected");
+    await fetch(ENDPOINT, { method: "POST", mode: "no-cors", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams(d) });
+  };
+
+  const submit = async (type, btn) => {
+    const step = btn.closest(".step");
+    btn.disabled = true; const label = btn.textContent; btn.textContent = "Sending…";
+    try {
+      const d = payload(type); await post(d);
+      submitted = { type, email: d.email || d.nominator_email || "", name: [d.first_name || d.nominator_name || "", d.last_name || ""].join(" ").trim() };
+      document.getElementById("ty-promise").textContent = type === "founder"
+        ? "We read every request by hand. If we know someone great for you, you'll hear from us directly."
+        : type === "nomination" ? "We'll look at their work and reach out to them first. Nothing gets shared without their yes."
+        : "We read every profile. If we think you should meet someone, you'll hear from us directly.";
+      trail = []; done = true; clearDraft(); show("thanks", false);
+    } catch (e) {
+      err(step, "Something went wrong. Please try again, or email libbiefrost@gmail.com.");
+    } finally { btn.disabled = false; btn.textContent = label; }
+  };
+
+  // The note
+  const body = document.body, letter = document.getElementById("letter");
+  const openL = () => { body.classList.add("letter"); setTimeout(() => letter.focus({ preventScroll: true }), 400); };
+  const closeL = () => { body.classList.remove("letter"); document.getElementById("openLetter").focus({ preventScroll: true }); };
+  document.getElementById("openLetter").addEventListener("click", openL);
+  document.getElementById("closeLetter").addEventListener("click", closeL);
+  document.getElementById("veil").addEventListener("click", closeL);
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && body.classList.contains("letter")) closeL(); });
+  document.getElementById("sendLetter").addEventListener("click", async e => {
+    const text = letter.value.trim(); if (!text) { letter.focus(); return; }
+    const b = e.currentTarget; b.disabled = true; b.textContent = "Sending…";
+    try {
+      await post({ type: "letter", letter: text, from_type: submitted?.type || "", email: submitted?.email || "", name: submitted?.name || "", src, page: location.href, submitted_at: new Date().toISOString() });
+      letter.value = ""; closeL(); document.getElementById("openLetter").hidden = true; document.getElementById("sentline").hidden = false;
+    } catch { b.textContent = "Try again"; b.disabled = false; return; }
+    b.disabled = false; b.textContent = "Send";
+  });
+
+  // Start: pick up an unfinished draft from this browser, else /network/?for=founders opens the founders flow
+  const d = loadDraft();
+  if (d && restoreDraft(d)) show(d.step, false);
+  else if (/^(founder|founders|startup|startups|hire)$/i.test(params.get("for") || "")) { flow = "founder"; show("need", false); }
+  else show("start", false);
+  form.addEventListener("input", () => saveDraft());
+  form.addEventListener("click", () => setTimeout(saveDraft, 0));
+})();
+</script>
+</body>
+</html>
