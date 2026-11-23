@@ -79,7 +79,7 @@
 
     /* Chips */
     .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
-    .chip { display: inline-flex; align-items: center; min-height: 32px; padding: 0 11px; border: 1px solid var(--rule); background: transparent; font-size: 13px; cursor: pointer; transition: border-color .15s ease, background .15s ease; }
+    .chip { display: inline-flex; align-items: center; min-height: 32px; padding: 0 11px; border: 1px solid var(--rule); background: transparent; font-size: 13px; cursor: pointer; transition: border-color .15s ease, background-color .15s ease, color .15s ease; }
     .chip:hover { border-color: var(--ink-3); }
     .chip[aria-pressed="true"], .chip.wi.filled { background: var(--ink); border-color: var(--ink); color: var(--paper); }
     .chip.wi { cursor: text; border-style: dashed; }
@@ -164,13 +164,14 @@
     <div class="wrap">
       <div class="head">
         <h1>Join the network</h1>
-        <p class="sub">A small, hand-read network of creatives and the startups that need them.</p>
+        <p class="sub">A small, hand-read network of creatives, studios, and the startups that need them.</p>
       </div>
       <div class="body">
         <div class="opts" role="radiogroup" aria-label="Who is this for">
           <button type="button" class="big" data-pick="who" data-value="me" aria-pressed="true"><span class="dot"></span><span><b>I'm a creative</b><small>I make things and want to work with founders building something great.</small></span></button>
           <button type="button" class="big" data-pick="who" data-value="friend" aria-pressed="false"><span class="dot"></span><span><b>I'm referring someone</b><small>Their work deserves more eyes. We reach out first and share nothing without their yes.</small></span></button>
           <button type="button" class="big" data-pick="who" data-value="founder" aria-pressed="false"><span class="dot"></span><span><b>I'm hiring</b><small>A startup looking for creative talent.</small></span></button>
+          <button type="button" class="big" data-pick="who" data-value="studio" aria-pressed="false"><span class="dot"></span><span><b>We're a creative studio</b><small>A studio or agency that wants to work with startups.</small></span></button>
         </div>
       </div>
     </div>
@@ -210,6 +211,12 @@
           <button type="button" class="big" data-pick="open_to" data-value="project" aria-pressed="false"><span class="dot"></span><span><b>Project work with startups</b><small>Freelance or a defined project, with teams we vet.</small></span></button>
           <button type="button" class="big" data-pick="open_to" data-value="fulltime" aria-pressed="false"><span class="dot"></span><span><b>The right full-time role</b><small>Not looking, but you'd take the call for something great.</small></span></button>
           <button type="button" class="big" data-pick="open_to" data-value="later" aria-pressed="false"><span class="dot"></span><span><b>Nothing now, maybe later</b><small>Keep me close and check back.</small></span></button>
+        </div>
+        <div class="field" id="availability" hidden>
+          <span class="lab" id="cap-lab">What's your availability?</span>
+          <div class="chips" data-single="capacity" role="group" aria-labelledby="cap-lab"><button type="button" class="chip" aria-pressed="false">Full time</button><button type="button" class="chip" aria-pressed="false">A few days a week</button><button type="button" class="chip" aria-pressed="false">A few hours a week</button></div>
+          <span class="lab" id="start-lab" style="margin-top: 14px">When could you start?</span>
+          <div class="chips" data-single="start_when" role="group" aria-labelledby="start-lab"><button type="button" class="chip" aria-pressed="false">Now</button><button type="button" class="chip" aria-pressed="false">In a few weeks</button><button type="button" class="chip" aria-pressed="false">Next month</button><label class="chip wi"><input name="start_other" placeholder="Another date" aria-label="Another date, write it in"></label></div>
         </div>
         <div class="field" id="checkback" hidden><span class="lab" id="cb-lab">When should we check back?</span>
           <div class="chips" data-single="check_back" role="group" aria-labelledby="cb-lab"><button type="button" class="chip" aria-pressed="false">In 3 months</button><button type="button" class="chip" aria-pressed="false">In 6 months</button><label class="chip wi"><input name="check_back_other" placeholder="Another time" aria-label="Another time, write it in"></label></div>
@@ -273,6 +280,66 @@
       </div>
     </div>
     <div class="foot"><div class="foot-in"><button type="button" class="back" data-back>Back</button><p class="err" role="alert"></p><button type="button" class="next" data-submit="nomination">Submit</button></div></div>
+  </section>
+
+  <!-- Studio 1 · The studio -->
+  <section class="step" data-step="studio">
+    <div class="wrap">
+      <div class="head">
+        <h1>Tell us about your studio</h1>
+        <p class="sub">We look at the work first.</p>
+      </div>
+      <div class="body">
+        <div class="row2 stack">
+          <div class="field"><label class="lab" for="studio_name">Studio name</label><div class="in"><input id="studio_name" name="studio_name" autocomplete="organization" required></div></div>
+          <div class="field"><label class="lab" for="studio_site">Website</label><div class="in"><input id="studio_site" name="studio_site" inputmode="url" placeholder="studio.com" data-url autocapitalize="off" spellcheck="false" required></div></div>
+        </div>
+        <div class="field"><label class="lab" for="studio_case">A project you're proudest of<span class="opt">Optional</span></label><div class="in"><input id="studio_case" name="studio_case" inputmode="url" placeholder="Link to a case study" data-url autocapitalize="off" spellcheck="false"></div></div>
+        <div class="field"><span class="lab" id="svc-lab">What do you do? <span class="hint">Pick any</span></span><div class="chips" data-multi="services" role="group" aria-labelledby="svc-lab"><button type="button" class="chip" aria-pressed="false">Brand identity</button><button type="button" class="chip" aria-pressed="false">Product and UX</button><button type="button" class="chip" aria-pressed="false">Websites</button><button type="button" class="chip" aria-pressed="false">Motion</button><button type="button" class="chip" aria-pressed="false">Illustration</button><button type="button" class="chip" aria-pressed="false">Campaigns and launches</button><button type="button" class="chip" aria-pressed="false">Film</button><button type="button" class="chip" aria-pressed="false">Naming and narrative</button><label class="chip wi"><input name="services_other" placeholder="Something else" aria-label="Something else, write it in"></label></div></div>
+        <div class="field"><span class="lab" id="size-lab">Team size</span><div class="chips" data-single="studio_size" role="group" aria-labelledby="size-lab"><button type="button" class="chip" aria-pressed="false">Just me</button><button type="button" class="chip" aria-pressed="false">2–5</button><button type="button" class="chip" aria-pressed="false">6–15</button><button type="button" class="chip" aria-pressed="false">16–50</button><button type="button" class="chip" aria-pressed="false">50+</button></div></div>
+        <div class="field"><label class="lab" for="studio_location">Where is the team?</label><div class="in"><input id="studio_location" name="studio_location" placeholder="Brooklyn and Lisbon, fully remote"></div></div>
+      </div>
+    </div>
+    <div class="foot"><div class="foot-in"><button type="button" class="back" data-back>Back</button><p class="err" role="alert"></p><button type="button" class="next" data-next>Next</button></div></div>
+  </section>
+
+  <!-- Studio 2 · How you work -->
+  <section class="step" data-step="studio_fit">
+    <div class="wrap">
+      <div class="head">
+        <h1>How do you work with startups?</h1>
+        <p class="sub">This helps us introduce you to teams that fit.</p>
+      </div>
+      <div class="body">
+        <div class="field"><span class="lab" id="eng-lab">How you engage <span class="hint">Pick any</span></span><div class="chips" data-multi="engagement" role="group" aria-labelledby="eng-lab"><button type="button" class="chip" aria-pressed="false">Fixed-scope projects</button><button type="button" class="chip" aria-pressed="false">Retainers</button><button type="button" class="chip" aria-pressed="false">Embedded with the team</button><button type="button" class="chip" aria-pressed="false">Open to equity</button></div></div>
+        <div class="field"><span class="lab" id="stage-lab">Stages you work with <span class="hint">Pick any</span></span><div class="chips" data-multi="stages" role="group" aria-labelledby="stage-lab"><button type="button" class="chip" aria-pressed="false">Pre-seed</button><button type="button" class="chip" aria-pressed="false">Seed</button><button type="button" class="chip" aria-pressed="false">Series A</button><button type="button" class="chip" aria-pressed="false">Series B and later</button></div></div>
+        <div class="field"><span class="lab" id="budget-lab">Typical project budget</span><div class="chips" data-single="budget" role="group" aria-labelledby="budget-lab"><button type="button" class="chip" aria-pressed="false">Under $25k</button><button type="button" class="chip" aria-pressed="false">$25k–75k</button><button type="button" class="chip" aria-pressed="false">$75k–150k</button><button type="button" class="chip" aria-pressed="false">$150k+</button></div></div>
+        <div class="field"><span class="lab" id="len-lab">Typical timeline</span><div class="chips" data-single="timeline" role="group" aria-labelledby="len-lab"><button type="button" class="chip" aria-pressed="false">Under a month</button><button type="button" class="chip" aria-pressed="false">1–3 months</button><button type="button" class="chip" aria-pressed="false">3+ months</button></div></div>
+        <div class="field"><span class="lab" id="scap-lab">When can you take on new work?</span><div class="chips" data-single="studio_capacity" role="group" aria-labelledby="scap-lab"><button type="button" class="chip" aria-pressed="false">Now</button><button type="button" class="chip" aria-pressed="false">Next month</button><button type="button" class="chip" aria-pressed="false">Next quarter</button><label class="chip wi"><input name="studio_capacity_other" placeholder="Another time" aria-label="Another time, write it in"></label></div></div>
+      </div>
+    </div>
+    <div class="foot"><div class="foot-in"><button type="button" class="back" data-back>Back</button><p class="err" role="alert"></p><button type="button" class="next" data-next>Next</button></div></div>
+  </section>
+
+  <!-- Studio 3 · Contact -->
+  <section class="step" data-step="studio_contact">
+    <div class="wrap">
+      <div class="head">
+        <h1>Who should we talk to?</h1>
+      </div>
+      <div class="body">
+        <div class="row2">
+          <div class="field"><label class="lab" for="s_first_name">First name</label><div class="in"><input id="s_first_name" name="s_first_name" autocomplete="given-name" required></div></div>
+          <div class="field"><label class="lab" for="s_last_name">Last name</label><div class="in"><input id="s_last_name" name="s_last_name" autocomplete="family-name"></div></div>
+        </div>
+        <div class="row2 stack">
+          <div class="field"><label class="lab" for="s_email">Email</label><div class="in"><input id="s_email" name="s_email" type="email" inputmode="email" placeholder="you@studio.com" autocomplete="email" required></div></div>
+          <div class="field"><label class="lab" for="s_role">Your role<span class="opt">Optional</span></label><div class="in"><input id="s_role" name="s_role" placeholder="Founder, Creative Director" autocomplete="organization-title"></div></div>
+        </div>
+        <div class="field"><label class="lab" for="studio_clients">Startups you've worked with<span class="opt">Optional</span></label><div class="ta"><textarea id="studio_clients" name="studio_clients" placeholder="Rebranded Acme at Series A, launch site for Nimbus."></textarea></div></div>
+      </div>
+    </div>
+    <div class="foot"><div class="foot-in"><button type="button" class="back" data-back>Back</button><p class="err" role="alert"></p><button type="button" class="next" data-submit="studio">Submit</button></div></div>
   </section>
 
   <!-- Founders 1 · Need -->
@@ -346,7 +413,7 @@
 
   const form = document.getElementById("form");
   const steps = [...form.querySelectorAll(".step")];
-  const flows = { me: ["start", "work", "open", "you"], friend: ["start", "nominate"], founder: ["start", "need", "who"] };
+  const flows = { me: ["start", "work", "open", "you"], friend: ["start", "nominate"], founder: ["start", "need", "who"], studio: ["start", "studio", "studio_fit", "studio_contact"] };
   let flow = "me", trail = [];
   const params = new URLSearchParams(location.search);
   const src = params.get("src") || params.get("ref") || params.get("utm_source") || (document.referrer ? new URL(document.referrer).hostname : "direct");
@@ -392,6 +459,7 @@
       Object.entries(d.pressedBy || {}).forEach(([k, list]) => form.querySelectorAll(`[data-multi="${k}"] .chip:not(.wi), [data-single="${k}"] .chip:not(.wi)`).forEach(c => c.setAttribute("aria-pressed", list.includes(c.textContent.trim()) ? "true" : "false")));
       Object.entries(d.bigs || {}).forEach(([pick, v]) => form.querySelectorAll(`.big[data-pick="${pick}"]`).forEach(b => b.setAttribute("aria-pressed", b.dataset.value === v ? "true" : "false")));
       document.getElementById("checkback").hidden = (d.bigs || {}).open_to !== "later";
+      document.getElementById("availability").hidden = (d.bigs || {}).open_to !== "project";
       document.getElementById("relocWhere").hidden = !((d.pressedBy || {}).relocate || []).includes("Yes");
       flow = d.flow || "me"; trail = d.trail || [];
     } finally { restoring = false; }
@@ -422,7 +490,7 @@
     form.querySelectorAll(`.big[data-pick="${b.dataset.pick}"]`).forEach(x => x.setAttribute("aria-pressed", "false"));
     b.setAttribute("aria-pressed", "true");
     if (b.dataset.pick === "who") flow = b.dataset.value;
-    if (b.dataset.pick === "open_to") document.getElementById("checkback").hidden = b.dataset.value !== "later";
+    if (b.dataset.pick === "open_to") { document.getElementById("checkback").hidden = b.dataset.value !== "later"; document.getElementById("availability").hidden = b.dataset.value !== "project"; }
   }));
 
   // Add another admired creative
@@ -464,6 +532,10 @@
     }
     if (step.dataset.step === "work" && !step.querySelector('.chip[aria-pressed="true"]') && !form.category_other.value.trim()) { err(step, "Pick a superpower, or write your own."); return false; }
     if (step.dataset.step === "need" && !step.querySelector('[data-multi="role"] .chip[aria-pressed="true"]') && !form.role_other.value.trim()) { err(step, "Pick a role, or write your own."); return false; }
+    const picked = (k, other) => step.querySelector(`[data-${k}] .chip[aria-pressed="true"]`) || (other && val(other));
+    if (step.dataset.step === "open" && !document.getElementById("availability").hidden &&
+        (!picked('single="capacity"') || !picked('single="start_when"', "start_other"))) { err(step, "Tell us your availability and when you could start."); return false; }
+    if (step.dataset.step === "studio" && !picked('multi="services"', "services_other")) { err(step, "Pick what your studio does, or write your own."); return false; }
     err(step, ""); return true;
   };
 
@@ -496,11 +568,18 @@
         location: pressed('[data-single="location"]').join("") || val("location"), current_role: val("current_role"), current_company: toUrl(val("current_company")),
         level: pressed('[data-multi="level"]').join(", "),
         relocate: pressed('[data-single="relocate"]').join(""), relocate_where: val("relocate_where"),
+        availability: pressed('[data-single="capacity"]').join(""), start_when: pressed('[data-single="start_when"]').join("") || val("start_other"),
         admire: [...Array(admireN)].map((_, k) => [val("admire_name_" + (k + 1)), toUrl(val("admire_link_" + (k + 1)))].filter(Boolean).join(" — ")).filter(Boolean).join("\n")
       });
     } else if (type === "nomination") {
       Object.assign(d, { nominee_name: val("nominee_name"), nominee_social: toUrl(val("nominee_social"), "x.com"), nominee_work: toUrl(val("nominee_work")),
         nominee_why: val("nominee_why"), nominator_name: val("nominator_name"), nominator_email: val("nominator_email") });
+    } else if (type === "studio") {
+      Object.assign(d, { first_name: val("s_first_name"), last_name: val("s_last_name"), email: val("s_email"), role: val("s_role"),
+        studio_name: val("studio_name"), studio_site: toUrl(val("studio_site")), studio_case: toUrl(val("studio_case")),
+        services: [...pressed('[data-multi="services"]'), val("services_other")].filter(Boolean).join(", "), studio_size: pressed('[data-single="studio_size"]').join(""), studio_location: val("studio_location"),
+        engagement: pressed('[data-multi="engagement"]').join(", "), stages: pressed('[data-multi="stages"]').join(", "), budget: pressed('[data-single="budget"]').join(""),
+        timeline: pressed('[data-single="timeline"]').join(""), capacity: pressed('[data-single="studio_capacity"]').join("") || val("studio_capacity_other"), clients: val("studio_clients") });
     } else if (type === "founder") {
       Object.assign(d, { first_name: val("f_first_name"), last_name: val("f_last_name"), email: val("f_email"), company: toUrl(val("company")), social: toUrl(val("f_social"), "x.com"),
         role: [...pressed('[data-multi="role"]'), val("role_other")].filter(Boolean).join(", "), shape: pressed('[data-single="shape"]').join(""), timing: pressed('[data-single="timing"]').join("") || val("timing_other"),
@@ -522,6 +601,7 @@
       submitted = { type, email: d.email || d.nominator_email || "", name: [d.first_name || d.nominator_name || "", d.last_name || ""].join(" ").trim() };
       document.getElementById("ty-promise").textContent = type === "founder"
         ? "We read every request by hand. If we know someone great for you, you'll hear from us directly."
+        : type === "studio" ? "We look at every studio's work by hand. When a startup needs what you do, we'll introduce you directly."
         : type === "nomination" ? "We'll look at their work and reach out to them first. Nothing gets shared without their yes."
         : "We read every profile. If we think you should meet someone, you'll hear from us directly.";
       trail = []; done = true; clearDraft(); show("thanks", false);
