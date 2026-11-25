@@ -138,13 +138,6 @@
 <div class="cc-top" id="topline">
   <button class="cc-index-btn" type="button" aria-expanded="false" aria-controls="cc-index-menu"><i aria-hidden="true"></i>Index</button>
   <a class="cc-top-mark" href="../#interviews">Creative <em>Conviction</em></a>
-  <div class="cc-right">
-    <a class="cc-act" href="./" aria-current="page">Talent Network</a>
-    <a class="cc-act" href="mailto:libbiefrost@gmail.com,rayoufalhumedhi@gmail.com?subject=Collaborating%20with%20Creative%20Conviction">Collaborate</a>
-    <a class="cc-act cc-top-sub" href="https://creativeconvictionpress.substack.com/" target="_blank" rel="noopener">Subscribe</a>
-    <button class="cc-signup" type="button" aria-expanded="false" aria-controls="cc-signup-menu">Sign up</button>
-    <div class="cc-signup-menu" id="cc-signup-menu" hidden><a href="https://creativeconvictionpress.substack.com/" target="_blank" rel="noopener"><span>Subscribe</span></a><a href="./" aria-current="page"><span>Talent Network</span></a><a href="mailto:libbiefrost@gmail.com,rayoufalhumedhi@gmail.com?subject=Collaborating%20with%20Creative%20Conviction"><span>Collaborate</span></a></div>
-  </div>
   <div class="cc-index-menu" id="cc-index-menu" role="navigation" aria-label="Site" hidden>
     <div class="cc-index-list">
       <a href="../#interviews"><span>Interviews</span></a>
@@ -170,8 +163,8 @@
         <div class="opts" role="radiogroup" aria-label="Who is this for">
           <button type="button" class="big" data-pick="who" data-value="me" aria-pressed="true"><span class="dot"></span><span><b>I'm a creative</b><small>I make things and want to work with founders building something great.</small></span></button>
           <button type="button" class="big" data-pick="who" data-value="friend" aria-pressed="false"><span class="dot"></span><span><b>I'm referring someone</b><small>Their work deserves more eyes. We reach out first and share nothing without their yes.</small></span></button>
-          <button type="button" class="big" data-pick="who" data-value="founder" aria-pressed="false"><span class="dot"></span><span><b>I'm hiring</b><small>A startup looking for creative talent.</small></span></button>
           <button type="button" class="big" data-pick="who" data-value="studio" aria-pressed="false"><span class="dot"></span><span><b>We're a creative studio</b><small>A studio or agency that wants to work with startups.</small></span></button>
+          <button type="button" class="big" data-pick="who" data-value="founder" aria-pressed="false"><span class="dot"></span><span><b>I'm hiring</b><small>A startup looking for creative talent.</small></span></button>
         </div>
       </div>
     </div>
@@ -218,10 +211,13 @@
           <span class="lab" id="start-lab" style="margin-top: 14px">When could you start?</span>
           <div class="chips" data-single="start_when" role="group" aria-labelledby="start-lab"><button type="button" class="chip" aria-pressed="false">Now</button><button type="button" class="chip" aria-pressed="false">In a few weeks</button><button type="button" class="chip" aria-pressed="false">Next month</button><label class="chip wi"><input name="start_other" placeholder="Another date" aria-label="Another date, write it in"></label></div>
         </div>
+        <div class="field" id="roles" hidden>
+          <span class="lab" id="ft-lab">What type of roles are you looking for? <span class="hint">Pick any</span></span>
+          <div class="chips" data-multi="ft_roles" role="group" aria-labelledby="ft-lab"><button type="button" class="chip" aria-pressed="false">Founding designer</button><button type="button" class="chip" aria-pressed="false">Brand designer</button><button type="button" class="chip" aria-pressed="false">Product designer</button><button type="button" class="chip" aria-pressed="false">Design engineer</button><button type="button" class="chip" aria-pressed="false">Creative director</button><button type="button" class="chip" aria-pressed="false">Head of design</button><button type="button" class="chip" aria-pressed="false">Motion designer</button><button type="button" class="chip" aria-pressed="false">Writer or storyteller</button><label class="chip wi"><input name="ft_roles_other" placeholder="Something else" aria-label="Something else, write it in"></label></div>
+        </div>
         <div class="field" id="checkback" hidden><span class="lab" id="cb-lab">When should we check back?</span>
           <div class="chips" data-single="check_back" role="group" aria-labelledby="cb-lab"><button type="button" class="chip" aria-pressed="false">In 3 months</button><button type="button" class="chip" aria-pressed="false">In 6 months</button><label class="chip wi"><input name="check_back_other" placeholder="Another time" aria-label="Another time, write it in"></label></div>
         </div>
-        <div class="field"><span class="lab" id="lvl-lab">Level</span><div class="chips" data-multi="level" role="group" aria-labelledby="lvl-lab"><button type="button" class="chip" aria-pressed="false">Individual contributor</button><button type="button" class="chip" aria-pressed="false">Manager</button></div></div>
         <div class="field"><span class="lab" id="loc-lab">Where are you based?</span><div class="chips" data-single="location" role="group" aria-labelledby="loc-lab"><button type="button" class="chip" aria-pressed="false">San Francisco</button><button type="button" class="chip" aria-pressed="false">New York</button><button type="button" class="chip" aria-pressed="false">Los Angeles</button><button type="button" class="chip" aria-pressed="false">Seattle</button><button type="button" class="chip" aria-pressed="false">Austin</button><button type="button" class="chip" aria-pressed="false">Boston</button><button type="button" class="chip" aria-pressed="false">London</button><button type="button" class="chip" aria-pressed="false">Paris</button><button type="button" class="chip" aria-pressed="false">Berlin</button><button type="button" class="chip" aria-pressed="false">Toronto</button><label class="chip wi"><input id="location" name="location" placeholder="Somewhere else" aria-label="Somewhere else, write it in" autocomplete="address-level2"></label></div></div>
         <div class="field"><span class="lab" id="rel-lab">Open to other locations?</span><div class="chips" data-single="relocate" role="group" aria-labelledby="rel-lab"><button type="button" class="chip" aria-pressed="false">Yes</button><button type="button" class="chip" aria-pressed="false">No</button></div></div>
         <div class="field" id="relocWhere" hidden><label class="lab" for="relocate_where">Where?</label><div class="in"><input id="relocate_where" name="relocate_where" placeholder="SF, London, anywhere in Europe"></div></div>
@@ -460,6 +456,7 @@
       Object.entries(d.bigs || {}).forEach(([pick, v]) => form.querySelectorAll(`.big[data-pick="${pick}"]`).forEach(b => b.setAttribute("aria-pressed", b.dataset.value === v ? "true" : "false")));
       document.getElementById("checkback").hidden = (d.bigs || {}).open_to !== "later";
       document.getElementById("availability").hidden = (d.bigs || {}).open_to !== "project";
+      document.getElementById("roles").hidden = (d.bigs || {}).open_to !== "fulltime";
       document.getElementById("relocWhere").hidden = !((d.pressedBy || {}).relocate || []).includes("Yes");
       flow = d.flow || "me"; trail = d.trail || [];
     } finally { restoring = false; }
@@ -490,7 +487,7 @@
     form.querySelectorAll(`.big[data-pick="${b.dataset.pick}"]`).forEach(x => x.setAttribute("aria-pressed", "false"));
     b.setAttribute("aria-pressed", "true");
     if (b.dataset.pick === "who") flow = b.dataset.value;
-    if (b.dataset.pick === "open_to") { document.getElementById("checkback").hidden = b.dataset.value !== "later"; document.getElementById("availability").hidden = b.dataset.value !== "project"; }
+    if (b.dataset.pick === "open_to") { document.getElementById("checkback").hidden = b.dataset.value !== "later"; document.getElementById("availability").hidden = b.dataset.value !== "project"; document.getElementById("roles").hidden = b.dataset.value !== "fulltime"; }
   }));
 
   // Add another admired creative
@@ -535,6 +532,7 @@
     const picked = (k, other) => step.querySelector(`[data-${k}] .chip[aria-pressed="true"]`) || (other && val(other));
     if (step.dataset.step === "open" && !document.getElementById("availability").hidden &&
         (!picked('single="capacity"') || !picked('single="start_when"', "start_other"))) { err(step, "Tell us your availability and when you could start."); return false; }
+    if (step.dataset.step === "open" && !document.getElementById("roles").hidden && !picked('multi="ft_roles"', "ft_roles_other")) { err(step, "Pick the roles you're looking for, or write your own."); return false; }
     if (step.dataset.step === "studio" && !picked('multi="services"', "services_other")) { err(step, "Pick what your studio does, or write your own."); return false; }
     err(step, ""); return true;
   };
@@ -566,8 +564,8 @@
         open_to: (form.querySelector('.big[data-pick="open_to"][aria-pressed="true"]') || {}).dataset?.value || "",
         check_back: pressed('[data-single="check_back"]').join("") || val("check_back_other"),
         location: pressed('[data-single="location"]').join("") || val("location"), current_role: val("current_role"), current_company: toUrl(val("current_company")),
-        level: pressed('[data-multi="level"]').join(", "),
         relocate: pressed('[data-single="relocate"]').join(""), relocate_where: val("relocate_where"),
+        ft_roles: [...pressed('[data-multi="ft_roles"]'), val("ft_roles_other")].filter(Boolean).join(", "),
         availability: pressed('[data-single="capacity"]').join(""), start_when: pressed('[data-single="start_when"]').join("") || val("start_other"),
         admire: [...Array(admireN)].map((_, k) => [val("admire_name_" + (k + 1)), toUrl(val("admire_link_" + (k + 1)))].filter(Boolean).join(" — ")).filter(Boolean).join("\n")
       });
