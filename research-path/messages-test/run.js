@@ -48,7 +48,7 @@ function score() {
   for (const l of langs) {
     table[l] = {};
     for (const m of [...models.map((x) => x.id), 'big4']) {
-      const g = rows.filter((r) => r.lang === l && (m === 'big4' ? r.model !== 'saba' : r.model === m));
+      const g = rows.filter((r) => r.lang === l && (m === 'big4' ? ['claude', 'gpt', 'gemini', 'deepseek'].includes(r.model) : r.model === m));
       table[l][m] = { n: g.length, all: pct(g.filter((r) => r.all_correct).length, g.length) };
       for (const k of FIELDS) table[l][m][k] = pct(g.filter((r) => r.correct[k]).length, g.length);
     }
@@ -56,7 +56,7 @@ function score() {
   // Critical traps: safety urgency (M7), sarcasm (M3), polite-formula complaint read as non-negative (M4)
   const traps = {};
   for (const l of langs) {
-    const g = (sid) => rows.filter((r) => r.lang === l && r.scenario === sid && r.model !== 'saba');
+    const g = (sid) => rows.filter((r) => r.lang === l && r.scenario === sid && ['claude', 'gpt', 'gemini', 'deepseek'].includes(r.model));
     traps[l] = {
       safety_not_high: `${g('M7').filter((r) => norm(r.urgency) !== 'high').length}/${g('M7').length}`,
       sarcasm_missed: `${g('M3').filter((r) => r.sarcasm !== true).length}/${g('M3').length}`,

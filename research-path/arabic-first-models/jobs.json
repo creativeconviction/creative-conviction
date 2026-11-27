@@ -1,0 +1,2772 @@
+[
+ {
+  "exp": "copy",
+  "key": "A__en__{m}__s1",
+  "meta": {
+   "part": "A",
+   "cond": "en",
+   "s": 1,
+   "prompt_lang": "en"
+  },
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب). Write marketing copy for it in Arabic: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "A__en__{m}__s2",
+  "meta": {
+   "part": "A",
+   "cond": "en",
+   "s": 2,
+   "prompt_lang": "en"
+  },
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب). Write marketing copy for it in Arabic: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "A__en__{m}__s3",
+  "meta": {
+   "part": "A",
+   "cond": "en",
+   "s": 3,
+   "prompt_lang": "en"
+  },
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب). Write marketing copy for it in Arabic: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "A__msa__{m}__s1",
+  "meta": {
+   "part": "A",
+   "cond": "msa",
+   "s": 1,
+   "prompt_lang": "msa"
+  },
+  "prompt": "لدينا تطبيق جديد لتوصيل البقالة اسمه «قريب». أريد منك أن تكتب نصوصاً تسويقية له: شعاراً، وثلاثة إعلانات قصيرة لإنستغرام، وإشعاراً واحداً. اكتب النصوص التسويقية فقط.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "A__msa__{m}__s2",
+  "meta": {
+   "part": "A",
+   "cond": "msa",
+   "s": 2,
+   "prompt_lang": "msa"
+  },
+  "prompt": "لدينا تطبيق جديد لتوصيل البقالة اسمه «قريب». أريد منك أن تكتب نصوصاً تسويقية له: شعاراً، وثلاثة إعلانات قصيرة لإنستغرام، وإشعاراً واحداً. اكتب النصوص التسويقية فقط.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "A__msa__{m}__s3",
+  "meta": {
+   "part": "A",
+   "cond": "msa",
+   "s": 3,
+   "prompt_lang": "msa"
+  },
+  "prompt": "لدينا تطبيق جديد لتوصيل البقالة اسمه «قريب». أريد منك أن تكتب نصوصاً تسويقية له: شعاراً، وثلاثة إعلانات قصيرة لإنستغرام، وإشعاراً واحداً. اكتب النصوص التسويقية فقط.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "A__saudi__{m}__s1",
+  "meta": {
+   "part": "A",
+   "cond": "saudi",
+   "s": 1,
+   "prompt_lang": "saudi"
+  },
+  "prompt": "عندنا تطبيق جديد لتوصيل المقاضي اسمه «قريب». أبغاك تكتب لي كلام تسويقي له: شعار، و٣ إعلانات قصيرة للإنستقرام، وإشعار واحد. اكتب الكلام التسويقي بس.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "A__saudi__{m}__s2",
+  "meta": {
+   "part": "A",
+   "cond": "saudi",
+   "s": 2,
+   "prompt_lang": "saudi"
+  },
+  "prompt": "عندنا تطبيق جديد لتوصيل المقاضي اسمه «قريب». أبغاك تكتب لي كلام تسويقي له: شعار، و٣ إعلانات قصيرة للإنستقرام، وإشعار واحد. اكتب الكلام التسويقي بس.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "A__saudi__{m}__s3",
+  "meta": {
+   "part": "A",
+   "cond": "saudi",
+   "s": 3,
+   "prompt_lang": "saudi"
+  },
+  "prompt": "عندنا تطبيق جديد لتوصيل المقاضي اسمه «قريب». أبغاك تكتب لي كلام تسويقي له: شعار، و٣ إعلانات قصيرة للإنستقرام، وإشعار واحد. اكتب الكلام التسويقي بس.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "A__egypt__{m}__s1",
+  "meta": {
+   "part": "A",
+   "cond": "egypt",
+   "s": 1,
+   "prompt_lang": "egypt"
+  },
+  "prompt": "عندنا أبلكيشن جديد لتوصيل طلبات البقالة اسمه «قريب». عايزك تكتبلي كلام تسويقي ليه: سلوجان، و٣ إعلانات قصيرة للإنستجرام، ونوتيفيكيشن واحدة. اكتب الكلام التسويقي بس من غير أي حاجة تانية.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "A__egypt__{m}__s2",
+  "meta": {
+   "part": "A",
+   "cond": "egypt",
+   "s": 2,
+   "prompt_lang": "egypt"
+  },
+  "prompt": "عندنا أبلكيشن جديد لتوصيل طلبات البقالة اسمه «قريب». عايزك تكتبلي كلام تسويقي ليه: سلوجان، و٣ إعلانات قصيرة للإنستجرام، ونوتيفيكيشن واحدة. اكتب الكلام التسويقي بس من غير أي حاجة تانية.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "A__egypt__{m}__s3",
+  "meta": {
+   "part": "A",
+   "cond": "egypt",
+   "s": 3,
+   "prompt_lang": "egypt"
+  },
+  "prompt": "عندنا أبلكيشن جديد لتوصيل طلبات البقالة اسمه «قريب». عايزك تكتبلي كلام تسويقي ليه: سلوجان، و٣ إعلانات قصيرة للإنستجرام، ونوتيفيكيشن واحدة. اكتب الكلام التسويقي بس من غير أي حاجة تانية.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "A__levant__{m}__s1",
+  "meta": {
+   "part": "A",
+   "cond": "levant",
+   "s": 1,
+   "prompt_lang": "levant"
+  },
+  "prompt": "عنا تطبيق جديد لتوصيل أغراض السوبرماركت اسمه «قريب». بدي ياك تكتبلي كلام تسويقي إلو: شعار، و٣ إعلانات قصار للإنستغرام، وإشعار واحد. اكتب الكلام التسويقي بس، بلا ولا شي تاني.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "A__levant__{m}__s2",
+  "meta": {
+   "part": "A",
+   "cond": "levant",
+   "s": 2,
+   "prompt_lang": "levant"
+  },
+  "prompt": "عنا تطبيق جديد لتوصيل أغراض السوبرماركت اسمه «قريب». بدي ياك تكتبلي كلام تسويقي إلو: شعار، و٣ إعلانات قصار للإنستغرام، وإشعار واحد. اكتب الكلام التسويقي بس، بلا ولا شي تاني.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "A__levant__{m}__s3",
+  "meta": {
+   "part": "A",
+   "cond": "levant",
+   "s": 3,
+   "prompt_lang": "levant"
+  },
+  "prompt": "عنا تطبيق جديد لتوصيل أغراض السوبرماركت اسمه «قريب». بدي ياك تكتبلي كلام تسويقي إلو: شعار، و٣ إعلانات قصار للإنستغرام، وإشعار واحد. اكتب الكلام التسويقي بس، بلا ولا شي تاني.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "A__darija__{m}__s1",
+  "meta": {
+   "part": "A",
+   "cond": "darija",
+   "s": 1,
+   "prompt_lang": "darija"
+  },
+  "prompt": "عندنا واحد التطبيق جديد ديال توصيل القضية سميتو «قريب». بغيتك تكتب ليا كلام ديال الماركوتينغ ليه: شعار، و٣ ديال الإعلانات قصار للإنستغرام، وإشعار واحد. كتب غير الكلام ديال الماركوتينغ، بلا حتى حاجة أخرى.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "A__darija__{m}__s2",
+  "meta": {
+   "part": "A",
+   "cond": "darija",
+   "s": 2,
+   "prompt_lang": "darija"
+  },
+  "prompt": "عندنا واحد التطبيق جديد ديال توصيل القضية سميتو «قريب». بغيتك تكتب ليا كلام ديال الماركوتينغ ليه: شعار، و٣ ديال الإعلانات قصار للإنستغرام، وإشعار واحد. كتب غير الكلام ديال الماركوتينغ، بلا حتى حاجة أخرى.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "A__darija__{m}__s3",
+  "meta": {
+   "part": "A",
+   "cond": "darija",
+   "s": 3,
+   "prompt_lang": "darija"
+  },
+  "prompt": "عندنا واحد التطبيق جديد ديال توصيل القضية سميتو «قريب». بغيتك تكتب ليا كلام ديال الماركوتينغ ليه: شعار، و٣ ديال الإعلانات قصار للإنستغرام، وإشعار واحد. كتب غير الكلام ديال الماركوتينغ، بلا حتى حاجة أخرى.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__en-Riyadh__{m}__s1",
+  "meta": {
+   "part": "B",
+   "cond": "en-Riyadh",
+   "s": 1,
+   "prompt_lang": "en",
+   "city": "Riyadh",
+   "target_region": "Gulf"
+  },
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب). Write marketing copy for it in Arabic: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy. It is launching in Riyadh.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__en-Riyadh__{m}__s2",
+  "meta": {
+   "part": "B",
+   "cond": "en-Riyadh",
+   "s": 2,
+   "prompt_lang": "en",
+   "city": "Riyadh",
+   "target_region": "Gulf"
+  },
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب). Write marketing copy for it in Arabic: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy. It is launching in Riyadh.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__en-Cairo__{m}__s1",
+  "meta": {
+   "part": "B",
+   "cond": "en-Cairo",
+   "s": 1,
+   "prompt_lang": "en",
+   "city": "Cairo",
+   "target_region": "Egypt"
+  },
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب). Write marketing copy for it in Arabic: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy. It is launching in Cairo.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__en-Cairo__{m}__s2",
+  "meta": {
+   "part": "B",
+   "cond": "en-Cairo",
+   "s": 2,
+   "prompt_lang": "en",
+   "city": "Cairo",
+   "target_region": "Egypt"
+  },
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب). Write marketing copy for it in Arabic: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy. It is launching in Cairo.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__en-Beirut__{m}__s1",
+  "meta": {
+   "part": "B",
+   "cond": "en-Beirut",
+   "s": 1,
+   "prompt_lang": "en",
+   "city": "Beirut",
+   "target_region": "Levant"
+  },
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب). Write marketing copy for it in Arabic: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy. It is launching in Beirut.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__en-Beirut__{m}__s2",
+  "meta": {
+   "part": "B",
+   "cond": "en-Beirut",
+   "s": 2,
+   "prompt_lang": "en",
+   "city": "Beirut",
+   "target_region": "Levant"
+  },
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب). Write marketing copy for it in Arabic: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy. It is launching in Beirut.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__en-Casablanca__{m}__s1",
+  "meta": {
+   "part": "B",
+   "cond": "en-Casablanca",
+   "s": 1,
+   "prompt_lang": "en",
+   "city": "Casablanca",
+   "target_region": "Morocco"
+  },
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب). Write marketing copy for it in Arabic: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy. It is launching in Casablanca.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__en-Casablanca__{m}__s2",
+  "meta": {
+   "part": "B",
+   "cond": "en-Casablanca",
+   "s": 2,
+   "prompt_lang": "en",
+   "city": "Casablanca",
+   "target_region": "Morocco"
+  },
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب). Write marketing copy for it in Arabic: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy. It is launching in Casablanca.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__msa-Riyadh__{m}__s1",
+  "meta": {
+   "part": "B",
+   "cond": "msa-Riyadh",
+   "s": 1,
+   "prompt_lang": "msa",
+   "city": "Riyadh",
+   "target_region": "Gulf"
+  },
+  "prompt": "لدينا تطبيق جديد لتوصيل البقالة اسمه «قريب». أريد منك أن تكتب نصوصاً تسويقية له: شعاراً، وثلاثة إعلانات قصيرة لإنستغرام، وإشعاراً واحداً. اكتب النصوص التسويقية فقط. سيُطلق التطبيق في الرياض.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__msa-Riyadh__{m}__s2",
+  "meta": {
+   "part": "B",
+   "cond": "msa-Riyadh",
+   "s": 2,
+   "prompt_lang": "msa",
+   "city": "Riyadh",
+   "target_region": "Gulf"
+  },
+  "prompt": "لدينا تطبيق جديد لتوصيل البقالة اسمه «قريب». أريد منك أن تكتب نصوصاً تسويقية له: شعاراً، وثلاثة إعلانات قصيرة لإنستغرام، وإشعاراً واحداً. اكتب النصوص التسويقية فقط. سيُطلق التطبيق في الرياض.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__msa-Cairo__{m}__s1",
+  "meta": {
+   "part": "B",
+   "cond": "msa-Cairo",
+   "s": 1,
+   "prompt_lang": "msa",
+   "city": "Cairo",
+   "target_region": "Egypt"
+  },
+  "prompt": "لدينا تطبيق جديد لتوصيل البقالة اسمه «قريب». أريد منك أن تكتب نصوصاً تسويقية له: شعاراً، وثلاثة إعلانات قصيرة لإنستغرام، وإشعاراً واحداً. اكتب النصوص التسويقية فقط. سيُطلق التطبيق في القاهرة.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__msa-Cairo__{m}__s2",
+  "meta": {
+   "part": "B",
+   "cond": "msa-Cairo",
+   "s": 2,
+   "prompt_lang": "msa",
+   "city": "Cairo",
+   "target_region": "Egypt"
+  },
+  "prompt": "لدينا تطبيق جديد لتوصيل البقالة اسمه «قريب». أريد منك أن تكتب نصوصاً تسويقية له: شعاراً، وثلاثة إعلانات قصيرة لإنستغرام، وإشعاراً واحداً. اكتب النصوص التسويقية فقط. سيُطلق التطبيق في القاهرة.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__msa-Beirut__{m}__s1",
+  "meta": {
+   "part": "B",
+   "cond": "msa-Beirut",
+   "s": 1,
+   "prompt_lang": "msa",
+   "city": "Beirut",
+   "target_region": "Levant"
+  },
+  "prompt": "لدينا تطبيق جديد لتوصيل البقالة اسمه «قريب». أريد منك أن تكتب نصوصاً تسويقية له: شعاراً، وثلاثة إعلانات قصيرة لإنستغرام، وإشعاراً واحداً. اكتب النصوص التسويقية فقط. سيُطلق التطبيق في بيروت.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__msa-Beirut__{m}__s2",
+  "meta": {
+   "part": "B",
+   "cond": "msa-Beirut",
+   "s": 2,
+   "prompt_lang": "msa",
+   "city": "Beirut",
+   "target_region": "Levant"
+  },
+  "prompt": "لدينا تطبيق جديد لتوصيل البقالة اسمه «قريب». أريد منك أن تكتب نصوصاً تسويقية له: شعاراً، وثلاثة إعلانات قصيرة لإنستغرام، وإشعاراً واحداً. اكتب النصوص التسويقية فقط. سيُطلق التطبيق في بيروت.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__msa-Casablanca__{m}__s1",
+  "meta": {
+   "part": "B",
+   "cond": "msa-Casablanca",
+   "s": 1,
+   "prompt_lang": "msa",
+   "city": "Casablanca",
+   "target_region": "Morocco"
+  },
+  "prompt": "لدينا تطبيق جديد لتوصيل البقالة اسمه «قريب». أريد منك أن تكتب نصوصاً تسويقية له: شعاراً، وثلاثة إعلانات قصيرة لإنستغرام، وإشعاراً واحداً. اكتب النصوص التسويقية فقط. سيُطلق التطبيق في الدار البيضاء.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__msa-Casablanca__{m}__s2",
+  "meta": {
+   "part": "B",
+   "cond": "msa-Casablanca",
+   "s": 2,
+   "prompt_lang": "msa",
+   "city": "Casablanca",
+   "target_region": "Morocco"
+  },
+  "prompt": "لدينا تطبيق جديد لتوصيل البقالة اسمه «قريب». أريد منك أن تكتب نصوصاً تسويقية له: شعاراً، وثلاثة إعلانات قصيرة لإنستغرام، وإشعاراً واحداً. اكتب النصوص التسويقية فقط. سيُطلق التطبيق في الدار البيضاء.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__saudi-Riyadh__{m}__s1",
+  "meta": {
+   "part": "B",
+   "cond": "saudi-Riyadh",
+   "s": 1,
+   "prompt_lang": "saudi",
+   "city": "Riyadh",
+   "target_region": "Gulf"
+  },
+  "prompt": "عندنا تطبيق جديد لتوصيل المقاضي اسمه «قريب». أبغاك تكتب لي كلام تسويقي له: شعار، و٣ إعلانات قصيرة للإنستقرام، وإشعار واحد. اكتب الكلام التسويقي بس. التطبيق بينزل في الرياض.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__saudi-Riyadh__{m}__s2",
+  "meta": {
+   "part": "B",
+   "cond": "saudi-Riyadh",
+   "s": 2,
+   "prompt_lang": "saudi",
+   "city": "Riyadh",
+   "target_region": "Gulf"
+  },
+  "prompt": "عندنا تطبيق جديد لتوصيل المقاضي اسمه «قريب». أبغاك تكتب لي كلام تسويقي له: شعار، و٣ إعلانات قصيرة للإنستقرام، وإشعار واحد. اكتب الكلام التسويقي بس. التطبيق بينزل في الرياض.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__saudi-Cairo__{m}__s1",
+  "meta": {
+   "part": "B",
+   "cond": "saudi-Cairo",
+   "s": 1,
+   "prompt_lang": "saudi",
+   "city": "Cairo",
+   "target_region": "Egypt"
+  },
+  "prompt": "عندنا تطبيق جديد لتوصيل المقاضي اسمه «قريب». أبغاك تكتب لي كلام تسويقي له: شعار، و٣ إعلانات قصيرة للإنستقرام، وإشعار واحد. اكتب الكلام التسويقي بس. التطبيق بينزل في القاهرة.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__saudi-Cairo__{m}__s2",
+  "meta": {
+   "part": "B",
+   "cond": "saudi-Cairo",
+   "s": 2,
+   "prompt_lang": "saudi",
+   "city": "Cairo",
+   "target_region": "Egypt"
+  },
+  "prompt": "عندنا تطبيق جديد لتوصيل المقاضي اسمه «قريب». أبغاك تكتب لي كلام تسويقي له: شعار، و٣ إعلانات قصيرة للإنستقرام، وإشعار واحد. اكتب الكلام التسويقي بس. التطبيق بينزل في القاهرة.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__saudi-Beirut__{m}__s1",
+  "meta": {
+   "part": "B",
+   "cond": "saudi-Beirut",
+   "s": 1,
+   "prompt_lang": "saudi",
+   "city": "Beirut",
+   "target_region": "Levant"
+  },
+  "prompt": "عندنا تطبيق جديد لتوصيل المقاضي اسمه «قريب». أبغاك تكتب لي كلام تسويقي له: شعار، و٣ إعلانات قصيرة للإنستقرام، وإشعار واحد. اكتب الكلام التسويقي بس. التطبيق بينزل في بيروت.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__saudi-Beirut__{m}__s2",
+  "meta": {
+   "part": "B",
+   "cond": "saudi-Beirut",
+   "s": 2,
+   "prompt_lang": "saudi",
+   "city": "Beirut",
+   "target_region": "Levant"
+  },
+  "prompt": "عندنا تطبيق جديد لتوصيل المقاضي اسمه «قريب». أبغاك تكتب لي كلام تسويقي له: شعار، و٣ إعلانات قصيرة للإنستقرام، وإشعار واحد. اكتب الكلام التسويقي بس. التطبيق بينزل في بيروت.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__saudi-Casablanca__{m}__s1",
+  "meta": {
+   "part": "B",
+   "cond": "saudi-Casablanca",
+   "s": 1,
+   "prompt_lang": "saudi",
+   "city": "Casablanca",
+   "target_region": "Morocco"
+  },
+  "prompt": "عندنا تطبيق جديد لتوصيل المقاضي اسمه «قريب». أبغاك تكتب لي كلام تسويقي له: شعار، و٣ إعلانات قصيرة للإنستقرام، وإشعار واحد. اكتب الكلام التسويقي بس. التطبيق بينزل في الدار البيضاء.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__saudi-Casablanca__{m}__s2",
+  "meta": {
+   "part": "B",
+   "cond": "saudi-Casablanca",
+   "s": 2,
+   "prompt_lang": "saudi",
+   "city": "Casablanca",
+   "target_region": "Morocco"
+  },
+  "prompt": "عندنا تطبيق جديد لتوصيل المقاضي اسمه «قريب». أبغاك تكتب لي كلام تسويقي له: شعار، و٣ إعلانات قصيرة للإنستقرام، وإشعار واحد. اكتب الكلام التسويقي بس. التطبيق بينزل في الدار البيضاء.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__egypt-Riyadh__{m}__s1",
+  "meta": {
+   "part": "B",
+   "cond": "egypt-Riyadh",
+   "s": 1,
+   "prompt_lang": "egypt",
+   "city": "Riyadh",
+   "target_region": "Gulf"
+  },
+  "prompt": "عندنا أبلكيشن جديد لتوصيل طلبات البقالة اسمه «قريب». عايزك تكتبلي كلام تسويقي ليه: سلوجان، و٣ إعلانات قصيرة للإنستجرام، ونوتيفيكيشن واحدة. اكتب الكلام التسويقي بس من غير أي حاجة تانية. الأبلكيشن هينزل في الرياض.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__egypt-Riyadh__{m}__s2",
+  "meta": {
+   "part": "B",
+   "cond": "egypt-Riyadh",
+   "s": 2,
+   "prompt_lang": "egypt",
+   "city": "Riyadh",
+   "target_region": "Gulf"
+  },
+  "prompt": "عندنا أبلكيشن جديد لتوصيل طلبات البقالة اسمه «قريب». عايزك تكتبلي كلام تسويقي ليه: سلوجان، و٣ إعلانات قصيرة للإنستجرام، ونوتيفيكيشن واحدة. اكتب الكلام التسويقي بس من غير أي حاجة تانية. الأبلكيشن هينزل في الرياض.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__egypt-Cairo__{m}__s1",
+  "meta": {
+   "part": "B",
+   "cond": "egypt-Cairo",
+   "s": 1,
+   "prompt_lang": "egypt",
+   "city": "Cairo",
+   "target_region": "Egypt"
+  },
+  "prompt": "عندنا أبلكيشن جديد لتوصيل طلبات البقالة اسمه «قريب». عايزك تكتبلي كلام تسويقي ليه: سلوجان، و٣ إعلانات قصيرة للإنستجرام، ونوتيفيكيشن واحدة. اكتب الكلام التسويقي بس من غير أي حاجة تانية. الأبلكيشن هينزل في القاهرة.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__egypt-Cairo__{m}__s2",
+  "meta": {
+   "part": "B",
+   "cond": "egypt-Cairo",
+   "s": 2,
+   "prompt_lang": "egypt",
+   "city": "Cairo",
+   "target_region": "Egypt"
+  },
+  "prompt": "عندنا أبلكيشن جديد لتوصيل طلبات البقالة اسمه «قريب». عايزك تكتبلي كلام تسويقي ليه: سلوجان، و٣ إعلانات قصيرة للإنستجرام، ونوتيفيكيشن واحدة. اكتب الكلام التسويقي بس من غير أي حاجة تانية. الأبلكيشن هينزل في القاهرة.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__egypt-Beirut__{m}__s1",
+  "meta": {
+   "part": "B",
+   "cond": "egypt-Beirut",
+   "s": 1,
+   "prompt_lang": "egypt",
+   "city": "Beirut",
+   "target_region": "Levant"
+  },
+  "prompt": "عندنا أبلكيشن جديد لتوصيل طلبات البقالة اسمه «قريب». عايزك تكتبلي كلام تسويقي ليه: سلوجان، و٣ إعلانات قصيرة للإنستجرام، ونوتيفيكيشن واحدة. اكتب الكلام التسويقي بس من غير أي حاجة تانية. الأبلكيشن هينزل في بيروت.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__egypt-Beirut__{m}__s2",
+  "meta": {
+   "part": "B",
+   "cond": "egypt-Beirut",
+   "s": 2,
+   "prompt_lang": "egypt",
+   "city": "Beirut",
+   "target_region": "Levant"
+  },
+  "prompt": "عندنا أبلكيشن جديد لتوصيل طلبات البقالة اسمه «قريب». عايزك تكتبلي كلام تسويقي ليه: سلوجان، و٣ إعلانات قصيرة للإنستجرام، ونوتيفيكيشن واحدة. اكتب الكلام التسويقي بس من غير أي حاجة تانية. الأبلكيشن هينزل في بيروت.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__egypt-Casablanca__{m}__s1",
+  "meta": {
+   "part": "B",
+   "cond": "egypt-Casablanca",
+   "s": 1,
+   "prompt_lang": "egypt",
+   "city": "Casablanca",
+   "target_region": "Morocco"
+  },
+  "prompt": "عندنا أبلكيشن جديد لتوصيل طلبات البقالة اسمه «قريب». عايزك تكتبلي كلام تسويقي ليه: سلوجان، و٣ إعلانات قصيرة للإنستجرام، ونوتيفيكيشن واحدة. اكتب الكلام التسويقي بس من غير أي حاجة تانية. الأبلكيشن هينزل في الدار البيضاء.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__egypt-Casablanca__{m}__s2",
+  "meta": {
+   "part": "B",
+   "cond": "egypt-Casablanca",
+   "s": 2,
+   "prompt_lang": "egypt",
+   "city": "Casablanca",
+   "target_region": "Morocco"
+  },
+  "prompt": "عندنا أبلكيشن جديد لتوصيل طلبات البقالة اسمه «قريب». عايزك تكتبلي كلام تسويقي ليه: سلوجان، و٣ إعلانات قصيرة للإنستجرام، ونوتيفيكيشن واحدة. اكتب الكلام التسويقي بس من غير أي حاجة تانية. الأبلكيشن هينزل في الدار البيضاء.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__levant-Riyadh__{m}__s1",
+  "meta": {
+   "part": "B",
+   "cond": "levant-Riyadh",
+   "s": 1,
+   "prompt_lang": "levant",
+   "city": "Riyadh",
+   "target_region": "Gulf"
+  },
+  "prompt": "عنا تطبيق جديد لتوصيل أغراض السوبرماركت اسمه «قريب». بدي ياك تكتبلي كلام تسويقي إلو: شعار، و٣ إعلانات قصار للإنستغرام، وإشعار واحد. اكتب الكلام التسويقي بس، بلا ولا شي تاني. التطبيق رح ينزل بالرياض.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__levant-Riyadh__{m}__s2",
+  "meta": {
+   "part": "B",
+   "cond": "levant-Riyadh",
+   "s": 2,
+   "prompt_lang": "levant",
+   "city": "Riyadh",
+   "target_region": "Gulf"
+  },
+  "prompt": "عنا تطبيق جديد لتوصيل أغراض السوبرماركت اسمه «قريب». بدي ياك تكتبلي كلام تسويقي إلو: شعار، و٣ إعلانات قصار للإنستغرام، وإشعار واحد. اكتب الكلام التسويقي بس، بلا ولا شي تاني. التطبيق رح ينزل بالرياض.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__levant-Cairo__{m}__s1",
+  "meta": {
+   "part": "B",
+   "cond": "levant-Cairo",
+   "s": 1,
+   "prompt_lang": "levant",
+   "city": "Cairo",
+   "target_region": "Egypt"
+  },
+  "prompt": "عنا تطبيق جديد لتوصيل أغراض السوبرماركت اسمه «قريب». بدي ياك تكتبلي كلام تسويقي إلو: شعار، و٣ إعلانات قصار للإنستغرام، وإشعار واحد. اكتب الكلام التسويقي بس، بلا ولا شي تاني. التطبيق رح ينزل بالقاهرة.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__levant-Cairo__{m}__s2",
+  "meta": {
+   "part": "B",
+   "cond": "levant-Cairo",
+   "s": 2,
+   "prompt_lang": "levant",
+   "city": "Cairo",
+   "target_region": "Egypt"
+  },
+  "prompt": "عنا تطبيق جديد لتوصيل أغراض السوبرماركت اسمه «قريب». بدي ياك تكتبلي كلام تسويقي إلو: شعار، و٣ إعلانات قصار للإنستغرام، وإشعار واحد. اكتب الكلام التسويقي بس، بلا ولا شي تاني. التطبيق رح ينزل بالقاهرة.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__levant-Beirut__{m}__s1",
+  "meta": {
+   "part": "B",
+   "cond": "levant-Beirut",
+   "s": 1,
+   "prompt_lang": "levant",
+   "city": "Beirut",
+   "target_region": "Levant"
+  },
+  "prompt": "عنا تطبيق جديد لتوصيل أغراض السوبرماركت اسمه «قريب». بدي ياك تكتبلي كلام تسويقي إلو: شعار، و٣ إعلانات قصار للإنستغرام، وإشعار واحد. اكتب الكلام التسويقي بس، بلا ولا شي تاني. التطبيق رح ينزل ببيروت.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__levant-Beirut__{m}__s2",
+  "meta": {
+   "part": "B",
+   "cond": "levant-Beirut",
+   "s": 2,
+   "prompt_lang": "levant",
+   "city": "Beirut",
+   "target_region": "Levant"
+  },
+  "prompt": "عنا تطبيق جديد لتوصيل أغراض السوبرماركت اسمه «قريب». بدي ياك تكتبلي كلام تسويقي إلو: شعار، و٣ إعلانات قصار للإنستغرام، وإشعار واحد. اكتب الكلام التسويقي بس، بلا ولا شي تاني. التطبيق رح ينزل ببيروت.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__levant-Casablanca__{m}__s1",
+  "meta": {
+   "part": "B",
+   "cond": "levant-Casablanca",
+   "s": 1,
+   "prompt_lang": "levant",
+   "city": "Casablanca",
+   "target_region": "Morocco"
+  },
+  "prompt": "عنا تطبيق جديد لتوصيل أغراض السوبرماركت اسمه «قريب». بدي ياك تكتبلي كلام تسويقي إلو: شعار، و٣ إعلانات قصار للإنستغرام، وإشعار واحد. اكتب الكلام التسويقي بس، بلا ولا شي تاني. التطبيق رح ينزل بالدار البيضاء.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__levant-Casablanca__{m}__s2",
+  "meta": {
+   "part": "B",
+   "cond": "levant-Casablanca",
+   "s": 2,
+   "prompt_lang": "levant",
+   "city": "Casablanca",
+   "target_region": "Morocco"
+  },
+  "prompt": "عنا تطبيق جديد لتوصيل أغراض السوبرماركت اسمه «قريب». بدي ياك تكتبلي كلام تسويقي إلو: شعار، و٣ إعلانات قصار للإنستغرام، وإشعار واحد. اكتب الكلام التسويقي بس، بلا ولا شي تاني. التطبيق رح ينزل بالدار البيضاء.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__darija-Riyadh__{m}__s1",
+  "meta": {
+   "part": "B",
+   "cond": "darija-Riyadh",
+   "s": 1,
+   "prompt_lang": "darija",
+   "city": "Riyadh",
+   "target_region": "Gulf"
+  },
+  "prompt": "عندنا واحد التطبيق جديد ديال توصيل القضية سميتو «قريب». بغيتك تكتب ليا كلام ديال الماركوتينغ ليه: شعار، و٣ ديال الإعلانات قصار للإنستغرام، وإشعار واحد. كتب غير الكلام ديال الماركوتينغ، بلا حتى حاجة أخرى. التطبيق غادي يخرج فالرياض.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__darija-Riyadh__{m}__s2",
+  "meta": {
+   "part": "B",
+   "cond": "darija-Riyadh",
+   "s": 2,
+   "prompt_lang": "darija",
+   "city": "Riyadh",
+   "target_region": "Gulf"
+  },
+  "prompt": "عندنا واحد التطبيق جديد ديال توصيل القضية سميتو «قريب». بغيتك تكتب ليا كلام ديال الماركوتينغ ليه: شعار، و٣ ديال الإعلانات قصار للإنستغرام، وإشعار واحد. كتب غير الكلام ديال الماركوتينغ، بلا حتى حاجة أخرى. التطبيق غادي يخرج فالرياض.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__darija-Cairo__{m}__s1",
+  "meta": {
+   "part": "B",
+   "cond": "darija-Cairo",
+   "s": 1,
+   "prompt_lang": "darija",
+   "city": "Cairo",
+   "target_region": "Egypt"
+  },
+  "prompt": "عندنا واحد التطبيق جديد ديال توصيل القضية سميتو «قريب». بغيتك تكتب ليا كلام ديال الماركوتينغ ليه: شعار، و٣ ديال الإعلانات قصار للإنستغرام، وإشعار واحد. كتب غير الكلام ديال الماركوتينغ، بلا حتى حاجة أخرى. التطبيق غادي يخرج فالقاهرة.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__darija-Cairo__{m}__s2",
+  "meta": {
+   "part": "B",
+   "cond": "darija-Cairo",
+   "s": 2,
+   "prompt_lang": "darija",
+   "city": "Cairo",
+   "target_region": "Egypt"
+  },
+  "prompt": "عندنا واحد التطبيق جديد ديال توصيل القضية سميتو «قريب». بغيتك تكتب ليا كلام ديال الماركوتينغ ليه: شعار، و٣ ديال الإعلانات قصار للإنستغرام، وإشعار واحد. كتب غير الكلام ديال الماركوتينغ، بلا حتى حاجة أخرى. التطبيق غادي يخرج فالقاهرة.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__darija-Beirut__{m}__s1",
+  "meta": {
+   "part": "B",
+   "cond": "darija-Beirut",
+   "s": 1,
+   "prompt_lang": "darija",
+   "city": "Beirut",
+   "target_region": "Levant"
+  },
+  "prompt": "عندنا واحد التطبيق جديد ديال توصيل القضية سميتو «قريب». بغيتك تكتب ليا كلام ديال الماركوتينغ ليه: شعار، و٣ ديال الإعلانات قصار للإنستغرام، وإشعار واحد. كتب غير الكلام ديال الماركوتينغ، بلا حتى حاجة أخرى. التطبيق غادي يخرج فبيروت.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__darija-Beirut__{m}__s2",
+  "meta": {
+   "part": "B",
+   "cond": "darija-Beirut",
+   "s": 2,
+   "prompt_lang": "darija",
+   "city": "Beirut",
+   "target_region": "Levant"
+  },
+  "prompt": "عندنا واحد التطبيق جديد ديال توصيل القضية سميتو «قريب». بغيتك تكتب ليا كلام ديال الماركوتينغ ليه: شعار، و٣ ديال الإعلانات قصار للإنستغرام، وإشعار واحد. كتب غير الكلام ديال الماركوتينغ، بلا حتى حاجة أخرى. التطبيق غادي يخرج فبيروت.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__darija-Casablanca__{m}__s1",
+  "meta": {
+   "part": "B",
+   "cond": "darija-Casablanca",
+   "s": 1,
+   "prompt_lang": "darija",
+   "city": "Casablanca",
+   "target_region": "Morocco"
+  },
+  "prompt": "عندنا واحد التطبيق جديد ديال توصيل القضية سميتو «قريب». بغيتك تكتب ليا كلام ديال الماركوتينغ ليه: شعار، و٣ ديال الإعلانات قصار للإنستغرام، وإشعار واحد. كتب غير الكلام ديال الماركوتينغ، بلا حتى حاجة أخرى. التطبيق غادي يخرج فالدار البيضاء.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "B__darija-Casablanca__{m}__s2",
+  "meta": {
+   "part": "B",
+   "cond": "darija-Casablanca",
+   "s": 2,
+   "prompt_lang": "darija",
+   "city": "Casablanca",
+   "target_region": "Morocco"
+  },
+  "prompt": "عندنا واحد التطبيق جديد ديال توصيل القضية سميتو «قريب». بغيتك تكتب ليا كلام ديال الماركوتينغ ليه: شعار، و٣ ديال الإعلانات قصار للإنستغرام، وإشعار واحد. كتب غير الكلام ديال الماركوتينغ، بلا حتى حاجة أخرى. التطبيق غادي يخرج فالدار البيضاء.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "C__Riyadh__{m}__s1",
+  "meta": {
+   "part": "C",
+   "cond": "Riyadh",
+   "s": 1,
+   "prompt_lang": "en",
+   "city": "Riyadh",
+   "target_region": "Gulf",
+   "target_city_code": "RIY"
+  },
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Riyadh. Write marketing copy for it in Saudi (Najdi) Arabic, the way people in Riyadh actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "C__Riyadh__{m}__s2",
+  "meta": {
+   "part": "C",
+   "cond": "Riyadh",
+   "s": 2,
+   "prompt_lang": "en",
+   "city": "Riyadh",
+   "target_region": "Gulf",
+   "target_city_code": "RIY"
+  },
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Riyadh. Write marketing copy for it in Saudi (Najdi) Arabic, the way people in Riyadh actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "C__Doha__{m}__s1",
+  "meta": {
+   "part": "C",
+   "cond": "Doha",
+   "s": 1,
+   "prompt_lang": "en",
+   "city": "Doha",
+   "target_region": "Gulf",
+   "target_city_code": "DOH"
+  },
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Doha. Write marketing copy for it in Qatari Arabic, the way people in Doha actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "C__Doha__{m}__s2",
+  "meta": {
+   "part": "C",
+   "cond": "Doha",
+   "s": 2,
+   "prompt_lang": "en",
+   "city": "Doha",
+   "target_region": "Gulf",
+   "target_city_code": "DOH"
+  },
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Doha. Write marketing copy for it in Qatari Arabic, the way people in Doha actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "C__Muscat__{m}__s1",
+  "meta": {
+   "part": "C",
+   "cond": "Muscat",
+   "s": 1,
+   "prompt_lang": "en",
+   "city": "Muscat",
+   "target_region": "Gulf",
+   "target_city_code": "MUS"
+  },
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Muscat. Write marketing copy for it in Omani Arabic, the way people in Muscat actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "C__Muscat__{m}__s2",
+  "meta": {
+   "part": "C",
+   "cond": "Muscat",
+   "s": 2,
+   "prompt_lang": "en",
+   "city": "Muscat",
+   "target_region": "Gulf",
+   "target_city_code": "MUS"
+  },
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Muscat. Write marketing copy for it in Omani Arabic, the way people in Muscat actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "C__Sanaa__{m}__s1",
+  "meta": {
+   "part": "C",
+   "cond": "Sanaa",
+   "s": 1,
+   "prompt_lang": "en",
+   "city": "Sanaa",
+   "target_region": "Yemen",
+   "target_city_code": "SAN"
+  },
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Sanaa. Write marketing copy for it in Yemeni (Sanaani) Arabic, the way people in Sanaa actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "C__Sanaa__{m}__s2",
+  "meta": {
+   "part": "C",
+   "cond": "Sanaa",
+   "s": 2,
+   "prompt_lang": "en",
+   "city": "Sanaa",
+   "target_region": "Yemen",
+   "target_city_code": "SAN"
+  },
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Sanaa. Write marketing copy for it in Yemeni (Sanaani) Arabic, the way people in Sanaa actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "C__Baghdad__{m}__s1",
+  "meta": {
+   "part": "C",
+   "cond": "Baghdad",
+   "s": 1,
+   "prompt_lang": "en",
+   "city": "Baghdad",
+   "target_region": "Iraq",
+   "target_city_code": "BAG"
+  },
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Baghdad. Write marketing copy for it in Iraqi (Baghdadi) Arabic, the way people in Baghdad actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "C__Baghdad__{m}__s2",
+  "meta": {
+   "part": "C",
+   "cond": "Baghdad",
+   "s": 2,
+   "prompt_lang": "en",
+   "city": "Baghdad",
+   "target_region": "Iraq",
+   "target_city_code": "BAG"
+  },
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Baghdad. Write marketing copy for it in Iraqi (Baghdadi) Arabic, the way people in Baghdad actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "C__Cairo__{m}__s1",
+  "meta": {
+   "part": "C",
+   "cond": "Cairo",
+   "s": 1,
+   "prompt_lang": "en",
+   "city": "Cairo",
+   "target_region": "Egypt",
+   "target_city_code": "CAI"
+  },
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Cairo. Write marketing copy for it in Egyptian Arabic, the way people in Cairo actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "C__Cairo__{m}__s2",
+  "meta": {
+   "part": "C",
+   "cond": "Cairo",
+   "s": 2,
+   "prompt_lang": "en",
+   "city": "Cairo",
+   "target_region": "Egypt",
+   "target_city_code": "CAI"
+  },
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Cairo. Write marketing copy for it in Egyptian Arabic, the way people in Cairo actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "C__Khartoum__{m}__s1",
+  "meta": {
+   "part": "C",
+   "cond": "Khartoum",
+   "s": 1,
+   "prompt_lang": "en",
+   "city": "Khartoum",
+   "target_region": "Sudan",
+   "target_city_code": "KHA"
+  },
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Khartoum. Write marketing copy for it in Sudanese Arabic, the way people in Khartoum actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "C__Khartoum__{m}__s2",
+  "meta": {
+   "part": "C",
+   "cond": "Khartoum",
+   "s": 2,
+   "prompt_lang": "en",
+   "city": "Khartoum",
+   "target_region": "Sudan",
+   "target_city_code": "KHA"
+  },
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Khartoum. Write marketing copy for it in Sudanese Arabic, the way people in Khartoum actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "C__Beirut__{m}__s1",
+  "meta": {
+   "part": "C",
+   "cond": "Beirut",
+   "s": 1,
+   "prompt_lang": "en",
+   "city": "Beirut",
+   "target_region": "Levant",
+   "target_city_code": "BEI"
+  },
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Beirut. Write marketing copy for it in Lebanese Arabic, the way people in Beirut actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "C__Beirut__{m}__s2",
+  "meta": {
+   "part": "C",
+   "cond": "Beirut",
+   "s": 2,
+   "prompt_lang": "en",
+   "city": "Beirut",
+   "target_region": "Levant",
+   "target_city_code": "BEI"
+  },
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Beirut. Write marketing copy for it in Lebanese Arabic, the way people in Beirut actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "C__Damascus__{m}__s1",
+  "meta": {
+   "part": "C",
+   "cond": "Damascus",
+   "s": 1,
+   "prompt_lang": "en",
+   "city": "Damascus",
+   "target_region": "Levant",
+   "target_city_code": "DAM"
+  },
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Damascus. Write marketing copy for it in Syrian (Damascene) Arabic, the way people in Damascus actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "C__Damascus__{m}__s2",
+  "meta": {
+   "part": "C",
+   "cond": "Damascus",
+   "s": 2,
+   "prompt_lang": "en",
+   "city": "Damascus",
+   "target_region": "Levant",
+   "target_city_code": "DAM"
+  },
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Damascus. Write marketing copy for it in Syrian (Damascene) Arabic, the way people in Damascus actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "C__Amman__{m}__s1",
+  "meta": {
+   "part": "C",
+   "cond": "Amman",
+   "s": 1,
+   "prompt_lang": "en",
+   "city": "Amman",
+   "target_region": "Levant",
+   "target_city_code": "AMM"
+  },
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Amman. Write marketing copy for it in Jordanian Arabic, the way people in Amman actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "C__Amman__{m}__s2",
+  "meta": {
+   "part": "C",
+   "cond": "Amman",
+   "s": 2,
+   "prompt_lang": "en",
+   "city": "Amman",
+   "target_region": "Levant",
+   "target_city_code": "AMM"
+  },
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Amman. Write marketing copy for it in Jordanian Arabic, the way people in Amman actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "C__Tripoli__{m}__s1",
+  "meta": {
+   "part": "C",
+   "cond": "Tripoli",
+   "s": 1,
+   "prompt_lang": "en",
+   "city": "Tripoli",
+   "target_region": "Libya",
+   "target_city_code": "TRI"
+  },
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Tripoli. Write marketing copy for it in Libyan Arabic, the way people in Tripoli actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "C__Tripoli__{m}__s2",
+  "meta": {
+   "part": "C",
+   "cond": "Tripoli",
+   "s": 2,
+   "prompt_lang": "en",
+   "city": "Tripoli",
+   "target_region": "Libya",
+   "target_city_code": "TRI"
+  },
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Tripoli. Write marketing copy for it in Libyan Arabic, the way people in Tripoli actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "C__Tunis__{m}__s1",
+  "meta": {
+   "part": "C",
+   "cond": "Tunis",
+   "s": 1,
+   "prompt_lang": "en",
+   "city": "Tunis",
+   "target_region": "Tunisia",
+   "target_city_code": "TUN"
+  },
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Tunis. Write marketing copy for it in Tunisian Arabic, the way people in Tunis actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "C__Tunis__{m}__s2",
+  "meta": {
+   "part": "C",
+   "cond": "Tunis",
+   "s": 2,
+   "prompt_lang": "en",
+   "city": "Tunis",
+   "target_region": "Tunisia",
+   "target_city_code": "TUN"
+  },
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Tunis. Write marketing copy for it in Tunisian Arabic, the way people in Tunis actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "C__Algiers__{m}__s1",
+  "meta": {
+   "part": "C",
+   "cond": "Algiers",
+   "s": 1,
+   "prompt_lang": "en",
+   "city": "Algiers",
+   "target_region": "Algeria",
+   "target_city_code": "ALG"
+  },
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Algiers. Write marketing copy for it in Algerian Arabic, the way people in Algiers actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "C__Algiers__{m}__s2",
+  "meta": {
+   "part": "C",
+   "cond": "Algiers",
+   "s": 2,
+   "prompt_lang": "en",
+   "city": "Algiers",
+   "target_region": "Algeria",
+   "target_city_code": "ALG"
+  },
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Algiers. Write marketing copy for it in Algerian Arabic, the way people in Algiers actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "C__Rabat__{m}__s1",
+  "meta": {
+   "part": "C",
+   "cond": "Rabat",
+   "s": 1,
+   "prompt_lang": "en",
+   "city": "Rabat",
+   "target_region": "Morocco",
+   "target_city_code": "RAB"
+  },
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Rabat. Write marketing copy for it in Moroccan Arabic (Darija), the way people in Rabat actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "copy",
+  "key": "C__Rabat__{m}__s2",
+  "meta": {
+   "part": "C",
+   "cond": "Rabat",
+   "s": 2,
+   "prompt_lang": "en",
+   "city": "Rabat",
+   "target_region": "Morocco",
+   "target_city_code": "RAB"
+  },
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Rabat. Write marketing copy for it in Moroccan Arabic (Darija), the way people in Rabat actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "temperature": 1.0,
+  "max_tokens": 1200
+ },
+ {
+  "exp": "messages",
+  "key": "M1__en__{m}",
+  "meta": {
+   "scenario": "M1",
+   "lang": "en",
+   "message": "hi, my order came but the milk and bread are missing"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nhi, my order came but the milk and bread are missing",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M1__ar_msa__{m}",
+  "meta": {
+   "scenario": "M1",
+   "lang": "ar_msa",
+   "message": "مرحباً، وصل طلبي لكن الحليب والخبز غير موجودين"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nمرحباً، وصل طلبي لكن الحليب والخبز غير موجودين",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M1__ar_sa__{m}",
+  "meta": {
+   "scenario": "M1",
+   "lang": "ar_sa",
+   "message": "هلا، طلبي وصل بس ما جاني الحليب والخبز"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nهلا، طلبي وصل بس ما جاني الحليب والخبز",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M1__ar_eg__{m}",
+  "meta": {
+   "scenario": "M1",
+   "lang": "ar_eg",
+   "message": "أهلاً، الأوردر وصل بس اللبن والعيش مش موجودين"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nأهلاً، الأوردر وصل بس اللبن والعيش مش موجودين",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M1__ar_ma__{m}",
+  "meta": {
+   "scenario": "M1",
+   "lang": "ar_ma",
+   "message": "السلام، الكوموند وصلات ولكن الحليب والخبز ماكاينينش"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nالسلام، الكوموند وصلات ولكن الحليب والخبز ماكاينينش",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M1__arabizi__{m}",
+  "meta": {
+   "scenario": "M1",
+   "lang": "arabizi",
+   "message": "ahlan, el order wesel bas el laban wel 3eish mesh mawgoodeen"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nahlan, el order wesel bas el laban wel 3eish mesh mawgoodeen",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M2__en__{m}",
+  "meta": {
+   "scenario": "M2",
+   "lang": "en",
+   "message": "WHERE IS MY ORDER?? it's been 2 hours, this is ridiculous"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nWHERE IS MY ORDER?? it's been 2 hours, this is ridiculous",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M2__ar_msa__{m}",
+  "meta": {
+   "scenario": "M2",
+   "lang": "ar_msa",
+   "message": "أين طلبي؟؟ مرت ساعتان، هذا أمر سخيف"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nأين طلبي؟؟ مرت ساعتان، هذا أمر سخيف",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M2__ar_sa__{m}",
+  "meta": {
+   "scenario": "M2",
+   "lang": "ar_sa",
+   "message": "وين طلبي؟؟ صار له ساعتين، شي يفشل"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nوين طلبي؟؟ صار له ساعتين، شي يفشل",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M2__ar_eg__{m}",
+  "meta": {
+   "scenario": "M2",
+   "lang": "ar_eg",
+   "message": "الأوردر فين؟؟ بقاله ساعتين، ده تهريج"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nالأوردر فين؟؟ بقاله ساعتين، ده تهريج",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M2__ar_ma__{m}",
+  "meta": {
+   "scenario": "M2",
+   "lang": "ar_ma",
+   "message": "فين الكوموند ديالي؟؟ هادي جوج سوايع، هادشي ماشي معقول"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nفين الكوموند ديالي؟؟ هادي جوج سوايع، هادشي ماشي معقول",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M2__arabizi__{m}",
+  "meta": {
+   "scenario": "M2",
+   "lang": "arabizi",
+   "message": "el order fein?? ba2alo sa3teen, da tahreeg"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nel order fein?? ba2alo sa3teen, da tahreeg",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M3__en__{m}",
+  "meta": {
+   "scenario": "M3",
+   "lang": "en",
+   "message": "wow amazing service, only 2 hours late again 👏👏"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nwow amazing service, only 2 hours late again 👏👏",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M3__ar_msa__{m}",
+  "meta": {
+   "scenario": "M3",
+   "lang": "ar_msa",
+   "message": "يا لها من خدمة رائعة، تأخير ساعتين فقط مرة أخرى 👏👏"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nيا لها من خدمة رائعة، تأخير ساعتين فقط مرة أخرى 👏👏",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M3__ar_sa__{m}",
+  "meta": {
+   "scenario": "M3",
+   "lang": "ar_sa",
+   "message": "ما شاء الله عليكم خدمة ولا أروع، بس ساعتين تأخير مرة ثانية 👏👏"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nما شاء الله عليكم خدمة ولا أروع، بس ساعتين تأخير مرة ثانية 👏👏",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M3__ar_eg__{m}",
+  "meta": {
+   "scenario": "M3",
+   "lang": "ar_eg",
+   "message": "لا بجد خدمة تحفة، متأخرين ساعتين بس زي كل مرة 👏👏"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nلا بجد خدمة تحفة، متأخرين ساعتين بس زي كل مرة 👏👏",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M3__ar_ma__{m}",
+  "meta": {
+   "scenario": "M3",
+   "lang": "ar_ma",
+   "message": "واو سيرفيس زوين بزاف، غير جوج سوايع ديال الروطار مرة أخرى 👏👏"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nواو سيرفيس زوين بزاف، غير جوج سوايع ديال الروطار مرة أخرى 👏👏",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M3__arabizi__{m}",
+  "meta": {
+   "scenario": "M3",
+   "lang": "arabizi",
+   "message": "la begad service to7fa, met2a5areen sa3teen bas zay kol marra 👏👏"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nla begad service to7fa, met2a5areen sa3teen bas zay kol marra 👏👏",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M4__en__{m}",
+  "meta": {
+   "scenario": "M4",
+   "lang": "en",
+   "message": "Bless your heart, you got my order wrong for the third time"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nBless your heart, you got my order wrong for the third time",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M4__ar_msa__{m}",
+  "meta": {
+   "scenario": "M4",
+   "lang": "ar_msa",
+   "message": "سامحكم الله، هذه ثالث مرة يصلني الطلب خطأ"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nسامحكم الله، هذه ثالث مرة يصلني الطلب خطأ",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M4__ar_sa__{m}",
+  "meta": {
+   "scenario": "M4",
+   "lang": "ar_sa",
+   "message": "الله يسامحكم، ثالث مرة الطلب يجيني غلط"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nالله يسامحكم، ثالث مرة الطلب يجيني غلط",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M4__ar_eg__{m}",
+  "meta": {
+   "scenario": "M4",
+   "lang": "ar_eg",
+   "message": "ربنا يسامحكم، تالت مرة الأوردر ييجي غلط"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nربنا يسامحكم، تالت مرة الأوردر ييجي غلط",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M4__ar_ma__{m}",
+  "meta": {
+   "scenario": "M4",
+   "lang": "ar_ma",
+   "message": "الله يسمح ليكم، هادي تالت مرة الكوموند كتجي غالطة"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nالله يسمح ليكم، هادي تالت مرة الكوموند كتجي غالطة",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M4__arabizi__{m}",
+  "meta": {
+   "scenario": "M4",
+   "lang": "arabizi",
+   "message": "rabena yesam7ko, talet marra el order yegy ghalat"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nrabena yesam7ko, talet marra el order yegy ghalat",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M5__en__{m}",
+  "meta": {
+   "scenario": "M5",
+   "lang": "en",
+   "message": "Hello, I would like a refund for order #48213 please. The items were not as described."
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nHello, I would like a refund for order #48213 please. The items were not as described.",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M5__ar_msa__{m}",
+  "meta": {
+   "scenario": "M5",
+   "lang": "ar_msa",
+   "message": "مرحباً، أرغب في استرداد مبلغ الطلب رقم 48213 من فضلك. المنتجات لم تكن مطابقة للوصف."
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nمرحباً، أرغب في استرداد مبلغ الطلب رقم 48213 من فضلك. المنتجات لم تكن مطابقة للوصف.",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M5__ar_sa__{m}",
+  "meta": {
+   "scenario": "M5",
+   "lang": "ar_sa",
+   "message": "السلام عليكم، أبغى أسترجع فلوس الطلب 48213 لو سمحت. الأغراض مو نفس الوصف."
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nالسلام عليكم، أبغى أسترجع فلوس الطلب 48213 لو سمحت. الأغراض مو نفس الوصف.",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M5__ar_eg__{m}",
+  "meta": {
+   "scenario": "M5",
+   "lang": "ar_eg",
+   "message": "السلام عليكم، عايز أسترجع فلوس الأوردر 48213 لو سمحت. الحاجات مش زي الوصف."
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nالسلام عليكم، عايز أسترجع فلوس الأوردر 48213 لو سمحت. الحاجات مش زي الوصف.",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M5__ar_ma__{m}",
+  "meta": {
+   "scenario": "M5",
+   "lang": "ar_ma",
+   "message": "السلام، بغيت نرجع الفلوس ديال الكوموند 48213 عافاك. السلعة ماشي بحال الوصف."
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nالسلام، بغيت نرجع الفلوس ديال الكوموند 48213 عافاك. السلعة ماشي بحال الوصف.",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M5__arabizi__{m}",
+  "meta": {
+   "scenario": "M5",
+   "lang": "arabizi",
+   "message": "el salamo 3aleekom, 3ayez asterga3 felous el order 48213 law sama7t. el 7agat mesh zay el wasf."
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nel salamo 3aleekom, 3ayez asterga3 felous el order 48213 law sama7t. el 7agat mesh zay el wasf.",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M6__en__{m}",
+  "meta": {
+   "scenario": "M6",
+   "lang": "en",
+   "message": "cancel my order NOW please, I ordered to the wrong address"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\ncancel my order NOW please, I ordered to the wrong address",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M6__ar_msa__{m}",
+  "meta": {
+   "scenario": "M6",
+   "lang": "ar_msa",
+   "message": "ألغوا طلبي الآن من فضلكم، طلبته على العنوان الخطأ"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nألغوا طلبي الآن من فضلكم، طلبته على العنوان الخطأ",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M6__ar_sa__{m}",
+  "meta": {
+   "scenario": "M6",
+   "lang": "ar_sa",
+   "message": "تكفون ألغوا طلبي الحين، طلبته على عنوان غلط"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nتكفون ألغوا طلبي الحين، طلبته على عنوان غلط",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M6__ar_eg__{m}",
+  "meta": {
+   "scenario": "M6",
+   "lang": "ar_eg",
+   "message": "الغوا الأوردر دلوقتي حالاً لو سمحتوا، طلبته على عنوان غلط"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nالغوا الأوردر دلوقتي حالاً لو سمحتوا، طلبته على عنوان غلط",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M6__ar_ma__{m}",
+  "meta": {
+   "scenario": "M6",
+   "lang": "ar_ma",
+   "message": "عافاكم لغيو الكوموند دابا، درتها فعنوان غالط"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nعافاكم لغيو الكوموند دابا، درتها فعنوان غالط",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M6__arabizi__{m}",
+  "meta": {
+   "scenario": "M6",
+   "lang": "arabizi",
+   "message": "elghoo el order delwa2ty 7alan law sama7to, talabto 3ala 3enwan ghalat"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nelghoo el order delwa2ty 7alan law sama7to, talabto 3ala 3enwan ghalat",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M7__en__{m}",
+  "meta": {
+   "scenario": "M7",
+   "lang": "en",
+   "message": "you sent peanut butter cookies instead of the plain ones and my son has a nut allergy, he already ate one"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nyou sent peanut butter cookies instead of the plain ones and my son has a nut allergy, he already ate one",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M7__ar_msa__{m}",
+  "meta": {
+   "scenario": "M7",
+   "lang": "ar_msa",
+   "message": "أرسلتم بسكويت بزبدة الفول السوداني بدلاً من العادي، وابني لديه حساسية من المكسرات وقد أكل واحدة بالفعل"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nأرسلتم بسكويت بزبدة الفول السوداني بدلاً من العادي، وابني لديه حساسية من المكسرات وقد أكل واحدة بالفعل",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M7__ar_sa__{m}",
+  "meta": {
+   "scenario": "M7",
+   "lang": "ar_sa",
+   "message": "أرسلتوا بسكوت فيه زبدة فول سوداني بدال العادي، وولدي عنده حساسية مكسرات وأكل وحدة"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nأرسلتوا بسكوت فيه زبدة فول سوداني بدال العادي، وولدي عنده حساسية مكسرات وأكل وحدة",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M7__ar_eg__{m}",
+  "meta": {
+   "scenario": "M7",
+   "lang": "ar_eg",
+   "message": "بعتوا بسكوت بزبدة الفول السوداني بدل العادي، وابني عنده حساسية من المكسرات وكل واحدة خلاص"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nبعتوا بسكوت بزبدة الفول السوداني بدل العادي، وابني عنده حساسية من المكسرات وكل واحدة خلاص",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M7__ar_ma__{m}",
+  "meta": {
+   "scenario": "M7",
+   "lang": "ar_ma",
+   "message": "صيفطتو بيسكوي فيه زبدة الكاوكاو بلاصة العادي، وولدي عندو الحساسية ديال الكاوكاو وكلا وحدة"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nصيفطتو بيسكوي فيه زبدة الكاوكاو بلاصة العادي، وولدي عندو الحساسية ديال الكاوكاو وكلا وحدة",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M7__arabizi__{m}",
+  "meta": {
+   "scenario": "M7",
+   "lang": "arabizi",
+   "message": "ba3atoo baskot be zebdet el fool el soudany badal el 3ady, w ebny 3ando 7asaseya men el mekassarat w kal wa7da 5alas"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nba3atoo baskot be zebdet el fool el soudany badal el 3ady, w ebny 3ando 7asaseya men el mekassarat w kal wa7da 5alas",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M8__en__{m}",
+  "meta": {
+   "scenario": "M8",
+   "lang": "en",
+   "message": "I was charged twice for the same order, 2 x $45 on my card"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nI was charged twice for the same order, 2 x $45 on my card",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M8__ar_msa__{m}",
+  "meta": {
+   "scenario": "M8",
+   "lang": "ar_msa",
+   "message": "تم خصم المبلغ مرتين لنفس الطلب، 2 × 150 ريالاً من بطاقتي"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nتم خصم المبلغ مرتين لنفس الطلب، 2 × 150 ريالاً من بطاقتي",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M8__ar_sa__{m}",
+  "meta": {
+   "scenario": "M8",
+   "lang": "ar_sa",
+   "message": "انخصم مني المبلغ مرتين على نفس الطلب، 150 ريال مرتين من البطاقة"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nانخصم مني المبلغ مرتين على نفس الطلب، 150 ريال مرتين من البطاقة",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M8__ar_eg__{m}",
+  "meta": {
+   "scenario": "M8",
+   "lang": "ar_eg",
+   "message": "اتخصم مني مرتين على نفس الأوردر، 450 جنيه مرتين من الكارت"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nاتخصم مني مرتين على نفس الأوردر، 450 جنيه مرتين من الكارت",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M8__ar_ma__{m}",
+  "meta": {
+   "scenario": "M8",
+   "lang": "ar_ma",
+   "message": "تقطعو ليا الفلوس جوج مرات على نفس الكوموند، 300 درهم جوج مرات من الكارطة"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nتقطعو ليا الفلوس جوج مرات على نفس الكوموند، 300 درهم جوج مرات من الكارطة",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M8__arabizi__{m}",
+  "meta": {
+   "scenario": "M8",
+   "lang": "arabizi",
+   "message": "et5asam menny marteen 3ala nafs el order, 450 geneh marteen men el card"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\net5asam menny marteen 3ala nafs el order, 450 geneh marteen men el card",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M9__en__{m}",
+  "meta": {
+   "scenario": "M9",
+   "lang": "en",
+   "message": "just wanted to say the driver was super kind and helped me carry everything upstairs, thank you!"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\njust wanted to say the driver was super kind and helped me carry everything upstairs, thank you!",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M9__ar_msa__{m}",
+  "meta": {
+   "scenario": "M9",
+   "lang": "ar_msa",
+   "message": "أردت فقط أن أقول إن المندوب كان لطيفاً جداً وساعدني في حمل كل شيء إلى الأعلى، شكراً لكم!"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nأردت فقط أن أقول إن المندوب كان لطيفاً جداً وساعدني في حمل كل شيء إلى الأعلى، شكراً لكم!",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M9__ar_sa__{m}",
+  "meta": {
+   "scenario": "M9",
+   "lang": "ar_sa",
+   "message": "حبيت أقول إن المندوب كان مره ذوق وساعدني أطلع الأغراض فوق، يعطيكم العافية!"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nحبيت أقول إن المندوب كان مره ذوق وساعدني أطلع الأغراض فوق، يعطيكم العافية!",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M9__ar_eg__{m}",
+  "meta": {
+   "scenario": "M9",
+   "lang": "ar_eg",
+   "message": "حبيت أقول إن الطيار كان ذوق جداً وساعدني أطلع الحاجات فوق، متشكرين!"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nحبيت أقول إن الطيار كان ذوق جداً وساعدني أطلع الحاجات فوق، متشكرين!",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M9__ar_ma__{m}",
+  "meta": {
+   "scenario": "M9",
+   "lang": "ar_ma",
+   "message": "بغيت غير نقول بلي الليفرور كان ظريف بزاف وعاوني نطلع كلشي للفوق، شكرا بزاف!"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nبغيت غير نقول بلي الليفرور كان ظريف بزاف وعاوني نطلع كلشي للفوق، شكرا بزاف!",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M9__arabizi__{m}",
+  "meta": {
+   "scenario": "M9",
+   "lang": "arabizi",
+   "message": "7abbeit a2ool en el tayar kan zoo2 gedan w sa3edny atala3 el 7agat fo2, metshakreen!"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\n7abbeit a2ool en el tayar kan zoo2 gedan w sa3edny atala3 el 7agat fo2, metshakreen!",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M10__en__{m}",
+  "meta": {
+   "scenario": "M10",
+   "lang": "en",
+   "message": "do you deliver to Maple Heights? and is there a minimum order?"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\ndo you deliver to Maple Heights? and is there a minimum order?",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M10__ar_msa__{m}",
+  "meta": {
+   "scenario": "M10",
+   "lang": "ar_msa",
+   "message": "هل توصلون إلى حي النرجس؟ وهل يوجد حد أدنى للطلب؟"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nهل توصلون إلى حي النرجس؟ وهل يوجد حد أدنى للطلب؟",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M10__ar_sa__{m}",
+  "meta": {
+   "scenario": "M10",
+   "lang": "ar_sa",
+   "message": "توصلون حي النرجس؟ وفيه حد أدنى للطلب؟"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nتوصلون حي النرجس؟ وفيه حد أدنى للطلب؟",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M10__ar_eg__{m}",
+  "meta": {
+   "scenario": "M10",
+   "lang": "ar_eg",
+   "message": "بتوصلوا التجمع الخامس؟ وفيه حد أدنى للأوردر؟"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nبتوصلوا التجمع الخامس؟ وفيه حد أدنى للأوردر؟",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M10__ar_ma__{m}",
+  "meta": {
+   "scenario": "M10",
+   "lang": "ar_ma",
+   "message": "واش كتوصلو لمعاريف؟ وكاين شي حد أدنى للكوموند؟"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nواش كتوصلو لمعاريف؟ وكاين شي حد أدنى للكوموند؟",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M10__arabizi__{m}",
+  "meta": {
+   "scenario": "M10",
+   "lang": "arabizi",
+   "message": "betwasalo el tagamo3 el 5ames? w fe 7ad adna lel order?"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nbetwasalo el tagamo3 el 5ames? w fe 7ad adna lel order?",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M11__en__{m}",
+  "meta": {
+   "scenario": "M11",
+   "lang": "en",
+   "message": "honestly this is the last time I'm ordering from you, something goes wrong every single week"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nhonestly this is the last time I'm ordering from you, something goes wrong every single week",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M11__ar_msa__{m}",
+  "meta": {
+   "scenario": "M11",
+   "lang": "ar_msa",
+   "message": "بصراحة هذه آخر مرة أطلب منكم، كل أسبوع تحدث مشكلة"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nبصراحة هذه آخر مرة أطلب منكم، كل أسبوع تحدث مشكلة",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M11__ar_sa__{m}",
+  "meta": {
+   "scenario": "M11",
+   "lang": "ar_sa",
+   "message": "والله هذي آخر مرة أطلب منكم، كل أسبوع فيه مشكلة"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nوالله هذي آخر مرة أطلب منكم، كل أسبوع فيه مشكلة",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M11__ar_eg__{m}",
+  "meta": {
+   "scenario": "M11",
+   "lang": "ar_eg",
+   "message": "بصراحة دي آخر مرة أطلب منكم، كل أسبوع فيه مصيبة"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nبصراحة دي آخر مرة أطلب منكم، كل أسبوع فيه مصيبة",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M11__ar_ma__{m}",
+  "meta": {
+   "scenario": "M11",
+   "lang": "ar_ma",
+   "message": "بصراحة هادي آخر مرة نطلب منكم، كل سيمانة كاين شي مشكل"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nبصراحة هادي آخر مرة نطلب منكم، كل سيمانة كاين شي مشكل",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M11__arabizi__{m}",
+  "meta": {
+   "scenario": "M11",
+   "lang": "arabizi",
+   "message": "besara7a di a5er marra atlob menko, kol esboo3 fe moseeba"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nbesara7a di a5er marra atlob menko, kol esboo3 fe moseeba",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M12__en__{m}",
+  "meta": {
+   "scenario": "M12",
+   "lang": "en",
+   "message": "thanks for the fast delivery! but the bread was stale and the tomatoes were squashed"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nthanks for the fast delivery! but the bread was stale and the tomatoes were squashed",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M12__ar_msa__{m}",
+  "meta": {
+   "scenario": "M12",
+   "lang": "ar_msa",
+   "message": "شكراً على التوصيل السريع! لكن الخبز كان قديماً والطماطم مهروسة"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nشكراً على التوصيل السريع! لكن الخبز كان قديماً والطماطم مهروسة",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M12__ar_sa__{m}",
+  "meta": {
+   "scenario": "M12",
+   "lang": "ar_sa",
+   "message": "مشكورين على سرعة التوصيل! بس الخبز كان يابس والطماط مفعوص"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nمشكورين على سرعة التوصيل! بس الخبز كان يابس والطماط مفعوص",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M12__ar_eg__{m}",
+  "meta": {
+   "scenario": "M12",
+   "lang": "ar_eg",
+   "message": "شكراً على التوصيل السريع! بس العيش كان بايت والطماطم مفعصة"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nشكراً على التوصيل السريع! بس العيش كان بايت والطماطم مفعصة",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M12__ar_ma__{m}",
+  "meta": {
+   "scenario": "M12",
+   "lang": "ar_ma",
+   "message": "شكرا على السرعة فالتوصيل! ولكن الخبز كان يابس والطماطم مهروسة"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nشكرا على السرعة فالتوصيل! ولكن الخبز كان يابس والطماطم مهروسة",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "messages",
+  "key": "M12__arabizi__{m}",
+  "meta": {
+   "scenario": "M12",
+   "lang": "arabizi",
+   "message": "shokran 3al tawseel el saree3! bas el 3eish kan bayet wel tamatem mef3asa"
+  },
+  "prompt": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\nshokran 3al tawseel el saree3! bas el 3eish kan bayet wel tamatem mef3asa",
+  "temperature": 0.0,
+  "max_tokens": 400
+ },
+ {
+  "exp": "campaign",
+  "key": "T1__ar_sa__{m}",
+  "meta": {
+   "line": "T1",
+   "market": "ar_sa",
+   "source": "I'm lovin' it"
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for Saudi Arabia (Arabic). Brand: McDonald's. Original: \"I'm lovin' it\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "T1__ar_eg__{m}",
+  "meta": {
+   "line": "T1",
+   "market": "ar_eg",
+   "source": "I'm lovin' it"
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for Egypt (Arabic). Brand: McDonald's. Original: \"I'm lovin' it\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "T1__en_gb__{m}",
+  "meta": {
+   "line": "T1",
+   "market": "en_gb",
+   "source": "I'm lovin' it"
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for United Kingdom (British English). Brand: McDonald's. Original: \"I'm lovin' it\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "T2__ar_sa__{m}",
+  "meta": {
+   "line": "T2",
+   "market": "ar_sa",
+   "source": "Just Do It"
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for Saudi Arabia (Arabic). Brand: Nike. Original: \"Just Do It\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "T2__ar_eg__{m}",
+  "meta": {
+   "line": "T2",
+   "market": "ar_eg",
+   "source": "Just Do It"
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for Egypt (Arabic). Brand: Nike. Original: \"Just Do It\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "T2__en_gb__{m}",
+  "meta": {
+   "line": "T2",
+   "market": "en_gb",
+   "source": "Just Do It"
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for United Kingdom (British English). Brand: Nike. Original: \"Just Do It\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "T3__ar_sa__{m}",
+  "meta": {
+   "line": "T3",
+   "market": "ar_sa",
+   "source": "Have a break, have a KitKat"
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for Saudi Arabia (Arabic). Brand: KitKat. Original: \"Have a break, have a KitKat\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "T3__ar_eg__{m}",
+  "meta": {
+   "line": "T3",
+   "market": "ar_eg",
+   "source": "Have a break, have a KitKat"
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for Egypt (Arabic). Brand: KitKat. Original: \"Have a break, have a KitKat\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "T3__en_gb__{m}",
+  "meta": {
+   "line": "T3",
+   "market": "en_gb",
+   "source": "Have a break, have a KitKat"
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for United Kingdom (British English). Brand: KitKat. Original: \"Have a break, have a KitKat\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "T4__ar_sa__{m}",
+  "meta": {
+   "line": "T4",
+   "market": "ar_sa",
+   "source": "Red Bull gives you wings"
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for Saudi Arabia (Arabic). Brand: Red Bull. Original: \"Red Bull gives you wings\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "T4__ar_eg__{m}",
+  "meta": {
+   "line": "T4",
+   "market": "ar_eg",
+   "source": "Red Bull gives you wings"
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for Egypt (Arabic). Brand: Red Bull. Original: \"Red Bull gives you wings\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "T4__en_gb__{m}",
+  "meta": {
+   "line": "T4",
+   "market": "en_gb",
+   "source": "Red Bull gives you wings"
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for United Kingdom (British English). Brand: Red Bull. Original: \"Red Bull gives you wings\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "T5__ar_sa__{m}",
+  "meta": {
+   "line": "T5",
+   "market": "ar_sa",
+   "source": "Because you're worth it"
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for Saudi Arabia (Arabic). Brand: L'Oréal. Original: \"Because you're worth it\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "T5__ar_eg__{m}",
+  "meta": {
+   "line": "T5",
+   "market": "ar_eg",
+   "source": "Because you're worth it"
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for Egypt (Arabic). Brand: L'Oréal. Original: \"Because you're worth it\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "T5__en_gb__{m}",
+  "meta": {
+   "line": "T5",
+   "market": "en_gb",
+   "source": "Because you're worth it"
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for United Kingdom (British English). Brand: L'Oréal. Original: \"Because you're worth it\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "T6__ar_sa__{m}",
+  "meta": {
+   "line": "T6",
+   "market": "ar_sa",
+   "source": "Got milk?"
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for Saudi Arabia (Arabic). Brand: Got Milk (California Milk Processor Board). Original: \"Got milk?\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "T6__ar_eg__{m}",
+  "meta": {
+   "line": "T6",
+   "market": "ar_eg",
+   "source": "Got milk?"
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for Egypt (Arabic). Brand: Got Milk (California Milk Processor Board). Original: \"Got milk?\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "T6__en_gb__{m}",
+  "meta": {
+   "line": "T6",
+   "market": "en_gb",
+   "source": "Got milk?"
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for United Kingdom (British English). Brand: Got Milk (California Milk Processor Board). Original: \"Got milk?\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "I1__ar_sa__{m}",
+  "meta": {
+   "line": "I1",
+   "market": "ar_sa",
+   "source": "We deliver the goods. Literally."
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for Saudi Arabia (Arabic). Brand: a grocery delivery app. Original: \"We deliver the goods. Literally.\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "I1__ar_eg__{m}",
+  "meta": {
+   "line": "I1",
+   "market": "ar_eg",
+   "source": "We deliver the goods. Literally."
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for Egypt (Arabic). Brand: a grocery delivery app. Original: \"We deliver the goods. Literally.\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "I1__en_gb__{m}",
+  "meta": {
+   "line": "I1",
+   "market": "en_gb",
+   "source": "We deliver the goods. Literally."
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for United Kingdom (British English). Brand: a grocery delivery app. Original: \"We deliver the goods. Literally.\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "I2__ar_sa__{m}",
+  "meta": {
+   "line": "I2",
+   "market": "ar_sa",
+   "source": "Rise and grind."
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for Saudi Arabia (Arabic). Brand: a coffee chain. Original: \"Rise and grind.\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "I2__ar_eg__{m}",
+  "meta": {
+   "line": "I2",
+   "market": "ar_eg",
+   "source": "Rise and grind."
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for Egypt (Arabic). Brand: a coffee chain. Original: \"Rise and grind.\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "I2__en_gb__{m}",
+  "meta": {
+   "line": "I2",
+   "market": "en_gb",
+   "source": "Rise and grind."
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for United Kingdom (British English). Brand: a coffee chain. Original: \"Rise and grind.\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "I3__ar_sa__{m}",
+  "meta": {
+   "line": "I3",
+   "market": "ar_sa",
+   "source": "Bring home the bacon with zero fees."
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for Saudi Arabia (Arabic). Brand: a bank. Original: \"Bring home the bacon with zero fees.\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "I3__ar_eg__{m}",
+  "meta": {
+   "line": "I3",
+   "market": "ar_eg",
+   "source": "Bring home the bacon with zero fees."
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for Egypt (Arabic). Brand: a bank. Original: \"Bring home the bacon with zero fees.\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "I3__en_gb__{m}",
+  "meta": {
+   "line": "I3",
+   "market": "en_gb",
+   "source": "Bring home the bacon with zero fees."
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for United Kingdom (British English). Brand: a bank. Original: \"Bring home the bacon with zero fees.\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "C1__ar_sa__{m}",
+  "meta": {
+   "line": "C1",
+   "market": "ar_sa",
+   "source": "Black Friday: up to 70% off everything."
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for Saudi Arabia (Arabic). Brand: an online store. Original: \"Black Friday: up to 70% off everything.\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "C1__ar_eg__{m}",
+  "meta": {
+   "line": "C1",
+   "market": "ar_eg",
+   "source": "Black Friday: up to 70% off everything."
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for Egypt (Arabic). Brand: an online store. Original: \"Black Friday: up to 70% off everything.\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "C1__en_gb__{m}",
+  "meta": {
+   "line": "C1",
+   "market": "en_gb",
+   "source": "Black Friday: up to 70% off everything."
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for United Kingdom (British English). Brand: an online store. Original: \"Black Friday: up to 70% off everything.\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "C2__ar_sa__{m}",
+  "meta": {
+   "line": "C2",
+   "market": "ar_sa",
+   "source": "Happy hour: 2-for-1 drinks from 5 to 7pm."
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for Saudi Arabia (Arabic). Brand: a restaurant. Original: \"Happy hour: 2-for-1 drinks from 5 to 7pm.\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "C2__ar_eg__{m}",
+  "meta": {
+   "line": "C2",
+   "market": "ar_eg",
+   "source": "Happy hour: 2-for-1 drinks from 5 to 7pm."
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for Egypt (Arabic). Brand: a restaurant. Original: \"Happy hour: 2-for-1 drinks from 5 to 7pm.\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "C2__en_gb__{m}",
+  "meta": {
+   "line": "C2",
+   "market": "en_gb",
+   "source": "Happy hour: 2-for-1 drinks from 5 to 7pm."
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for United Kingdom (British English). Brand: a restaurant. Original: \"Happy hour: 2-for-1 drinks from 5 to 7pm.\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "C3__ar_sa__{m}",
+  "meta": {
+   "line": "C3",
+   "market": "ar_sa",
+   "source": "Thanksgiving dinner, sorted. Order your turkey today."
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for Saudi Arabia (Arabic). Brand: a grocery delivery app. Original: \"Thanksgiving dinner, sorted. Order your turkey today.\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "C3__ar_eg__{m}",
+  "meta": {
+   "line": "C3",
+   "market": "ar_eg",
+   "source": "Thanksgiving dinner, sorted. Order your turkey today."
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for Egypt (Arabic). Brand: a grocery delivery app. Original: \"Thanksgiving dinner, sorted. Order your turkey today.\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "C3__en_gb__{m}",
+  "meta": {
+   "line": "C3",
+   "market": "en_gb",
+   "source": "Thanksgiving dinner, sorted. Order your turkey today."
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for United Kingdom (British English). Brand: a grocery delivery app. Original: \"Thanksgiving dinner, sorted. Order your turkey today.\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "C4__ar_sa__{m}",
+  "meta": {
+   "line": "C4",
+   "market": "ar_sa",
+   "source": "Get beach-body ready this summer."
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for Saudi Arabia (Arabic). Brand: a gym. Original: \"Get beach-body ready this summer.\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "C4__ar_eg__{m}",
+  "meta": {
+   "line": "C4",
+   "market": "ar_eg",
+   "source": "Get beach-body ready this summer."
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for Egypt (Arabic). Brand: a gym. Original: \"Get beach-body ready this summer.\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "C4__en_gb__{m}",
+  "meta": {
+   "line": "C4",
+   "market": "en_gb",
+   "source": "Get beach-body ready this summer."
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for United Kingdom (British English). Brand: a gym. Original: \"Get beach-body ready this summer.\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "C5__ar_sa__{m}",
+  "meta": {
+   "line": "C5",
+   "market": "ar_sa",
+   "source": "Your Friday night date starts here."
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for Saudi Arabia (Arabic). Brand: a dating app. Original: \"Your Friday night date starts here.\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "C5__ar_eg__{m}",
+  "meta": {
+   "line": "C5",
+   "market": "ar_eg",
+   "source": "Your Friday night date starts here."
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for Egypt (Arabic). Brand: a dating app. Original: \"Your Friday night date starts here.\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ },
+ {
+  "exp": "campaign",
+  "key": "C5__en_gb__{m}",
+  "meta": {
+   "line": "C5",
+   "market": "en_gb",
+   "source": "Your Friday night date starts here."
+  },
+  "prompt": "You are a senior copywriter. Adapt this English marketing line for United Kingdom (British English). Brand: a dating app. Original: \"Your Friday night date starts here.\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for.",
+  "temperature": 1.0,
+  "max_tokens": 600
+ }
+]

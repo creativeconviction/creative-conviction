@@ -59,7 +59,7 @@ function score() {
     r.still_black_friday = /black friday|بلاك فرايدي|الجمعة السوداء|黑色星期五|ब्लैक फ्राइडे|ブラックフライデー|viernes negro|vendredi noir/i.test(r.adaptation || '');
   }
   const avg = (xs) => { const v = xs.filter((x) => typeof x === 'number'); return v.length ? +(v.reduce((a, b) => a + b, 0) / v.length).toFixed(2) : null; };
-  const big = rows.filter((r) => r.model !== 'saba');
+  const big = rows.filter((r) => ['claude', 'gpt', 'gemini', 'deepseek'].includes(r.model));
   const out = { literalness_by_market: {}, approach_by_market: {}, by_type: {}, saudi_alcohol_pork: {}, black_friday: {} };
   for (const mk of Object.keys(D.markets)) {
     const g = big.filter((r) => r.market === mk);
