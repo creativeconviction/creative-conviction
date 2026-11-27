@@ -21,7 +21,8 @@ MODELS = {
 }
 
 app = modal.App("arabic-first-models")
-image = modal.Image.debian_slim(python_version="3.11").pip_install("vllm==0.8.5")
+# transformers pinned: newer versions mis-read ALLaM's SentencePiece tokenizer as a tiktoken file
+image = modal.Image.debian_slim(python_version="3.11").pip_install("vllm==0.8.5", "transformers==4.51.3", "sentencepiece==0.2.0")
 hf_cache = modal.Volume.from_name("hf-cache-arabic-models", create_if_missing=True)
 
 
@@ -49,6 +50,9 @@ def main(models: str = "allam,fanar"):
     here = pathlib.Path(__file__).parent
     jobs = json.loads((here / "jobs.json").read_text(encoding="utf-8"))
     keys = [m.strip() for m in models.split(",") if m.strip()]
-    for key, res in zip(keys, run.starmap([(k, jobs) for k in keys])):
+    for key, res in zip(keys, run.starmap([(k, jobs) for k in keys], return_exceptions=True)):
+        if isinstance(res, BaseException):
+            print(f"{key}: FAILED -> {type(res).__name__}: {str(res)[:300]}")
+            continue
         (here / f"outputs_{key}.json").write_text(json.dumps(res, ensure_ascii=False, indent=1), encoding="utf-8")
         print(f"{key}: {len(res)} outputs -> outputs_{key}.json")
