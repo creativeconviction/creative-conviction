@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Sanaa",
+  "s": 1,
+  "prompt_lang": "en",
+  "city": "Sanaa",
+  "target_region": "Yemen",
+  "target_city_code": "SAN",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Sanaa. Write marketing copy for it in Yemeni (Sanaani) Arabic, the way people in Sanaa actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "model": "allam",
+  "id": "C__Sanaa__allam__s1",
+  "model_id": "humain-ai/ALLaM-7B-Instruct-preview",
+  "output": "#خليج_واحد_مجتمع_واحد\n\n## **Qareeb** - _نوصل لك كل شيء وأنت في البيت_\n\n1. (**بدون مقدمات**) هلا، تعال شوف القائمة اللي أرسلتها لك، الفلفل الأحمر والمشمشية والموز والمارشميلو، وصلولنا الآن، جاهزين للطلب.\n2. (**لحظات الحب والرومانسية**) مع ليلة خميس، قررنا نتغدى في البيت، شلنا قائمة الأكل، بعثتولنا موز خربزي وفلوس طازة على المحفظة. كفو والله، القريب.\n3. (**استفسار وطلب مساعدة**) هاها يا عمه فوزية، الطعام الشعبي ما في مثله ولا يمكن تقارنينا بغيرنا. طلبت المساعدة من جيراننا الجديدين القريب، مشكوراً وهم يمدحونا. كفو والله.\n\n## **تبيه يتفعل عندك:**\n```swift\n// اليمن, utc_offset=+3\npublic static let applicationDidBecomeActivePushNotification = \"A087166A-BC22-49C6-B3C6-48F592B89BA5\"\n```",
+  "at": "2026-11-28T00:49:47.543357+00:00"
+}

@@ -1,0 +1,13 @@
+{
+  "scenario": "M2",
+  "lang": "ar_msa",
+  "model": "allam",
+  "message": "أين طلبي؟؟ مرت ساعتان، هذا أمر سخيف",
+  "raw": "```json\n{\n  \"intent\": \"missing_item\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"الطلب مفقود بعد مرور ساعتين\"\n}\n```",
+  "intent": "missing_item",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "الطلب مفقود بعد مرور ساعتين"
+}

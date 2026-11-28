@@ -1,0 +1,12 @@
+{
+  "line": "C5",
+  "market": "ar_sa",
+  "model": "allam",
+  "source": "Your Friday night date starts here.",
+  "raw": "{\n  \"literal\": \"ليلة الجمعة تبدأ هنا الموعد\",\n  \"adaptation\": \"ليلة الجمعة تبدأ بموعدك\",\n  \"back_translation\": \"Your Friday night date starts here.\",\n  \"approach\": \"literal\",\n  \"notes\": \"Changed the focus from 'starts here' to 'تبدأ بموعدك' to ensure a gentle approach, considering cultural values around arranged marriages and older generations' views on dating apps in Saudi Arabia.\"\n}",
+  "literal": "ليلة الجمعة تبدأ هنا الموعد",
+  "adaptation": "ليلة الجمعة تبدأ بموعدك",
+  "back_translation": "Your Friday night date starts here.",
+  "approach": "literal",
+  "notes": "Changed the focus from 'starts here' to 'تبدأ بموعدك' to ensure a gentle approach, considering cultural values around arranged marriages and older generations' views on dating apps in Saudi Arabia."
+}

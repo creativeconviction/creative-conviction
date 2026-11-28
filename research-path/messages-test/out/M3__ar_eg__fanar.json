@@ -1,0 +1,13 @@
+{
+  "scenario": "M3",
+  "lang": "ar_eg",
+  "model": "fanar",
+  "message": "لا بجد خدمة تحفة، متأخرين ساعتين بس زي كل مرة 👏👏",
+  "raw": "{\n\"intent\": \"late_delivery\",\n\"sentiment\": \"mixed\",\n\"urgency\": \"medium\",\n\"sarcasm\": false,\n\"churn_risk\": false,\n\"summary\": \"Customer expresses satisfaction with service but complains about a two-hour delay.\"\n}",
+  "intent": "late_delivery",
+  "sentiment": "mixed",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "Customer expresses satisfaction with service but complains about a two-hour delay."
+}

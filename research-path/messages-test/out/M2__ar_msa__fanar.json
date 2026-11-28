@@ -1,0 +1,13 @@
+{
+  "scenario": "M2",
+  "lang": "ar_msa",
+  "model": "fanar",
+  "message": "أين طلبي؟؟ مرت ساعتان، هذا أمر سخيف",
+  "raw": "{\n\"intent\": \"late_delivery\",\n\"sentiment\": \"negative\",\n\"urgency\": \"high\",\n\"sarcasm\": true,\n\"churn_risk\": true,\n\"summary\": \"Customer is upset and urgently inquiring about the status of their delayed order.\"\n}",
+  "intent": "late_delivery",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": true,
+  "churn_risk": true,
+  "summary": "Customer is upset and urgently inquiring about the status of their delayed order."
+}

@@ -1,0 +1,12 @@
+{
+  "line": "T5",
+  "market": "en_gb",
+  "model": "allam",
+  "source": "Because you're worth it",
+  "raw": "{\n  \"literal\": \"Because you're worth it\",\n  \"adaptation\": \"Because you're worth it in the UK\",\n  \"back_translation\": \"You are worth it in the UK\",\n  \"approach\": \"replaced\",\n  \"notes\": \"Replaced 'it' with 'it in the UK' to ensure the line is more region-specific and relatable to UK audiences.\"\n}",
+  "literal": "Because you're worth it",
+  "adaptation": "Because you're worth it in the UK",
+  "back_translation": "You are worth it in the UK",
+  "approach": "replaced",
+  "notes": "Replaced 'it' with 'it in the UK' to ensure the line is more region-specific and relatable to UK audiences."
+}

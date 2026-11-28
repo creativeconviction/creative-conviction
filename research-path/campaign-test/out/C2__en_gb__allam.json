@@ -1,0 +1,12 @@
+{
+  "line": "C2",
+  "market": "en_gb",
+  "model": "allam",
+  "source": "Happy hour: 2-for-1 drinks from 5 to 7pm.",
+  "raw": "{\n  \"literal\": \"5 to 7pm, the same price of two for one drinks.\",\n  \"adaptation\": \"Drop in for a G&T from £5 and enjoy 2-for-1 on all spirits for 2 happy hours a day from 5pm.\",\n  \"back_translation\": \"Happy hour: 2-for-1 drinks from 5 to 7pm.\",\n  \"approach\": \"literal\",\n  \"notes\": \"Instead of using the term 'happy hour', which may not resonate as well with British audiences, the adaptation was phrased more conversational, highlighting the value proposition while incorporating the unique spirit offer.\"\n}",
+  "literal": "5 to 7pm, the same price of two for one drinks.",
+  "adaptation": "Drop in for a G&T from £5 and enjoy 2-for-1 on all spirits for 2 happy hours a day from 5pm.",
+  "back_translation": "Happy hour: 2-for-1 drinks from 5 to 7pm.",
+  "approach": "literal",
+  "notes": "Instead of using the term 'happy hour', which may not resonate as well with British audiences, the adaptation was phrased more conversational, highlighting the value proposition while incorporating the unique spirit offer."
+}

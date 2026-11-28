@@ -1,0 +1,13 @@
+{
+  "scenario": "M10",
+  "lang": "ar_ma",
+  "model": "fanar",
+  "message": "واش كتوصلو لمعاريف؟ وكاين شي حد أدنى للكوموند؟",
+  "raw": "{\n\"intent\": \"question\",\n\"sentiment\": \"neutral\",\n\"urgency\": \"low\",\n\"sarcasm\": \"false\",\n\"churn_risk\": \"false\",\n\"summary\": \"Inquiring about delivery to specific areas and minimum order requirements.\"\n}",
+  "intent": "question",
+  "sentiment": "neutral",
+  "urgency": "low",
+  "sarcasm": "false",
+  "churn_risk": "false",
+  "summary": "Inquiring about delivery to specific areas and minimum order requirements."
+}

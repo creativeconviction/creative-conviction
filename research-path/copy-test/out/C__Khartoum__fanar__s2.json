@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Khartoum",
+  "s": 2,
+  "prompt_lang": "en",
+  "city": "Khartoum",
+  "target_region": "Sudan",
+  "target_city_code": "KHA",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Khartoum. Write marketing copy for it in Sudanese Arabic, the way people in Khartoum actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "model": "fanar",
+  "id": "C__Khartoum__fanar__s2",
+  "model_id": "QCRI/Fanar-1-9B-Instruct",
+  "output": "**Tagline:** \"كل حاجة تطلبها، قريب فديتك\" (Everything you need, right at your doorstep)\n\n**Instagram Ad Lines:**\n\n1. \"شاي صباحا، شاورما مساء، ما يحتاجش إنك تروح دورتك. #Qareeb_لخدمتك\" (Morning tea, evening shawerma, no need to leave the house. #Qareeb_AtYourService)\n\n2. \"تفرغ لعيلتك، ولوattrs احتياجاتك. #Qareeb_للراحة\" (Spend time with your family, let Qareeb handle your needs. #Qareeb_ForConvenience)\n\n3. \"الفاصوليا من المصنع، الجبن من أول حليب، كل شي طازج ووصل. #Qareeb_FreshDelivery\" (Beans from the factory, cheese from the first milk, everything fresh and delivered. #Qareeb_FreshDelivery)\n\n**Push Notification:**\n\n\"كمان في شي بطاقمك؟ حاجة تنتظر أوامرك. #Qareeb_Jiddey\" (Something more waiting for you? Order away! #Qareeb_YourWay)",
+  "at": "2026-11-28T00:49:47.551953+00:00"
+}

@@ -1,0 +1,13 @@
+{
+  "scenario": "M6",
+  "lang": "ar_msa",
+  "model": "allam",
+  "message": "ألغوا طلبي الآن من فضلكم، طلبته على العنوان الخطأ",
+  "raw": "```json\n{\n  \"intent\": \"cancel_order\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": \"false\",\n  \"churn_risk\": \"true\",\n  \"summary\": \"customer requests cancellation due to delivery error\"\n}\n```",
+  "intent": "cancel_order",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": "false",
+  "churn_risk": "true",
+  "summary": "customer requests cancellation due to delivery error"
+}

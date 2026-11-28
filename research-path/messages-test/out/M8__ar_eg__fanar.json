@@ -1,0 +1,13 @@
+{
+  "scenario": "M8",
+  "lang": "ar_eg",
+  "model": "fanar",
+  "message": "اتخصم مني مرتين على نفس الأوردر، 450 جنيه مرتين من الكارت",
+  "raw": "{\n\"intent\": \"billing_issue\",\n\"sentiment\": \"negative\",\n\"urgency\": \"high\",\n\"sarcasm\": false,\n\"churn_risk\": true,\n\"summary\": \"Customer reports being double-charged for the same order, requesting a refund.\"\n}",
+  "intent": "billing_issue",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Customer reports being double-charged for the same order, requesting a refund."
+}

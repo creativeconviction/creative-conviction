@@ -1,0 +1,13 @@
+{
+  "scenario": "M1",
+  "lang": "en",
+  "model": "fanar",
+  "message": "hi, my order came but the milk and bread are missing",
+  "raw": "{\n\"intent\": \"missing_item\",\n\"sentiment\": \"negative\",\n\"urgency\": \"medium\",\n\"sarcasm\": \"false\",\n\"churn_risk\": \"high\",\n\"summary\": \"Customer reports missing items (milk and bread) from their grocery delivery.\"\n}",
+  "intent": "missing_item",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": "false",
+  "churn_risk": "high",
+  "summary": "Customer reports missing items (milk and bread) from their grocery delivery."
+}

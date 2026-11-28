@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Rabat",
+  "s": 1,
+  "prompt_lang": "en",
+  "city": "Rabat",
+  "target_region": "Morocco",
+  "target_city_code": "RAB",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Rabat. Write marketing copy for it in Moroccan Arabic (Darija), the way people in Rabat actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "model": "allam",
+  "id": "C__Rabat__allam__s1",
+  "model_id": "humain-ai/ALLaM-7B-Instruct-preview",
+  "output": "#نوصل_لك_لدرارك\n\n##سليكتو تشوف #القريب _نوصلو الك كل شي_ لدرارك\n\n###قطيصة\n\n_انت في الأمان والتوصيل سريع_<br>\n_عندنا الفلوس نشريو من محل نزولو_<br>\n_حدا باب دارك يوصلك الك داريكا_\n\n**رسائل قصيرة**\n\n#الما_زينة_واشترون_القريب _نوصلوك_الك_كل شي_ 🛍️ 🏠 ✨ هادا باش نفهموك باش تعرف وليكوم حنا موجودين فصبغتكم",
+  "at": "2026-11-28T00:49:47.543911+00:00"
+}

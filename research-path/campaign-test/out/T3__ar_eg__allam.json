@@ -1,0 +1,12 @@
+{
+  "line": "T3",
+  "market": "ar_eg",
+  "model": "allam",
+  "source": "Have a break, have a KitKat",
+  "raw": "{\n  \"literal\": \"خذ استراحة، تناول قطعة كيت كات\",\n  \"adaptation\": \"استمتع استراحة، استمتع كيت كات\",\n  \"back_translation\": \"خذ راحة، وتناول قطعة كيت كات\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Adopted a friendlier tone to match the local market's more sociable vibe\"\n}",
+  "literal": "خذ استراحة، تناول قطعة كيت كات",
+  "adaptation": "استمتع استراحة، استمتع كيت كات",
+  "back_translation": "خذ راحة، وتناول قطعة كيت كات",
+  "approach": "adapted",
+  "notes": "Adopted a friendlier tone to match the local market's more sociable vibe"
+}

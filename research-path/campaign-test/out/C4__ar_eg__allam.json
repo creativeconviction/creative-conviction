@@ -1,0 +1,12 @@
+{
+  "line": "C4",
+  "market": "ar_eg",
+  "model": "allam",
+  "source": "Get beach-body ready this summer.",
+  "raw": "{\n  \"literal\": \"استعد لجسم الشاطئ هذا الصيف.\",\n  \"adaptation\": \"احصل على جسد جاهز للشاطئ مع مركزنا الرياضي هذا الصيف.\",\n  \"back_translation\": \"Get beach-body ready this summer with our gym this summer.\",\n  \"approach\": \"literal\",\n  \"notes\": \"We adapted the original English line by replacing 'summer' with 'صيف' to be more inclusive for the whole year. Also, we used 'مركزنا الرياضي' instead of the literal 'gym' as it is more common and appropriate in the Egyptian context.\"\n}",
+  "literal": "استعد لجسم الشاطئ هذا الصيف.",
+  "adaptation": "احصل على جسد جاهز للشاطئ مع مركزنا الرياضي هذا الصيف.",
+  "back_translation": "Get beach-body ready this summer with our gym this summer.",
+  "approach": "literal",
+  "notes": "We adapted the original English line by replacing 'summer' with 'صيف' to be more inclusive for the whole year. Also, we used 'مركزنا الرياضي' instead of the literal 'gym' as it is more common and appropriate in the Egyptian context."
+}

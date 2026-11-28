@@ -1,0 +1,13 @@
+{
+  "scenario": "M12",
+  "lang": "arabizi",
+  "model": "allam",
+  "message": "shokran 3al tawseel el saree3! bas el 3eish kan bayet wel tamatem mef3asa",
+  "raw": "```json\n{\n  \"intent\": \"missing_item\",\n  \"sentiment\": \"neutral\",\n  \"urgency\": \"low\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"Thank you for the delivery of the saree! But the chicken was burnt and tasteless.\"\n}\n```",
+  "intent": "missing_item",
+  "sentiment": "neutral",
+  "urgency": "low",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "Thank you for the delivery of the saree! But the chicken was burnt and tasteless."
+}

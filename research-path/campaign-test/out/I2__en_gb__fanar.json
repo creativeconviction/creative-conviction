@@ -1,0 +1,12 @@
+{
+  "line": "I2",
+  "market": "en_gb",
+  "model": "fanar",
+  "source": "Rise and grind.",
+  "raw": "{\n\"literal\": \"Rise and grind.\",\n\"adaptation\": \"Rise and brew\", \n\"back_translation\": \"Rise and brew\", \n\"approach\": \"adapted\", \n\"notes\": \"While 'grind' is colloquially understood in UK English to mean working hard, changing it to 'brew' adds a direct connection to the product (coffee) and maintains the activeness associated with 'rise'. There are no specific cultural issues affected by this change.\"\n}",
+  "literal": "Rise and grind.",
+  "adaptation": "Rise and brew",
+  "back_translation": "Rise and brew",
+  "approach": "adapted",
+  "notes": "While 'grind' is colloquially understood in UK English to mean working hard, changing it to 'brew' adds a direct connection to the product (coffee) and maintains the activeness associated with 'rise'. There are no specific cultural issues affected by this change."
+}

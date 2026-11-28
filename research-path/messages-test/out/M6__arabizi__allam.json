@@ -1,0 +1,13 @@
+{
+  "scenario": "M6",
+  "lang": "arabizi",
+  "model": "allam",
+  "message": "elghoo el order delwa2ty 7alan law sama7to, talabto 3ala 3enwan ghalat",
+  "raw": "```json\n{\n  \"intent\": \"late_delivery\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"The order is late and the item was delivered wrong.\"\n}\n```",
+  "intent": "late_delivery",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The order is late and the item was delivered wrong."
+}

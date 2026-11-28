@@ -1,0 +1,12 @@
+{
+  "line": "C3",
+  "market": "en_gb",
+  "model": "allam",
+  "source": "Thanksgiving dinner, sorted. Order your turkey today.",
+  "raw": "{\n  \"literal\": \"Thanksgiving dinner sorted. Order your turkey today.\",\n  \"adaptation\": \"Get your Christmas shopping done with a veg box delivered weekly.\",\n  \"back_translation\": \"Thanksgiving dinner, sorted. Order your turkey today.\",\n  \"approach\": \"literal\",\n  \"notes\": \"Changed the holiday reference to Christmas, which is a more relatable time for UK customers, and included weekly delivery options for fresh veggies\"\n}",
+  "literal": "Thanksgiving dinner sorted. Order your turkey today.",
+  "adaptation": "Get your Christmas shopping done with a veg box delivered weekly.",
+  "back_translation": "Thanksgiving dinner, sorted. Order your turkey today.",
+  "approach": "literal",
+  "notes": "Changed the holiday reference to Christmas, which is a more relatable time for UK customers, and included weekly delivery options for fresh veggies"
+}

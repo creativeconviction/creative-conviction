@@ -1,0 +1,14 @@
+{
+  "part": "B",
+  "cond": "en-Cairo",
+  "s": 1,
+  "prompt_lang": "en",
+  "city": "Cairo",
+  "target_region": "Egypt",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب). Write marketing copy for it in Arabic: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy. It is launching in Cairo.",
+  "model": "allam",
+  "id": "B__en-Cairo__allam__s1",
+  "model_id": "humain-ai/ALLaM-7B-Instruct-preview",
+  "output": "#نوصلك_قريب: أسهل طريقة لتسوق كل احتياجاتك!\n\n- حمل الآن واستمتع بالتسوق وأنت في منزلك.\n- مع Qareeb، ستجد كل ما تحتاج إليه في راحة يدك.\n- احصل على توصيل سريع وموثوق لجميع احتياجاتك. \n\nإشعار داخل التطبيق:\nوصلت طلباتك! لا تتردد في تقييم تجربتك، يهمنا رأيكم لنستمر في تقديم أفضل خدمة لكم. \n\nتذكر، تحميل Qareeb يعني \"النجاح\" في خطواتك! #نوصلك_قريب",
+  "at": "2026-11-28T00:49:47.541825+00:00"
+}

@@ -1,0 +1,13 @@
+{
+  "scenario": "M3",
+  "lang": "ar_msa",
+  "model": "fanar",
+  "message": "يا لها من خدمة رائعة، تأخير ساعتين فقط مرة أخرى 👏👏",
+  "raw": "{\n\"intent\": \"praise\",\n\"sentiment\": \"positive\",\n\"urgency\": \"low\",\n\"sarcasm\": false,\n\"churn_risk\": false,\n\"summary\": \"Customer expresses satisfaction despite a two-hour delay.\"\n}",
+  "intent": "praise",
+  "sentiment": "positive",
+  "urgency": "low",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "Customer expresses satisfaction despite a two-hour delay."
+}

@@ -1,0 +1,12 @@
+{
+  "line": "T6",
+  "market": "ar_eg",
+  "model": "allam",
+  "source": "Got milk?",
+  "raw": "{\n  \"literal\": \"عندك لبن؟\",\n  \"adaptation\": \"عندك لبن؟ اللبن مفيد لصحتك وصحت عيلتك\",\n  \"back_translation\": \"Got milk?\",\n  \"approach\": \"literal\",\n  \"notes\": \"Changed 'Got' to a more Egyptian colloquialism 'عندك', added a reminder of the health benefits of milk for families\"\n}",
+  "literal": "عندك لبن؟",
+  "adaptation": "عندك لبن؟ اللبن مفيد لصحتك وصحت عيلتك",
+  "back_translation": "Got milk?",
+  "approach": "literal",
+  "notes": "Changed 'Got' to a more Egyptian colloquialism 'عندك', added a reminder of the health benefits of milk for families"
+}

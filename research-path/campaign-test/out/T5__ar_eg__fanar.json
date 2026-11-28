@@ -1,0 +1,8 @@
+{
+  "line": "T5",
+  "market": "ar_eg",
+  "model": "fanar",
+  "source": "Because you're worth it",
+  "raw": "{\n\"literal\": \"لأنك تستحقها\",\n\"adaptation\": \"لأنه يستحق جيل جديد منك\"،\n\"back_translation\": \"Because it deserves a new generation of you\",\n\"approach\": \"adapted\",\n\"notes\": \"In Egypt, the phrase 'you're worth it' has a strong individualism focus. Adapting it to 'it deserves a new generation of you' reinterprets it in a context that values the potential and contribution of the individual within the broader community, which resonates more culturally.\"\n}",
+  "_parse_error": true
+}

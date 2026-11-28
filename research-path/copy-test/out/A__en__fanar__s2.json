@@ -1,0 +1,12 @@
+{
+  "part": "A",
+  "cond": "en",
+  "s": 2,
+  "prompt_lang": "en",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب). Write marketing copy for it in Arabic: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "model": "fanar",
+  "id": "A__en__fanar__s2",
+  "model_id": "QCRI/Fanar-1-9B-Instruct",
+  "output": "**Tagline:** \"كل ما تحتاجه، بأقرب وقت\" (Everything you need, at your doorstep)\n\n**Instagram Ad Lines:**\n\n1. \"غير طوابير البقالة إلى خطوة واحدة فقط. خيارك الأسهل #قريب\" (Say goodbye to grocery lines with just one step. Your easiest choice #قريب)\n2. \"وقتك ثمين. لنجعل التسوق أكثر سهولة مع #قريب\" (Your time is precious. Let's make shopping easier with #قريب)\n3. \"أينما كنت، #قريب جاهز لك. كل احتياجاتك في مكان واحد\" (Wherever you are, #قريب is ready for you. All your needs in one place)\n\n**Push Notification:**\n\n\"حصريًا لك! اطلب الآن من #قريب وتلقي 10% خصم على طلبك الأول\" (Exclusively for you! Order now from #قريب and get 10% discount on your first order)",
+  "at": "2026-11-28T00:49:47.549877+00:00"
+}

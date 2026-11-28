@@ -1,0 +1,13 @@
+{
+  "scenario": "M5",
+  "lang": "ar_msa",
+  "model": "allam",
+  "message": "مرحباً، أرغب في استرداد مبلغ الطلب رقم 48213 من فضلك. المنتجات لم تكن مطابقة للوصف.",
+  "raw": "```json\n{\n  \"intent\": \"refund_request\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"Customer requests a refund for an incorrect delivery.\"\n}\n```",
+  "intent": "refund_request",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Customer requests a refund for an incorrect delivery."
+}

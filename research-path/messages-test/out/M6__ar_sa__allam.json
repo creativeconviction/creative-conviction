@@ -1,0 +1,13 @@
+{
+  "scenario": "M6",
+  "lang": "ar_sa",
+  "model": "allam",
+  "message": "تكفون ألغوا طلبي الحين، طلبته على عنوان غلط",
+  "raw": "```json\n{\n  \"intent\": \"cancel_order\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"low\",\n  \"sarcasm\": \"true\",\n  \"churn_risk\": \"true\",\n  \"summary\": \"customer requests cancellation of order due to address error\"\n}\n```",
+  "intent": "cancel_order",
+  "sentiment": "negative",
+  "urgency": "low",
+  "sarcasm": "true",
+  "churn_risk": "true",
+  "summary": "customer requests cancellation of order due to address error"
+}

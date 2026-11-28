@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Muscat",
+  "s": 2,
+  "prompt_lang": "en",
+  "city": "Muscat",
+  "target_region": "Gulf",
+  "target_city_code": "MUS",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Muscat. Write marketing copy for it in Omani Arabic, the way people in Muscat actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "model": "allam",
+  "id": "C__Muscat__allam__s2",
+  "model_id": "humain-ai/ALLaM-7B-Instruct-preview",
+  "output": "#خليج_واحد_مجتمع_واحد\n\n## **Qareeb** - _نوصل لك كل شيء وأنت في البيت_\n\nمع **قريب**، صار بإمكانك تطلب كل شي وأنت مرتاح في بيتك، وبمكالمة فقط نوصله لحد عندك. \n\n## **قريباً ستستخدمون #Qareeb:**\n\n1. أطلب وجبات طعام مغلفة من مطاعم مطرح\n2. أشتري أحسن المنتجات الزراعية من الحارة\n3. أطلب مساعدة في غسيل الملابس!\n\n**الدفعة الأولى:**\n*قريب – للمرة الأولى في عُمان، حقق حلمك واشترِ كل شي وأنت في بيتك، من خلال أقصر مدة، أعلى قدر من الجودة، وأقل تكلفة!*\n\n## **تنبيه:**\n*يصلك على طول بينما تستمتع بالعشاء! قد يتضور جعك، لقد حان الوقت لطلب توفير الطعام، وإذاً فلا أحد جوعان هنا. أرسل أمراً عبر **#Qareeb** ووفّر!*",
+  "at": "2026-11-28T00:49:47.543334+00:00"
+}

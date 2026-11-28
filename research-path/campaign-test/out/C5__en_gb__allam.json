@@ -1,0 +1,12 @@
+{
+  "line": "C5",
+  "market": "en_gb",
+  "model": "allam",
+  "source": "Your Friday night date starts here.",
+  "raw": "{\n  \"literal\": \"Your Friday night date starts here.\",\n  \"adaptation\": \"Find your Friday night partner\",\n  \"back_translation\": \"Your Friday night date starts here.\",\n  \"approach\": \"literal\",\n  \"notes\": \"Changed 'date' to 'partner', which is more culturally appropriate in the UK as dating can imply a relationship rather than just a casual meetup.\"\n}",
+  "literal": "Your Friday night date starts here.",
+  "adaptation": "Find your Friday night partner",
+  "back_translation": "Your Friday night date starts here.",
+  "approach": "literal",
+  "notes": "Changed 'date' to 'partner', which is more culturally appropriate in the UK as dating can imply a relationship rather than just a casual meetup."
+}

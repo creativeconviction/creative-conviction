@@ -1,0 +1,13 @@
+{
+  "scenario": "M11",
+  "lang": "arabizi",
+  "model": "fanar",
+  "message": "besara7a di a5er marra atlob menko, kol esboo3 fe moseeba",
+  "raw": "{\n\"intent\": \"quality_issue\",\n\"sentiment\": \"negative\",\n\"urgency\": \"medium\",\n\"sarcasm\": false,\n\"churn_risk\": true,\n\"summary\": \"Customer is expressing dissatisfaction with consistent issues in their weekly orders.\"\n}",
+  "intent": "quality_issue",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Customer is expressing dissatisfaction with consistent issues in their weekly orders."
+}

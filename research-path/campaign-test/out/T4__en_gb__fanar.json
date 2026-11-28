@@ -1,0 +1,12 @@
+{
+  "line": "T4",
+  "market": "en_gb",
+  "model": "fanar",
+  "source": "Red Bull gives you wings",
+  "raw": "{\n\"literal\": \"Red Bull gives you wings\",\n\"adaptation\": \"Red Bull: Fills you up with energy, gives you wings for life\",\n\"back_translation\": \"Red Bull: Fills you with energy, gives you wings for life\",\n\"approach\": \"adapted\",\n\"notes\": \"The literal translation remains effective in UK English but adding 'fills you up with energy' gives a more detailed description of the product's benefit, which might resonate better with the target audience.\"\n}",
+  "literal": "Red Bull gives you wings",
+  "adaptation": "Red Bull: Fills you up with energy, gives you wings for life",
+  "back_translation": "Red Bull: Fills you with energy, gives you wings for life",
+  "approach": "adapted",
+  "notes": "The literal translation remains effective in UK English but adding 'fills you up with energy' gives a more detailed description of the product's benefit, which might resonate better with the target audience."
+}

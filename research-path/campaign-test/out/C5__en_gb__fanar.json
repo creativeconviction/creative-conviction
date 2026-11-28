@@ -1,0 +1,12 @@
+{
+  "line": "C5",
+  "market": "en_gb",
+  "model": "fanar",
+  "source": "Your Friday night date starts here.",
+  "raw": "{\n\"literal\": \"Your Friday night date starts here.\",\n\"adaptation\": \"Find your weekend date, starts here.\",\n\"back_translation\": \"Find your weekend date, starts here.\",\n\"approach\": \"adapted\",\n\"notes\": \"The original line uses 'Friday night' which is a US casual phrase, in the UK it's more common to refer to a weekend date as it's typically when people have more free time.\"\n}",
+  "literal": "Your Friday night date starts here.",
+  "adaptation": "Find your weekend date, starts here.",
+  "back_translation": "Find your weekend date, starts here.",
+  "approach": "adapted",
+  "notes": "The original line uses 'Friday night' which is a US casual phrase, in the UK it's more common to refer to a weekend date as it's typically when people have more free time."
+}

@@ -1,0 +1,13 @@
+{
+  "scenario": "M8",
+  "lang": "ar_msa",
+  "model": "allam",
+  "message": "تم خصم المبلغ مرتين لنفس الطلب، 2 × 150 ريالاً من بطاقتي",
+  "raw": "```json\n{\n  \"intent\": \"billing_issue\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"Customer claims to have been charged twice for the same order.\"\n}\n```",
+  "intent": "billing_issue",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Customer claims to have been charged twice for the same order."
+}

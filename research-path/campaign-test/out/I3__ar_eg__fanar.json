@@ -1,0 +1,12 @@
+{
+  "line": "I3",
+  "market": "ar_eg",
+  "model": "fanar",
+  "source": "Bring home the bacon with zero fees.",
+  "raw": "{\n\"literal\": \"جلب لحم الخنزير إلى البيت دون أي رسوم\",\n\"adaptation\": \"احصل على مكافآتك كاملة بدون رسوم مع البنك <Bank Name>\",\n\"back_translation\": \"Get your full rewards without fees with the bank\",\n\"approach\": \"adapted\",\n\"notes\": \"The original phrase 'bring home the bacon' is a common English idiom but might not translate directly due to cultural differences. We've kept the essence of saving money but framed it in a more culturally acceptable and descriptive way for Egypt, emphasizing benefits rather than the literal meaning of the idiom.\"\n}",
+  "literal": "جلب لحم الخنزير إلى البيت دون أي رسوم",
+  "adaptation": "احصل على مكافآتك كاملة بدون رسوم مع البنك <Bank Name>",
+  "back_translation": "Get your full rewards without fees with the bank",
+  "approach": "adapted",
+  "notes": "The original phrase 'bring home the bacon' is a common English idiom but might not translate directly due to cultural differences. We've kept the essence of saving money but framed it in a more culturally acceptable and descriptive way for Egypt, emphasizing benefits rather than the literal meaning of the idiom."
+}

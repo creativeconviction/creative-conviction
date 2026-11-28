@@ -1,0 +1,13 @@
+{
+  "scenario": "M7",
+  "lang": "ar_eg",
+  "model": "fanar",
+  "message": "بعتوا بسكوت بزبدة الفول السوداني بدل العادي، وابني عنده حساسية من المكسرات وكل واحدة خلاص",
+  "raw": "{\n\"intent\": \"wrong_item\",\n\"sentiment\": \"negative\",\n\"urgency\": \"high\",\n\"sarcasm\": false,\n\"churn_risk\": true,\n\"summary\": \"Received peanut butter cookies instead of regular ones, which caused an allergic reaction in my child.\"\n}",
+  "intent": "wrong_item",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Received peanut butter cookies instead of regular ones, which caused an allergic reaction in my child."
+}

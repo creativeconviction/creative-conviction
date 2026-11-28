@@ -1,0 +1,13 @@
+{
+  "scenario": "M8",
+  "lang": "ar_sa",
+  "model": "fanar",
+  "message": "انخصم مني المبلغ مرتين على نفس الطلب، 150 ريال مرتين من البطاقة",
+  "raw": "{\n\"intent\": \"billing_issue\",\n\"sentiment\": \"negative\",\n\"urgency\": \"high\",\n\"sarcasm\": \"false\",\n\"churn_risk\": \"true\",\n\"summary\": \"Customer reports double charges for a single order amounting to 150 riyals.\"\n}",
+  "intent": "billing_issue",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": "false",
+  "churn_risk": "true",
+  "summary": "Customer reports double charges for a single order amounting to 150 riyals."
+}

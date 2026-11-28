@@ -1,0 +1,13 @@
+{
+  "scenario": "M6",
+  "lang": "ar_ma",
+  "model": "fanar",
+  "message": "عافاكم لغيو الكوموند دابا، درتها فعنوان غالط",
+  "raw": "{\n\"intent\": \"wrong_item\",\n\"sentiment\": \"negative\",\n\"urgency\": \"medium\",\n\"sarcasm\": false,\n\"churn_risk\": true,\n\"summary\": \"Customer reports a delivery to the wrong address.\"\n}\n\n(Note: The message is in Arabic, but I've provided the classification based on the content. The translation of the message is: \"You guys messed up the order now, it was sent to the wrong address.\")",
+  "intent": "wrong_item",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Customer reports a delivery to the wrong address."
+}

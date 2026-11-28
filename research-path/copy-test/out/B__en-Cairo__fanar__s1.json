@@ -1,0 +1,14 @@
+{
+  "part": "B",
+  "cond": "en-Cairo",
+  "s": 1,
+  "prompt_lang": "en",
+  "city": "Cairo",
+  "target_region": "Egypt",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب). Write marketing copy for it in Arabic: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy. It is launching in Cairo.",
+  "model": "fanar",
+  "id": "B__en-Cairo__fanar__s1",
+  "model_id": "QCRI/Fanar-1-9B-Instruct",
+  "output": "**Tagline:** \"أنت، قريب من كل ما تحتاجه. خدمة توصيل بقالة سهلة ومريحة.\"\n**Translation:** \"You, close to everything you need. Easy and convenient grocery delivery service.\"\n\n**Instagram Ad Lines:**\n\n1. \"تفضل الراحة. كل ما تطلبه عند باب بيتك، قريب مع #Qareeb.\"\n    *Translation: \"Enjoy convenience. Everything you need, delivered right to your doorstep with #Qareeb.\"\n\n2. \"أخيرًا، وقتك لك. أوامر البقالة مُنفذة بسرعة مع Qareeb.\"\n    *Translation: \"Finally, time is yours. Grocery orders executed quickly with Qareeb.\"\n\n3. \"Cairo, هل تشعر بالجوع؟ طلباتك الطعامية في دقائق. مع Qareeb.\"\n    *Translation: \"Cairo, feeling hungry? Your grocery orders in minutes. With Qareeb.\"\n\n**Push Notification:**\n\n\"مبروك! وصلت طلبك من #Qareeb. استمتع بتناول وجباتك اللذيذة اليوم.\"\n*Translation: \"Congratulations! Your order from #Qareeb has arrived. Enjoy your delicious meals today.\"",
+  "at": "2026-11-28T00:49:47.550376+00:00"
+}

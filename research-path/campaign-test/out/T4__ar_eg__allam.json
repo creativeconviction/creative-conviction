@@ -1,0 +1,12 @@
+{
+  "line": "T4",
+  "market": "ar_eg",
+  "model": "allam",
+  "source": "Red Bull gives you wings",
+  "raw": "{\n  \"literal\": \"ريد بول يمنحك أجنحة\",\n  \"adaptation\": \"ريد بول يمنحك القوة\",\n  \"back_translation\": \"Red Bull يمنحك القوة\",\n  \"approach\": \"adapted\",\n  \"notes\": \"It was essential to change the focus from 'wings' to 'القوة' (strength) to suit the local context and convey the same empowering message that aligns with Egypt's values and market expectations.\"\n}",
+  "literal": "ريد بول يمنحك أجنحة",
+  "adaptation": "ريد بول يمنحك القوة",
+  "back_translation": "Red Bull يمنحك القوة",
+  "approach": "adapted",
+  "notes": "It was essential to change the focus from 'wings' to 'القوة' (strength) to suit the local context and convey the same empowering message that aligns with Egypt's values and market expectations."
+}

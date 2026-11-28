@@ -1,0 +1,12 @@
+{
+  "line": "T5",
+  "market": "ar_sa",
+  "model": "allam",
+  "source": "Because you're worth it",
+  "raw": "{\n  \"literal\": \"لأنك تستحقين\",\n  \"adaptation\": \"لأنكِ تستحقين التميز مع منتجات لوريال\",\n  \"back_translation\": \"Because you're worth it (English literal)\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Adjusted the marketing line to emphasize the importance of women's beauty and personal growth, aligning with Saudi cultural values.\"\n}",
+  "literal": "لأنك تستحقين",
+  "adaptation": "لأنكِ تستحقين التميز مع منتجات لوريال",
+  "back_translation": "Because you're worth it (English literal)",
+  "approach": "adapted",
+  "notes": "Adjusted the marketing line to emphasize the importance of women's beauty and personal growth, aligning with Saudi cultural values."
+}

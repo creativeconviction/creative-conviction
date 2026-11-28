@@ -1,0 +1,12 @@
+{
+  "line": "C1",
+  "market": "ar_sa",
+  "model": "fanar",
+  "source": "Black Friday: up to 70% off everything.",
+  "raw": "{\n\"literal\": \"جمعة سوداء: خصم يصل إلى 70% على كل شيء\",\n\"adaptation\": \"مفاجأة جمعة سوداء: خصومات تصل إلى 70% على كل المنتجات\",\n\"back_translation\": \"Black Friday Surprise: Discounts up to 70% on all products\",\n\"approach\": \"adapted\",\n\"notes\": \"The adaptation maintains the spirit of the original while being culturally sensitive, using phrases like 'مفاجأة جمعة سوداء' which are commonly used in Saudi Arabia, and 'منتجات' instead of 'كل شيء' which might sound more formal in this context.\"\n}",
+  "literal": "جمعة سوداء: خصم يصل إلى 70% على كل شيء",
+  "adaptation": "مفاجأة جمعة سوداء: خصومات تصل إلى 70% على كل المنتجات",
+  "back_translation": "Black Friday Surprise: Discounts up to 70% on all products",
+  "approach": "adapted",
+  "notes": "The adaptation maintains the spirit of the original while being culturally sensitive, using phrases like 'مفاجأة جمعة سوداء' which are commonly used in Saudi Arabia, and 'منتجات' instead of 'كل شيء' which might sound more formal in this context."
+}

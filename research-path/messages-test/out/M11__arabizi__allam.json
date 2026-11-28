@@ -1,0 +1,13 @@
+{
+  "scenario": "M11",
+  "lang": "arabizi",
+  "model": "allam",
+  "message": "besara7a di a5er marra atlob menko, kol esboo3 fe moseeba",
+  "raw": "```json\n{\n  \"intent\": \"missing_item\",\n  \"sentiment\": \"neutral\",\n  \"urgency\": \"low\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"Customer wants to place an order for missing items.\"\n}\n```",
+  "intent": "missing_item",
+  "sentiment": "neutral",
+  "urgency": "low",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "Customer wants to place an order for missing items."
+}

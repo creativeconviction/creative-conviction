@@ -1,0 +1,12 @@
+{
+  "line": "T4",
+  "market": "ar_sa",
+  "model": "fanar",
+  "source": "Red Bull gives you wings",
+  "raw": "{\n\"literal\": \"ريد بُل يُعطيك الأجنحة\",\n\"adaptation\": \"ريد بُل يرفع طموحاتك إلى آفاق جديدة\",\n\"back_translation\": \"Red Bull lifts your ambitions to new heights\",\n\"approach\": \"adapted\",\n\"notes\": \"A literal translation preserves the original message but isn't as impactful in Arabic. The adapted version, maintaining the spirit of the brand, is more resonant with Saudi Arabian ambitions and aspirations, values highly regarded within the culture.\"\n}",
+  "literal": "ريد بُل يُعطيك الأجنحة",
+  "adaptation": "ريد بُل يرفع طموحاتك إلى آفاق جديدة",
+  "back_translation": "Red Bull lifts your ambitions to new heights",
+  "approach": "adapted",
+  "notes": "A literal translation preserves the original message but isn't as impactful in Arabic. The adapted version, maintaining the spirit of the brand, is more resonant with Saudi Arabian ambitions and aspirations, values highly regarded within the culture."
+}

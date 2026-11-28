@@ -1,0 +1,12 @@
+{
+  "line": "C5",
+  "market": "ar_eg",
+  "model": "fanar",
+  "source": "Your Friday night date starts here.",
+  "raw": "{\n\"literal\": \"مواعدة ليلتك الجمعة تبدأ هنا\",\n\"adaptation\": \"بدايتك لسهرة الجمعة المثالية هنا\",\n\"back_translation\": \"Your perfect Friday night date starts here\",\n\"approach\": \"adapted\",\n\"notes\": \"The phrase 'Friday night' is a specific cultural reference to the Western weekend, so it was replaced with 'سهرة الجمعة المثالية' (perfect Friday night) to resonate better with the Egyptian audience, keeping the core message of starting a great night from the app.\"\n}",
+  "literal": "مواعدة ليلتك الجمعة تبدأ هنا",
+  "adaptation": "بدايتك لسهرة الجمعة المثالية هنا",
+  "back_translation": "Your perfect Friday night date starts here",
+  "approach": "adapted",
+  "notes": "The phrase 'Friday night' is a specific cultural reference to the Western weekend, so it was replaced with 'سهرة الجمعة المثالية' (perfect Friday night) to resonate better with the Egyptian audience, keeping the core message of starting a great night from the app."
+}

@@ -1,0 +1,12 @@
+{
+  "line": "C2",
+  "market": "en_gb",
+  "model": "fanar",
+  "source": "Happy hour: 2-for-1 drinks from 5 to 7pm.",
+  "raw": "{\n\"literal\": \"Happy hour: 2-for-1 drinks from 5 to 7 pm\",\n\"adaptation\": \"Happy Hour: Buy One Get One Free Drinks 5-7 PM\",\n\"back_translation\": \"Happy Hour: Buy One Get One Free Drinks 5-7 PM\",\n\"approach\": \"adapted\",\n\"notes\": \"The phrase '2-for-1' remains relatively consistent across English-speaking countries, but the alternative 'Buy One Get One Free' is commonly used in British English, making it a more natural fit.\"\n}",
+  "literal": "Happy hour: 2-for-1 drinks from 5 to 7 pm",
+  "adaptation": "Happy Hour: Buy One Get One Free Drinks 5-7 PM",
+  "back_translation": "Happy Hour: Buy One Get One Free Drinks 5-7 PM",
+  "approach": "adapted",
+  "notes": "The phrase '2-for-1' remains relatively consistent across English-speaking countries, but the alternative 'Buy One Get One Free' is commonly used in British English, making it a more natural fit."
+}

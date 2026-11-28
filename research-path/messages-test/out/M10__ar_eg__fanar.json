@@ -1,0 +1,13 @@
+{
+  "scenario": "M10",
+  "lang": "ar_eg",
+  "model": "fanar",
+  "message": "بتوصلوا التجمع الخامس؟ وفيه حد أدنى للأوردر؟",
+  "raw": "{\n\"intent\": \"question\",\n\"sentiment\": \"neutral\",\n\"urgency\": \"low\",\n\"sarcasm\": \"false\",\n\"churn_risk\": \"false\",\n\"summary\": \"Inquiring about delivery to Taj City and minimum order requirement.\"\n}",
+  "intent": "question",
+  "sentiment": "neutral",
+  "urgency": "low",
+  "sarcasm": "false",
+  "churn_risk": "false",
+  "summary": "Inquiring about delivery to Taj City and minimum order requirement."
+}

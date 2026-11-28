@@ -1,0 +1,12 @@
+{
+  "line": "C4",
+  "market": "en_gb",
+  "model": "fanar",
+  "source": "Get beach-body ready this summer.",
+  "raw": "{\n\"literal\": \"Get beach-body ready for this summer.\",\n\"adaptation\": \"Get summer-body ready with our beach-worthy workouts.\",\n\"back_translation\": \"Get ready for the summer body with our beach-friendly workouts.\",\n\"approach\": \"adapted\",\n\"notes\": \"Retained the essence of the original message but adapted the wording to align better with UK idiomatic expressions, using 'summer-body' instead of 'beach-body'.\"\n}",
+  "literal": "Get beach-body ready for this summer.",
+  "adaptation": "Get summer-body ready with our beach-worthy workouts.",
+  "back_translation": "Get ready for the summer body with our beach-friendly workouts.",
+  "approach": "adapted",
+  "notes": "Retained the essence of the original message but adapted the wording to align better with UK idiomatic expressions, using 'summer-body' instead of 'beach-body'."
+}

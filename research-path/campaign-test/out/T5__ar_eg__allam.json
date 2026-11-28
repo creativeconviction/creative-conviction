@@ -1,0 +1,12 @@
+{
+  "line": "T5",
+  "market": "ar_eg",
+  "model": "allam",
+  "source": "Because you're worth it",
+  "raw": "{\n  \"literal\": \"لأنك تستحقين\",\n  \"adaptation\": \"لأنكِ تستحقين التميز مع لوريال\",\n  \"back_translation\": \"لأنك تستحقين\",\n  \"approach\": \"literal\",\n  \"notes\": \"We adapted the original English marketing line to Arabic while keeping the brand name as it is, L'Oréal, because it is a universal brand name that works across different languages and markets. However, we added a regional twist, emphasizing the importance of women in Egypt being truly 'worth it', by using the Arabic colloquial phrase 'لأنك تستحقين'.\"\n}",
+  "literal": "لأنك تستحقين",
+  "adaptation": "لأنكِ تستحقين التميز مع لوريال",
+  "back_translation": "لأنك تستحقين",
+  "approach": "literal",
+  "notes": "We adapted the original English marketing line to Arabic while keeping the brand name as it is, L'Oréal, because it is a universal brand name that works across different languages and markets. However, we added a regional twist, emphasizing the importance of women in Egypt being truly 'worth it', by using the Arabic colloquial phrase 'لأنك تستحقين'."
+}

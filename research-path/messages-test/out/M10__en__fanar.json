@@ -1,0 +1,13 @@
+{
+  "scenario": "M10",
+  "lang": "en",
+  "model": "fanar",
+  "message": "do you deliver to Maple Heights? and is there a minimum order?",
+  "raw": "{\n\"intent\": \"question\",\n\"sentiment\": \"neutral\",\n\"urgency\": \"low\",\n\"sarcasm\": \"false\",\n\"churn_risk\": \"false\",\n\"summary\": \"Inquiry about delivery location and minimum order requirements.\"\n}",
+  "intent": "question",
+  "sentiment": "neutral",
+  "urgency": "low",
+  "sarcasm": "false",
+  "churn_risk": "false",
+  "summary": "Inquiry about delivery location and minimum order requirements."
+}

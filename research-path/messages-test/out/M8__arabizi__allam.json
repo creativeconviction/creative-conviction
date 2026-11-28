@@ -1,0 +1,13 @@
+{
+  "scenario": "M8",
+  "lang": "arabizi",
+  "model": "allam",
+  "message": "et5asam menny marteen 3ala nafs el order, 450 geneh marteen men el card",
+  "raw": "```json\n{\n  \"intent\": \"missing_item\",\n  \"sentiment\": \"neutral\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"Customer requests missing items from order.\"\n}\n```",
+  "intent": "missing_item",
+  "sentiment": "neutral",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "Customer requests missing items from order."
+}

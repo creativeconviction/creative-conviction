@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Doha",
+  "s": 1,
+  "prompt_lang": "en",
+  "city": "Doha",
+  "target_region": "Gulf",
+  "target_city_code": "DOH",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Doha. Write marketing copy for it in Qatari Arabic, the way people in Doha actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "model": "fanar",
+  "id": "C__Doha__fanar__s1",
+  "model_id": "QCRI/Fanar-1-9B-Instruct",
+  "output": "**Tagline:** \"كل حاجة تطلبها، صارَ قريب\" (Everything you need, now closer)\n\n**3 Short Instagram Ad Lines:**\n\n1. \"شاي صباحك، شراب عشاها، وألغيت تعب المحفظة. Qareeb جابها لك.\"\n(Your morning tea, your evening drink, and no more bag hassle. Qareeb brings it to you.)\n\n2. \"غير عادي? ماشي مشكلة. طلب من Qareeb، وصل بأسرع من الي بالسيارة.\"\n(Unconventional? No problem. Order from Qareeb, arrives quicker than your ride.)\n\n3. \"ابعد عن الزحمة، قاعد في بيتك. قريب، سوقك، لا خطوات ولا وذاتك.\"\n(Stay away from the crowds, stay at home. Qareeb, your market, no footsteps, no sweat.)\n\n**Push Notification:**\n\n\"فريش أوردراتك دي في طريقه، طبخان بيكون جاهز! #Qareeb\"\n(Your fresh order is on its way, the dinner is ready to cook! #Qareeb)",
+  "at": "2026-11-28T00:49:47.551681+00:00"
+}

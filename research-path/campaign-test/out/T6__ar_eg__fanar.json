@@ -1,0 +1,12 @@
+{
+  "line": "T6",
+  "market": "ar_eg",
+  "model": "fanar",
+  "source": "Got milk?",
+  "raw": "{\n\"literal\": \"لديك الحليب؟\",\n\"adaptation\": \"حليب مصر... هل أنت جاهز؟\",\n\"back_translation\": \"Egyptian milk... are you ready?\",\n\"approach\": \"adapted\",\n\"notes\": \"The adaptation keeps the rhetorical question while adapting the language to be more culturally resonant in Egypt, focusing on 'Egyptian milk' to emphasize local sourcing and pride.\"\n}",
+  "literal": "لديك الحليب؟",
+  "adaptation": "حليب مصر... هل أنت جاهز؟",
+  "back_translation": "Egyptian milk... are you ready?",
+  "approach": "adapted",
+  "notes": "The adaptation keeps the rhetorical question while adapting the language to be more culturally resonant in Egypt, focusing on 'Egyptian milk' to emphasize local sourcing and pride."
+}

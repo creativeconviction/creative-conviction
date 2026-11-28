@@ -1,0 +1,8 @@
+{
+  "line": "T2",
+  "market": "ar_eg",
+  "model": "fanar",
+  "source": "Just Do It",
+  "raw": "{\n\"literal\": \"افعلها فقط\",\n\"adaptation\": \"اِذهَب إليها بقوة\" (Alternatively, a more cultural adaptation could be \"ضرب بها\"، however, \"اِذهَب إليها بقوة\" is more direct and retains the essence of the original message while being suitable for the Egyptian market.),\n\"back_translation\": \"Go to it with strength\",\n\"approach\": adapted,\n\"notes\": \"The literal translation keeps the same words but may not resonate culturally. 'Go to it with strength' preserves the spirit of 'Just Do It' but uses language more commonly understood and accepted in Egypt.\"\n}",
+  "_parse_error": true
+}

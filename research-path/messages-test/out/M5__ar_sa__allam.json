@@ -1,0 +1,13 @@
+{
+  "scenario": "M5",
+  "lang": "ar_sa",
+  "model": "allam",
+  "message": "السلام عليكم، أبغى أسترجع فلوس الطلب 48213 لو سمحت. الأغراض مو نفس الوصف.",
+  "raw": "```json\n{\n  \"intent\": \"refund_request\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"low\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"Customer requests a refund for an order with incorrect items.\"\n}\n```",
+  "intent": "refund_request",
+  "sentiment": "negative",
+  "urgency": "low",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "Customer requests a refund for an order with incorrect items."
+}

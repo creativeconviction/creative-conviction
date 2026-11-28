@@ -1,0 +1,13 @@
+{
+  "scenario": "M11",
+  "lang": "ar_eg",
+  "model": "fanar",
+  "message": "بصراحة دي آخر مرة أطلب منكم، كل أسبوع فيه مصيبة",
+  "raw": "{\n\"intent\": \"general_complaint\",\n\"sentiment\": \"negative\",\n\"urgency\": \"medium\",\n\"sarcasm\": false,\n\"churn_risk\": true,\n\"summary\": \"Customer expresses dissatisfaction and states this will be their last order due to recurring issues.\"\n}",
+  "intent": "general_complaint",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Customer expresses dissatisfaction and states this will be their last order due to recurring issues."
+}

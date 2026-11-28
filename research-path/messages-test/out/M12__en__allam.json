@@ -1,0 +1,13 @@
+{
+  "scenario": "M12",
+  "lang": "en",
+  "model": "allam",
+  "message": "thanks for the fast delivery! but the bread was stale and the tomatoes were squashed",
+  "raw": "```json\n{\n  \"intent\": \"quality_issue\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"Customer complains about stale bread and squashed tomatoes in the delivery.\"\n}\n```",
+  "intent": "quality_issue",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "Customer complains about stale bread and squashed tomatoes in the delivery."
+}

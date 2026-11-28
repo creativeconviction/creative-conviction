@@ -1,0 +1,12 @@
+{
+  "line": "C3",
+  "market": "ar_eg",
+  "model": "fanar",
+  "source": "Thanksgiving dinner, sorted. Order your turkey today.",
+  "raw": "{\n\"literal\": \"عشاء عيد الشكر، مرتب. اطلب تركيا اليوم\",\n\"adaptation\": \"احتفالات عيد الأضحى، أمرتها بسهولة مع تطبيق التسليم الأسبوعي. احجز أضحيةك الآن\",\n\"back_translation\": \"Eid al-Adha celebrations, ordered easily with Weekly Grocery app. Book your sacrificial animal now\",\n\"approach\": \"adapted\",\n\"notes\": \"Thanksgiving is not a major cultural event in Egypt. Replaced with Eid al-Adha, a significant Islamic holiday, to resonate better with the target audience.\"\n}",
+  "literal": "عشاء عيد الشكر، مرتب. اطلب تركيا اليوم",
+  "adaptation": "احتفالات عيد الأضحى، أمرتها بسهولة مع تطبيق التسليم الأسبوعي. احجز أضحيةك الآن",
+  "back_translation": "Eid al-Adha celebrations, ordered easily with Weekly Grocery app. Book your sacrificial animal now",
+  "approach": "adapted",
+  "notes": "Thanksgiving is not a major cultural event in Egypt. Replaced with Eid al-Adha, a significant Islamic holiday, to resonate better with the target audience."
+}

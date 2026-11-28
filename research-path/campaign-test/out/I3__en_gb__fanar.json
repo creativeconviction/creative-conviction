@@ -1,0 +1,12 @@
+{
+  "line": "I3",
+  "market": "en_gb",
+  "model": "fanar",
+  "source": "Bring home the bacon with zero fees.",
+  "raw": "{\n\"literal\": \"Bring back the bacon with zero fees.\",  \n\"adaptation\": \"Get home more of your hard-earned with zero transaction fees.\",  \n\"back_translation\": \"Get more of your hard-earned home with no transaction fees.\",  \n\"approach\": \"adapted\",  \n\"notes\": \"In British English, 'bringing home the bacon' could be considered a dated idiom, so we opted for a more modern phrase that still conveys financial gain.\"  \n}",
+  "literal": "Bring back the bacon with zero fees.",
+  "adaptation": "Get home more of your hard-earned with zero transaction fees.",
+  "back_translation": "Get more of your hard-earned home with no transaction fees.",
+  "approach": "adapted",
+  "notes": "In British English, 'bringing home the bacon' could be considered a dated idiom, so we opted for a more modern phrase that still conveys financial gain."
+}

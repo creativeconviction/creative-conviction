@@ -1,0 +1,13 @@
+{
+  "scenario": "M5",
+  "lang": "arabizi",
+  "model": "fanar",
+  "message": "el salamo 3aleekom, 3ayez asterga3 felous el order 48213 law sama7t. el 7agat mesh zay el wasf.",
+  "raw": "{\n\"intent\": \"refund_request\",\n\"sentiment\": \"negative\",\n\"urgency\": \"medium\",\n\"sarcasm\": false,\n\"churn_risk\": true,\n\"summary\": \"Requesting a refund for order 48213 due to items not matching the description.\"\n}",
+  "intent": "refund_request",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Requesting a refund for order 48213 due to items not matching the description."
+}

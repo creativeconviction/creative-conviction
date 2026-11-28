@@ -1,0 +1,13 @@
+{
+  "scenario": "M3",
+  "lang": "en",
+  "model": "allam",
+  "message": "wow amazing service, only 2 hours late again 👏👏",
+  "raw": "```json\n{\n  \"intent\": \"late_delivery\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": \"true\",\n  \"churn_risk\": \"true\",\n  \"summary\": \"Customer expresses dissatisfaction with late delivery.\"\n}\n```",
+  "intent": "late_delivery",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": "true",
+  "churn_risk": "true",
+  "summary": "Customer expresses dissatisfaction with late delivery."
+}

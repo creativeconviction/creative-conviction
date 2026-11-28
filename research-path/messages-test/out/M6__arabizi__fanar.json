@@ -1,0 +1,13 @@
+{
+  "scenario": "M6",
+  "lang": "arabizi",
+  "model": "fanar",
+  "message": "elghoo el order delwa2ty 7alan law sama7to, talabto 3ala 3enwan ghalat",
+  "raw": "{\n\"intent\": \"wrong_item\",\n\"sentiment\": \"negative\",\n\"urgency\": \"medium\",\n\"sarcasm\": false,\n\"churn_risk\": true,\n\"summary\": \"Customer received a wrong delivery item and is expressing dissatisfaction.\"\n}",
+  "intent": "wrong_item",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Customer received a wrong delivery item and is expressing dissatisfaction."
+}

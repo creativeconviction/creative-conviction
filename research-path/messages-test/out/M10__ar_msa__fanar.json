@@ -1,0 +1,13 @@
+{
+  "scenario": "M10",
+  "lang": "ar_msa",
+  "model": "fanar",
+  "message": "هل توصلون إلى حي النرجس؟ وهل يوجد حد أدنى للطلب؟",
+  "raw": "{\n\"intent\": \"question\",\n\"sentiment\": \"neutral\",\n\"urgency\": \"low\",\n\"sarcasm\": \"false\",\n\"churn_risk\": \"false\",\n\"summary\": \"Inquiring about delivery to Narjes neighborhood and minimum order requirement.\"\n}",
+  "intent": "question",
+  "sentiment": "neutral",
+  "urgency": "low",
+  "sarcasm": "false",
+  "churn_risk": "false",
+  "summary": "Inquiring about delivery to Narjes neighborhood and minimum order requirement."
+}

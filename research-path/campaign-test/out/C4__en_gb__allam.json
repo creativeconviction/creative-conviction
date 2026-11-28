@@ -1,0 +1,12 @@
+{
+  "line": "C4",
+  "market": "en_gb",
+  "model": "allam",
+  "source": "Get beach-body ready this summer.",
+  "raw": "{\n  \"literal\": \"Get summer body ready this summer.\",\n  \"adaptation\": \"Ready for summer? Get that beach-body shape here at our gym.\",\n  \"back_translation\": \"Get beach-body ready this summer.\",\n  \"approach\": \"literal\",\n  \"notes\": \"Changed 'summer body' to 'beach-body shape' to better appeal to British English speakers who may focus more on outdoor activities during summer holidays.\"\n}",
+  "literal": "Get summer body ready this summer.",
+  "adaptation": "Ready for summer? Get that beach-body shape here at our gym.",
+  "back_translation": "Get beach-body ready this summer.",
+  "approach": "literal",
+  "notes": "Changed 'summer body' to 'beach-body shape' to better appeal to British English speakers who may focus more on outdoor activities during summer holidays."
+}

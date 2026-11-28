@@ -1,0 +1,12 @@
+{
+  "line": "T1",
+  "market": "ar_sa",
+  "model": "fanar",
+  "source": "I'm lovin' it",
+  "raw": "{\n\"literal\": \"أنا معجب به\",\n\"adaptation\": \"أنا مِحبّشها\", \n\"back_translation\": \"I'm loving it\",\n\"approach\": \"adapted\",\n\"notes\": \"While a literal translation is possible, 'مِحبّشها' is a colloquial Arabic phrase that is more commonly used in Saudi Arabia to express enjoyment or satisfaction, making it a more appealing phrase in this context.\"\n}",
+  "literal": "أنا معجب به",
+  "adaptation": "أنا مِحبّشها",
+  "back_translation": "I'm loving it",
+  "approach": "adapted",
+  "notes": "While a literal translation is possible, 'مِحبّشها' is a colloquial Arabic phrase that is more commonly used in Saudi Arabia to express enjoyment or satisfaction, making it a more appealing phrase in this context."
+}

@@ -1,0 +1,8 @@
+{
+  "line": "T6",
+  "market": "en_gb",
+  "model": "fanar",
+  "source": "Got milk?",
+  "raw": "{\n\"literal\": \"Got milk?\",\n\"adaptation\": \"Got your milk?\",\n\"back_translation\": \"Have you got your milk?\",\n\"approach\": \"adapted\",\n\"notes\": \"No significant cultural change needed as the phrasing is already straightforward and universally understandable.\"\n}\n\nHowever, a slightly more British-sounding adaptation could be:\n\n{\n\"literal\": \"Got milk?\",\n\"adaptation\": \"Got your milk? Don't let the day start without it\",\n\"back_translation\": \"Do you have your milk? Don't let the day start without it.\",\n\"approach\": \"adapted\",\n\"notes\": \"Added a slightly more British tone and phrase to encourage daily milk consumption without seeming overly directive.\"\n}",
+  "_parse_error": true
+}

@@ -1,0 +1,12 @@
+{
+  "line": "I2",
+  "market": "en_gb",
+  "model": "allam",
+  "source": "Rise and grind.",
+  "raw": "{\n  \"literal\": \"Awaken and act\",\n  \"adaptation\": \"Awake and Fuel\",\n  \"back_translation\": \"Get up and fuel your morning with our delicious coffee.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Replaced 'grind' with 'fuel' as it is more commonly used in the UK to mean 'propel forward', better resonating with coffee consumption as an energy booster.\"\n}",
+  "literal": "Awaken and act",
+  "adaptation": "Awake and Fuel",
+  "back_translation": "Get up and fuel your morning with our delicious coffee.",
+  "approach": "adapted",
+  "notes": "Replaced 'grind' with 'fuel' as it is more commonly used in the UK to mean 'propel forward', better resonating with coffee consumption as an energy booster."
+}

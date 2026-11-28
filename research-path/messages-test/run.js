@@ -47,7 +47,7 @@ function score() {
   const table = {};
   for (const l of langs) {
     table[l] = {};
-    for (const m of [...models.map((x) => x.id), 'big4']) {
+    for (const m of [...new Set([...models.map((x) => x.id), ...rows.map((r) => r.model)]), 'big4']) {
       const g = rows.filter((r) => r.lang === l && (m === 'big4' ? ['claude', 'gpt', 'gemini', 'deepseek'].includes(r.model) : r.model === m));
       table[l][m] = { n: g.length, all: pct(g.filter((r) => r.all_correct).length, g.length) };
       for (const k of FIELDS) table[l][m][k] = pct(g.filter((r) => r.correct[k]).length, g.length);
@@ -68,7 +68,7 @@ function score() {
   fs.writeFileSync(path.join(RES, 'scores.json'), JSON.stringify({ table, traps }, null, 2));
   fs.writeFileSync(path.join(RES, 'rows.json'), JSON.stringify(rows, null, 1));
   console.log('all-fields-correct % (big four) and per model:');
-  for (const l of langs) console.log(`  ${l.padEnd(9)} big4 ${String(table[l].big4.all).padStart(3)}%  ` + models.map((m) => `${m.id} ${table[l][m.id].all}%`).join('  '));
+  for (const l of langs) console.log(`  ${l.padEnd(9)} big4 ${String(table[l].big4.all).padStart(3)}%  ` + Object.keys(table[l]).filter((k) => k !== 'big4').map((m) => `${m} ${table[l][m].all}%`).join('  '));
   console.log('\nper field, big four:');
   for (const l of langs) console.log(`  ${l.padEnd(9)} ` + FIELDS.map((k) => `${k} ${table[l].big4[k]}%`).join('  '));
   console.log('\ntraps (big four):'); for (const l of langs) console.log(`  ${l.padEnd(9)}`, JSON.stringify(traps[l]));

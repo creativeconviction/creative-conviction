@@ -1,0 +1,12 @@
+{
+  "line": "T2",
+  "market": "en_gb",
+  "model": "allam",
+  "source": "Just Do It",
+  "raw": "{\n  \"literal\": \"Do it\",\n  \"adaptation\": \"Just Do It\",\n  \"back_translation\": \"Just Do It\",\n  \"approach\": \"literal\",\n  \"notes\": \"The literal translation \\\"Do it\\\" was used as it is short and succinct, while still retaining the original motivational spirit of the message. The approach of keeping the English wording was chosen to maintain the recognizable global branding of Nike.\"\n}",
+  "literal": "Do it",
+  "adaptation": "Just Do It",
+  "back_translation": "Just Do It",
+  "approach": "literal",
+  "notes": "The literal translation \"Do it\" was used as it is short and succinct, while still retaining the original motivational spirit of the message. The approach of keeping the English wording was chosen to maintain the recognizable global branding of Nike."
+}

@@ -1,0 +1,13 @@
+{
+  "scenario": "M1",
+  "lang": "arabizi",
+  "model": "allam",
+  "message": "ahlan, el order wesel bas el laban wel 3eish mesh mawgoodeen",
+  "raw": "```json\n{\n  \"intent\": \"missing_item\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"Missing item in the order: laban and 3eish not good.\"\n}\n```",
+  "intent": "missing_item",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "Missing item in the order: laban and 3eish not good."
+}

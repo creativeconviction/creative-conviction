@@ -1,0 +1,12 @@
+{
+  "line": "T3",
+  "market": "en_gb",
+  "model": "allam",
+  "source": "Have a break, have a KitKat",
+  "raw": "{\n  \"literal\": \"Take a pause, have a KitKat\",\n  \"adaptation\": \"Take a minute and treat yourself with a KitKat\",\n  \"back_translation\": \"Have a break, have a KitKat\",\n  \"approach\": \"literal\",\n  \"notes\": \"Changed the emphasis from 'taking a break' to a more positive 'treat yourself' to align better with UK culture where implying enjoyment is more key\"\n}",
+  "literal": "Take a pause, have a KitKat",
+  "adaptation": "Take a minute and treat yourself with a KitKat",
+  "back_translation": "Have a break, have a KitKat",
+  "approach": "literal",
+  "notes": "Changed the emphasis from 'taking a break' to a more positive 'treat yourself' to align better with UK culture where implying enjoyment is more key"
+}

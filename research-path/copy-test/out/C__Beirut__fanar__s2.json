@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Beirut",
+  "s": 2,
+  "prompt_lang": "en",
+  "city": "Beirut",
+  "target_region": "Levant",
+  "target_city_code": "BEI",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Beirut. Write marketing copy for it in Lebanese Arabic, the way people in Beirut actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "model": "fanar",
+  "id": "C__Beirut__fanar__s2",
+  "model_id": "QCRI/Fanar-1-9B-Instruct",
+  "output": "**Tagline:** \"كل شي بحالك، بأيديلك وقريب لك\" (Everything at your fingertips and close by)\n\n**Instagram Ad Lines:**\n\n1. \"مياهك، قهوتك، وطحينك... كل مانطالب به منتظرنا الـ Qareeb ديالي. #قريب_لبك\" (Your water, coffee, and flour... everything we need is waiting for us at Qareeb. #CloseToYou)\n\n2. \"شوفوا منو أول ما يعمل صفقة مطبخ لو سينجار بالليلة! مع الـ Qareeb، صعب يكون صعب #بس_معنا\" (See who's the first to shop for dinner tonight's ingredients! With Qareeb, it's easy #JustWithUs)\n\n3. \"صيفنا بحاجة لبرد، وبالـ Qareeb، كاسات شرابنا تانية. #صيف_كريم\" (Summer needs cool, and with Qareeb, our drinks are just a click away. #GenerousSummer)\n\n**Push Notification:**\n\n\"تخيل لو وصلج اكلك في دقايق وبدون أرجاع سيارات! #تطبيع_الوجبات_اللي_كنتي_كحلم_عليك_تحقق #Qareeb_🎬\" (Imagine your food arriving in minutes, without traffic hassle! #MealDeliveryMadeEasy #Qareeb)",
+  "at": "2026-11-28T00:49:47.552004+00:00"
+}

@@ -1,0 +1,13 @@
+{
+  "scenario": "M5",
+  "lang": "ar_eg",
+  "model": "fanar",
+  "message": "السلام عليكم، عايز أسترجع فلوس الأوردر 48213 لو سمحت. الحاجات مش زي الوصف.",
+  "raw": "{\n\"intent\": \"refund_request\",\n\"sentiment\": \"negative\",\n\"urgency\": \"medium\",\n\"sarcasm\": \"false\",\n\"churn_risk\": \"true\",\n\"summary\": \"Requesting a refund for order 48213 due to items not matching the description.\"\n}",
+  "intent": "refund_request",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": "false",
+  "churn_risk": "true",
+  "summary": "Requesting a refund for order 48213 due to items not matching the description."
+}

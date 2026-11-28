@@ -1,0 +1,13 @@
+{
+  "scenario": "M5",
+  "lang": "ar_eg",
+  "model": "allam",
+  "message": "السلام عليكم، عايز أسترجع فلوس الأوردر 48213 لو سمحت. الحاجات مش زي الوصف.",
+  "raw": "```json\n{\n  \"intent\": \"refund_request\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"low\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"Customer wants to refund order 48213 because items are not as described.\"\n}\n```",
+  "intent": "refund_request",
+  "sentiment": "negative",
+  "urgency": "low",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "Customer wants to refund order 48213 because items are not as described."
+}

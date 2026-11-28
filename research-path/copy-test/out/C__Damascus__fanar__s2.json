@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Damascus",
+  "s": 2,
+  "prompt_lang": "en",
+  "city": "Damascus",
+  "target_region": "Levant",
+  "target_city_code": "DAM",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Damascus. Write marketing copy for it in Syrian (Damascene) Arabic, the way people in Damascus actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "model": "fanar",
+  "id": "C__Damascus__fanar__s2",
+  "model_id": "QCRI/Fanar-1-9B-Instruct",
+  "output": "**Tagline:** \"أكل كل يوم بسهولة. قريبك لك\" (Meaning: Food every day made easy. Your close one)\n\n**Instagram Ad Lines:**\n1. \"لا وقت؟ خلّي قريبك يوصلك #أكل_في_دقيقة\" (Translation: No time? Let Qareeb deliver you #food_in_a_minute)\n2. \"أهلاً، مطبخك الجديد بين يديك! قريبك، إلّا أقرب\" (Translation: Hello, your new kitchen is in your hands! Qareeb, even closer)\n3. \"مو ودي تلطش طابخ؟ دعيها علينا! #قريبك_لأ\" (Translation: Not in the mood to cook? Leave it to us! #Qareeb_for_you)\n\n**Push Notification:**\n\"عايز كباب بيتك? خلّي قريبك يوصلك مو! الآن\" (Translation: Craving home-made kebab? Let Qareeb deliver it NOW!)",
+  "at": "2026-11-28T00:49:47.552052+00:00"
+}

@@ -1,0 +1,13 @@
+{
+  "scenario": "M12",
+  "lang": "ar_ma",
+  "model": "fanar",
+  "message": "شكرا على السرعة فالتوصيل! ولكن الخبز كان يابس والطماطم مهروسة",
+  "raw": "{\n\"intent\": \"quality_issue\",\n\"sentiment\": \"negative\",\n\"urgency\": \"medium\",\n\"sarcasm\": false,\n\"churn_risk\": true,\n\"summary\": \"Customer is unhappy with the quality of bread and tomatoes received.\"\n}",
+  "intent": "quality_issue",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Customer is unhappy with the quality of bread and tomatoes received."
+}

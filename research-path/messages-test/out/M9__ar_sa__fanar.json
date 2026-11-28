@@ -1,0 +1,13 @@
+{
+  "scenario": "M9",
+  "lang": "ar_sa",
+  "model": "fanar",
+  "message": "حبيت أقول إن المندوب كان مره ذوق وساعدني أطلع الأغراض فوق، يعطيكم العافية!",
+  "raw": "{\n\"intent\": \"praise\",\n\"sentiment\": \"positive\",\n\"urgency\": \"low\",\n\"sarcasm\": \"false\",\n\"churn_risk\": \"false\",\n\"summary\": \"Customer expresses appreciation for the delivery agent's politeness and assistance.\"\n}",
+  "intent": "praise",
+  "sentiment": "positive",
+  "urgency": "low",
+  "sarcasm": "false",
+  "churn_risk": "false",
+  "summary": "Customer expresses appreciation for the delivery agent's politeness and assistance."
+}

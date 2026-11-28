@@ -1,0 +1,13 @@
+{
+  "scenario": "M4",
+  "lang": "ar_ma",
+  "model": "fanar",
+  "message": "الله يسمح ليكم، هادي تالت مرة الكوموند كتجي غالطة",
+  "raw": "{\n\"intent\": \"wrong_item\",\n\"sentiment\": \"negative\",\n\"urgency\": \"medium\",\n\"sarcasm\": false,\n\"churn_risk\": true,\n\"summary\": \"Customer reports this is the third time their order has been incorrect.\"\n}",
+  "intent": "wrong_item",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Customer reports this is the third time their order has been incorrect."
+}

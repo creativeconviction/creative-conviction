@@ -1,0 +1,13 @@
+{
+  "scenario": "M6",
+  "lang": "ar_eg",
+  "model": "allam",
+  "message": "الغوا الأوردر دلوقتي حالاً لو سمحتوا، طلبته على عنوان غلط",
+  "raw": "```json\n{\n  \"intent\": \"cancel_order\",\n  \"sentiment\": \"neutral\",\n  \"urgency\": \"low\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"Canceling the order because it was delivered to the wrong address.\"\n}\n```",
+  "intent": "cancel_order",
+  "sentiment": "neutral",
+  "urgency": "low",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "Canceling the order because it was delivered to the wrong address."
+}

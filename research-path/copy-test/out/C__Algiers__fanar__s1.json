@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Algiers",
+  "s": 1,
+  "prompt_lang": "en",
+  "city": "Algiers",
+  "target_region": "Algeria",
+  "target_city_code": "ALG",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Algiers. Write marketing copy for it in Algerian Arabic, the way people in Algiers actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "model": "fanar",
+  "id": "C__Algiers__fanar__s1",
+  "model_id": "QCRI/Fanar-1-9B-Instruct",
+  "output": "**Tagline:** \"قريب كل ما تحتاجو، لابَثِ الوقت تاعّا\" (Meaning: Closer to everything you need, right on time)\n\n**Instagram Ad Lines:**\n\n1- \"ها خبارا، Qareeb جاي يسهللك دماغ ديرو. طلبات عند البيت بطريقة سهلة تراب\" (Meaning: Check this out, Qareeb is making your life easier. Easy ordering straight to your doorstep)\n\n2- \"كلاب لمتوفر، من الخضر حتى الحلويات. Qareeb عندِه كل حاجة بصح\" (Meaning: Everything you need, from veggies to sweets. Qareeb has it all)\n\n3- \"لازم ماتستاهلوش الضيق، مع Qareeb جات الزامك ديما في دقايق\" (Meaning: You don't deserve the hassle. With Qareeb, your needs arrive in minutes)\n\n**Push Notification:**\n\n\"شڤك ديرو شيقت بصح؟ **40% تخفيض** على الطلب الثاني مع Qareeb. جاريلا بلا دماله خويا.\" (Meaning: Your morning coffee is even better! **40% off** your second order with Qareeb. Don't waste time, my friend)",
+  "at": "2026-11-28T00:49:47.552220+00:00"
+}

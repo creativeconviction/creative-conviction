@@ -1,0 +1,12 @@
+{
+  "line": "T3",
+  "market": "en_gb",
+  "model": "fanar",
+  "source": "Have a break, have a KitKat",
+  "raw": "{\n\"literal\": \"Have a break, have a KitKat\",\n\"adaptation\": \"Enjoy a moment, have a KitKat\",\n\"back_translation\": \"Enjoy a moment, have a KitKat\",\n\"approach\": \"adapted\",\n\"notes\": \"In the UK context, 'break' might be understood as a pause from work, but 'moment' could connote a wider idea of taking a break from daily activities for relaxation, which is more generally applicable and might resonate more broadly with consumers.\"\n}",
+  "literal": "Have a break, have a KitKat",
+  "adaptation": "Enjoy a moment, have a KitKat",
+  "back_translation": "Enjoy a moment, have a KitKat",
+  "approach": "adapted",
+  "notes": "In the UK context, 'break' might be understood as a pause from work, but 'moment' could connote a wider idea of taking a break from daily activities for relaxation, which is more generally applicable and might resonate more broadly with consumers."
+}

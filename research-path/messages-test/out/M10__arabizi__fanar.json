@@ -1,0 +1,13 @@
+{
+  "scenario": "M10",
+  "lang": "arabizi",
+  "model": "fanar",
+  "message": "betwasalo el tagamo3 el 5ames? w fe 7ad adna lel order?",
+  "raw": "{\n\"intent\": \"late_delivery\",\n\"sentiment\": \"negative\",\n\"urgency\": \"high\",\n\"sarcasm\": false,\n\"churn_risk\": true,\n\"summary\": \"Inquiring about the status of a delayed order.\"\n}",
+  "intent": "late_delivery",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Inquiring about the status of a delayed order."
+}

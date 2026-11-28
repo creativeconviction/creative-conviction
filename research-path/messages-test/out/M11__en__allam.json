@@ -1,0 +1,13 @@
+{
+  "scenario": "M11",
+  "lang": "en",
+  "model": "allam",
+  "message": "honestly this is the last time I'm ordering from you, something goes wrong every single week",
+  "raw": "```json\n{\n  \"intent\": \"cancel_order\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": \"true\",\n  \"churn_risk\": \"true\",\n  \"summary\": \"Consumer expressing dissatisfaction and considering cancelling future orders.\"\n}\n```",
+  "intent": "cancel_order",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": "true",
+  "churn_risk": "true",
+  "summary": "Consumer expressing dissatisfaction and considering cancelling future orders."
+}

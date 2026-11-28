@@ -1,0 +1,12 @@
+{
+  "line": "T1",
+  "market": "ar_eg",
+  "model": "allam",
+  "source": "I'm lovin' it",
+  "raw": "{\n  \"literal\": \"أنا أحبها\",\n  \"adaptation\": \"عشان ماكدونالدز هتحبك\",\n  \"back_translation\": \"I'm lovin' it\",\n  \"approach\": \"literal\",\n  \"notes\": \"Adjusted the direct translation to align better with local customs and avoids direct transliteration of the original slogan.\"\n}",
+  "literal": "أنا أحبها",
+  "adaptation": "عشان ماكدونالدز هتحبك",
+  "back_translation": "I'm lovin' it",
+  "approach": "literal",
+  "notes": "Adjusted the direct translation to align better with local customs and avoids direct transliteration of the original slogan."
+}

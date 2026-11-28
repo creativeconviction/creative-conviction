@@ -1,0 +1,12 @@
+{
+  "line": "T6",
+  "market": "ar_sa",
+  "model": "allam",
+  "source": "Got milk?",
+  "raw": "{\n  \"literal\": \"عندك حليب؟\",\n  \"adaptation\": \"عندك حليب؟\",\n  \"back_translation\": \"عندك حليب؟\",\n  \"approach\": \"literal\",\n  \"notes\": \"The original 'Got milk?' campaign was successfully targeted at anglophone audiences in the US, but should be suitably adjusted for the Saudi Arabian market's practices and preferred terminology regarding daily milk consumption. The same idea could be rebranded and adapted for a wide range of markets, as it is very general and does not create misunderstandings in Arabic culture.\"\n}",
+  "literal": "عندك حليب؟",
+  "adaptation": "عندك حليب؟",
+  "back_translation": "عندك حليب؟",
+  "approach": "literal",
+  "notes": "The original 'Got milk?' campaign was successfully targeted at anglophone audiences in the US, but should be suitably adjusted for the Saudi Arabian market's practices and preferred terminology regarding daily milk consumption. The same idea could be rebranded and adapted for a wide range of markets, as it is very general and does not create misunderstandings in Arabic culture."
+}

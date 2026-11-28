@@ -1,0 +1,13 @@
+{
+  "scenario": "M6",
+  "lang": "en",
+  "model": "allam",
+  "message": "cancel my order NOW please, I ordered to the wrong address",
+  "raw": "```json\n{\n  \"intent\": \"cancel_order\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": \"false\",\n  \"churn_risk\": \"false\",\n  \"summary\": \"Customer requests immediate cancellation due to address error.\"\n}\n```",
+  "intent": "cancel_order",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": "false",
+  "churn_risk": "false",
+  "summary": "Customer requests immediate cancellation due to address error."
+}

@@ -1,0 +1,8 @@
+{
+  "line": "T3",
+  "market": "ar_eg",
+  "model": "fanar",
+  "source": "Have a break, have a KitKat",
+  "raw": "{\n\"literal\": \"خذ فاصلًا، تناوَل كيت كات\",\n\"adaptation\": \"ابتعد وخذ كيت كات\"، \n\"back_translation\": \"Take a break and take a KitKat\", \n\"approach\": \"adapted\",\n\"notes\": \"The adaptation was made to keep the rhythm and meaning while using more informal and colloquial Arabic phrasing that is common in Egyptian marketing.\"\n}",
+  "_parse_error": true
+}
