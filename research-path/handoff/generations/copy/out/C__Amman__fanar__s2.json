@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Amman",
+  "s": 2,
+  "prompt_lang": "en",
+  "city": "Amman",
+  "target_region": "Levant",
+  "target_city_code": "AMM",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Amman. Write marketing copy for it in Jordanian Arabic, the way people in Amman actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "model": "fanar",
+  "id": "C__Amman__fanar__s2",
+  "model_id": "QCRI/Fanar-1-9B-Instruct",
+  "output": "**Tagline:** \"أكل كل يوم بسهولة. قريب منك دوماً!\"\n\n**Instagram Ad Lines:**\n\n1. \"ملخبط إزاي؟ خذ راحتك مع #قريب، كل شي بيدورك لحد باب البيت!\"\n2. \"بيسحبك الشغل. بيحكي الجيران عن #قريب اللي ياخدك الكمل. اكتشف طريقة جديدة للتسوق!\"\n3. \"يعني إنت ماشي تلحق الإيمارطة؟ ماتخافش. #قريب بالخدمة، يعمّللك طلبك بسرعة وبتكلفة بسيطة.\"\n\n**Push Notification:**\n\n\"أهلاً عودة! مكانش متوقع ﻫND أكل؟ 👈 ﺩﻻﻟﺔ #قريب بأيدك. طلبيات في ثواني. ${10OFF} خصم على طلبيتك الأولى!\" (Where ${10OFF} would be a placeholder for a specific discount amount, e.g., \"خصم 10JD.\")",
+  "at": "2026-11-28T00:49:47.552100+00:00"
+}

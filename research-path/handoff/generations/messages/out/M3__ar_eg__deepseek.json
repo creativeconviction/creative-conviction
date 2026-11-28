@@ -1,0 +1,13 @@
+{
+  "scenario": "M3",
+  "lang": "ar_eg",
+  "model": "deepseek",
+  "message": "لا بجد خدمة تحفة، متأخرين ساعتين بس زي كل مرة 👏👏",
+  "raw": "{\n  \"intent\": \"late_delivery\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": true,\n  \"churn_risk\": true,\n  \"summary\": \"Customer sarcastically praises the service while complaining about a two-hour delay, noting it happens every time.\"\n}",
+  "intent": "late_delivery",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": true,
+  "churn_risk": true,
+  "summary": "Customer sarcastically praises the service while complaining about a two-hour delay, noting it happens every time."
+}

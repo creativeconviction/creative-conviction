@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Sanaa",
+  "s": 2,
+  "prompt_lang": "en",
+  "city": "Sanaa",
+  "target_region": "Yemen",
+  "target_city_code": "SAN",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Sanaa. Write marketing copy for it in Yemeni (Sanaani) Arabic, the way people in Sanaa actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "model": "fanar",
+  "id": "C__Sanaa__fanar__s2",
+  "model_id": "QCRI/Fanar-1-9B-Instruct",
+  "output": "**Tagline:** \"أكل كل يوم بسهولة. قريبك لك\" (Meaning: Food every day made easy. Your close one)\n\n**Instagram Ad Lines:**\n1. \"لا وقت؟ مشانك خيار! طلبك في #قريب دورت الهدف.\" (Translation: No time? No problem! Your order in #قريب is on target.)\n2. \"بعيد عن البيت؟ #قريب معاك، بينديش تأمر وحايلج.\" (Translation: Far from home? #قريب is with you, order now and feel at home.)\n3. \"كل حاجة وديش عنا! طازج، موثوق، #قريب الحاجة.\" (Translation: Everything you want is here! Fresh, reliable, #Qareeb your need.)\n\n**Push Notification:**\n\"اتنساش الطلبية اليوم! #قريب يفتح باب المساخر على الدنيا. خليك جاهز!\" (Translation: Don't forget your order today! #Qareeb opens doors to the best things. Be ready!)",
+  "at": "2026-11-28T00:49:47.551805+00:00"
+}

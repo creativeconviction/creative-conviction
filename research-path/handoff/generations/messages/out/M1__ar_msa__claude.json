@@ -1,0 +1,13 @@
+{
+  "scenario": "M1",
+  "lang": "ar_msa",
+  "model": "claude",
+  "message": "مرحباً، وصل طلبي لكن الحليب والخبز غير موجودين",
+  "raw": "```json\n{\n  \"intent\": \"missing_item\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"The customer received their order, but the milk and bread were missing.\"\n}\n```",
+  "intent": "missing_item",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer received their order, but the milk and bread were missing."
+}

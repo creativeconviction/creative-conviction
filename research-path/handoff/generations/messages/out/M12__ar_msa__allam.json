@@ -1,0 +1,13 @@
+{
+  "scenario": "M12",
+  "lang": "ar_msa",
+  "model": "allam",
+  "message": "شكراً على التوصيل السريع! لكن الخبز كان قديماً والطماطم مهروسة",
+  "raw": "```json\n{\n  \"intent\": \"quality_issue\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"customer complains about stale bread and bad quality tomatoes\"\n}\n```",
+  "intent": "quality_issue",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "customer complains about stale bread and bad quality tomatoes"
+}

@@ -1,0 +1,13 @@
+{
+  "scenario": "M2",
+  "lang": "ar_sa",
+  "model": "deepseek",
+  "message": "وين طلبي؟؟ صار له ساعتين، شي يفشل",
+  "raw": "{\n  \"intent\": \"late_delivery\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"Customer is asking about their order that has been delayed for two hours and expresses frustration.\"\n}",
+  "intent": "late_delivery",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Customer is asking about their order that has been delayed for two hours and expresses frustration."
+}

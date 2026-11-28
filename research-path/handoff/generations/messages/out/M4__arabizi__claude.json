@@ -1,0 +1,13 @@
+{
+  "scenario": "M4",
+  "lang": "arabizi",
+  "model": "claude",
+  "message": "rabena yesam7ko, talet marra el order yegy ghalat",
+  "raw": "```json\n{\n  \"intent\": \"wrong_item\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"The customer, writing in Egyptian Arabic, says this is the third time their order has arrived wrong.\"\n}\n```",
+  "intent": "wrong_item",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "The customer, writing in Egyptian Arabic, says this is the third time their order has arrived wrong."
+}

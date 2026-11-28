@@ -1,0 +1,13 @@
+{
+  "scenario": "M6",
+  "lang": "ar_ma",
+  "model": "gpt",
+  "message": "عافاكم لغيو الكوموند دابا، درتها فعنوان غالط",
+  "raw": "{\"intent\":\"cancel_order\",\"sentiment\":\"neutral\",\"urgency\":\"high\",\"sarcasm\":false,\"churn_risk\":false,\"summary\":\"The customer urgently wants to cancel the order because they entered the wrong address.\"}",
+  "intent": "cancel_order",
+  "sentiment": "neutral",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer urgently wants to cancel the order because they entered the wrong address."
+}

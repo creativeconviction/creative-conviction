@@ -1,0 +1,13 @@
+{
+  "scenario": "M2",
+  "lang": "ar_msa",
+  "model": "deepseek",
+  "message": "أين طلبي؟؟ مرت ساعتان، هذا أمر سخيف",
+  "raw": "{\n  \"intent\": \"late_delivery\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"Customer is complaining that their order hasn't arrived after two hours and finds it ridiculous.\"\n}",
+  "intent": "late_delivery",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Customer is complaining that their order hasn't arrived after two hours and finds it ridiculous."
+}

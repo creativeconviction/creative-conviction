@@ -1,0 +1,12 @@
+{
+  "line": "I3",
+  "market": "ar_sa",
+  "model": "deepseek",
+  "source": "Bring home the bacon with zero fees.",
+  "raw": "{\n  \"literal\": \"أحضر لحم الخنزير إلى المنزل بدون رسوم\",\n  \"adaptation\": \"اجلب الرزق بدون رسوم\",\n  \"back_translation\": \"Bring home sustenance with zero fees\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Replaced 'bacon'—a prohibited item in Islam—with 'الرزق' (livelihood/sustenance) to avoid religious offense while preserving the earning metaphor.\"\n}",
+  "literal": "أحضر لحم الخنزير إلى المنزل بدون رسوم",
+  "adaptation": "اجلب الرزق بدون رسوم",
+  "back_translation": "Bring home sustenance with zero fees",
+  "approach": "adapted",
+  "notes": "Replaced 'bacon'—a prohibited item in Islam—with 'الرزق' (livelihood/sustenance) to avoid religious offense while preserving the earning metaphor."
+}

@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Khartoum",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Khartoum. Write marketing copy for it in Sudanese Arabic, the way people in Khartoum actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 2,
+  "prompt_lang": "en",
+  "city": "Khartoum",
+  "target_region": "Sudan",
+  "target_city_code": "KHA",
+  "model": "saba",
+  "id": "C__Khartoum__saba__s2",
+  "model_id": "mistralai/mistral-saba",
+  "output": "**Tagline:**\n\"قريب.. تخزينك بيـِخُطِّـر!\"\n\n**3 Instagram Ad Lines:**\n1. \"الطلبすぐに.. الفلوس تستنى! طلبك من المدينة الجايّة بسلاسة ⏳\"\n2. \"ماحد لسه مق srp اليوم.. Qareeb بيوصّلك всё!\"\n3. \"من المطبخ للباب.. 10 دقايق بس! 🚀\"\n\n**Push Notification:**\n\"طلعي طلبك يا آنسة.. Qareeb عدى باﻹكسبريس عاجز ⏳\"",
+  "at": "2026-11-18T05:28:58.802Z"
+}

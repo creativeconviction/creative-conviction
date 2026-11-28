@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Cairo",
+  "s": 1,
+  "prompt_lang": "en",
+  "city": "Cairo",
+  "target_region": "Egypt",
+  "target_city_code": "CAI",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Cairo. Write marketing copy for it in Egyptian Arabic, the way people in Cairo actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "model": "fanar",
+  "id": "C__Cairo__fanar__s1",
+  "model_id": "QCRI/Fanar-1-9B-Instruct",
+  "output": "**Tagline:** \"كل حاجة تطلبها، قريب فديتك\" (Everything you need, right at your doorstep)\n\n**Instagram Ad Lines:**\n\n1. \"شاي صباحا، سوشي مساءً، وأنت مسترخي في البيت! مشتقات Qareeb للتوصيل.\"\n(Morning tea, evening sushi, and you're chillin' at home! Enjoy Qareeb's doorstep delivery.)\n\n2. \"تعبت من انتظار الطوابير؟ مع Qareeb، الصرف ده التاريخ. الطلبات توصل لحد بابك.\"\n(Tired of waiting in line? With Qareeb, those queues are history. Your orders arrive right at your doorstep.)\n\n3. \"هو رمضان، هو الحر، لا تُعذب نفسك! اطلب من Qareeb وأنا معاك في رمضان.\"\n(It's Ramadan, it's hot, don't torture yourself! Order from Qareeb and I'm with you through Ramadan.)\n\n**Push Notification:**\n\n\"ها، ها، ها! عيالك مشغولين والطبخ مخنق؟ Qareeb معاك! طعام طازة توصل النهاردة.\"\n(Hey, hey, hey! Your kids are busy and cooking is suffocating? Qareeb is with you! Fresh food delivered today.)",
+  "at": "2026-11-28T00:49:47.551879+00:00"
+}

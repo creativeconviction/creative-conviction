@@ -1,0 +1,13 @@
+{
+  "scenario": "M10",
+  "lang": "en",
+  "model": "claude",
+  "message": "do you deliver to Maple Heights? and is there a minimum order?",
+  "raw": "{\"intent\": \"question\", \"sentiment\": \"neutral\", \"urgency\": \"low\", \"sarcasm\": false, \"churn_risk\": false, \"summary\": \"The customer is asking whether the app delivers to Maple Heights and whether there is a minimum order amount.\"}",
+  "intent": "question",
+  "sentiment": "neutral",
+  "urgency": "low",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer is asking whether the app delivers to Maple Heights and whether there is a minimum order amount."
+}

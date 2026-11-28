@@ -1,0 +1,178 @@
+[
+ {
+  "f": "S4__arabic__deepseek.html",
+  "ids": 2,
+  "flipped": 2,
+  "ex": [
+   "#QR-48213"
+  ]
+ },
+ {
+  "f": "S4__arabic__saba.html",
+  "ids": 2,
+  "flipped": 2,
+  "ex": [
+   "#QR-48213"
+  ]
+ },
+ {
+  "f": "S4__localize__deepseek.html",
+  "ids": 1,
+  "flipped": 1,
+  "ex": [
+   "#QR-48213"
+  ]
+ },
+ {
+  "f": "S4__plain__saba.html",
+  "ids": 2,
+  "flipped": 2,
+  "ex": [
+   "#QR-48213"
+  ]
+ },
+ {
+  "f": "S5__arabic__deepseek.html",
+  "ids": 1,
+  "flipped": 1,
+  "ex": [
+   "#QRB-2024"
+  ]
+ },
+ {
+  "f": "S5__arabic__gemini.html",
+  "ids": 1,
+  "flipped": 1,
+  "ex": [
+   "#QR-9821"
+  ]
+ },
+ {
+  "f": "S5__arabic__gpt.html",
+  "ids": 1,
+  "flipped": 1,
+  "ex": [
+   "#QRB-2841"
+  ]
+ },
+ {
+  "f": "S5__explicit__gemini.html",
+  "ids": 1,
+  "flipped": 1,
+  "ex": [
+   "#QR-98245"
+  ]
+ },
+ {
+  "f": "S5__localize__deepseek.html",
+  "ids": 1,
+  "flipped": 1,
+  "ex": [
+   "#Q2481"
+  ]
+ },
+ {
+  "f": "S5__localize__saba.html",
+  "ids": 1,
+  "flipped": 1,
+  "ex": [
+   "#Q2481"
+  ]
+ },
+ {
+  "f": "S5__plain__deepseek.html",
+  "ids": 1,
+  "flipped": 1,
+  "ex": [
+   "#QRB-2024"
+  ]
+ },
+ {
+  "f": "S5__plain__gpt.html",
+  "ids": 1,
+  "flipped": 1,
+  "ex": [
+   "#QAR-4821"
+  ]
+ },
+ {
+  "f": "S5__plain__saba.html",
+  "ids": 1,
+  "flipped": 1,
+  "ex": [
+   "#ORD123456"
+  ]
+ },
+ {
+  "f": "S6__arabic__gemini.html",
+  "ids": 5,
+  "flipped": 5,
+  "ex": [
+   "#QR-8901"
+  ]
+ },
+ {
+  "f": "S6__arabic__gpt.html",
+  "ids": 5,
+  "flipped": 5,
+  "ex": [
+   "#QR-1048"
+  ]
+ },
+ {
+  "f": "S6__localize__deepseek.html",
+  "ids": 5,
+  "flipped": 5,
+  "ex": [
+   "#QR-10482"
+  ]
+ },
+ {
+  "f": "S6__localize__gemini.html",
+  "ids": 5,
+  "flipped": 5,
+  "ex": [
+   "#QR-10482"
+  ]
+ },
+ {
+  "f": "S6__localize__saba.html",
+  "ids": 5,
+  "flipped": 5,
+  "ex": [
+   "#QR-10482"
+  ]
+ },
+ {
+  "f": "S6__plain__deepseek.html",
+  "ids": 7,
+  "flipped": 7,
+  "ex": [
+   "#ORD-001"
+  ]
+ },
+ {
+  "f": "S6__plain__gemini.html",
+  "ids": 5,
+  "flipped": 5,
+  "ex": [
+   "#QR-1045"
+  ]
+ },
+ {
+  "f": "S6__plain__gpt.html",
+  "ids": 5,
+  "flipped": 5,
+  "ex": [
+   "#QR-8421"
+  ]
+ },
+ {
+  "f": "S6__plain__saba.html",
+  "ids": 5,
+  "flipped": 5,
+  "ex": [
+   "#ORD-20549"
+  ]
+ }
+]

@@ -1,0 +1,13 @@
+{
+  "scenario": "M2",
+  "lang": "ar_sa",
+  "model": "fanar",
+  "message": "وين طلبي؟؟ صار له ساعتين، شي يفشل",
+  "raw": "{\n\"intent\": \"late_delivery\",\n\"sentiment\": \"negative\",\n\"urgency\": \"high\",\n\"sarcasm\": false,\n\"churn_risk\": true,\n\"summary\": \"Customer is expressing frustration about a late grocery delivery.\"\n}",
+  "intent": "late_delivery",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Customer is expressing frustration about a late grocery delivery."
+}

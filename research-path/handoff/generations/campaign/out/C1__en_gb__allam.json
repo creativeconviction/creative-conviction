@@ -1,0 +1,12 @@
+{
+  "line": "C1",
+  "market": "en_gb",
+  "model": "allam",
+  "source": "Black Friday: up to 70% off everything.",
+  "raw": "{\n  \"literal\": \"Black Friday: up to 70% off everything\",\n  \"adaptation\": \"Cyber Monday: save big on your shopping\",\n  \"back_translation\": \"Cyber Monday: save big on shopping\",\n  \"approach\": \"literal\",\n  \"notes\": \"Instead of \\\"Black Friday\\\" and \\\"up to 70% off everything\\\", I replaced it with \\\"Cyber Monday\\\" which is a well-known term in the UK and \\\"save big on your shopping\\\" as it is more relevant to the target market\"\n}",
+  "literal": "Black Friday: up to 70% off everything",
+  "adaptation": "Cyber Monday: save big on your shopping",
+  "back_translation": "Cyber Monday: save big on shopping",
+  "approach": "literal",
+  "notes": "Instead of \"Black Friday\" and \"up to 70% off everything\", I replaced it with \"Cyber Monday\" which is a well-known term in the UK and \"save big on your shopping\" as it is more relevant to the target market"
+}

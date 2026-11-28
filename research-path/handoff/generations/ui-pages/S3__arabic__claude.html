@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>الفواكه | قريب</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green-900:#0f3d2e;
+    --green-700:#16704a;
+    --green-600:#1c8a5a;
+    --green-50:#eaf6ef;
+    --red:#d64545;
+    --ink:#1d2421;
+    --muted:#66706b;
+    --line:#e3e8e5;
+    --bg:#f6f8f7;
+    --card:#ffffff;
+    --radius:14px;
+    --shadow:0 1px 2px rgba(16,40,30,.06),0 4px 14px rgba(16,40,30,.05);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;
+    background:var(--bg);color:var(--ink);
+    line-height:1.5;font-size:15px;
+  }
+  button,input{font:inherit;color:inherit}
+  button{cursor:pointer}
+  a{color:inherit}
+  :focus-visible{outline:3px solid #f2b705;outline-offset:2px;border-radius:6px}
+  .visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .container{width:100%;max-width:1200px;margin-inline:auto;padding-inline:16px}
+
+  /* ===== Header ===== */
+  .site-header{
+    background:var(--green-900);color:#fff;
+    position:sticky;top:0;z-index:20;
+    box-shadow:0 2px 10px rgba(0,0,0,.12);
+  }
+  .header-inner{
+    display:grid;
+    grid-template-columns:1fr auto;
+    grid-template-areas:"logo cart" "search search";
+    align-items:center;gap:10px 12px;
+    padding-block:12px;
+  }
+  .logo{grid-area:logo;display:flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:1.5rem}
+  .logo-mark{
+    width:34px;height:34px;border-radius:10px;background:#f2b705;color:var(--green-900);
+    display:grid;place-items:center;font-size:1.1rem;font-weight:700;
+  }
+  .search{grid-area:search;position:relative}
+  .search input{
+    width:100%;height:44px;border:0;border-radius:12px;
+    padding-inline:16px 48px;background:#fff;color:var(--ink);font-size:.95rem;
+  }
+  .search input::placeholder{color:#8a948f}
+  .search button{
+    position:absolute;inset-block:4px;inset-inline-end:4px;width:36px;
+    border:0;border-radius:9px;background:var(--green-600);color:#fff;
+    display:grid;place-items:center;
+  }
+  .cart{
+    grid-area:cart;position:relative;width:44px;height:44px;border-radius:12px;
+    display:grid;place-items:center;background:rgba(255,255,255,.1);text-decoration:none;
+  }
+  .cart-badge{
+    position:absolute;top:-4px;inset-inline-start:-4px;
+    min-width:21px;height:21px;padding-inline:5px;border-radius:999px;
+    background:#f2b705;color:var(--green-900);font-size:.75rem;font-weight:700;
+    display:grid;place-items:center;border:2px solid var(--green-900);
+  }
+  .bump{animation:bump .35s ease}
+  @keyframes bump{50%{transform:scale(1.3)}}
+
+  /* ===== Breadcrumb ===== */
+  .breadcrumb ol{list-style:none;display:flex;flex-wrap:wrap;gap:6px;padding-block:14px 4px;font-size:.88rem;color:var(--muted)}
+  .breadcrumb li{display:flex;align-items:center;gap:6px}
+  .breadcrumb li+li::before{content:"‹";color:#a3aca8}
+  .breadcrumb a{text-decoration:none}
+  .breadcrumb a:hover{color:var(--green-700);text-decoration:underline}
+  .breadcrumb [aria-current]{color:var(--ink);font-weight:600}
+
+  /* ===== Page heading ===== */
+  .page-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:8px 14px}
+  .page-head h1{font-size:1.45rem;line-height:1.3}
+  .result-count{font-size:.85rem;color:var(--muted)}
+  .filter-toggle{
+    display:inline-flex;align-items:center;gap:6px;height:40px;padding-inline:14px;
+    border:1px solid var(--line);border-radius:10px;background:#fff;font-weight:600;font-size:.9rem;
+  }
+  .filter-toggle[aria-expanded="true"]{border-color:var(--green-600);color:var(--green-700);background:var(--green-50)}
+
+  /* ===== Layout ===== */
+  .layout{display:grid;gap:16px;padding-bottom:32px}
+
+  /* ===== Filters ===== */
+  .filters{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:16px;
+  }
+  .filters h2{font-size:1rem;margin-bottom:12px}
+  .filter-group+.filter-group{border-top:1px solid var(--line);margin-top:16px;padding-top:16px}
+  .price-fields{display:flex;gap:10px;margin-bottom:12px}
+  .price-fields label{flex:1;font-size:.8rem;color:var(--muted)}
+  .price-fields input{
+    display:block;width:100%;margin-top:4px;height:40px;border:1px solid var(--line);
+    border-radius:10px;padding-inline:10px;font-size:.95rem;color:var(--ink);
+  }
+  input[type=range]{width:100%;accent-color:var(--green-600)}
+  .range-note{font-size:.85rem;color:var(--muted);margin-top:4px}
+  .range-note output{color:var(--ink);font-weight:600}
+  .checks{list-style:none;display:grid;gap:4px}
+  .checks label{
+    display:flex;align-items:center;gap:10px;padding:8px 4px;border-radius:8px;cursor:pointer;
+  }
+  .checks label:hover{background:var(--bg)}
+  .checks input{width:18px;height:18px;accent-color:var(--green-600)}
+  .checks .count{margin-inline-start:auto;font-size:.8rem;color:var(--muted)}
+  .reset{
+    margin-top:16px;width:100%;height:40px;border:0;border-radius:10px;
+    background:var(--bg);color:var(--green-700);font-weight:600;
+  }
+  .reset:hover{background:var(--green-50)}
+
+  /* ===== Product grid ===== */
+  .grid{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .card{
+    position:relative;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);
+    display:flex;flex-direction:column;overflow:hidden;
+    transition:transform .2s ease,box-shadow .2s ease;
+  }
+  .card:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(16,40,30,.1)}
+  .thumb{
+    aspect-ratio:1/1;display:grid;place-items:center;font-size:3.4rem;
+    background:var(--tint,#f1f4f2);
+  }
+  .discount{
+    position:absolute;top:10px;inset-inline-start:10px;
+    background:var(--red);color:#fff;font-size:.75rem;font-weight:700;
+    padding:2px 8px;border-radius:999px;
+  }
+  .card-body{padding:10px 12px 12px;display:flex;flex-direction:column;flex:1}
+  .card h3{font-size:.95rem;font-weight:600;line-height:1.35}
+  .weight{font-size:.8rem;color:var(--muted);margin-top:2px}
+  .prices{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 8px;margin-top:8px;margin-bottom:10px}
+  .price{font-size:1.1rem;font-weight:700;color:var(--green-700)}
+  .price small{font-size:.72rem;font-weight:600}
+  .old-price{font-size:.8rem;color:#98a29d}
+  .add{
+    margin-top:auto;height:40px;border:0;border-radius:10px;
+    background:var(--green-600);color:#fff;font-weight:600;font-size:.9rem;
+    display:flex;align-items:center;justify-content:center;gap:6px;
+    transition:background .2s;
+  }
+  .add:hover{background:var(--green-700)}
+  .add.added{background:var(--green-900)}
+  .empty{
+    background:#fff;border-radius:var(--radius);padding:32px 16px;text-align:center;color:var(--muted)
+  }
+
+  /* ===== Pagination ===== */
+  .pagination{margin-top:24px}
+  .pagination ul{list-style:none;display:flex;justify-content:center;align-items:center;gap:6px}
+  .pagination button{
+    min-width:40px;height:40px;padding-inline:12px;border:1px solid var(--line);
+    background:#fff;border-radius:10px;font-weight:600;
+    display:inline-flex;align-items:center;gap:6px;
+  }
+  .pagination button:hover:not(:disabled){border-color:var(--green-600);color:var(--green-700)}
+  .pagination button[aria-current="page"]{background:var(--green-600);border-color:var(--green-600);color:#fff}
+  .pagination button:disabled{opacity:.45;cursor:not-allowed}
+  .page-label{display:none}
+
+  /* ===== Tablet ===== */
+  @media (min-width:640px){
+    .grid{grid-template-columns:repeat(3,1fr);gap:16px}
+    .page-label{display:inline}
+  }
+
+  /* ===== Desktop ===== */
+  @media (min-width:960px){
+    .header-inner{grid-template-columns:auto 1fr auto;grid-template-areas:"logo search cart";gap:28px;padding-block:14px}
+    .search{max-width:560px;width:100%;justify-self:center}
+    .filter-toggle{display:none}
+    .layout{grid-template-columns:260px 1fr;gap:24px;align-items:start}
+    .filters,.filters[hidden]{display:block;position:sticky;top:92px}
+    .grid{grid-template-columns:repeat(3,1fr)}
+    .page-head h1{font-size:1.75rem}
+  }
+  @media (min-width:1140px){
+    .grid{grid-template-columns:repeat(4,1fr)}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="#" class="logo" aria-label="قريب - الصفحة الرئيسية">
+      <span class="logo-mark" aria-hidden="true">ق</span>
+      <span>قريب</span>
+    </a>
+
+    <form class="search" role="search" onsubmit="event.preventDefault()">
+      <label for="q" class="visually-hidden">ابحث عن منتج</label>
+      <input id="q" type="search" placeholder="ابحث عن فواكه، خضار، ألبان…">
+      <button type="submit" aria-label="بحث">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      </button>
+    </form>
+
+    <a href="#" class="cart" aria-label="السلة">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6.2"/><circle cx="10" cy="20.5" r="1.3"/><circle cx="17" cy="20.5" r="1.3"/></svg>
+      <span class="cart-badge" id="cartBadge" aria-live="polite">٣</span>
+    </a>
+  </div>
+</header>
+
+<main class="container">
+  <nav class="breadcrumb" aria-label="مسار التنقل">
+    <ol>
+      <li><a href="#">الرئيسية</a></li>
+      <li><a href="#">الخضار والفواكه</a></li>
+      <li><span aria-current="page">الفواكه</span></li>
+    </ol>
+  </nav>
+
+  <div class="page-head">
+    <div>
+      <h1>الفواكه</h1>
+      <p class="result-count" id="resultCount" aria-live="polite">٨ منتجات</p>
+    </div>
+    <button class="filter-toggle" id="filterToggle" aria-expanded="false" aria-controls="filters">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+      تصفية
+    </button>
+  </div>
+
+  <div class="layout">
+    <aside class="filters" id="filters" aria-labelledby="filtersTitle">
+      <h2 id="filtersTitle" class="visually-hidden">تصفية المنتجات</h2>
+
+      <div class="filter-group">
+        <h2>نطاق السعر</h2>
+        <div class="price-fields">
+          <label>من (ر.س)
+            <input type="number" id="minPrice" min="0" max="20" value="0" inputmode="decimal">
+          </label>
+          <label>إلى (ر.س)
+            <input type="number" id="maxPrice" min="0" max="20" value="20" inputmode="decimal">
+          </label>
+        </div>
+        <label for="priceRange" class="visually-hidden">الحد الأعلى للسعر</label>
+        <input type="range" id="priceRange" min="0" max="20" step="0.5" value="20">
+        <p class="range-note">حتى <output id="rangeOut" for="priceRange">٢٠</output> ر.س</p>
+      </div>
+
+      <fieldset class="filter-group" style="border-left:0;border-right:0;border-bottom:0">
+        <legend><h2 style="margin-bottom:8px">العلامة التجارية</h2></legend>
+        <ul class="checks">
+          <li><label><input type="checkbox" name="brand" value="الطازج"> الطازج <span class="count">٣</span></label></li>
+          <li><label><input type="checkbox" name="brand" value="مزارع الوطنية"> مزارع الوطنية <span class="count">٢</span></label></li>
+          <li><label><input type="checkbox" name="brand" value="حقول"> حقول <span class="count">٢</span></label></li>
+          <li><label><input type="checkbox" name="brand" value="الريف"> الريف <span class="count">١</span></label></li>
+        </ul>
+      </fieldset>
+
+      <button type="button" class="reset" id="resetFilters">مسح عوامل التصفية</button>
+    </aside>
+
+    <section aria-label="المنتجات">
+      <ul class="grid" id="grid">
+        <li class="card" data-price="5.5" data-brand="الطازج">
+          <div class="thumb" style="--tint:#fff6d6" role="img" aria-label="صورة موز">🍌</div>
+          <span class="discount">‎-٢١٪</span>
+          <div class="card-body">
+            <h3>موز إكوادوري</h3>
+            <p class="weight">١ كجم</p>
+            <p class="prices"><span class="price">٥٫٥٠ <small>ر.س</small></span><del class="old-price"><span class="visually-hidden">السعر السابق </span>٦٫٩٥ ر.س</del></p>
+            <button class="add" type="button" aria-label="أضف موز إكوادوري إلى السلة"><span aria-hidden="true">+</span> أضف للسلة</button>
+          </div>
+        </li>
+
+        <li class="card" data-price="8.95" data-brand="مزارع الوطنية">
+          <div class="thumb" style="--tint:#fde6e4" role="img" aria-label="صورة تفاح أحمر">🍎</div>
+          <span class="discount">‎-٢٥٪</span>
+          <div class="card-body">
+            <h3>تفاح أحمر</h3>
+            <p class="weight">١ كجم</p>
+            <p class="prices"><span class="price">٨٫٩٥ <small>ر.س</small></span><del class="old-price"><span class="visually-hidden">السعر السابق </span>١١٫٩٥ ر.س</del></p>
+            <button class="add" type="button" aria-label="أضف تفاح أحمر إلى السلة"><span aria-hidden="true">+</span> أضف للسلة</button>
+          </div>
+        </li>
+
+        <li class="card" data-price="9.75" data-brand="حقول">
+          <div class="thumb" style="--tint:#ffecd6" role="img" aria-label="صورة برتقال">🍊</div>
+          <span class="discount">‎-٢٢٪</span>
+          <div class="card-body">
+            <h3>برتقال عصير</h3>
+            <p class="weight">٢ كجم</p>
+            <p class="prices"><span class="price">٩٫٧٥ <small>ر.س</small></span><del class="old-price"><span class="visually-hidden">السعر السابق </span>١٢٫٥٠ ر.س</del></p>
+            <button class="add" type="button" aria-label="أضف برتقال عصير إلى السلة"><span aria-hidden="true">+</span> أضف للسلة</button>
+          </div>
+        </li>
+
+        <li class="card" data-price="12" data-brand="الطازج">
+          <div class="thumb" style="--tint:#fde4e8" role="img" aria-label="صورة فراولة">🍓</div>
+          <span class="discount">‎-٢٠٪</span>
+          <div class="card-body">
+            <h3>فراولة طازجة</h3>
+            <p class="weight">٢٥٠ غ</p>
+            <p class="prices"><span class="price">١٢٫٠٠ <small>ر.س</small></span><del class="old-price"><span class="visually-hidden">السعر السابق </span>١٥٫٠٠ ر.س</del></p>
+            <button class="add" type="button" aria-label="أضف فراولة طازجة إلى السلة"><span aria-hidden="true">+</span> أضف للسلة</button>
+          </div>
+        </li>
+
+        <li class="card" data-price="10.5" data-brand="الريف">
+          <div class="thumb" style="--tint:#eef5dc" role="img" aria-label="صورة عنب أخضر">🍇</div>
+          <span class="discount">‎-٢٥٪</span>
+          <div class="card-body">
+            <h3>عنب أخضر</h3>
+            <p class="weight">٥٠٠ غ</p>
+            <p class="prices"><span class="price">١٠٫٥٠ <small>ر.س</small></span><del class="old-price"><span class="visually-hidden">السعر السابق </span>١٤٫٠٠ ر.س</del></p>
+            <button class="add" type="button" aria-label="أضف عنب أخضر إلى السلة"><span aria-hidden="true">+</span> أضف للسلة</button>
+          </div>
+        </li>
+
+        <li class="card" data-price="16.95" data-brand="مزارع الوطنية">
+          <div class="thumb" style="--tint:#fff0d1" role="img" aria-label="صورة مانجو">🥭</div>
+          <span class="discount">‎-١٥٪</span>
+          <div class="card-body">
+            <h3>مانجو هندي</h3>
+            <p class="weight">١ كجم</p>
+            <p class="prices"><span class="price">١٦٫٩٥ <small>ر.س</small></span><del class="old-price"><span class="visually-hidden">السعر السابق </span>١٩٫٩٥ ر.س</del></p>
+            <button class="add" type="button" aria-label="أضف مانجو هندي إلى السلة"><span aria-hidden="true">+</span> أضف للسلة</button>
+          </div>
+        </li>
+
+        <li class="card" data-price="7.25" data-brand="حقول">
+          <div class="thumb" style="--tint:#e6f3e0" role="img" aria-label="صورة كيوي">🥝</div>
+          <span class="discount">‎-١٥٪</span>
+          <div class="card-body">
+            <h3>كيوي نيوزيلندي</h3>
+            <p class="weight">٥٠٠ غ</p>
+            <p class="prices"><span class="price">٧٫٢٥ <small>ر.س</small></span><del class="old-price"><span class="visually-hidden">السعر السابق </span>٨٫٥٠ ر.س</del></p>
+            <button class="add" type="button" aria-label="أضف كيوي نيوزيلندي إلى السلة"><span aria-hidden="true">+</span> أضف للسلة</button>
+          </div>
+        </li>
+
+        <li class="card" data-price="13.5" data-brand="الطازج">
+          <div class="thumb" style="--tint:#fbe1e1" role="img" aria-label="صورة رمان">🍒</div>
+          <span class="discount">‎-٢٥٪</span>
+          <div class="card-body">
+            <h3>رمان طائفي</h3>
+            <p class="weight">١ كجم</p>
+            <p class="prices"><span class="price">١٣٫٥٠ <small>ر.س</small></span><del class="old-price"><span class="visually-hidden">السعر السابق </span>١٨٫٠٠ ر.س</del></p>
+            <button class="add" type="button" aria-label="أضف رمان طائفي إلى السلة"><span aria-hidden="true">+</span> أضف للسلة</button>
+          </div>
+        </li>
+      </ul>
+
+      <p class="empty" id="empty" hidden>لا توجد منتجات تطابق عوامل التصفية المختارة.</p>
+
+      <nav class="pagination" aria-label="ترقيم الصفحات">
+        <ul>
+          <li>
+            <button type="button" id="prev" aria-label="الصفحة السابقة" disabled>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+              <span class="page-label">السابق</span>
+            </button>
+          </li>
+          <li><button type="button" class="page" aria-current="page">١</button></li>
+          <li><button type="button" class="page">٢</button></li>
+          <li><button type="button" class="page">٣</button></li>
+          <li>
+            <button type="button" id="next" aria-label="الصفحة التالية">
+              <span class="page-label">التالي</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg>
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </section>
+  </div>
+</main>
+
+<script>
+(function () {
+  var nf = new Intl.NumberFormat('ar-SA');
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* --- Cart badge --- */
+  var cartCount = 3, badge = $('cartBadge');
+  document.querySelectorAll('.add').forEach(function (btn) {
+    var original = btn.innerHTML;
+    btn.addEventListener('click', function () {
+      cartCount++;
+      badge.textContent = nf.format(cartCount);
+      badge.classList.remove('bump'); void badge.offsetWidth; badge.classList.add('bump');
+      btn.classList.add('added');
+      btn.innerHTML = '✓ تمت الإضافة';
+      clearTimeout(btn._t);
+      btn._t = setTimeout(function () { btn.classList.remove('added'); btn.innerHTML = original; }, 1300);
+    });
+  });
+
+  /* --- Mobile filter toggle --- */
+  var panel = $('filters'), toggle = $('filterToggle');
+  panel.hidden = true;
+  toggle.addEventListener('click', function () {
+    var open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    panel.hidden = open;
+  });
+
+  /* --- Filtering --- */
+  var minI = $('minPrice'), maxI = $('maxPrice'), range = $('priceRange'), out = $('rangeOut');
+  var cards = document.querySelectorAll('.card'), boxes = document.querySelectorAll('input[name=brand]');
+
+  function plural(n) {
+    if (n === 0) return 'لا توجد منتجات';
+    if (n === 1) return 'منتج واحد';
+    if (n === 2) return 'منتجان';
+    if (n <= 10) return nf.format(n) + ' منتجات';
+    return nf.format(n) + ' منتجاً';
+  }
+
+  function apply() {
+    var min = parseFloat(minI.value) || 0;
+    var max = parseFloat(maxI.value); if (isNaN(max)) max = 20;
+    var brands = Array.from(boxes).filter(function (b) { return b.checked; }).map(function (b) { return b.value; });
+    var shown = 0;
+    cards.forEach(function (c) {
+      var p = parseFloat(c.dataset.price);
+      var ok = p >= min && p <= max && (!brands.length || brands.indexOf(c.dataset.brand) > -1);
+      c.hidden = !ok; if (ok) shown++;
+    });
+    out.textContent = nf.format(max);
+    $('resultCount').textContent = plural(shown);
+    $('empty').hidden = shown > 0;
+  }
+
+  range.addEventListener('input', function () { maxI.value = range.value; apply(); });
+  maxI.addEventListener('input', function () { range.value = maxI.value; apply(); });
+  minI.addEventListener('input', apply);
+  boxes.forEach(function (b) { b.addEventListener('change', apply); });
+  $('resetFilters').addEventListener('click', function () {
+    minI.value = 0; maxI.value = 20; range.value = 20;
+    boxes.forEach(function (b) { b.checked = false; });
+    apply();
+  });
+
+  /* --- Pagination (demo state) --- */
+  var pages = Array.from(document.querySelectorAll('.page')), current = 0;
+  function go(i) {
+    current = Math.max(0, Math.min(pages.length - 1, i));
+    pages.forEach(function (p, idx) {
+      if (idx === current) p.setAttribute('aria-current', 'page'); else p.removeAttribute('aria-current');
+    });
+    $('prev').disabled = current === 0;
+    $('next').disabled = current === pages.length - 1;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  pages.forEach(function (p, i) { p.addEventListener('click', function () { go(i); }); });
+  $('prev').addEventListener('click', function () { go(current - 1); });
+  $('next').addEventListener('click', function () { go(current + 1); });
+})();
+</script>
+</body>
+</html>

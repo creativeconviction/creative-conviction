@@ -1,0 +1,12 @@
+{
+  "line": "T1",
+  "market": "ar_eg",
+  "model": "gemini",
+  "source": "I'm lovin' it",
+  "raw": "{\n  \"literal\": \"أنا أحب هذا\",\n  \"adaptation\": \"أنا أحبه\",\n  \"back_translation\": \"I love it\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Arabic does not use a present continuous tense for verbs of emotion, so the official MENA and Egyptian tagline shifts to the simple present to be grammatically correct while still perfectly matching the syllables of the iconic jingle.\"\n}",
+  "literal": "أنا أحب هذا",
+  "adaptation": "أنا أحبه",
+  "back_translation": "I love it",
+  "approach": "adapted",
+  "notes": "Arabic does not use a present continuous tense for verbs of emotion, so the official MENA and Egyptian tagline shifts to the simple present to be grammatically correct while still perfectly matching the syllables of the iconic jingle."
+}

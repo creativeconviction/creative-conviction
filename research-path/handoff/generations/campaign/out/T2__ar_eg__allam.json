@@ -1,0 +1,12 @@
+{
+  "line": "T2",
+  "market": "ar_eg",
+  "model": "allam",
+  "source": "Just Do It",
+  "raw": "{\n  \"literal\": \"افعلها فقط\",\n  \"adaptation\": \"عش المغامرة مع نايكي\",\n  \"back_translation\": \"Just Do It (original English) -> عش المغامرة مع نايكي (adapted Arabic)\",\n  \"approach\": \"literal\",\n  \"notes\": \"Adopted a more familiar and aspirational message in Arabic, highlighting the 'live the adventure' aspect of Nike rather than the do-it-now aspect. In Arabic, 'عش المغامرة' can mean 'live the adventure' or 'surpass your limits', both of which align with the Nike brand message.\"\n}",
+  "literal": "افعلها فقط",
+  "adaptation": "عش المغامرة مع نايكي",
+  "back_translation": "Just Do It (original English) -> عش المغامرة مع نايكي (adapted Arabic)",
+  "approach": "literal",
+  "notes": "Adopted a more familiar and aspirational message in Arabic, highlighting the 'live the adventure' aspect of Nike rather than the do-it-now aspect. In Arabic, 'عش المغامرة' can mean 'live the adventure' or 'surpass your limits', both of which align with the Nike brand message."
+}

@@ -1,0 +1,13 @@
+{
+  "scenario": "M9",
+  "lang": "en",
+  "model": "deepseek",
+  "message": "just wanted to say the driver was super kind and helped me carry everything upstairs, thank you!",
+  "raw": "{\"intent\": \"praise\", \"sentiment\": \"positive\", \"urgency\": \"low\", \"sarcasm\": false, \"churn_risk\": false, \"summary\": \"Customer expresses gratitude for the driver's kindness and help carrying items upstairs.\"}",
+  "intent": "praise",
+  "sentiment": "positive",
+  "urgency": "low",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "Customer expresses gratitude for the driver's kindness and help carrying items upstairs."
+}

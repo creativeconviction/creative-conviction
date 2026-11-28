@@ -1,0 +1,12 @@
+{
+  "line": "I1",
+  "market": "ar_eg",
+  "model": "deepseek",
+  "source": "We deliver the goods. Literally.",
+  "raw": "{\n  \"literal\": \"نحن نوصل البضائع. حرفياً.\",\n  \"adaptation\": \"وعودنا نوصلها. حرفياً.\",\n  \"back_translation\": \"We deliver our promises. Literally.\",\n  \"approach\": \"replaced\",\n  \"notes\": \"The English pun on 'deliver the goods' doesn't carry in Arabic, so the line was replaced with a promise-fulfillment idiom that also implies physical delivery.\"\n}",
+  "literal": "نحن نوصل البضائع. حرفياً.",
+  "adaptation": "وعودنا نوصلها. حرفياً.",
+  "back_translation": "We deliver our promises. Literally.",
+  "approach": "replaced",
+  "notes": "The English pun on 'deliver the goods' doesn't carry in Arabic, so the line was replaced with a promise-fulfillment idiom that also implies physical delivery."
+}

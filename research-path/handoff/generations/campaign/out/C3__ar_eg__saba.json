@@ -1,0 +1,12 @@
+{
+  "line": "C3",
+  "market": "ar_eg",
+  "model": "saba",
+  "source": "Thanksgiving dinner, sorted. Order your turkey today.",
+  "raw": "```json\n{\n  \"literal\": \"عشاء عيد الشكر، مُنظم. اطلب ديك رومي اليوم.\",\n  \"adaptation\": \"عيد من السالم.. ناطرينك لطلب طابور العيد اليوم\",\n  \"back_translation\": \"Eid is safe... we’re expecting you to order the Eid feast today\",\n  \"approach\": \"replaced\",\n  \"notes\": \"Shifted from Thanksgiving to Eid (a culturally significant holiday in Egypt) while keeping the urgency and celebration tone.\"\n}\n```",
+  "literal": "عشاء عيد الشكر، مُنظم. اطلب ديك رومي اليوم.",
+  "adaptation": "عيد من السالم.. ناطرينك لطلب طابور العيد اليوم",
+  "back_translation": "Eid is safe... we’re expecting you to order the Eid feast today",
+  "approach": "replaced",
+  "notes": "Shifted from Thanksgiving to Eid (a culturally significant holiday in Egypt) while keeping the urgency and celebration tone."
+}

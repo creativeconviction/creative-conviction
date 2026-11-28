@@ -1,0 +1,12 @@
+{
+  "line": "C1",
+  "market": "ar_eg",
+  "model": "allam",
+  "source": "Black Friday: up to 70% off everything.",
+  "raw": "{\n  \"literal\": \"الجمعة السوداء: خصم 70% على كل شيء\",\n  \"adaptation\": \"عروض الجمعة السوداء: تصل إلى 70% تخفيض على كل شيء\",\n  \"back_translation\": \"Black Friday: خصم 70% على كل شيء\",\n  \"approach\": \"literal\",\n  \"notes\": \"The translation was adapted to better suit the Arabic language's sentence structure and chosen to emphasize the market-specific aspect of 'Black Friday' and the term 'discount' which is commonly used in Arabic marketing.\"\n}",
+  "literal": "الجمعة السوداء: خصم 70% على كل شيء",
+  "adaptation": "عروض الجمعة السوداء: تصل إلى 70% تخفيض على كل شيء",
+  "back_translation": "Black Friday: خصم 70% على كل شيء",
+  "approach": "literal",
+  "notes": "The translation was adapted to better suit the Arabic language's sentence structure and chosen to emphasize the market-specific aspect of 'Black Friday' and the term 'discount' which is commonly used in Arabic marketing."
+}

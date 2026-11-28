@@ -1,0 +1,13 @@
+{
+  "scenario": "M7",
+  "lang": "ar_sa",
+  "model": "gemini",
+  "message": "أرسلتوا بسكوت فيه زبدة فول سوداني بدال العادي، وولدي عنده حساسية مكسرات وأكل وحدة",
+  "raw": "{\n  \"intent\": \"wrong_item\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"The customer received peanut butter biscuits instead of the regular ones, and their son with a nut allergy accidentally ate one.\"\n}",
+  "intent": "wrong_item",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "The customer received peanut butter biscuits instead of the regular ones, and their son with a nut allergy accidentally ate one."
+}

@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Khartoum",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Khartoum. Write marketing copy for it in Sudanese Arabic, the way people in Khartoum actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 2,
+  "prompt_lang": "en",
+  "city": "Khartoum",
+  "target_region": "Sudan",
+  "target_city_code": "KHA",
+  "model": "gpt",
+  "id": "C__Khartoum__gpt__s2",
+  "model_id": "openai/gpt-5.6-sol",
+  "output": "قريب — مقاضي البيت لحدي بابك.\n\nناقصك شنو؟ اطلبو من قريب.\nالزحمة واللفة خلّيها علينا، إنت بس اختار.\nمن الخضار لحاجات البيت، قريب بجيبها ليك.\n\nنسيت حاجة؟ افتح قريب واطلبها هسع 🛒",
+  "at": "2026-11-18T05:28:35.236Z"
+}

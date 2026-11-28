@@ -1,0 +1,12 @@
+{
+  "part": "A",
+  "cond": "en",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب). Write marketing copy for it in Arabic: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 3,
+  "prompt_lang": "en",
+  "model": "deepseek",
+  "id": "A__en__deepseek__s3",
+  "model_id": "deepseek/deepseek-v4-pro",
+  "output": "قريب… دايمًا عند بابك\nمقاضيك الطازجة توصل قبل ما يخلص مسلسلك\nأطلب وأنت مرتاح، واحنا نوصل لك لين باب البيت\nخضار، فواكه، وكل شي ناقصك، بدقائق مع قريب\nمقاضيك ناقصة؟ 🛍️ اطلبها من قريب وتوصلك خلال ٣٠ دقيقة",
+  "at": "2026-11-18T05:23:26.292Z"
+}

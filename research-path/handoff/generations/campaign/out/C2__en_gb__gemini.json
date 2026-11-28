@@ -1,0 +1,12 @@
+{
+  "line": "C2",
+  "market": "en_gb",
+  "model": "gemini",
+  "source": "Happy hour: 2-for-1 drinks from 5 to 7pm.",
+  "raw": "{\n  \"literal\": \"Happy hour: 2-for-1 drinks from 5 to 7pm.\",\n  \"adaptation\": \"Happy hour: 2 for 1 drinks from 5pm to 7pm.\",\n  \"back_translation\": \"Happy hour: 2 for 1 drinks from 5pm to 7pm.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Removed the hyphens in '2 for 1' and added 'pm' to the start time for standard British promotional styling, while bearing in mind that temporary alcohol price promotions are illegal in Scotland and this would only run in England, Wales, and Northern Ireland.\"\n}",
+  "literal": "Happy hour: 2-for-1 drinks from 5 to 7pm.",
+  "adaptation": "Happy hour: 2 for 1 drinks from 5pm to 7pm.",
+  "back_translation": "Happy hour: 2 for 1 drinks from 5pm to 7pm.",
+  "approach": "adapted",
+  "notes": "Removed the hyphens in '2 for 1' and added 'pm' to the start time for standard British promotional styling, while bearing in mind that temporary alcohol price promotions are illegal in Scotland and this would only run in England, Wales, and Northern Ireland."
+}

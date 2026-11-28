@@ -1,0 +1,12 @@
+{
+  "line": "T6",
+  "market": "ar_sa",
+  "model": "gemini",
+  "source": "Got milk?",
+  "raw": "{\n  \"literal\": \"هل لديك حليب؟\",\n  \"adaptation\": \"عندك حليب؟\",\n  \"back_translation\": \"Do you have milk?\",\n  \"approach\": \"adapted\",\n  \"notes\": \"We used the short, conversational Saudi dialect ('عندك') rather than formal Modern Standard Arabic to accurately capture the snappy, relatable, everyday tone of the original.\"\n}",
+  "literal": "هل لديك حليب؟",
+  "adaptation": "عندك حليب؟",
+  "back_translation": "Do you have milk?",
+  "approach": "adapted",
+  "notes": "We used the short, conversational Saudi dialect ('عندك') rather than formal Modern Standard Arabic to accurately capture the snappy, relatable, everyday tone of the original."
+}

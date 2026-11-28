@@ -1,0 +1,12 @@
+{
+  "line": "T6",
+  "market": "en_gb",
+  "model": "gemini",
+  "source": "Got milk?",
+  "raw": "```json\n{\n  \"literal\": \"Got milk?\",\n  \"adaptation\": \"Got milk?\",\n  \"back_translation\": \"Got milk?\",\n  \"approach\": \"keep_english\",\n  \"notes\": \"Although 'Have you got milk?' or 'Got any milk?' is more grammatically standard in British vernacular, the original American slogan is universally understood and keeping it preserves the iconic, punchy rhythm.\"\n}\n```",
+  "literal": "Got milk?",
+  "adaptation": "Got milk?",
+  "back_translation": "Got milk?",
+  "approach": "keep_english",
+  "notes": "Although 'Have you got milk?' or 'Got any milk?' is more grammatically standard in British vernacular, the original American slogan is universally understood and keeping it preserves the iconic, punchy rhythm."
+}

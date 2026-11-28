@@ -1,0 +1,13 @@
+{
+  "scenario": "M2",
+  "lang": "ar_eg",
+  "model": "gemini",
+  "message": "الأوردر فين؟؟ بقاله ساعتين، ده تهريج",
+  "raw": "{\n  \"intent\": \"late_delivery\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"The customer is angrily inquiring about their order which is currently two hours late.\"\n}",
+  "intent": "late_delivery",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "The customer is angrily inquiring about their order which is currently two hours late."
+}

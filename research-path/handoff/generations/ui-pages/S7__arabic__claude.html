@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>قريب — مرحباً بك</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --primary:#0E7C66;
+    --primary-dark:#0A5E4E;
+    --primary-soft:#E3F2EE;
+    --accent:#F4A340;
+    --accent-soft:#FDEFD9;
+    --ink:#1C2826;
+    --muted:#5E6E6A;
+    --bg:#F7F5F0;
+    --card:#FFFFFF;
+    --radius:28px;
+    --ease:cubic-bezier(.65,.05,.25,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100dvh;
+  }
+
+  .app{
+    position:relative;
+    width:100%;
+    max-width:430px;
+    height:100dvh;
+    min-height:600px;
+    display:flex;
+    flex-direction:column;
+    background:var(--bg);
+    overflow:hidden;
+  }
+
+  /* Header */
+  .top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:calc(18px + env(safe-area-inset-top)) 24px 8px;
+    z-index:2;
+  }
+  .brand{
+    display:flex;align-items:center;gap:8px;
+    font-weight:700;font-size:1.25rem;color:var(--primary);
+  }
+  .brand-mark{
+    width:32px;height:32px;border-radius:10px;
+    background:var(--primary);
+    display:grid;place-items:center;
+  }
+  .skip{
+    font:inherit;font-size:.95rem;font-weight:500;
+    color:var(--muted);
+    text-decoration:none;
+    padding:8px 12px;
+    border-radius:999px;
+    transition:color .2s, background .2s, opacity .3s;
+  }
+  .skip:hover{color:var(--primary);background:var(--primary-soft)}
+  .skip.is-hidden{opacity:0;pointer-events:none}
+
+  /* Slides */
+  .viewport{
+    flex:1;
+    overflow:hidden;
+    touch-action:pan-y;
+  }
+  .track{
+    display:flex;
+    height:100%;
+    transition:transform .55s var(--ease);
+    will-change:transform;
+  }
+  .slide{
+    flex:0 0 100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:8px 28px 0;
+    text-align:center;
+  }
+  .illus{
+    position:relative;
+    width:min(100%, 300px);
+    aspect-ratio:1/1;
+    border-radius:var(--radius);
+    display:grid;
+    place-items:center;
+    margin-bottom:36px;
+    transition:transform .6s var(--ease), opacity .6s var(--ease);
+    transform:scale(.92);
+    opacity:.4;
+  }
+  .slide.is-active .illus{transform:scale(1);opacity:1}
+  .illus svg{width:82%;height:82%}
+  .illus--1{background:var(--primary-soft)}
+  .illus--2{background:var(--accent-soft)}
+  .illus--3{background:#E8ECF7}
+
+  .slide h2{
+    font-size:1.6rem;
+    font-weight:700;
+    line-height:1.4;
+    margin-bottom:12px;
+    letter-spacing:0;
+  }
+  .slide p{
+    font-size:1.02rem;
+    line-height:1.85;
+    color:var(--muted);
+    max-width:310px;
+  }
+  .slide h2,.slide p{
+    transition:transform .6s var(--ease) .08s, opacity .6s var(--ease) .08s;
+    transform:translateY(12px);
+    opacity:0;
+  }
+  .slide.is-active h2,.slide.is-active p{transform:none;opacity:1}
+
+  /* Footer */
+  .bottom{
+    padding:24px 24px calc(28px + env(safe-area-inset-bottom));
+    display:flex;
+    flex-direction:column;
+    gap:28px;
+  }
+  .dots{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+  }
+  .dot{
+    width:8px;height:8px;
+    border:0;border-radius:999px;
+    background:#CBD5D2;
+    cursor:pointer;
+    transition:width .35s var(--ease), background .35s;
+    padding:0;
+    position:relative;
+  }
+  .dot::after{ /* larger tap target */
+    content:"";position:absolute;inset:-10px -6px;
+  }
+  .dot[aria-current="true"]{width:28px;background:var(--primary)}
+
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+  }
+  .btn{
+    font:inherit;
+    font-size:1rem;
+    font-weight:600;
+    border:0;
+    cursor:pointer;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    height:54px;
+    border-radius:16px;
+    transition:background .2s, color .2s, opacity .3s, transform .15s, flex-grow .4s var(--ease);
+  }
+  .btn:active{transform:scale(.97)}
+  .btn svg{width:20px;height:20px;flex-shrink:0}
+  .btn-ghost{
+    background:transparent;
+    color:var(--ink);
+    padding:0 18px;
+  }
+  .btn-ghost:hover{background:#ECEAE3}
+  .btn-ghost:disabled{opacity:0;pointer-events:none}
+  .btn-primary{
+    background:var(--primary);
+    color:#fff;
+    padding:0 26px;
+    min-width:140px;
+    box-shadow:0 8px 20px -8px rgba(14,124,102,.55);
+  }
+  .btn-primary:hover{background:var(--primary-dark)}
+  .btn-primary.is-final{flex-grow:1}
+  .btn-primary.is-final .icon-next{display:none}
+
+  .btn:focus-visible,.dot:focus-visible,.skip:focus-visible{
+    outline:3px solid var(--accent);
+    outline-offset:3px;
+  }
+
+  /* Toast / done state */
+  .done{
+    position:absolute;inset:0;
+    background:var(--primary);
+    color:#fff;
+    display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+    gap:14px;text-align:center;padding:32px;
+    opacity:0;pointer-events:none;
+    transition:opacity .45s var(--ease);
+    z-index:5;
+  }
+  .done.is-visible{opacity:1;pointer-events:auto}
+  .done h2{font-size:1.6rem}
+  .done p{opacity:.85;line-height:1.8}
+  .done button{
+    margin-top:12px;
+    background:#fff;color:var(--primary);
+    padding:0 24px;
+  }
+
+  .sr-only{
+    position:absolute;width:1px;height:1px;overflow:hidden;
+    clip:rect(0 0 0 0);white-space:nowrap;
+  }
+
+  /* Desktop: present as a device card */
+  @media (min-width:600px){
+    body{
+      background:
+        radial-gradient(circle at 20% 20%, #E3F2EE 0, transparent 45%),
+        radial-gradient(circle at 80% 80%, #FDEFD9 0, transparent 45%),
+        var(--bg);
+      padding:32px;
+    }
+    .app{
+      height:min(820px, calc(100dvh - 64px));
+      border-radius:40px;
+      box-shadow:0 30px 80px -30px rgba(28,40,38,.35), 0 0 0 1px rgba(28,40,38,.05);
+    }
+    .top{padding-top:24px}
+    .bottom{padding-bottom:32px}
+  }
+  @media (max-height:680px){
+    .illus{width:min(100%, 230px);margin-bottom:24px}
+    .slide h2{font-size:1.4rem}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{transition-duration:.01ms !important}
+  }
+</style>
+</head>
+<body>
+
+<main class="app" id="app">
+  <header class="top">
+    <div class="brand" aria-label="قريب">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z" fill="#fff"/>
+          <circle cx="12" cy="10" r="2.6" fill="#0E7C66"/>
+        </svg>
+      </span>
+      قريب
+    </div>
+    <a href="#" class="skip" id="skip">تخطي</a>
+  </header>
+
+  <section class="viewport" id="viewport" aria-roledescription="عرض شرائح" aria-label="التعريف بتطبيق قريب">
+    <div class="track" id="track">
+
+      <!-- Slide 1 -->
+      <div class="slide is-active" role="group" aria-roledescription="شريحة" aria-label="١ من ٣">
+        <div class="illus illus--1" aria-hidden="true">
+          <svg viewBox="0 0 240 240" fill="none">
+            <circle cx="120" cy="128" r="92" stroke="#0E7C66" stroke-opacity=".15" stroke-width="2" stroke-dasharray="6 8"/>
+            <circle cx="120" cy="128" r="60" stroke="#0E7C66" stroke-opacity=".25" stroke-width="2"/>
+            <circle cx="120" cy="128" r="28" fill="#0E7C66" fill-opacity=".12"/>
+            <rect x="38" y="70" width="34" height="28" rx="8" fill="#fff"/>
+            <rect x="46" y="78" width="18" height="4" rx="2" fill="#F4A340"/>
+            <rect x="46" y="86" width="12" height="4" rx="2" fill="#CBD5D2"/>
+            <rect x="166" y="150" width="38" height="30" rx="8" fill="#fff"/>
+            <circle cx="178" cy="165" r="5" fill="#0E7C66"/>
+            <rect x="187" y="162" width="11" height="6" rx="3" fill="#CBD5D2"/>
+            <rect x="160" y="62" width="30" height="26" rx="8" fill="#fff"/>
+            <path d="M168 75h14" stroke="#0E7C66" stroke-width="4" stroke-linecap="round"/>
+            <path d="M120 140s28-24.5 28-47a28 28 0 1 0-56 0c0 22.5 28 47 28 47Z" fill="#0E7C66"/>
+            <circle cx="120" cy="93" r="11" fill="#fff"/>
+            <ellipse cx="120" cy="146" rx="14" ry="4" fill="#0E7C66" fill-opacity=".25"/>
+          </svg>
+        </div>
+        <h2>اكتشف ما حولك</h2>
+        <p>تعرّف على المتاجر والخدمات والأماكن القريبة منك في حيّك، كلها في مكان واحد.</p>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="slide" role="group" aria-roledescription="شريحة" aria-label="٢ من ٣" aria-hidden="true">
+        <div class="illus illus--2" aria-hidden="true">
+          <svg viewBox="0 0 240 240" fill="none">
+            <path d="M40 176V118l38-30 38 30v58Z" fill="#fff"/>
+            <rect x="68" y="140" width="20" height="36" rx="4" fill="#F4A340"/>
+            <path d="M124 176v-70l40-32 40 32v70Z" fill="#fff"/>
+            <rect x="154" y="140" width="20" height="36" rx="4" fill="#0E7C66"/>
+            <rect x="140" y="110" width="14" height="14" rx="3" fill="#FDEFD9"/>
+            <rect x="174" y="110" width="14" height="14" rx="3" fill="#FDEFD9"/>
+            <path d="M28 176h184" stroke="#1C2826" stroke-opacity=".15" stroke-width="3" stroke-linecap="round"/>
+            <rect x="30" y="38" width="80" height="40" rx="14" fill="#0E7C66"/>
+            <path d="M52 78l-6 12 16-12Z" fill="#0E7C66"/>
+            <rect x="44" y="52" width="40" height="5" rx="2.5" fill="#fff"/>
+            <rect x="44" y="62" width="26" height="5" rx="2.5" fill="#fff" fill-opacity=".6"/>
+            <rect x="128" y="22" width="76" height="36" rx="14" fill="#fff"/>
+            <path d="M184 58l6 10-16-10Z" fill="#fff"/>
+            <circle cx="150" cy="40" r="4" fill="#F4A340"/>
+            <circle cx="166" cy="40" r="4" fill="#F4A340"/>
+            <circle cx="182" cy="40" r="4" fill="#F4A340"/>
+          </svg>
+        </div>
+        <h2>تواصل مع جيرانك</h2>
+        <p>اسأل، شارك، وساعد. ابقَ على اطلاع بما يحدث في حيّك وكوّن علاقات حقيقية مع من حولك.</p>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="slide" role="group" aria-roledescription="شريحة" aria-label="٣ من ٣" aria-hidden="true">
+        <div class="illus illus--3" aria-hidden="true">
+          <svg viewBox="0 0 240 240" fill="none">
+            <circle cx="120" cy="120" r="84" fill="#fff" fill-opacity=".6"/>
+            <path d="M120 44l58 22v44c0 40-26 68-58 82-32-14-58-42-58-82V66Z" fill="#3B5BDB" fill-opacity=".14"/>
+            <path d="M120 58l46 17v35c0 32-20 54-46 66-26-12-46-34-46-66V75Z" fill="#3B5BDB"/>
+            <path d="M98 118l15 15 30-32" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="52" cy="70" r="7" fill="#F4A340"/>
+            <circle cx="194" cy="168" r="9" fill="#0E7C66"/>
+            <path d="M190 62l4 9 9 4-9 4-4 9-4-9-9-4 9-4Z" fill="#F4A340"/>
+            <path d="M46 160l3 6 6 3-6 3-3 6-3-6-6-3 6-3Z" fill="#3B5BDB" fill-opacity=".5"/>
+          </svg>
+        </div>
+        <h2>آمن وموثوق</h2>
+        <p>حسابات موثّقة وتقييمات حقيقية، وأنت تتحكم دائماً في ما تشاركه ومع من تشاركه.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="bottom">
+    <div class="dots" id="dots" role="group" aria-label="اختيار الشريحة">
+      <button class="dot" type="button" aria-label="الشريحة ١" aria-current="true"></button>
+      <button class="dot" type="button" aria-label="الشريحة ٢" aria-current="false"></button>
+      <button class="dot" type="button" aria-label="الشريحة ٣" aria-current="false"></button>
+    </div>
+
+    <div class="nav">
+      <button class="btn btn-ghost" id="prev" type="button" disabled>
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        السابق
+      </button>
+      <button class="btn btn-primary" id="next" type="button">
+        <span id="nextLabel">التالي</span>
+        <svg class="icon-next" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </footer>
+
+  <p class="sr-only" aria-live="polite" id="status">الشريحة ١ من ٣</p>
+
+  <div class="done" id="done" role="dialog" aria-modal="true" aria-labelledby="doneTitle">
+    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="12" r="11" fill="#fff" fill-opacity=".15"/>
+      <path d="M7.5 12.5l3 3 6-6.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <h2 id="doneTitle">أهلاً بك في قريب!</h2>
+    <p>كل ما تحتاجه أصبح أقرب إليك.</p>
+    <button class="btn" type="button" id="restart">إعادة العرض</button>
+  </div>
+</main>
+
+<script>
+(function(){
+  var track = document.getElementById('track');
+  var slides = track.children;
+  var dots = document.querySelectorAll('.dot');
+  var prev = document.getElementById('prev');
+  var next = document.getElementById('next');
+  var nextLabel = document.getElementById('nextLabel');
+  var skip = document.getElementById('skip');
+  var status = document.getElementById('status');
+  var done = document.getElementById('done');
+  var arNums = ['١','٢','٣'];
+  var total = slides.length;
+  var index = 0;
+
+  function go(n){
+    index = Math.max(0, Math.min(total - 1, n));
+    // RTL: following slides sit to the left, so shift the track right
+    track.style.transform = 'translateX(' + (index * 100) + '%)';
+
+    for (var i = 0; i < total; i++){
+      var active = i === index;
+      slides[i].classList.toggle('is-active', active);
+      slides[i].setAttribute('aria-hidden', active ? 'false' : 'true');
+      dots[i].setAttribute('aria-current', active ? 'true' : 'false');
+    }
+
+    var last = index === total - 1;
+    prev.disabled = index === 0;
+    next.classList.toggle('is-final', last);
+    nextLabel.textContent = last ? 'ابدأ الآن' : 'التالي';
+    skip.classList.toggle('is-hidden', last);
+    skip.setAttribute('aria-hidden', last ? 'true' : 'false');
+    skip.tabIndex = last ? -1 : 0;
+    status.textContent = 'الشريحة ' + arNums[index] + ' من ' + arNums[total - 1];
+  }
+
+  function finish(){
+    done.classList.add('is-visible');
+    document.getElementById('restart').focus();
+  }
+
+  next.addEventListener('click', function(){
+    index === total - 1 ? finish() : go(index + 1);
+  });
+  prev.addEventListener('click', function(){ go(index - 1); });
+  skip.addEventListener('click', function(e){ e.preventDefault(); finish(); });
+  dots.forEach(function(d, i){ d.addEventListener('click', function(){ go(i); }); });
+
+  document.getElementById('restart').addEventListener('click', function(){
+    done.classList.remove('is-visible');
+    go(0);
+    next.focus();
+  });
+
+  // Keyboard (RTL: left arrow = next)
+  document.addEventListener('keydown', function(e){
+    if (done.classList.contains('is-visible')) return;
+    if (e.key === 'ArrowLeft') go(index + 1);
+    if (e.key === 'ArrowRight') go(index - 1);
+  });
+
+  // Swipe (RTL: swipe right reveals next slide)
+  var startX = null, startY = null;
+  var vp = document.getElementById('viewport');
+  vp.addEventListener('touchstart', function(e){
+    startX = e.touches[0].clientX; startY = e.touches[0].clientY;
+  }, {passive:true});
+  vp.addEventListener('touchend', function(e){
+    if (startX === null) return;
+    var dx = e.changedTouches[0].clientX - startX;
+    var dy = e.changedTouches[0].clientY - startY;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)){
+      go(dx > 0 ? index + 1 : index - 1);
+    }
+    startX = null;
+  });
+
+  go(0);
+})();
+</script>
+</body>
+</html>

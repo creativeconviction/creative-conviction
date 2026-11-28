@@ -1,0 +1,12 @@
+{
+  "line": "T2",
+  "market": "ar_eg",
+  "model": "saba",
+  "source": "Just Do It",
+  "raw": "```json\n{\n  \"literal\": \"إفعلها فقط\",\n  \"adaptation\": \"خطوة نحو المستحيل\",\n  \"back_translation\": \"A step toward the impossible\",\n  \"approach\": \"replaced\",\n  \"notes\": \"Nike’s positioning in Egypt leans into aspiration and overcoming limits, so a motivational imperative was replaced with a more grandiose, action-oriented phrase.\"\n}\n```",
+  "literal": "إفعلها فقط",
+  "adaptation": "خطوة نحو المستحيل",
+  "back_translation": "A step toward the impossible",
+  "approach": "replaced",
+  "notes": "Nike’s positioning in Egypt leans into aspiration and overcoming limits, so a motivational imperative was replaced with a more grandiose, action-oriented phrase."
+}

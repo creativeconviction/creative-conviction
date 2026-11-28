@@ -1,0 +1,13 @@
+{
+  "scenario": "M11",
+  "lang": "ar_msa",
+  "model": "gemini",
+  "message": "بصراحة هذه آخر مرة أطلب منكم، كل أسبوع تحدث مشكلة",
+  "raw": "{\n  \"intent\": \"general_complaint\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"The customer is highly frustrated with recurring weekly issues and explicitly states they will no longer use the service.\"\n}",
+  "intent": "general_complaint",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "The customer is highly frustrated with recurring weekly issues and explicitly states they will no longer use the service."
+}

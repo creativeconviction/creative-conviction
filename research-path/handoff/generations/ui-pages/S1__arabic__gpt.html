@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#11845b">
+  <title>إنشاء حساب | قريب</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #11845b;
+      --primary-dark: #0b6746;
+      --primary-light: #e9f7f1;
+      --text: #17231f;
+      --muted: #69756f;
+      --border: #dce4e0;
+      --background: #f5f8f6;
+      --white: #ffffff;
+      --danger: #c83c3c;
+      --shadow: 0 18px 50px rgba(20, 70, 51, 0.11);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      min-height: 100dvh;
+      font-family: "Tajawal", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 90% 10%, rgba(17, 132, 91, 0.12), transparent 28rem),
+        var(--background);
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .page {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .signup-card {
+      width: min(100%, 460px);
+      background: var(--white);
+      border: 1px solid rgba(17, 132, 91, 0.08);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 24px 8px;
+    }
+
+    .back-button {
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      color: var(--text);
+      background: var(--white);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .back-button:hover {
+      color: var(--primary);
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    .back-button:focus-visible,
+    .password-toggle:focus-visible,
+    .submit-button:focus-visible,
+    a:focus-visible,
+    input:focus-visible {
+      outline: 3px solid rgba(17, 132, 91, 0.22);
+      outline-offset: 2px;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--primary-dark);
+    }
+
+    .logo-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 13px 13px 13px 5px;
+      display: grid;
+      place-items: center;
+      color: var(--white);
+      background: linear-gradient(145deg, #18a36f, var(--primary-dark));
+      box-shadow: 0 8px 18px rgba(17, 132, 91, 0.22);
+    }
+
+    .header-spacer {
+      width: 42px;
+    }
+
+    .content {
+      padding: 14px 30px 30px;
+    }
+
+    .intro {
+      margin-bottom: 26px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 29px;
+      line-height: 1.35;
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .input-wrap {
+      position: relative;
+    }
+
+    .field-icon {
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      color: #819089;
+      pointer-events: none;
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      height: 54px;
+      padding: 0 47px 0 15px;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      color: var(--text);
+      background: #fbfcfb;
+      font-size: 15px;
+      transition: 0.2s ease;
+    }
+
+    input::placeholder {
+      color: #9aa59f;
+    }
+
+    input:hover {
+      border-color: #b9c8c1;
+    }
+
+    input:focus {
+      border-color: var(--primary);
+      background: var(--white);
+      box-shadow: 0 0 0 4px rgba(17, 132, 91, 0.08);
+      outline: none;
+    }
+
+    .phone-field {
+      display: flex;
+      direction: ltr;
+      height: 54px;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      background: #fbfcfb;
+      overflow: hidden;
+      transition: 0.2s ease;
+    }
+
+    .phone-field:focus-within {
+      border-color: var(--primary);
+      background: var(--white);
+      box-shadow: 0 0 0 4px rgba(17, 132, 91, 0.08);
+    }
+
+    .phone-prefix {
+      min-width: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      direction: ltr;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 600;
+      border-right: 1px solid var(--border);
+      background: var(--primary-light);
+    }
+
+    .flag {
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .phone-field input {
+      height: 52px;
+      direction: ltr;
+      text-align: left;
+      padding: 0 15px;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .phone-field input:focus {
+      box-shadow: none;
+      background: transparent;
+    }
+
+    .password-input {
+      padding-left: 50px !important;
+    }
+
+    .password-toggle {
+      position: absolute;
+      left: 7px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      border-radius: 10px;
+      color: #74817b;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .password-toggle:hover {
+      color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    .password-toggle svg {
+      width: 21px;
+      height: 21px;
+    }
+
+    .terms {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 4px 0 22px;
+    }
+
+    .terms input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .checkbox {
+      width: 21px;
+      height: 21px;
+      flex: 0 0 21px;
+      margin-top: 1px;
+      border: 1.5px solid #b8c5bf;
+      border-radius: 7px;
+      display: grid;
+      place-items: center;
+      color: transparent;
+      background: var(--white);
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .checkbox svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .terms input:checked + .checkbox {
+      color: var(--white);
+      border-color: var(--primary);
+      background: var(--primary);
+    }
+
+    .terms input:focus-visible + .checkbox {
+      outline: 3px solid rgba(17, 132, 91, 0.22);
+      outline-offset: 2px;
+    }
+
+    .terms-text {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--primary-dark);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .submit-button {
+      width: 100%;
+      height: 56px;
+      border: 0;
+      border-radius: 16px;
+      color: var(--white);
+      background: linear-gradient(135deg, #159466, var(--primary-dark));
+      box-shadow: 0 10px 24px rgba(17, 132, 91, 0.24);
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .submit-button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 13px 28px rgba(17, 132, 91, 0.3);
+    }
+
+    .submit-button:active {
+      transform: translateY(1px);
+    }
+
+    .login {
+      margin: 22px 0 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    @media (max-width: 520px) {
+      body {
+        background: var(--white);
+      }
+
+      .page {
+        display: block;
+        padding: 0;
+      }
+
+      .signup-card {
+        width: 100%;
+        min-height: 100vh;
+        min-height: 100dvh;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      .header {
+        padding: 18px 20px 8px;
+      }
+
+      .content {
+        padding: 12px 22px 30px;
+      }
+
+      h1 {
+        font-size: 27px;
+      }
+    }
+
+    @media (max-width: 350px) {
+      .content {
+        padding-inline: 17px;
+      }
+
+      .header {
+        padding-inline: 17px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <section class="signup-card" aria-labelledby="signup-title">
+      <header class="header">
+        <button class="back-button" type="button" aria-label="رجوع" onclick="history.back()">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <div class="logo" aria-label="قريب">
+          <span class="logo-mark">
+            <svg width="23" height="23" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M5 8.5h14l-1 10H6l-1-10Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M9 9V7a3 3 0 0 1 6 0v2M9 13h.01M15 13h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span>قريب</span>
+        </div>
+
+        <span class="header-spacer" aria-hidden="true"></span>
+      </header>
+
+      <div class="content">
+        <div class="intro">
+          <h1 id="signup-title">أنشئ حسابك</h1>
+          <p class="subtitle">بقالتك أقرب مما تتخيل، سجّل الآن واطلب احتياجاتك بسهولة.</p>
+        </div>
+
+        <form action="#" method="post">
+          <div class="form-group">
+            <label for="full-name">الاسم الكامل</label>
+            <div class="input-wrap">
+              <svg class="field-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M20 21a8 8 0 0 0-16 0M12 13a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+              <input id="full-name" name="full_name" type="text" autocomplete="name" placeholder="مثال: محمد أحمد" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">رقم الجوال</label>
+            <div class="phone-field">
+              <span class="phone-prefix" aria-hidden="true">
+                <span class="flag">🇸🇦</span>
+                <span>+966</span>
+              </span>
+              <input id="phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="5X XXX XXXX" pattern="[0-9\s]{9,12}" aria-label="رقم الجوال بعد مفتاح السعودية" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">البريد الإلكتروني</label>
+            <div class="input-wrap">
+              <svg class="field-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                <path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              </svg>
+              <input id="email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="name@example.com" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="password">كلمة المرور</label>
+            <div class="input-wrap">
+              <svg class="field-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="4" y="10" width="16" height="11" rx="2" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+              <input class="password-input" id="password" name="password" type="password" minlength="8" autocomplete="new-password" placeholder="8 أحرف على الأقل" required>
+              <button class="password-toggle" type="button" aria-label="إظهار كلمة المرور" aria-pressed="false" onclick="togglePassword(this)">
+                <svg class="eye-open" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z" stroke="currentColor" stroke-width="1.8"/>
+                  <circle cx="12" cy="12" r="2.7" stroke="currentColor" stroke-width="1.8"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <label class="terms" for="terms">
+            <input id="terms" name="terms" type="checkbox" required>
+            <span class="checkbox" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none">
+                <path d="m3 8 3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span class="terms-text">
+              أوافق على <a href="#" onclick="event.stopPropagation()">الشروط والأحكام وسياسة الخصوصية</a>
+            </span>
+          </label>
+
+          <button class="submit-button" type="submit">إنشاء حساب</button>
+
+          <p class="login">
+            لديك حساب بالفعل؟ <a href="#">تسجيل الدخول</a>
+          </p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function togglePassword(button) {
+      const input = document.getElementById("password");
+      const showing = input.type === "text";
+      input.type = showing ? "password" : "text";
+      button.setAttribute("aria-label", showing ? "إظهار كلمة المرور" : "إخفاء كلمة المرور");
+      button.setAttribute("aria-pressed", String(!showing));
+    }
+  </script>
+</body>
+</html>

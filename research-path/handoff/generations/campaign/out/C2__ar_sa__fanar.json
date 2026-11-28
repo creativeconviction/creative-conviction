@@ -1,0 +1,12 @@
+{
+  "line": "C2",
+  "market": "ar_sa",
+  "model": "fanar",
+  "source": "Happy hour: 2-for-1 drinks from 5 to 7pm.",
+  "raw": "{\n\"literal\": \"ساعة سعيدة: 2 مقابل 1 مشروبات من 5 إلى 7 مساءً.\",\n\"adaptation\": \"ساعات الألفة: صفقة 2 مقابل 1 على المشروبات من 5 إلى 7 مساءً\",\n\"back_translation\": \"Pleasant hours: 2 for 1 drink deal from 5 to 7 PM\",\n\"approach\": \"adapted\",\n\"notes\": \"In Saudi Arabia, phrases like 'happy hour' are not commonly used due to the country's strong Islamic identity, so 'pleasant hours' is a more suitable term.\"\n}",
+  "literal": "ساعة سعيدة: 2 مقابل 1 مشروبات من 5 إلى 7 مساءً.",
+  "adaptation": "ساعات الألفة: صفقة 2 مقابل 1 على المشروبات من 5 إلى 7 مساءً",
+  "back_translation": "Pleasant hours: 2 for 1 drink deal from 5 to 7 PM",
+  "approach": "adapted",
+  "notes": "In Saudi Arabia, phrases like 'happy hour' are not commonly used due to the country's strong Islamic identity, so 'pleasant hours' is a more suitable term."
+}

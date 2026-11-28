@@ -1,0 +1,8 @@
+{
+  "screen": "S3",
+  "cond": "reference",
+  "model_id": "openai/gpt-5.6-sol",
+  "raw_chars": 27383,
+  "complete": true,
+  "at": "2026-11-18T05:27:42.497Z"
+}

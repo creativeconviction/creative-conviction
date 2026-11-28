@@ -1,0 +1,13 @@
+{
+  "scenario": "M7",
+  "lang": "arabizi",
+  "model": "claude",
+  "message": "ba3atoo baskot be zebdet el fool el soudany badal el 3ady, w ebny 3ando 7asaseya men el mekassarat w kal wa7da 5alas",
+  "raw": "{\"intent\": \"wrong_item\", \"sentiment\": \"negative\", \"urgency\": \"high\", \"sarcasm\": false, \"churn_risk\": true, \"summary\": \"The customer received peanut butter biscuits instead of the regular ones, and their son, who has a nut allergy, has already eaten one, creating a possible allergic reaction and safety incident that needs immediate follow-up.\"}",
+  "intent": "wrong_item",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "The customer received peanut butter biscuits instead of the regular ones, and their son, who has a nut allergy, has already eaten one, creating a possible allergic reaction and safety incident that needs immediate follow-up."
+}

@@ -1,0 +1,12 @@
+{
+  "line": "T1",
+  "market": "en_gb",
+  "model": "saba",
+  "source": "I'm lovin' it",
+  "raw": "```json\n{\n  \"literal\": \"I'm lovin' it\",\n  \"adaptation\": \"That's what I'm lovin'!\",\n  \"back_translation\": \"That's what I'm loving!\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Made the slogan more conversational and idiomatic for British English.\"\n}\n```",
+  "literal": "I'm lovin' it",
+  "adaptation": "That's what I'm lovin'!",
+  "back_translation": "That's what I'm loving!",
+  "approach": "adapted",
+  "notes": "Made the slogan more conversational and idiomatic for British English."
+}

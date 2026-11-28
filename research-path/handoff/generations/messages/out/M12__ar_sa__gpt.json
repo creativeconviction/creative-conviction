@@ -1,0 +1,13 @@
+{
+  "scenario": "M12",
+  "lang": "ar_sa",
+  "model": "gpt",
+  "message": "مشكورين على سرعة التوصيل! بس الخبز كان يابس والطماط مفعوص",
+  "raw": "{\"intent\":\"quality_issue\",\"sentiment\":\"mixed\",\"urgency\":\"medium\",\"sarcasm\":false,\"churn_risk\":false,\"summary\":\"The customer appreciated the fast delivery but reported that the bread was stale and the tomatoes were crushed.\"}",
+  "intent": "quality_issue",
+  "sentiment": "mixed",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer appreciated the fast delivery but reported that the bread was stale and the tomatoes were crushed."
+}

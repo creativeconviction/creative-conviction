@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <title>محادثة دعم قريب</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #148c65;
+      --green-dark: #0d6f50;
+      --green-soft: #e9f7f1;
+      --ink: #17211d;
+      --muted: #75817c;
+      --line: #e8ecea;
+      --surface: #ffffff;
+      --chat-bg: #f5f7f6;
+      --incoming: #ffffff;
+      --outgoing: #168b65;
+      --shadow: 0 20px 60px rgba(22, 44, 35, 0.13);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+    }
+
+    body {
+      font-family: "Cairo", Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 80% 10%, rgba(20, 140, 101, 0.12), transparent 28rem),
+        #edf2f0;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .page {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .chat-app {
+      width: 100%;
+      height: 100vh;
+      height: 100dvh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      background: var(--surface);
+    }
+
+    .chat-header {
+      position: relative;
+      z-index: 2;
+      flex: 0 0 auto;
+      display: grid;
+      grid-template-columns: 44px 1fr 40px;
+      align-items: center;
+      min-height: 78px;
+      padding: max(10px, env(safe-area-inset-top)) 14px 10px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 3px 14px rgba(34, 58, 48, 0.04);
+    }
+
+    .icon-button {
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      display: inline-grid;
+      place-items: center;
+      color: #34443d;
+      background: transparent;
+      cursor: pointer;
+      transition: background 160ms ease, transform 160ms ease;
+    }
+
+    .icon-button:hover {
+      background: #f1f5f3;
+    }
+
+    .icon-button:active {
+      transform: scale(0.94);
+    }
+
+    .icon-button svg {
+      width: 22px;
+      height: 22px;
+      fill: none;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1.9;
+    }
+
+    .back-icon {
+      transform: scaleX(-1);
+    }
+
+    .agent {
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+
+    .avatar-wrap {
+      position: relative;
+      flex: 0 0 auto;
+    }
+
+    .avatar {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: white;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      background: linear-gradient(145deg, #1da87a, #0e7755);
+      box-shadow: inset 0 0 0 2px rgba(255,255,255,0.18);
+    }
+
+    .online-dot {
+      position: absolute;
+      left: 0;
+      bottom: 1px;
+      width: 12px;
+      height: 12px;
+      border: 2px solid white;
+      border-radius: 50%;
+      background: #28c878;
+    }
+
+    .agent-text {
+      min-width: 0;
+    }
+
+    .agent-name {
+      margin: 0 0 3px;
+      overflow: hidden;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.2;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .agent-status {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .agent-status::before {
+      width: 6px;
+      height: 6px;
+      content: "";
+      border-radius: 50%;
+      background: #28c878;
+    }
+
+    .brand-mark {
+      justify-self: end;
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      color: var(--green);
+      background: var(--green-soft);
+    }
+
+    .brand-mark svg {
+      width: 19px;
+      height: 19px;
+      fill: currentColor;
+    }
+
+    .messages {
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      padding: 18px 14px 22px;
+      background-color: var(--chat-bg);
+      background-image:
+        radial-gradient(circle at 20px 20px, rgba(20, 140, 101, 0.035) 1.2px, transparent 1.2px);
+      background-size: 24px 24px;
+      scroll-behavior: smooth;
+    }
+
+    .day-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 0 18px;
+    }
+
+    .day-divider span {
+      padding: 6px 11px;
+      border: 1px solid #e4e9e6;
+      border-radius: 999px;
+      color: #7a8580;
+      background: rgba(255, 255, 255, 0.9);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      box-shadow: 0 2px 6px rgba(22, 44, 35, 0.03);
+    }
+
+    .message-row {
+      display: flex;
+      margin-bottom: 13px;
+    }
+
+    .message-row.incoming {
+      justify-content: flex-start;
+    }
+
+    .message-row.outgoing {
+      justify-content: flex-end;
+    }
+
+    .message {
+      max-width: 82%;
+    }
+
+    .bubble {
+      position: relative;
+      padding: 11px 13px 9px;
+      border-radius: 17px;
+      font-size: 14px;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
+
+    .incoming .bubble {
+      border: 1px solid #e8ecea;
+      border-bottom-right-radius: 5px;
+      background: var(--incoming);
+      box-shadow: 0 3px 10px rgba(25, 48, 39, 0.045);
+    }
+
+    .outgoing .bubble {
+      border-bottom-left-radius: 5px;
+      color: #fff;
+      background: linear-gradient(145deg, #1a956d, #117b59);
+      box-shadow: 0 4px 12px rgba(17, 123, 89, 0.17);
+    }
+
+    .reference {
+      font-weight: 700;
+      white-space: nowrap;
+      display: inline-block;
+    }
+
+    .meta {
+      min-height: 15px;
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 4px;
+      font-size: 10px;
+      line-height: 1;
+    }
+
+    .incoming .meta {
+      color: #89938f;
+    }
+
+    .outgoing .meta {
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .checks {
+      width: 15px;
+      height: 11px;
+      fill: none;
+      stroke: #a5f0d6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1.8;
+    }
+
+    .typing-hint {
+      height: 15px;
+      margin: -3px 4px 3px 0;
+      color: transparent;
+      font-size: 10px;
+    }
+
+    .composer {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+      border-top: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .input-shell {
+      min-height: 48px;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 7px 3px 5px;
+      border: 1px solid #dfe6e2;
+      border-radius: 24px;
+      background: #f7f9f8;
+      transition: border 160ms ease, box-shadow 160ms ease, background 160ms ease;
+    }
+
+    .input-shell:focus-within {
+      border-color: rgba(20, 140, 101, 0.6);
+      background: white;
+      box-shadow: 0 0 0 3px rgba(20, 140, 101, 0.1);
+    }
+
+    .attach-button {
+      flex: 0 0 auto;
+      width: 38px;
+      height: 38px;
+      color: #64716c;
+    }
+
+    .message-input {
+      width: 100%;
+      min-width: 0;
+      padding: 10px 4px;
+      border: 0;
+      outline: 0;
+      color: var(--ink);
+      background: transparent;
+      font-size: 14px;
+    }
+
+    .message-input::placeholder {
+      color: #97a19d;
+    }
+
+    .send-button {
+      width: 48px;
+      height: 48px;
+      flex: 0 0 auto;
+      border: 0;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: white;
+      background: var(--green);
+      box-shadow: 0 5px 14px rgba(20, 140, 101, 0.25);
+      cursor: pointer;
+      transition: background 160ms ease, transform 160ms ease, opacity 160ms ease;
+    }
+
+    .send-button:hover {
+      background: var(--green-dark);
+    }
+
+    .send-button:active {
+      transform: scale(0.94);
+    }
+
+    .send-button:disabled {
+      opacity: 0.48;
+      cursor: default;
+      box-shadow: none;
+    }
+
+    .send-button svg {
+      width: 21px;
+      height: 21px;
+      fill: none;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 2;
+      transform: translateX(-1px) scaleX(-1);
+    }
+
+    #fileInput {
+      display: none;
+    }
+
+    @media (min-width: 560px) {
+      .page {
+        padding: 24px;
+      }
+
+      .chat-app {
+        width: min(100%, 430px);
+        height: min(820px, calc(100dvh - 48px));
+        border: 1px solid rgba(206, 216, 211, 0.95);
+        border-radius: 28px;
+        box-shadow: var(--shadow);
+      }
+
+      .chat-header {
+        padding-top: 10px;
+        border-radius: 28px 28px 0 0;
+      }
+
+      .composer {
+        padding-bottom: 13px;
+        border-radius: 0 0 28px 28px;
+      }
+
+      .messages {
+        padding-right: 17px;
+        padding-left: 17px;
+      }
+    }
+
+    @media (max-width: 350px) {
+      .chat-header {
+        grid-template-columns: 40px 1fr 34px;
+        padding-right: 9px;
+        padding-left: 9px;
+      }
+
+      .agent {
+        gap: 8px;
+      }
+
+      .avatar {
+        width: 40px;
+        height: 40px;
+      }
+
+      .message {
+        max-width: 88%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="chat-app" aria-label="محادثة دعم عملاء قريب">
+      <header class="chat-header">
+        <button class="icon-button" type="button" aria-label="الرجوع" onclick="history.length > 1 ? history.back() : null">
+          <svg class="back-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M19 12H5"></path>
+            <path d="m11 18-6-6 6-6"></path>
+          </svg>
+        </button>
+
+        <div class="agent">
+          <div class="avatar-wrap" aria-hidden="true">
+            <div class="avatar">نح</div>
+            <span class="online-dot"></span>
+          </div>
+          <div class="agent-text">
+            <h1 class="agent-name">نورة الحربي</h1>
+            <div class="agent-status">متصل</div>
+          </div>
+        </div>
+
+        <div class="brand-mark" aria-label="قريب">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2.5a8.5 8.5 0 0 0-8.5 8.5c0 5.9 7.1 10 7.4 10.2a2 2 0 0 0 2.2 0c.3-.2 7.4-4.3 7.4-10.2A8.5 8.5 0 0 0 12 2.5Zm0 12.1A3.6 3.6 0 1 1 12 7a3.6 3.6 0 0 1 0 7.6Z"/>
+          </svg>
+        </div>
+      </header>
+
+      <div class="messages" id="messages" aria-live="polite">
+        <div class="day-divider"><span>اليوم</span></div>
+
+        <div class="message-row outgoing">
+          <div class="message">
+            <div class="bubble">
+              مرحباً، أحتاج مساعدة بخصوص الطلب <span class="reference" dir="ltr">#QR-48213</span>.
+              <div class="meta">
+                <time datetime="2025-05-18T10:24">10:24 ص</time>
+                <svg class="checks" viewBox="0 0 18 12" aria-label="مقروءة">
+                  <path d="m1.5 6.5 3 3 5.5-7"></path>
+                  <path d="m7.5 8.8 1 1 7-7.3"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="message-row incoming">
+          <div class="message">
+            <div class="bubble">
+              أهلاً سارة! معك نورة من فريق دعم قريب. كيف أقدر أساعدك بخصوص طلبك؟
+              <div class="meta">
+                <time datetime="2025-05-18T10:25">10:25 ص</time>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="message-row outgoing">
+          <div class="message">
+            <div class="bubble">
+              <span class="reference">حليب المراعي الطازج 1 لتر</span> كان ناقص من الطلب.
+              <div class="meta">
+                <time datetime="2025-05-18T10:26">10:26 ص</time>
+                <svg class="checks" viewBox="0 0 18 12" aria-label="مقروءة">
+                  <path d="m1.5 6.5 3 3 5.5-7"></path>
+                  <path d="m7.5 8.8 1 1 7-7.3"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="message-row incoming">
+          <div class="message">
+            <div class="bubble">
+              أعتذر عن هذا الشيء. هل ممكن تأكدين لي رقم الجوال المسجل بالطلب <span class="reference" dir="ltr">+966 55 123 4567</span>؟
+              <div class="meta">
+                <time datetime="2025-05-18T10:27">10:27 ص</time>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="message-row outgoing">
+          <div class="message">
+            <div class="bubble">
+              نعم، الرقم صحيح. ياليت ترتبون لي استرجاع المبلغ.
+              <div class="meta">
+                <time datetime="2025-05-18T10:28">10:28 ص</time>
+                <svg class="checks" viewBox="0 0 18 12" aria-label="مقروءة">
+                  <path d="m1.5 6.5 3 3 5.5-7"></path>
+                  <path d="m7.5 8.8 1 1 7-7.3"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="message-row incoming">
+          <div class="message">
+            <div class="bubble">
+              تم! رفعت لك طلب استرجاع المبلغ. راح يظهر في طريقة الدفع الأصلية خلال 2-3 أيام عمل.
+              <div class="meta">
+                <time datetime="2025-05-18T10:30">10:30 ص</time>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <form class="composer" id="composer">
+        <div class="input-shell">
+          <button class="icon-button attach-button" type="button" id="attachButton" aria-label="إرفاق ملف">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m20.5 11.5-8.1 8.1a6 6 0 0 1-8.5-8.5l8.5-8.5a4 4 0 0 1 5.7 5.7l-8.5 8.5a2 2 0 0 1-2.9-2.8l8.1-8.1"></path>
+            </svg>
+          </button>
+          <input id="fileInput" type="file" aria-hidden="true">
+          <input
+            class="message-input"
+            id="messageInput"
+            type="text"
+            autocomplete="off"
+            aria-label="اكتب رسالة"
+            placeholder="اكتب رسالة..."
+          >
+        </div>
+        <button class="send-button" id="sendButton" type="submit" aria-label="إرسال الرسالة" disabled>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m22 2-7 20-4-9-9-4Z"></path>
+            <path d="M22 2 11 13"></path>
+          </svg>
+        </button>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    const form = document.getElementById("composer");
+    const input = document.getElementById("messageInput");
+    const sendButton = document.getElementById("sendButton");
+    const messages = document.getElementById("messages");
+    const attachButton = document.getElementById("attachButton");
+    const fileInput = document.getElementById("fileInput");
+
+    input.addEventListener("input", () => {
+      sendButton.disabled = !input.value.trim();
+    });
+
+    attachButton.addEventListener("click", () => fileInput.click());
+
+    fileInput.addEventListener("change", () => {
+      if (fileInput.files.length) {
+        input.value = "تم الإرفاق: " + fileInput.files[0].name;
+        sendButton.disabled = false;
+        input.focus();
+      }
+    });
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const text = input.value.trim();
+      if (!text) return;
+
+      const now = new Date();
+      const time = now.toLocaleTimeString('ar-SA', {
+        hour: "numeric",
+        minute: "2-digit"
+      });
+
+      const row = document.createElement("div");
+      row.className = "message-row outgoing";
+
+      const message = document.createElement("div");
+      message.className = "message";
+
+      const bubble = document.createElement("div");
+      bubble.className = "bubble";
+      bubble.appendChild(document.createTextNode(text));
+
+      const meta = document.createElement("div");
+      meta.className = "meta";
+
+      const timeElement = document.createElement("time");
+      timeElement.textContent = time;
+
+      const checks = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      checks.setAttribute("class", "checks");
+      checks.setAttribute("viewBox", "0 0 18 12");
+      checks.setAttribute("aria-label", "تم الإرسال");
+      checks.innerHTML = '<path d="m2 6.5 3 3 7-7"></path>';
+
+      meta.append(timeElement, checks);
+      bubble.appendChild(meta);
+      message.appendChild(bubble);
+      row.appendChild(message);
+      messages.appendChild(row);
+
+      input.value = "";
+      fileInput.value = "";
+      sendButton.disabled = true;
+      messages.scrollTop = messages.scrollHeight;
+      input.focus();
+    });
+
+    messages.scrollTop = messages.scrollHeight;
+  </script>
+</body>
+</html>

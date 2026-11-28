@@ -1,0 +1,12 @@
+{
+  "part": "A",
+  "cond": "en",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب). Write marketing copy for it in Arabic: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 2,
+  "prompt_lang": "en",
+  "model": "claude",
+  "id": "A__en__claude__s2",
+  "model_id": "anthropic/claude-opus-5.5",
+  "output": "**الشعار:**\nقريب... أقرب مما تتخيّل.\n\n**إعلانات إنستغرام:**\n\n1. ثلاجتك فاضية؟ لا تشيل هم، طلباتك صارت **قريب** 🛒\n2. من السوق لباب بيتك بضغطة واحدة. خضار طازجة، توصيل أسرع، وأنت مرتاح 🥬⚡\n3. وقتك أغلى من طوابير المحلات. اطلب الآن ودع **قريب** يوصّلك كل اللي تحتاجه 🏡\n\n**إشعار التطبيق:**\nنسيت الحليب؟ 🥛 لا مشكلة! اطلبه الآن من **قريب** ويوصلك بأسرع وقت 🚀",
+  "at": "2026-11-18T05:23:15.366Z"
+}

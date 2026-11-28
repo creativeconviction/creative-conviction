@@ -1,0 +1,13 @@
+{
+  "scenario": "M1",
+  "lang": "ar_sa",
+  "model": "deepseek",
+  "message": "هلا، طلبي وصل بس ما جاني الحليب والخبز",
+  "raw": "{\n  \"intent\": \"missing_item\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"Customer reports that milk and bread were missing from their delivered order.\"\n}",
+  "intent": "missing_item",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "Customer reports that milk and bread were missing from their delivered order."
+}

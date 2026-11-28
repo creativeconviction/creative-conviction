@@ -1,0 +1,2284 @@
+{
+ "C__ar__long.png": {
+  "texts": [
+   "السوق الطازج"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": false,
+  "notes": "Dark green Arabic text on a white background, reading 'The Fresh Market'. Letters are properly connected, and the dots on ق, ز and ج are all present. No errors observed."
+ },
+ "C__ar__short.png": {
+  "texts": [
+   "قريب"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": false,
+  "notes": "Single Arabic word 'قريب' (near/close) in green bold font. Letters appear correctly formed and dotted: qaf with two dots above, ra, ya with two dots below, ba with one dot below. Joining is normal (ra does not connect to the following letter)."
+ },
+ "C__en__long.png": {
+  "texts": [
+   "Fresh Market"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Single line of dark green bold sans-serif text on a white background. Spelled correctly, with no missing or extra letters."
+ },
+ "C__en__short.png": {
+  "texts": [
+   "Nearby"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Single word 'Nearby' in bold dark green sans-serif on white background; spelled correctly."
+ },
+ "C__fa__long.png": {
+  "texts": [
+   "بازار تازه"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": false,
+  "notes": "Persian text 'Bazar-e Tazeh' ('Fresh Market') in green bold font. Letters and dots appear correct; ب joins ا and ت joins ا as expected, and the non-connecting letters are properly separate."
+ },
+ "C__fa__short.png": {
+  "texts": [
+   "نزدیک"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": false,
+  "notes": "Persian word 'nazdik' (near) in green; dots and letter forms appear correct, with standard joining (zāy and dāl are non-connecting letters)."
+ },
+ "C__he__long.png": {
+  "texts": [
+   "השוק הטרי"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Hebrew text in bold green on a white background, meaning 'The Fresh Market'. The letters ה-ש-ו-ק and ה-ט-ר-י are rendered correctly, with no visible errors."
+ },
+ "C__he__short.png": {
+  "texts": [
+   "קרוב"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Hebrew word 'קרוב' (karov, meaning 'near/close') in dark green bold sans-serif. Letters ק-ר-ו-ב are rendered correctly with no errors."
+ },
+ "C__hi__long.png": {
+  "texts": [
+   "ताज़ा बाज़ार"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Hindi text in Devanagari script, green bold font on a white background. Both instances of ज carry a nukta (ज़). It reads correctly as 'Taaza Bazaar' (Fresh Market), with no visible errors."
+ },
+ "C__hi__short.png": {
+  "texts": [
+   "नज़दीक"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Hindi word in Devanagari script, rendered in green bold type. Letters: न, ज़ (ज with nukta), द, ी, क. The spelling is correct and the nukta under ज is present. It means 'near/close'."
+ },
+ "C__ja__long.png": {
+  "texts": [
+   "新鮮市場"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Four CJK characters (新鮮市場, 'fresh market') in bold dark green on a white background. 鮮 and 場 are in their traditional/Japanese forms. All characters appear correctly formed."
+ },
+ "C__ja__short.png": {
+  "texts": [
+   "ちかく"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Japanese hiragana 'ちかく' (chikaku) in dark green on white background; characters rendered correctly."
+ },
+ "C__ru__long.png": {
+  "texts": [
+   "Свежий рынок"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Russian Cyrillic text ('Fresh market') in bold dark green on a white background; spelled correctly, with the breve on й present."
+ },
+ "C__ru__short.png": {
+  "texts": [
+   "Рядом"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "A single Russian word, 'Рядом' (meaning 'nearby'), in bold dark green Cyrillic on a white background. It is spelled correctly, with no errors."
+ },
+ "C__th__long.png": {
+  "texts": [
+   "ตลาดสด"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Thai text 'ตลาดสด' (fresh market) in dark green bold sans-serif on a white background. The letters ต ล า ด ส ด are rendered correctly with no visible errors."
+ },
+ "C__th__short.png": {
+  "texts": [
+   "ใกล้"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Thai word 'ใกล้' (glâi, 'near'), rendered correctly: ใ + ก + ล + mai tho tone mark, in dark green on white."
+ },
+ "C__zh__long.png": {
+  "texts": [
+   "新鲜市场"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Four Chinese characters in bold dark green sans-serif on a white background, reading '新鲜市场' (fresh market). The characters appear correctly formed. No other text is present."
+ },
+ "C__zh__short.png": {
+  "texts": [
+   "近邻"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Two Chinese characters '近邻' (neighbor) in bold green on a white background; both are rendered correctly."
+ },
+ "L__ar__flux.png": {
+  "texts": [
+   "الحييث",
+   "Nearby"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": true,
+  "notes": "The Arabic reads as 'الحييث' (alef, lam, hah, two yeh-like teeth with two dots below each, final theh-like letter with dots above). It is not a real word, possibly a garbled form of 'الحديث' or 'الحيث'. The dot placement on the final letters is ambiguous. 'Nearby' is rendered correctly."
+ },
+ "L__ar__gpt-image.png": {
+  "texts": [
+   "قريب",
+   "Nearby"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": false,
+  "notes": "Arabic reads قريب ('near/nearby'), correctly joined and matching the English word 'Nearby'. Qaf shows two dots above. Below the word, only one pair of dots is clearly visible, so the separate single dot of the final ب may be missing or merged; this is uncertain."
+ },
+ "L__ar__ideogram.png": {
+  "texts": [
+   "قريب",
+   "Nearby"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": false,
+  "notes": "The Arabic reads قريب (qaf with two dots above, reh, yeh with two dots below, beh with one dot below). Letters connect correctly; reh does not join to the following letter, which is normal. The English 'Nearby' is spelled correctly and matches the meaning. Both are in a green sans-serif style."
+ },
+ "L__ar__nano-banana.png": {
+  "texts": [
+   "قريٮ",
+   "Nearby"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": true,
+  "notes": "The Arabic is intended as قريب ('near'). Qaf has 2 dots above and the medial ya has 2 dots below, but the final ba appears to have no dot beneath it (dotless ٮ). The English 'Nearby' is rendered correctly."
+ },
+ "L__ar__qwen-image.png": {
+  "texts": [
+   "قررب",
+   "Nearby"
+  ],
+  "arabic_letters_joined": "partly",
+  "invented_or_garbled": true,
+  "notes": "The Arabic appears to read 'قررب' (qaf, ra, ra, ba with one dot below). It is likely meant to be 'قريب' (qarib, 'nearby'), but the ya (ي) is missing or rendered as a ra-like shape with no dots. The English 'Nearby' is rendered correctly."
+ },
+ "L__ar__seedream.png": {
+  "texts": [
+   "قـريب",
+   "Nearby"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": false,
+  "notes": "Arabic reads قريب ('near'), with an extended kashida after the qaf. The qaf has its two dots above and the final ba has one dot below. The medial ya appears to lack its two dots below, so it may render as قرٮب. Under a horizontal line, the English reads 'Nearby' correctly."
+ },
+ "M__Egypt__flux.png": {
+  "motifs": [
+   "two-tone triangle split into faces",
+   "pyramid/mountain-like peak",
+   "letter A-like shape",
+   "winding path or river cutting through triangle",
+   "circuit board traces",
+   "circular circuit nodes",
+   "small squares",
+   "small dots",
+   "angled connector lines"
+  ],
+  "colors": [
+   "dark teal",
+   "navy blue",
+   "mustard gold",
+   "off-white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "pyramid",
+   "generic_abstract"
+  ]
+ },
+ "M__Egypt__gpt-image.png": {
+  "motifs": [
+   "two golden pyramids",
+   "blue payment card",
+   "EMV chip",
+   "contactless payment wave symbol",
+   "swoosh rings in red, white, and black"
+  ],
+  "colors": [
+   "navy blue",
+   "golden yellow",
+   "red",
+   "black",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "pyramid",
+   "flag_colors"
+  ]
+ },
+ "M__Egypt__ideogram.png": {
+  "motifs": [
+   "diagonal slanted stroke with hooked top",
+   "stylized letter A",
+   "golden triangle with two-tone shading",
+   "pyramid-like shape",
+   "negative space gap between shapes"
+  ],
+  "colors": [
+   "dark teal",
+   "gold",
+   "off-white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "pyramid",
+   "generic_abstract"
+  ]
+ },
+ "M__Egypt__nano-banana.png": {
+  "motifs": [
+   "pyramid",
+   "faceted triangular segments",
+   "circuit board traces",
+   "circuit nodes/dots",
+   "upward arrow",
+   "small inner triangle",
+   "flowing curved lines",
+   "small diamond accents"
+  ],
+  "colors": [
+   "royal blue",
+   "teal",
+   "gold",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "pyramid",
+   "generic_abstract"
+  ]
+ },
+ "M__Egypt__qwen-image.png": {
+  "motifs": [
+   "lightning bolt",
+   "zigzag N-shaped letterform",
+   "split circular ring",
+   "two opposing arc segments",
+   "crescent-like beveled arc",
+   "diagonal slash",
+   "3D beveled faceted surfaces"
+  ],
+  "colors": [
+   "gold",
+   "light yellow gold",
+   "dark bronze brown",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "generic_abstract"
+  ]
+ },
+ "M__Egypt__seedream.png": {
+  "motifs": [
+   "open circular ring",
+   "large sand-colored triangle (pyramid/mountain)",
+   "smaller faded background triangle",
+   "small translucent foreground triangle",
+   "wavy dune-like curve",
+   "navy coin with dollar sign",
+   "circuit-style connector line with node dot",
+   "hollow ring node on circle edge",
+   "horizontal ground bars"
+  ],
+  "colors": [
+   "navy blue",
+   "sand gold",
+   "beige",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "pyramid",
+   "desert_dunes"
+  ]
+ },
+ "M__Morocco__flux.png": {
+  "motifs": [
+   "five-pointed star",
+   "upward trending arrow",
+   "zigzag line graph",
+   "bar chart columns",
+   "vertical bars with notched bottoms",
+   "negative-space cutouts"
+  ],
+  "colors": [
+   "dark red",
+   "forest green",
+   "charcoal gray",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "star",
+   "flag_colors",
+   "generic_abstract"
+  ]
+ },
+ "M__Morocco__gpt-image.png": {
+  "motifs": [
+   "wallet",
+   "contactless payment waves",
+   "wallet clasp with circular button",
+   "stacked payment cards",
+   "crescent-shaped swoosh",
+   "eight-pointed star",
+   "outlined star with white center"
+  ],
+  "colors": [
+   "navy blue",
+   "red",
+   "green",
+   "yellow",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "star",
+   "crescent"
+  ]
+ },
+ "M__Morocco__ideogram.png": {
+  "motifs": [
+   "eight-pointed star outline",
+   "two overlapping squares (octagram)",
+   "diagonal upward arrow",
+   "geometric line frame"
+  ],
+  "colors": [
+   "dark teal",
+   "golden yellow",
+   "off-white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "star",
+   "generic_abstract"
+  ]
+ },
+ "M__Morocco__nano-banana.png": {
+  "motifs": [
+   "eight-pointed star outline",
+   "network node diagram",
+   "connected circuit dots",
+   "tree-like branching structure",
+   "upward trending arrow",
+   "growth chart zigzag line",
+   "diamond shape",
+   "angular geometric blocks",
+   "stylized kufic-like letterforms",
+   "split half composition",
+   "square interlocking shapes"
+  ],
+  "colors": [
+   "green",
+   "red",
+   "golden yellow",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "star",
+   "calligraphy",
+   "flag_colors",
+   "generic_abstract"
+  ]
+ },
+ "M__Morocco__qwen-image.png": {
+  "motifs": [
+   "five-pointed star",
+   "interlaced pentagram outline",
+   "solid circle background",
+   "overlapping line strokes"
+  ],
+  "colors": [
+   "green",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "star"
+  ]
+ },
+ "M__Morocco__seedream.png": {
+  "motifs": [
+   "interlaced hexagram (Star of David)",
+   "hexagonal frame",
+   "interwoven geometric bands",
+   "upward zigzag arrow",
+   "rising line chart"
+  ],
+  "colors": [
+   "teal",
+   "yellow",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "star"
+  ]
+ },
+ "M__Saudi-Arabia__flux.png": {
+  "motifs": [
+   "half shield outline",
+   "circuit board traces",
+   "circuit nodes/dots",
+   "right-angled connector lines",
+   "gold shield tip segment",
+   "negative space shield half"
+  ],
+  "colors": [
+   "dark green",
+   "gold/ochre",
+   "charcoal gray",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "generic_abstract"
+  ]
+ },
+ "M__Saudi-Arabia__gpt-image.png": {
+  "motifs": [
+   "Kingdom Centre skyscraper silhouette with parabolic opening",
+   "palm tree",
+   "ascending bar chart",
+   "elliptical orbit swoosh",
+   "payment card",
+   "card chip grid"
+  ],
+  "colors": [
+   "dark green",
+   "bright green",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "palm_tree",
+   "flag_colors"
+  ]
+ },
+ "M__Saudi-Arabia__ideogram.png": {
+  "motifs": [
+   "V-shaped chevron",
+   "stylized wings",
+   "bird head with hooked beak",
+   "golden wheat or grass sprigs",
+   "folded paper-like angular planes",
+   "negative space"
+  ],
+  "colors": [
+   "dark green",
+   "gold",
+   "off-white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "falcon"
+  ]
+ },
+ "M__Saudi-Arabia__nano-banana.png": {
+  "motifs": [
+   "palm tree",
+   "palm fronds",
+   "circuit board lines with nodes",
+   "ascending bar chart",
+   "baseline",
+   "curved trunk forming a bar",
+   "crescent moon",
+   "four-pointed star sparkle"
+  ],
+  "colors": [
+   "dark green",
+   "medium green",
+   "teal green",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "crescent",
+   "star",
+   "palm_tree"
+  ]
+ },
+ "M__Saudi-Arabia__qwen-image.png": {
+  "motifs": [
+   "solid green circle",
+   "white angular letterform monogram",
+   "stylized 'A'/'4' and 'K' characters",
+   "folded paper ribbon effect",
+   "diagonal intersecting strokes",
+   "small white notch accent",
+   "subtle gray shading"
+  ],
+  "colors": [
+   "dark green",
+   "white",
+   "light gray"
+  ],
+  "has_text": true,
+  "tropes": [
+   "generic_abstract"
+  ]
+ },
+ "M__Saudi-Arabia__seedream.png": {
+  "motifs": [
+   "circular ring border",
+   "green arc segment on left of ring",
+   "black upward chevron",
+   "gold rounded arch band",
+   "segmented gold panels",
+   "white dividing lines",
+   "Y-shaped line junction",
+   "stylized roof or mountain shape",
+   "geometric tile-like pattern"
+  ],
+  "colors": [
+   "black",
+   "gold",
+   "green",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "generic_abstract",
+   "flag_colors"
+  ]
+ },
+ "M__United-Kingdom__flux.png": {
+  "motifs": [
+   "shield",
+   "pound sterling sign",
+   "vertical split design",
+   "half-filled shield",
+   "teal shield outline",
+   "small gray circle",
+   "color-inverted symbol halves"
+  ],
+  "colors": [
+   "navy blue",
+   "teal",
+   "white",
+   "gray"
+  ],
+  "has_text": false,
+  "tropes": [
+   "none"
+  ]
+ },
+ "M__United-Kingdom__gpt-image.png": {
+  "motifs": [
+   "rounded card shape",
+   "Union Jack flag",
+   "upward curved arrow",
+   "ascending bar chart",
+   "blue diagonal swoosh panel",
+   "card chip icon",
+   "white dividing stripes"
+  ],
+  "colors": [
+   "navy blue",
+   "red",
+   "white",
+   "mint green",
+   "royal blue"
+  ],
+  "has_text": false,
+  "tropes": [
+   "flag_colors"
+  ]
+ },
+ "M__United-Kingdom__ideogram.png": {
+  "motifs": [
+   "shield outline",
+   "upward diagonal arrow",
+   "diagonal stripes",
+   "chevron-like line pattern",
+   "Union Jack-style diagonal crosses"
+  ],
+  "colors": [
+   "navy blue",
+   "red",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "flag_colors",
+   "generic_abstract"
+  ]
+ },
+ "M__United-Kingdom__nano-banana.png": {
+  "motifs": [
+   "pound sterling symbol",
+   "upward trending arrow",
+   "two-tone split shading",
+   "curved arrow forming symbol base",
+   "horizontal crossbar"
+  ],
+  "colors": [
+   "navy blue",
+   "royal blue",
+   "crimson red",
+   "dark burgundy red",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "flag_colors"
+  ]
+ },
+ "M__United-Kingdom__qwen-image.png": {
+  "motifs": [
+   "circular emblem",
+   "stylized Union Jack flag",
+   "split outer ring",
+   "blue left semicircle arc",
+   "red right semicircle arc",
+   "red central cross",
+   "diagonal saltire stripes",
+   "white fimbriation borders",
+   "blue triangular segments",
+   "asymmetric red diagonal forming K-like shape"
+  ],
+  "colors": [
+   "navy blue",
+   "red",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "flag_colors"
+  ]
+ },
+ "M__United-Kingdom__seedream.png": {
+  "motifs": [
+   "concentric circular arcs",
+   "segmented double ring divided into quadrants",
+   "central diamond",
+   "rotated square outline",
+   "triangles",
+   "interlocking geometric shapes",
+   "pinwheel rotational symmetry",
+   "negative-space square center"
+  ],
+  "colors": [
+   "navy blue",
+   "orange",
+   "lime green",
+   "sky blue",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "generic_abstract"
+  ]
+ },
+ "M__United-States__flux.png": {
+  "motifs": [
+   "shield",
+   "ascending bar chart",
+   "three vertical bars",
+   "upward curved arrow",
+   "split two-tone shield halves",
+   "angled bar tops",
+   "negative-space white gaps"
+  ],
+  "colors": [
+   "dark navy",
+   "teal",
+   "mint green",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "generic_abstract"
+  ]
+ },
+ "M__United-States__gpt-image.png": {
+  "motifs": [
+   "stacked credit cards",
+   "EMV chip",
+   "upward trending arrow",
+   "ascending bar chart",
+   "wavy red stripes",
+   "flag-like waves"
+  ],
+  "colors": [
+   "navy blue",
+   "bright blue",
+   "red",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "flag_colors"
+  ]
+ },
+ "M__United-States__ideogram.png": {
+  "motifs": [
+   "shield outline",
+   "upward trending arrow",
+   "zigzag growth line",
+   "stock chart line",
+   "segmented shield border"
+  ],
+  "colors": [
+   "navy blue",
+   "red",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "generic_abstract"
+  ]
+ },
+ "M__United-States__nano-banana.png": {
+  "motifs": [
+   "upward trending arrow",
+   "zigzag line graph",
+   "ascending bar chart",
+   "circuit board traces with node dots",
+   "open circular ring (C-shaped arc)",
+   "star points (pointed triangular shapes)",
+   "checkmark-like chevron",
+   "parallel diagonal stripes",
+   "geometric angular shapes"
+  ],
+  "colors": [
+   "navy blue",
+   "red",
+   "bright blue",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "star",
+   "flag_colors",
+   "generic_abstract"
+  ]
+ },
+ "M__United-States__qwen-image.png": {
+  "motifs": [
+   "lowercase letter n",
+   "stylized letter e",
+   "blue circle",
+   "yellow crescent-shaped arc",
+   "horizontal cutout bar",
+   "rectangular negative-space notch",
+   "small leaf-like notches on circle edge",
+   "white outline separating shapes"
+  ],
+  "colors": [
+   "navy blue",
+   "royal blue",
+   "golden yellow",
+   "white"
+  ],
+  "has_text": true,
+  "tropes": [
+   "crescent",
+   "generic_abstract"
+  ]
+ },
+ "M__United-States__seedream.png": {
+  "motifs": [
+   "blue speech bubble shape",
+   "white suspension bridge silhouette",
+   "bridge tower with arched openings",
+   "suspension cables",
+   "bridge deck",
+   "three white dots ellipsis",
+   "orange upward trending arrow",
+   "zigzag growth chart line"
+  ],
+  "colors": [
+   "blue",
+   "orange",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "none"
+  ]
+ },
+ "W__ar__long__flux.png": {
+  "texts": [
+   "العيلة وممة"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": true,
+  "notes": "The first word reads العيلة. The second word renders as وممة, likely garbled from ولمة (gathering). The intended phrase was probably 'العيلة ولمة'. Letters are properly connected. The dots are uncertain in the first word, read as two dots below the ي."
+ },
+ "W__ar__long__gpt-image.png": {
+  "texts": [
+   "السوف الطازج"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": true,
+  "notes": "Likely intended 'السوق الطازج' (The Fresh Market). The final letter of the first word has a qaf-shaped bowl but only one visible dot, so it reads literally as ف instead of ق. The jeem's dot in the second word is uncertain. Letters are properly connected. First word is dark green, second word is light green."
+ },
+ "W__ar__long__ideogram.png": {
+  "texts": [
+   "السوق الطازج"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": false,
+  "notes": "Reads 'السوق الطازج' (The Fresh Market) in green. Letters are correctly connected, and the dots on qaf, zay and jeem are present. No visible errors."
+ },
+ "W__ar__long__nano-banana.png": {
+  "texts": [
+   "السوق الطازج"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": false,
+  "notes": "Reads 'السوق الطازج' (The Fresh Market). The qaf's two dots are drawn as an olive circle and a leaf. Decorative leaves sit inside the counters of the waw and qaf. The zay's dot is an orange circle, and the jeem's dot is an orange dot inside the bowl. Letter forms and joins look correct, with no visible errors."
+ },
+ "W__ar__long__qwen-image.png": {
+  "texts": [
+   "السوق الطازج"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": false,
+  "notes": "Dark navy Arabic text on a white background reading 'السوق الطازج' ('The Fresh Market'). Letters connect properly, and the dots on ق, ز, and ج appear present and correct."
+ },
+ "W__ar__long__seedream.png": {
+  "texts": [
+   "السوق الطازج"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": false,
+  "notes": "Reads 'السوق الطازج' (The Fresh Market) in green Arabic text. The qaf has its two dots, the zay has its dot, and the jeem has its dot. The letters are properly connected and no errors are apparent."
+ },
+ "W__ar__short__flux.png": {
+  "texts": [
+   "خلية"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": false,
+  "notes": "Reads 'خلية' (cell). Khah has its single dot above, then lam, then yeh with two dots below, and the final ta marbuta has two dots above. The letters are properly connected, with no errors visible."
+ },
+ "W__ar__short__gpt-image.png": {
+  "texts": [
+   "قريب"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": false,
+  "notes": "The word reads قريب ('near'): ق with two dots, ر, ي with two dots below, and ب with one dot below. Letters are properly connected. The ي dots sit slightly between the teeth, but the word is legible."
+ },
+ "W__ar__short__ideogram.png": {
+  "texts": [
+   "قريب"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": false,
+  "notes": "The word قريب ('near') is rendered correctly. Initial ق has 2 dots above and joins to ر. ي has 2 dots below and joins to final ب, which has 1 dot below. No missing or extra dots."
+ },
+ "W__ar__short__nano-banana.png": {
+  "texts": [
+   "قريب"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": false,
+  "notes": "Reads قريب (qarib, 'near'). The ق has two dots, and its bowl is a location-pin shape. The ر is stylized with a tall stem that rises above the baseline and descends below it. The ي has two dots below and the ب has one dot below. Joining is correct: ق joins ر, ر does not join left, and ي joins ب. No missing or extra dots."
+ },
+ "W__ar__short__qwen-image.png": {
+  "texts": [
+   "قرري"
+  ],
+  "arabic_letters_joined": "partly",
+  "invented_or_garbled": true,
+  "notes": "Reads right to left as ق + ر + ر + a final letter drawn in a ب shape with two dots below (a ي/ب hybrid). It is likely an attempt at 'قريب' (near) with an extra ر and a missing medial ي tooth. The ق appears joined to the first ر, and the shapes are irregular."
+ },
+ "W__ar__short__seedream.png": {
+  "texts": [
+   "قريٮب"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": true,
+  "notes": "Intended word is likely قريب ('near'), but there is an extra undotted tooth between the ya (two dots below) and the final ba (one dot below), so it reads like قريٮب. Qaf and ra are joined; ra-ya and the following teeth connect correctly."
+ },
+ "W__en__long__flux.png": {
+  "texts": [
+   "Fresh Market"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Single line of text: 'Fresh' in dark green, 'Market' in light green, on a plain off-white background. All letters render correctly with no errors."
+ },
+ "W__en__long__gpt-image.png": {
+  "texts": [
+   "Fresh",
+   "Market"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "'Fresh' is in green, with a leaf integrated into the top of the 'F'. 'Market' is in orange. Both words are spelled correctly with no missing or extra letters."
+ },
+ "W__en__long__ideogram.png": {
+  "texts": [
+   "Fresh Market"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Single line of green sans-serif Latin text on a white background. All letters are rendered correctly, with no visible errors."
+ },
+ "W__en__long__nano-banana.png": {
+  "texts": [
+   "Fresh",
+   "Market"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Two words rendered correctly: 'Fresh' in green with a playful, rounded font and 'Market' in dark gray sans-serif. No misspellings or missing or extra letters."
+ },
+ "W__en__long__qwen-image.png": {
+  "texts": [
+   "Fresh Market"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Two words in a green sans-serif: 'Fresh' in dark green, 'Market' in brighter green. All letters render correctly. There are minor faint lighter-green rendering artifacts near the bottoms of 'M', 'a', and 'k'."
+ },
+ "W__en__long__seedream.png": {
+  "texts": [
+   "Fresh Market"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "The text reads 'Fresh Market' with no misspellings. The 'h' ascender sprouts a leaf, and the 's' top stroke swoops up into it. The 'k' is stylized with a curled tail descending below the baseline but still reads as 'k'."
+ },
+ "W__en__short__flux.png": {
+  "texts": [
+   "Nearby"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Single word 'Nearby' in green rounded sans-serif on a white background; spelled correctly with no errors."
+ },
+ "W__en__short__gpt-image.png": {
+  "texts": [
+   "Nearby"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Single word 'Nearby' in green lowercase-style letters with a capital N; a light-green leaf sits atop the left stem of the N. No misspellings or garbled letters observed."
+ },
+ "W__en__short__ideogram.png": {
+  "texts": [
+   "Nearby"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Single word 'Nearby' in green sans-serif on a white background. Spelled correctly, with no extra or missing letters. There is no Arabic text."
+ },
+ "W__en__short__nano-banana.png": {
+  "texts": [
+   "Nearby"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Single word 'Nearby' in green lowercase-style lettering (capital N). The 'r' has an orange leaf-shaped terminal, and the 'y' is stylized with a green leaf with an orange accent at its top right. All letters render correctly with no misspellings."
+ },
+ "W__en__short__qwen-image.png": {
+  "texts": [
+   "Nearby"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "A single word, 'Nearby', in a dark rounded sans-serif on a white background. All letters are correctly formed, with no errors or extra characters."
+ },
+ "W__en__short__seedream.png": {
+  "texts": [
+   "Nearby"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Single word 'Nearby' in a golden-yellow rounded geometric sans-serif on a white background; all letters are correctly formed with no errors."
+ },
+ "W__fa__long__ideogram.png": {
+  "texts": [
+   "بازار تازه"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": false,
+  "notes": "Reads 'بازار تازه' (Bazaar-e Taze, 'Fresh Market'). Joins are correct: ب connects to ا, and ت to ا. ز, ا and ر are correctly non-joining, and ه appears in its isolated form after ز. All dots are present: ب has one below, ت two above, and each ز one above. No errors detected."
+ },
+ "W__fa__short__ideogram.png": {
+  "texts": [
+   "نزدیک"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": false,
+  "notes": "Persian word 'nazdik' (near). Letters ن ز د ی ک are rendered correctly with proper dots and joining."
+ },
+ "W__he__long__ideogram.png": {
+  "texts": [
+   "השוק הטרי"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Hebrew text reading 'HaShuk HaTari' ('The Fresh Market'), with no niqqud. Letters are correctly formed and spelled: ה-ש-ו-ק and ה-ט-ר-י. Rendered in a green sans-serif."
+ },
+ "W__he__short__ideogram.png": {
+  "texts": [
+   "קרוב"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Hebrew word 'קרוב' (karov, 'near/close'), read right to left as ק-ר-ו-ב. The letters are well-formed and correctly spelled. There are no vowel points and no other text."
+ },
+ "C__ar__long.jpg": {
+  "texts": [
+   "السوق الطازج"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": false,
+  "notes": "Reads 'السوق الطازج' (The Fresh Market) in green bold Arabic. Letters are correctly joined and dotted (ق with two dots, ز with one dot, ج with one dot). No errors observed."
+ },
+ "C__ar__short.jpg": {
+  "texts": [
+   "قريب"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": false,
+  "notes": "Single green Arabic word 'قريب' (qarib, 'near/soon') on a white background. The letters are properly connected. The qaf's two dots above are clearly visible. A dot is visible below the final ba. The medial ya's two dots are hard to distinguish in this rendering."
+ },
+ "C__en__long.jpg": {
+  "texts": [
+   "Fresh Market"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Single line of dark green bold sans-serif text on a white background. Spelling is correct with no errors."
+ },
+ "C__en__short.jpg": {
+  "texts": [
+   "Nearby"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Single word 'Nearby' in bold dark green sans-serif on a white background, centered. Spelling is correct with no visible errors."
+ },
+ "C__fa__long.jpg": {
+  "texts": [
+   "بازار تازه"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": false,
+  "notes": "Persian text 'Bazaar-e Taze' (Fresh Market) in dark green bold font. All letters are correctly formed and dotted (ب, ز, ت), and joining is correct. No errors visible."
+ },
+ "C__fa__short.jpg": {
+  "texts": [
+   "نزدیک"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": false,
+  "notes": "Persian word 'nazdik' (near), rendered correctly with proper dots and joining: ن‌ز, د, ی‌ک (Persian kaf)."
+ },
+ "C__he__long.jpg": {
+  "texts": [
+   "השוק הטרי"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Hebrew text in dark green bold font, meaning 'The Fresh Market'. All letters (ה ש ו ק / ה ט ר י) are rendered correctly. No Arabic script is present."
+ },
+ "C__he__short.jpg": {
+  "texts": [
+   "קרוב"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Hebrew word 'קרוב' (karov, 'near/close'): qof, resh, vav, bet, read right to left. Bold dark green sans-serif on white. The letters are correctly formed and spelled."
+ },
+ "C__hi__long.jpg": {
+  "texts": [
+   "ताज़ा बाज़ार"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Hindi (Devanagari) text meaning 'Fresh Market', in dark green bold type on a white background. Nukta dots under ज (ज़) are present in both words. The spelling appears correct and the text is not Arabic script."
+ },
+ "C__hi__short.jpg": {
+  "texts": [
+   "नज़दीक"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Single Hindi word in Devanagari, rendered in green bold. It reads 'nazdeek' ('near'), with the nukta correctly placed under ज (ज़). The spelling is correct and nothing is missing or garbled."
+ },
+ "C__ja__long.jpg": {
+  "texts": [
+   "新鮮市場"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Four CJK characters in bold dark green sans-serif on a white background, reading 'fresh market'. All characters appear correctly formed."
+ },
+ "C__ja__short.jpg": {
+  "texts": [
+   "ちかく"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Japanese hiragana 'ちかく' (chikaku) in dark green bold sans-serif, centered on white background. All characters rendered correctly."
+ },
+ "C__ru__long.jpg": {
+  "texts": [
+   "Свежий рынок"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Russian Cyrillic text in bold dark green on white background, rendered correctly with no visible errors; й has its breve."
+ },
+ "C__ru__short.jpg": {
+  "texts": [
+   "Рядом"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Single Russian word 'Рядом' (meaning 'nearby') in bold dark green Cyrillic on a white background; correctly spelled with no errors."
+ },
+ "C__th__long.jpg": {
+  "texts": [
+   "ตลาดสด"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Thai text 'ตลาดสด' ('fresh market') in a dark green, bold, loopless sans-serif font on a white background. The letters (ต ล า ด ส ด) appear correctly formed and correctly spelled."
+ },
+ "C__th__short.jpg": {
+  "texts": [
+   "ใกล้"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Thai word 'ใกล้' ('near'), rendered in bold green: sara ai maimalai (ใ) + ko kai (ก) + lo ling (ล) + mai tho tone mark (้). Spelled correctly with no visible errors."
+ },
+ "C__zh__long.jpg": {
+  "texts": [
+   "新鲜市场"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Simplified Chinese text '新鲜市场' (Fresh Market) in bold dark green sans-serif on white background; characters appear correctly formed."
+ },
+ "C__zh__short.jpg": {
+  "texts": [
+   "近邻"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Two Chinese characters '近邻' (neighbor) in bold dark green on a white background. Both characters are rendered correctly."
+ },
+ "L__ar__flux.jpg": {
+  "texts": [
+   "الحييئ",
+   "Nearby"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": true,
+  "notes": "The English 'Nearby' is rendered correctly. The Arabic reads approximately 'الحييئ' (alef-lam-hah, two dotted teeth, then a final letter with a hamza-like mark). It is not a real word. It is likely a garbled attempt at 'القريب' (nearby). The exact dots on the final letters are somewhat ambiguous."
+ },
+ "L__ar__gpt-image.jpg": {
+  "texts": [
+   "قريب",
+   "Nearby"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": false,
+  "notes": "Arabic reads قريب ('near'), with qaf, ra, ya and ba connected. The dots under ya/ba are hard to confirm at this resolution, and there may be an extra tooth. English 'Nearby' is spelled correctly."
+ },
+ "L__ar__ideogram.jpg": {
+  "texts": [
+   "قريب",
+   "Nearby"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": false,
+  "notes": "Arabic reads قريب (qarib, 'near'), with the expected dots: two above qaf, two below ya, and one below ba. Letters connect correctly, with the normal break after ra. The English 'Nearby' is spelled correctly. Both words are green on a white background."
+ },
+ "L__ar__nano-banana.jpg": {
+  "texts": [
+   "قريب",
+   "Nearby"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": false,
+  "notes": "Arabic 'قريب' renders correctly with proper joining; the qaf's two dots are colored green, and the ya (two dots) and ba (one dot) dots are placed correctly below. English 'Nearby' is spelled correctly. No other text appears."
+ },
+ "L__ar__qwen-image.jpg": {
+  "texts": [
+   "قررب",
+   "Nearby"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": true,
+  "notes": "The Arabic reads 'قررب' (qaf, ra, ra, ba with one dot below). The intended word is likely 'قريب' (nearby), but the medial ya is rendered as a second ra. The joining follows normal Arabic rules. The English 'Nearby' is correct."
+ },
+ "L__ar__recraft.jpg": {
+  "texts": [
+   "قريٮب",
+   "Nearby"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": true,
+  "notes": "The Arabic text appears intended as 'قريب', but it is rendered with an extra undotted tooth between the dotted ي and the final ب (ق-ر-ي-ٮ-ب). Dots appear as two over the ق, two under the ي and one under the ب. The English 'Nearby' is correct. The pin icon contains no text."
+ },
+ "L__ar__seedream.jpg": {
+  "texts": [
+   "قريب",
+   "Nearby"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": false,
+  "notes": "The Arabic reads قريب: initial qaf with two dots above, extended by a kashida into ra, then ya with two dots below joined to final ba with one dot below. The letters are joined correctly and the dots look right. 'Nearby' is spelled correctly. A horizontal line separates the two words."
+ },
+ "M__Egypt__flux.jpg": {
+  "motifs": [
+   "two-faced triangular pyramid shape",
+   "letter A form",
+   "split triangle facets",
+   "flowing path or river cutout",
+   "circuit board traces",
+   "circuit nodes with open circle terminals",
+   "small solid squares",
+   "small solid circles/dots",
+   "tech connector lines"
+  ],
+  "colors": [
+   "dark teal green",
+   "navy blue",
+   "mustard gold",
+   "off-white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "pyramid",
+   "generic_abstract"
+  ]
+ },
+ "M__Egypt__gpt-image.jpg": {
+  "motifs": [
+   "two golden pyramids",
+   "payment card",
+   "EMV chip",
+   "contactless payment waves",
+   "red swoosh ring",
+   "white swoosh ring",
+   "black swoosh ring",
+   "orbital swoosh"
+  ],
+  "colors": [
+   "navy blue",
+   "golden yellow",
+   "red",
+   "white",
+   "black"
+  ],
+  "has_text": false,
+  "tropes": [
+   "pyramid",
+   "flag_colors"
+  ]
+ },
+ "M__Egypt__ideogram.jpg": {
+  "motifs": [
+   "slanted diagonal stroke with hooked top",
+   "stylized letter A",
+   "gold triangle with two-tone shading",
+   "faceted pyramid-like shape",
+   "roofline/peak form",
+   "negative-space gap between shapes"
+  ],
+  "colors": [
+   "dark teal",
+   "gold",
+   "ochre/bronze",
+   "off-white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "pyramid",
+   "generic_abstract"
+  ]
+ },
+ "M__Egypt__nano-banana.jpg": {
+  "motifs": [
+   "pyramid",
+   "faceted triangular segments",
+   "circuit board traces",
+   "circuit nodes",
+   "upward arrow",
+   "nested inner triangle",
+   "flowing wavy lines",
+   "small diamond accents"
+  ],
+  "colors": [
+   "royal blue",
+   "teal",
+   "gold",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "pyramid",
+   "generic_abstract"
+  ]
+ },
+ "M__Egypt__qwen-image.jpg": {
+  "motifs": [
+   "lightning bolt",
+   "zigzag stylized letter N",
+   "broken circular ring",
+   "crescent-shaped inner arc",
+   "beveled 3D faceted surfaces",
+   "diagonal upward arrow-like stroke"
+  ],
+  "colors": [
+   "gold",
+   "bronze",
+   "yellow",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "crescent",
+   "generic_abstract"
+  ]
+ },
+ "M__Egypt__recraft.jpg": {
+  "motifs": [
+   "stylized letter E with rounded pill-shaped arms",
+   "pill-shaped rounded bar above the letter",
+   "orange circle behind the letter",
+   "small rounded black bar cutting into the circle",
+   "negative-space white notches",
+   "overlapping black and orange forms"
+  ],
+  "colors": [
+   "black",
+   "orange-red",
+   "white"
+  ],
+  "has_text": true,
+  "tropes": [
+   "generic_abstract"
+  ]
+ },
+ "M__Egypt__seedream.jpg": {
+  "motifs": [
+   "circular ring outline",
+   "three pyramids",
+   "desert dune wave",
+   "dollar sign coin",
+   "circuit node connector line with dots",
+   "horizontal ground stripes",
+   "gradient fades"
+  ],
+  "colors": [
+   "navy blue",
+   "sand gold",
+   "beige",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "pyramid",
+   "desert_dunes"
+  ]
+ },
+ "M__Morocco__flux.jpg": {
+  "motifs": [
+   "five-pointed star",
+   "upward trending arrow",
+   "zigzag line graph",
+   "vertical bar chart columns",
+   "angled bar cutouts",
+   "negative space separation"
+  ],
+  "colors": [
+   "dark red",
+   "forest green",
+   "charcoal gray",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "star",
+   "flag_colors"
+  ]
+ },
+ "M__Morocco__gpt-image.jpg": {
+  "motifs": [
+   "wallet",
+   "contactless payment waves",
+   "wallet clasp with circular button",
+   "yellow card",
+   "green card",
+   "red crescent-shaped swoosh",
+   "green eight-pointed star outline"
+  ],
+  "colors": [
+   "navy blue",
+   "yellow",
+   "green",
+   "red",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "star",
+   "crescent"
+  ]
+ },
+ "M__Morocco__ideogram.jpg": {
+  "motifs": [
+   "eight-pointed star outline",
+   "overlapping rotated squares",
+   "diagonal upward arrow",
+   "growth arrow",
+   "geometric star frame"
+  ],
+  "colors": [
+   "dark teal",
+   "golden orange",
+   "off-white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "star",
+   "generic_abstract"
+  ]
+ },
+ "M__Morocco__nano-banana.jpg": {
+  "motifs": [
+   "eight-pointed star silhouette",
+   "chevron corner segments",
+   "network node graph",
+   "connected circles and lines",
+   "circuit-like branching structure",
+   "upward trending arrow",
+   "stylized angular Kufic-like letterforms",
+   "geometric square and diamond shapes",
+   "split two-half composition"
+  ],
+  "colors": [
+   "green",
+   "red",
+   "golden orange",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "star",
+   "calligraphy",
+   "generic_abstract"
+  ]
+ },
+ "M__Morocco__qwen-image.jpg": {
+  "motifs": [
+   "five-pointed star",
+   "interlaced pentagram outline",
+   "solid circle background",
+   "overlapping line strokes"
+  ],
+  "colors": [
+   "green",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "star"
+  ]
+ },
+ "M__Morocco__recraft.jpg": {
+  "motifs": [
+   "vertical rounded pill shape",
+   "quarter-circle segments",
+   "half-circle segments",
+   "semicircle bowls",
+   "solid circle dot",
+   "geometric modular blocks",
+   "stacked geometric letterforms"
+  ],
+  "colors": [
+   "red-orange",
+   "navy blue",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "generic_abstract"
+  ]
+ },
+ "M__Morocco__seedream.jpg": {
+  "motifs": [
+   "Star of David (hexagram)",
+   "interlaced triangles",
+   "hexagonal frame",
+   "inner triangular cutouts",
+   "rising zigzag arrow",
+   "upward trend line"
+  ],
+  "colors": [
+   "teal",
+   "yellow",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "star"
+  ]
+ },
+ "M__Saudi-Arabia__flux.jpg": {
+  "motifs": [
+   "half shield outline",
+   "curved shield edge",
+   "gold shield tip segment",
+   "circuit board traces",
+   "circuit nodes",
+   "right-angle connector lines",
+   "split shield-circuit composition"
+  ],
+  "colors": [
+   "dark green",
+   "gold",
+   "charcoal gray",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "generic_abstract"
+  ]
+ },
+ "M__Saudi-Arabia__gpt-image.jpg": {
+  "motifs": [
+   "skyscraper with arched cutout at top (resembling Riyadh's Kingdom Centre)",
+   "palm tree",
+   "ascending bar chart with three rounded bars",
+   "elliptical swoosh orbit",
+   "payment card shape",
+   "EMV chip icon"
+  ],
+  "colors": [
+   "dark green",
+   "bright green",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "palm_tree",
+   "flag_colors"
+  ]
+ },
+ "M__Saudi-Arabia__ideogram.jpg": {
+  "motifs": [
+   "V-shaped chevron",
+   "stylized bird wings",
+   "hooked-beak bird head",
+   "golden wheat or grass sprigs",
+   "folded paper shading",
+   "geometric angular shapes"
+  ],
+  "colors": [
+   "dark green",
+   "gold",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "falcon",
+   "generic_abstract"
+  ]
+ },
+ "M__Saudi-Arabia__nano-banana.jpg": {
+  "motifs": [
+   "stylized palm tree",
+   "curved palm fronds",
+   "circuit-board lines with nodes forming fronds",
+   "crescent moon",
+   "four-pointed star",
+   "ascending bar chart",
+   "palm trunk formed by tallest bar",
+   "horizontal baseline"
+  ],
+  "colors": [
+   "dark green",
+   "medium green",
+   "teal green",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "crescent",
+   "star",
+   "palm_tree"
+  ]
+ },
+ "M__Saudi-Arabia__qwen-image.jpg": {
+  "motifs": [
+   "solid green circle",
+   "white angular stylized letterforms resembling 'LK' or '4K'",
+   "folded paper or ribbon effect",
+   "diagonal intersecting strokes",
+   "small detached accent mark",
+   "subtle gray shading on the fold"
+  ],
+  "colors": [
+   "dark green",
+   "white",
+   "light gray"
+  ],
+  "has_text": true,
+  "tropes": [
+   "generic_abstract"
+  ]
+ },
+ "M__Saudi-Arabia__recraft.jpg": {
+  "motifs": [
+   "stylized numeral 5",
+   "stylized letter G or numeral 6",
+   "abstract bird head silhouette",
+   "circular eye cutout",
+   "rounded geometric shapes",
+   "flat bar shape",
+   "curved semicircular forms"
+  ],
+  "colors": [
+   "red",
+   "royal blue",
+   "white"
+  ],
+  "has_text": true,
+  "tropes": [
+   "generic_abstract"
+  ]
+ },
+ "M__Saudi-Arabia__seedream.jpg": {
+  "motifs": [
+   "circular ring border",
+   "green arc segment on left of ring",
+   "black upward chevron arrow",
+   "stacked gold chevron bands",
+   "rounded arch/roof shape",
+   "gold segmented circle",
+   "vertical pillar-like bars",
+   "branching Y-shaped lines",
+   "circuit-like channel pattern",
+   "symmetrical geometric composition"
+  ],
+  "colors": [
+   "black",
+   "gold/mustard yellow",
+   "green",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "generic_abstract",
+   "flag_colors"
+  ]
+ },
+ "M__United-Kingdom__flux.jpg": {
+  "motifs": [
+   "shield",
+   "pound sterling symbol",
+   "vertically split shield halves",
+   "inverted color split currency symbol",
+   "small circle dot",
+   "teal outline border"
+  ],
+  "colors": [
+   "navy blue",
+   "teal",
+   "white",
+   "gray"
+  ],
+  "has_text": false,
+  "tropes": [
+   "none"
+  ]
+ },
+ "M__United-Kingdom__gpt-image.jpg": {
+  "motifs": [
+   "rounded square card shape",
+   "Union Jack flag segment",
+   "curved swoosh divider",
+   "green upward trending arrow",
+   "three ascending bar chart columns",
+   "blue sloping wave base",
+   "white payment card chip icon",
+   "white outline borders"
+  ],
+  "colors": [
+   "navy blue",
+   "red",
+   "white",
+   "mint green",
+   "royal blue"
+  ],
+  "has_text": false,
+  "tropes": [
+   "flag_colors"
+  ]
+ },
+ "M__United-Kingdom__ideogram.jpg": {
+  "motifs": [
+   "shield shape",
+   "diagonal upward arrow",
+   "radiating white stripes",
+   "union jack-style diagonal lines",
+   "rounded shield base"
+  ],
+  "colors": [
+   "navy blue",
+   "red",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "flag_colors",
+   "generic_abstract"
+  ]
+ },
+ "M__United-Kingdom__nano-banana.jpg": {
+  "motifs": [
+   "pound sterling symbol",
+   "upward arrow",
+   "curved swoosh forming the base of the pound sign",
+   "two-tone split shading",
+   "growth trend line"
+  ],
+  "colors": [
+   "navy blue",
+   "royal blue",
+   "crimson red",
+   "dark red",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "flag_colors"
+  ]
+ },
+ "M__United-Kingdom__qwen-image.jpg": {
+  "motifs": [
+   "circular emblem",
+   "Union Jack flag pattern",
+   "split circular ring",
+   "blue left arc",
+   "red right arc",
+   "red central cross",
+   "diagonal saltire stripes",
+   "blue triangular segments",
+   "white border fimbriation"
+  ],
+  "colors": [
+   "navy blue",
+   "red",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "flag_colors"
+  ]
+ },
+ "M__United-Kingdom__recraft.jpg": {
+  "motifs": [
+   "abstract letter K",
+   "rounded circular lobes",
+   "teardrop shapes",
+   "interlocking blob forms",
+   "modular geometric construction",
+   "negative space curves",
+   "two-tone color blocking"
+  ],
+  "colors": [
+   "blue-violet",
+   "orange",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "generic_abstract"
+  ]
+ },
+ "M__United-Kingdom__seedream.jpg": {
+  "motifs": [
+   "concentric circular rings",
+   "segmented quadrant arcs",
+   "crosshair-like gaps",
+   "central diamond",
+   "rotated square outline",
+   "interlocking triangles",
+   "negative-space square center",
+   "geometric parallelogram bands",
+   "four-way symmetry"
+  ],
+  "colors": [
+   "navy blue",
+   "sky blue",
+   "orange",
+   "lime green",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "generic_abstract"
+  ]
+ },
+ "M__United-States__flux.jpg": {
+  "motifs": [
+   "shield",
+   "ascending bar chart",
+   "upward trending arrow",
+   "three vertical bars",
+   "split two-tone shield",
+   "geometric angular cuts"
+  ],
+  "colors": [
+   "dark navy",
+   "teal",
+   "mint green",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "generic_abstract"
+  ]
+ },
+ "M__United-States__gpt-image.jpg": {
+  "motifs": [
+   "overlapping credit cards",
+   "EMV chip",
+   "upward curved arrow",
+   "ascending bar chart",
+   "wavy red stripes",
+   "flag-like waving bands"
+  ],
+  "colors": [
+   "navy blue",
+   "bright blue",
+   "red",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "flag_colors"
+  ]
+ },
+ "M__United-States__ideogram.jpg": {
+  "motifs": [
+   "shield outline",
+   "upward arrow",
+   "zigzag line graph",
+   "growth trend line",
+   "broken outline segments"
+  ],
+  "colors": [
+   "navy blue",
+   "red",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "generic_abstract"
+  ]
+ },
+ "M__United-States__nano-banana.jpg": {
+  "motifs": [
+   "partial circular ring (C-shape)",
+   "upward-trending arrow",
+   "zigzag line graph",
+   "bar chart columns",
+   "circuit-board traces with node dots",
+   "star points",
+   "red and white stripes",
+   "checkmark-like shape"
+  ],
+  "colors": [
+   "navy blue",
+   "red",
+   "bright blue",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "star",
+   "flag_colors"
+  ]
+ },
+ "M__United-States__qwen-image.jpg": {
+  "motifs": [
+   "lowercase letter n",
+   "stylized letter e formed from a circle",
+   "blue circular globe-like shape",
+   "horizontal bar cutout inside the circle",
+   "gold crescent-shaped arc wrapping the circle",
+   "small notch or leaf-like cutouts along the circle edge",
+   "white negative space separating the shapes"
+  ],
+  "colors": [
+   "navy blue",
+   "royal blue",
+   "golden yellow",
+   "white"
+  ],
+  "has_text": true,
+  "tropes": [
+   "crescent",
+   "generic_abstract"
+  ]
+ },
+ "M__United-States__recraft.jpg": {
+  "motifs": [
+   "interlocking ribbon shapes",
+   "continuous rounded line",
+   "U-shaped curve",
+   "inverted U arch",
+   "loop resembling letter P",
+   "overlapping bands",
+   "monogram-like letterforms",
+   "wave pattern"
+  ],
+  "colors": [
+   "orange",
+   "navy blue",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "generic_abstract"
+  ]
+ },
+ "M__United-States__seedream.jpg": {
+  "motifs": [
+   "suspension bridge silhouette",
+   "rounded blue shield/canopy shape",
+   "speech bubble with three dots (ellipsis)",
+   "upward trending zigzag arrow",
+   "growth chart line",
+   "negative space white cutouts"
+  ],
+  "colors": [
+   "blue",
+   "orange",
+   "white"
+  ],
+  "has_text": false,
+  "tropes": [
+   "generic_abstract"
+  ]
+ },
+ "W__ar__long__flux.jpg": {
+  "texts": [
+   "العيلة وممة"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": true,
+  "notes": "The first word reads 'العيلة' (colloquial for 'the family'). The second word is rendered as 'وممة' (waw, meem, meem, taa marbuta), which is not a real word; 'ولمة' was likely intended. The dots under the first word's middle teeth are slightly ambiguous."
+ },
+ "W__ar__long__gpt-image.jpg": {
+  "texts": [
+   "السوق الطازج"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": false,
+  "notes": "Reads 'السوق الطازج' (The Fresh Market). 'السوق' is in dark green and 'الطازج' in light green. The dots on ق, ز and ج appear present and correct, and the letters connect properly."
+ },
+ "W__ar__long__ideogram.jpg": {
+  "texts": [
+   "السوق الطازج"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": false,
+  "notes": "Reads 'السوق الطازج' (The Fresh Market) in green. Letters are correctly formed and connected, and dots on ق, ز and ج appear correct. No visible errors."
+ },
+ "W__ar__long__nano-banana.jpg": {
+  "texts": [
+   "السوق الطازج"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": false,
+  "notes": "Reads 'السوق الطازج' (The Fresh Market). Letters are properly connected and dots appear correct. The qaf's two dots are drawn as a green dot and a leaf; the zay and jeem dots are orange circles. Leaf shapes decorate the waw and qaf counters."
+ },
+ "W__ar__long__qwen-image.jpg": {
+  "texts": [
+   "السوق الطازج"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": false,
+  "notes": "Reads 'السوق الطازج' (The Fresh Market) in dark navy sans-serif on a white background. Letters are correctly joined, and the dots on ق, ز and ج are present. No visible errors."
+ },
+ "W__ar__long__recraft.jpg": {
+  "texts": [
+   "السوق الطازج"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": true,
+  "notes": "Reads as 'السوق الطازج' (the fresh market), but the final letter has a jeem (ج) body with two dots below instead of one, so it is not a standard Arabic letter. The other letters look correctly formed and joined, including the qaf's two dots and the zay's dot."
+ },
+ "W__ar__long__seedream.jpg": {
+  "texts": [
+   "السوق الطازج"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": false,
+  "notes": "Green Arabic text reading 'السوق الطازج' (The Fresh Market). Letters are correctly formed and connected, with correct dots: two on the qaf, one on the zay, one under the jeem. No visible errors."
+ },
+ "W__ar__short__flux.jpg": {
+  "texts": [
+   "خلية"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": false,
+  "notes": "Reads 'خلية' (cell/hive) in rounded green geometric Arabic. The khaa has one dot above, the yaa two dots below, and the taa marbuta two dots above. The yaa's tooth is barely distinct, as the lam joins almost directly into the final loop, but the dots make the word legible."
+ },
+ "W__ar__short__gpt-image.jpg": {
+  "texts": [
+   "قريب"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": false,
+  "notes": "Single green word reading 'قريب' (qareeb, 'near'). Qaf with two dots joins to ra, then a correct break after ra, and ya (two dots below) joins to final ba (one dot below). All dots are present and placed correctly."
+ },
+ "W__ar__short__ideogram.jpg": {
+  "texts": [
+   "قريٮب"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": true,
+  "notes": "Intended word appears to be قريب ('near'). As rendered, it has an extra undotted tooth between the dotted ي and the final ب, and the ر is drawn with an unusual tall upright stroke before its descender. The ق has 2 dots above, the ي has 2 below and the ب has 1 below."
+ },
+ "W__ar__short__nano-banana.jpg": {
+  "texts": [
+   "قريب"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": false,
+  "notes": "Reads قريب (qarib, 'near'). The qaf's loop is styled as a location pin, with two dots above. The raa is drawn unusually tall, and the yaa and baa teeth are tall too. The two orange dots sit under the yaa, and the single green dot sits under the baa bowl rather than its tooth. The letters run in multiple colors (green, orange, dark green, teal)."
+ },
+ "W__ar__short__qwen-image.jpg": {
+  "texts": [
+   "قررٻ"
+  ],
+  "arabic_letters_joined": "partly",
+  "invented_or_garbled": true,
+  "notes": "Reads right to left as qaf, then two ra-like strokes, then a wide final beh-shaped bowl with two dots below. That final form is nonstandard (ٻ). It was probably meant to be قريب ('near'), but there is an extra ra-like stroke and the dots and final letter are malformed."
+ },
+ "W__ar__short__recraft.jpg": {
+  "texts": [
+   "ڡَرين"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": true,
+  "notes": "Reads right to left as a looped initial fa/qaf-like shape with no dot (ڡ), then ra, medial ya with two dots below, and final nun with one dot above. A detached curved arc sits above the first letter. It looks like a fatha or madda rather than a proper dot, possibly meant to suggest 'آفرین' (afarin) or 'فرین', but no alef is drawn and the fa dot is missing."
+ },
+ "W__ar__short__seedream.jpg": {
+  "texts": [
+   "قريىب"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": true,
+  "notes": "Likely intended 'قريب' (near), but the left group has an extra undotted tooth: a dotted ya (two dots below), an extra undotted tooth, then final ba with one dot. Ra has an unusual tall upward stroke before its tail. Qaf has two dots."
+ },
+ "W__en__long__flux.jpg": {
+  "texts": [
+   "Fresh Market"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Two words in a rounded sans-serif font: 'Fresh' in dark green and 'Market' in light green on a white background. All letters are rendered correctly, with no errors or garbling."
+ },
+ "W__en__long__gpt-image.jpg": {
+  "texts": [
+   "Fresh",
+   "Market"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Two words: 'Fresh' in green, with a leaf forming the top of the 'F', and 'Market' in orange. All letters render correctly with no misspellings. No Arabic text."
+ },
+ "W__en__long__ideogram.jpg": {
+  "texts": [
+   "Fresh Market"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Single line of green sans-serif text on a white background; all letters render correctly with no errors."
+ },
+ "W__en__long__nano-banana.jpg": {
+  "texts": [
+   "Fresh",
+   "Market"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Two words on one line: 'Fresh' in green rounded humanist type and 'Market' in dark charcoal sans-serif. All letters render correctly, with no misspellings or missing or extra characters."
+ },
+ "W__en__long__qwen-image.jpg": {
+  "texts": [
+   "Fresh Market"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Two words in a bold sans-serif. 'Fresh' is dark green and 'Market' is lighter green. All letters render correctly, with no visible errors."
+ },
+ "W__en__long__recraft.jpg": {
+  "texts": [
+   "Fresh Market"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Single line of green rounded sans-serif text reading 'Fresh Market'. All letters are correctly formed, with no misspellings or extra characters."
+ },
+ "W__en__long__seedream.jpg": {
+  "texts": [
+   "Fresh Market"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Text reads correctly as 'Fresh Market'. Stylized letterforms: the 'h' ascender is a sprout with a leaf, linked by a swash from the 's'; the 'k' has a curled leg descending below the baseline; the 'M' has a tail on its right stem. No misspellings."
+ },
+ "W__en__short__flux.jpg": {
+  "texts": [
+   "Nearby"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Single word 'Nearby' in green rounded sans-serif on a white background; spelled correctly with no errors or extra marks."
+ },
+ "W__en__short__gpt-image.jpg": {
+  "texts": [
+   "Nearby"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Single word 'Nearby' in green rounded sans-serif, spelled correctly. A decorative green leaf sits above the left stem of the 'N'; it is a graphic element, not a letter or diacritic."
+ },
+ "W__en__short__ideogram.jpg": {
+  "texts": [
+   "Nearby"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Single word 'Nearby' in green rounded sans-serif on a white background. All letters are rendered correctly with no errors."
+ },
+ "W__en__short__nano-banana.jpg": {
+  "texts": [
+   "Nearby"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Single word 'Nearby' in green rounded sans-serif. The 'r' terminal is an orange leaf, and the 'y' is stylized with a green and orange leaf sprout. All letters are rendered correctly."
+ },
+ "W__en__short__qwen-image.jpg": {
+  "texts": [
+   "Nearby"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Single word 'Nearby' in dark rounded sans-serif on a white background; all letters are rendered correctly with no errors."
+ },
+ "W__en__short__recraft.jpg": {
+  "texts": [
+   "Nearby"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Single word 'Nearby' in bold rounded black sans-serif on a white background; all letters render correctly with no errors."
+ },
+ "W__en__short__seedream.jpg": {
+  "texts": [
+   "Nearby"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Single word 'Nearby' in a yellow/orange geometric sans-serif on a white background. All letters are correctly formed with no errors."
+ },
+ "W__fa__long__ideogram.jpg": {
+  "texts": [
+   "بازار تازه"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": false,
+  "notes": "Green Persian text reading 'بازار تازه' (Fresh Market). ب and ت connect correctly to the following alef, and ز, ا, ر, ه take their proper non-joining or isolated forms. The ب has its dot below, and both ز have dots. The ت's dots are hard to make out at this resolution."
+ },
+ "W__fa__long__recraft.jpg": {
+  "texts": [
+   "بازار تازو"
+  ],
+  "arabic_letters_joined": "partly",
+  "invented_or_garbled": true,
+  "notes": "Probably meant to read 'بازار تازه' (Fresh Market). The final letter is drawn as a looped و-like form with a horizontal tail rather than a clear ه. The ت dots are rendered as square blocks. The first ز's dot is unclear, possibly merged into the block shapes. There is no clear word space. The letterforms are blocky and partly fragmented, so the reading is uncertain."
+ },
+ "W__fa__short__ideogram.jpg": {
+  "texts": [
+   "نزدیک"
+  ],
+  "arabic_letters_joined": "yes",
+  "invented_or_garbled": false,
+  "notes": "Persian word 'nazdik' (near). Reads right to left as ن ز د ی ک, with the noon dot, zeh dot and the two dots under the yeh all present. Noon joins zeh and yeh joins kaf; dal and zeh correctly stay unjoined to the following letter. No visible errors."
+ },
+ "W__fa__short__recraft.jpg": {
+  "texts": [
+   "نزدیک"
+  ],
+  "arabic_letters_joined": "partly",
+  "invented_or_garbled": false,
+  "notes": "Reads نزدیک (nazdik, 'near'). The ی (two dots below) and ک are joined. The initial ن is rendered with a flat base and a diagonal cut, and it sits separate from the ز rather than visibly connecting to it, which makes it look somewhat like a ز/ر form. ز and د are non-connecting, as expected."
+ },
+ "W__he__long__ideogram.jpg": {
+  "texts": [
+   "השוק הטרי"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "The logo contains Hebrew text in green on a white background. It reads 'השוק הטרי' ('The Fresh Market'). It appears correctly spelled and has no niqqud."
+ },
+ "W__he__short__ideogram.jpg": {
+  "texts": [
+   "קרוב"
+  ],
+  "arabic_letters_joined": "n/a",
+  "invented_or_garbled": false,
+  "notes": "Hebrew word 'קרוב' (qof-resh-vav-bet, meaning 'near/close'), read right to left. All four letters appear correctly formed in a bold sans-serif font. No vowel points (niqqud) or dagesh, which is standard for unpointed Hebrew."
+ }
+}

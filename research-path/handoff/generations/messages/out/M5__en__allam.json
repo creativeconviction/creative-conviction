@@ -1,0 +1,13 @@
+{
+  "scenario": "M5",
+  "lang": "en",
+  "model": "allam",
+  "message": "Hello, I would like a refund for order #48213 please. The items were not as described.",
+  "raw": "```json\n{\n  \"intent\": \"refund_request\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"Customer requests a refund for an order with items not as described.\"\n}\n```",
+  "intent": "refund_request",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "Customer requests a refund for an order with items not as described."
+}

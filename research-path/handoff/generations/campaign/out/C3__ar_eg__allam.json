@@ -1,0 +1,12 @@
+{
+  "line": "C3",
+  "market": "ar_eg",
+  "model": "allam",
+  "source": "Thanksgiving dinner, sorted. Order your turkey today.",
+  "raw": "{\n  \"literal\": \"شكرًا على وجبة العشاء، طبّقها. اشترِ ديك رومي اليوم.\",\n  \"adaptation\": \"افرح في وجبة عيد اللحمة بطريقة سهلة. اطلب الديك رومي اليوم.\",\n  \"back_translation\": \"Italian chef supervises catering company that exports to outside Egypt (Literal translation from the original English)\",\n  \"approach\": \"adapted\",\n  \"notes\": \"عدلنا الكلمة الأصلية (Thanksgiving) التي ترتبط بأعياد خاصة غير موجودة في الثقافة المحلية إلى كلمة مماثلة في المعنى (عيد اللحمة)، كما استخدمنا نصًا جذابًا في الحملة مثل (افرح في) و(بطريقة سهلة) لجذب المستهلكين.\"\n}",
+  "literal": "شكرًا على وجبة العشاء، طبّقها. اشترِ ديك رومي اليوم.",
+  "adaptation": "افرح في وجبة عيد اللحمة بطريقة سهلة. اطلب الديك رومي اليوم.",
+  "back_translation": "Italian chef supervises catering company that exports to outside Egypt (Literal translation from the original English)",
+  "approach": "adapted",
+  "notes": "عدلنا الكلمة الأصلية (Thanksgiving) التي ترتبط بأعياد خاصة غير موجودة في الثقافة المحلية إلى كلمة مماثلة في المعنى (عيد اللحمة)، كما استخدمنا نصًا جذابًا في الحملة مثل (افرح في) و(بطريقة سهلة) لجذب المستهلكين."
+}

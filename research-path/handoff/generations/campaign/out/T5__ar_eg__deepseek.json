@@ -1,0 +1,12 @@
+{
+  "line": "T5",
+  "market": "ar_eg",
+  "model": "deepseek",
+  "source": "Because you're worth it",
+  "raw": "{\n  \"literal\": \"لأنك تستحقينها\",\n  \"adaptation\": \"لأنك تستحقين\",\n  \"back_translation\": \"Because you deserve\",\n  \"approach\": \"adapted\",\n  \"notes\": \"The object 'it' was dropped to avoid sounding overly materialistic, emphasizing self-worth rather than the product in a culture that values humility.\"\n}",
+  "literal": "لأنك تستحقينها",
+  "adaptation": "لأنك تستحقين",
+  "back_translation": "Because you deserve",
+  "approach": "adapted",
+  "notes": "The object 'it' was dropped to avoid sounding overly materialistic, emphasizing self-worth rather than the product in a culture that values humility."
+}

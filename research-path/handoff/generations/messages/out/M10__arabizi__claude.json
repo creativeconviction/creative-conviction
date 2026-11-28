@@ -1,0 +1,13 @@
+{
+  "scenario": "M10",
+  "lang": "arabizi",
+  "model": "claude",
+  "message": "betwasalo el tagamo3 el 5ames? w fe 7ad adna lel order?",
+  "raw": "```json\n{\n  \"intent\": \"question\",\n  \"sentiment\": \"neutral\",\n  \"urgency\": \"low\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"The customer asks, in Egyptian Arabic written in Latin script, whether the app delivers to Fifth Settlement (New Cairo) and whether there is a minimum order amount.\"\n}\n```",
+  "intent": "question",
+  "sentiment": "neutral",
+  "urgency": "low",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer asks, in Egyptian Arabic written in Latin script, whether the app delivers to Fifth Settlement (New Cairo) and whether there is a minimum order amount."
+}

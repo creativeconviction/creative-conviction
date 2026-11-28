@@ -1,0 +1,37 @@
+{
+  "big_idea": "“The neighborhood, delivered” turns Qareeb’s name into a simple promise: everyday groceries from nearby shops, at your door in about 20 minutes. The campaign makes convenience feel familiar, affordable, and part of daily life in Riyadh.",
+  "key_visual": "A Qareeb courier hands a bright grocery bag to a young Riyadh resident at their doorstep, with fresh everyday essentials visible inside. A neighborhood shop appears in the near background, creating a clear visual connection from the local store to the customer’s home.",
+  "image_prompt": "Photorealistic commercial advertising image set in a modern middle-class Riyadh neighborhood during warm late-afternoon light. A friendly grocery courier in a teal Qareeb uniform hands a coral-accented reusable grocery bag to a young Saudi professional at the doorway of a contemporary home; fresh bread, milk, eggs, fruit, and vegetables are naturally visible. A small neighborhood grocery shop can be seen nearby in the softly focused background, suggesting a very short journey. Authentic Saudi setting, warm and approachable expressions, everyday affordability, clean composition, energetic but not luxurious, ample negative space for Arabic headline, teal coral cream color palette, premium natural lighting, no visible text, no logos, 16:9.",
+  "palette": [
+    "#0E766E",
+    "#FF6B5E",
+    "#FFF4E3",
+    "#263238"
+  ],
+  "typography": "29LT Bukra for Arabic headlines, IBM Plex Sans Arabic for body copy and UI, and IBM Plex Sans for English.",
+  "tone_words": [
+    "قريب",
+    "بسيط",
+    "ودود",
+    "سريع",
+    "عملي"
+  ],
+  "headline": "مقاضي حارتك، عند بابك",
+  "subhead": "اطلب من محلات قريبة منك، ويوصلك طلبك في حوالي 20 دقيقة. ادفع بالبطاقة أو عند الاستلام.",
+  "cta": "اطلب الآن",
+  "ad_lines": [
+    "ناقصك حليب؟ قريب يوصّله لبابك.",
+    "من محلات حارتك إلى بابك في حوالي 20 دقيقة.",
+    "كل طلب عاشر؟ التوصيل علينا."
+  ],
+  "app_store_blurb": "قريب يوصّل لك مقاضيك من محلات الحي في حوالي 20 دقيقة. ادفع بالبطاقة أو نقدًا عند الاستلام، وكل طلب عاشر تحصل فيه على توصيل مجاني.",
+  "push_notifications": [
+    "ناقصكم شيء للبيت؟ اطلبوه من قريب ويوصلكم في حوالي 20 دقيقة.",
+    "هذا طلبك العاشر 🎉 التوصيل علينا—كمّل طلبك واستمتع."
+  ],
+  "onboarding": [
+    "كل احتياجاتك قريبة\nتسوّق من محلات الحي بسهولة.",
+    "عند بابك بسرعة\nيوصلك طلبك في حوالي 20 دقيقة.",
+    "ادفع بالطريقة اللي تناسبك\nبالبطاقة أو نقدًا عند الاستلام."
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "line": "I1",
+  "market": "ar_sa",
+  "model": "fanar",
+  "source": "We deliver the goods. Literally.",
+  "raw": "{\n\"literal\": \"نحن نُحضر البضائع. حرفيًا.\",\n\"adaptation\": \"بإصبع واحد، عشرات الأصناف إلى باب منزلك. تجربة \"التسوق دون مغادرة المنزل\".\",\n\"back_translation\": \"With one finger, dozens of items to your doorstep. The experience of 'shopping without leaving home'.\",\n\"approach\": \"adapted\",\n\"notes\": \"The original slogan is kept simple but the adapted version adds a more descriptive and cultural touch relevant to Saudi Arabian audience who are increasingly turning to online shopping.\"\n}",
+  "_parse_error": true
+}

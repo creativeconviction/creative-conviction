@@ -1,0 +1,12 @@
+{
+  "line": "C5",
+  "market": "ar_sa",
+  "model": "deepseek",
+  "source": "Your Friday night date starts here.",
+  "raw": "{\n  \"literal\": \"يبدأ موعد ليلة الجمعة من هنا\",\n  \"adaptation\": \"أمسيتك المميزة تبدأ من هنا\",\n  \"back_translation\": \"Your special evening starts here\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Replaced 'Friday night date' with 'special evening' because Friday is a holy and family day in Saudi culture and direct references to dating can be culturally sensitive.\"\n}",
+  "literal": "يبدأ موعد ليلة الجمعة من هنا",
+  "adaptation": "أمسيتك المميزة تبدأ من هنا",
+  "back_translation": "Your special evening starts here",
+  "approach": "adapted",
+  "notes": "Replaced 'Friday night date' with 'special evening' because Friday is a holy and family day in Saudi culture and direct references to dating can be culturally sensitive."
+}

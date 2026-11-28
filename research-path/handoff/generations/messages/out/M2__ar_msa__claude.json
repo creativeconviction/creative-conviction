@@ -1,0 +1,13 @@
+{
+  "scenario": "M2",
+  "lang": "ar_msa",
+  "model": "claude",
+  "message": "أين طلبي؟؟ مرت ساعتان، هذا أمر سخيف",
+  "raw": "```json\n{\n  \"intent\": \"late_delivery\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"The customer is frustrated that their order has not arrived after two hours and calls the delay ridiculous.\"\n}\n```",
+  "intent": "late_delivery",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer is frustrated that their order has not arrived after two hours and calls the delay ridiculous."
+}

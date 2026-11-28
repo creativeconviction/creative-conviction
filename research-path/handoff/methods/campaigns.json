@@ -1,0 +1,96 @@
+{
+  "_note": "English campaign lines to adapt into 7 markets. 'human_benchmark' entries are documented real-world adaptations to compare against (see sources).",
+  "markets": {
+    "ar_sa": "Saudi Arabia (Arabic)",
+    "ar_eg": "Egypt (Arabic)",
+    "en_gb": "United Kingdom (British English)"
+  },
+  "lines": {
+    "T1": {
+      "type": "famous tagline",
+      "brand": "McDonald's",
+      "text": "I'm lovin' it"
+    },
+    "T2": {
+      "type": "famous tagline",
+      "brand": "Nike",
+      "text": "Just Do It"
+    },
+    "T3": {
+      "type": "famous tagline",
+      "brand": "KitKat",
+      "text": "Have a break, have a KitKat"
+    },
+    "T4": {
+      "type": "famous tagline",
+      "brand": "Red Bull",
+      "text": "Red Bull gives you wings"
+    },
+    "T5": {
+      "type": "famous tagline",
+      "brand": "L'Oréal",
+      "text": "Because you're worth it"
+    },
+    "T6": {
+      "type": "famous tagline",
+      "brand": "Got Milk (California Milk Processor Board)",
+      "text": "Got milk?"
+    },
+    "I1": {
+      "type": "idiom / pun",
+      "brand": "a grocery delivery app",
+      "text": "We deliver the goods. Literally."
+    },
+    "I2": {
+      "type": "idiom / pun",
+      "brand": "a coffee chain",
+      "text": "Rise and grind."
+    },
+    "I3": {
+      "type": "idiom / pun",
+      "brand": "a bank",
+      "text": "Bring home the bacon with zero fees."
+    },
+    "C1": {
+      "type": "culturally loaded",
+      "brand": "an online store",
+      "text": "Black Friday: up to 70% off everything."
+    },
+    "C2": {
+      "type": "culturally loaded",
+      "brand": "a restaurant",
+      "text": "Happy hour: 2-for-1 drinks from 5 to 7pm."
+    },
+    "C3": {
+      "type": "culturally loaded",
+      "brand": "a grocery delivery app",
+      "text": "Thanksgiving dinner, sorted. Order your turkey today."
+    },
+    "C4": {
+      "type": "culturally loaded",
+      "brand": "a gym",
+      "text": "Get beach-body ready this summer."
+    },
+    "C5": {
+      "type": "culturally loaded",
+      "brand": "a dating app",
+      "text": "Your Friday night date starts here."
+    }
+  },
+  "human_benchmark": {
+    "_note": "Documented adaptations. Where sources disagree, both are listed.",
+    "T1": {
+      "ar_eg": "أنا أحبه (reported; one source)"
+    },
+    "C1": {
+      "ar_sa": "White Friday / الجمعة البيضاء (Souq.com, 2014; Noon later used Yellow Friday)"
+    }
+  },
+  "sources": [
+    "https://gulfnews.com/business/retail/black-friday-is-new-white-friday-for-souq-1.1622991",
+    "https://languagelog.ldc.upenn.edu/nll/?p=1954",
+    "https://www.labbrand.com/insights/article/global-branding-localization-5-best-and-worst-chinese-adaptations.html",
+    "https://www.wealthbriefing.com/html/article.php/hsbc-private-bank-rebrands"
+  ],
+  "instruction": "You are a senior copywriter. Adapt this English marketing line for {market}. Brand: {brand}. Original: \"{text}\"\n\nReturn only JSON with these keys:\n\"literal\": a direct, word-for-word translation into the target language,\n\"adaptation\": the line you would actually run in this market,\n\"back_translation\": your adaptation translated back into English,\n\"approach\": one of keep_english, literal, adapted, replaced (replaced = a new idea),\n\"notes\": one sentence on any cultural issue you changed or watched for."
+}

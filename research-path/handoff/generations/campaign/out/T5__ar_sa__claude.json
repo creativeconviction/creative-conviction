@@ -1,0 +1,12 @@
+{
+  "line": "T5",
+  "market": "ar_sa",
+  "model": "claude",
+  "source": "Because you're worth it",
+  "raw": "```json\n{\n  \"literal\": \"لأنكِ تستحقين ذلك\",\n  \"adaptation\": \"لأنكِ تستحقين\",\n  \"back_translation\": \"Because you deserve\",\n  \"approach\": \"adapted\",\n  \"notes\": \"I used L'Oréal's established regional Arabic tagline, which drops the object ('it') because the open-ended 'you deserve' reads as more natural, confident and dignified in Arabic, and kept the feminine address (تستحقين) to fit the brand's core female audience in Saudi Arabia while avoiding any phrasing that could feel boastful or immodest.\"\n}\n```",
+  "literal": "لأنكِ تستحقين ذلك",
+  "adaptation": "لأنكِ تستحقين",
+  "back_translation": "Because you deserve",
+  "approach": "adapted",
+  "notes": "I used L'Oréal's established regional Arabic tagline, which drops the object ('it') because the open-ended 'you deserve' reads as more natural, confident and dignified in Arabic, and kept the feminine address (تستحقين) to fit the brand's core female audience in Saudi Arabia while avoiding any phrasing that could feel boastful or immodest."
+}

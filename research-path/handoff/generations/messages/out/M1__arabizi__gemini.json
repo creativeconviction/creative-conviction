@@ -1,0 +1,13 @@
+{
+  "scenario": "M1",
+  "lang": "arabizi",
+  "model": "gemini",
+  "message": "ahlan, el order wesel bas el laban wel 3eish mesh mawgoodeen",
+  "raw": "{\n  \"intent\": \"missing_item\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"The customer reported that the milk and bread are missing from their delivered order.\"\n}",
+  "intent": "missing_item",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer reported that the milk and bread are missing from their delivered order."
+}

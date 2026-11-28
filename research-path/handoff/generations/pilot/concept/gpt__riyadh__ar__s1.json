@@ -1,0 +1,40 @@
+{
+  "big_idea": "«قريب» يختصر المسافة بين مقاضي الحي ويومك؛ كل ما تحتاجه من المتاجر القريبة يصل إلى بابك في نحو ٢٠ دقيقة. ترتكز الحملة على عبارة «مقاضيك قريبة» لتجعل السرعة والسعر المناسب جزءاً طبيعياً من روتين الرياض، مع توصيل مجاني لكل طلب عاشر.",
+  "key_visual": "مشهد دافئ أمام منزل عصري في أحد أحياء الرياض، حيث تستلم أسرة شابة كيس مقاضي من مندوب «قريب»، بينما يظهر متجر الحي في الخلفية. يربط بين المتجر والباب مسار أخضر قصير على هيئة ابتسامة، مع رمز بسيط يشير إلى نحو ٢٠ دقيقة.",
+  "image_prompt": "A warm, photorealistic advertising scene in a contemporary middle-class Riyadh neighborhood at late afternoon. A young Saudi family at the doorway of a modern modest home receives a reusable grocery bag from a friendly delivery rider in a clean green uniform, with a small neighborhood grocery store visible nearby. Add a subtle curved green route graphic shaped like a smile between the shop and the home, plus a simple clock icon suggesting approximately 20 minutes. Everyday, affordable, approachable mood, authentic Saudi clothing and architecture, natural sunlight, green and orange accents, generous negative space for Arabic headline, no luxury styling, no visible text, no logos.",
+  "palette": [
+    "#1F7A4D",
+    "#FF8A34",
+    "#FFF4E2",
+    "#17323A"
+  ],
+  "typography": {
+    "headlines": "DIN Next Arabic Bold",
+    "body": "IBM Plex Sans Arabic Regular وMedium"
+  },
+  "tone_words": [
+    "قريب",
+    "عملي",
+    "ودود",
+    "سريع",
+    "يومي"
+  ],
+  "headline": "مقاضيك قريبة. عندك في نحو ٢٠ دقيقة.",
+  "subhead": "اطلب من محلات حيك، وادفع بالبطاقة أو نقداً. وكل طلب عاشر توصيله علينا.",
+  "cta": "اطلب الآن",
+  "ad_lines": [
+    "نسيت الحليب؟ قريب يوصّله.",
+    "من محلات الحي لبابك في نحو ٢٠ دقيقة.",
+    "طلبك العاشر؟ التوصيل علينا."
+  ],
+  "app_store_blurb": "مع «قريب»، مقاضي الحي توصلك إلى بابك في نحو ٢٠ دقيقة. ادفع بالبطاقة أو نقداً عند الاستلام، واستمتع بتوصيل مجاني لكل طلب عاشر.",
+  "push_notifications": [
+    "ناقصك شيء للعشاء؟ اطلبه من محلات الحي ونوصّله في نحو ٢٠ دقيقة.",
+    "هذا طلبك العاشر 🎉 اطلب الآن والتوصيل علينا."
+  ],
+  "onboarding": [
+    "كل اللي ناقصك، من محلات حيك.",
+    "إلى بابك في نحو ٢٠ دقيقة، والدفع بالبطاقة أو نقداً.",
+    "كل طلب عاشر، توصيله علينا."
+  ]
+}

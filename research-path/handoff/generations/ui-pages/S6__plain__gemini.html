@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قريب - لوحة تحكم التاجر</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap');
+
+        :root {
+            /* Color Palette */
+            --primary: #0f766e; /* Teal 700 */
+            --primary-hover: #115e59;
+            --primary-light: #ccfbf1;
+            --bg-main: #f3f4f6; /* Gray 100 */
+            --bg-card: #ffffff;
+            --text-dark: #111827;
+            --text-muted: #6b7280;
+            --border-color: #e5e7eb;
+            
+            /* Status Colors */
+            --success: #10b981;
+            --success-bg: #d1fae5;
+            --success-text: #065f46;
+            --danger: #ef4444;
+            --danger-bg: #fee2e2;
+            --danger-text: #991b1b;
+            --warning: #f59e0b;
+            --warning-bg: #fef3c7;
+            --warning-text: #92400e;
+
+            /* Layout */
+            --sidebar-width: 260px;
+            --header-height: 70px;
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-dark);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- Typography --- */
+        h1, h2, h3, h4 { font-weight: 700; }
+        .text-sm { font-size: 0.875rem; }
+        .text-xs { font-size: 0.75rem; }
+        .text-muted { color: var(--text-muted); }
+        .font-bold { font-weight: 700; }
+        .font-medium { font-weight: 500; }
+
+        /* --- Layout --- */
+        .app-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* --- Sidebar --- */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: var(--sidebar-width);
+            background-color: var(--bg-card);
+            border-left: 1px solid var(--border-color);
+            z-index: 50;
+            transform: translateX(100%);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar.active {
+            transform: translateX(0);
+        }
+
+        .sidebar-header {
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            padding: 0 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            gap: 12px;
+        }
+
+        .sidebar-header svg {
+            color: var(--primary);
+            width: 32px;
+            height: 32px;
+        }
+
+        .sidebar-header h2 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-menu {
+            padding: 1.5rem 1rem;
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .nav-item a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            color: var(--text-muted);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .nav-item a svg {
+            width: 20px;
+            height: 20px;
+            stroke-width: 2;
+        }
+
+        .nav-item a:hover, .nav-item.active a {
+            background-color: var(--primary-light);
+            color: var(--primary);
+        }
+
+        /* --- Overlay for Mobile Sidebar --- */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(17, 24, 39, 0.5);
+            z-index: 40;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* --- Main Content --- */
+        .main-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        /* --- Topbar --- */
+        .topbar {
+            height: var(--header-height);
+            background-color: var(--bg-card);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 30;
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .menu-toggle {
+            background: none;
+            border: none;
+            color: var(--text-dark);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .menu-toggle svg { width: 24px; height: 24px; }
+
+        .search-box {
+            position: relative;
+            display: none; /* Hidden on very small screens, shown later via media query */
+            width: 250px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 40px 10px 16px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-main);
+            outline: none;
+            transition: var(--transition);
+            font-size: 0.875rem;
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+
+        .search-box svg {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            width: 18px;
+            height: 18px;
+        }
+
+        .topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .icon-btn {
+            position: relative;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        
+        .icon-btn:hover { color: var(--primary); }
+        .icon-btn svg { width: 24px; height: 24px; }
+        
+        .badge-dot {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            width: 10px;
+            height: 10px;
+            background-color: var(--danger);
+            border-radius: 50%;
+            border: 2px solid var(--bg-card);
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        .profile-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .profile-info { display: none; } /* Hidden on mobile */
+
+        /* --- Content Area --- */
+        .content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        /* --- KPI Cards --- */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        .kpi-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .kpi-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background-color: var(--primary-light);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .kpi-icon svg { width: 20px; height: 20px; }
+
+        .kpi-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .kpi-change {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .kpi-change svg { width: 16px; height: 16px; }
+
+        .trend-up { color: var(--success); }
+        .trend-down { color: var(--danger); }
+
+        /* --- Chart Section --- */
+        .chart-container {
+            width: 100%;
+            overflow-x: auto; /* Handle overflow on very small screens if needed */
+        }
+        
+        .chart-header { margin-bottom: 1.5rem; }
+        
+        .svg-chart {
+            width: 100%;
+            height: auto;
+            min-width: 500px; /* Ensure bars don't squash too much on scroll */
+            display: block;
+        }
+
+        .bar {
+            fill: var(--primary);
+            transition: opacity 0.3s;
+            cursor: pointer;
+        }
+        .bar:hover { opacity: 0.8; }
+        
+        .chart-grid-line { stroke: var(--border-color); stroke-width: 1; }
+        .chart-text { fill: var(--text-muted); font-size: 12px; font-family: 'Tajawal', sans-serif; }
+
+        /* --- Table Section --- */
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: right;
+            min-width: 600px; /* Force scroll on mobile */
+        }
+
+        th, td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: var(--bg-main);
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.875rem;
+            white-space: nowrap;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.2s;
+        }
+        
+        th:first-child { border-top-right-radius: 8px; border-bottom-right-radius: 8px; }
+        th:last-child { border-top-left-radius: 8px; border-bottom-left-radius: 8px; }
+
+        th:hover { background-color: var(--border-color); }
+
+        .sort-icon {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 4px;
+            width: 14px;
+            height: 14px;
+            color: #9ca3af;
+            transition: transform 0.2s;
+        }
+
+        th.asc .sort-icon { transform: rotate(180deg); color: var(--text-dark); }
+        th.desc .sort-icon { color: var(--text-dark); }
+
+        tbody tr { transition: background-color 0.2s; }
+        tbody tr:hover { background-color: #f8fafc; }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .status-completed { background-color: var(--success-bg); color: var(--success-text); }
+        .status-processing { background-color: var(--warning-bg); color: var(--warning-text); }
+        .status-cancelled { background-color: var(--danger-bg); color: var(--danger-text); }
+
+        .btn-view {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+        .btn-view:hover { text-decoration: underline; }
+
+        /* --- Media Queries (Desktop First Approach adjustments) --- */
+        @media (min-width: 640px) {
+            .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+            .search-box { display: block; }
+        }
+
+        @media (min-width: 1024px) {
+            .sidebar {
+                position: sticky;
+                transform: translateX(0);
+            }
+            .menu-toggle { display: none; }
+            .overlay { display: none !important; }
+            .kpi-grid { grid-template-columns: repeat(4, 1fr); }
+            .profile-info { display: block; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- Mobile Overlay -->
+        <div class="overlay" id="overlay"></div>
+
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+                <h2>قريب</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item active">
+                    <a href="#">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                        الرئيسية
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                        الطلبات
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+                        المنتجات
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        العملاء
+                    </a>
+                </li>
+                <li class="nav-item" style="margin-top: auto;">
+                    <a href="#">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                        الإعدادات
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main Content Area -->
+        <div class="main-wrapper">
+            
+            <!-- Topbar -->
+            <header class="topbar">
+                <div class="topbar-right">
+                    <button class="menu-toggle" id="menuToggle">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                    </button>
+                    <div class="search-box">
+                        <input type="text" placeholder="ابحث عن طلب، منتج، أو عميل...">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    </div>
+                </div>
+                
+                <div class="topbar-left">
+                    <button class="icon-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                        <span class="badge-dot"></span>
+                    </button>
+                    <div class="profile">
+                        <div class="profile-info text-left">
+                            <div class="text-sm font-bold">متجر الأمل</div>
+                            <div class="text-xs text-muted">المدير</div>
+                        </div>
+                        <div class="profile-img">أ</div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <main class="content">
+                
+                <!-- KPI Cards -->
+                <div class="kpi-grid">
+                    <!-- Card 1 -->
+                    <div class="card">
+                        <div class="kpi-header">
+                            <span class="text-muted font-medium">الطلبات اليوم</span>
+                            <div class="kpi-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                            </div>
+                        </div>
+                        <div class="kpi-value">145</div>
+                        <div class="kpi-change trend-up">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                            <span>12% مقارنة بالأمس</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 2 -->
+                    <div class="card">
+                        <div class="kpi-header">
+                            <span class="text-muted font-medium">الإيرادات</span>
+                            <div class="kpi-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                            </div>
+                        </div>
+                        <div class="kpi-value">4,500 <span class="text-sm font-medium">ر.س</span></div>
+                        <div class="kpi-change trend-up">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                            <span>8.5% مقارنة بالأمس</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="card">
+                        <div class="kpi-header">
+                            <span class="text-muted font-medium">متوسط السلة</span>
+                            <div class="kpi-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                            </div>
+                        </div>
+                        <div class="kpi-value">120 <span class="text-sm font-medium">ر.س</span></div>
+                        <div class="kpi-change trend-down">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline><polyline points="17 18 23 18 23 12"></polyline></svg>
+                            <span>2.1% مقارنة بالأمس</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="card">
+                        <div class="kpi-header">
+                            <span class="text-muted font-medium">نسبة الإلغاء</span>
+                            <div class="kpi-icon" style="background-color: var(--danger-bg); color: var(--danger);">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                            </div>
+                        </div>
+                        <div class="kpi-value">1.5%</div>
+                        <div class="kpi-change trend-up" style="color: var(--success);"> <!-- Down is good for cancellation -->
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline><polyline points="17 18 23 18 23 12"></polyline></svg>
+                            <span>0.5% تحسن عن الأمس</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chart Section -->
+                <div class="card">
+                    <div class="chart-header">
+                        <h3 class="font-bold">مبيعات آخر 7 أيام</h3>
+                    </div>
+                    <div class="chart-container">
+                        <!-- Inline SVG Bar Chart -->
+                        <svg viewBox="0 0 700 300" class="svg-chart" preserveAspectRatio="xMidYMid meet">
+                            <!-- Background Grids (Y-Axis) -->
+                            <line x1="50" y1="250" x2="680" y2="250" class="chart-grid-line" stroke-width="2"/>
+                            <line x1="50" y1="183" x2="680" y2="183" class="chart-grid-line" stroke-dasharray="4"/>
+                            <line x1="50" y1="116" x2="680" y2="116" class="chart-grid-line" stroke-dasharray="4"/>
+                            <line x1="50" y1="50" x2="680" y2="50" class="chart-grid-line" stroke-dasharray="4"/>
+                            
+                            <!-- Y-Axis Labels -->
+                            <text x="40" y="254" text-anchor="end" class="chart-text">0</text>
+                            <text x="40" y="187" text-anchor="end" class="chart-text">1k</text>
+                            <text x="40" y="120" text-anchor="end" class="chart-text">2k</text>
+                            <text x="40" y="54" text-anchor="end" class="chart-text">3k</text>
+
+                            <!-- Bars & X-Axis Labels -->
+                            <!-- Formula: height = (value / 3000) * 200, y = 250 - height -->
+                            
+                            <!-- السبت (Value: 1200, H: 80, Y: 170) -->
+                            <rect x="90" y="170" width="36" height="80" rx="4" class="bar">
+                                <title>السبت: 1200 ر.س</title>
+                            </rect>
+                            <text x="108" y="275" text-anchor="middle" class="chart-text">السبت</text>
+
+                            <!-- الأحد (Value: 1500, H: 100, Y: 150) -->
+                            <rect x="180" y="150" width="36" height="100" rx="4" class="bar">
+                                <title>الأحد: 1500 ر.س</title>
+                            </rect>
+                            <text x="198" y="275" text-anchor="middle" class="chart-text">الأحد</text>
+
+                            <!-- الإثنين (Value: 1100, H: 73, Y: 177) -->
+                            <rect x="270" y="177" width="36" height="73" rx="4" class="bar">
+                                <title>الإثنين: 1100 ر.س</title>
+                            </rect>
+                            <text x="288" y="275" text-anchor="middle" class="chart-text">الإثنين</text>
+
+                            <!-- الثلاثاء (Value: 1800, H: 120, Y: 130) -->
+                            <rect x="360" y="130" width="36" height="120" rx="4" class="bar">
+                                <title>الثلاثاء: 1800 ر.س</title>
+                            </rect>
+                            <text x="378" y="275" text-anchor="middle" class="chart-text">الثلاثاء</text>
+
+                            <!-- الأربعاء (Value: 2200, H: 146, Y: 104) -->
+                            <rect x="450" y="104" width="36" height="146" rx="4" class="bar">
+                                <title>الأربعاء: 2200 ر.س</title>
+                            </rect>
+                            <text x="468" y="275" text-anchor="middle" class="chart-text">الأربعاء</text>
+
+                            <!-- الخميس (Value: 2500, H: 166, Y: 84) -->
+                            <rect x="540" y="84" width="36" height="166" rx="4" class="bar">
+                                <title>الخميس: 2500 ر.س</title>
+                            </rect>
+                            <text x="558" y="275" text-anchor="middle" class="chart-text">الخميس</text>
+
+                            <!-- الجمعة (Value: 3000, H: 200, Y: 50) -->
+                            <rect x="630" y="50" width="36" height="200" rx="4" class="bar">
+                                <title>الجمعة: 3000 ر.س</title>
+                            </rect>
+                            <text x="648" y="275" text-anchor="middle" class="chart-text">الجمعة</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Table Section -->
+                <div class="card">
+                    <div class="table-header">
+                        <h3 class="font-bold">أحدث الطلبات</h3>
+                        <a href="#" class="btn-view">عرض الكل</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="ordersTable">
+                            <thead>
+                                <tr>
+                                    <th data-sort="id" class="desc">
+                                        رقم الطلب
+                                        <svg class="sort-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+                                    </th>
+                                    <th data-sort="customer">
+                                        العميل
+                                        <svg class="sort-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+                                    </th>
+                                    <th data-sort="date">
+                                        التاريخ
+                                        <svg class="sort-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+                                    </th>
+                                    <th data-sort="amount">
+                                        المبلغ
+                                        <svg class="sort-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+                                    </th>
+                                    <th>الحالة</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="font-medium">#QR-1045</td>
+                                    <td>أحمد عبدالله</td>
+                                    <td class="text-muted">اليوم، 10:30 ص</td>
+                                    <td class="font-bold">145 ر.س</td>
+                                    <td><span class="status-badge status-completed">مكتمل</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="font-medium">#QR-1044</td>
+                                    <td>سارة محمد</td>
+                                    <td class="text-muted">اليوم، 09:15 ص</td>
+                                    <td class="font-bold">85 ر.س</td>
+                                    <td><span class="status-badge status-processing">قيد التجهيز</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="font-medium">#QR-1043</td>
+                                    <td>خالد سعيد</td>
+                                    <td class="text-muted">أمس، 08:45 م</td>
+                                    <td class="font-bold">320 ر.س</td>
+                                    <td><span class="status-badge status-completed">مكتمل</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="font-medium">#QR-1042</td>
+                                    <td>مريم علي</td>
+                                    <td class="text-muted">أمس، 05:20 م</td>
+                                    <td class="font-bold">45 ر.س</td>
+                                    <td><span class="status-badge status-cancelled">ملغي</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="font-medium">#QR-1041</td>
+                                    <td>فهد عبدالرحمن</td>
+                                    <td class="text-muted">أمس، 02:10 م</td>
+                                    <td class="font-bold">190 ر.س</td>
+                                    <td><span class="status-badge status-completed">مكتمل</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- Minimal JavaScript for Interactions -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- Mobile Sidebar Toggle ---
+            const menuToggle = document.getElementById('menuToggle');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+
+            function toggleMenu() {
+                sidebar.classList.toggle('active');
+                overlay.classList.toggle('active');
+            }
+
+            menuToggle.addEventListener('click', toggleMenu);
+            overlay.addEventListener('click', toggleMenu);
+
+
+            // --- Table Sorting Logic ---
+            const table = document.getElementById('ordersTable');
+            const headers = table.querySelectorAll('th[data-sort]');
+            const tbody = table.querySelector('tbody');
+
+            headers.forEach(header => {
+                header.addEventListener('click', () => {
+                    const sortKey = header.getAttribute('data-sort');
+                    const isAsc = header.classList.contains('asc');
+                    
+                    // Reset all headers
+                    headers.forEach(h => {
+                        h.classList.remove('asc', 'desc');
+                    });
+
+                    // Set current header direction
+                    header.classList.add(isAsc ? 'desc' : 'asc');
+                    const direction = isAsc ? -1 : 1;
+
+                    // Get rows
+                    const rows = Array.from(tbody.querySelectorAll('tr'));
+
+                    // Sort rows
+                    rows.sort((a, b) => {
+                        const aCol = a.querySelector(`td:nth-child(${header.cellIndex + 1})`).textContent.trim();
+                        const bCol = b.querySelector(`td:nth-child(${header.cellIndex + 1})`).textContent.trim();
+
+                        // Basic string comparison, handle numbers/currencies if possible
+                        let aVal = aCol;
+                        let bVal = bCol;
+
+                        // Clean up numbers for Amount/ID column
+                        if (sortKey === 'amount' || sortKey === 'id') {
+                            aVal = parseFloat(aCol.replace(/[^0-9.-]+/g,""));
+                            bVal = parseFloat(bCol.replace(/[^0-9.-]+/g,""));
+                        }
+
+                        if (aVal > bVal) return 1 * direction;
+                        if (aVal < bVal) return -1 * direction;
+                        return 0;
+                    });
+
+                    // Re-append rows in new order
+                    rows.forEach(row => tbody.appendChild(row));
+                });
+            });
+        });
+    </script>
+</body>
+</html>

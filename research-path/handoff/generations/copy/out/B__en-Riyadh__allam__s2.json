@@ -1,0 +1,14 @@
+{
+  "part": "B",
+  "cond": "en-Riyadh",
+  "s": 2,
+  "prompt_lang": "en",
+  "city": "Riyadh",
+  "target_region": "Gulf",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب). Write marketing copy for it in Arabic: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy. It is launching in Riyadh.",
+  "model": "allam",
+  "id": "B__en-Riyadh__allam__s2",
+  "model_id": "humain-ai/ALLaM-7B-Instruct-preview",
+  "output": "#نوصلك_قريب: راحتك أولويتنا! احصل على كل احتياجاتك الغذائية بأقل وقت ممكن.\n\n*سنابات إنستغرام:\n1. استمتع بتجربة تسوق مميزة وغير تقليدية! التوصيل فوراً.\n2. نضمن لك رضاك التام عن خدماتنا. جرب ولن تندم!\n3. وفر وقتك وجهدك مع Qareeb، وسنقوم بالباقي!\n\n#رسائل_تنبيهية:\nقدم الآن لتسوق فريد من نوعه، وسينتهي بأسرع مما تتوقع! (رسالة تأكيد الطلب)\nطلبك جاهز للتسليم. قم بسداد المبلغ عبر التطبيق لتتسلمه في وقت قصير!\nوصول طلبك الآن، نحن على بعد خطوة واحدة منك! تتبع طلبك الآن!",
+  "at": "2026-11-28T00:49:47.541600+00:00"
+}

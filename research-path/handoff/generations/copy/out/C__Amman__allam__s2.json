@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Amman",
+  "s": 2,
+  "prompt_lang": "en",
+  "city": "Amman",
+  "target_region": "Levant",
+  "target_city_code": "AMM",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Amman. Write marketing copy for it in Jordanian Arabic, the way people in Amman actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "model": "allam",
+  "id": "C__Amman__allam__s2",
+  "model_id": "humain-ai/ALLaM-7B-Instruct-preview",
+  "output": "#حار_واجد_مناسبتك\n\n## شعار قريب\nما في أشطر من قريب يوصللك أغراضك وأنت مرتاح في البيت.\n\n## هاشتاغات الإعلان\n\n1. #خلال_نصف_ساعة_والباقي_عليك\n2. من العرجب الناعم لطلبات الدفا. قريب جِدًا لقلبك.\n3. مع طعام الطيور، من الصبح غايب علينا، لا وبعد شلعة في الشمس. يا عمّو ما معه أمان، طمنا على طلبك مع قريب.\n\n## إشعار دفع\nالرسالة: تم توصيل طلبك! هادا طلبك من قريب بحمدالله. تفضل اتصل فينا إذا احتجت أي خدمة إضافية أو مساعدة. الدنيا مش دايم فيها، ولا تنسى يشاركون صور الطلبيات وهم بشكرك علينا. تحية طيبة.",
+  "at": "2026-11-28T00:49:47.543738+00:00"
+}

@@ -1,0 +1,12 @@
+{
+  "line": "T2",
+  "market": "en_gb",
+  "model": "gpt",
+  "source": "Just Do It",
+  "raw": "{\n  \"literal\": \"Just Do It\",\n  \"adaptation\": \"Just Do It\",\n  \"back_translation\": \"Just Do It\",\n  \"approach\": \"keep_english\",\n  \"notes\": \"Nike’s established slogan is already iconic and fully natural in the UK, so no localisation is needed.\"\n}",
+  "literal": "Just Do It",
+  "adaptation": "Just Do It",
+  "back_translation": "Just Do It",
+  "approach": "keep_english",
+  "notes": "Nike’s established slogan is already iconic and fully natural in the UK, so no localisation is needed."
+}

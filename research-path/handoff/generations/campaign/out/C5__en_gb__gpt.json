@@ -1,0 +1,12 @@
+{
+  "line": "C5",
+  "market": "en_gb",
+  "model": "gpt",
+  "source": "Your Friday night date starts here.",
+  "raw": "{\n  \"literal\": \"Your Friday night date starts here.\",\n  \"adaptation\": \"Your Friday night date starts here.\",\n  \"back_translation\": \"Your Friday night date starts here.\",\n  \"approach\": \"keep_english\",\n  \"notes\": \"The original already sounds natural in British English, with no cultural changes needed.\"\n}",
+  "literal": "Your Friday night date starts here.",
+  "adaptation": "Your Friday night date starts here.",
+  "back_translation": "Your Friday night date starts here.",
+  "approach": "keep_english",
+  "notes": "The original already sounds natural in British English, with no cultural changes needed."
+}

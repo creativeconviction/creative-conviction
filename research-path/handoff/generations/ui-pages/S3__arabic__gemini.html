@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قريب - الفواكه</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #27ae60;
+            --primary-dark: #2ecc71;
+            --secondary: #e67e22;
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+            --bg-color: #f4f7f6;
+            --white: #ffffff;
+            --border: #ecf0f1;
+            --danger: #e74c3c;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--white);
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .search-container {
+            flex-grow: 1;
+            display: flex;
+            background-color: var(--bg-color);
+            border-radius: 25px;
+            padding: 8px 15px;
+            align-items: center;
+        }
+
+        .search-container input {
+            border: none;
+            background: transparent;
+            outline: none;
+            width: 100%;
+            padding: 0 10px;
+            font-size: 14px;
+        }
+
+        .search-container i {
+            color: var(--text-light);
+        }
+
+        .cart-icon {
+            position: relative;
+            font-size: 20px;
+            color: var(--text-dark);
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -5px;
+            right: -8px;
+            background-color: var(--secondary);
+            color: var(--white);
+            font-size: 11px;
+            font-weight: bold;
+            height: 18px;
+            width: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 15px;
+            font-size: 13px;
+            color: var(--text-light);
+            white-space: nowrap;
+            overflow-x: auto;
+        }
+
+        .breadcrumb a {
+            color: var(--text-light);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary);
+        }
+
+        .breadcrumb span {
+            margin: 0 5px;
+        }
+
+        .breadcrumb .current {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        /* Main Layout */
+        .container {
+            padding: 0 15px 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Sidebar (Filters) */
+        .sidebar {
+            background-color: var(--white);
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+
+        .filter-section {
+            margin-bottom: 20px;
+        }
+
+        .filter-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .filter-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 5px;
+        }
+
+        .price-inputs {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .price-inputs input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        /* Product Grid */
+        .products-area {
+            flex-grow: 1;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        /* Product Card */
+        .card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 10px;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--danger);
+            color: var(--white);
+            font-size: 11px;
+            font-weight: bold;
+            padding: 3px 8px;
+            border-radius: 4px;
+            z-index: 1;
+        }
+
+        .img-placeholder {
+            width: 100%;
+            aspect-ratio: 1;
+            background-color: var(--bg-color);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .img-placeholder i {
+            font-size: 40px;
+            opacity: 0.2;
+        }
+
+        .product-name {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 2px;
+            line-height: 1.2;
+        }
+
+        .product-weight {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
+
+        .price-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .current-price {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .old-price {
+            font-size: 12px;
+            color: var(--text-light);
+            text-decoration: line-through;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            background-color: var(--white);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            padding: 8px;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: auto;
+        }
+
+        .add-to-cart:hover, .add-to-cart:active {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .page-btn {
+            background-color: var(--white);
+            border: 1px solid var(--border);
+            padding: 8px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-dark);
+            transition: 0.2s;
+        }
+
+        .page-btn:hover {
+            background-color: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        .page-info {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        /* Desktop Responsiveness */
+        @media (min-width: 768px) {
+            .container {
+                flex-direction: row;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+            .sidebar {
+                width: 250px;
+                flex-shrink: 0;
+                align-self: flex-start;
+                position: sticky;
+                top: 85px;
+            }
+            .grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <a href="#" class="logo">
+            <i class="fa-solid fa-leaf"></i> قريب
+        </a>
+        <div class="search-container">
+            <i class="fa-solid fa-search"></i>
+            <input type="text" placeholder="ابحث عن المنتجات...">
+        </div>
+        <div class="cart-icon">
+            <i class="fa-solid fa-shopping-basket"></i>
+            <span class="cart-badge" id="cartBadge">0</span>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <a href="#">الرئيسية</a>
+        <span><i class="fa-solid fa-chevron-left fa-xs"></i></span>
+        <a href="#">الخضار والفواكه</a>
+        <span><i class="fa-solid fa-chevron-left fa-xs"></i></span>
+        <span class="current">الفواكه</span>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        
+        <!-- Sidebar Filters -->
+        <aside class="sidebar">
+            <div class="filter-section">
+                <div class="filter-title">نطاق السعر (ر.س)</div>
+                <div class="price-inputs">
+                    <input type="number" placeholder="من">
+                    <span>-</span>
+                    <input type="number" placeholder="إلى">
+                </div>
+            </div>
+            
+            <div class="filter-section">
+                <div class="filter-title">العلامة التجارية</div>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" checked> مزارع القصيم</label>
+                    <label><input type="checkbox"> محاصيل الجوف</label>
+                    <label><input type="checkbox"> مستورد (تشيلي)</label>
+                    <label><input type="checkbox"> مزارع الوطنية</label>
+                    <label><input type="checkbox"> الفواكه الاستوائية</label>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Products Area -->
+        <section class="products-area">
+            <div class="grid">
+                <!-- Card 1 -->
+                <div class="card">
+                    <span class="discount-badge">20% خصم</span>
+                    <div class="img-placeholder"><i class="fa-solid fa-apple-whole"></i></div>
+                    <h3 class="product-name">تفاح جالا سكري</h3>
+                    <div class="product-weight">١ كجم</div>
+                    <div class="price-container">
+                        <span class="current-price">٧.٥٠ ر.س</span>
+                        <span class="old-price">٩.٥٠ ر.س</span>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart()">أضف للسلة</button>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="card">
+                    <div class="img-placeholder"><i class="fa-solid fa-lemon"></i></div>
+                    <h3 class="product-name">برتقال أبو صرة</h3>
+                    <div class="product-weight">١.٥ كجم</div>
+                    <div class="price-container">
+                        <span class="current-price">٦.٠٠ ر.س</span>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart()">أضف للسلة</button>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="card">
+                    <span class="discount-badge">15% خصم</span>
+                    <div class="img-placeholder"><i class="fa-solid fa-carrot"></i></div>
+                    <h3 class="product-name">موز فلبيني ممتاز</h3>
+                    <div class="product-weight">١ كجم</div>
+                    <div class="price-container">
+                        <span class="current-price">٤.٩٥ ر.س</span>
+                        <span class="old-price">٥.٩٠ ر.س</span>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart()">أضف للسلة</button>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="card">
+                    <div class="img-placeholder"><i class="fa-solid fa-leaf"></i></div>
+                    <h3 class="product-name">عنب بناتي بدون بذر</h3>
+                    <div class="product-weight">٥٠٠ جرام</div>
+                    <div class="price-container">
+                        <span class="current-price">١٢.٠٠ ر.س</span>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart()">أضف للسلة</button>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="card">
+                    <span class="discount-badge">30% خصم</span>
+                    <div class="img-placeholder"><i class="fa-solid fa-apple-whole"></i></div>
+                    <h3 class="product-name">رمان يمني حرير</h3>
+                    <div class="product-weight">١ كجم</div>
+                    <div class="price-container">
+                        <span class="current-price">٩.٠٠ ر.س</span>
+                        <span class="old-price">١٣.٠0 ر.س</span>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart()">أضف للسلة</button>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="card">
+                    <div class="img-placeholder"><i class="fa-solid fa-lemon"></i></div>
+                    <h3 class="product-name">كيوي إيطالي</h3>
+                    <div class="product-weight">٤ حبات</div>
+                    <div class="price-container">
+                        <span class="current-price">٨.٥٠ ر.س</span>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart()">أضف للسلة</button>
+                </div>
+
+                <!-- Card 7 -->
+                <div class="card">
+                    <div class="img-placeholder"><i class="fa-solid fa-leaf"></i></div>
+                    <h3 class="product-name">فراولة محلية طازجة</h3>
+                    <div class="product-weight">٢٥٠ جرام</div>
+                    <div class="price-container">
+                        <span class="current-price">١٥.٠٠ ر.س</span>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart()">أضف للسلة</button>
+                </div>
+
+                <!-- Card 8 -->
+                <div class="card">
+                    <span class="discount-badge">10% خصم</span>
+                    <div class="img-placeholder"><i class="fa-solid fa-apple-whole"></i></div>
+                    <h3 class="product-name">كمثرى أفريقي</h3>
+                    <div class="product-weight">١ كجم</div>
+                    <div class="price-container">
+                        <span class="current-price">١٠.٨٠ ر.س</span>
+                        <span class="old-price">١٢.٠٠ ر.س</span>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart()">أضف للسلة</button>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <button class="page-btn"><i class="fa-solid fa-chevron-right"></i> السابق</button>
+                <span class="page-info">صفحة ١ من ٤</span>
+                <button class="page-btn">التالي <i class="fa-solid fa-chevron-left"></i></button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Vanilla JS for basic interaction -->
+    <script>
+        let cartCount = 0;
+        const cartBadge = document.getElementById('cartBadge');
+
+        function addToCart() {
+            cartCount++;
+            cartBadge.textContent = cartCount;
+            
+            // Simple animation effect
+            cartBadge.style.transform = 'scale(1.3)';
+            setTimeout(() => {
+                cartBadge.style.transform = 'scale(1)';
+            }, 200);
+        }
+    </script>
+</body>
+</html>

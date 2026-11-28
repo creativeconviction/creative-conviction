@@ -1,0 +1,13 @@
+{
+  "scenario": "M12",
+  "lang": "arabizi",
+  "model": "claude",
+  "message": "shokran 3al tawseel el saree3! bas el 3eish kan bayet wel tamatem mef3asa",
+  "raw": "```json\n{\n  \"intent\": \"quality_issue\",\n  \"sentiment\": \"mixed\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"The customer thanked us for the fast delivery but reported that the bread was stale and the tomatoes were crushed.\"\n}\n```",
+  "intent": "quality_issue",
+  "sentiment": "mixed",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer thanked us for the fast delivery but reported that the bread was stale and the tomatoes were crushed."
+}

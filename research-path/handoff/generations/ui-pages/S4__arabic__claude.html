@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0E7C66">
+<title>قريب | محادثة خدمة العملاء</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brand:#0E7C66;
+    --brand-dark:#0A5E4D;
+    --brand-soft:#E3F4EE;
+    --bg:#EDF1EF;
+    --surface:#FFFFFF;
+    --text:#1B2523;
+    --muted:#6B7774;
+    --line:#DCE3E0;
+    --out:#D9F2E8;
+    --in:#FFFFFF;
+    --read:#1A8FE3;
+    --online:#22B35E;
+    --radius:18px;
+    --font:"IBM Plex Sans Arabic", system-ui, -apple-system, "Segoe UI", Tahoma, sans-serif;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:var(--font);
+    color:var(--text);
+    background:#C9D6D1;
+    -webkit-font-smoothing:antialiased;
+    display:flex;
+    justify-content:center;
+  }
+
+  .app{
+    width:100%;
+    max-width:480px;
+    height:100vh;
+    height:100dvh;
+    display:flex;
+    flex-direction:column;
+    background:var(--bg);
+    position:relative;
+    overflow:hidden;
+  }
+
+  /* ===== Header ===== */
+  .header{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px 12px;
+    padding-top:calc(10px + env(safe-area-inset-top));
+    background:var(--brand);
+    color:#fff;
+    box-shadow:0 2px 8px rgba(0,0,0,.12);
+    z-index:2;
+    flex-shrink:0;
+  }
+  .icon-btn{
+    width:40px;height:40px;
+    border:none;border-radius:50%;
+    background:transparent;
+    color:inherit;
+    display:grid;place-items:center;
+    cursor:pointer;
+    flex-shrink:0;
+    transition:background .15s;
+  }
+  .icon-btn:hover{background:rgba(255,255,255,.14)}
+  .icon-btn:focus-visible{outline:2px solid #fff;outline-offset:2px}
+  .icon-btn svg{width:24px;height:24px}
+
+  .avatar{
+    position:relative;
+    width:42px;height:42px;
+    border-radius:50%;
+    background:#F3C969;
+    color:#5A3F00;
+    font-weight:700;
+    font-size:17px;
+    display:grid;place-items:center;
+    flex-shrink:0;
+  }
+  .avatar .dot{
+    position:absolute;
+    bottom:1px;
+    inset-inline-start:1px;
+    width:12px;height:12px;
+    border-radius:50%;
+    background:var(--online);
+    border:2px solid var(--brand);
+  }
+  .agent{flex:1;min-width:0;line-height:1.3}
+  .agent-name{
+    font-size:16px;font-weight:600;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  }
+  .agent-status{
+    font-size:12.5px;
+    opacity:.9;
+    display:flex;align-items:center;gap:6px;
+  }
+  .agent-status::before{
+    content:"";
+    width:7px;height:7px;border-radius:50%;
+    background:#7CF0A9;
+  }
+
+  /* ===== Messages ===== */
+  .messages{
+    flex:1;
+    overflow-y:auto;
+    padding:14px 12px 18px;
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+    scroll-behavior:smooth;
+    background-image:radial-gradient(rgba(14,124,102,.06) 1px, transparent 1px);
+    background-size:18px 18px;
+  }
+
+  .day{
+    align-self:center;
+    background:rgba(255,255,255,.85);
+    color:var(--muted);
+    font-size:12px;
+    padding:4px 12px;
+    border-radius:999px;
+    margin:4px 0 10px;
+    box-shadow:0 1px 1px rgba(0,0,0,.05);
+  }
+  .notice{
+    align-self:center;
+    max-width:88%;
+    text-align:center;
+    background:#FFF6DC;
+    color:#6B5413;
+    font-size:12px;
+    line-height:1.6;
+    padding:6px 12px;
+    border-radius:10px;
+    margin-bottom:12px;
+  }
+
+  .msg{
+    max-width:80%;
+    padding:8px 12px 6px;
+    border-radius:var(--radius);
+    font-size:15px;
+    line-height:1.65;
+    box-shadow:0 1px 1.5px rgba(0,0,0,.08);
+    word-wrap:break-word;
+    overflow-wrap:anywhere;
+    animation:pop .18s ease-out;
+  }
+  /* Incoming (agent) appears at inline-start = right in RTL */
+  .msg.in{
+    align-self:flex-start;
+    background:var(--in);
+    border-start-start-radius:6px;
+  }
+  /* Outgoing (customer) appears at inline-end = left in RTL */
+  .msg.out{
+    align-self:flex-end;
+    background:var(--out);
+    border-start-end-radius:6px;
+  }
+  .msg.cont.in{border-start-start-radius:var(--radius)}
+  .msg.cont.out{border-start-end-radius:var(--radius)}
+  .msg:not(.cont){margin-top:8px}
+
+  .text{white-space:pre-wrap}
+
+  .ltr{
+    unicode-bidi:isolate;
+    direction:ltr;
+    font-weight:600;
+  }
+  .chip{
+    display:inline-block;
+    padding:0 6px;
+    border-radius:6px;
+    background:rgba(14,124,102,.1);
+    color:var(--brand-dark);
+    font-size:14px;
+  }
+  .msg.out .chip{background:rgba(14,124,102,.16)}
+  .phone{color:var(--brand-dark);text-decoration:underline;text-underline-offset:3px}
+  .product{font-style:normal;color:#123}
+
+  .meta{
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    gap:4px;
+    margin-top:2px;
+    font-size:11px;
+    color:var(--muted);
+    direction:ltr; /* time then ticks, ticks on the right edge like common chat apps */
+  }
+  .ticks{width:17px;height:11px;color:var(--muted);flex-shrink:0}
+  .ticks.read{color:var(--read)}
+
+  .sr-only{
+    position:absolute;width:1px;height:1px;overflow:hidden;
+    clip:rect(0 0 0 0);white-space:nowrap;
+  }
+
+  /* ===== Composer ===== */
+  .composer{
+    display:flex;
+    align-items:flex-end;
+    gap:8px;
+    padding:8px 10px;
+    padding-bottom:calc(8px + env(safe-area-inset-bottom));
+    background:var(--surface);
+    border-top:1px solid var(--line);
+    flex-shrink:0;
+  }
+  .field{
+    flex:1;
+    display:flex;
+    align-items:flex-end;
+    background:#F2F5F4;
+    border:1px solid transparent;
+    border-radius:24px;
+    padding:2px 4px 2px 14px;
+    transition:border-color .15s, background .15s;
+  }
+  .field:focus-within{border-color:var(--brand);background:#fff}
+  .field textarea{
+    flex:1;
+    border:none;outline:none;resize:none;
+    background:transparent;
+    font:inherit;
+    font-size:15px;
+    line-height:1.5;
+    color:var(--text);
+    padding:9px 0;
+    max-height:120px;
+    min-height:42px;
+  }
+  .field textarea::placeholder{color:#8E9996}
+
+  .attach{
+    color:var(--muted);
+    width:42px;height:42px;
+  }
+  .attach:hover{background:rgba(0,0,0,.05);color:var(--brand)}
+  .attach:focus-visible{outline:2px solid var(--brand)}
+
+  .send{
+    width:46px;height:46px;
+    border:none;border-radius:50%;
+    background:var(--brand);
+    color:#fff;
+    display:grid;place-items:center;
+    cursor:pointer;
+    flex-shrink:0;
+    transition:background .15s, transform .1s, opacity .15s;
+  }
+  .send svg{width:22px;height:22px;transform:scaleX(-1)} /* point toward the RTL reading direction */
+  .send:hover:not(:disabled){background:var(--brand-dark)}
+  .send:active:not(:disabled){transform:scale(.94)}
+  .send:disabled{opacity:.45;cursor:default}
+  .send:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+
+  @keyframes pop{
+    from{opacity:0;transform:translateY(4px)}
+    to{opacity:1;transform:none}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .msg{animation:none}
+    .messages{scroll-behavior:auto}
+  }
+
+  /* ===== Desktop ===== */
+  @media (min-width:600px){
+    body{
+      align-items:center;
+      padding:24px;
+      background:linear-gradient(135deg,#0E7C66 0%,#0A5E4D 100%);
+    }
+    .app{
+      height:min(820px, calc(100dvh - 48px));
+      border-radius:22px;
+      box-shadow:0 24px 60px rgba(0,0,0,.28);
+    }
+    .header{border-radius:22px 22px 0 0;padding-top:12px}
+    .composer{border-radius:0 0 22px 22px;padding-bottom:10px}
+    .msg{max-width:72%}
+  }
+</style>
+</head>
+<body>
+
+<main class="app" aria-label="محادثة خدمة عملاء قريب">
+
+  <header class="header">
+    <button class="icon-btn" type="button" aria-label="رجوع" onclick="history.back()">
+      <!-- In RTL, "back" points right -->
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M5 12h14M13 6l6 6-6 6"/>
+      </svg>
+    </button>
+
+    <div class="avatar" aria-hidden="true">س<span class="dot"></span></div>
+
+    <div class="agent">
+      <h1 class="agent-name">سارة العتيبي · دعم قريب</h1>
+      <p class="agent-status" aria-live="polite">متصلة الآن</p>
+    </div>
+
+    <button class="icon-btn" type="button" aria-label="اتصال بخدمة العملاء">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/>
+      </svg>
+    </button>
+  </header>
+
+  <section class="messages" id="messages" role="log" aria-live="polite" aria-label="الرسائل">
+
+    <div class="day">اليوم</div>
+    <p class="notice">هذه المحادثة مشفّرة. لن يطلب منك فريق «قريب» كلمة المرور أو رمز التحقق أبداً.</p>
+
+    <!-- 1: customer -->
+    <article class="msg out">
+      <p class="text">السلام عليكم، طلبي رقم <bdi class="ltr chip">#QR-48213</bdi> تأخّر أكثر من ساعة عن الموعد المحدد.</p>
+      <div class="meta">
+        <time datetime="10:32">10:32 ص</time>
+        <svg class="ticks read" viewBox="0 0 18 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 6l3.5 3.5L11 2M7 9.5L7.5 10 16 1.5"/></svg>
+        <span class="sr-only">تمت القراءة</span>
+      </div>
+    </article>
+
+    <!-- 2: agent -->
+    <article class="msg in">
+      <p class="text">وعليكم السلام، أهلاً بك في «قريب» 👋 أعتذر عن التأخير، دعني أتحقق من الطلب <bdi class="ltr chip">#QR-48213</bdi> الآن.</p>
+      <div class="meta"><time datetime="10:33">10:33 ص</time></div>
+    </article>
+
+    <!-- 3: agent -->
+    <article class="msg in cont">
+      <p class="text">يبدو أن المندوب لم يتمكن من الوصول إلى العنوان. هل رقم التواصل الصحيح هو <a class="ltr phone" href="tel:+966551234567" dir="ltr">+966 55 123 4567</a>؟</p>
+      <div class="meta"><time datetime="10:35">10:35 ص</time></div>
+    </article>
+
+    <!-- 4: customer -->
+    <article class="msg out">
+      <p class="text">نعم، هذا رقمي. ولاحظت أيضاً أن <bdi class="ltr product" lang="en">Almarai Fresh Milk 1L</bdi> غير موجود في الفاتورة.</p>
+      <div class="meta">
+        <time datetime="10:36">10:36 ص</time>
+        <svg class="ticks read" viewBox="0 0 18 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 6l3.5 3.5L11 2M7 9.5L7.5 10 16 1.5"/></svg>
+        <span class="sr-only">تمت القراءة</span>
+      </div>
+    </article>
+
+    <!-- 5: agent -->
+    <article class="msg in">
+      <p class="text">شكراً للتوضيح. أضفت <bdi class="ltr product" lang="en">Almarai Fresh Milk 1L</bdi> إلى طلبك دون أي رسوم إضافية، وسيتصل بك المندوب خلال 10 دقائق.</p>
+      <div class="meta"><time datetime="10:38">10:38 ص</time></div>
+    </article>
+
+    <!-- 6: customer -->
+    <article class="msg out">
+      <p class="text">ممتاز، شكراً جزيلاً لكِ 🌷</p>
+      <div class="meta">
+        <time datetime="10:39">10:39 ص</time>
+        <svg class="ticks" viewBox="0 0 18 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 6l3.5 3.5L11 2M7 9.5L7.5 10 16 1.5"/></svg>
+        <span class="sr-only">تم التوصيل</span>
+      </div>
+    </article>
+
+  </section>
+
+  <form class="composer" id="composer" autocomplete="off">
+    <div class="field">
+      <textarea id="input" rows="1" placeholder="اكتب رسالتك…" aria-label="نص الرسالة"></textarea>
+      <button class="icon-btn attach" type="button" aria-label="إرفاق ملف" id="attachBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21.4 11.1l-9.2 9.2a6 6 0 0 1-8.5-8.5l9.2-9.2a4 4 0 0 1 5.7 5.7l-9.2 9.2a2 2 0 0 1-2.8-2.8l8.5-8.5"/>
+        </svg>
+      </button>
+      <input type="file" id="fileInput" hidden>
+    </div>
+    <button class="send" type="submit" id="sendBtn" aria-label="إرسال" disabled>
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M3.4 20.4l17.4-7.5a1 1 0 0 0 0-1.8L3.4 3.6a1 1 0 0 0-1.4 1.1L3.9 11l9.1 1-9.1 1-1.9 6.3a1 1 0 0 0 1.4 1.1z"/>
+      </svg>
+    </button>
+  </form>
+
+</main>
+
+<script>
+  (function(){
+    var list = document.getElementById('messages');
+    var form = document.getElementById('composer');
+    var input = document.getElementById('input');
+    var send = document.getElementById('sendBtn');
+    var attach = document.getElementById('attachBtn');
+    var file = document.getElementById('fileInput');
+
+    function scrollEnd(){ list.scrollTop = list.scrollHeight; }
+    function grow(){
+      input.style.height = 'auto';
+      input.style.height = Math.min(input.scrollHeight, 120) + 'px';
+      send.disabled = !input.value.trim();
+    }
+    function nowLabel(){
+      var d = new Date(), h = d.getHours(), m = String(d.getMinutes()).padStart(2,'0');
+      var suffix = h < 12 ? 'ص' : 'م';
+      h = h % 12 || 12;
+      return { text: h + ':' + m + ' ' + suffix, iso: d.toTimeString().slice(0,5) };
+    }
+    function addMessage(text){
+      var last = list.lastElementChild;
+      var t = nowLabel();
+      var el = document.createElement('article');
+      el.className = 'msg out' + (last && last.classList.contains('out') ? ' cont' : '');
+
+      var p = document.createElement('p');
+      p.className = 'text';
+      p.setAttribute('dir', 'auto');
+      p.textContent = text;
+
+      var meta = document.createElement('div');
+      meta.className = 'meta';
+      meta.innerHTML =
+        '<time datetime="' + t.iso + '">' + t.text + '</time>' +
+        '<svg class="ticks" viewBox="0 0 18 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 6l3.5 3.5L11 2"/></svg>' +
+        '<span class="sr-only">تم الإرسال</span>';
+
+      el.appendChild(p);
+      el.appendChild(meta);
+      list.appendChild(el);
+      scrollEnd();
+    }
+
+    input.addEventListener('input', grow);
+    input.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' && !e.shiftKey && !e.isComposing){
+        e.preventDefault();
+        form.requestSubmit ? form.requestSubmit() : form.dispatchEvent(new Event('submit'));
+      }
+    });
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var v = input.value.trim();
+      if (!v) return;
+      addMessage(v);
+      input.value = '';
+      grow();
+      input.focus();
+    });
+    attach.addEventListener('click', function(){ file.click(); });
+    file.addEventListener('change', function(){
+      if (file.files.length) addMessage('📎 ' + file.files[0].name);
+      file.value = '';
+    });
+
+    scrollEnd();
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "scenario": "M9",
+  "lang": "ar_msa",
+  "model": "claude",
+  "message": "أردت فقط أن أقول إن المندوب كان لطيفاً جداً وساعدني في حمل كل شيء إلى الأعلى، شكراً لكم!",
+  "raw": "```json\n{\n  \"intent\": \"praise\",\n  \"sentiment\": \"positive\",\n  \"urgency\": \"low\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"The customer is thanking the company because the delivery driver was very kind and helped carry everything upstairs.\"\n}\n```",
+  "intent": "praise",
+  "sentiment": "positive",
+  "urgency": "low",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer is thanking the company because the delivery driver was very kind and helped carry everything upstairs."
+}

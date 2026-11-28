@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قريب - توصيل البقالة في 20 دقيقة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2D7D32;
+            --primary-dark: #1F5323;
+            --secondary: #F5A623;
+            --light: #F8F9FA;
+            --dark: #212529;
+            --gray: #6C757D;
+            --white: #FFFFFF;
+            --success: #28a745;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            margin: 0;
+            padding: 0;
+            direction: rtl;
+            color: var(--dark);
+            line-height: 1.6;
+            background-color: var(--white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: var(--white);
+            padding: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            margin-left: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            position: relative;
+        }
+
+        .logo-icon::before {
+            content: "✓";
+            font-size: 16px;
+        }
+
+        .logo-text span {
+            display: block;
+        }
+
+        .logo-text .main {
+            font-size: 20px;
+        }
+
+        .logo-text .sub {
+            font-size: 12px;
+            color: var(--gray);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-left: 40px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        .download-btn {
+            background-color: var(--secondary);
+            color: var(--white);
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .download-btn:hover {
+            background-color: #e09415;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+
+        .hero-image-placeholder {
+            width: 100%;
+            height: 400px;
+            background-color: #e9ecef;
+            border-radius: 12px;
+            margin: 40px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            font-size: 18px;
+            position: relative;
+        }
+
+        .hero-image-placeholder::after {
+            content: "صورة تمثيلية - التوصيل من المحلات الحقيقية";
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgba(255,255,255,0.9);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            color: var(--dark);
+        }
+
+        .cta-button {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 16px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            display: inline-block;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .how-it-works {
+            background-color: var(--light);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 60px;
+            color: var(--dark);
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .step {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .step-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--secondary);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--white);
+        }
+
+        .step h3 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .step p {
+            font-size: 16px;
+            color: var(--gray);
+            margin-bottom: 0;
+        }
+
+        .loyalty-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .loyalty-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+        }
+
+        .loyalty-text {
+            flex: 1;
+        }
+
+        .loyalty-text h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .badge {
+            width: 80px;
+            height: 80px;
+            background-color: var(--success);
+            border-radius: 50%;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .badge::before {
+            content: "🏆";
+            font-size: 36px;
+        }
+
+        .loyalty-text p {
+            font-size: 16px;
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+
+        .loyalty-form {
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .form-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .form-subtitle {
+            font-size: 14px;
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            font-size: 16px;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        .form-group input::placeholder {
+            color: #adb5bd;
+        }
+
+        .phone-hint {
+            font-size: 12px;
+            color: #6c757d;
+            margin-top: 5px;
+            text-align: right;
+        }
+
+        .signup-button {
+            width: 100%;
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .signup-button:hover {
+            background-color: var(--primary-dark);
+        }
+
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            margin-left: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            position: relative;
+        }
+
+        .footer-logo-icon::before {
+            content: "✓";
+            font-size: 18px;
+        }
+
+        .footer-logo-text {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .footer-tagline {
+            font-size: 16px;
+            color: var(--gray);
+        }
+
+        .footer-links h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #495057;
+            padding-top: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                margin-top: 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul li {
+                margin: 0;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .loyalty-content {
+                flex-direction: column;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon"></div>
+                    <div class="logo-text">
+                        <span class="main">قريب</span>
+                        <span class="sub">توصيل بقالة أسرع</span>
+                    </div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#how-it-works">كيف يعمل؟</a></li>
+                        <li><a href="#loyalty">برنامج الولاء</a></li>
+                        <li><a href="#signup">سجل الآن</a></li>
+                        <li><a href="#" class="download-btn">تحميل التطبيق</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>طلب حاجاتك من أقرب محلاتك<span class="dot">،</span> في 20 دقيقة</h1>
+                <p>توصيل بقالة أسرع من المتجر المحلي<span class="dot">،</span> بستخدام تطبيق قريب</p>
+
+                <div class="hero-image-placeholder">
+                    <img src="placeholder.img" alt="صورة تمثيلية - توصيل القارب" style="display: none;">
+                </div>
+
+                <a href="#signup" class="cta-button">ابدأ الآن</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">كيف يعمل közel؟</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-icon">📱</div>
+                    <h3>اختار حجاتك</h3>
+                    <p>تصفح الكتالوج عبر التطبيق أو الموقع</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">🕒</div>
+                    <h3>ادفع أو الكتروني أو عند الاستلام</h3>
+                    <p>اختيار طريقة الدفع المناسبة لك</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">🚀</div>
+                    <h3>استلم طلبك سريعا</h3>
+                    <p>وصول الطلب في 20 دقيقة أو أقل</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="loyalty" class="loyalty-section">
+        <div class="container">
+            <div class="loyalty-content">
+                <div class="loyalty-text">
+                    <div class="badge"></div>
+                    <h2>كل 10 طلبات<span class="dot">،</span> توصيل مجانا</h2>
+                    <p>اعمل حساب على قريب واحصل على توصيل مجاني كل 10 طلبات. كل ما عليك فعله هو التعامل معنا 9 مرات ثم طلبك رقم 10 مجاني تماماً.</p>
+                </div>
+                <div class="loyalty-form">
+                    <div class="form-title">سجل وطلبك الأول</div>
+                    <div class="form-subtitle">ادخل رقم الجوال للحصول على رمز التفعيل</div>
+                    <form>
+                        <div class="form-group">
+                            <label for="phone">رقم الهاتف</label>
+                            <input type="tel" id="phone" placeholder="01xxxxxxxxx" dir="ltr">
+                            <div class="phone-hint">يجب أن يكون رقم مصرى صالح</div>
+                        </div>
+                        <button type="submit" class="signup-button">تسجيل</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="signup">
+        <div class="container">
+            <h2 class="section-title">سجل علشان تطلب دلوقتى</h2>
+            <div style="max-width: 600px; margin: 0 auto;">
+                <p style="text-align: center; margin-bottom: 30px; color: var(--gray);">
+                    ابدأ مع قريب واحصل على توصيل بقالة سريع وفعال من محلات حيك. سجل رقمك وابدأ الطلب خلال دقائق.
+                </p>
+                <form style="display: flex; flex-direction: column; gap: 20px;">
+                    <div class="form-group">
+                        <label for="email">البريد الإلكترونى</label>
+                        <input type="email" id="email" placeholder="ادخل بريدك الإلكترونى">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone-signup">رقم الهاتف</label>
+                        <input type="tel" id="phone-signup" placeholder="01xxxxxxxxx" dir="ltr">
+                        <div class="phone-hint">يجب أن يكون رقم مصرى صالح</div>
+                    </div>
+                    <button type="submit" class="signup-button">إنشاء حساب</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-top">
+                    <div class="footer-brand">
+                        <div class="footer-logo">
+                            <div class="footer-logo-icon"></div>
+                            <div class="footer-logo-text">قريب</div>
+                        </div>
+                        <div class="footer-tagline">توصيل بقالة أسرع من المتجر اللي قدامك</div>
+                    </div>
+                    <div class="footer-links">
+                        <h4>روابط سريعة</h4>
+                        <ul>
+                            <li><a href="#how-it-works">كيف يعمل؟</a></li>
+                            <li><a href="#loyalty">برنامج الولاء</a></li>
+                            <li><a href="#signup">سجل الآن</a></li>
+                            <li><a href="#">الشروط والأحكام</a></li>
+                            <li><a href="#">سياسة الخصوصية</a></li>
+                            <li><a href="#">اسئلة شائعة</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>© 2024 قريب. جميع الحقوق محفوظة.</p>
+                    <p style="margin-top: 10px;">خدمة توصيل البقالة في القاهرة، مصر. نعمل من كافة أحياء القاهرة الكبرى.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "part": "B",
+  "cond": "en-Casablanca",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب). Write marketing copy for it in Arabic: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy. It is launching in Casablanca.",
+  "s": 1,
+  "prompt_lang": "en",
+  "city": "Casablanca",
+  "target_region": "Morocco",
+  "model": "gpt",
+  "id": "B__en-Casablanca__gpt__s1",
+  "model_id": "openai/gpt-5.6-sol",
+  "output": "قريب… قْضيتك حتى لباب دارك.\n\nكازا، خضرتك ومقاضيك ولات أقرب ليك!\nطلب اللي بغيتي، وخلي قريب يوصّلو حتى عندك.\nمن السوق لباب دارك… بسرعة وسهولة مع قريب.\n\n🔔 مقاضيك ناقصين؟ طلب دابا من قريب وخلي التوصيل علينا!",
+  "at": "2026-11-18T05:24:35.879Z"
+}

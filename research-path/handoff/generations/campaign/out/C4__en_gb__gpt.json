@@ -1,0 +1,12 @@
+{
+  "line": "C4",
+  "market": "en_gb",
+  "model": "gpt",
+  "source": "Get beach-body ready this summer.",
+  "raw": "{\n  \"literal\": \"Get beach-body ready this summer.\",\n  \"adaptation\": \"Get summer-ready and feel your best.\",\n  \"back_translation\": \"Get summer-ready and feel your best.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Avoided the potentially body-shaming ‘beach body’ message in favour of inclusive, wellbeing-focused language.\"\n}",
+  "literal": "Get beach-body ready this summer.",
+  "adaptation": "Get summer-ready and feel your best.",
+  "back_translation": "Get summer-ready and feel your best.",
+  "approach": "adapted",
+  "notes": "Avoided the potentially body-shaming ‘beach body’ message in favour of inclusive, wellbeing-focused language."
+}

@@ -1,0 +1,13 @@
+{
+  "scenario": "M11",
+  "lang": "en",
+  "model": "fanar",
+  "message": "honestly this is the last time I'm ordering from you, something goes wrong every single week",
+  "raw": "{\n\"intent\": \"churn_risk\",\n\"sentiment\": \"negative\",\n\"urgency\": \"medium\",\n\"sarcasm\": false,\n\"churn_risk\": true,\n\"summary\": \"Customer expresses dissatisfaction and intention to stop using the service due to recurring issues.\"\n}",
+  "intent": "churn_risk",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Customer expresses dissatisfaction and intention to stop using the service due to recurring issues."
+}

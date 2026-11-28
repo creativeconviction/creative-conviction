@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم التاجر | قريب</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Brand Colors */
+            --primary: #009688;
+            --primary-dark: #00796B;
+            --primary-light: #E0F2F1;
+            --secondary: #FF9800;
+            
+            /* Status Colors */
+            --success: #10B981;
+            --success-bg: #D1FAE5;
+            --danger: #EF4444;
+            --danger-bg: #FEE2E2;
+            --warning: #F59E0B;
+            --warning-bg: #FEF3C7;
+            
+            /* Grays */
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-500: #6B7280;
+            --gray-700: #374151;
+            --gray-900: #111827;
+            
+            /* Layout */
+            --sidebar-width: 260px;
+            --topbar-height: 70px;
+            --border-radius: 12px;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background-color: var(--gray-50);
+            color: var(--gray-900);
+            overflow-x: hidden;
+        }
+
+        /* Utility Classes */
+        .ltr-text { direction: ltr; display: inline-block; }
+        .flex { display: flex; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+
+        /* App Layout */
+        .app-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            right: 0; /* RTL Native */
+            width: var(--sidebar-width);
+            background-color: #ffffff;
+            border-inline-end: 1px solid var(--gray-200);
+            z-index: 1000;
+            transform: translateX(100%); /* Hidden on mobile */
+            transition: transform 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar.open {
+            transform: translateX(0);
+        }
+
+        .sidebar-header {
+            height: var(--topbar-height);
+            display: flex;
+            align-items: center;
+            padding-inline: 24px;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo svg {
+            width: 30px;
+            height: 30px;
+            fill: var(--primary);
+        }
+
+        .sidebar-nav {
+            padding: 20px 16px;
+            flex: 1;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            color: var(--gray-700);
+            text-decoration: none;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background-color: var(--primary-light);
+            color: var(--primary-dark);
+        }
+
+        .nav-link svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            width: 100%;
+            transition: margin 0.3s;
+        }
+
+        /* Topbar */
+        .topbar {
+            height: var(--topbar-height);
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-inline: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .menu-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-700);
+        }
+
+        .menu-toggle svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        .search-bar {
+            display: none; /* Hidden on very small screens, shown via media query */
+            align-items: center;
+            background-color: var(--gray-100);
+            border-radius: 20px;
+            padding: 8px 16px;
+            width: 300px;
+        }
+
+        .search-bar input {
+            border: none;
+            background: transparent;
+            outline: none;
+            padding-inline-start: 10px;
+            width: 100%;
+            font-family: 'Tajawal', sans-serif;
+            color: var(--gray-700);
+        }
+
+        .search-bar svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--gray-500);
+        }
+
+        .topbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .profile-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .profile-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .profile-name {
+            display: none;
+            font-weight: 500;
+            color: var(--gray-700);
+        }
+
+        /* Dashboard Content */
+        .dashboard-wrapper {
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .page-title {
+            font-size: 24px;
+            color: var(--gray-900);
+            margin-bottom: 24px;
+        }
+
+        /* KPI Grid */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .kpi-card {
+            background: #ffffff;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-200);
+        }
+
+        .kpi-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .kpi-title {
+            color: var(--gray-500);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .kpi-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--primary-light);
+            color: var(--primary-dark);
+        }
+
+        .kpi-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .kpi-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 8px;
+        }
+
+        .kpi-footer {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .kpi-change {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .kpi-change svg {
+            width: 12px;
+            height: 12px;
+            fill: currentColor;
+        }
+
+        .change-up.positive, .change-down.positive {
+            color: var(--success);
+            background-color: var(--success-bg);
+        }
+
+        .change-up.negative, .change-down.negative {
+            color: var(--danger);
+            background-color: var(--danger-bg);
+        }
+
+        .kpi-period {
+            color: var(--gray-500);
+        }
+
+        /* Chart Section */
+        .chart-section {
+            background: #ffffff;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-200);
+            margin-bottom: 24px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .chart-container {
+            width: 100%;
+            height: 250px;
+            position: relative;
+        }
+
+        /* SVG Chart Styles */
+        .chart-grid { stroke: var(--gray-200); stroke-width: 1; stroke-dasharray: 4; }
+        .chart-bar { fill: var(--primary); transition: fill 0.3s; rx: 4; }
+        .chart-bar:hover { fill: var(--primary-dark); }
+        .chart-text { fill: var(--gray-500); font-family: 'Tajawal', sans-serif; font-size: 12px; }
+
+        /* Table Section */
+        .table-section {
+            background: #ffffff;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-200);
+            margin-bottom: 24px;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            margin-inline: -20px;
+            padding-inline: 20px;
+        }
+
+        .data-table {
+            width: 100%;
+            min-width: 600px;
+            border-collapse: collapse;
+            text-align: start;
+        }
+
+        .data-table th, .data-table td {
+            padding: 16px 12px;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .data-table th {
+            color: var(--gray-500);
+            font-weight: 500;
+            font-size: 14px;
+            white-space: nowrap;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .sort-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .sort-icon {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .sort-icon svg {
+            width: 8px;
+            height: 4px;
+            fill: var(--gray-300);
+        }
+
+        .data-table th:hover .sort-icon svg {
+            fill: var(--gray-500);
+        }
+
+        .data-table td {
+            font-size: 14px;
+            color: var(--gray-900);
+            white-space: nowrap;
+        }
+
+        .customer-info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .customer-phone {
+            font-size: 12px;
+            color: var(--gray-500);
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 10px;
+            border-radius: 9999px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .badge.completed { background-color: var(--success-bg); color: var(--success); }
+        .badge.processing { background-color: var(--warning-bg); color: var(--warning); }
+        .badge.cancelled { background-color: var(--danger-bg); color: var(--danger); }
+
+        /* Overlay for mobile */
+        .sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 999;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .sidebar-overlay.show {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Responsive Media Queries */
+        @media (min-width: 640px) {
+            .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+            .search-bar { display: flex; }
+            .profile-name { display: block; }
+        }
+
+        @media (min-width: 1024px) {
+            .app-container { flex-direction: row; }
+            .sidebar {
+                position: sticky;
+                transform: translateX(0);
+            }
+            .main-content {
+                width: calc(100% - var(--sidebar-width));
+            }
+            .menu-toggle { display: none; }
+            .kpi-grid { grid-template-columns: repeat(4, 1fr); }
+            .table-responsive { margin-inline: 0; padding-inline: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- Mobile Overlay -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="#" class="logo">
+                    <!-- Qareeb Logo SVG -->
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                    </svg>
+                    قريب
+                </a>
+            </div>
+            <div class="sidebar-nav">
+                <a href="#" class="nav-link active">
+                    <!-- Home Icon -->
+                    <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                    الرئيسية
+                </a>
+                <a href="#" class="nav-link">
+                    <!-- Orders Icon -->
+                    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 9h-2V7h-2v5H6v-2h2V5h4v7zm4 0h-2V7h-2v5h-2v-2h2V5h4v7z" opacity="0"/><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/><path d="M7 12h10v2H7zM7 15h7v2H7z"/></svg>
+                    الطلبات
+                </a>
+                <a href="#" class="nav-link">
+                    <!-- Products Icon -->
+                    <svg viewBox="0 0 24 24"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0V8H4V6h16zm0 12H4v-8h16v8z"/><path d="M9 12h6v2H9z"/></svg>
+                    المنتجات
+                </a>
+                <a href="#" class="nav-link">
+                    <!-- Customers Icon -->
+                    <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                    العملاء
+                </a>
+                <a href="#" class="nav-link">
+                    <!-- Settings Icon -->
+                    <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .43-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.49-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+                    الإعدادات
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            
+            <!-- Topbar -->
+            <header class="topbar">
+                <div class="flex items-center gap-4">
+                    <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+                        <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+                    </button>
+                    <div class="search-bar">
+                        <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                        <input type="text" placeholder="بحث عن طلب، منتج، عميل...">
+                    </div>
+                </div>
+                
+                <div class="topbar-actions">
+                    <!-- Notification Bell -->
+                    <button class="menu-toggle" aria-label="Notifications" style="display: flex;">
+                        <svg viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/></svg>
+                    </button>
+                    <!-- Profile -->
+                    <button class="profile-btn">
+                        <div class="profile-avatar">م</div>
+                        <span class="profile-name">متجر الأمل</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-wrapper">
+                <h1 class="page-title">نظرة عامة</h1>
+
+                <!-- KPI Cards -->
+                <div class="kpi-grid">
+                    <!-- Card 1: Orders -->
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">طلبات اليوم</span>
+                            <div class="kpi-icon">
+                                <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 10h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z"/></svg>
+                            </div>
+                        </div>
+                        <div class="kpi-value ltr-text">145</div>
+                        <div class="kpi-footer">
+                            <div class="kpi-change change-up positive">
+                                <svg viewBox="0 0 24 24"><path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"/></svg>
+                                <span class="ltr-text">+12.5%</span>
+                            </div>
+                            <span class="kpi-period">مقارنة بالأمس</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Revenue -->
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">الإيرادات</span>
+                            <div class="kpi-icon" style="color: var(--secondary); background-color: #FFF3E0;">
+                                <svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+                            </div>
+                        </div>
+                        <div class="kpi-value"><span class="ltr-text">4,500</span> ر.س</div>
+                        <div class="kpi-footer">
+                            <div class="kpi-change change-up positive">
+                                <svg viewBox="0 0 24 24"><path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"/></svg>
+                                <span class="ltr-text">+8.2%</span>
+                            </div>
+                            <span class="kpi-period">مقارنة بالأمس</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Avg Basket -->
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">متوسط السلة</span>
+                            <div class="kpi-icon" style="color: #8B5CF6; background-color: #EDE9FE;">
+                                <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                            </div>
+                        </div>
+                        <div class="kpi-value"><span class="ltr-text">120</span> ر.س</div>
+                        <div class="kpi-footer">
+                            <div class="kpi-change change-down negative">
+                                <svg viewBox="0 0 24 24"><path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"/></svg>
+                                <span class="ltr-text">-3.1%</span>
+                            </div>
+                            <span class="kpi-period">مقارنة بالأمس</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Cancellation Rate -->
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">نسبة الإلغاء</span>
+                            <div class="kpi-icon" style="color: var(--danger); background-color: var(--danger-bg);">
+                                <svg viewBox="0 0 24 24"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/></svg>
+                            </div>
+                        </div>
+                        <div class="kpi-value ltr-text">1.5%</div>
+                        <div class="kpi-footer">
+                            <!-- Decrease in cancellation is positive -->
+                            <div class="kpi-change change-down positive">
+                                <svg viewBox="0 0 24 24"><path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"/></svg>
+                                <span class="ltr-text">-0.5%</span>
+                            </div>
+                            <span class="kpi-period">مقارنة بالأمس</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sales Chart -->
+                <div class="chart-section">
+                    <div class="section-header">
+                        <h2 class="section-title">مبيعات آخر 7 أيام</h2>
+                    </div>
+                    <div class="chart-container">
+                        <!-- Inline SVG Bar Chart -->
+                        <!-- Data mapping visually LTR (Left oldest, Right newest), text Arabic -->
+                        <svg viewBox="0 0 800 250" width="100%" height="100%" preserveAspectRatio="none">
+                            
+                            <!-- Y-Axis Labels -->
+                            <text x="30" y="35" class="chart-text" text-anchor="end">3k</text>
+                            <text x="30" y="95" class="chart-text" text-anchor="end">2k</text>
+                            <text x="30" y="155" class="chart-text" text-anchor="end">1k</text>
+                            <text x="30" y="215" class="chart-text" text-anchor="end">0</text>
+
+                            <!-- Horizontal Grid Lines -->
+                            <line x1="40" y1="30" x2="780" y2="30" class="chart-grid" />
+                            <line x1="40" y1="90" x2="780" y2="90" class="chart-grid" />
+                            <line x1="40" y1="150" x2="780" y2="150" class="chart-grid" />
+                            <line x1="40" y1="210" x2="780" y2="210" class="chart-grid" style="stroke: var(--gray-300); stroke-dasharray: none;" />
+
+                            <!-- Bars (X, Y, Width, Height) - Max height 180px for 3k -->
+                            <!-- Day 1 (Oldest) -->
+                            <rect x="80" y="120" width="40" height="90" class="chart-bar" />
+                            <text x="100" y="240" class="chart-text" text-anchor="middle">الخميس</text>
+                            
+                            <!-- Day 2 -->
+                            <rect x="180" y="80" width="40" height="130" class="chart-bar" />
+                            <text x="200" y="240" class="chart-text" text-anchor="middle">الجمعة</text>
+
+                            <!-- Day 3 -->
+                            <rect x="280" y="150" width="40" height="60" class="chart-bar" />
+                            <text x="300" y="240" class="chart-text" text-anchor="middle">السبت</text>
+
+                            <!-- Day 4 -->
+                            <rect x="380" y="90" width="40" height="120" class="chart-bar" />
+                            <text x="400" y="240" class="chart-text" text-anchor="middle">الأحد</text>
+
+                            <!-- Day 5 -->
+                            <rect x="480" y="50" width="40" height="160" class="chart-bar" />
+                            <text x="500" y="240" class="chart-text" text-anchor="middle">الإثنين</text>
+
+                            <!-- Day 6 -->
+                            <rect x="580" y="110" width="40" height="100" class="chart-bar" />
+                            <text x="600" y="240" class="chart-text" text-anchor="middle">الثلاثاء</text>
+
+                            <!-- Day 7 (Today) -->
+                            <rect x="680" y="40" width="40" height="170" class="chart-bar" style="fill: var(--secondary);" />
+                            <text x="700" y="240" class="chart-text" text-anchor="middle">اليوم</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Recent Orders Table -->
+                <div class="table-section">
+                    <div class="section-header">
+                        <h2 class="section-title">أحدث الطلبات</h2>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table" id="ordersTable">
+                            <thead>
+                                <tr>
+                                    <th onclick="sortTable(0)">
+                                        <div class="sort-header">
+                                            رقم الطلب
+                                            <div class="sort-icon">
+                                                <svg viewBox="0 0 10 5" style="transform: rotate(180deg);"><path d="M0 0l5 5 5-5z"/></svg>
+                                                <svg viewBox="0 0 10 5"><path d="M0 0l5 5 5-5z"/></svg>
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <th onclick="sortTable(1)">
+                                        <div class="sort-header">
+                                            العميل
+                                            <div class="sort-icon">
+                                                <svg viewBox="0 0 10 5" style="transform: rotate(180deg);"><path d="M0 0l5 5 5-5z"/></svg>
+                                                <svg viewBox="0 0 10 5"><path d="M0 0l5 5 5-5z"/></svg>
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <th onclick="sortTable(2)">
+                                        <div class="sort-header">
+                                            التاريخ
+                                            <div class="sort-icon">
+                                                <svg viewBox="0 0 10 5" style="transform: rotate(180deg);"><path d="M0 0l5 5 5-5z"/></svg>
+                                                <svg viewBox="0 0 10 5"><path d="M0 0l5 5 5-5z"/></svg>
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <th onclick="sortTable(3)">
+                                        <div class="sort-header">
+                                            المبلغ
+                                            <div class="sort-icon">
+                                                <svg viewBox="0 0 10 5" style="transform: rotate(180deg);"><path d="M0 0l5 5 5-5z"/></svg>
+                                                <svg viewBox="0 0 10 5"><path d="M0 0l5 5 5-5z"/></svg>
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <th>الحالة</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="ltr-text">#QR-10042</span></td>
+                                    <td>
+                                        <div class="customer-info">
+                                            <span>أحمد محمد</span>
+                                            <span class="customer-phone ltr-text">+966 50 123 4567</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="ltr-text">2023-10-25 14:30</span></td>
+                                    <td><span class="ltr-text">350</span> ر.س</td>
+                                    <td><span class="badge completed">مكتمل</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="ltr-text">#QR-10043</span></td>
+                                    <td>
+                                        <div class="customer-info">
+                                            <span>سارة عبدالله</span>
+                                            <span class="customer-phone ltr-text">+966 55 987 6543</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="ltr-text">2023-10-25 15:15</span></td>
+                                    <td><span class="ltr-text">1,250</span> ر.س</td>
+                                    <td><span class="badge processing">قيد التجهيز</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="ltr-text">#QR-10044</span></td>
+                                    <td>
+                                        <div class="customer-info">
+                                            <span>خالد عبدالعزيز</span>
+                                            <span class="customer-phone ltr-text">+966 54 333 2211</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="ltr-text">2023-10-25 16:05</span></td>
+                                    <td><span class="ltr-text">85</span> ر.س</td>
+                                    <td><span class="badge cancelled">ملغي</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="ltr-text">#QR-10045</span></td>
+                                    <td>
+                                        <div class="customer-info">
+                                            <span>نورة الفهد</span>
+                                            <span class="customer-phone ltr-text">+966 56 444 5555</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="ltr-text">2023-10-25 16:45</span></td>
+                                    <td><span class="ltr-text">420</span> ر.س</td>
+                                    <td><span class="badge processing">قيد التجهيز</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Sidebar Toggle Logic for Mobile
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+        function toggleMenu() {
+            sidebar.classList.toggle('open');
+            sidebarOverlay.classList.toggle('show');
+        }
+
+        menuToggle.addEventListener('click', toggleMenu);
+        sidebarOverlay.addEventListener('click', toggleMenu);
+
+        // Simple Table Sorting Logic
+        let currentSortCol = -1;
+        let sortAsc = true;
+
+        function sortTable(colIndex) {
+            const table = document.getElementById("ordersTable");
+            const tbody = table.querySelector("tbody");
+            const rows = Array.from(tbody.querySelectorAll("tr"));
+
+            if (currentSortCol === colIndex) {
+                sortAsc = !sortAsc; // Toggle direction
+            } else {
+                sortAsc = true;
+                currentSortCol = colIndex;
+            }
+
+            rows.sort((a, b) => {
+                let cellA = a.querySelectorAll("td")[colIndex].innerText.trim();
+                let cellB = b.querySelectorAll("td")[colIndex].innerText.trim();
+
+                // Simple numeric extraction for Amount column (index 3)
+                if (colIndex === 3) {
+                    cellA = parseFloat(cellA.replace(/,/g, '').replace(/[^\d.-]/g, ''));
+                    cellB = parseFloat(cellB.replace(/,/g, '').replace(/[^\d.-]/g, ''));
+                } else if (colIndex === 0) {
+                    // Remove # for ID sort
+                    cellA = cellA.replace('#', '');
+                    cellB = cellB.replace('#', '');
+                }
+
+                if (cellA < cellB) return sortAsc ? -1 : 1;
+                if (cellA > cellB) return sortAsc ? 1 : -1;
+                return 0;
+            });
+
+            // Re-append sorted rows
+            rows.forEach(row => tbody.appendChild(row));
+        }
+    </script>
+</body>
+</html>

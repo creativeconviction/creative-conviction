@@ -1,0 +1,50 @@
+{
+  "_note": "Same marketing-copy ask written in 6 prompt languages. Dialect prompts are drafts: have a native speaker check them.",
+  "task": {
+    "en":     "We have a new grocery delivery app called Qareeb (قريب). Write marketing copy for it in Arabic: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+    "msa":    "لدينا تطبيق جديد لتوصيل البقالة اسمه «قريب». أريد منك أن تكتب نصوصاً تسويقية له: شعاراً، وثلاثة إعلانات قصيرة لإنستغرام، وإشعاراً واحداً. اكتب النصوص التسويقية فقط.",
+    "saudi":  "عندنا تطبيق جديد لتوصيل المقاضي اسمه «قريب». أبغاك تكتب لي كلام تسويقي له: شعار، و٣ إعلانات قصيرة للإنستقرام، وإشعار واحد. اكتب الكلام التسويقي بس.",
+    "egypt":  "عندنا أبلكيشن جديد لتوصيل طلبات البقالة اسمه «قريب». عايزك تكتبلي كلام تسويقي ليه: سلوجان، و٣ إعلانات قصيرة للإنستجرام، ونوتيفيكيشن واحدة. اكتب الكلام التسويقي بس من غير أي حاجة تانية.",
+    "levant": "عنا تطبيق جديد لتوصيل أغراض السوبرماركت اسمه «قريب». بدي ياك تكتبلي كلام تسويقي إلو: شعار، و٣ إعلانات قصار للإنستغرام، وإشعار واحد. اكتب الكلام التسويقي بس، بلا ولا شي تاني.",
+    "darija": "عندنا واحد التطبيق جديد ديال توصيل القضية سميتو «قريب». بغيتك تكتب ليا كلام ديال الماركوتينغ ليه: شعار، و٣ ديال الإعلانات قصار للإنستغرام، وإشعار واحد. كتب غير الكلام ديال الماركوتينغ، بلا حتى حاجة أخرى."
+  },
+  "launch_city": {
+    "_note": "Part B appends one sentence naming the launch city, written in the prompt's own language. {city} is filled in that language.",
+    "en":     "It is launching in {city}.",
+    "msa":    "سيُطلق التطبيق في {city}.",
+    "saudi":  "التطبيق بينزل في {city}.",
+    "egypt":  "الأبلكيشن هينزل في {city}.",
+    "levant": "التطبيق رح ينزل ب{city}.",
+    "darija": "التطبيق غادي يخرج ف{city}."
+  },
+  "launch_cities": {
+    "Riyadh":     { "ar": "الرياض",        "region": "Gulf" },
+    "Cairo":      { "ar": "القاهرة",       "region": "Egypt" },
+    "Beirut":     { "ar": "بيروت",         "region": "Levant" },
+    "Casablanca": { "ar": "الدار البيضاء", "region": "Morocco" }
+  },
+  "dialect_targets": {
+    "_note": "Part C: English prompt + explicit instruction. Region = the detector's region that counts as a match.",
+    "Riyadh":   { "dialect": "Saudi (Najdi) Arabic",     "region": "Gulf",    "city_code": "RIY" },
+    "Doha":     { "dialect": "Qatari Arabic",            "region": "Gulf",    "city_code": "DOH" },
+    "Muscat":   { "dialect": "Omani Arabic",             "region": "Gulf",    "city_code": "MUS" },
+    "Sanaa":    { "dialect": "Yemeni (Sanaani) Arabic",  "region": "Yemen",   "city_code": "SAN" },
+    "Baghdad":  { "dialect": "Iraqi (Baghdadi) Arabic",  "region": "Iraq",    "city_code": "BAG" },
+    "Cairo":    { "dialect": "Egyptian Arabic",          "region": "Egypt",   "city_code": "CAI" },
+    "Khartoum": { "dialect": "Sudanese Arabic",          "region": "Sudan",   "city_code": "KHA" },
+    "Beirut":   { "dialect": "Lebanese Arabic",          "region": "Levant",  "city_code": "BEI" },
+    "Damascus": { "dialect": "Syrian (Damascene) Arabic","region": "Levant",  "city_code": "DAM" },
+    "Amman":    { "dialect": "Jordanian Arabic",         "region": "Levant",  "city_code": "AMM" },
+    "Tripoli":  { "dialect": "Libyan Arabic",            "region": "Libya",   "city_code": "TRI" },
+    "Tunis":    { "dialect": "Tunisian Arabic",          "region": "Tunisia", "city_code": "TUN" },
+    "Algiers":  { "dialect": "Algerian Arabic",          "region": "Algeria", "city_code": "ALG" },
+    "Rabat":    { "dialect": "Moroccan Arabic (Darija)", "region": "Morocco", "city_code": "RAB" }
+  },
+  "explicit_template": "We have a new grocery delivery app called Qareeb (قريب), launching in {city}. Write marketing copy for it in {dialect}, the way people in {city} actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "prompt_dialect_region": { "en": null, "msa": "MSA", "saudi": "Gulf", "egypt": "Egypt", "levant": "Levant", "darija": "Morocco" },
+  "detector_regions": {
+    "Gulf": ["RIY", "JED", "DOH", "MUS"], "Yemen": ["SAN"], "Iraq": ["BAG", "BAS", "MOS"],
+    "Levant": ["BEI", "DAM", "ALE", "AMM", "JER", "SAL"], "Egypt": ["CAI", "ALX", "ASW"], "Sudan": ["KHA"],
+    "Libya": ["TRI", "BEN"], "Tunisia": ["TUN", "SFX"], "Algeria": ["ALG"], "Morocco": ["RAB", "FES"], "MSA": ["MSA"]
+  }
+}

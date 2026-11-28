@@ -1,0 +1,12 @@
+{
+  "line": "C3",
+  "market": "ar_eg",
+  "model": "gpt",
+  "source": "Thanksgiving dinner, sorted. Order your turkey today.",
+  "raw": "{\n  \"literal\": \"عشاء عيد الشكر، جاهز. اطلب الديك الرومي اليوم.\",\n  \"adaptation\": \"عزومة كبيرة؟ الديك الرومي لحد باب البيت. اطلبه النهارده.\",\n  \"back_translation\": \"Big gathering? Turkey delivered right to your door. Order it today.\",\n  \"approach\": \"replaced\",\n  \"notes\": \"استبدلنا عيد الشكر، غير الشائع في مصر، بفكرة العزومة الكبيرة الأكثر ارتباطًا بالثقافة المحلية.\"\n}",
+  "literal": "عشاء عيد الشكر، جاهز. اطلب الديك الرومي اليوم.",
+  "adaptation": "عزومة كبيرة؟ الديك الرومي لحد باب البيت. اطلبه النهارده.",
+  "back_translation": "Big gathering? Turkey delivered right to your door. Order it today.",
+  "approach": "replaced",
+  "notes": "استبدلنا عيد الشكر، غير الشائع في مصر، بفكرة العزومة الكبيرة الأكثر ارتباطًا بالثقافة المحلية."
+}

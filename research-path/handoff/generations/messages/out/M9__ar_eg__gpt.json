@@ -1,0 +1,13 @@
+{
+  "scenario": "M9",
+  "lang": "ar_eg",
+  "model": "gpt",
+  "message": "حبيت أقول إن الطيار كان ذوق جداً وساعدني أطلع الحاجات فوق، متشكرين!",
+  "raw": "{\"intent\":\"praise\",\"sentiment\":\"positive\",\"urgency\":\"low\",\"sarcasm\":false,\"churn_risk\":false,\"summary\":\"The customer praises the courteous delivery driver for helping carry the groceries upstairs.\"}",
+  "intent": "praise",
+  "sentiment": "positive",
+  "urgency": "low",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer praises the courteous delivery driver for helping carry the groceries upstairs."
+}

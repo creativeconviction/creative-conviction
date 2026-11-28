@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Algiers",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Algiers. Write marketing copy for it in Algerian Arabic, the way people in Algiers actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 1,
+  "prompt_lang": "en",
+  "city": "Algiers",
+  "target_region": "Algeria",
+  "target_city_code": "ALG",
+  "model": "claude",
+  "id": "C__Algiers__claude__s1",
+  "model_id": "anthropic/claude-opus-5.5",
+  "output": "**الشعار:**\nقريب... قضيانك حتى لباب الدار 🛒\n\n**إعلانات إنستغرام:**\n\n1. نسيت الخبز والحليب؟ ما تهبطش للحانوت، قريب يجيبهملك حتى لباب الدار 🛵\n\n2. الزحمة في المارشي؟ خليها عليهم! ريّح في الدار وقريب يتكفل بالقضيان 😎\n\n3. من باب الواد لحيدرة، قريب ديما قريب منك. كوموندي دروك! 📲\n\n**إشعار:**\nواش راك؟ 👋 الفريجيدار فارغ؟ دير الكوموند دروك وقضيانك يوصلوك في رمشة عين 🛵💨",
+  "at": "2026-11-18T05:41:36.679Z"
+}

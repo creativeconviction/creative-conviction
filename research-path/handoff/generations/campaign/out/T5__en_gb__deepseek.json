@@ -1,0 +1,12 @@
+{
+  "line": "T5",
+  "market": "en_gb",
+  "model": "deepseek",
+  "source": "Because you're worth it",
+  "raw": "```json\n{\n  \"literal\": \"Because you're worth it\",\n  \"adaptation\": \"Because you're worth it\",\n  \"back_translation\": \"Because you're worth it\",\n  \"approach\": \"keep_english\",\n  \"notes\": \"The line has been iconic in the UK market since the 1970s and resonates perfectly with British consumers without any need for anglicisation—'worth it' carries the same aspirational, self-affirming tone in British English as it does in American English.\"\n}\n```",
+  "literal": "Because you're worth it",
+  "adaptation": "Because you're worth it",
+  "back_translation": "Because you're worth it",
+  "approach": "keep_english",
+  "notes": "The line has been iconic in the UK market since the 1970s and resonates perfectly with British consumers without any need for anglicisation—'worth it' carries the same aspirational, self-affirming tone in British English as it does in American English."
+}

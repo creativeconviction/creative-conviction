@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="قريب — تطبيق توصيل مقاضي من محلات منطقتك في القاهرة خلال حوالي 20 دقيقة. ادفع كاش أو بالكارت.">
+  <title>قريب | مقاضيك من محلات منطقتك في حوالي 20 دقيقة</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --green: #176b4d;
+      --green-dark: #0f4c37;
+      --green-light: #e7f3ed;
+      --orange: #f28c3a;
+      --orange-dark: #d96e20;
+      --cream: #fff9ef;
+      --white: #ffffff;
+      --ink: #17332a;
+      --muted: #64746d;
+      --line: #dfe8e3;
+      --shadow: 0 20px 50px rgba(23, 51, 42, 0.10);
+      --radius: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Cairo", sans-serif;
+      color: var(--ink);
+      background: var(--white);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.94);
+      border-bottom: 1px solid rgba(223, 232, 227, 0.85);
+      backdrop-filter: blur(14px);
+    }
+
+    .header-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: var(--green);
+      white-space: nowrap;
+    }
+
+    .logo-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      color: var(--white);
+      background: var(--green);
+      box-shadow: 0 8px 20px rgba(23, 107, 77, 0.2);
+    }
+
+    .logo-mark svg {
+      width: 25px;
+      height: 25px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      margin-inline-start: auto;
+    }
+
+    .nav a {
+      color: #42574f;
+      font-size: 0.94rem;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .nav a:hover {
+      color: var(--green);
+    }
+
+    .header-cta,
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 50px;
+      padding: 0 24px;
+      border: 0;
+      border-radius: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .header-cta,
+    .button-primary {
+      color: var(--white);
+      background: var(--orange);
+      box-shadow: 0 10px 24px rgba(242, 140, 58, 0.25);
+    }
+
+    .header-cta:hover,
+    .button-primary:hover {
+      background: var(--orange-dark);
+      transform: translateY(-2px);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 76px 0 90px;
+      background:
+        radial-gradient(circle at 8% 20%, rgba(242, 140, 58, 0.14), transparent 25%),
+        radial-gradient(circle at 92% 80%, rgba(23, 107, 77, 0.12), transparent 28%),
+        var(--cream);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 190px;
+      height: 190px;
+      right: -80px;
+      top: 80px;
+      border: 2px solid rgba(23, 107, 77, 0.09);
+      border-radius: 50%;
+    }
+
+    .hero-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.02fr 0.98fr;
+      align-items: center;
+      gap: 68px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      padding: 7px 13px;
+      border: 1px solid #cfe3d9;
+      border-radius: 999px;
+      color: var(--green);
+      background: rgba(255, 255, 255, 0.78);
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+
+    .eyebrow-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--orange);
+      box-shadow: 0 0 0 5px rgba(242, 140, 58, 0.14);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 650px;
+      margin-bottom: 20px;
+      font-size: clamp(2.35rem, 5vw, 4.35rem);
+      line-height: 1.18;
+      letter-spacing: -0.04em;
+    }
+
+    h1 span {
+      color: var(--green);
+    }
+
+    .hero-copy > p {
+      max-width: 610px;
+      margin-bottom: 30px;
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    .button-secondary {
+      color: var(--green);
+      border: 1px solid #cbdcd4;
+      background: var(--white);
+      box-shadow: none;
+    }
+
+    .button-secondary:hover {
+      border-color: var(--green);
+      background: var(--green-light);
+      transform: translateY(-2px);
+    }
+
+    .trust-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 20px;
+      color: #53665f;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .trust-list span {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .check {
+      width: 20px;
+      height: 20px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--green);
+      background: var(--green-light);
+      font-size: 0.75rem;
+    }
+
+    .hero-visual {
+      position: relative;
+    }
+
+    .image-placeholder {
+      min-height: 470px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border: 2px dashed rgba(23, 107, 77, 0.30);
+      border-radius: 34px;
+      color: var(--green);
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.82), rgba(231,243,237,0.78)),
+        var(--green-light);
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .placeholder-content {
+      max-width: 260px;
+      padding: 28px;
+    }
+
+    .placeholder-icon {
+      width: 76px;
+      height: 76px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 18px;
+      border-radius: 24px;
+      color: var(--white);
+      background: var(--green);
+      box-shadow: 0 14px 30px rgba(23, 107, 77, 0.22);
+    }
+
+    .placeholder-icon svg {
+      width: 38px;
+      height: 38px;
+    }
+
+    .placeholder-content strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 1.12rem;
+    }
+
+    .placeholder-content span {
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .floating-card {
+      position: absolute;
+      right: -28px;
+      bottom: 34px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 17px;
+      border: 1px solid rgba(223, 232, 227, 0.9);
+      border-radius: 18px;
+      background: var(--white);
+      box-shadow: 0 16px 35px rgba(23, 51, 42, 0.14);
+    }
+
+    .floating-card .clock {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      color: var(--orange-dark);
+      background: #fff0e3;
+      font-size: 1.25rem;
+    }
+
+    .floating-card small {
+      display: block;
+      color: var(--muted);
+      font-size: 0.72rem;
+    }
+
+    .floating-card strong {
+      font-size: 0.94rem;
+    }
+
+    section {
+      padding: 92px 0;
+    }
+
+    .section-heading {
+      max-width: 670px;
+      margin: 0 auto 46px;
+      text-align: center;
+    }
+
+    .section-kicker {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--orange-dark);
+      font-size: 0.87rem;
+      font-weight: 800;
+    }
+
+    .section-heading h2 {
+      margin-bottom: 12px;
+      font-size: clamp(1.8rem, 3vw, 2.7rem);
+      line-height: 1.3;
+    }
+
+    .section-heading p {
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .step {
+      position: relative;
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: 0 12px 32px rgba(23, 51, 42, 0.06);
+    }
+
+    .step-number {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      color: #9aaba4;
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+
+    .step-icon {
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 22px;
+      border-radius: 18px;
+      color: var(--green);
+      background: var(--green-light);
+    }
+
+    .step-icon svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .step:nth-child(2) .step-icon {
+      color: var(--orange-dark);
+      background: #fff0e3;
+    }
+
+    .step h3 {
+      margin-bottom: 9px;
+      font-size: 1.16rem;
+    }
+
+    .step p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .loyalty {
+      background: var(--green);
+      color: var(--white);
+    }
+
+    .loyalty-card {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      align-items: center;
+      gap: 70px;
+    }
+
+    .loyalty-visual {
+      padding: 38px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 30px;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .stamp-card {
+      padding: 28px;
+      border-radius: 24px;
+      color: var(--ink);
+      background: var(--cream);
+      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.16);
+    }
+
+    .stamp-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 22px;
+    }
+
+    .stamp-card-top strong {
+      color: var(--green);
+      font-size: 1.15rem;
+    }
+
+    .stamp-card-top span {
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .stamps {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+
+    .stamp {
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      border: 1px dashed #b7cbc2;
+      border-radius: 50%;
+      color: #98aaa2;
+      background: var(--white);
+      font-size: 0.75rem;
+      font-weight: 800;
+    }
+
+    .stamp.filled {
+      border: 0;
+      color: var(--white);
+      background: var(--orange);
+    }
+
+    .stamp.gift {
+      border: 0;
+      color: var(--white);
+      background: var(--green);
+      font-size: 1.1rem;
+    }
+
+    .loyalty-copy .section-kicker {
+      color: #ffbd83;
+    }
+
+    .loyalty-copy h2 {
+      margin-bottom: 18px;
+      font-size: clamp(2rem, 3.6vw, 3.1rem);
+      line-height: 1.3;
+    }
+
+    .loyalty-copy p {
+      max-width: 600px;
+      margin-bottom: 26px;
+      color: rgba(255,255,255,0.78);
+      font-size: 1.02rem;
+    }
+
+    .loyalty-points {
+      display: grid;
+      gap: 12px;
+    }
+
+    .loyalty-points span {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+    }
+
+    .loyalty-points b {
+      width: 25px;
+      height: 25px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--green-dark);
+      background: #bde2cf;
+      font-size: 0.78rem;
+    }
+
+    .signup {
+      background:
+        radial-gradient(circle at 15% 20%, rgba(242, 140, 58, 0.12), transparent 24%),
+        #f7faf8;
+    }
+
+    .signup-box {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 48px;
+      padding: 48px;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .signup-copy h2 {
+      margin-bottom: 14px;
+      font-size: clamp(1.8rem, 3vw, 2.55rem);
+      line-height: 1.35;
+    }
+
+    .signup-copy p {
+      margin-bottom: 22px;
+      color: var(--muted);
+    }
+
+    .launch-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 10px 13px;
+      border-radius: 12px;
+      color: var(--green);
+      background: var(--green-light);
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .signup-form {
+      display: grid;
+      gap: 17px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 7px;
+      color: #31483f;
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+
+    .field input {
+      width: 100%;
+      height: 54px;
+      padding: 0 16px;
+      border: 1px solid #ccd9d3;
+      border-radius: 13px;
+      outline: none;
+      color: var(--ink);
+      background: #fbfdfc;
+      transition: border 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .field input:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 4px rgba(23, 107, 77, 0.10);
+    }
+
+    .field input::placeholder {
+      color: #9aa8a2;
+    }
+
+    .ltr-input {
+      direction: ltr;
+      text-align: right;
+    }
+
+    .signup-form .button {
+      width: 100%;
+      min-height: 56px;
+    }
+
+    .form-note {
+      margin: -3px 0 0;
+      color: #7d8d86;
+      font-size: 0.75rem;
+      text-align: center;
+    }
+
+    .site-footer {
+      padding: 54px 0 26px;
+      color: rgba(255,255,255,0.78);
+      background: #0c3528;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 36px;
+    }
+
+    .footer-brand .logo {
+      margin-bottom: 13px;
+      color: var(--white);
+    }
+
+    .footer-brand .logo-mark {
+      color: var(--green-dark);
+      background: #bde2cf;
+      box-shadow: none;
+    }
+
+    .footer-brand p {
+      max-width: 390px;
+      margin-bottom: 0;
+      font-size: 0.9rem;
+    }
+
+    .footer-column h3 {
+      margin-bottom: 14px;
+      color: var(--white);
+      font-size: 0.95rem;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 9px;
+      font-size: 0.88rem;
+    }
+
+    .footer-links a:hover {
+      color: var(--white);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      font-size: 0.78rem;
+    }
+
+    @media (max-width: 900px) {
+      .nav {
+        display: none;
+      }
+
+      .hero-grid,
+      .loyalty-card,
+      .signup-box {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 55px;
+      }
+
+      .hero-grid {
+        gap: 50px;
+      }
+
+      .hero-copy {
+        text-align: center;
+      }
+
+      .hero-copy > p {
+        margin-inline: auto;
+      }
+
+      .hero-actions,
+      .trust-list {
+        justify-content: center;
+      }
+
+      .hero-visual {
+        max-width: 620px;
+        width: 100%;
+        margin-inline: auto;
+      }
+
+      .floating-card {
+        right: 18px;
+      }
+
+      .loyalty-copy {
+        order: -1;
+        text-align: center;
+      }
+
+      .loyalty-points {
+        width: fit-content;
+        margin-inline: auto;
+        text-align: right;
+      }
+
+      .loyalty-visual {
+        max-width: 570px;
+        width: 100%;
+        margin-inline: auto;
+      }
+
+      .signup-copy {
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        width: min(100% - 28px, 1120px);
+      }
+
+      .site-header .header-cta {
+        min-height: 43px;
+        padding: 0 15px;
+        font-size: 0.82rem;
+      }
+
+      .logo {
+        font-size: 1.25rem;
+      }
+
+      .logo-mark {
+        width: 37px;
+        height: 37px;
+        border-radius: 12px;
+      }
+
+      section {
+        padding: 70px 0;
+      }
+
+      .hero {
+        padding: 46px 0 70px;
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .image-placeholder {
+        min-height: 360px;
+      }
+
+      .signup-box {
+        gap: 30px;
+        padding: 28px 20px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-brand {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 470px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      .hero-actions .button {
+        width: 100%;
+      }
+
+      .trust-list {
+        display: grid;
+      }
+
+      .floating-card {
+        right: 10px;
+        bottom: 18px;
+      }
+
+      .loyalty-visual {
+        padding: 15px;
+      }
+
+      .stamp-card {
+        padding: 20px 16px;
+      }
+
+      .stamps {
+        gap: 7px;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-brand {
+        grid-column: auto;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="#" aria-label="قريب - الصفحة الرئيسية">
+        <span class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M4 7.5h16l-1.25 11H5.25L4 7.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M8.5 9V6.2a3.5 3.5 0 0 1 7 0V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M9 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span>قريب</span>
+      </a>
+
+      <nav class="nav" aria-label="التنقل الرئيسي">
+        <a href="#how">إزاي بيشتغل؟</a>
+        <a href="#loyalty">مكافآت قريب</a>
+        <a href="#signup">سجّل دلوقتي</a>
+      </nav>
+
+      <a class="header-cta" href="#signup">انضم لقائمة الانتظار</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            قريبًا في القاهرة
+          </div>
+
+          <h1>مقاضي بيتك من <span>محلات منطقتك</span> في حوالي 20 دقيقة</h1>
+
+          <p>
+            ناقصك لبن، عيش أو حاجات العشا؟ اطلب احتياجاتك اليومية من المحلات القريبة،
+            وقريب يوصّلهالك بسرعة وبسعر مناسب.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="#signup">سجّل قبل الإطلاق</a>
+            <a class="button button-secondary" href="#how">اعرف بيشتغل إزاي</a>
+          </div>
+
+          <div class="trust-list" aria-label="مميزات قريب">
+            <span><i class="check">✓</i> كاش أو كارت</span>
+            <span><i class="check">✓</i> توصيل حوالي 20 دقيقة</span>
+            <span><i class="check">✓</i> أسعار مناسبة كل يوم</span>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="image-placeholder" role="img" aria-label="مكان مخصص لصورة توصيل مقاضي قريب">
+            <div class="placeholder-content">
+              <div class="placeholder-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M3 16.5h12.5V7H8.8L6.6 10H3v6.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                  <path d="M15.5 10h2.8l2.7 3.2v3.3h-5.5V10Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                  <circle cx="7" cy="17.5" r="1.8" stroke="currentColor" stroke-width="1.7"/>
+                  <circle cx="18" cy="17.5" r="1.8" stroke="currentColor" stroke-width="1.7"/>
+                  <path d="M8.5 7V5.5h5V7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <strong>مكان صورة الهيرو</strong>
+              <span>صورة توصيل مقاضي لعائلة أو موظف في القاهرة</span>
+            </div>
+          </div>
+
+          <div class="floating-card">
+            <span class="clock" aria-hidden="true">⏱</span>
+            <span>
+              <small>متوسط وقت التوصيل</small>
+              <strong>حوالي 20 دقيقة</strong>
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">بسيطة وسريعة</span>
+          <h2>مقاضيك عند باب البيت في 3 خطوات</h2>
+          <p>من غير لف على المحلات أو انتظار طويل. اختار، اطلب، وسيب الباقي علينا.</p>
+        </div>
+
+        <div class="steps">
+          <article class="step">
+            <span class="step-number">01</span>
+            <div class="step-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M5 7h14l-1 12H6L5 7Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                <path d="M9 9V6a3 3 0 0 1 6 0v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>اختار احتياجاتك</h3>
+            <p>تصفّح المنتجات المتاحة من محلات منطقتك وضيف اللي ناقصك للسلة.</p>
+          </article>
+
+          <article class="step">
+            <span class="step-number">02</span>
+            <div class="step-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="5" width="18" height="14" rx="3" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M3 9h18M7 15h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>ادفع بطريقتك</h3>
+            <p>اختار الدفع بالكارت أونلاين أو ادفع كاش لما الطلب يوصلك.</p>
+          </article>
+
+          <article class="step">
+            <span class="step-number">03</span>
+            <div class="step-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M3 16h12V8H8l-2 3H3v5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                <path d="M15 11h3l3 3v2h-6v-5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                <circle cx="7" cy="17" r="2" stroke="currentColor" stroke-width="1.8"/>
+                <circle cx="18" cy="17" r="2" stroke="currentColor" stroke-width="1.8"/>
+              </svg>
+            </div>
+            <h3>استلم بسرعة</h3>
+            <p>مندوب قريب يجمع طلبك ويوصّله لحد بابك في حوالي 20 دقيقة.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="loyalty" id="loyalty">
+      <div class="container loyalty-card">
+        <div class="loyalty-visual" aria-label="بطاقة مكافآت قريب">
+          <div class="stamp-card">
+            <div class="stamp-card-top">
+              <strong>مكافآت قريب</strong>
+              <span>كل طلب بيقرّبك</span>
+            </div>
+
+            <div class="stamps">
+              <span class="stamp filled">1</span>
+              <span class="stamp filled">2</span>
+              <span class="stamp filled">3</span>
+              <span class="stamp filled">4</span>
+              <span class="stamp filled">5</span>
+              <span class="stamp filled">6</span>
+              <span class="stamp">7</span>
+              <span class="stamp">8</span>
+              <span class="stamp">9</span>
+              <span class="stamp gift" title="توصيل مجاني">★</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="loyalty-copy">
+          <span class="section-kicker">طلبك العاشر علينا</span>
+          <h2>كل ما تطلب أكتر، توفّر أكتر</h2>
+          <p>
+            مع برنامج مكافآت قريب، كل طلب بيتسجّل تلقائيًا. ولما توصل للطلب العاشر،
+            التوصيل يبقى مجاني — من غير نقاط معقدة ولا شروط كتير.
+          </p>
+
+          <div class="loyalty-points">
+            <span><b>✓</b> تسجيل تلقائي لكل طلب</span>
+            <span><b>✓</b> توصيل مجاني في كل طلب عاشر</span>
+            <span><b>✓</b> مكافأة بسيطة ومفيدة فعلًا</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="signup" id="signup">
+      <div class="container">
+        <div class="signup-box">
+          <div class="signup-copy">
+            <span class="section-kicker">خليك أول واحد يعرف</span>
+            <h2>قريب جاي لمنطقتك</h2>
+            <p>
+              سيب رقمك وإيميلك وهنبعتلك أول ما الخدمة تبدأ في منطقتك، مع عروض خاصة وقت الإطلاق.
+            </p>
+            <div class="launch-note">
+              <span aria-hidden="true">📍</span>
+              الإطلاق الأول داخل القاهرة
+            </div>
+          </div>
+
+          <form class="signup-form" action="#" method="post">
+            <div class="form-row">
+              <div class="field">
+                <label for="phone">رقم الموبايل</label>
+                <input
+                  class="ltr-input"
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  inputmode="tel"
+                  autocomplete="tel"
+                  placeholder="01X XXXX XXXX"
+                  required
+                >
+              </div>
+
+              <div class="field">
+                <label for="email">البريد الإلكتروني</label>
+                <input
+                  class="ltr-input"
+                  id="email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  placeholder="name@example.com"
+                  required
+                >
+              </div>
+            </div>
+
+            <button class="button button-primary" type="submit">سجّلني في قائمة الانتظار</button>
+            <p class="form-note">بياناتك آمنة، ومش هنبعتلك رسائل كتير أو نشاركها مع أي جهة.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a class="logo" href="#" aria-label="قريب">
+            <span class="logo-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M4 7.5h16l-1.25 11H5.25L4 7.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                <path d="M8.5 9V6.2a3.5 3.5 0 0 1 7 0V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M9 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span>قريب</span>
+          </a>
+          <p>مقاضيك اليومية من محلات منطقتك، لحد باب البيت بسرعة وسعر مناسب.</p>
+        </div>
+
+        <div class="footer-column">
+          <h3>قريب</h3>
+          <div class="footer-links">
+            <a href="#how">إزاي بيشتغل؟</a>
+            <a href="#loyalty">مكافآت قريب</a>
+            <a href="#signup">قائمة الانتظار</a>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h3>مساعدة</h3>
+          <div class="footer-links">
+            <a href="#">الأسئلة الشائعة</a>
+            <a href="#">سياسة الخصوصية</a>
+            <a href="#">الشروط والأحكام</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2025 قريب. جميع الحقوق محفوظة.</span>
+        <span>اتعمل بحب في القاهرة، مصر.</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

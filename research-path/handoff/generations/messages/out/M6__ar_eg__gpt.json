@@ -1,0 +1,13 @@
+{
+  "scenario": "M6",
+  "lang": "ar_eg",
+  "model": "gpt",
+  "message": "الغوا الأوردر دلوقتي حالاً لو سمحتوا، طلبته على عنوان غلط",
+  "raw": "{\"intent\":\"cancel_order\",\"sentiment\":\"negative\",\"urgency\":\"high\",\"sarcasm\":false,\"churn_risk\":false,\"summary\":\"The customer urgently requests cancellation because the order was placed for the wrong address.\"}",
+  "intent": "cancel_order",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer urgently requests cancellation because the order was placed for the wrong address."
+}

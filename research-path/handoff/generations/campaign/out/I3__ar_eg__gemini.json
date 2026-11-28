@@ -1,0 +1,12 @@
+{
+  "line": "I3",
+  "market": "ar_eg",
+  "model": "gemini",
+  "source": "Bring home the bacon with zero fees.",
+  "raw": "{\n  \"literal\": \"أحضر لحم الخنزير المقدد إلى المنزل بصفر رسوم.\",\n  \"adaptation\": \"هات الخير لبيتك بدون مصاريف.\",\n  \"back_translation\": \"Bring prosperity to your home without fees.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Replaced the culturally taboo reference to pork with 'prosperity/goodness' (الخير), a highly positive and resonant concept in Egyptian culture for providing for one's family.\"\n}",
+  "literal": "أحضر لحم الخنزير المقدد إلى المنزل بصفر رسوم.",
+  "adaptation": "هات الخير لبيتك بدون مصاريف.",
+  "back_translation": "Bring prosperity to your home without fees.",
+  "approach": "adapted",
+  "notes": "Replaced the culturally taboo reference to pork with 'prosperity/goodness' (الخير), a highly positive and resonant concept in Egyptian culture for providing for one's family."
+}

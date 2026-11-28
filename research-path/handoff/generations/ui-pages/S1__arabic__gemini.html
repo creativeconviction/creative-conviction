@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إنشاء حساب - قريب</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #10b981; /* Green color suitable for groceries */
+            --primary-hover: #059669;
+            --bg-color: #f3f4f6;
+            --card-bg: #ffffff;
+            --text-dark: #1f2937;
+            --text-muted: #6b7280;
+            --border-color: #d1d5db;
+            --input-bg: #f9fafb;
+            --error-color: #ef4444;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* App Container - Mobile First (390px) */
+        .app-container {
+            width: 100%;
+            max-width: 390px;
+            background-color: var(--card-bg);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* Desktop specific adjustments */
+        @media (min-width: 480px) {
+            .app-container {
+                min-height: auto;
+                height: 844px; /* iPhone 12/13/14 Pro height roughly */
+                max-height: 95vh;
+                border-radius: 24px;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+                overflow-y: auto;
+            }
+            
+            /* Custom scrollbar for desktop view */
+            .app-container::-webkit-scrollbar {
+                width: 6px;
+            }
+            .app-container::-webkit-scrollbar-thumb {
+                background-color: var(--border-color);
+                border-radius: 10px;
+            }
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            align-items: center;
+            padding: 16px 20px;
+            border-bottom: 1px solid #f3f4f6;
+            position: sticky;
+            top: 0;
+            background: var(--card-bg);
+            z-index: 10;
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            transition: background 0.2s;
+            color: var(--text-dark);
+        }
+
+        .back-btn:hover {
+            background-color: var(--bg-color);
+        }
+
+        header h1 {
+            flex: 1;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 700;
+            margin-left: 36px; /* to balance the back button */
+        }
+
+        /* Main Content */
+        main {
+            padding: 24px 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .branding {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .logo-text {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--primary-color);
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background-color: var(--input-bg);
+            font-family: 'Tajawal', sans-serif;
+            font-size: 15px;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        input::placeholder {
+            color: #9ca3af;
+        }
+
+        input:focus {
+            border-color: var(--primary-color);
+            background-color: #fff;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+
+        /* Phone Input Specifics */
+        .phone-wrapper {
+            display: flex;
+            direction: ltr; /* LTR for phone numbers */
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background-color: var(--input-bg);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .phone-wrapper:focus-within {
+            border-color: var(--primary-color);
+            background-color: #fff;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+
+        .country-code {
+            padding: 14px 12px;
+            background-color: #f3f4f6;
+            color: var(--text-dark);
+            font-weight: 700;
+            font-size: 15px;
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .phone-wrapper input {
+            border: none;
+            border-radius: 0;
+            background: transparent;
+            box-shadow: none !important;
+            flex: 1;
+        }
+
+        /* Password Input Specifics */
+        .password-wrapper {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            left: 12px; /* Left side because of RTL */
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-muted);
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .toggle-password:hover {
+            color: var(--text-dark);
+        }
+
+        /* Checkbox */
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+            accent-color: var(--primary-color);
+            cursor: pointer;
+        }
+
+        .checkbox-group label {
+            font-weight: 500;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 0;
+            cursor: pointer;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Primary Button */
+        .btn-primary {
+            width: 100%;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: 700;
+            font-family: inherit;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.2);
+            margin-bottom: 24px;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-primary:active {
+            transform: translateY(1px);
+        }
+
+        /* Footer Link */
+        .auth-footer {
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: auto;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <header>
+            <button class="back-btn" aria-label="رجوع">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </button>
+            <h1>إنشاء حساب جديد</h1>
+        </header>
+
+        <main>
+            <div class="branding">
+                <div class="logo-text">قريب</div>
+                <div class="subtitle">مقاضيك لِباب بيتك بكل سرعة</div>
+            </div>
+
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="fullname">الاسم الكامل</label>
+                    <input type="text" id="fullname" placeholder="أدخل اسمك الثلاثي" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">رقم الجوال</label>
+                    <div class="phone-wrapper">
+                        <span class="country-code" dir="ltr">+966</span>
+                        <input type="tel" id="phone" placeholder="5X XXX XXXX" required pattern="[0-9]*" maxlength="9">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">البريد الإلكتروني</label>
+                    <input type="email" id="email" placeholder="example@domain.com" dir="ltr" style="text-align: left;" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">كلمة المرور</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="password" placeholder="أدخل كلمة المرور (8 أحرف على الأقل)" required minlength="8">
+                        <button type="button" class="toggle-password" id="togglePasswordBtn" aria-label="إظهار كلمة المرور">
+                            <!-- Eye Icon SVG -->
+                            <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                            <!-- Eye Off Icon SVG (Hidden by default) -->
+                            <svg id="eyeOffIcon" style="display: none;" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                                <line x1="1" y1="1" x2="23" y2="23"></line>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">أوافق على <a href="#">الشروط والأحكام</a> و <a href="#">سياسة الخصوصية</a> الخاصة بتطبيق قريب.</label>
+                </div>
+
+                <button type="submit" class="btn-primary">إنشاء حساب</button>
+            </form>
+
+            <div class="auth-footer">
+                لديك حساب بالفعل؟ <a href="#">تسجيل الدخول</a>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Password Visibility Toggle Logic
+            const toggleBtn = document.getElementById('togglePasswordBtn');
+            const passwordInput = document.getElementById('password');
+            const eyeIcon = document.getElementById('eyeIcon');
+            const eyeOffIcon = document.getElementById('eyeOffIcon');
+
+            toggleBtn.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                
+                if (type === 'text') {
+                    eyeIcon.style.display = 'none';
+                    eyeOffIcon.style.display = 'block';
+                    this.setAttribute('aria-label', 'إخفاء كلمة المرور');
+                } else {
+                    eyeIcon.style.display = 'block';
+                    eyeOffIcon.style.display = 'none';
+                    this.setAttribute('aria-label', 'إظهار كلمة المرور');
+                }
+            });
+
+            // Prevent form default submission for demonstration
+            const form = document.getElementById('registerForm');
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('تم إنشاء الحساب بنجاح! مرحباً بك في قريب.');
+            });
+
+            // Back button action
+            const backBtn = document.querySelector('.back-btn');
+            backBtn.addEventListener('click', function() {
+                // In a real app this would use history.back() or navigation router
+                console.log('الرجوع للشاشة السابقة');
+            });
+        });
+    </script>
+</body>
+</html>

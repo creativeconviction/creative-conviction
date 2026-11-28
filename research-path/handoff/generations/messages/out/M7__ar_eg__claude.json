@@ -1,0 +1,13 @@
+{
+  "scenario": "M7",
+  "lang": "ar_eg",
+  "model": "claude",
+  "message": "بعتوا بسكوت بزبدة الفول السوداني بدل العادي، وابني عنده حساسية من المكسرات وكل واحدة خلاص",
+  "raw": "```json\n{\n  \"intent\": \"wrong_item\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"The customer received peanut butter biscuits instead of regular ones, and their son, who has a nut allergy, has already eaten one, a potential medical emergency that needs immediate escalation.\"\n}\n```",
+  "intent": "wrong_item",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "The customer received peanut butter biscuits instead of regular ones, and their son, who has a nut allergy, has already eaten one, a potential medical emergency that needs immediate escalation."
+}

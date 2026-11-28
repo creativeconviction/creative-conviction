@@ -1,0 +1,37 @@
+{
+  "big_idea": "The campaign revolves around the literal translation of Qareeb ('near' or 'close'), emphasizing that the trusted neighborhood 'baqala' (local grocery shop) is now instantly accessible in your pocket. It positions the app as the ultimate everyday lifehack for busy Riyadh residents, bridging the gap between modern convenience and local affordability without a luxury price tag.",
+  "key_visual": "A dynamic, split-screen style composition where a friendly neighborhood grocery store owner is seamlessly handing a fresh paper bag of groceries 'through' a smartphone screen to a relaxed Saudi professional sitting on their modern living room couch. The lighting is warm and inviting, with subtle elements of the Riyadh skyline visible in the background window to establish local context.",
+  "image_prompt": "A hyper-realistic, highly detailed advertising photo of a smiling 30-year-old Saudi man in a modern Riyadh apartment holding a smartphone, a friendly local grocery store owner reaching out from inside the phone screen to hand him a brown paper bag of fresh groceries. Warm, everyday lifestyle lighting, subtle Riyadh skyline visible through the window, vibrant colors, approachable and affordable vibe, shot on 35mm lens, 8k resolution, photorealistic --ar 16:9",
+  "palette": [
+    "#00B259",
+    "#FF7A00",
+    "#1E293B",
+    "#F8FAFC"
+  ],
+  "typography": "Tajawal (Arabic) and Outfit (English)",
+  "tone_words": [
+    "Friendly",
+    "Fast",
+    "Local",
+    "Practical",
+    "Approachable"
+  ],
+  "headline": "مقاضيك اليومية، أقرب لك من قبل!",
+  "subhead": "كل اللي تحتاجه من بقالة حارتك يوصلك في ٢٠ دقيقة بس. ادفع بالطريقة اللي تريحك، والطلب العاشر توصيله علينا!",
+  "cta": "اطلب الحين",
+  "ad_lines": [
+    "راجع من الدوام وتعبان؟ مقاضيك توصلك في ٢٠ دقيقة مع قريب.",
+    "حليب، خبز، أو طماطم؟ ادفع كاش أو بطاقة وخلي المشوار على قريب.",
+    "لا تشيل هم التوصيل! اطلب ٩ مرات من قريب، والطلب العاشر توصيله مجاناً."
+  ],
+  "app_store_blurb": "تطبيق \"قريب\" هو الحل الأسرع والأوفر لمقاضيك اليومية في الرياض! نوصلك كل اللي تحتاجه من محلات وبقالات حارتك في ٢٠ دقيقة بس، مع خيارات دفع مرنة تناسبك (كاش عند الاستلام أو بالبطاقة). استمتع بتجربة تسوق سهلة ومريحة، ولا تنسى: طلبك العاشر دائماً توصيله مجاني كشكر منا لك!",
+  "push_notifications": [
+    "نسيت تتقضى؟ 🛒 افتح \"قريب\" ومقاضيك تكون عند بابك في ٢٠ دقيقة!",
+    "باقي لك طلب واحد وتستمتع بتوصيل مجاني من قريب! 🎁 اطلب مقاضيك الحين."
+  ],
+  "onboarding": [
+    "أقرب لك من البقالة! 🏃‍♂️ نوصل مقاضيك اليومية لبيتك في ٢٠ دقيقة بس.",
+    "ادفع براحتك 💳 تبغى تدفع كاش عند الاستلام أو بالبطاقة؟ الخيار دايماً لك.",
+    "ولائك مقدر 🎁 مع \"قريب\"، توصيل طلبك العاشر دايماً مجاني كشكر منا لك!"
+  ]
+}

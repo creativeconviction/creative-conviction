@@ -1,0 +1,13 @@
+{
+  "scenario": "M8",
+  "lang": "ar_eg",
+  "model": "gpt",
+  "message": "اتخصم مني مرتين على نفس الأوردر، 450 جنيه مرتين من الكارت",
+  "raw": "{\"intent\":\"billing_issue\",\"sentiment\":\"negative\",\"urgency\":\"high\",\"sarcasm\":false,\"churn_risk\":false,\"summary\":\"The customer was charged twice for the same order, with two charges of 450 EGP on their card.\"}",
+  "intent": "billing_issue",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer was charged twice for the same order, with two charges of 450 EGP on their card."
+}

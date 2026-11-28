@@ -1,0 +1,13 @@
+{
+  "scenario": "M12",
+  "lang": "ar_eg",
+  "model": "deepseek",
+  "message": "شكراً على التوصيل السريع! بس العيش كان بايت والطماطم مفعصة",
+  "raw": "{\n  \"intent\": \"quality_issue\",\n  \"sentiment\": \"mixed\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"The customer thanks for fast delivery but complains that the bread was stale and the tomatoes were squashed.\"\n}",
+  "intent": "quality_issue",
+  "sentiment": "mixed",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "The customer thanks for fast delivery but complains that the bread was stale and the tomatoes were squashed."
+}

@@ -1,0 +1,12 @@
+{
+  "line": "T3",
+  "market": "en_gb",
+  "model": "claude",
+  "source": "Have a break, have a KitKat",
+  "raw": "```json\n{\n  \"literal\": \"Have a break, have a KitKat\",\n  \"adaptation\": \"Have a break, have a KitKat\",\n  \"back_translation\": \"Have a break, have a KitKat\",\n  \"approach\": \"keep_english\",\n  \"notes\": \"The line was created in the UK for Rowntree's in 1958 and is deeply tied to British tea-break culture, so it should run unchanged to protect decades of brand equity and familiarity.\"\n}\n```",
+  "literal": "Have a break, have a KitKat",
+  "adaptation": "Have a break, have a KitKat",
+  "back_translation": "Have a break, have a KitKat",
+  "approach": "keep_english",
+  "notes": "The line was created in the UK for Rowntree's in 1958 and is deeply tied to British tea-break culture, so it should run unchanged to protect decades of brand equity and familiarity."
+}

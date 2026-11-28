@@ -1,0 +1,12 @@
+{
+  "line": "T4",
+  "market": "ar_sa",
+  "model": "deepseek",
+  "source": "Red Bull gives you wings",
+  "raw": "{\n  \"literal\": \"ريد بُل يمنحك أجنحة\",\n  \"adaptation\": \"ريد بُل يمنحك أجنحة\",\n  \"back_translation\": \"Red Bull grants you wings\",\n  \"approach\": \"literal\",\n  \"notes\": \"The winged metaphor is universally understood and faces no cultural or religious objections in Saudi Arabia, so a direct translation works effectively.\"\n}",
+  "literal": "ريد بُل يمنحك أجنحة",
+  "adaptation": "ريد بُل يمنحك أجنحة",
+  "back_translation": "Red Bull grants you wings",
+  "approach": "literal",
+  "notes": "The winged metaphor is universally understood and faces no cultural or religious objections in Saudi Arabia, so a direct translation works effectively."
+}

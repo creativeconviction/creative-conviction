@@ -1,0 +1,12 @@
+{
+  "line": "I3",
+  "market": "en_gb",
+  "model": "claude",
+  "source": "Bring home the bacon with zero fees.",
+  "raw": "```json\n{\n  \"literal\": \"Bring home the bacon with zero fees.\",\n  \"adaptation\": \"Bring home the bacon – with no monthly fees.\",\n  \"back_translation\": \"Earn your living, and pay no monthly account fees.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"The idiom works naturally in the UK, so I kept it, but I swapped the more American-sounding 'zero fees' for the familiar British phrasing 'no monthly fees', which also avoids an absolute 'zero fees' claim that could breach FCA and ASA rules on fair, clear and not misleading promotions if any charges apply.\"\n}\n```",
+  "literal": "Bring home the bacon with zero fees.",
+  "adaptation": "Bring home the bacon – with no monthly fees.",
+  "back_translation": "Earn your living, and pay no monthly account fees.",
+  "approach": "adapted",
+  "notes": "The idiom works naturally in the UK, so I kept it, but I swapped the more American-sounding 'zero fees' for the familiar British phrasing 'no monthly fees', which also avoids an absolute 'zero fees' claim that could breach FCA and ASA rules on fair, clear and not misleading promotions if any charges apply."
+}

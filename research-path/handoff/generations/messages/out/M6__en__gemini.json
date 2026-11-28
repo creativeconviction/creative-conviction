@@ -1,0 +1,13 @@
+{
+  "scenario": "M6",
+  "lang": "en",
+  "model": "gemini",
+  "message": "cancel my order NOW please, I ordered to the wrong address",
+  "raw": "{\n  \"intent\": \"cancel_order\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"The customer is urgently requesting to cancel their order because they accidentally entered the wrong delivery address.\"\n}",
+  "intent": "cancel_order",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer is urgently requesting to cancel their order because they accidentally entered the wrong delivery address."
+}

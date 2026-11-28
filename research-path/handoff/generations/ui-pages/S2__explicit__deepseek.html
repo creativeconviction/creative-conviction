@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قريب - إتمام الطلب</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f5f3f0;
+            --card-bg: #ffffff;
+            --text: #1c1a18;
+            --text-secondary: #6b6560;
+            --text-muted: #99938d;
+            --border: #e4e0db;
+            --border-light: #f0ede9;
+            --primary: #0d7d6e;
+            --primary-light: #e8f5f2;
+            --primary-dark: #0a6659;
+            --danger: #c0392b;
+            --danger-light: #fef2f2;
+            --success: #1a8a4a;
+            --success-light: #edfaf3;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.08);
+            --radius-sm: 8px;
+            --radius: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+            --transition: 0.2s ease;
+            --font: 'Cairo', system-ui, -apple-system, sans-serif;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-family: var(--font);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+            direction: rtl;
+            writing-mode: horizontal-tb;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0;
+            background: var(--bg);
+        }
+
+        /* Main container */
+        .checkout-container {
+            width: 100%;
+            max-width: 500px;
+            padding: 0 0 120px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* Header */
+        .checkout-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg);
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-block-end: 1px solid transparent;
+            transition: var(--transition);
+        }
+
+        .checkout-header.scrolled {
+            border-block-end-color: var(--border);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-back-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: var(--card-bg);
+            cursor: pointer;
+            color: var(--text);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+
+        .header-back-btn:hover {
+            background: #f0ede9;
+            box-shadow: var(--shadow-md);
+        }
+        .header-back-btn:active {
+            transform: scale(0.95);
+        }
+
+        .header-back-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .header-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: -0.01em;
+        }
+
+        .header-brand {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-inline-start: auto;
+            background: var(--primary-light);
+            padding: 6px 14px;
+            border-radius: 20px;
+            letter-spacing: -0.01em;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            padding: 16px;
+            margin: 0 12px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid var(--border-light);
+        }
+
+        @media (min-width: 500px) {
+            .card {
+                margin: 0;
+                padding: 20px;
+                border-radius: var(--radius-xl);
+            }
+            .checkout-container {
+                padding: 0 16px 140px 16px;
+                gap: 14px;
+            }
+            .checkout-header {
+                padding: 14px 0;
+            }
+        }
+
+        /* Address Card */
+        .address-card {
+            position: relative;
+            cursor: default;
+        }
+        .address-card-inner {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .address-icon {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #fef7f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #e08b3a;
+            margin-block-start: 2px;
+        }
+        .address-icon svg {
+            width: 20px;
+            height: 20px;
+        }
+        .address-details {
+            flex: 1;
+            min-width: 0;
+        }
+        .address-label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-block-end: 2px;
+            letter-spacing: -0.01em;
+        }
+        .address-full {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-block-end: 4px;
+        }
+        .address-phone {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            direction: ltr;
+            display: inline-block;
+            text-align: start;
+            background: #fafaf8;
+            padding: 3px 10px;
+            border-radius: 6px;
+            letter-spacing: 0.02em;
+            unicode-bidi: embed;
+        }
+        .address-edit-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--primary);
+            cursor: pointer;
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: var(--primary-light);
+            transition: var(--transition);
+            margin-block-start: 8px;
+            border: none;
+            font-family: var(--font);
+        }
+        .address-edit-link:hover {
+            background: #d4ede7;
+        }
+        .address-edit-link svg {
+            width: 13px;
+            height: 13px;
+        }
+
+        /* Section titles */
+        .section-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-block-end: 12px;
+            letter-spacing: -0.01em;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border-light);
+            margin-inline-start: 4px;
+        }
+
+        /* Delivery Time Selector */
+        .day-toggle {
+            display: flex;
+            gap: 8px;
+            margin-block-end: 14px;
+            background: #f8f7f5;
+            border-radius: var(--radius-xl);
+            padding: 4px;
+        }
+        .day-toggle-btn {
+            flex: 1;
+            padding: 10px 16px;
+            border-radius: var(--radius-lg);
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-family: var(--font);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+        .day-toggle-btn.active {
+            background: var(--card-bg);
+            color: var(--text);
+            box-shadow: var(--shadow-sm);
+            font-weight: 700;
+        }
+        .day-toggle-btn:hover:not(.active) {
+            color: var(--text);
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+        @media (min-width: 420px) {
+            .time-slots {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        .time-slot {
+            padding: 10px 6px;
+            border-radius: var(--radius);
+            border: 1.5px solid var(--border);
+            background: var(--card-bg);
+            cursor: pointer;
+            font-family: var(--font);
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: var(--text);
+            text-align: center;
+            transition: var(--transition);
+            white-space: nowrap;
+            letter-spacing: -0.01em;
+        }
+        .time-slot:hover {
+            border-color: var(--primary);
+            background: #fafdfc;
+        }
+        .time-slot.active {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            font-weight: 700;
+            box-shadow: 0 0 0 3px rgba(13, 125, 110, 0.08);
+        }
+
+        /* Cart Items */
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 0;
+            border-block-end: 1px solid var(--border-light);
+        }
+        .cart-item:last-of-type {
+            border-block-end: none;
+            padding-block-end: 0;
+        }
+        .cart-item:first-of-type {
+            padding-block-start: 0;
+        }
+        .cart-item-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .cart-item-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text);
+            letter-spacing: -0.01em;
+            line-height: 1.3;
+            margin-block-end: 2px;
+        }
+        .cart-item-unit-price {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+        .quantity-stepper {
+            display: flex;
+            align-items: center;
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            background: #fafaf8;
+        }
+        .qty-btn {
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-family: var(--font);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            line-height: 1;
+        }
+        .qty-btn:hover {
+            background: #f0ede9;
+            color: var(--primary);
+        }
+        .qty-btn:active {
+            background: #e8e4df;
+            transform: scale(0.9);
+        }
+        .qty-btn:disabled {
+            color: #ccc;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+        .qty-value {
+            width: 28px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text);
+            user-select: none;
+            letter-spacing: 0;
+        }
+        .cart-item-total {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text);
+            min-width: 55px;
+            text-align: end;
+            white-space: nowrap;
+            letter-spacing: -0.01em;
+        }
+
+        /* Promo Code */
+        .promo-row {
+            display: flex;
+            gap: 8px;
+        }
+        .promo-input {
+            flex: 1;
+            padding: 12px 14px;
+            border-radius: var(--radius);
+            border: 1.5px solid var(--border);
+            font-family: var(--font);
+            font-size: 0.85rem;
+            color: var(--text);
+            background: #fafaf8;
+            transition: var(--transition);
+            min-width: 0;
+            letter-spacing: 0.01em;
+        }
+        .promo-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(13, 125, 110, 0.06);
+            background: #fff;
+        }
+        .promo-input::placeholder {
+            color: var(--text-muted);
+            opacity: 1;
+        }
+        .promo-apply-btn {
+            padding: 12px 20px;
+            border-radius: var(--radius);
+            border: none;
+            background: var(--text);
+            color: #fff;
+            font-family: var(--font);
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+            letter-spacing: -0.01em;
+        }
+        .promo-apply-btn:hover {
+            background: #333;
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+        .promo-apply-btn:active {
+            transform: scale(0.96);
+        }
+        .promo-feedback {
+            font-size: 0.75rem;
+            margin-block-start: 6px;
+            font-weight: 600;
+            min-height: 18px;
+            transition: var(--transition);
+        }
+        .promo-feedback.success {
+            color: var(--success);
+        }
+        .promo-feedback.error {
+            color: var(--danger);
+        }
+        .promo-applied-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: var(--success-light);
+            color: var(--success);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 5px 10px;
+            border-radius: 20px;
+            margin-block-start: 8px;
+        }
+        .promo-remove-btn {
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: inherit;
+            font-weight: 700;
+            font-size: 1rem;
+            line-height: 1;
+            padding: 0;
+            margin-inline-start: 2px;
+            transition: var(--transition);
+        }
+        .promo-remove-btn:hover {
+            color: var(--danger);
+        }
+
+        /* Payment Methods */
+        .payment-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .payment-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px;
+            border-radius: var(--radius);
+            border: 1.5px solid var(--border);
+            cursor: pointer;
+            transition: var(--transition);
+            background: #fafaf8;
+            position: relative;
+        }
+        .payment-option:hover {
+            border-color: #c5bfb8;
+            background: #fff;
+        }
+        .payment-option.active {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(13, 125, 110, 0.06);
+        }
+        .payment-radio {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            background: #fff;
+        }
+        .payment-option.active .payment-radio {
+            border-color: var(--primary);
+            background: var(--primary);
+        }
+        .payment-option.active .payment-radio::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #fff;
+        }
+        .payment-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.2rem;
+        }
+        .payment-icon.card-icon {
+            background: #f0f4ff;
+            color: #3b5fc0;
+        }
+        .payment-icon.apple-icon {
+            background: #f5f5f5;
+            color: #1a1a1a;
+            font-weight: 800;
+            font-size: 0.85rem;
+            letter-spacing: -0.02em;
+        }
+        .payment-icon.cash-icon {
+            background: #fef9f0;
+            color: #c08830;
+        }
+        .payment-label {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text);
+            letter-spacing: -0.01em;
+        }
+        .payment-label .english-brand {
+            direction: ltr;
+            display: inline;
+            unicode-bidi: embed;
+            font-weight: 700;
+        }
+
+        /* Order Total */
+        .totals-section {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            padding: 2px 0;
+        }
+        .total-row.discount-row {
+            color: var(--success);
+            font-weight: 600;
+        }
+        .total-row.vat-row {
+            color: var(--text-secondary);
+        }
+        .total-row.grand-total {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--text);
+            margin-block-start: 6px;
+            padding-block-start: 10px;
+            border-block-start: 2px solid var(--border);
+            letter-spacing: -0.01em;
+        }
+        .total-amount {
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .grand-total .total-amount {
+            font-weight: 800;
+            font-size: 1.15rem;
+            color: var(--primary-dark);
+        }
+
+        /* Place Order Button */
+        .place-order-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 16px 24px;
+            border-radius: var(--radius-xl);
+            border: none;
+            background: var(--primary);
+            color: #fff;
+            font-family: var(--font);
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            letter-spacing: -0.01em;
+            box-shadow: 0 4px 16px rgba(13, 125, 110, 0.25);
+            position: relative;
+            overflow: hidden;
+            margin-block-start: 4px;
+        }
+        .place-order-btn:hover {
+            background: var(--primary-dark);
+            box-shadow: 0 6px 24px rgba(13, 125, 110, 0.35);
+            transform: translateY(-2px);
+        }
+        .place-order-btn:active {
+            transform: scale(0.97);
+            box-shadow: 0 2px 8px rgba(13, 125, 110, 0.2);
+        }
+        .place-order-btn:disabled {
+            background: #b5c9c4;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+        .place-order-btn .btn-spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 2.5px solid rgba(255, 255, 255, 0.4);
+            border-block-start-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            margin-inline-end: 8px;
+        }
+        .place-order-btn.loading .btn-spinner {
+            display: inline-block;
+        }
+        .place-order-btn.loading .btn-text {
+            opacity: 0.8;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Floating bottom bar */
+        .bottom-bar {
+            position: fixed;
+            bottom: 0;
+            inset-inline: 0;
+            z-index: 200;
+            background: var(--card-bg);
+            padding: 12px 16px 20px 16px;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+            border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        @media (min-width: 500px) {
+            .bottom-bar {
+                inset-inline: calc((100% - 500px) / 2);
+                border-radius: var(--radius-lg);
+                bottom: 12px;
+                box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+            }
+        }
+        .bottom-bar-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+        .bottom-bar-total {
+            font-weight: 800;
+            font-size: 1rem;
+            color: var(--primary-dark);
+        }
+        .bottom-bar .place-order-btn {
+            margin-block-start: 0;
+            border-radius: var(--radius-lg);
+            padding: 14px 20px;
+            font-size: 0.95rem;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            top: 20px;
+            inset-inline: 16px;
+            z-index: 999;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 14px 20px;
+            border-radius: var(--radius-lg);
+            background: #1c1a18;
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            transform: translateY(-120px);
+            opacity: 0;
+            transition: all 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+            pointer-events: none;
+            letter-spacing: -0.01em;
+        }
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .toast.success {
+            background: #1a6b4a;
+        }
+        .toast.error {
+            background: #b33a2e;
+        }
+
+        @media (min-width: 500px) {
+            .toast {
+                inset-inline: calc((100% - 500px) / 2);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 389px) {
+            .time-slots {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .cart-item {
+                flex-wrap: wrap;
+                gap: 6px;
+            }
+            .cart-item-actions {
+                width: 100%;
+                justify-content: space-between;
+            }
+            .card {
+                padding: 12px;
+                margin: 0 6px;
+            }
+            .checkout-header {
+                padding: 10px 10px;
+            }
+            .bottom-bar {
+                padding: 10px 10px 16px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Toast notification -->
+    <div class="toast" id="toast" aria-live="polite"></div>
+
+    <!-- Header -->
+    <header class="checkout-header" id="header">
+        <button class="header-back-btn" aria-label="رجوع" title="رجوع">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 18l6-6-6-6"/>
+            </svg>
+        </button>
+        <span class="header-title">إتمام الطلب</span>
+        <span class="header-brand">قريب</span>
+    </header>
+
+    <!-- Main Content -->
+    <main class="checkout-container" id="checkoutContainer">
+
+        <!-- Address Card -->
+        <section class="card address-card" aria-labelledby="address-heading">
+            <span class="section-title" id="address-heading">عنوان التوصيل</span>
+            <div class="address-card-inner">
+                <div class="address-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                </div>
+                <div class="address-details">
+                    <div class="address-label">المنزل</div>
+                    <div class="address-full">الرياض، حي الملقا، طريق الأمير محمد بن سلمان، مبنى رقم ٤٢</div>
+                    <span class="address-phone" dir="ltr">+966 55 123 4567</span>
+                    <br>
+                    <button class="address-edit-link" aria-label="تعديل العنوان">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 3a2.828 2.828 0 114 4L7.5 20.5 3 22l1.5-4.5L17 3z"/>
+                        </svg>
+                        تعديل
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Delivery Time -->
+        <section class="card" aria-labelledby="delivery-heading">
+            <span class="section-title" id="delivery-heading">وقت التوصيل</span>
+            <div class="day-toggle" role="group" aria-label="اختيار اليوم">
+                <button class="day-toggle-btn active" data-day="today" aria-pressed="true">اليوم</button>
+                <button class="day-toggle-btn" data-day="tomorrow" aria-pressed="false">غداً</button>
+            </div>
+            <div class="time-slots" id="timeSlots" role="group" aria-label="الفترات المتاحة">
+                <!-- Filled by JS -->
+            </div>
+        </section>
+
+        <!-- Cart Summary -->
+        <section class="card" aria-labelledby="cart-heading">
+            <span class="section-title" id="cart-heading">ملخص الطلب</span>
+            <div id="cartItems">
+                <!-- Filled by JS -->
+            </div>
+        </section>
+
+        <!-- Promo Code -->
+        <section class="card" aria-labelledby="promo-heading">
+            <span class="section-title" id="promo-heading">رمز الخصم</span>
+            <div class="promo-row">
+                <input type="text" class="promo-input" id="promoInput" placeholder="أدخل رمز الخصم" aria-label="رمز الخصم" dir="ltr">
+                <button class="promo-apply-btn" id="promoApplyBtn">تطبيق</button>
+            </div>
+            <div class="promo-feedback" id="promoFeedback"></div>
+            <div id="promoTagContainer"></div>
+        </section>
+
+        <!-- Payment Methods -->
+        <section class="card" aria-labelledby="payment-heading">
+            <span class="section-title" id="payment-heading">طريقة الدفع</span>
+            <div class="payment-options" id="paymentOptions" role="radiogroup" aria-label="طرق الدفع">
+                <div class="payment-option active" data-payment="card" role="radio" aria-checked="true" tabindex="0">
+                    <div class="payment-radio"></div>
+                    <div class="payment-icon card-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+                            <line x1="1" y1="10" x2="23" y2="10"/>
+                        </svg>
+                    </div>
+                    <span class="payment-label">الدفع بالبطاقة</span>
+                </div>
+                <div class="payment-option" data-payment="apple" role="radio" aria-checked="false" tabindex="0">
+                    <div class="payment-radio"></div>
+                    <div class="payment-icon apple-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                        </svg>
+                    </div>
+                    <span class="payment-label"><span class="english-brand" dir="ltr">Apple Pay</span></span>
+                </div>
+                <div class="payment-option" data-payment="cash" role="radio" aria-checked="false" tabindex="0">
+                    <div class="payment-radio"></div>
+                    <div class="payment-icon cash-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="6" width="20" height="12" rx="2"/>
+                            <circle cx="12" cy="12" r="2"/>
+                            <line x1="6" y1="6" x2="6" y2="4"/>
+                            <line x1="18" y1="6" x2="18" y2="4"/>
+                        </svg>
+                    </div>
+                    <span class="payment-label">الدفع عند الاستلام</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Order Total (in-card for desktop) -->
+        <section class="card totals-section" id="totalsCard" aria-labelledby="totals-heading">
+            <span class="section-title" id="totals-heading">تفاصيل المبلغ</span>
+            <div class="total-row">
+                <span>المجموع الفرعي</span>
+                <span class="total-amount" id="subtotalDisplay">75.00 ريال</span>
+            </div>
+            <div class="total-row discount-row" id="discountRow" style="display:none;">
+                <span>الخصم</span>
+                <span class="total-amount" id="discountDisplay">-0.00 ريال</span>
+            </div>
+            <div class="total-row">
+                <span>رسوم التوصيل</span>
+                <span class="total-amount" id="deliveryFeeDisplay">15.00 ريال</span>
+            </div>
+            <div class="total-row vat-row">
+                <span>ضريبة القيمة المضافة (15%)</span>
+                <span class="total-amount" id="vatDisplay">13.50 ريال</span>
+            </div>
+            <div class="total-row grand-total">
+                <span>الإجمالي</span>
+                <span class="total-amount" id="totalDisplay">103.50 ريال</span>
+            </div>
+            <button class="place-order-btn" id="placeOrderBtnTop">
+                <span class="btn-spinner"></span>
+                <span class="btn-text">تأكيد الطلب</span>
+            </button>
+        </section>
+
+    </main>
+
+    <!-- Bottom Bar (mobile sticky) -->
+    <div class="bottom-bar" id="bottomBar">
+        <div class="bottom-bar-row">
+            <span>الإجمالي</span>
+            <span class="bottom-bar-total" id="bottomBarTotal">103.50 ريال</span>
+        </div>
+        <button class="place-order-btn" id="placeOrderBtn">
+            <span class="btn-spinner"></span>
+            <span class="btn-text">تأكيد الطلب</span>
+        </button>
+    </div>
+
+    <script>
+        (function() {
+            // ──────────────────────────────────────
+            // State
+            // ──────────────────────────────────────
+            const cartItems = [
+                { id: 1, name: 'برجر دجاج مشوي', unitPrice: 25, qty: 1 },
+                { id: 2, name: 'بيتزا مارغريتا', unitPrice: 35, qty: 1 },
+                { id: 3, name: 'عصير برتقال طازج', unitPrice: 15, qty: 1 },
+            ];
+
+            const deliveryFee = 15;
+            const vatRate = 0.15;
+            let selectedDay = 'today';
+            let selectedTimeSlot = null;
+            let selectedPayment = 'card';
+            let promoCodeApplied = null; // stores { code, discountPercent }
+            let promoDiscountAmount = 0;
+
+            // Time slots data
+            const timeSlotsData = {
+                today: [
+                    '10:00 - 12:00 ص',
+                    '12:00 - 2:00 م',
+                    '2:00 - 4:00 م',
+                    '4:00 - 6:00 م',
+                    '6:00 - 8:00 م',
+                    '8:00 - 10:00 م',
+                ],
+                tomorrow: [
+                    '9:00 - 11:00 ص',
+                    '11:00 - 1:00 م',
+                    '1:00 - 3:00 م',
+                    '3:00 - 5:00 م',
+                    '5:00 - 7:00 م',
+                    '7:00 - 9:00 م',
+                ],
+            };
+
+            // ──────────────────────────────────────
+            // DOM refs
+            // ──────────────────────────────────────
+            const timeSlotsContainer = document.getElementById('timeSlots');
+            const cartItemsContainer = document.getElementById('cartItems');
+            const promoInput = document.getElementById('promoInput');
+            const promoApplyBtn = document.getElementById('promoApplyBtn');
+            const promoFeedback = document.getElementById('promoFeedback');
+            const promoTagContainer = document.getElementById('promoTagContainer');
+            const subtotalDisplay = document.getElementById('subtotalDisplay');
+            const discountRow = document.getElementById('discountRow');
+            const discountDisplay = document.getElementById('discountDisplay');
+            const deliveryFeeDisplay = document.getElementById('deliveryFeeDisplay');
+            const vatDisplay = document.getElementById('vatDisplay');
+            const totalDisplay = document.getElementById('totalDisplay');
+            const bottomBarTotal = document.getElementById('bottomBarTotal');
+            const placeOrderBtn = document.getElementById('placeOrderBtn');
+            const placeOrderBtnTop = document.getElementById('placeOrderBtnTop');
+            const toast = document.getElementById('toast');
+            const header = document.getElementById('header');
+            const bottomBar = document.getElementById('bottomBar');
+            const dayToggleBtns = document.querySelectorAll('.day-toggle-btn');
+            const paymentOptions = document.querySelectorAll('.payment-option');
+
+            // ──────────────────────────────────────
+            // Toast helper
+            // ──────────────────────────────────────
+            let toastTimer;
+
+            function showToast(message, type = '') {
+                clearTimeout(toastTimer);
+                toast.textContent = message;
+                toast.className = 'toast ' + type + ' show';
+                toastTimer = setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 2500);
+            }
+
+            // ──────────────────────────────────────
+            // Calculations
+            // ──────────────────────────────────────
+            function getSubtotal() {
+                return cartItems.reduce((sum, item) => sum + item.unitPrice * item.qty, 0);
+            }
+
+            function getDiscountAmount(subtotal) {
+                if (promoCodeApplied && promoCodeApplied.discountPercent > 0) {
+                    return Math.round(subtotal * promoCodeApplied.discountPercent * 100) / 100;
+                }
+                return 0;
+            }
+
+            function getTaxableAmount(subtotal, discount) {
+                return subtotal - discount + deliveryFee;
+            }
+
+            function getVAT(taxableAmount) {
+                return Math.round(taxableAmount * vatRate * 100) / 100;
+            }
+
+            function getTotal(taxableAmount, vat) {
+                return Math.round((taxableAmount + vat) * 100) / 100;
+            }
+
+            function formatSAR(amount) {
+                return amount.toFixed(2) + ' ريال';
+            }
+
+            // ──────────────────────────────────────
+            // Update all displays
+            // ──────────────────────────────────────
+            function updateAllDisplays() {
+                const subtotal = getSubtotal();
+                const discount = getDiscountAmount(subtotal);
+                const taxableAmount = getTaxableAmount(subtotal, discount);
+                const vat = getVAT(taxableAmount);
+                const total = getTotal(taxableAmount, vat);
+
+                subtotalDisplay.textContent = formatSAR(subtotal);
+                deliveryFeeDisplay.textContent = formatSAR(deliveryFee);
+                vatDisplay.textContent = formatSAR(vat);
+                totalDisplay.textContent = formatSAR(total);
+                bottomBarTotal.textContent = formatSAR(total);
+
+                if (discount > 0) {
+                    discountRow.style.display = 'flex';
+                    discountDisplay.textContent = '-' + formatSAR(discount);
+                } else {
+                    discountRow.style.display = 'none';
+                    discountDisplay.textContent = '-0.00 ريال';
+                }
+
+                promoDiscountAmount = discount;
+            }
+
+            // ──────────────────────────────────────
+            // Render cart items
+            // ──────────────────────────────────────
+            function renderCartItems() {
+                cartItemsContainer.innerHTML = '';
+                cartItems.forEach((item, index) => {
+                    const itemTotal = item.unitPrice * item.qty;
+                    const div = document.createElement('div');
+                    div.className = 'cart-item';
+                    div.innerHTML = `
+                        <div class="cart-item-info">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-unit-price">${item.unitPrice.toFixed(2)} ريال / للقطعة</div>
+                        </div>
+                        <div class="cart-item-actions">
+                            <div class="quantity-stepper">
+                                <button class="qty-btn qty-minus" data-index="${index}" aria-label="تقليل الكمية" ${item.qty <= 1 ? 'disabled' : ''}>−</button>
+                                <span class="qty-value">${item.qty}</span>
+                                <button class="qty-btn qty-plus" data-index="${index}" aria-label="زيادة الكمية">+</button>
+                            </div>
+                            <span class="cart-item-total">${itemTotal.toFixed(2)} ريال</span>
+                        </div>
+                    `;
+                    cartItemsContainer.appendChild(div);
+                });
+
+                // Attach event listeners
+                cartItemsContainer.querySelectorAll('.qty-minus').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const idx = parseInt(this.dataset.index);
+                        if (cartItems[idx].qty > 1) {
+                            cartItems[idx].qty--;
+                            renderCartItems();
+                            updateAllDisplays();
+                        }
+                    });
+                });
+                cartItemsContainer.querySelectorAll('.qty-plus').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const idx = parseInt(this.dataset.index);
+                        if (cartItems[idx].qty < 10) {
+                            cartItems[idx].qty++;
+                            renderCartItems();
+                            updateAllDisplays();
+                        } else {
+                            showToast('الحد الأقصى للكمية هو ١٠', 'error');
+                        }
+                    });
+                });
+
+                updateAllDisplays();
+            }
+
+            // ──────────────────────────────────────
+            // Render time slots
+            // ──────────────────────────────────────
+            function renderTimeSlots() {
+                const slots = timeSlotsData[selectedDay];
+                timeSlotsContainer.innerHTML = '';
+                selectedTimeSlot = null;
+                slots.forEach((slot) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'time-slot';
+                    btn.textContent = slot;
+                    btn.setAttribute('role', 'radio');
+                    btn.setAttribute('aria-checked', 'false');
+                    btn.addEventListener('click', function() {
+                        timeSlotsContainer.querySelectorAll('.time-slot').forEach(b => {
+                            b.classList.remove('active');
+                            b.setAttribute('aria-checked', 'false');
+                        });
+                        btn.classList.add('active');
+                        btn.setAttribute('aria-checked', 'true');
+                        selectedTimeSlot = slot;
+                    });
+                    timeSlotsContainer.appendChild(btn);
+                });
+            }
+
+            // ──────────────────────────────────────
+            // Day toggle
+            // ──────────────────────────────────────
+            dayToggleBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    dayToggleBtns.forEach(b => {
+                        b.classList.remove('active');
+                        b.setAttribute('aria-pressed', 'false');
+                    });
+                    this.classList.add('active');
+                    this.setAttribute('aria-pressed', 'true');
+                    selectedDay = this.dataset.day;
+                    renderTimeSlots();
+                });
+            });
+
+            // ──────────────────────────────────────
+            // Payment options
+            // ──────────────────────────────────────
+            paymentOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    paymentOptions.forEach(opt => {
+                        opt.classList.remove('active');
+                        opt.setAttribute('aria-checked', 'false');
+                    });
+                    this.classList.add('active');
+                    this.setAttribute('aria-checked', 'true');
+                    selectedPayment = this.dataset.payment;
+                });
+                option.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.click();
+                    }
+                });
+            });
+
+            // ──────────────────────────────────────
+            // Promo code
+            // ──────────────────────────────────────
+            function clearPromo() {
+                promoCodeApplied = null;
+                promoDiscountAmount = 0;
+                promoInput.value = '';
+                promoFeedback.textContent = '';
+                promoFeedback.className = 'promo-feedback';
+                promoTagContainer.innerHTML = '';
+                promoInput.disabled = false;
+                promoApplyBtn.textContent = 'تطبيق';
+                promoApplyBtn.style.opacity = '1';
+                updateAllDisplays();
+            }
+
+            function applyPromoCode() {
+                const code = promoInput.value.trim();
+                if (!code) {
+                    promoFeedback.textContent = 'الرجاء إدخال رمز الخصم';
+                    promoFeedback.className = 'promo-feedback error';
+                    return;
+                }
+
+                // Valid codes
+                const validCodes = {
+                    'WELCOME': { discountPercent: 0.10, name: 'WELCOME' },
+                    'ترحيب': { discountPercent: 0.10, name: 'ترحيب' },
+                    'SAVE10': { discountPercent: 0.10, name: 'SAVE10' },
+                };
+
+                if (validCodes[code]) {
+                    promoCodeApplied = validCodes[code];
+                    promoFeedback.textContent = '✓ تم تطبيق الخصم بنجاح!';
+                    promoFeedback.className = 'promo-feedback success';
+                    promoTagContainer.innerHTML = `
+                        <span class="promo-applied-tag">
+                            ${promoCodeApplied.name} (${Math.round(promoCodeApplied.discountPercent * 100)}%)
+                            <button class="promo-remove-btn" id="promoRemoveBtn" aria-label="إزالة الخصم">×</button>
+                        </span>
+                    `;
+                    promoInput.disabled = true;
+                    promoApplyBtn.textContent = 'تم';
+                    promoApplyBtn.style.opacity = '0.6';
+                    updateAllDisplays();
+
+                    // Attach remove listener
+                    document.getElementById('promoRemoveBtn').addEventListener('click', clearPromo);
+                } else {
+                    promoFeedback.textContent = 'رمز الخصم غير صالح';
+                    promoFeedback.className = 'promo-feedback error';
+                    // Shake the input
+                    promoInput.style.borderColor = 'var(--danger)';
+                    promoInput.style.boxShadow = '0 0 0 3px rgba(192,57,43,0.1)';
+                    setTimeout(() => {
+                        promoInput.style.borderColor = 'var(--border)';
+                        promoInput.style.boxShadow = 'none';
+                    }, 800);
+                }
+            }
+
+            promoApplyBtn.addEventListener('click', function() {
+                if (promoCodeApplied) {
+                    // Already applied - clear it
+                    clearPromo();
+                    promoApplyBtn.textContent = 'تطبيق';
+                    promoApplyBtn.style.opacity = '1';
+                } else {
+                    applyPromoCode();
+                }
+            });
+
+            promoInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    if (promoCodeApplied) {
+                        clearPromo();
+                        promoApplyBtn.textContent = 'تطبيق';
+                        promoApplyBtn.style.opacity = '1';
+                    } else {
+                        applyPromoCode();
+                    }
+                }
+                // Clear error state on typing
+                if (promoFeedback.className.includes('error')) {
+                    promoFeedback.textContent = '';
+                    promoFeedback.className = 'promo-feedback';
+                    promoInput.style.borderColor = 'var(--border)';
+                    promoInput.style.boxShadow = 'none';
+                }
+            });
+
+            // ──────────────────────────────────────
+            // Place order
+            // ──────────────────────────────────────
+            function handlePlaceOrder(btnElement) {
+                if (btnElement.disabled) return;
+                if (!selectedTimeSlot) {
+                    showToast('الرجاء اختيار وقت التوصيل', 'error');
+                    // Scroll to time slots
+                    document.querySelector('.card:nth-child(2)')?.scrollIntoView({ behavior: 'smooth',
+                        block: 'center' });
+                    return;
+                }
+                // Loading state
+                btnElement.classList.add('loading');
+                btnElement.disabled = true;
+                // Also sync the other button
+                const otherBtn = btnElement === placeOrderBtn ? placeOrderBtnTop : placeOrderBtn;
+                otherBtn.classList.add('loading');
+                otherBtn.disabled = true;
+
+                const total = getTotal(
+                    getTaxableAmount(getSubtotal(), promoDiscountAmount),
+                    getVAT(getTaxableAmount(getSubtotal(), promoDiscountAmount))
+                );
+
+                setTimeout(() => {
+                    btnElement.classList.remove('loading');
+                    btnElement.disabled = false;
+                    otherBtn.classList.remove('loading');
+                    otherBtn.disabled = false;
+                    showToast('🎉 تم تقديم الطلب بنجاح! الإجمالي: ' + formatSAR(total), 'success');
+                }, 1800);
+            }
+
+            placeOrderBtn.addEventListener('click', function() { handlePlaceOrder(this); });
+            placeOrderBtnTop.addEventListener('click', function() { handlePlaceOrder(this); });
+
+            // ──────────────────────────────────────
+            // Header scroll effect
+            // ──────────────────────────────────────
+            function updateHeaderShadow() {
+                if (window.scrollY > 10) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            }
+            window.addEventListener('scroll', updateHeaderShadow, { passive: true });
+
+            // ──────────────────────────────────────
+            // Bottom bar visibility on desktop
+            // ──────────────────────────────────────
+            function updateBottomBarVisibility() {
+                const totalsCard = document.getElementById('totalsCard');
+                if (!totalsCard) return;
+                const totalsRect = totalsCard.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                // If the totals card bottom is visible in the viewport, hide the floating bar
+                if (totalsRect.bottom <= windowHeight + 40 && totalsRect.top < windowHeight) {
+                    bottomBar.style.opacity = '0';
+                    bottomBar.style.pointerEvents = 'none';
+                    bottomBar.style.transform = 'translateY(20px)';
+                } else if (totalsRect.top > windowHeight) {
+                    bottomBar.style.opacity = '1';
+                    bottomBar.style.pointerEvents = 'auto';
+                    bottomBar.style.transform = 'translateY(0)';
+                } else {
+                    bottomBar.style.opacity = '0';
+                    bottomBar.style.pointerEvents = 'none';
+                    bottomBar.style.transform = 'translateY(20px)';
+                }
+            }
+
+            window.addEventListener('scroll', updateBottomBarVisibility, { passive: true });
+            window.addEventListener('resize', updateBottomBarVisibility, { passive: true });
+
+            // ──────────────────────────────────────
+            // Initial render
+            // ──────────────────────────────────────
+            renderTimeSlots();
+            renderCartItems();
+            updateAllDisplays();
+            updateHeaderShadow();
+            // Small delay to ensure layout is settled
+            setTimeout(updateBottomBarVisibility, 100);
+
+            // ──────────────────────────────────────
+            // Sync place order buttons text
+            // ──────────────────────────────────────
+            const syncObserver = new MutationObserver(() => {
+                if (placeOrderBtnTop.textContent !== placeOrderBtn.textContent) {
+                    placeOrderBtnTop.querySelector('.btn-text').textContent = placeOrderBtn.querySelector(
+                        '.btn-text').textContent;
+                }
+            });
+            syncObserver.observe(placeOrderBtn.querySelector('.btn-text'), { characterData: true, subtree: true,
+                childList: true });
+
+            console.log('✅ قريب - واجهة إتمام الطلب جاهزة | Qareeb Checkout Ready');
+        })();
+    </script>
+</body>
+</html>

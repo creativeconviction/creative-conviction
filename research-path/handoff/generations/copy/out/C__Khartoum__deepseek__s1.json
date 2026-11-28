@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Khartoum",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Khartoum. Write marketing copy for it in Sudanese Arabic, the way people in Khartoum actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 1,
+  "prompt_lang": "en",
+  "city": "Khartoum",
+  "target_region": "Sudan",
+  "target_city_code": "KHA",
+  "model": "deepseek",
+  "id": "C__Khartoum__deepseek__s1",
+  "model_id": "deepseek/deepseek-v4-pro",
+  "output": "كل حاجة قريبة منك\n\nتمنتك طويلة؟ قريب يجيبها ليك طازة قدام باب بيتك.\n\nإنتا اطبخ، وإحنا نجيب ليك الخضار واللحمة بسعر السوق.\n\nديلووري أسرع من زحمة الشارع! حمّل قريب وخلّي المشاوير علينا.\n\nيا هلا بيك في قريب! تلاجتك فاضية؟ اطلب أول طلب وديلووري علينا.",
+  "at": "2026-11-18T05:42:36.063Z"
+}

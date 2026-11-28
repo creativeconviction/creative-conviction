@@ -1,0 +1,13 @@
+{
+  "scenario": "M12",
+  "lang": "ar_eg",
+  "model": "saba",
+  "message": "شكراً على التوصيل السريع! بس العيش كان بايت والطماطم مفعصة",
+  "raw": "```json\n{\n  \"intent\": \"quality_issue\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"The customer is unhappy because the bread was stale and the tomatoes were bruised despite the fast delivery.\"\n}\n```",
+  "intent": "quality_issue",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer is unhappy because the bread was stale and the tomatoes were bruised despite the fast delivery."
+}

@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قريب - طلبات بيتك في 20 دقيقة</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #00A859; /* Fresh Grocery Green */
+            --secondary-color: #FF7A00; /* Energetic Orange */
+            --text-dark: #2D3748;
+            --text-light: #718096;
+            --bg-light: #F7FAFC;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: #008f4c;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: #e66e00;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            background-color: var(--bg-light);
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .hero-text h1 span {
+            color: var(--primary-color);
+        }
+
+        .hero-text p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+
+        .hero-image {
+            flex: 1;
+        }
+
+        .placeholder-block {
+            width: 100%;
+            height: 450px;
+            background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e0 100%);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #718096;
+            border: 2px dashed #a0aec0;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .placeholder-block svg {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 15px;
+            opacity: 0.5;
+        }
+
+        /* How it works */
+        .how-it-works {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 50px;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .step-card {
+            background: var(--white);
+            padding: 40px 20px;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #edf2f7;
+            transition: transform 0.3s;
+        }
+
+        .step-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .step-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            background-color: var(--bg-light);
+            border-radius: 50%;
+        }
+
+        .step-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .step-card p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        /* Loyalty Program */
+        .loyalty {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .loyalty-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .loyalty h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .loyalty p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .loyalty-badge {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: 800;
+            padding: 15px 30px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Sign Up Form */
+        .signup {
+            padding: 80px 0;
+            background-color: var(--bg-light);
+            text-align: center;
+        }
+
+        .signup-box {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        .signup-box h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .signup-box p {
+            color: var(--text-light);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: right;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .signup-btn {
+            width: 100%;
+            margin-top: 10px;
+            font-size: 1.2rem;
+            padding: 15px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text-dark);
+            color: var(--white);
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: #cbd5e0;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .copyright {
+            color: #718096;
+            font-size: 0.9rem;
+            border-top: 1px solid #4a5568;
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                display: none; /* Simplified for mobile */
+            }
+
+            .signup-box {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                قريب<span>.</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#how-it-works">إزاي بيشتغل؟</a></li>
+                    <li><a href="#loyalty">برنامج الولاء</a></li>
+                </ul>
+            </nav>
+            <a href="#signup" class="btn">سجل دلوقتي</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>طلبات بيتك في <span>20 دقيقة</span>، بأسعار زمان!</h1>
+                <p>تطبيق "قريب" بيوصلك كل مقاضي البيت من أقرب سوبر ماركت ليك في القاهرة. ادفع براحتك كاش أو بالفيزا، ووفر وقتك ومجهودك.</p>
+                <a href="#signup" class="btn btn-secondary" style="padding: 15px 35px; font-size: 1.2rem;">خليك أول واحد يجرب</a>
+            </div>
+            <div class="hero-image">
+                <div class="placeholder-block">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                    <h2>صورة التطبيق هنا</h2>
+                    <p>واجهة التطبيق / عامل التوصيل</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it works -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">إزاي "قريب" بيسهل حياتك؟</h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-icon">🛒</div>
+                    <h3>اختار طلباتك</h3>
+                    <p>افتح التطبيق واختار كل اللي بيتك محتاجه من البقالة والسوبر ماركت اللي في منطقتك بأسعارها العادية.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-icon">⚡</div>
+                    <h3>استلم في 20 دقيقة</h3>
+                    <p>طيار "قريب" هيجهز طلبك ويوصله لحد باب بيتك في حوالي 20 دقيقة بس. مفيش أسرع من كده!</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-icon">💳</div>
+                    <h3>ادفع براحتك</h3>
+                    <p>طرق الدفع سهلة ومناسبة للكل. تقدر تدفع كاش لما تستلم الطلب، أو بالفيزا عن طريق التطبيق أو عند الاستلام.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Loyalty Program -->
+    <section id="loyalty" class="loyalty">
+        <div class="container loyalty-content">
+            <h2>عشان إنت مننا.. التوصيل علينا!</h2>
+            <p>في "قريب" بنقدر عملائنا. نظام الولاء بتاعنا بسيط جداً ومفيش فيه تعقيد. كل ما تطلب أكتر، هتوفر أكتر.</p>
+            <div class="loyalty-badge">
+                اطلب 9 مرات 🎁 التوصيل في المرة العاشرة مجاناً!
+            </div>
+        </div>
+    </section>
+
+    <!-- Sign Up Form -->
+    <section id="signup" class="signup">
+        <div class="container">
+            <div class="signup-box">
+                <h2>جاهز توفر وقتك؟</h2>
+                <p>سجل بياناتك دلوقتي عشان تكون من أوائل الناس اللي تستخدم "قريب" أول ما نطلق التطبيق في القاهرة، وهنبعتلك كود خصم هدية!</p>
+                
+                <form action="#" method="POST" onsubmit="event.preventDefault(); alert('تم تسجيل بياناتك بنجاح! شكراً ليك.');">
+                    <div class="form-group">
+                        <label for="name">الاسم بالكامل</label>
+                        <input type="text" id="name" class="form-control" placeholder="اكتب اسمك هنا" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">رقم الموبايل</label>
+                        <input type="tel" id="phone" class="form-control" placeholder="01X XXXX XXXX" dir="ltr" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">البريد الإلكتروني</label>
+                        <input type="email" id="email" class="form-control" placeholder="example@mail.com" dir="ltr" required>
+                    </div>
+                    <button type="submit" class="btn signup-btn">سجل بياناتك دلوقتي</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="logo" style="justify-content: center; margin-bottom: 20px; color: var(--white);">
+                قريب<span style="color: var(--secondary-color);">.</span>
+            </div>
+            <div class="footer-links">
+                <a href="#">عن التطبيق</a>
+                <a href="#">الشروط والأحكام</a>
+                <a href="#">سياسة الخصوصية</a>
+                <a href="#">تواصل معنا</a>
+            </div>
+            <div class="copyright">
+                &copy; 2023 تطبيق قريب. جميع الحقوق محفوظة. صُنع بحب في القاهرة.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

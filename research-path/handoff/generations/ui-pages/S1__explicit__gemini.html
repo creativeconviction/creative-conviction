@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>إنشاء حساب - قريب</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00A859;
+            --primary-hover: #008f4c;
+            --bg-color: #ffffff;
+            --text-main: #1A1A1A;
+            --text-muted: #666666;
+            --border-color: #E0E0E0;
+            --input-bg: #F9FAFB;
+            --error: #EF4444;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            line-height: 1.5;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 390px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            background: #ffffff;
+        }
+
+        /* Desktop responsiveness */
+        @media (min-width: 768px) {
+            body {
+                align-items: center;
+                background-color: #F3F4F6;
+            }
+            .app-container {
+                border-radius: 20px;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+                height: auto;
+                padding: 32px 40px;
+                margin: 40px 0;
+            }
+        }
+
+        /* Header & Back Button */
+        .header {
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-main);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-inline-start: -8px;
+            border-radius: 50%;
+            transition: background-color 0.2s;
+        }
+
+        .back-btn:hover {
+            background-color: var(--input-bg);
+        }
+
+        /* Titles */
+        .title-area {
+            margin-bottom: 32px;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background-color: rgba(0, 168, 89, 0.1);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .logo-icon svg {
+            width: 28px;
+            height: 28px;
+            color: var(--primary);
+        }
+
+        .title-area h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+        }
+
+        .title-area p {
+            font-size: 15px;
+            color: var(--text-muted);
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-label {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .form-input {
+            width: 100%;
+            height: 52px;
+            padding: 0 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            font-size: 15px;
+            background-color: var(--input-bg);
+            color: var(--text-main);
+            transition: all 0.2s ease;
+            outline: none;
+        }
+
+        .form-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(0, 168, 89, 0.1);
+            background-color: #ffffff;
+        }
+
+        .form-input::placeholder {
+            color: #9CA3AF;
+        }
+
+        /* Phone Input (LTR layout within RTL) */
+        .phone-wrapper {
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background-color: var(--input-bg);
+            transition: all 0.2s ease;
+            direction: ltr; /* Force LTR for country code on left */
+            overflow: hidden;
+        }
+
+        .phone-wrapper:focus-within {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(0, 168, 89, 0.1);
+            background-color: #ffffff;
+        }
+
+        .country-code {
+            height: 52px;
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            font-family: sans-serif;
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--text-main);
+            background-color: #F3F4F6;
+            border-right: 1px solid var(--border-color);
+        }
+
+        .phone-input {
+            border: none;
+            flex: 1;
+            height: 52px;
+            padding: 0 16px;
+            background: transparent;
+            outline: none;
+            font-size: 15px;
+            color: var(--text-main);
+        }
+
+        /* LTR specific inputs */
+        .ltr-input {
+            direction: ltr;
+            text-align: left;
+        }
+
+        /* Password Input */
+        .password-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .password-input {
+            padding-right: 48px; /* Space for the toggle icon on the right (end of LTR flow) */
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #9CA3AF;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: color 0.2s;
+        }
+
+        .toggle-password:hover {
+            color: var(--primary);
+        }
+
+        /* Checkbox Group */
+        .checkbox-group {
+            margin: 24px 0 32px 0;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: flex-start;
+            position: relative;
+            cursor: pointer;
+            user-select: none;
+            gap: 12px;
+        }
+
+        .custom-checkbox {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        .checkmark {
+            width: 22px;
+            height: 22px;
+            background-color: var(--input-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 1px;
+            transition: all 0.2s;
+        }
+
+        .custom-checkbox:checked ~ .checkmark {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .checkmark::after {
+            content: "";
+            display: none;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+            margin-bottom: 2px;
+        }
+
+        .custom-checkbox:checked ~ .checkmark::after {
+            display: block;
+        }
+
+        .checkbox-text {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+        }
+
+        /* Submit Button */
+        .btn-primary {
+            width: 100%;
+            background-color: var(--primary);
+            color: #ffffff;
+            border: none;
+            height: 56px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(0, 168, 89, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            box-shadow: 0 6px 16px rgba(0, 168, 89, 0.3);
+        }
+
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+
+        /* Footer text */
+        .footer-text {
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <main class="app-container">
+        
+        <!-- Header with Back Button (Arrow points right for RTL) -->
+        <header class="header">
+            <button class="back-btn" aria-label="العودة">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </button>
+        </header>
+
+        <!-- Title Section -->
+        <div class="title-area">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    <path d="M9 12l2 2 4-4"></path>
+                </svg>
+            </div>
+            <h1>إنشاء حساب</h1>
+            <p>مرحباً بك في تطبيق قريب! أدخل بياناتك للبدء.</p>
+        </div>
+
+        <!-- Sign Up Form -->
+        <form id="signupForm" onsubmit="event.preventDefault();">
+            
+            <!-- Full Name -->
+            <div class="form-group">
+                <label class="form-label" for="fullname">الاسم الكامل</label>
+                <input type="text" id="fullname" class="form-input" placeholder="أدخل اسمك الكامل" required>
+            </div>
+
+            <!-- Mobile Number -->
+            <div class="form-group">
+                <label class="form-label" for="phone">رقم الجوال</label>
+                <div class="phone-wrapper">
+                    <span class="country-code" dir="ltr">+966</span>
+                    <input type="tel" id="phone" class="phone-input" placeholder="5xx xxx xxx" pattern="[0-9]*" inputmode="numeric" required>
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                <label class="form-label" for="email">البريد الإلكتروني</label>
+                <input type="email" id="email" class="form-input ltr-input" placeholder="example@domain.com" required>
+            </div>
+
+            <!-- Password -->
+            <div class="form-group">
+                <label class="form-label" for="password">كلمة المرور</label>
+                <div class="password-container">
+                    <input type="password" id="password" class="form-input ltr-input password-input" placeholder="أدخل كلمة المرور" required>
+                    <button type="button" class="toggle-password" id="togglePassword" aria-label="إظهار كلمة المرور">
+                        <svg class="eye-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Terms & Conditions -->
+            <div class="checkbox-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="terms" class="custom-checkbox" required>
+                    <span class="checkmark"></span>
+                    <span class="checkbox-text">قرأت وأوافق على <a href="#" class="link">الشروط والأحكام</a> و <a href="#" class="link">سياسة الخصوصية</a> الخاصة بقريب.</span>
+                </label>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn-primary">إنشاء حساب</button>
+
+            <!-- Login Link -->
+            <div class="footer-text">
+                لديك حساب بالفعل؟ <a href="#" class="link">تسجيل الدخول</a>
+            </div>
+
+        </form>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const togglePasswordBtn = document.getElementById('togglePassword');
+            const passwordInput = document.getElementById('password');
+
+            togglePasswordBtn.addEventListener('click', function () {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+
+                if (type === 'text') {
+                    // Eye Off Icon
+                    this.innerHTML = `
+                        <svg class="eye-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                            <line x1="1" y1="1" x2="23" y2="23"></line>
+                        </svg>
+                    `;
+                    this.setAttribute('aria-label', 'إخفاء كلمة المرور');
+                } else {
+                    // Eye Icon
+                    this.innerHTML = `
+                        <svg class="eye-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                    `;
+                    this.setAttribute('aria-label', 'إظهار كلمة المرور');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

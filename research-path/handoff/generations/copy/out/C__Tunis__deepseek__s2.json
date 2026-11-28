@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Tunis",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Tunis. Write marketing copy for it in Tunisian Arabic, the way people in Tunis actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 2,
+  "prompt_lang": "en",
+  "city": "Tunis",
+  "target_region": "Tunisia",
+  "target_city_code": "TUN",
+  "model": "deepseek",
+  "id": "C__Tunis__deepseek__s2",
+  "model_id": "deepseek/deepseek-v4-pro",
+  "output": "قريب... القربة ولات في جيبك\n\nخلي المشوار على قريب، وغرضك يوصل في لمحة.\n\nنسيت الطماطم للكسكسي؟ قريب ينجّدك ويوصّلها قبل ما تفوت الهدرة.\n\nمش خرجت في البرد تتسوق؟ قريب يوصّل البقالة من السوق لعند باب دارك.\n\nجعت وعينك طالعة في الثلاجة الفارغة؟ قريب يوصّل لك كلّ اللي تحتاجو في دقايق. أطلب توا!",
+  "at": "2026-11-18T05:47:41.951Z"
+}

@@ -1,0 +1,12 @@
+{
+  "line": "T3",
+  "market": "ar_sa",
+  "model": "claude",
+  "source": "Have a break, have a KitKat",
+  "raw": "```json\n{\n  \"literal\": \"خذ استراحة، خذ كيت كات\",\n  \"adaptation\": \"خذ بريك... خذ كيت كات\",\n  \"back_translation\": \"Take a break... take a KitKat\",\n  \"approach\": \"adapted\",\n  \"notes\": \"I used the colloquial Gulf loanword 'بريك' (break), which Saudis commonly say, so the repetition and rhythm of the original survive, and I would avoid showing daytime snacking in any visuals during Ramadan, shifting 'break' moments to after iftar instead.\"\n}\n```",
+  "literal": "خذ استراحة، خذ كيت كات",
+  "adaptation": "خذ بريك... خذ كيت كات",
+  "back_translation": "Take a break... take a KitKat",
+  "approach": "adapted",
+  "notes": "I used the colloquial Gulf loanword 'بريك' (break), which Saudis commonly say, so the repetition and rhythm of the original survive, and I would avoid showing daytime snacking in any visuals during Ramadan, shifting 'break' moments to after iftar instead."
+}

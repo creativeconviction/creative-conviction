@@ -1,0 +1,13 @@
+{
+  "scenario": "M9",
+  "lang": "en",
+  "model": "allam",
+  "message": "just wanted to say the driver was super kind and helped me carry everything upstairs, thank you!",
+  "raw": "```json\n{\n  \"intent\": \"praise\",\n  \"sentiment\": \"positive\",\n  \"urgency\": \"low\",\n  \"sarcasm\": \"false\",\n  \"churn_risk\": \"false\",\n  \"summary\": \"Customer appreciates the driver's help\"\n}\n```",
+  "intent": "praise",
+  "sentiment": "positive",
+  "urgency": "low",
+  "sarcasm": "false",
+  "churn_risk": "false",
+  "summary": "Customer appreciates the driver's help"
+}

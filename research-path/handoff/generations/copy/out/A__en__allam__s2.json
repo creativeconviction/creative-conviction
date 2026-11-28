@@ -1,0 +1,12 @@
+{
+  "part": "A",
+  "cond": "en",
+  "s": 2,
+  "prompt_lang": "en",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب). Write marketing copy for it in Arabic: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "model": "allam",
+  "id": "A__en__allam__s2",
+  "model_id": "humain-ai/ALLaM-7B-Instruct-preview",
+  "output": "#نوصلك_قريب: أسهل طريقة لتسوق كل احتياجاتك!\n\n- حمل الآن واستمتع بالتسوق وأنت في منزلك.\n- مع Qareeb، ستجد كل ما تحتاج إليه في راحة يدك.\n- احصل على توصيل سريع وموثوق لجميع احتياجاتك. \n\nإشعار داخل التطبيق:\nوصل طلبك الآن! تم التوصيل بنجاح، لا تنسي تقييم تجربتك مع Qareeb ومشاركة آخرين كم هو رائع هذا التطبيق لتجربة تسوق منزلية خالية من المتاعب!",
+  "at": "2026-11-28T00:49:47.540412+00:00"
+}

@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - قريب | Qareeb Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sidebar-bg: #111827;
+            --sidebar-text: #cbd5e1;
+            --sidebar-active: #ffffff;
+            --sidebar-hover-bg: #1e293b;
+            --sidebar-width: 240px;
+            --primary: #4f46e5;
+            --primary-light: #eef2ff;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --accent-orange: #f59e0b;
+            --accent-blue: #3b82f6;
+            --bg: #f1f5f9;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-secondary: #64748b;
+            --border: #e2e8f0;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+            --radius: 12px;
+            --radius-sm: 8px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ============ OVERLAY (mobile) ============ */
+        .sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 90;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition);
+        }
+        .sidebar-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* ============ SIDEBAR ============ */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: var(--sidebar-bg);
+            color: var(--sidebar-text);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            transform: translateX(100%);
+            transition: transform var(--transition);
+            box-shadow: var(--shadow-lg);
+            overflow-y: auto;
+        }
+        .sidebar.open {
+            transform: translateX(0);
+        }
+        .sidebar-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 20px 20px 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            flex-shrink: 0;
+        }
+        .sidebar-brand .logo-icon {
+            width: 38px;
+            height: 38px;
+            background: var(--primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 18px;
+            color: #fff;
+            flex-shrink: 0;
+        }
+        .sidebar-brand .brand-text h2 {
+            font-size: 17px;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.2;
+        }
+        .sidebar-brand .brand-text span {
+            font-size: 11px;
+            color: #94a3b8;
+            font-weight: 500;
+        }
+        .sidebar-nav {
+            flex: 1;
+            padding: 12px 12px;
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .sidebar-nav li a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            color: var(--sidebar-text);
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .sidebar-nav li a:hover {
+            background: var(--sidebar-hover-bg);
+            color: #e2e8f0;
+        }
+        .sidebar-nav li a.active {
+            background: var(--primary);
+            color: #fff;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(79, 70, 229, 0.35);
+        }
+        .sidebar-nav li a svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+        .sidebar-footer {
+            padding: 12px 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            flex-shrink: 0;
+        }
+        .sidebar-footer .user-mini {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .sidebar-footer .user-mini:hover {
+            background: var(--sidebar-hover-bg);
+        }
+        .sidebar-footer .avatar-sm {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .sidebar-footer .user-info-sm {
+            font-size: 13px;
+            color: #e2e8f0;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+        .sidebar-footer .user-info-sm small {
+            display: block;
+            font-size: 11px;
+            color: #94a3b8;
+            font-weight: 400;
+        }
+
+        /* ============ MAIN CONTENT ============ */
+        .main-content {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            width: 100%;
+            transition: margin-right var(--transition);
+        }
+
+        /* ============ TOP BAR ============ */
+        .topbar {
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            box-shadow: var(--shadow-sm);
+            flex-shrink: 0;
+        }
+        .topbar .hamburger {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            background: var(--card-bg);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.2s;
+            color: var(--text);
+        }
+        .topbar .hamburger:hover {
+            background: var(--bg);
+            border-color: #cbd5e1;
+        }
+        .topbar .hamburger svg {
+            width: 20px;
+            height: 20px;
+        }
+        .topbar .search-wrap {
+            flex: 1;
+            position: relative;
+            max-width: 420px;
+        }
+        .topbar .search-wrap input {
+            width: 100%;
+            padding: 9px 38px 9px 14px;
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            font-family: 'Cairo', sans-serif;
+            font-size: 13px;
+            background: var(--bg);
+            color: var(--text);
+            transition: all 0.2s;
+            outline: none;
+        }
+        .topbar .search-wrap input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+            background: #fff;
+        }
+        .topbar .search-wrap input::placeholder {
+            color: #94a3b8;
+        }
+        .topbar .search-wrap .search-icon {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            pointer-events: none;
+        }
+        .topbar .topbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+        .topbar .icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: var(--card-bg);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all 0.2s;
+            color: var(--text);
+            flex-shrink: 0;
+        }
+        .topbar .icon-btn:hover {
+            background: var(--bg);
+        }
+        .topbar .icon-btn .badge-dot {
+            position: absolute;
+            top: 7px;
+            right: 7px;
+            width: 8px;
+            height: 8px;
+            background: var(--accent-red);
+            border-radius: 50%;
+            border: 2px solid #fff;
+        }
+        .topbar .profile-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px 10px 5px 14px;
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            background: var(--card-bg);
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+            transition: all 0.2s;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .topbar .profile-btn:hover {
+            background: var(--bg);
+        }
+        .topbar .profile-btn .avatar-xs {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        /* ============ PAGE CONTENT ============ */
+        .page-content {
+            padding: 16px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            overflow-y: auto;
+        }
+        .page-header h1 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.3;
+        }
+        .page-header p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        /* ============ KPI CARDS ============ */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+        .kpi-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 16px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .kpi-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-1px);
+        }
+        .kpi-card .kpi-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .kpi-card .kpi-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .kpi-card .kpi-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .kpi-card .kpi-icon.blue {
+            background: #eef2ff;
+            color: #4f46e5;
+        }
+        .kpi-card .kpi-icon.green {
+            background: #ecfdf5;
+            color: #10b981;
+        }
+        .kpi-card .kpi-icon.orange {
+            background: #fffbeb;
+            color: #f59e0b;
+        }
+        .kpi-card .kpi-icon.red {
+            background: #fef2f2;
+            color: #ef4444;
+        }
+        .kpi-card .kpi-icon svg {
+            width: 18px;
+            height: 18px;
+        }
+        .kpi-card .kpi-value {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--text);
+            line-height: 1;
+        }
+        .kpi-card .kpi-change {
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .kpi-card .kpi-change.up-good {
+            color: var(--accent-green);
+        }
+        .kpi-card .kpi-change.down-bad {
+            color: var(--accent-red);
+        }
+        .kpi-card .kpi-change.down-good {
+            color: var(--accent-green);
+        }
+        .kpi-card .kpi-change.up-bad {
+            color: var(--accent-red);
+        }
+        .kpi-change svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* ============ CHART SECTION ============ */
+        .chart-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 16px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+        .chart-card .chart-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .chart-card .chart-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text);
+        }
+        .chart-card .chart-subtitle {
+            font-size: 11px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        .chart-wrap {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .chart-wrap svg {
+            min-width: 400px;
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .bar-chart-bar {
+            transition: opacity 0.2s;
+            cursor: pointer;
+        }
+        .bar-chart-bar:hover {
+            opacity: 0.8;
+            filter: brightness(0.95);
+        }
+
+        /* ============ TABLE SECTION ============ */
+        .table-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 16px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+        .table-card .table-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .table-card .table-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text);
+        }
+        .table-wrap {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 0 -4px;
+            padding: 0 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 520px;
+            font-size: 13px;
+        }
+        table thead th {
+            text-align: right;
+            padding: 10px 8px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            border-bottom: 2px solid var(--border);
+            cursor: pointer;
+            user-select: none;
+            white-space: nowrap;
+            transition: color 0.2s;
+            position: relative;
+        }
+        table thead th:hover {
+            color: var(--primary);
+        }
+        table thead th .sort-arrow {
+            display: inline-block;
+            margin-right: 4px;
+            font-size: 10px;
+            opacity: 0.4;
+            transition: opacity 0.2s;
+            vertical-align: middle;
+        }
+        table thead th.sort-active .sort-arrow {
+            opacity: 1;
+            color: var(--primary);
+        }
+        table tbody td {
+            padding: 10px 8px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        table tbody tr {
+            transition: background 0.15s;
+        }
+        table tbody tr:hover {
+            background: #f8fafc;
+        }
+        table tbody tr:last-child td {
+            border-bottom: none;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+        }
+        .status-badge.completed {
+            background: #ecfdf5;
+            color: #059669;
+        }
+        .status-badge.processing {
+            background: #eff6ff;
+            color: #2563eb;
+        }
+        .status-badge.cancelled {
+            background: #fef2f2;
+            color: #dc2626;
+        }
+        .status-badge.pending {
+            background: #fffbeb;
+            color: #d97706;
+        }
+        .order-id {
+            font-weight: 700;
+            color: var(--primary);
+            cursor: pointer;
+        }
+        .order-id:hover {
+            text-decoration: underline;
+        }
+        .amount-cell {
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        /* ============ RESPONSIVE BREAKPOINTS ============ */
+        @media (min-width: 480px) {
+            .kpi-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .page-content {
+                padding: 20px;
+                gap: 16px;
+            }
+            .topbar {
+                padding: 12px 20px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .kpi-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 14px;
+            }
+            .page-content {
+                padding: 24px;
+                gap: 18px;
+            }
+            .kpi-card .kpi-value {
+                font-size: 28px;
+            }
+            .page-header h1 {
+                font-size: 22px;
+            }
+            .topbar .search-wrap {
+                max-width: 480px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .sidebar {
+                position: sticky;
+                top: 0;
+                right: auto;
+                transform: translateX(0);
+                box-shadow: none;
+                height: 100vh;
+                flex-shrink: 0;
+                z-index: auto;
+            }
+            .sidebar-overlay {
+                display: none !important;
+            }
+            .main-content {
+                margin-right: 0;
+                width: calc(100% - var(--sidebar-width));
+                flex: 0 0 calc(100% - var(--sidebar-width));
+            }
+            .topbar .hamburger {
+                display: none;
+            }
+            .kpi-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 14px;
+            }
+            .page-content {
+                padding: 24px 28px;
+                gap: 20px;
+            }
+            .kpi-card {
+                padding: 18px;
+            }
+            .kpi-card .kpi-value {
+                font-size: 30px;
+            }
+            .charts-and-table {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 18px;
+            }
+            .chart-card,
+            .table-card {
+                padding: 18px;
+            }
+            .table-card {
+                grid-column: 1 / -1;
+            }
+            table {
+                font-size: 13px;
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .page-content {
+                padding: 28px 36px;
+                gap: 22px;
+            }
+            .kpi-grid {
+                gap: 16px;
+            }
+            .kpi-card {
+                padding: 20px;
+            }
+            .kpi-card .kpi-value {
+                font-size: 32px;
+            }
+            .charts-and-table {
+                gap: 20px;
+            }
+            .topbar .search-wrap {
+                max-width: 560px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar Overlay (mobile) -->
+    <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar" role="navigation" aria-label="القائمة الرئيسية">
+        <div class="sidebar-brand">
+            <div class="logo-icon">ق</div>
+            <div class="brand-text">
+                <h2>قريب</h2>
+                <span>لوحة المتجر</span>
+            </div>
+        </div>
+        <ul class="sidebar-nav">
+            <li>
+                <a href="#" class="active" aria-current="page">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                    الرئيسية
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3H5a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V8l-4-5Z"/><polyline points="16 3 16 8 21 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
+                    الطلبات
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8Z"/><polyline points="12 12 12 18"/><polyline points="8 15 12 18 16 15"/></svg>
+                    المنتجات
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><circle cx="17" cy="11" r="3"/><path d="M21 21v-1a3 3 0 0 0-2-2.83"/></svg>
+                    العملاء
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                    التقارير
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72 1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                    الإعدادات
+                </a>
+            </li>
+        </ul>
+        <div class="sidebar-footer">
+            <div class="user-mini">
+                <div class="avatar-sm">م</div>
+                <div class="user-info-sm">
+                    محمد القحطاني
+                    <small>مدير المتجر</small>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <!-- Top Bar -->
+        <header class="topbar">
+            <button class="hamburger" id="hamburgerBtn" aria-label="فتح القائمة" title="القائمة">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
+            <div class="search-wrap">
+                <input type="search" placeholder="ابحث عن طلب، منتج، أو عميل..." aria-label="بحث">
+                <span class="search-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </span>
+            </div>
+            <div class="topbar-actions">
+                <button class="icon-btn" aria-label="الإشعارات" title="الإشعارات">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                    <span class="badge-dot"></span>
+                </button>
+                <button class="profile-btn">
+                    <div class="avatar-xs">م</div>
+                    <span>محمد القحطاني</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- Page Content -->
+        <main class="page-content">
+            <div class="page-header">
+                <h1>لوحة التحكم</h1>
+                <p>نظرة عامة على أداء متجرك اليوم</p>
+            </div>
+
+            <!-- KPI Cards -->
+            <div class="kpi-grid">
+                <!-- Orders Today -->
+                <div class="kpi-card">
+                    <div class="kpi-header">
+                        <span class="kpi-label">طلبات اليوم</span>
+                        <span class="kpi-icon blue">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3H5a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V8l-4-5Z"/><polyline points="16 3 16 8 21 8"/></svg>
+                        </span>
+                    </div>
+                    <div class="kpi-value">١٤٧</div>
+                    <div class="kpi-change up-good">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+                        +12.5% <span style="font-weight:400;color:#64748b;margin-right:2px;">مقارنة بالأمس</span>
+                    </div>
+                </div>
+
+                <!-- Revenue -->
+                <div class="kpi-card">
+                    <div class="kpi-header">
+                        <span class="kpi-label">الإيرادات</span>
+                        <span class="kpi-icon green">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        </span>
+                    </div>
+                    <div class="kpi-value">٢٤٬٨٥٠ ر.س</div>
+                    <div class="kpi-change up-good">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+                        +8.3% <span style="font-weight:400;color:#64748b;margin-right:2px;">مقارنة بالأمس</span>
+                    </div>
+                </div>
+
+                <!-- Average Basket -->
+                <div class="kpi-card">
+                    <div class="kpi-header">
+                        <span class="kpi-label">متوسط السلة</span>
+                        <span class="kpi-icon orange">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                        </span>
+                    </div>
+                    <div class="kpi-value">١٦٩ ر.س</div>
+                    <div class="kpi-change down-bad">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                        -2.1% <span style="font-weight:400;color:#64748b;margin-right:2px;">مقارنة بالأمس</span>
+                    </div>
+                </div>
+
+                <!-- Cancellation Rate -->
+                <div class="kpi-card">
+                    <div class="kpi-header">
+                        <span class="kpi-label">معدل الإلغاء</span>
+                        <span class="kpi-icon red">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                        </span>
+                    </div>
+                    <div class="kpi-value">٣.٢٪</div>
+                    <div class="kpi-change down-good">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                        -0.8% <span style="font-weight:400;color:#64748b;margin-right:2px;">مقارنة بالأمس</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chart & Table Section -->
+            <div class="charts-and-table">
+                <!-- Bar Chart -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <div>
+                            <div class="chart-title">المبيعات - آخر ٧ أيام</div>
+                            <div class="chart-subtitle">إجمالي المبيعات اليومية (ر.س)</div>
+                        </div>
+                    </div>
+                    <div class="chart-wrap">
+                        <svg viewBox="0 0 560 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="مخطط المبيعات لآخر ٧ أيام">
+                            <defs>
+                                <linearGradient id="barGrad" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#6366f1"/>
+                                    <stop offset="100%" stop-color="#4f46e5"/>
+                                </linearGradient>
+                                <linearGradient id="barGradToday" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#818cf8"/>
+                                    <stop offset="100%" stop-color="#6366f1"/>
+                                </linearGradient>
+                                <filter id="softShadow" x="-20%" y="-5%" width="140%" height="115%">
+                                    <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#4f46e5" flood-opacity="0.15"/>
+                                </filter>
+                            </defs>
+                            <!-- Grid lines -->
+                            <line x1="45" y1="30" x2="530" y2="30" stroke="#e2e8f0" stroke-width="1"/>
+                            <line x1="45" y1="85" x2="530" y2="85" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4,4"/>
+                            <line x1="45" y1="140" x2="530" y2="140" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4,4"/>
+                            <line x1="45" y1="195" x2="530" y2="195" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4,4"/>
+                            <line x1="45" y1="250" x2="530" y2="250" stroke="#cbd5e1" stroke-width="1"/>
+                            <!-- Y-axis labels -->
+                            <text x="38" y="255" text-anchor="end" font-family="Cairo, sans-serif" font-size="11" fill="#94a3b8" font-weight="500">٠</text>
+                            <text x="38" y="200" text-anchor="end" font-family="Cairo, sans-serif" font-size="11" fill="#94a3b8" font-weight="500">٢٬٠٠٠</text>
+                            <text x="38" y="145" text-anchor="end" font-family="Cairo, sans-serif" font-size="11" fill="#94a3b8" font-weight="500">٤٬٠٠٠</text>
+                            <text x="38" y="90" text-anchor="end" font-family="Cairo, sans-serif" font-size="11" fill="#94a3b8" font-weight="500">٦٬٠٠٠</text>
+                            <text x="38" y="35" text-anchor="end" font-family="Cairo, sans-serif" font-size="11" fill="#94a3b8" font-weight="500">٨٬٠٠٠</text>
+                            <!-- Bars -->
+                            <!-- Saturday: 3200 -->
+                            <rect x="55" y="170" width="44" height="80" rx="6" fill="url(#barGrad)" class="bar-chart-bar" filter="url(#softShadow)"/>
+                            <text x="77" y="163" text-anchor="middle" font-family="Cairo, sans-serif" font-size="10" fill="#64748b" font-weight="600">٣٬٢٠٠</text>
+                            <!-- Sunday: 4800 -->
+                            <rect x="120" y="130" width="44" height="120" rx="6" fill="url(#barGrad)" class="bar-chart-bar" filter="url(#softShadow)"/>
+                            <text x="142" y="123" text-anchor="middle" font-family="Cairo, sans-serif" font-size="10" fill="#64748b" font-weight="600">٤٬٨٠٠</text>
+                            <!-- Monday: 2900 -->
+                            <rect x="185" y="177" width="44" height="73" rx="6" fill="url(#barGrad)" class="bar-chart-bar" filter="url(#softShadow)"/>
+                            <text x="207" y="170" text-anchor="middle" font-family="Cairo, sans-serif" font-size="10" fill="#64748b" font-weight="600">٢٬٩٠٠</text>
+                            <!-- Tuesday: 5100 -->
+                            <rect x="250" y="123" width="44" height="127" rx="6" fill="url(#barGrad)" class="bar-chart-bar" filter="url(#softShadow)"/>
+                            <text x="272" y="116" text-anchor="middle" font-family="Cairo, sans-serif" font-size="10" fill="#64748b" font-weight="600">٥٬١٠٠</text>
+                            <!-- Wednesday: 6300 -->
+                            <rect x="315" y="93" width="44" height="157" rx="6" fill="url(#barGrad)" class="bar-chart-bar" filter="url(#softShadow)"/>
+                            <text x="337" y="86" text-anchor="middle" font-family="Cairo, sans-serif" font-size="10" fill="#64748b" font-weight="600">٦٬٣٠٠</text>
+                            <!-- Thursday: 4200 -->
+                            <rect x="380" y="145" width="44" height="105" rx="6" fill="url(#barGrad)" class="bar-chart-bar" filter="url(#softShadow)"/>
+                            <text x="402" y="138" text-anchor="middle" font-family="Cairo, sans-serif" font-size="10" fill="#64748b" font-weight="600">٤٬٢٠٠</text>
+                            <!-- Friday (Today): 5800 -->
+                            <rect x="445" y="106" width="44" height="144" rx="6" fill="url(#barGradToday)" class="bar-chart-bar" filter="url(#softShadow)"/>
+                            <text x="467" y="99" text-anchor="middle" font-family="Cairo, sans-serif" font-size="10" fill="#4f46e5" font-weight="700">٥٬٨٠٠</text>
+                            <!-- Highlight ring for today -->
+                            <rect x="441" y="102" width="52" height="152" rx="9" fill="none" stroke="#6366f1" stroke-width="2.5" stroke-dasharray="6,3" opacity="0.5"/>
+                            <!-- X-axis labels -->
+                            <text x="77" y="275" text-anchor="middle" font-family="Cairo, sans-serif" font-size="11" fill="#64748b" font-weight="600">السبت</text>
+                            <text x="142" y="275" text-anchor="middle" font-family="Cairo, sans-serif" font-size="11" fill="#64748b" font-weight="600">الأحد</text>
+                            <text x="207" y="275" text-anchor="middle" font-family="Cairo, sans-serif" font-size="11" fill="#64748b" font-weight="600">الاثنين</text>
+                            <text x="272" y="275" text-anchor="middle" font-family="Cairo, sans-serif" font-size="11" fill="#64748b" font-weight="600">الثلاثاء</text>
+                            <text x="337" y="275" text-anchor="middle" font-family="Cairo, sans-serif" font-size="11" fill="#64748b" font-weight="600">الأربعاء</text>
+                            <text x="402" y="275" text-anchor="middle" font-family="Cairo, sans-serif" font-size="11" fill="#64748b" font-weight="600">الخميس</text>
+                            <text x="467" y="275" text-anchor="middle" font-family="Cairo, sans-serif" font-size="11" fill="#4f46e5" font-weight="700">اليوم</text>
+                            <!-- X-axis line -->
+                            <line x1="45" y1="260" x2="530" y2="260" stroke="#cbd5e1" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Recent Orders Table -->
+                <div class="table-card">
+                    <div class="table-header">
+                        <span class="table-title">أحدث الطلبات</span>
+                    </div>
+                    <div class="table-wrap">
+                        <table id="ordersTable">
+                            <thead>
+                                <tr>
+                                    <th data-col="0" data-type="string" class="sort-active" aria-sort="ascending">
+                                        رقم الطلب <span class="sort-arrow">▲</span>
+                                    </th>
+                                    <th data-col="1" data-type="string">
+                                        العميل <span class="sort-arrow">▲</span>
+                                    </th>
+                                    <th data-col="2" data-type="date">
+                                        التاريخ <span class="sort-arrow">▲</span>
+                                    </th>
+                                    <th data-col="3" data-type="number">
+                                        المبلغ <span class="sort-arrow">▲</span>
+                                    </th>
+                                    <th data-col="4" data-type="string">
+                                        الحالة <span class="sort-arrow">▲</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="order-id">#ORD-001</span></td>
+                                    <td>أحمد محمد</td>
+                                    <td>2024/12/15</td>
+                                    <td class="amount-cell" data-value="320">320 ر.س</td>
+                                    <td><span class="status-badge completed">مكتمل</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="order-id">#ORD-002</span></td>
+                                    <td>فاطمة علي</td>
+                                    <td>2024/12/15</td>
+                                    <td class="amount-cell" data-value="185">185 ر.س</td>
+                                    <td><span class="status-badge processing">قيد التجهيز</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="order-id">#ORD-003</span></td>
+                                    <td>خالد العمري</td>
+                                    <td>2024/12/14</td>
+                                    <td class="amount-cell" data-value="540">540 ر.س</td>
+                                    <td><span class="status-badge completed">مكتمل</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="order-id">#ORD-004</span></td>
+                                    <td>سارة حسين</td>
+                                    <td>2024/12/14</td>
+                                    <td class="amount-cell" data-value="95">95 ر.س</td>
+                                    <td><span class="status-badge cancelled">ملغي</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="order-id">#ORD-005</span></td>
+                                    <td>محمد الناصر</td>
+                                    <td>2024/12/13</td>
+                                    <td class="amount-cell" data-value="780">780 ر.س</td>
+                                    <td><span class="status-badge completed">مكتمل</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="order-id">#ORD-006</span></td>
+                                    <td>نوره عبدالله</td>
+                                    <td>2024/12/13</td>
+                                    <td class="amount-cell" data-value="250">250 ر.س</td>
+                                    <td><span class="status-badge pending">قيد الانتظار</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="order-id">#ORD-007</span></td>
+                                    <td>عبدالرحمن سعيد</td>
+                                    <td>2024/12/12</td>
+                                    <td class="amount-cell" data-value="430">430 ر.س</td>
+                                    <td><span class="status-badge processing">قيد التجهيز</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        (function() {
+            // ============ SIDEBAR TOGGLE ============
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            const hamburgerBtn = document.getElementById('hamburgerBtn');
+            const mainContent = document.getElementById('mainContent');
+
+            function openSidebar() {
+                sidebar.classList.add('open');
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                overlay.setAttribute('aria-hidden', 'false');
+            }
+
+            function closeSidebar() {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+                overlay.setAttribute('aria-hidden', 'true');
+            }
+
+            hamburgerBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (sidebar.classList.contains('open')) {
+                    closeSidebar();
+                } else {
+                    openSidebar();
+                }
+            });
+
+            overlay.addEventListener('click', closeSidebar);
+
+            // Close sidebar on Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+                    closeSidebar();
+                    hamburgerBtn.focus();
+                }
+            });
+
+            // Close sidebar when clicking a nav link (mobile)
+            const sidebarLinks = sidebar.querySelectorAll('.sidebar-nav a');
+            sidebarLinks.forEach(function(link) {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth < 1024 && sidebar.classList.contains('open')) {
+                        closeSidebar();
+                    }
+                    // Update active state
+                    sidebarLinks.forEach(function(l) { l.classList.remove('active');
+                        l.removeAttribute('aria-current'); });
+                    link.classList.add('active');
+                    link.setAttribute('aria-current', 'page');
+                });
+            });
+
+            // Close sidebar on window resize to desktop
+            window.addEventListener('resize', function() {
+                if (window.innerWidth >= 1024 && sidebar.classList.contains('open')) {
+                    closeSidebar();
+                }
+            });
+
+            // ============ TABLE SORTING ============
+            const table = document.getElementById('ordersTable');
+            const thead = table.querySelector('thead');
+            const tbody = table.querySelector('tbody');
+            const headers = thead.querySelectorAll('th');
+
+            let sortState = {
+                col: 0,
+                direction: 'asc' // 'asc' or 'desc'
+            };
+
+            // Initialize: first column sorted ascending
+            sortTable(0, 'asc', true);
+
+            headers.forEach(function(th) {
+                th.addEventListener('click', function() {
+                    const col = parseInt(th.getAttribute('data-col'));
+                    const type = th.getAttribute('data-type');
+                    let direction = 'asc';
+
+                    if (sortState.col === col) {
+                        // Toggle direction
+                        direction = sortState.direction === 'asc' ? 'desc' : 'asc';
+                    }
+
+                    sortTable(col, direction, false);
+                    updateSortIndicators(col, direction);
+                });
+            });
+
+            function sortTable(col, direction, isInitial) {
+                const rows = Array.from(tbody.querySelectorAll('tr'));
+                const type = headers[col].getAttribute('data-type');
+
+                rows.sort(function(a, b) {
+                    const cellA = a.querySelectorAll('td')[col];
+                    const cellB = b.querySelectorAll('td')[col];
+                    let valA, valB;
+
+                    if (type === 'number') {
+                        valA = parseFloat(cellA.getAttribute('data-value') || cellA.textContent.replace(/[^\d.]/g,
+                            ''));
+                        valB = parseFloat(cellB.getAttribute('data-value') || cellB.textContent.replace(/[^\d.]/g,
+                            ''));
+                    } else if (type === 'date') {
+                        valA = cellA.textContent.trim();
+                        valB = cellB.textContent.trim();
+                        // Compare as strings (YYYY/MM/DD format sorts correctly)
+                    } else {
+                        valA = cellA.textContent.trim();
+                        valB = cellB.textContent.trim();
+                    }
+
+                    if (valA < valB) return direction === 'asc' ? -1 : 1;
+                    if (valA > valB) return direction === 'asc' ? 1 : -1;
+                    return 0;
+                });
+
+                // Re-append sorted rows
+                rows.forEach(function(row) {
+                    tbody.appendChild(row);
+                });
+
+                sortState.col = col;
+                sortState.direction = direction;
+
+                if (!isInitial) {
+                    updateSortIndicators(col, direction);
+                } else {
+                    updateSortIndicators(col, direction);
+                }
+            }
+
+            function updateSortIndicators(activeCol, direction) {
+                headers.forEach(function(th, idx) {
+                    const arrow = th.querySelector('.sort-arrow');
+                    th.classList.remove('sort-active');
+                    th.removeAttribute('aria-sort');
+                    if (arrow) {
+                        arrow.textContent = '▲';
+                        arrow.style.opacity = '0.4';
+                    }
+                });
+
+                const activeHeader = headers[activeCol];
+                activeHeader.classList.add('sort-active');
+                const activeArrow = activeHeader.querySelector('.sort-arrow');
+                if (activeArrow) {
+                    activeArrow.textContent = direction === 'asc' ? '▲' : '▼';
+                    activeArrow.style.opacity = '1';
+                }
+                activeHeader.setAttribute('aria-sort', direction === 'asc' ? 'ascending' : 'descending');
+            }
+        })();
+    </script>
+</body>
+</html>

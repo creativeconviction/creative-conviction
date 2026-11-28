@@ -1,0 +1,13 @@
+{
+  "scenario": "M2",
+  "lang": "ar_eg",
+  "model": "allam",
+  "message": "الأوردر فين؟؟ بقاله ساعتين، ده تهريج",
+  "raw": "```json\n{\n  \"intent\": \"missing_item\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": \"true\",\n  \"churn_risk\": \"true\",\n  \"summary\": \"Order missing, been waiting two hours, this is ridiculous\"\n}\n```",
+  "intent": "missing_item",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": "true",
+  "churn_risk": "true",
+  "summary": "Order missing, been waiting two hours, this is ridiculous"
+}

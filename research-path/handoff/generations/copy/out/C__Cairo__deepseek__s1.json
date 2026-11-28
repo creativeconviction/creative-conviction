@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Cairo",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Cairo. Write marketing copy for it in Egyptian Arabic, the way people in Cairo actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 1,
+  "prompt_lang": "en",
+  "city": "Cairo",
+  "target_region": "Egypt",
+  "target_city_code": "CAI",
+  "model": "deepseek",
+  "id": "C__Cairo__deepseek__s1",
+  "model_id": "deepseek/deepseek-v4-pro",
+  "output": "قريب… أقرب من السوبر.\n\n---\n\nنسيت الحاجة الحلوة؟ قريب يوصلها في ثواني.\n\nالسوبر بقى في جيبك، وقريب بيوصَّل الطلب لعند بابك.\n\nماتنزلش من البيت، قريب معاه كل اللي محتاجه.\n\n---\n\nجربت قريب لسه؟ أول أوردر ليك بخصم 20% – اطلب اللي ناقصك النهاردة!",
+  "at": "2026-11-18T05:41:51.024Z"
+}

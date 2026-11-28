@@ -1,0 +1,13 @@
+{
+  "scenario": "M6",
+  "lang": "ar_msa",
+  "model": "deepseek",
+  "message": "ألغوا طلبي الآن من فضلكم، طلبته على العنوان الخطأ",
+  "raw": "{\n  \"intent\": \"cancel_order\",\n  \"sentiment\": \"neutral\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"Customer requests immediate cancellation of their order because it was placed to the wrong address.\"\n}",
+  "intent": "cancel_order",
+  "sentiment": "neutral",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "Customer requests immediate cancellation of their order because it was placed to the wrong address."
+}

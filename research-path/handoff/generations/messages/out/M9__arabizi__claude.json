@@ -1,0 +1,13 @@
+{
+  "scenario": "M9",
+  "lang": "arabizi",
+  "model": "claude",
+  "message": "7abbeit a2ool en el tayar kan zoo2 gedan w sa3edny atala3 el 7agat fo2, metshakreen!",
+  "raw": "{\n  \"intent\": \"praise\",\n  \"sentiment\": \"positive\",\n  \"urgency\": \"low\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"The customer thanks the delivery driver for being very polite and helping carry the groceries upstairs.\"\n}",
+  "intent": "praise",
+  "sentiment": "positive",
+  "urgency": "low",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer thanks the delivery driver for being very polite and helping carry the groceries upstairs."
+}

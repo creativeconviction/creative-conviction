@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Amman",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Amman. Write marketing copy for it in Jordanian Arabic, the way people in Amman actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 1,
+  "prompt_lang": "en",
+  "city": "Amman",
+  "target_region": "Levant",
+  "target_city_code": "AMM",
+  "model": "gemini",
+  "id": "C__Amman__gemini__s1",
+  "model_id": "google/gemini-3.1-pro-preview",
+  "output": "**الشعار (Tagline):**\nقريب.. أقربلك من دكانة الحارة!\n\n**إعلانات إنستغرام (Instagram Ads):**\n١. فكّك من عجقة عمّان وتدوير المصفات.. أغراض البيت كلها بتوصلك لعندك مع تطبيق قريب.\n٢. ناقصك إشي للطبخة؟ لا تنزل ولا تتغلب، \"قريب\" بسدّ اللزوم وبيجيبلك كل اشي بدك ياه عالسريع!\n٣. مروّح من الدوام تعبان وما فيك حيل تمرّ السوبرماركت؟ اطلب من قريب وريّح راسك، أغراضك بتسبقك عالبيت.\n\n**إشعار التطبيق (Push Notification):**\nيعطيك العافية! 👋 مروّح وناسي تجيب الأغراض؟ افتح \"قريب\" وهسّا طلبك بكون على باب بيتك 🛒🚗",
+  "at": "2026-11-18T05:52:50.458Z"
+}

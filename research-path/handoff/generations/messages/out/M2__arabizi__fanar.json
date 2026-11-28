@@ -1,0 +1,13 @@
+{
+  "scenario": "M2",
+  "lang": "arabizi",
+  "model": "fanar",
+  "message": "el order fein?? ba2alo sa3teen, da tahreeg",
+  "raw": "{\n\"intent\": \"late_delivery\",\n\"sentiment\": \"negative\",\n\"urgency\": \"high\",\n\"sarcasm\": false,\n\"churn_risk\": true,\n\"summary\": \"Complaint about a late delivery, expressing frustration.\"\n}",
+  "intent": "late_delivery",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Complaint about a late delivery, expressing frustration."
+}

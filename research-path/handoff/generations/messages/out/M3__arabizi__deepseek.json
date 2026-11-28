@@ -1,0 +1,13 @@
+{
+  "scenario": "M3",
+  "lang": "arabizi",
+  "model": "deepseek",
+  "message": "la begad service to7fa, met2a5areen sa3teen bas zay kol marra 👏👏",
+  "raw": "{\n  \"intent\": \"late_delivery\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": true,\n  \"churn_risk\": true,\n  \"summary\": \"Customer sarcastically complains about the delivery being two hours late, as usual.\"\n}",
+  "intent": "late_delivery",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": true,
+  "churn_risk": true,
+  "summary": "Customer sarcastically complains about the delivery being two hours late, as usual."
+}

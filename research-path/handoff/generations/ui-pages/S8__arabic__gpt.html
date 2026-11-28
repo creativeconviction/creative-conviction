@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f7faf8">
+  <title>إعدادات قريب</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      color-scheme: light;
+      --page: #eef4f1;
+      --surface: #ffffff;
+      --surface-soft: #f7faf8;
+      --text: #16211c;
+      --muted: #7a8781;
+      --border: #e7ece9;
+      --primary: #20a66a;
+      --primary-dark: #168755;
+      --primary-soft: #e8f7ef;
+      --danger: #e65353;
+      --shadow: 0 18px 55px rgba(25, 58, 42, 0.10);
+    }
+
+    body.dark {
+      color-scheme: dark;
+      --page: #101713;
+      --surface: #18211c;
+      --surface-soft: #202b25;
+      --text: #f2f7f4;
+      --muted: #9eaaa4;
+      --border: #2c3932;
+      --primary: #39c983;
+      --primary-dark: #2eb374;
+      --primary-soft: #203c2e;
+      --danger: #ff6c6c;
+      --shadow: 0 18px 55px rgba(0, 0, 0, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: var(--page);
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 85% 0%, rgba(32, 166, 106, 0.12), transparent 30rem),
+        var(--page);
+      color: var(--text);
+      font-family: "Tajawal", Arial, sans-serif;
+      transition: background-color .25s, color .25s;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      color: inherit;
+    }
+
+    .app {
+      width: 100%;
+      min-height: 100vh;
+      background: var(--surface-soft);
+      overflow: hidden;
+    }
+
+    .top {
+      position: relative;
+      padding: calc(22px + env(safe-area-inset-top)) 20px 74px;
+      color: #fff;
+      background:
+        radial-gradient(circle at 5% 5%, rgba(255,255,255,.18), transparent 8rem),
+        linear-gradient(140deg, #15945c, #27b874);
+    }
+
+    .top::after {
+      content: "";
+      position: absolute;
+      right: -10%;
+      bottom: -52px;
+      width: 120%;
+      height: 90px;
+      border-radius: 50%;
+      background: var(--surface-soft);
+    }
+
+    .topbar {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .topbar h1 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 31px;
+      height: 31px;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.35);
+      border-radius: 11px;
+      background: rgba(255,255,255,.16);
+      backdrop-filter: blur(8px);
+    }
+
+    .profile {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: -57px 16px 20px;
+      padding: 17px;
+      border: 1px solid rgba(127, 151, 139, .13);
+      border-radius: 22px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .avatar {
+      position: relative;
+      flex: 0 0 72px;
+      width: 72px;
+      height: 72px;
+      overflow: hidden;
+      border: 3px solid var(--surface);
+      border-radius: 50%;
+      background: #d9f0e3;
+      box-shadow: 0 0 0 2px var(--primary-soft);
+    }
+
+    .avatar svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .profile-info {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .profile-name {
+      margin: 0 0 4px;
+      font-size: 19px;
+      font-weight: 800;
+    }
+
+    .profile-phone {
+      margin: 0;
+      color: var(--muted);
+      direction: ltr;
+      text-align: right;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .edit-button {
+      display: grid;
+      flex: 0 0 38px;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      border: 0;
+      border-radius: 12px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      cursor: pointer;
+    }
+
+    .content {
+      padding: 0 16px calc(28px + env(safe-area-inset-bottom));
+    }
+
+    .section {
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      margin: 0 6px 9px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .list {
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 19px;
+      background: var(--surface);
+      box-shadow: 0 5px 20px rgba(25, 58, 42, .035);
+    }
+
+    .row {
+      position: relative;
+      display: flex;
+      width: 100%;
+      min-height: 64px;
+      align-items: center;
+      gap: 13px;
+      padding: 10px 14px;
+      border: 0;
+      background: transparent;
+      text-align: right;
+      cursor: pointer;
+    }
+
+    .row + .row::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 62px;
+      left: 14px;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .row-icon {
+      display: grid;
+      flex: 0 0 36px;
+      width: 36px;
+      height: 36px;
+      place-items: center;
+      border-radius: 11px;
+      background: var(--primary-soft);
+      color: var(--primary);
+    }
+
+    .row-icon svg,
+    .edit-button svg,
+    .arrow svg,
+    .brand-mark svg {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.9;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .row-copy {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .row-title {
+      display: block;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .row-note {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .arrow {
+      display: grid;
+      width: 28px;
+      height: 28px;
+      place-items: center;
+      color: #a2ada7;
+    }
+
+    .arrow svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      flex: 0 0 47px;
+      width: 47px;
+      height: 27px;
+    }
+
+    .switch input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+    }
+
+    .slider {
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      background: #cbd3cf;
+      cursor: pointer;
+      transition: .25s;
+    }
+
+    .slider::after {
+      content: "";
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      width: 21px;
+      height: 21px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,.18);
+      transition: .25s;
+    }
+
+    .switch input:checked + .slider {
+      background: var(--primary);
+    }
+
+    .switch input:checked + .slider::after {
+      transform: translateX(-20px);
+    }
+
+    .switch input:focus-visible + .slider {
+      outline: 3px solid rgba(32,166,106,.25);
+      outline-offset: 2px;
+    }
+
+    .language-picker {
+      display: flex;
+      gap: 3px;
+      padding: 3px;
+      border-radius: 10px;
+      background: var(--surface-soft);
+    }
+
+    .language-picker button {
+      min-width: 55px;
+      padding: 6px 8px;
+      border: 0;
+      border-radius: 8px;
+      background: transparent;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .language-picker button.active {
+      background: var(--surface);
+      color: var(--primary);
+      box-shadow: 0 2px 8px rgba(20,50,35,.09);
+    }
+
+    .logout .row-icon {
+      background: rgba(230, 83, 83, .10);
+      color: var(--danger);
+    }
+
+    .logout .row-title {
+      color: var(--danger);
+    }
+
+    .version {
+      margin: 18px 0 0;
+      color: var(--muted);
+      text-align: center;
+      font-size: 12px;
+    }
+
+    .toast {
+      position: fixed;
+      right: 50%;
+      bottom: 25px;
+      z-index: 20;
+      max-width: calc(100% - 32px);
+      padding: 11px 17px;
+      border-radius: 12px;
+      background: #16211c;
+      color: white;
+      box-shadow: 0 8px 25px rgba(0,0,0,.2);
+      font-size: 13px;
+      font-weight: 600;
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(50%, 12px);
+      transition: .25s;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(50%, 0);
+    }
+
+    @media (min-width: 700px) {
+      body {
+        padding: 32px;
+      }
+
+      .app {
+        width: 430px;
+        min-height: auto;
+        margin: 0 auto;
+        border: 1px solid var(--border);
+        border-radius: 30px;
+        box-shadow: var(--shadow);
+      }
+
+      .top {
+        padding-top: 25px;
+      }
+    }
+
+    @media (max-width: 350px) {
+      .language-picker button {
+        min-width: 46px;
+        padding-inline: 5px;
+      }
+
+      .row {
+        gap: 9px;
+        padding-inline: 11px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header class="top">
+      <div class="topbar">
+        <h1>الإعدادات</h1>
+        <div class="brand">
+          <span>قريب</span>
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M20 10.2c0 5.5-8 10-8 10s-8-4.5-8-10a8 8 0 1 1 16 0Z"></path>
+              <circle cx="12" cy="10" r="2.5"></circle>
+            </svg>
+          </span>
+        </div>
+      </div>
+    </header>
+
+    <section class="profile" aria-label="الملف الشخصي">
+      <div class="avatar" aria-hidden="true">
+        <svg viewBox="0 0 100 100">
+          <rect width="100" height="100" fill="#dff4e8"></rect>
+          <circle cx="50" cy="39" r="20" fill="#e9b996"></circle>
+          <path d="M29 39c1-19 11-28 22-28 14 0 23 11 21 30-4-7-8-13-14-18-7 8-16 12-29 16Z" fill="#3a332f"></path>
+          <path d="M17 100c2-24 15-35 33-35s31 11 33 35" fill="#229f67"></path>
+          <path d="M39 61c3 5 7 7 11 7s8-2 11-7v10c-6 6-16 6-22 0Z" fill="#dfa986"></path>
+        </svg>
+      </div>
+
+      <div class="profile-info">
+        <h2 class="profile-name">سارة العتيبي</h2>
+        <p class="profile-phone">+966 50 123 4567</p>
+      </div>
+
+      <button class="edit-button" type="button" aria-label="تعديل الملف الشخصي" data-message="تعديل الملف الشخصي">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="m14.5 5.5 4 4"></path>
+          <path d="M4 20h4l11-11a2.8 2.8 0 0 0-4-4L4 16v4Z"></path>
+        </svg>
+      </button>
+    </section>
+
+    <div class="content">
+      <section class="section">
+        <h2 class="section-title">الحساب</h2>
+        <div class="list">
+          <button class="row" type="button" data-message="فتح العناوين">
+            <span class="row-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"></path>
+                <circle cx="12" cy="10" r="2.5"></circle>
+              </svg>
+            </span>
+            <span class="row-copy">
+              <span class="row-title">العناوين</span>
+              <span class="row-note">المنزل، العمل وعناوين أخرى</span>
+            </span>
+            <span class="arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"></path></svg>
+            </span>
+          </button>
+
+          <button class="row" type="button" data-message="فتح طرق الدفع">
+            <span class="row-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <rect x="3" y="5" width="18" height="14" rx="3"></rect>
+                <path d="M3 10h18M7 15h3"></path>
+              </svg>
+            </span>
+            <span class="row-copy">
+              <span class="row-title">طرق الدفع</span>
+              <span class="row-note">البطاقات والمحفظة</span>
+            </span>
+            <span class="arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"></path></svg>
+            </span>
+          </button>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">التفضيلات</h2>
+        <div class="list">
+          <div class="row">
+            <span class="row-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z"></path>
+                <path d="M10 21h4"></path>
+              </svg>
+            </span>
+            <span class="row-copy">
+              <span class="row-title">الإشعارات</span>
+              <span class="row-note">العروض وتحديثات الطلبات</span>
+            </span>
+            <label class="switch">
+              <input id="notifications" type="checkbox" checked aria-label="تشغيل الإشعارات">
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="row">
+            <span class="row-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"></path>
+              </svg>
+            </span>
+            <span class="row-copy">
+              <span class="row-title">اللغة</span>
+              <span class="row-note">لغة التطبيق</span>
+            </span>
+            <div class="language-picker" role="group" aria-label="اختيار اللغة">
+              <button type="button" class="active" data-lang="ar" aria-pressed="true">العربية</button>
+              <button type="button" data-lang="en" aria-pressed="false">English</button>
+            </div>
+          </div>
+
+          <div class="row">
+            <span class="row-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M20.5 15.4A8.5 8.5 0 0 1 8.6 3.5 8.5 8.5 0 1 0 20.5 15.4Z"></path>
+              </svg>
+            </span>
+            <span class="row-copy">
+              <span class="row-title">الوضع الداكن</span>
+              <span class="row-note">مظهر مريح في الإضاءة المنخفضة</span>
+            </span>
+            <label class="switch">
+              <input id="darkMode" type="checkbox" aria-label="تشغيل الوضع الداكن">
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">الدعم</h2>
+        <div class="list">
+          <button class="row" type="button" data-message="فتح مركز المساعدة">
+            <span class="row-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M9.7 9a2.4 2.4 0 1 1 3.4 2.2c-.8.4-1.1.9-1.1 1.8M12 17h.01"></path>
+              </svg>
+            </span>
+            <span class="row-copy">
+              <span class="row-title">المساعدة</span>
+              <span class="row-note">الأسئلة الشائعة والتواصل معنا</span>
+            </span>
+            <span class="arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"></path></svg>
+            </span>
+          </button>
+
+          <button class="row logout" type="button" data-message="تم تسجيل الخروج">
+            <span class="row-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M10 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h5M14 8l4 4-4 4M8 12h10"></path>
+              </svg>
+            </span>
+            <span class="row-copy">
+              <span class="row-title">تسجيل الخروج</span>
+            </span>
+            <span class="arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"></path></svg>
+            </span>
+          </button>
+        </div>
+      </section>
+
+      <p class="version">قريب · الإصدار 2.4.0</p>
+    </div>
+  </main>
+
+  <div class="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const darkMode = document.getElementById("darkMode");
+    const savedTheme = localStorage.getItem("qareeb-theme");
+
+    if (savedTheme === "dark") {
+      document.body.classList.add("dark");
+      darkMode.checked = true;
+    }
+
+    darkMode.addEventListener("change", () => {
+      document.body.classList.toggle("dark", darkMode.checked);
+      localStorage.setItem("qareeb-theme", darkMode.checked ? "dark" : "light");
+    });
+
+    document.querySelectorAll(".language-picker button").forEach(button => {
+      button.addEventListener("click", () => {
+        document.querySelectorAll(".language-picker button").forEach(item => {
+          item.classList.toggle("active", item === button);
+          item.setAttribute("aria-pressed", item === button);
+        });
+        showToast(button.dataset.lang === "ar" ? "تم اختيار العربية" : "English selected");
+      });
+    });
+
+    document.querySelectorAll("[data-message]").forEach(button => {
+      button.addEventListener("click", () => showToast(button.dataset.message));
+    });
+
+    const toast = document.querySelector(".toast");
+    let toastTimer;
+
+    function showToast(message) {
+      clearTimeout(toastTimer);
+      toast.textContent = message;
+      toast.classList.add("show");
+      toastTimer = setTimeout(() => toast.classList.remove("show"), 1800);
+    }
+  </script>
+</body>
+</html>

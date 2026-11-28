@@ -1,0 +1,12 @@
+{
+  "line": "C2",
+  "market": "ar_eg",
+  "model": "fanar",
+  "source": "Happy hour: 2-for-1 drinks from 5 to 7pm.",
+  "raw": "{\n\"literal\": \"ساعة سعيدة: 2 مشروب مقابل 1 من 5 إلى 7 مساءً\",\n\"adaptation\": \"ساعة الفرح: اشرب واحصل على الثاني مجانًا من الساعة 5 إلى 7 مساءً\",\n\"back_translation\": \"Happy Hour: Buy one drink and get the second one free from 5 to 7 PM\",\n\"approach\": \"adapted\",\n\"notes\": \"In Arabic, 'for' can sometimes be misleading as it's often used to denote a period of time rather than indicating ' مقابل' (for). The wording was adjusted for better understanding of the offer in an Egyptian context.\"\n}",
+  "literal": "ساعة سعيدة: 2 مشروب مقابل 1 من 5 إلى 7 مساءً",
+  "adaptation": "ساعة الفرح: اشرب واحصل على الثاني مجانًا من الساعة 5 إلى 7 مساءً",
+  "back_translation": "Happy Hour: Buy one drink and get the second one free from 5 to 7 PM",
+  "approach": "adapted",
+  "notes": "In Arabic, 'for' can sometimes be misleading as it's often used to denote a period of time rather than indicating ' مقابل' (for). The wording was adjusted for better understanding of the offer in an Egyptian context."
+}

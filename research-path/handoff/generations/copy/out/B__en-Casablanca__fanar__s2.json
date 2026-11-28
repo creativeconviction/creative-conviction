@@ -1,0 +1,14 @@
+{
+  "part": "B",
+  "cond": "en-Casablanca",
+  "s": 2,
+  "prompt_lang": "en",
+  "city": "Casablanca",
+  "target_region": "Morocco",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب). Write marketing copy for it in Arabic: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy. It is launching in Casablanca.",
+  "model": "fanar",
+  "id": "B__en-Casablanca__fanar__s2",
+  "model_id": "QCRI/Fanar-1-9B-Instruct",
+  "output": "**Tagline:** \"قريب، متطلباتك إلى عتبة بابك في وقت قياسي\" \n\n**Instagram Ads Captions:**\n1- \"توفير الوقت والجهد! استمتع بالطعام الطازج بدون زحام مع تطبيق Qareeb.\"\n2- \"لا تقلق بشأن التسوق أكثر، قريب موجود لتأمين مشترياتك بسرعة وكفاءة.\"\n3- \"تجربة التسوق الفاخرة تنتظرك في Casablanca. قم بتحميل تطبيق Qareeb اليوم.\"\n\n**Push Notification:**\n\"وقت التسوق الخاص بك انخفض! احصل على طلباتك في أقل من 60 دقيقة مع Qareeb في Casablanca.\"",
+  "at": "2026-11-28T00:49:47.550553+00:00"
+}

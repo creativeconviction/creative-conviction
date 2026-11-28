@@ -1,0 +1,12 @@
+{
+  "line": "T2",
+  "market": "ar_sa",
+  "model": "saba",
+  "source": "Just Do It",
+  "raw": "```json\n{\n  \"literal\": \"فقط افعلها\",\n  \"adaptation\": \"لا مستحيل... نفعلها\",\n  \"back_translation\": \"No impossible… we do it\",\n  \"approach\": \"replaced\",\n  \"notes\": \"Replaced 'Just Do It' with 'No impossible… we do it' to align with Saudi cultural emphasis on overcoming challenges and collective action, while avoiding direct religious implications.\"\n}\n```",
+  "literal": "فقط افعلها",
+  "adaptation": "لا مستحيل... نفعلها",
+  "back_translation": "No impossible… we do it",
+  "approach": "replaced",
+  "notes": "Replaced 'Just Do It' with 'No impossible… we do it' to align with Saudi cultural emphasis on overcoming challenges and collective action, while avoiding direct religious implications."
+}

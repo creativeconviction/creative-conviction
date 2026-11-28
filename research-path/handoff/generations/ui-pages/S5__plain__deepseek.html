@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قريب - تتبع الطلب</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF6B35;
+            --primary-dark: #E55A2B;
+            --primary-light: #FFF0EB;
+            --success: #2ECC71;
+            --success-light: #E8F8EF;
+            --bg: #F3F2EF;
+            --card: #FFFFFF;
+            --text: #1A1A2E;
+            --text-secondary: #6B7280;
+            --text-light: #9CA3AF;
+            --border: #E5E7EB;
+            --gray-light: #F9FAFB;
+            --gray-medium: #D1D5DB;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+            --radius-sm: 8px;
+            --radius: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+            --font: 'Cairo', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font);
+            background: #E8E6E1;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 0;
+            direction: rtl;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 420px;
+            min-height: 100vh;
+            background: var(--bg);
+            position: relative;
+            overflow-x: hidden;
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (min-width: 421px) {
+            body {
+                padding: 20px 0;
+                align-items: flex-start;
+            }
+            .app-container {
+                min-height: auto;
+                border-radius: 24px;
+                margin: 0 auto;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18), 0 0 0 1px rgba(0, 0, 0, 0.04);
+            }
+        }
+
+        @media (max-width: 390px) {
+            .app-container {
+                max-width: 100%;
+                border-radius: 0;
+            }
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 16px 16px 12px 16px;
+            gap: 12px;
+            background: var(--card);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+        }
+
+        @media (min-width: 421px) {
+            .header {
+                border-radius: 24px 24px 0 0;
+            }
+        }
+
+        .back-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: var(--gray-light);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            flex-shrink: 0;
+            color: var(--text);
+        }
+        .back-btn:hover {
+            background: #E5E7EB;
+            transform: scale(1.04);
+        }
+        .back-btn:active {
+            transform: scale(0.95);
+            background: #D1D5DB;
+        }
+        .back-btn svg {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.2s;
+        }
+        .back-btn:hover svg {
+            transform: translateX(3px);
+        }
+
+        .header-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: -0.2px;
+            white-space: nowrap;
+        }
+        .header-subtitle {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--primary);
+            background: var(--primary-light);
+            padding: 3px 10px;
+            border-radius: 20px;
+            white-space: nowrap;
+            animation: subtlePulse 2.5s ease-in-out infinite;
+        }
+
+        @keyframes subtlePulse {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        /* Main scrollable area */
+        .main-content {
+            padding: 12px 16px 100px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        /* Map Placeholder */
+        .map-container {
+            width: 100%;
+            height: 200px;
+            border-radius: var(--radius-lg);
+            position: relative;
+            overflow: hidden;
+            background: #E8E4DD;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: box-shadow 0.3s;
+            flex-shrink: 0;
+        }
+        .map-container:hover {
+            box-shadow: var(--shadow-lg);
+        }
+        .map-container:active {
+            transform: scale(0.985);
+            transition: transform 0.15s;
+        }
+
+        .map-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(135deg, #f0ebe0 0%, #e8e2d6 30%, #eee8dc 60%, #e5ded0 100%);
+        }
+
+        .map-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(180, 170, 155, 0.2) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(180, 170, 155, 0.2) 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.6;
+        }
+
+        .map-road-h {
+            position: absolute;
+            top: 55%;
+            left: 0;
+            right: 0;
+            height: 18px;
+            background: #FEFCF8;
+            border-top: 1.5px solid #d5cfc4;
+            border-bottom: 1.5px solid #d5cfc4;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+        }
+        .map-road-v {
+            position: absolute;
+            left: 48%;
+            top: 0;
+            bottom: 0;
+            width: 16px;
+            background: #FEFCF8;
+            border-left: 1.5px solid #d5cfc4;
+            border-right: 1.5px solid #d5cfc4;
+            box-shadow: 1px 0 2px rgba(0, 0, 0, 0.04);
+        }
+        .map-road-curve {
+            position: absolute;
+            top: 32%;
+            left: 25%;
+            width: 90px;
+            height: 70px;
+            border: 2px solid #d5cfc4;
+            border-radius: 50%;
+            background: transparent;
+            clip-path: polygon(0 0, 100% 0, 100% 55%, 55% 55%, 55% 100%, 0 100%);
+            opacity: 0.5;
+        }
+
+        .map-building {
+            position: absolute;
+            background: #dcd5c9;
+            border-radius: 2px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            opacity: 0.7;
+        }
+        .map-building.b1 {
+            top: 18%;
+            left: 10%;
+            width: 35px;
+            height: 28px;
+        }
+        .map-building.b2 {
+            top: 20%;
+            left: 20%;
+            width: 28px;
+            height: 35px;
+            border-radius: 3px;
+        }
+        .map-building.b3 {
+            top: 62%;
+            left: 68%;
+            width: 40px;
+            height: 22px;
+        }
+        .map-building.b4 {
+            top: 60%;
+            left: 56%;
+            width: 24px;
+            height: 30px;
+            border-radius: 3px;
+        }
+        .map-building.b5 {
+            top: 15%;
+            left: 65%;
+            width: 32px;
+            height: 40px;
+        }
+        .map-building.b6 {
+            top: 70%;
+            left: 18%;
+            width: 30px;
+            height: 25px;
+        }
+        .map-park {
+            position: absolute;
+            top: 10%;
+            left: 40%;
+            width: 50px;
+            height: 35px;
+            background: #c8d9c0;
+            border-radius: 50%;
+            opacity: 0.5;
+            box-shadow: 0 0 15px rgba(150, 180, 140, 0.3);
+        }
+
+        .map-pin-area {
+            position: absolute;
+            top: 42%;
+            left: 44%;
+            z-index: 10;
+            pointer-events: none;
+        }
+        .map-pin {
+            width: 32px;
+            height: 32px;
+            background: var(--primary);
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            box-shadow: 0 4px 14px rgba(255, 107, 53, 0.45);
+            position: relative;
+            animation: pinBounce 0.5s ease-out forwards;
+        }
+        .map-pin::after {
+            content: '';
+            position: absolute;
+            top: 7px;
+            left: 7px;
+            width: 18px;
+            height: 18px;
+            background: #fff;
+            border-radius: 50%;
+        }
+        .pin-pulse {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: rgba(255, 107, 53, 0.25);
+            animation: pulseRing 2s ease-out infinite;
+            pointer-events: none;
+        }
+        .pin-pulse:nth-child(2) {
+            animation-delay: 0.7s;
+        }
+
+        @keyframes pinBounce {
+            0% {
+                transform: rotate(-45deg) translateY(-40px);
+                opacity: 0;
+            }
+            50% {
+                transform: rotate(-45deg) translateY(6px);
+                opacity: 1;
+            }
+            70% {
+                transform: rotate(-45deg) translateY(-6px);
+            }
+            100% {
+                transform: rotate(-45deg) translateY(0);
+            }
+        }
+        @keyframes pulseRing {
+            0% {
+                transform: scale(0.4);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(2.2);
+                opacity: 0;
+            }
+        }
+
+        .map-label {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 500;
+            padding: 5px 12px;
+            border-radius: 20px;
+            letter-spacing: 0.3px;
+            z-index: 5;
+            pointer-events: none;
+            white-space: nowrap;
+            backdrop-filter: blur(4px);
+        }
+
+        /* ETA Card */
+        .eta-card {
+            background: var(--card);
+            border-radius: var(--radius-lg);
+            padding: 16px 18px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            transition: box-shadow 0.3s;
+            flex-shrink: 0;
+        }
+        .eta-card:hover {
+            box-shadow: var(--shadow-lg);
+        }
+        .eta-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .eta-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            letter-spacing: -0.1px;
+        }
+        .eta-time {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--text);
+            letter-spacing: -0.5px;
+            line-height: 1.1;
+        }
+        .eta-range {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--primary);
+            background: var(--primary-light);
+            padding: 2px 10px;
+            border-radius: 12px;
+            display: inline-block;
+            width: fit-content;
+        }
+        .eta-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            animation: gentleBounce 2s ease-in-out infinite;
+        }
+        @keyframes gentleBounce {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+        .eta-icon svg {
+            width: 26px;
+            height: 26px;
+            color: var(--primary);
+        }
+
+        /* Stepper */
+        .stepper-wrapper {
+            background: var(--card);
+            border-radius: var(--radius-lg);
+            padding: 20px 14px 18px 14px;
+            box-shadow: var(--shadow);
+            flex-shrink: 0;
+            transition: box-shadow 0.3s;
+        }
+        .stepper-wrapper:hover {
+            box-shadow: var(--shadow-lg);
+        }
+        .stepper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            gap: 0;
+        }
+        .stepper::before {
+            content: '';
+            position: absolute;
+            top: 18px;
+            right: 28px;
+            left: 28px;
+            height: 3px;
+            background: var(--gray-medium);
+            border-radius: 10px;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .stepper-progress {
+            position: absolute;
+            top: 18px;
+            right: 28px;
+            height: 3px;
+            background: var(--success);
+            border-radius: 10px;
+            z-index: 1;
+            pointer-events: none;
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 55%;
+        }
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            z-index: 2;
+            flex: 0 0 auto;
+            cursor: default;
+        }
+        .step-circle {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            background: #fff;
+            flex-shrink: 0;
+        }
+        .step.completed .step-circle {
+            background: var(--success);
+            color: #fff;
+            box-shadow: 0 3px 10px rgba(46, 204, 113, 0.35);
+        }
+        .step.active .step-circle {
+            background: #fff;
+            color: var(--primary);
+            border: 3px solid var(--primary);
+            box-shadow: 0 0 0 8px rgba(255, 107, 53, 0.1), 0 3px 12px rgba(255, 107, 53, 0.2);
+            animation: activeStepPulse 2.2s ease-in-out infinite;
+        }
+        @keyframes activeStepPulse {
+            0%,
+            100% {
+                box-shadow: 0 0 0 8px rgba(255, 107, 53, 0.1), 0 3px 12px rgba(255, 107, 53, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 0 14px rgba(255, 107, 53, 0.04), 0 3px 16px rgba(255, 107, 53, 0.15);
+            }
+        }
+        .step.pending .step-circle {
+            background: #fff;
+            color: var(--text-light);
+            border: 2.5px solid var(--gray-medium);
+        }
+        .step-label {
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-align: center;
+            white-space: nowrap;
+            transition: color 0.3s;
+            letter-spacing: -0.1px;
+            line-height: 1.3;
+        }
+        .step.completed .step-label {
+            color: var(--success);
+            font-weight: 700;
+        }
+        .step.active .step-label {
+            color: var(--primary);
+            font-weight: 700;
+        }
+        .step.pending .step-label {
+            color: var(--text-light);
+        }
+        .step-circle svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s;
+        }
+        .step.completed .step-circle svg {
+            animation: checkPop 0.4s ease-out;
+        }
+        @keyframes checkPop {
+            0% {
+                transform: scale(0);
+            }
+            60% {
+                transform: scale(1.3);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Driver Card */
+        .driver-card {
+            background: var(--card);
+            border-radius: var(--radius-lg);
+            padding: 16px 18px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-shrink: 0;
+            transition: box-shadow 0.3s;
+            flex-wrap: wrap;
+        }
+        .driver-card:hover {
+            box-shadow: var(--shadow-lg);
+        }
+        .driver-avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FFE0D3, #FFC4A8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--primary-dark);
+            box-shadow: 0 3px 10px rgba(255, 107, 53, 0.2);
+        }
+        .driver-info {
+            flex: 1;
+            min-width: 100px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .driver-name {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: -0.2px;
+        }
+        .driver-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #F59E0B;
+        }
+        .driver-rating-stars {
+            letter-spacing: 1px;
+            font-size: 13px;
+        }
+        .driver-rating-num {
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 12px;
+        }
+
+        .plate-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #FEFEFE;
+            border: 2px solid #D1D5DB;
+            border-radius: 8px;
+            padding: 7px 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
+            flex-shrink: 0;
+            font-family: 'Cairo', 'Courier New', monospace;
+        }
+        .plate-latin {
+            font-size: 15px;
+            color: #1A1A2E;
+            letter-spacing: 1.5px;
+            font-weight: 800;
+        }
+        .plate-divider {
+            width: 1.5px;
+            height: 22px;
+            background: #D1D5DB;
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+        .plate-arabic {
+            font-size: 14px;
+            color: #1A1A2E;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        .driver-actions {
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+            margin-right: auto;
+        }
+        .driver-action-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+        .driver-action-btn:active {
+            transform: scale(0.9);
+        }
+        .btn-call {
+            background: #E8F8EF;
+            color: #2ECC71;
+        }
+        .btn-call:hover {
+            background: #d0f0dc;
+            box-shadow: 0 3px 12px rgba(46, 204, 113, 0.25);
+        }
+        .btn-message {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+        .btn-message:hover {
+            background: #ffe5d8;
+            box-shadow: 0 3px 12px rgba(255, 107, 53, 0.25);
+        }
+        .driver-action-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        @media (max-width: 370px) {
+            .driver-card {
+                gap: 10px;
+                padding: 14px 12px;
+            }
+            .driver-avatar {
+                width: 44px;
+                height: 44px;
+                font-size: 17px;
+            }
+            .plate-badge {
+                padding: 5px 8px;
+                gap: 5px;
+            }
+            .plate-latin {
+                font-size: 13px;
+                letter-spacing: 1px;
+            }
+            .plate-arabic {
+                font-size: 12px;
+                letter-spacing: 1px;
+            }
+            .driver-action-btn {
+                width: 36px;
+                height: 36px;
+            }
+            .driver-action-btn svg {
+                width: 17px;
+                height: 17px;
+            }
+            .driver-name {
+                font-size: 13px;
+            }
+        }
+
+        /* Expandable Order Details */
+        .order-details-wrapper {
+            background: var(--card);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            flex-shrink: 0;
+            transition: box-shadow 0.3s;
+        }
+        .order-details-wrapper:hover {
+            box-shadow: var(--shadow-lg);
+        }
+        .order-details-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 18px;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.2s;
+            -webkit-tap-highlight-color: transparent;
+            gap: 12px;
+        }
+        .order-details-header:hover {
+            background: #FAFAF9;
+        }
+        .order-details-header:active {
+            background: #F5F4F1;
+        }
+        .order-details-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: -0.2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .order-details-title svg {
+            width: 18px;
+            height: 18px;
+            color: var(--text-secondary);
+            flex-shrink: 0;
+        }
+        .order-details-chevron {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--gray-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            flex-shrink: 0;
+            color: var(--text-secondary);
+        }
+        .order-details-wrapper.open .order-details-chevron {
+            transform: rotate(180deg);
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+        .order-details-chevron svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .order-details-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1), padding 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 0 18px;
+        }
+        .order-details-wrapper.open .order-details-body {
+            max-height: 340px;
+            padding: 0 18px 18px 18px;
+        }
+        .order-detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+            gap: 10px;
+        }
+        .order-detail-row:last-child {
+            border-bottom: none;
+        }
+        .order-detail-label {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+        .order-detail-value {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+            text-align: left;
+            word-break: break-word;
+        }
+        .order-items-list {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            text-align: left;
+        }
+        .order-item {
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        .order-total {
+            font-weight: 800;
+            color: var(--primary);
+            font-size: 15px;
+        }
+
+        /* Bottom safe area for mobile */
+        .bottom-spacer {
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        /* Scrollbar */
+        .app-container::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+        }
+        .app-container {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        /* Focus states */
+        button:focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 3px;
+            border-radius: 50%;
+        }
+        .back-btn:focus-visible,
+        .order-details-header:focus-visible {
+            border-radius: 12px;
+            outline-offset: 2px;
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container" id="appContainer">
+        <!-- Header -->
+        <header class="header">
+            <button class="back-btn" aria-label="رجوع" title="رجوع">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </button>
+            <span class="header-title">تتبع الطلب</span>
+            <span class="header-subtitle" style="margin-right:auto;">🔴 مباشر</span>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Map Placeholder -->
+            <div class="map-container" aria-label="خريطة تتبع الطلب">
+                <div class="map-bg"></div>
+                <div class="map-grid"></div>
+                <div class="map-park"></div>
+                <div class="map-road-h"></div>
+                <div class="map-road-v"></div>
+                <div class="map-building b1"></div>
+                <div class="map-building b2"></div>
+                <div class="map-building b3"></div>
+                <div class="map-building b4"></div>
+                <div class="map-building b5"></div>
+                <div class="map-building b6"></div>
+                <div class="map-pin-area">
+                    <div class="pin-pulse"></div>
+                    <div class="pin-pulse"></div>
+                    <div class="map-pin"></div>
+                </div>
+                <div class="map-label">📍 موقع السائق الحالي</div>
+            </div>
+
+            <!-- ETA Card -->
+            <div class="eta-card">
+                <div class="eta-info">
+                    <span class="eta-label">🕐 وقت الوصول المتوقع</span>
+                    <span class="eta-time">١٠ - ١٥ دقيقة</span>
+                    <span class="eta-range">الوصول حوالي ٥:٤٥ م</span>
+                </div>
+                <div class="eta-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Progress Stepper -->
+            <div class="stepper-wrapper">
+                <div class="stepper" role="progressbar" aria-valuenow="3" aria-valuemin="1" aria-valuemax="4" aria-label="حالة الطلب - الخطوة 3 من 4">
+                    <div class="stepper-progress" style="width:55%;"></div>
+                    <div class="step completed">
+                        <div class="step-circle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                        <span class="step-label">تم الطلب</span>
+                    </div>
+                    <div class="step completed">
+                        <div class="step-circle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                        <span class="step-label">جاري التحضير</span>
+                    </div>
+                    <div class="step active">
+                        <div class="step-circle">٣</div>
+                        <span class="step-label">في الطريق</span>
+                    </div>
+                    <div class="step pending">
+                        <div class="step-circle">٤</div>
+                        <span class="step-label">تم التوصيل</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Driver Card -->
+            <div class="driver-card">
+                <div class="driver-avatar" aria-hidden="true">👤</div>
+                <div class="driver-info">
+                    <span class="driver-name">أحمد العمري</span>
+                    <div class="driver-rating">
+                        <span class="driver-rating-stars">★★★★★</span>
+                        <span class="driver-rating-num">٤.٨</span>
+                    </div>
+                </div>
+                <div class="plate-badge" title="رقم اللوحة">
+                    <span class="plate-latin">ABC 1234</span>
+                    <span class="plate-divider"></span>
+                    <span class="plate-arabic">أ ب ج ١٢٣٤</span>
+                </div>
+                <div class="driver-actions">
+                    <button class="driver-action-btn btn-call" aria-label="اتصال بالسائق" title="اتصال">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"></path>
+                        </svg>
+                    </button>
+                    <button class="driver-action-btn btn-message" aria-label="مراسلة السائق" title="رسالة">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Expandable Order Details -->
+            <div class="order-details-wrapper" id="orderDetailsWrapper">
+                <div class="order-details-header" id="orderDetailsHeader" role="button" aria-expanded="false" tabindex="0" aria-label="تفاصيل الطلب - اضغط للتوسيع">
+                    <span class="order-details-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        تفاصيل الطلب
+                    </span>
+                    <span class="order-details-chevron">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </span>
+                </div>
+                <div class="order-details-body">
+                    <div class="order-detail-row">
+                        <span class="order-detail-label">📋 رقم الطلب</span>
+                        <span class="order-detail-value">#QRB-2024-0873</span>
+                    </div>
+                    <div class="order-detail-row">
+                        <span class="order-detail-label">🏪 المطعم</span>
+                        <span class="order-detail-value">مطعم البيت الشامي</span>
+                    </div>
+                    <div class="order-detail-row">
+                        <span class="order-detail-label">🍽️ محتويات الطلب</span>
+                        <span class="order-detail-value order-items-list">
+                            <span class="order-item">١× شاورما دجاج كبيرة</span>
+                            <span class="order-item">١× برغر لحم خاص</span>
+                            <span class="order-item">٢× بطاطا مقلية</span>
+                            <span class="order-item">١× بيبسي</span>
+                        </span>
+                    </div>
+                    <div class="order-detail-row">
+                        <span class="order-detail-label">💰 المبلغ الإجمالي</span>
+                        <span class="order-detail-value order-total">٤٥ ر.س</span>
+                    </div>
+                    <div class="order-detail-row">
+                        <span class="order-detail-label">💳 طريقة الدفع</span>
+                        <span class="order-detail-value">بطاقة ائتمانية</span>
+                    </div>
+                    <div class="order-detail-row">
+                        <span class="order-detail-label">📍 عنوان التوصيل</span>
+                        <span class="order-detail-value">شارع الملك فهد، الرياض، المملكة العربية السعودية</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-spacer"></div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            const orderDetailsWrapper = document.getElementById('orderDetailsWrapper');
+            const orderDetailsHeader = document.getElementById('orderDetailsHeader');
+            const stepperProgress = document.querySelector('.stepper-progress');
+
+            // Toggle order details
+            function toggleOrderDetails() {
+                const isOpen = orderDetailsWrapper.classList.contains('open');
+                if (isOpen) {
+                    orderDetailsWrapper.classList.remove('open');
+                    orderDetailsHeader.setAttribute('aria-expanded', 'false');
+                } else {
+                    orderDetailsWrapper.classList.add('open');
+                    orderDetailsHeader.setAttribute('aria-expanded', 'true');
+                }
+            }
+
+            orderDetailsHeader.addEventListener('click', toggleOrderDetails);
+
+            // Keyboard support for the order details header
+            orderDetailsHeader.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleOrderDetails();
+                }
+            });
+
+            // Animate stepper progress on load
+            function animateStepper() {
+                if (stepperProgress) {
+                    stepperProgress.style.width = '0%';
+                    requestAnimationFrame(() => {
+                        requestAnimationFrame(() => {
+                            stepperProgress.style.width = '55%';
+                        });
+                    });
+                }
+            }
+
+            // Simulate subtle pin movement on the map occasionally
+            function subtlePinMovement() {
+                const pinArea = document.querySelector('.map-pin-area');
+                if (!pinArea) return;
+                const randomX = (Math.random() - 0.5) * 6;
+                const randomY = (Math.random() - 0.5) * 6;
+                pinArea.style.transition = 'transform 3s ease-in-out';
+                pinArea.style.transform = `translate(${randomX}px, ${randomY}px)`;
+                setTimeout(() => {
+                    pinArea.style.transform = 'translate(0, 0)';
+                }, 3200);
+            }
+
+            // Initialize
+            animateStepper();
+
+            // Subtle pin movement every 8 seconds
+            setInterval(subtlePinMovement, 8000);
+
+            // Initial subtle movement after 2 seconds
+            setTimeout(subtlePinMovement, 2000);
+
+            // Back button - smooth visual feedback
+            const backBtn = document.querySelector('.back-btn');
+            backBtn.addEventListener('click', function() {
+                this.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+                // In a real app: window.history.back() or navigation
+                console.log('رجوع - العودة للصفحة السابقة');
+            });
+
+            // Call button feedback
+            const callBtn = document.querySelector('.btn-call');
+            callBtn.addEventListener('click', function() {
+                this.style.transform = 'scale(0.85)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+                console.log('جارٍ الاتصال بالسائق...');
+            });
+
+            // Message button feedback
+            const msgBtn = document.querySelector('.btn-message');
+            msgBtn.addEventListener('click', function() {
+                this.style.transform = 'scale(0.85)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+                console.log('فتح المحادثة مع السائق...');
+            });
+
+            // Map click feedback
+            const mapContainer = document.querySelector('.map-container');
+            mapContainer.addEventListener('click', function() {
+                console.log('فتح الخريطة بالحجم الكامل...');
+            });
+
+            console.log('🚀 قريب - شاشة تتبع الطلب جاهزة');
+            console.log('📍 الحالة: في الطريق | ⏱️ الوقت المتوقع: ١٠-١٥ دقيقة');
+        })();
+    </script>
+</body>
+</html>

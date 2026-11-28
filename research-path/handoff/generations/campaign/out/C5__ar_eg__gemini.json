@@ -1,0 +1,12 @@
+{
+  "line": "C5",
+  "market": "ar_eg",
+  "model": "gemini",
+  "source": "Your Friday night date starts here.",
+  "raw": "{\n  \"literal\": \"موعدك ليلة الجمعة يبدأ هنا.\",\n  \"adaptation\": \"ديت الخميس بتاعك بيبدأ من هنا.\",\n  \"back_translation\": \"Your Thursday date starts from here.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Changed 'Friday night' to Thursday since the Egyptian weekend kicks off on Thursday evening, and used the colloquial loanword 'ديت' (date) to resonate authentically with the young dating app demographic.\"\n}",
+  "literal": "موعدك ليلة الجمعة يبدأ هنا.",
+  "adaptation": "ديت الخميس بتاعك بيبدأ من هنا.",
+  "back_translation": "Your Thursday date starts from here.",
+  "approach": "adapted",
+  "notes": "Changed 'Friday night' to Thursday since the Egyptian weekend kicks off on Thursday evening, and used the colloquial loanword 'ديت' (date) to resonate authentically with the young dating app demographic."
+}

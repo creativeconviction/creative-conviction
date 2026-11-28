@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Damascus",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Damascus. Write marketing copy for it in Syrian (Damascene) Arabic, the way people in Damascus actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 1,
+  "prompt_lang": "en",
+  "city": "Damascus",
+  "target_region": "Levant",
+  "target_city_code": "DAM",
+  "model": "gemini",
+  "id": "C__Damascus__gemini__s1",
+  "model_id": "google/gemini-3.1-pro-preview",
+  "output": "**الشعار (Tagline):**\nقريب.. أغراضك لبيتك، ولا تعتل همّ العجقة!\n\n**إعلانات إنستغرام (Instagram Ads):**\n١. ما فيك مروّة تنزل عالسوق وتتخانق مع العجقة؟ اطلب أغراضك من \"قريب\" وبتوصلك طيّارة! 🚀\n٢. حامل كياس وطالع هالدرج؟ ريّح ظهرك يا أخي، وخلّي \"قريب\" يوصّلك ياهن لعند باب البيت. 🛍️\n٣. نقصك شي للطبخة والضيوف عالطريق؟ ولا يهمك، \"قريب\" بيفزعلك وبجبلك كل شي ناقصك فوراً. 🏃‍♂️\n\n**إشعار التطبيق (Push Notification):**\nيعطيك العافية يا غالي! 📱 ناقصك شي للبيت؟ افتح \"قريب\" ونقّي اللي بدك ياه، وتكرم عينك.. دقايق ومنكون على بابك 🛵💨",
+  "at": "2026-11-18T05:52:01.431Z"
+}

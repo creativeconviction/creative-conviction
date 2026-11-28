@@ -1,0 +1,12 @@
+{
+  "line": "C2",
+  "market": "ar_sa",
+  "model": "claude",
+  "source": "Happy hour: 2-for-1 drinks from 5 to 7pm.",
+  "raw": "```json\n{\n  \"literal\": \"ساعة سعيدة: مشروبات اثنان مقابل واحد من ٥ إلى ٧ مساءً.\",\n  \"adaptation\": \"وقت الانتعاش: اطلب أي عصير أو قهوة مثلّجة والثاني علينا، من ٥ إلى ٧ مساءً.\",\n  \"back_translation\": \"Refreshment time: order any juice or iced coffee and the second one's on us, from 5 to 7pm.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Because alcohol is prohibited in Saudi Arabia and 'happy hour' implies alcohol, I replaced the term with 'refreshment time' and named non-alcoholic drinks; the 5–7pm window should also be checked against Maghrib prayer times and moved during Ramadan.\"\n}\n```",
+  "literal": "ساعة سعيدة: مشروبات اثنان مقابل واحد من ٥ إلى ٧ مساءً.",
+  "adaptation": "وقت الانتعاش: اطلب أي عصير أو قهوة مثلّجة والثاني علينا، من ٥ إلى ٧ مساءً.",
+  "back_translation": "Refreshment time: order any juice or iced coffee and the second one's on us, from 5 to 7pm.",
+  "approach": "adapted",
+  "notes": "Because alcohol is prohibited in Saudi Arabia and 'happy hour' implies alcohol, I replaced the term with 'refreshment time' and named non-alcoholic drinks; the 5–7pm window should also be checked against Maghrib prayer times and moved during Ramadan."
+}

@@ -1,0 +1,13 @@
+{
+  "scenario": "M2",
+  "lang": "en",
+  "model": "allam",
+  "message": "WHERE IS MY ORDER?? it's been 2 hours, this is ridiculous",
+  "raw": "```json\n{\n  \"intent\": \"missing_item\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": \"true\",\n  \"churn_risk\": \"true\",\n  \"summary\": \"Customer expresses urgency and frustration over missing item in delivery.\"\n}\n```",
+  "intent": "missing_item",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": "true",
+  "churn_risk": "true",
+  "summary": "Customer expresses urgency and frustration over missing item in delivery."
+}

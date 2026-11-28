@@ -1,0 +1,12 @@
+{
+  "line": "I1",
+  "market": "en_gb",
+  "model": "fanar",
+  "source": "We deliver the goods. Literally.",
+  "raw": "{\n\"literal\": \"We deliver the goods. Literally.\",\n\"adaptation\": \"We get your groceries. Quite literally!\",\n\"back_translation\": \"We get your groceries. Quite literally!\",\n\"approach\": \"adapted\",\n\"notes\": \"No cultural issues arise in this adaptation, as the original phrase is straightforward and the adaptation maintains the same meaning while adopting British English phrasing.\"\n}",
+  "literal": "We deliver the goods. Literally.",
+  "adaptation": "We get your groceries. Quite literally!",
+  "back_translation": "We get your groceries. Quite literally!",
+  "approach": "adapted",
+  "notes": "No cultural issues arise in this adaptation, as the original phrase is straightforward and the adaptation maintains the same meaning while adopting British English phrasing."
+}

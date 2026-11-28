@@ -1,0 +1,492 @@
+{
+  "table": {
+    "en": {
+      "claude": {
+        "n": 12,
+        "all": 100,
+        "intent": 100,
+        "sentiment": 100,
+        "urgency": 100,
+        "sarcasm": 100,
+        "churn_risk": 100
+      },
+      "gpt": {
+        "n": 12,
+        "all": 100,
+        "intent": 100,
+        "sentiment": 100,
+        "urgency": 100,
+        "sarcasm": 100,
+        "churn_risk": 100
+      },
+      "gemini": {
+        "n": 12,
+        "all": 83,
+        "intent": 100,
+        "sentiment": 100,
+        "urgency": 100,
+        "sarcasm": 100,
+        "churn_risk": 83
+      },
+      "deepseek": {
+        "n": 12,
+        "all": 67,
+        "intent": 100,
+        "sentiment": 92,
+        "urgency": 100,
+        "sarcasm": 100,
+        "churn_risk": 75
+      },
+      "saba": {
+        "n": 12,
+        "all": 58,
+        "intent": 100,
+        "sentiment": 100,
+        "urgency": 83,
+        "sarcasm": 92,
+        "churn_risk": 75
+      },
+      "allam": {
+        "n": 12,
+        "all": 33,
+        "intent": 83,
+        "sentiment": 100,
+        "urgency": 83,
+        "sarcasm": 50,
+        "churn_risk": 42
+      },
+      "fanar": {
+        "n": 12,
+        "all": 17,
+        "intent": 92,
+        "sentiment": 92,
+        "urgency": 100,
+        "sarcasm": 42,
+        "churn_risk": 33
+      },
+      "big4": {
+        "n": 48,
+        "all": 88,
+        "intent": 100,
+        "sentiment": 98,
+        "urgency": 100,
+        "sarcasm": 100,
+        "churn_risk": 90
+      }
+    },
+    "ar_msa": {
+      "claude": {
+        "n": 12,
+        "all": 100,
+        "intent": 100,
+        "sentiment": 100,
+        "urgency": 100,
+        "sarcasm": 100,
+        "churn_risk": 100
+      },
+      "gpt": {
+        "n": 12,
+        "all": 100,
+        "intent": 100,
+        "sentiment": 100,
+        "urgency": 100,
+        "sarcasm": 100,
+        "churn_risk": 100
+      },
+      "gemini": {
+        "n": 12,
+        "all": 83,
+        "intent": 100,
+        "sentiment": 100,
+        "urgency": 100,
+        "sarcasm": 100,
+        "churn_risk": 83
+      },
+      "deepseek": {
+        "n": 12,
+        "all": 75,
+        "intent": 100,
+        "sentiment": 100,
+        "urgency": 100,
+        "sarcasm": 100,
+        "churn_risk": 75
+      },
+      "saba": {
+        "n": 12,
+        "all": 67,
+        "intent": 100,
+        "sentiment": 100,
+        "urgency": 83,
+        "sarcasm": 100,
+        "churn_risk": 75
+      },
+      "allam": {
+        "n": 12,
+        "all": 33,
+        "intent": 92,
+        "sentiment": 100,
+        "urgency": 83,
+        "sarcasm": 67,
+        "churn_risk": 50
+      },
+      "fanar": {
+        "n": 12,
+        "all": 17,
+        "intent": 92,
+        "sentiment": 92,
+        "urgency": 92,
+        "sarcasm": 33,
+        "churn_risk": 33
+      },
+      "big4": {
+        "n": 48,
+        "all": 90,
+        "intent": 100,
+        "sentiment": 100,
+        "urgency": 100,
+        "sarcasm": 100,
+        "churn_risk": 90
+      }
+    },
+    "ar_sa": {
+      "claude": {
+        "n": 12,
+        "all": 92,
+        "intent": 100,
+        "sentiment": 92,
+        "urgency": 100,
+        "sarcasm": 100,
+        "churn_risk": 100
+      },
+      "gpt": {
+        "n": 12,
+        "all": 100,
+        "intent": 100,
+        "sentiment": 100,
+        "urgency": 100,
+        "sarcasm": 100,
+        "churn_risk": 100
+      },
+      "gemini": {
+        "n": 12,
+        "all": 83,
+        "intent": 100,
+        "sentiment": 100,
+        "urgency": 100,
+        "sarcasm": 100,
+        "churn_risk": 83
+      },
+      "deepseek": {
+        "n": 12,
+        "all": 75,
+        "intent": 100,
+        "sentiment": 100,
+        "urgency": 92,
+        "sarcasm": 100,
+        "churn_risk": 83
+      },
+      "saba": {
+        "n": 12,
+        "all": 50,
+        "intent": 92,
+        "sentiment": 100,
+        "urgency": 83,
+        "sarcasm": 100,
+        "churn_risk": 67
+      },
+      "allam": {
+        "n": 12,
+        "all": 25,
+        "intent": 83,
+        "sentiment": 92,
+        "urgency": 83,
+        "sarcasm": 50,
+        "churn_risk": 50
+      },
+      "fanar": {
+        "n": 12,
+        "all": 33,
+        "intent": 92,
+        "sentiment": 92,
+        "urgency": 100,
+        "sarcasm": 50,
+        "churn_risk": 42
+      },
+      "big4": {
+        "n": 48,
+        "all": 88,
+        "intent": 100,
+        "sentiment": 98,
+        "urgency": 98,
+        "sarcasm": 100,
+        "churn_risk": 92
+      }
+    },
+    "ar_eg": {
+      "claude": {
+        "n": 12,
+        "all": 100,
+        "intent": 100,
+        "sentiment": 100,
+        "urgency": 100,
+        "sarcasm": 100,
+        "churn_risk": 100
+      },
+      "gpt": {
+        "n": 12,
+        "all": 100,
+        "intent": 100,
+        "sentiment": 100,
+        "urgency": 100,
+        "sarcasm": 100,
+        "churn_risk": 100
+      },
+      "gemini": {
+        "n": 12,
+        "all": 75,
+        "intent": 100,
+        "sentiment": 100,
+        "urgency": 100,
+        "sarcasm": 100,
+        "churn_risk": 75
+      },
+      "deepseek": {
+        "n": 12,
+        "all": 83,
+        "intent": 100,
+        "sentiment": 100,
+        "urgency": 100,
+        "sarcasm": 100,
+        "churn_risk": 83
+      },
+      "saba": {
+        "n": 12,
+        "all": 58,
+        "intent": 100,
+        "sentiment": 100,
+        "urgency": 83,
+        "sarcasm": 92,
+        "churn_risk": 75
+      },
+      "allam": {
+        "n": 12,
+        "all": 25,
+        "intent": 92,
+        "sentiment": 100,
+        "urgency": 83,
+        "sarcasm": 50,
+        "churn_risk": 42
+      },
+      "fanar": {
+        "n": 12,
+        "all": 42,
+        "intent": 100,
+        "sentiment": 92,
+        "urgency": 100,
+        "sarcasm": 67,
+        "churn_risk": 50
+      },
+      "big4": {
+        "n": 48,
+        "all": 90,
+        "intent": 100,
+        "sentiment": 100,
+        "urgency": 100,
+        "sarcasm": 100,
+        "churn_risk": 90
+      }
+    },
+    "ar_ma": {
+      "claude": {
+        "n": 12,
+        "all": 100,
+        "intent": 100,
+        "sentiment": 100,
+        "urgency": 100,
+        "sarcasm": 100,
+        "churn_risk": 100
+      },
+      "gpt": {
+        "n": 12,
+        "all": 100,
+        "intent": 100,
+        "sentiment": 100,
+        "urgency": 100,
+        "sarcasm": 100,
+        "churn_risk": 100
+      },
+      "gemini": {
+        "n": 12,
+        "all": 75,
+        "intent": 100,
+        "sentiment": 100,
+        "urgency": 100,
+        "sarcasm": 100,
+        "churn_risk": 75
+      },
+      "deepseek": {
+        "n": 12,
+        "all": 58,
+        "intent": 100,
+        "sentiment": 92,
+        "urgency": 92,
+        "sarcasm": 100,
+        "churn_risk": 75
+      },
+      "saba": {
+        "n": 12,
+        "all": 50,
+        "intent": 75,
+        "sentiment": 92,
+        "urgency": 67,
+        "sarcasm": 92,
+        "churn_risk": 75
+      },
+      "allam": {
+        "n": 12,
+        "all": 25,
+        "intent": 83,
+        "sentiment": 92,
+        "urgency": 83,
+        "sarcasm": 58,
+        "churn_risk": 58
+      },
+      "fanar": {
+        "n": 12,
+        "all": 33,
+        "intent": 75,
+        "sentiment": 92,
+        "urgency": 83,
+        "sarcasm": 58,
+        "churn_risk": 33
+      },
+      "big4": {
+        "n": 48,
+        "all": 83,
+        "intent": 100,
+        "sentiment": 98,
+        "urgency": 98,
+        "sarcasm": 100,
+        "churn_risk": 88
+      }
+    },
+    "arabizi": {
+      "claude": {
+        "n": 12,
+        "all": 92,
+        "intent": 100,
+        "sentiment": 92,
+        "urgency": 100,
+        "sarcasm": 100,
+        "churn_risk": 100
+      },
+      "gpt": {
+        "n": 12,
+        "all": 100,
+        "intent": 100,
+        "sentiment": 100,
+        "urgency": 100,
+        "sarcasm": 100,
+        "churn_risk": 100
+      },
+      "gemini": {
+        "n": 12,
+        "all": 75,
+        "intent": 100,
+        "sentiment": 100,
+        "urgency": 100,
+        "sarcasm": 100,
+        "churn_risk": 75
+      },
+      "deepseek": {
+        "n": 12,
+        "all": 83,
+        "intent": 100,
+        "sentiment": 100,
+        "urgency": 100,
+        "sarcasm": 100,
+        "churn_risk": 83
+      },
+      "saba": {
+        "n": 12,
+        "all": 25,
+        "intent": 58,
+        "sentiment": 92,
+        "urgency": 75,
+        "sarcasm": 92,
+        "churn_risk": 58
+      },
+      "allam": {
+        "n": 12,
+        "all": 25,
+        "intent": 25,
+        "sentiment": 50,
+        "urgency": 50,
+        "sarcasm": 92,
+        "churn_risk": 92
+      },
+      "fanar": {
+        "n": 12,
+        "all": 25,
+        "intent": 58,
+        "sentiment": 83,
+        "urgency": 75,
+        "sarcasm": 83,
+        "churn_risk": 42
+      },
+      "big4": {
+        "n": 48,
+        "all": 88,
+        "intent": 100,
+        "sentiment": 98,
+        "urgency": 100,
+        "sarcasm": 100,
+        "churn_risk": 90
+      }
+    }
+  },
+  "traps": {
+    "en": {
+      "safety_not_high": "0/4",
+      "sarcasm_missed": "0/4",
+      "sarcasm_read_positive": "0/4",
+      "polite_complaint_not_negative": "0/4",
+      "churn_missed": "0/4"
+    },
+    "ar_msa": {
+      "safety_not_high": "0/4",
+      "sarcasm_missed": "0/4",
+      "sarcasm_read_positive": "0/4",
+      "polite_complaint_not_negative": "0/4",
+      "churn_missed": "0/4"
+    },
+    "ar_sa": {
+      "safety_not_high": "0/4",
+      "sarcasm_missed": "0/4",
+      "sarcasm_read_positive": "0/4",
+      "polite_complaint_not_negative": "0/4",
+      "churn_missed": "0/4"
+    },
+    "ar_eg": {
+      "safety_not_high": "0/4",
+      "sarcasm_missed": "0/4",
+      "sarcasm_read_positive": "0/4",
+      "polite_complaint_not_negative": "0/4",
+      "churn_missed": "0/4"
+    },
+    "ar_ma": {
+      "safety_not_high": "0/4",
+      "sarcasm_missed": "0/4",
+      "sarcasm_read_positive": "0/4",
+      "polite_complaint_not_negative": "0/4",
+      "churn_missed": "0/4"
+    },
+    "arabizi": {
+      "safety_not_high": "0/4",
+      "sarcasm_missed": "0/4",
+      "sarcasm_read_positive": "0/4",
+      "polite_complaint_not_negative": "0/4",
+      "churn_missed": "0/4"
+    }
+  }
+}

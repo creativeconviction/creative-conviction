@@ -1,0 +1,13 @@
+{
+  "scenario": "M12",
+  "lang": "ar_ma",
+  "model": "deepseek",
+  "message": "شكرا على السرعة فالتوصيل! ولكن الخبز كان يابس والطماطم مهروسة",
+  "raw": "{\n  \"intent\": \"quality_issue\",\n  \"sentiment\": \"mixed\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"Customer thanks for fast delivery but complains that the bread was dry and the tomatoes were crushed.\"\n}",
+  "intent": "quality_issue",
+  "sentiment": "mixed",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Customer thanks for fast delivery but complains that the bread was dry and the tomatoes were crushed."
+}

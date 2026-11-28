@@ -1,0 +1,12 @@
+{
+  "line": "T4",
+  "market": "en_gb",
+  "model": "saba",
+  "source": "Red Bull gives you wings",
+  "raw": "```json\n{\n  \"literal\": \"Red Bull gives you wings\",\n  \"adaptation\": \"Red Bull gives you wiiings!\",\n  \"back_translation\": \"Red Bull gives you wiings!\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Extended the tagline with a playful exclamation to better fit UK casual advertising tone.\"\n}\n```",
+  "literal": "Red Bull gives you wings",
+  "adaptation": "Red Bull gives you wiiings!",
+  "back_translation": "Red Bull gives you wiings!",
+  "approach": "adapted",
+  "notes": "Extended the tagline with a playful exclamation to better fit UK casual advertising tone."
+}

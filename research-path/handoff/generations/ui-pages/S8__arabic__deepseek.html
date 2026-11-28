@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>قريب • الإعدادات</title>
+  <!-- خط عربي من Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: #f2f2f7;
+      color: #1c1c1e;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 0;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      direction: rtl;
+    }
+
+    /* الحاوية الرئيسية بعرض مناسب للجوال 390 بكسل وتوسيط تلقائي على سطح المكتب */
+    .container {
+      width: 100%;
+      max-width: 390px;
+      background-color: #f2f2f7;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 0 20px rgba(0,0,0,0.05);
+      transition: background-color 0.3s ease;
+    }
+
+    /* ترويسة الملف الشخصي */
+    .profile-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 16px 20px;
+      background-color: #ffffff;
+      margin-bottom: 20px;
+      transition: background-color 0.3s ease;
+    }
+
+    .profile-pic {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background-color: #e0e0e0;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="%23a0a0a0"><circle cx="50" cy="40" r="22"/><ellipse cx="50" cy="90" rx="35" ry="28"/></svg>');
+      background-size: cover;
+      background-position: center;
+      margin-bottom: 12px;
+      border: 3px solid #e5e5ea;
+      transition: border-color 0.3s ease;
+    }
+
+    .profile-name {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1c1c1e;
+      letter-spacing: -0.3px;
+      transition: color 0.3s ease;
+    }
+
+    /* أقسام القوائم */
+    .settings-section {
+      margin: 0 16px 20px;
+      background-color: #ffffff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .settings-section.bottom-section {
+      margin-bottom: 30px;
+    }
+
+    /* صف القائمة */
+    .menu-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px;
+      border-bottom: 1px solid #f2f2f7;
+      transition: background-color 0.2s, border-color 0.3s;
+      cursor: pointer;
+    }
+
+    .menu-row:last-child {
+      border-bottom: none;
+    }
+
+    .menu-row:active {
+      background-color: #f9f9fb;
+    }
+
+    .menu-row .left-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+    }
+
+    .menu-icon {
+      font-size: 22px;
+      width: 24px;
+      text-align: center;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #007aff;
+      transition: color 0.3s;
+    }
+
+    .menu-label {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1c1c1e;
+      transition: color 0.3s ease;
+    }
+
+    .menu-value {
+      font-size: 15px;
+      color: #8e8e93;
+      margin-left: 8px;
+      margin-right: 4px;
+      transition: color 0.3s;
+    }
+
+    .row-arrow {
+      color: #c7c7cc;
+      font-size: 18px;
+      font-weight: 400;
+      transition: color 0.3s;
+    }
+
+    .logout-text {
+      color: #ff3b30;
+      font-weight: 600;
+    }
+    .logout-text .menu-label {
+      color: #ff3b30;
+    }
+
+    /* مفتاح التبديل (Toggle Switch) */
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 30px;
+      flex-shrink: 0;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #e5e5ea;
+      transition: 0.28s;
+      border-radius: 30px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      right: 2px;
+      bottom: 2px;
+      background-color: #ffffff;
+      transition: 0.28s;
+      border-radius: 50%;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    input:checked + .slider {
+      background-color: #34c759;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(20px);
+    }
+
+    /* صف اللغة (قابل للنقر) */
+    .lang-clickable {
+      cursor: pointer;
+    }
+
+    /* الوضع الداكن */
+    body.dark {
+      background-color: #000000;
+      color: #f2f2f7;
+    }
+
+    body.dark .container {
+      background-color: #000000;
+    }
+
+    body.dark .profile-header,
+    body.dark .settings-section {
+      background-color: #1c1c1e;
+      box-shadow: 0 1px 4px rgba(255,255,255,0.02);
+    }
+
+    body.dark .profile-header {
+      background-color: #1c1c1e;
+    }
+
+    body.dark .profile-name {
+      color: #ffffff;
+    }
+
+    body.dark .menu-label {
+      color: #ffffff;
+    }
+
+    body.dark .menu-value {
+      color: #aeaeb2;
+    }
+
+    body.dark .row-arrow {
+      color: #636366;
+    }
+
+    body.dark .menu-row {
+      border-bottom-color: #2c2c2e;
+    }
+
+    body.dark .menu-icon {
+      color: #0a84ff;
+    }
+
+    body.dark .logout-text .menu-label {
+      color: #ff453a;
+    }
+
+    body.dark .slider {
+      background-color: #48484a;
+    }
+
+    body.dark input:checked + .slider {
+      background-color: #32d74b;
+    }
+
+    body.dark .profile-pic {
+      border-color: #3a3a3c;
+    }
+
+    /* تحسين اللمس على الجوال */
+    @media (max-width: 390px) {
+      .container {
+        max-width: 100%;
+        box-shadow: none;
+      }
+      .profile-header {
+        border-radius: 0 0 16px 16px;
+      }
+    }
+
+    @media (min-width: 768px) {
+      body {
+        align-items: center;
+        background-color: #e5e5ea;
+      }
+      body.dark {
+        background-color: #1a1a1a;
+      }
+      .container {
+        border-radius: 20px;
+        margin: 40px 0;
+        min-height: auto;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- ترويسة الملف الشخصي -->
+    <div class="profile-header">
+      <div class="profile-pic" aria-label="صورة الملف الشخصي" role="img"></div>
+      <div class="profile-name">محمد العلي</div>
+    </div>
+
+    <!-- قسم الإعدادات الرئيسي -->
+    <div class="settings-section">
+      <!-- العناوين -->
+      <div class="menu-row" onclick="alert('العناوين المحفوظة')" role="button" tabindex="0" aria-label="العناوين">
+        <div class="left-group">
+          <span class="menu-icon">📍</span>
+          <span class="menu-label">العناوين</span>
+        </div>
+        <span class="row-arrow">›</span>
+      </div>
+
+      <!-- طرق الدفع -->
+      <div class="menu-row" onclick="alert('طرق الدفع')" role="button" tabindex="0" aria-label="طرق الدفع">
+        <div class="left-group">
+          <span class="menu-icon">💳</span>
+          <span class="menu-label">طرق الدفع</span>
+        </div>
+        <span class="row-arrow">›</span>
+      </div>
+
+      <!-- الإشعارات مع مفتاح تشغيل -->
+      <div class="menu-row">
+        <div class="left-group">
+          <span class="menu-icon">🔔</span>
+          <span class="menu-label">الإشعارات</span>
+        </div>
+        <label class="toggle-switch" onclick="event.stopPropagation()" aria-label="تفعيل الإشعارات">
+          <input type="checkbox" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <!-- اختيار اللغة -->
+      <div class="menu-row lang-clickable" onclick="toggleLanguage()" role="button" tabindex="0" aria-label="تغيير اللغة">
+        <div class="left-group">
+          <span class="menu-icon">🌐</span>
+          <span class="menu-label">اللغة</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 4px;">
+          <span class="menu-value" id="lang-value">العربية</span>
+          <span class="row-arrow">›</span>
+        </div>
+      </div>
+
+      <!-- الوضع الداكن -->
+      <div class="menu-row">
+        <div class="left-group">
+          <span class="menu-icon" id="dark-icon">🌙</span>
+          <span class="menu-label">الوضع الداكن</span>
+        </div>
+        <label class="toggle-switch" onclick="event.stopPropagation()" aria-label="تفعيل الوضع الداكن">
+          <input type="checkbox" id="dark-mode-toggle" onchange="toggleDarkMode()">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- قسم المساعدة وتسجيل الخروج -->
+    <div class="settings-section bottom-section">
+      <!-- المساعدة -->
+      <div class="menu-row" onclick="alert('مركز المساعدة')" role="button" tabindex="0" aria-label="المساعدة">
+        <div class="left-group">
+          <span class="menu-icon">❓</span>
+          <span class="menu-label">المساعدة</span>
+        </div>
+        <span class="row-arrow">›</span>
+      </div>
+
+      <!-- تسجيل الخروج -->
+      <div class="menu-row logout-text" onclick="alert('تم تسجيل الخروج')" role="button" tabindex="0" aria-label="تسجيل الخروج">
+        <div class="left-group">
+          <span class="menu-icon">🚪</span>
+          <span class="menu-label">تسجيل الخروج</span>
+        </div>
+        <span class="row-arrow" style="color: #ff3b30;">›</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // أدنى حد من JavaScript العادي
+    
+    // تبديل اللغة بين العربية والإنجليزية
+    function toggleLanguage() {
+      const langEl = document.getElementById('lang-value');
+      if (langEl.innerText.trim() === 'العربية') {
+        langEl.innerText = 'English';
+      } else {
+        langEl.innerText = 'العربية';
+      }
+    }
+
+    // تفعيل/إلغاء الوضع الداكن
+    function toggleDarkMode() {
+      const body = document.body;
+      const darkToggle = document.getElementById('dark-mode-toggle');
+      const darkIcon = document.getElementById('dark-icon');
+      
+      body.classList.toggle('dark', darkToggle.checked);
+      
+      // تغيير الأيقونة بين القمر والشمس
+      if (darkToggle.checked) {
+        darkIcon.textContent = '☀️';
+      } else {
+        darkIcon.textContent = '🌙';
+      }
+    }
+
+    // مزامنة أولية عند تحميل الصفحة (لأي حالة افتراضية)
+    (function() {
+      const darkToggle = document.getElementById('dark-mode-toggle');
+      const darkIcon = document.getElementById('dark-icon');
+      // التأكد من الحالة الافتراضية (الوضع الفاتح)
+      if (darkToggle.checked) {
+        document.body.classList.add('dark');
+        darkIcon.textContent = '☀️';
+      } else {
+        document.body.classList.remove('dark');
+        darkIcon.textContent = '🌙';
+      }
+    })();
+  </script>
+</body>
+</html>

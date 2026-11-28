@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لوحة تحكم قريب</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6c5ce7;
+      --primary-dark: #5546cf;
+      --primary-soft: #efedff;
+      --bg: #f6f7fb;
+      --surface: #fff;
+      --text: #1f2430;
+      --muted: #7c8292;
+      --border: #eaecf2;
+      --green: #16a36a;
+      --green-soft: #e9f8f1;
+      --red: #e45555;
+      --red-soft: #fff0f0;
+      --orange: #dd8b23;
+      --orange-soft: #fff5e6;
+      --blue: #3a75e8;
+      --blue-soft: #edf4ff;
+      --shadow: 0 8px 28px rgba(31, 36, 48, .055);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      color: var(--text);
+      background: var(--bg);
+      font-family: "Tajawal", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      color: inherit;
+    }
+
+    svg {
+      display: block;
+    }
+
+    .icon {
+      width: 21px;
+      height: 21px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex: 0 0 auto;
+    }
+
+    .sidebar {
+      position: fixed;
+      z-index: 50;
+      inset: 0 0 0 auto;
+      width: 260px;
+      padding: 25px 18px;
+      background: #191c2b;
+      color: #aeb2c2;
+      transform: translateX(100%);
+      transition: transform .25s ease;
+      overflow-y: auto;
+    }
+
+    .sidebar.open {
+      transform: translateX(0);
+    }
+
+    .sidebar-backdrop {
+      position: fixed;
+      z-index: 40;
+      inset: 0;
+      border: 0;
+      background: rgba(17, 20, 31, .45);
+      opacity: 0;
+      visibility: hidden;
+      transition: .2s;
+    }
+
+    .sidebar-backdrop.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 0 10px 25px;
+      color: #fff;
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 13px;
+      color: #fff;
+      background: linear-gradient(145deg, #8c7cf3, var(--primary));
+      box-shadow: 0 8px 22px rgba(108, 92, 231, .32);
+    }
+
+    .brand-mark svg {
+      width: 25px;
+      height: 25px;
+    }
+
+    .nav-label {
+      margin: 8px 13px 10px;
+      color: #656a7c;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .nav-list {
+      display: grid;
+      gap: 7px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      color: inherit;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: .2s;
+    }
+
+    .nav-link:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, .05);
+    }
+
+    .nav-link.active {
+      color: #fff;
+      background: var(--primary);
+      box-shadow: 0 8px 20px rgba(108, 92, 231, .25);
+    }
+
+    .nav-badge {
+      margin-inline-start: auto;
+      min-width: 22px;
+      padding: 3px 7px;
+      border-radius: 20px;
+      color: #fff;
+      background: #e75b6b;
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .main {
+      min-height: 100vh;
+    }
+
+    .topbar {
+      position: sticky;
+      z-index: 30;
+      top: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      height: 72px;
+      padding: 0 16px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, .94);
+      backdrop-filter: blur(10px);
+    }
+
+    .menu-btn,
+    .icon-btn {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      padding: 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    .search {
+      position: relative;
+      flex: 1;
+      max-width: 440px;
+    }
+
+    .search svg {
+      position: absolute;
+      top: 50%;
+      right: 13px;
+      width: 19px;
+      height: 19px;
+      color: #9499a8;
+      transform: translateY(-50%);
+    }
+
+    .search input {
+      width: 100%;
+      height: 42px;
+      padding: 0 42px 0 13px;
+      border: 1px solid transparent;
+      border-radius: 12px;
+      outline: none;
+      color: var(--text);
+      background: #f3f4f8;
+      transition: .2s;
+    }
+
+    .search input:focus {
+      border-color: #cfc9ff;
+      background: #fff;
+      box-shadow: 0 0 0 3px var(--primary-soft);
+    }
+
+    .search input::placeholder {
+      color: #9a9eab;
+    }
+
+    .notification {
+      position: relative;
+      display: none;
+    }
+
+    .notification::after {
+      content: "";
+      position: absolute;
+      top: 8px;
+      right: 9px;
+      width: 7px;
+      height: 7px;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      background: #e85364;
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-inline-start: 2px;
+    }
+
+    .avatar {
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      color: #fff;
+      background: linear-gradient(145deg, #ffb776, #f1845f);
+      font-weight: 700;
+    }
+
+    .profile-info {
+      display: none;
+      line-height: 1.35;
+    }
+
+    .profile-info strong {
+      display: block;
+      font-size: 13px;
+    }
+
+    .profile-info span {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .content {
+      width: 100%;
+      max-width: 1480px;
+      margin: 0 auto;
+      padding: 23px 15px 35px;
+    }
+
+    .page-heading {
+      margin-bottom: 20px;
+    }
+
+    .page-heading h1 {
+      margin: 0 0 5px;
+      font-size: 24px;
+      line-height: 1.3;
+    }
+
+    .page-heading p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .date-chip {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 13px;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      background: #fff;
+      color: #666c7b;
+      font-size: 13px;
+    }
+
+    .date-chip .icon {
+      width: 18px;
+      height: 18px;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 11px;
+      margin-bottom: 18px;
+    }
+
+    .card {
+      border: 1px solid rgba(234, 236, 242, .9);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .kpi {
+      min-width: 0;
+      padding: 15px;
+    }
+
+    .kpi-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .kpi-title {
+      overflow: hidden;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 500;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .kpi-icon {
+      display: grid;
+      place-items: center;
+      width: 35px;
+      height: 35px;
+      border-radius: 11px;
+      color: var(--primary);
+      background: var(--primary-soft);
+      flex: 0 0 auto;
+    }
+
+    .kpi-icon.green {
+      color: var(--green);
+      background: var(--green-soft);
+    }
+
+    .kpi-icon.orange {
+      color: var(--orange);
+      background: var(--orange-soft);
+    }
+
+    .kpi-icon.red {
+      color: var(--red);
+      background: var(--red-soft);
+    }
+
+    .kpi-icon .icon {
+      width: 18px;
+      height: 18px;
+    }
+
+    .kpi-value {
+      margin-bottom: 8px;
+      font-size: clamp(19px, 5vw, 28px);
+      font-weight: 800;
+      letter-spacing: -.4px;
+      white-space: nowrap;
+    }
+
+    .kpi-value small {
+      margin-inline-start: 2px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .change {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--muted);
+      font-size: 10px;
+      white-space: nowrap;
+    }
+
+    .change strong {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      color: var(--green);
+      font-size: 11px;
+    }
+
+    .change strong.down {
+      color: var(--red);
+    }
+
+    .trend-icon {
+      width: 12px;
+      height: 12px;
+      stroke-width: 2.2;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .chart-card,
+    .orders-card {
+      overflow: hidden;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 18px 18px 5px;
+    }
+
+    .card-title h2 {
+      margin: 0 0 4px;
+      font-size: 17px;
+    }
+
+    .card-title p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .select {
+      padding: 8px 10px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      outline: none;
+      color: #5d6371;
+      background: #fff;
+      font-family: inherit;
+      font-size: 11px;
+    }
+
+    .chart-summary {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      padding: 13px 18px 0;
+    }
+
+    .chart-summary strong {
+      font-size: 25px;
+    }
+
+    .chart-summary span {
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .chart-wrap {
+      padding: 3px 12px 13px;
+      direction: ltr;
+    }
+
+    .chart-wrap svg {
+      width: 100%;
+      height: auto;
+      min-height: 220px;
+      overflow: visible;
+    }
+
+    .grid-line {
+      stroke: #eceef4;
+      stroke-width: 1;
+      stroke-dasharray: 4 5;
+    }
+
+    .axis-label {
+      fill: #9095a4;
+      font-family: "Tajawal", sans-serif;
+      font-size: 11px;
+    }
+
+    .bar {
+      fill: #d9d5fb;
+      transition: fill .2s, opacity .2s;
+      cursor: pointer;
+    }
+
+    .bar:hover {
+      fill: #8e80ec;
+    }
+
+    .bar.active {
+      fill: var(--primary);
+    }
+
+    .orders-card .card-header {
+      padding-bottom: 14px;
+    }
+
+    .view-all {
+      border: 0;
+      color: var(--primary);
+      background: transparent;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .table-scroll {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      min-width: 690px;
+      border-collapse: collapse;
+      text-align: right;
+    }
+
+    th {
+      padding: 12px 18px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      color: #858a98;
+      background: #fafbfc;
+      font-size: 11px;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    td {
+      padding: 14px 18px;
+      border-bottom: 1px solid #f0f1f5;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: 0;
+    }
+
+    tbody tr:hover {
+      background: #fbfbfe;
+    }
+
+    .sort {
+      display: inline-flex;
+      flex-direction: column;
+      margin-inline-start: 5px;
+      vertical-align: middle;
+      line-height: 5px;
+      color: #b2b6c1;
+      font-size: 8px;
+    }
+
+    th.sorted .sort {
+      color: var(--primary);
+    }
+
+    .order-id {
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .customer {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .customer-avatar {
+      display: grid;
+      place-items: center;
+      width: 31px;
+      height: 31px;
+      border-radius: 9px;
+      color: var(--primary);
+      background: var(--primary-soft);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .amount {
+      font-weight: 700;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 9px;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .status::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    .status.delivered {
+      color: var(--green);
+      background: var(--green-soft);
+    }
+
+    .status.processing {
+      color: var(--blue);
+      background: var(--blue-soft);
+    }
+
+    .status.pending {
+      color: var(--orange);
+      background: var(--orange-soft);
+    }
+
+    .status.cancelled {
+      color: var(--red);
+      background: var(--red-soft);
+    }
+
+    .empty {
+      display: none;
+      padding: 25px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 13px;
+    }
+
+    @media (min-width: 700px) {
+      .topbar {
+        padding: 0 25px;
+      }
+
+      .notification {
+        display: grid;
+      }
+
+      .profile-info {
+        display: block;
+      }
+
+      .content {
+        padding: 28px 25px 40px;
+      }
+
+      .page-heading {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .date-chip {
+        display: flex;
+      }
+
+      .kpi-grid {
+        gap: 16px;
+      }
+
+      .kpi {
+        padding: 19px;
+      }
+
+      .kpi-title {
+        font-size: 13px;
+      }
+
+      .change {
+        font-size: 11px;
+      }
+
+      .card-header {
+        padding: 21px 22px 7px;
+      }
+
+      .chart-summary {
+        padding-inline: 22px;
+      }
+
+      .chart-wrap {
+        padding-inline: 18px;
+      }
+    }
+
+    @media (min-width: 1050px) {
+      .sidebar {
+        transform: none;
+      }
+
+      .sidebar-backdrop,
+      .menu-btn {
+        display: none;
+      }
+
+      .main {
+        margin-right: 260px;
+      }
+
+      .topbar {
+        height: 78px;
+        padding: 0 32px;
+      }
+
+      .content {
+        padding: 31px 32px 45px;
+      }
+
+      .page-heading h1 {
+        font-size: 27px;
+      }
+
+      .kpi-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .dashboard-grid {
+        grid-template-columns: minmax(0, 1.15fr) minmax(430px, .85fr);
+      }
+
+      .kpi-value {
+        font-size: 27px;
+      }
+    }
+
+    @media (max-width: 389px) {
+      .kpi {
+        padding: 13px 11px;
+      }
+
+      .kpi-title {
+        font-size: 11px;
+      }
+
+      .kpi-icon {
+        width: 32px;
+        height: 32px;
+      }
+
+      .topbar {
+        padding-inline: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="sidebar-backdrop" id="backdrop" aria-label="إغلاق القائمة"></button>
+
+  <aside class="sidebar" id="sidebar" aria-label="القائمة الرئيسية">
+    <div class="brand">
+      <span class="brand-mark">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 10.5 12 4l8 6.5"></path>
+          <path d="M6.5 9.5V20h11V9.5"></path>
+          <path d="M9.5 20v-6h5v6"></path>
+        </svg>
+      </span>
+      <span>قريب</span>
+    </div>
+
+    <div class="nav-label">إدارة المتجر</div>
+    <nav>
+      <ul class="nav-list">
+        <li>
+          <a class="nav-link active" href="#">
+            <svg class="icon" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+            لوحة التحكم
+          </a>
+        </li>
+        <li>
+          <a class="nav-link" href="#">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M6 7h12l1 14H5L6 7Z"></path><path d="M9 9V5a3 3 0 0 1 6 0v4"></path></svg>
+            الطلبات
+            <span class="nav-badge">8</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link" href="#">
+            <svg class="icon" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Z"></path><path d="m3 12 9 5 9-5"></path><path d="m3 16 9 5 9-5"></path></svg>
+            المنتجات
+          </a>
+        </li>
+        <li>
+          <a class="nav-link" href="#">
+            <svg class="icon" viewBox="0 0 24 24"><circle cx="9" cy="8" r="4"></circle><path d="M2.5 21a6.5 6.5 0 0 1 13 0"></path><path d="M16 5.5a4 4 0 0 1 0 7.5"></path><path d="M18 16a5.5 5.5 0 0 1 3.5 5"></path></svg>
+            العملاء
+          </a>
+        </li>
+        <li>
+          <a class="nav-link" href="#">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M4 19V9"></path><path d="M10 19V5"></path><path d="M16 19v-7"></path><path d="M22 19H2"></path></svg>
+            التقارير
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="nav-label" style="margin-top:28px">الحساب</div>
+    <nav>
+      <ul class="nav-list">
+        <li>
+          <a class="nav-link" href="#">
+            <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-2.83 2.83-.06-.06A1.7 1.7 0 0 0 15 19.4a1.7 1.7 0 0 0-1 .6 1.7 1.7 0 0 0-.4 1v.1h-4V21a1.7 1.7 0 0 0-1.1-1.6 1.7 1.7 0 0 0-1.88.34l-.06.06-2.83-2.83.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.6-1H3v-4h.1a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.34-1.88l-.06-.06 2.83-2.83.06.06A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-1.5V3h4v.1A1.7 1.7 0 0 0 15 4.6a1.7 1.7 0 0 0 1.88-.34l.06-.06 2.83 2.83-.06.06A1.7 1.7 0 0 0 19.4 9a1.7 1.7 0 0 0 1.5 1h.1v4h-.1a1.7 1.7 0 0 0-1.5 1Z"></path></svg>
+            الإعدادات
+          </a>
+        </li>
+        <li>
+          <a class="nav-link" href="#">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M10 17l5-5-5-5"></path><path d="M15 12H3"></path><path d="M14 3h5a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-5"></path></svg>
+            تسجيل الخروج
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <button class="menu-btn" id="menuBtn" aria-label="فتح القائمة" aria-expanded="false">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+      </button>
+
+      <div class="search">
+        <svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>
+        <input id="searchInput" type="search" placeholder="ابحث عن طلب أو عميل..." aria-label="بحث">
+      </div>
+
+      <button class="icon-btn notification" aria-label="الإشعارات">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path><path d="M10 21h4"></path></svg>
+      </button>
+
+      <div class="profile">
+        <div class="avatar">أم</div>
+        <div class="profile-info">
+          <strong>أحمد محمد</strong>
+          <span>مالك المتجر</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="content">
+      <div class="page-heading">
+        <div>
+          <h1>مرحباً، أحمد 👋</h1>
+          <p>إليك ملخص أداء متجرك اليوم</p>
+        </div>
+        <div class="date-chip">
+          <svg class="icon" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M16 3v4M8 3v4M3 10h18"></path></svg>
+          الأحد، 18 مايو 2025
+        </div>
+      </div>
+
+      <section class="kpi-grid" aria-label="مؤشرات الأداء">
+        <article class="card kpi">
+          <div class="kpi-head">
+            <span class="kpi-title">طلبات اليوم</span>
+            <span class="kpi-icon">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M6 7h12l1 14H5L6 7Z"></path><path d="M9 9V5a3 3 0 0 1 6 0v4"></path></svg>
+            </span>
+          </div>
+          <div class="kpi-value">128</div>
+          <div class="change">
+            <strong>
+              <svg class="icon trend-icon" viewBox="0 0 24 24"><path d="M5 15 12 8l7 7"></path></svg>
+              12.5%
+            </strong>
+            عن أمس
+          </div>
+        </article>
+
+        <article class="card kpi">
+          <div class="kpi-head">
+            <span class="kpi-title">إجمالي الإيرادات</span>
+            <span class="kpi-icon green">
+              <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M15.5 8.5h-5a2 2 0 0 0 0 4h3a2 2 0 0 1 0 4h-5M12 6.5v2M12 16.5v2"></path></svg>
+            </span>
+          </div>
+          <div class="kpi-value">18,450 <small>ر.س</small></div>
+          <div class="change">
+            <strong>
+              <svg class="icon trend-icon" viewBox="0 0 24 24"><path d="M5 15 12 8l7 7"></path></svg>
+              8.2%
+            </strong>
+            عن أمس
+          </div>
+        </article>
+
+        <article class="card kpi">
+          <div class="kpi-head">
+            <span class="kpi-title">متوسط السلة</span>
+            <span class="kpi-icon orange">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M3 5h2l2.5 11h10L20 8H7"></path><circle cx="9" cy="20" r="1"></circle><circle cx="17" cy="20" r="1"></circle></svg>
+            </span>
+          </div>
+          <div class="kpi-value">144 <small>ر.س</small></div>
+          <div class="change">
+            <strong>
+              <svg class="icon trend-icon" viewBox="0 0 24 24"><path d="M5 15 12 8l7 7"></path></svg>
+              3.7%
+            </strong>
+            عن أمس
+          </div>
+        </article>
+
+        <article class="card kpi">
+          <div class="kpi-head">
+            <span class="kpi-title">نسبة الإلغاء</span>
+            <span class="kpi-icon red">
+              <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="m9 9 6 6M15 9l-6 6"></path></svg>
+            </span>
+          </div>
+          <div class="kpi-value">2.4%</div>
+          <div class="change">
+            <strong class="down">
+              <svg class="icon trend-icon" viewBox="0 0 24 24"><path d="m5 9 7 7 7-7"></path></svg>
+              0.6%
+            </strong>
+            عن أمس
+          </div>
+        </article>
+      </section>
+
+      <section class="dashboard-grid">
+        <article class="card chart-card">
+          <div class="card-header">
+            <div class="card-title">
+              <h2>المبيعات</h2>
+              <p>أداء المبيعات خلال آخر 7 أيام</p>
+            </div>
+            <select class="select" aria-label="فترة الرسم البياني">
+              <option>آخر 7 أيام</option>
+              <option>آخر 30 يوماً</option>
+            </select>
+          </div>
+
+          <div class="chart-summary">
+            <strong>86,720 ر.س</strong>
+            <span>↑ 10.4%</span>
+          </div>
+
+          <div class="chart-wrap">
+            <svg viewBox="0 0 680 280" role="img" aria-label="رسم بياني للمبيعات خلال آخر سبعة أيام">
+              <defs>
+                <linearGradient id="activeBar" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#7767eb"></stop>
+                  <stop offset="1" stop-color="#5d4cd9"></stop>
+                </linearGradient>
+              </defs>
+
+              <line class="grid-line" x1="48" y1="30" x2="660" y2="30"></line>
+              <line class="grid-line" x1="48" y1="85" x2="660" y2="85"></line>
+              <line class="grid-line" x1="48" y1="140" x2="660" y2="140"></line>
+              <line class="grid-line" x1="48" y1="195" x2="660" y2="195"></line>
+              <line class="grid-line" x1="48" y1="240" x2="660" y2="240"></line>
+
+              <text class="axis-label" x="39" y="34" text-anchor="end">20k</text>
+              <text class="axis-label" x="39" y="89" text-anchor="end">15k</text>
+              <text class="axis-label" x="39" y="144" text-anchor="end">10k</text>
+              <text class="axis-label" x="39" y="199" text-anchor="end">5k</text>
+              <text class="axis-label" x="39" y="244" text-anchor="end">0</text>
+
+              <rect class="bar" x="70" y="140" width="48" height="100" rx="8"></rect>
+              <rect class="bar" x="155" y="111" width="48" height="129" rx="8"></rect>
+              <rect class="bar" x="240" y="126" width="48" height="114" rx="8"></rect>
+              <rect class="bar" x="325" y="75" width="48" height="165" rx="8"></rect>
+              <rect class="bar" x="410" y="93" width="48" height="147" rx="8"></rect>
+              <rect class="bar" x="495" y="57" width="48" height="183" rx="8"></rect>
+              <rect x="580" y="36" width="48" height="204" rx="8" fill="url(#activeBar)" class="bar active"></rect>
+
+              <text class="axis-label" x="94" y="264" text-anchor="middle">الاثنين</text>
+              <text class="axis-label" x="179" y="264" text-anchor="middle">الثلاثاء</text>
+              <text class="axis-label" x="264" y="264" text-anchor="middle">الأربعاء</text>
+              <text class="axis-label" x="349" y="264" text-anchor="middle">الخميس</text>
+              <text class="axis-label" x="434" y="264" text-anchor="middle">الجمعة</text>
+              <text class="axis-label" x="519" y="264" text-anchor="middle">السبت</text>
+              <text class="axis-label" x="604" y="264" text-anchor="middle">الأحد</text>
+            </svg>
+          </div>
+        </article>
+
+        <article class="card orders-card">
+          <div class="card-header">
+            <div class="card-title">
+              <h2>أحدث الطلبات</h2>
+              <p>آخر الطلبات الواردة إلى متجرك</p>
+            </div>
+            <button class="view-all">عرض الكل</button>
+          </div>
+
+          <div class="table-scroll">
+            <table id="ordersTable">
+              <thead>
+                <tr>
+                  <th data-type="string">رقم الطلب <span class="sort">▲<br>▼</span></th>
+                  <th data-type="string">العميل <span class="sort">▲<br>▼</span></th>
+                  <th data-type="date">التاريخ <span class="sort">▲<br>▼</span></th>
+                  <th data-type="number">المبلغ <span class="sort">▲<br>▼</span></th>
+                  <th data-type="string">الحالة <span class="sort">▲<br>▼</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="order-id">#QR-8421</td>
+                  <td><div class="customer"><span class="customer-avatar">سن</span><span>سارة الناصر</span></div></td>
+                  <td data-value="2025-05-18">18 مايو، 10:35</td>
+                  <td class="amount" data-value="286">286 ر.س</td>
+                  <td><span class="status delivered">تم التوصيل</span></td>
+                </tr>
+                <tr>
+                  <td class="order-id">#QR-8420</td>
+                  <td><div class="customer"><span class="customer-avatar">مم</span><span>محمد المالكي</span></div></td>
+                  <td data-value="2025-05-18">18 مايو، 10:12</td>
+                  <td class="amount" data-value="154">154 ر.س</td>
+                  <td><span class="status processing">قيد التجهيز</span></td>
+                </tr>
+                <tr>
+                  <td class="order-id">#QR-8419</td>
+                  <td><div class="customer"><span class="customer-avatar">لا</span><span>ليان أحمد</span></div></td>
+                  <td data-value="2025-05-18">18 مايو، 09:48</td>
+                  <td class="amount" data-value="420">420 ر.س</td>
+                  <td><span class="status pending">بانتظار الدفع</span></td>
+                </tr>
+                <tr>
+                  <td class="order-id">#QR-8418</td>
+                  <td><div class="customer"><span class="customer-avatar">خر</span><span>خالد رشيد</span></div></td>
+                  <td data-value="2025-05-18">18 مايو، 09:21</td>
+                  <td class="amount" data-value="98">98 ر.س</td>
+                  <td><span class="status cancelled">ملغي</span></td>
+                </tr>
+                <tr>
+                  <td class="order-id">#QR-8417</td>
+                  <td><div class="customer"><span class="customer-avatar">ني</span><span>نورة اليامي</span></div></td>
+                  <td data-value="2025-05-18">18 مايو، 08:56</td>
+                  <td class="amount" data-value="237">237 ر.س</td>
+                  <td><span class="status delivered">تم التوصيل</span></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="empty" id="emptyState">لا توجد طلبات مطابقة لبحثك.</div>
+          </div>
+        </article>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    const sidebar = document.getElementById('sidebar');
+    const backdrop = document.getElementById('backdrop');
+    const menuBtn = document.getElementById('menuBtn');
+
+    function setMenu(open) {
+      sidebar.classList.toggle('open', open);
+      backdrop.classList.toggle('show', open);
+      menuBtn.setAttribute('aria-expanded', open);
+    }
+
+    menuBtn.addEventListener('click', () => setMenu(!sidebar.classList.contains('open')));
+    backdrop.addEventListener('click', () => setMenu(false));
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') setMenu(false);
+    });
+
+    const table = document.getElementById('ordersTable');
+    const tbody = table.querySelector('tbody');
+    const headers = table.querySelectorAll('th');
+    let sortColumn = -1;
+    let ascending = true;
+
+    headers.forEach((header, index) => {
+      header.addEventListener('click', () => {
+        ascending = sortColumn === index ? !ascending : true;
+        sortColumn = index;
+        headers.forEach(h => h.classList.remove('sorted'));
+        header.classList.add('sorted');
+
+        const type = header.dataset.type;
+        const rows = [...tbody.rows];
+
+        rows.sort((a, b) => {
+          const aCell = a.cells[index];
+          const bCell = b.cells[index];
+          let aValue = aCell.dataset.value || aCell.textContent.trim();
+          let bValue = bCell.dataset.value || bCell.textContent.trim();
+
+          if (type === 'number') {
+            aValue = Number(aValue);
+            bValue = Number(bValue);
+          } else if (type === 'date') {
+            aValue = new Date(aValue);
+            bValue = new Date(bValue);
+          } else {
+            return ascending
+              ? aValue.localeCompare(bValue, 'ar')
+              : bValue.localeCompare(aValue, 'ar');
+          }
+
+          return ascending ? aValue - bValue : bValue - aValue;
+        });
+
+        rows.forEach(row => tbody.appendChild(row));
+      });
+    });
+
+    const searchInput = document.getElementById('searchInput');
+    const emptyState = document.getElementById('emptyState');
+
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.trim().toLowerCase();
+      let visible = 0;
+
+      [...tbody.rows].forEach(row => {
+        const match = row.textContent.toLowerCase().includes(query);
+        row.style.display = match ? '' : 'none';
+        if (match) visible++;
+      });
+
+      emptyState.style.display = visible ? 'none' : 'block';
+      table.style.display = visible ? 'table' : 'none';
+    });
+  </script>
+</body>
+</html>

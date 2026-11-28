@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>الإعدادات — قريب</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brand:#0E8F6E;
+    --brand-soft:#E3F4EE;
+    --bg:#F3F5F4;
+    --page:#E9EDEB;
+    --card:#FFFFFF;
+    --text:#14201C;
+    --muted:#6B7A74;
+    --line:#E7ECEA;
+    --danger:#D64545;
+    --danger-soft:#FBEAEA;
+    --track:#D5DCD9;
+    --shadow:0 1px 2px rgba(16,32,26,.05),0 4px 16px rgba(16,32,26,.05);
+    --press:rgba(14,143,110,.06);
+    color-scheme:light;
+  }
+  [data-theme="dark"]{
+    --brand:#34C59A;
+    --brand-soft:rgba(52,197,154,.14);
+    --bg:#0F1513;
+    --page:#080C0B;
+    --card:#18201D;
+    --text:#ECF2EF;
+    --muted:#93A39C;
+    --line:#26302C;
+    --danger:#F07070;
+    --danger-soft:rgba(240,112,112,.13);
+    --track:#34403B;
+    --shadow:0 1px 2px rgba(0,0,0,.3);
+    --press:rgba(52,197,154,.08);
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;
+    background:var(--page);
+    color:var(--text);
+    -webkit-font-smoothing:antialiased;
+    transition:background .25s,color .25s;
+  }
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+  .app{
+    max-width:430px;margin:0 auto;min-height:100vh;
+    background:var(--bg);
+    padding:0 16px calc(32px + env(safe-area-inset-bottom));
+    transition:background .25s;
+  }
+  @media (min-width:600px){
+    body{padding:40px 16px}
+    .app{min-height:auto;border-radius:28px;box-shadow:0 20px 60px rgba(0,0,0,.12);overflow:hidden;max-width:460px;padding-bottom:28px}
+  }
+
+  /* Top bar */
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:18px 2px 8px}
+  .topbar h1{font-size:22px;font-weight:700}
+  .logo{display:flex;align-items:center;gap:6px;color:var(--brand);font-weight:700;font-size:15px}
+  .logo span{width:26px;height:26px;border-radius:8px;background:var(--brand);color:#fff;display:grid;place-items:center;font-size:14px}
+  [data-theme="dark"] .logo span{color:#0F1513}
+
+  /* Profile */
+  .profile{
+    margin-top:10px;background:var(--card);border-radius:20px;padding:18px;
+    display:flex;align-items:center;gap:14px;box-shadow:var(--shadow);
+  }
+  .avatar{
+    width:64px;height:64px;border-radius:50%;flex-shrink:0;
+    background:linear-gradient(135deg,#12A57F,#0B6E55);
+    color:#fff;display:grid;place-items:center;font-size:24px;font-weight:700;
+    position:relative;
+  }
+  .avatar::after{
+    content:"";position:absolute;bottom:2px;inset-inline-end:2px;width:14px;height:14px;
+    border-radius:50%;background:#3DDC84;border:3px solid var(--card);
+  }
+  .profile-info{flex:1;min-width:0}
+  .profile-info h2{font-size:18px;font-weight:700;line-height:1.4}
+  .profile-info p{font-size:13px;color:var(--muted);direction:ltr;text-align:end}
+  [dir="ltr"] .profile-info p{text-align:start}
+  .edit-btn{
+    font-size:13px;font-weight:600;color:var(--brand);background:var(--brand-soft);
+    padding:8px 14px;border-radius:999px;transition:transform .15s;
+  }
+  .edit-btn:active{transform:scale(.96)}
+
+  /* Sections */
+  .section{margin-top:22px}
+  .section-title{font-size:13px;font-weight:600;color:var(--muted);padding:0 6px 8px}
+  .list{background:var(--card);border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}
+  .row{
+    width:100%;display:flex;align-items:center;gap:12px;
+    padding:13px 14px;min-height:60px;text-align:start;position:relative;
+    transition:background .15s;
+  }
+  .row + .row::before{
+    content:"";position:absolute;top:0;inset-inline-start:62px;inset-inline-end:0;
+    height:1px;background:var(--line);
+  }
+  button.row:active,label.row:active{background:var(--press)}
+  button.row:focus-visible,.switch input:focus-visible + .track{outline:2px solid var(--brand);outline-offset:-2px}
+  .icon{
+    width:36px;height:36px;border-radius:11px;display:grid;place-items:center;flex-shrink:0;
+  }
+  .icon svg{width:19px;height:19px}
+  .i-green{background:#E3F4EE;color:#0E8F6E}
+  .i-blue{background:#E6EEFC;color:#2F62D9}
+  .i-orange{background:#FDF0E2;color:#D97A16}
+  .i-purple{background:#EFE9FB;color:#7048C9}
+  .i-slate{background:#E8ECF1;color:#3F4E62}
+  .i-teal{background:#E1F3F6;color:#13879B}
+  .i-red{background:var(--danger-soft);color:var(--danger)}
+  [data-theme="dark"] .i-green{background:rgba(52,197,154,.15);color:#4FD3A9}
+  [data-theme="dark"] .i-blue{background:rgba(98,140,240,.16);color:#86A8F5}
+  [data-theme="dark"] .i-orange{background:rgba(240,150,60,.16);color:#F2AA5F}
+  [data-theme="dark"] .i-purple{background:rgba(150,110,230,.18);color:#B39AF0}
+  [data-theme="dark"] .i-slate{background:rgba(150,170,195,.15);color:#B5C3D4}
+  [data-theme="dark"] .i-teal{background:rgba(50,180,200,.15);color:#6CCFDF}
+  .label{flex:1;min-width:0}
+  .label strong{display:block;font-size:15px;font-weight:500;line-height:1.5}
+  .label small{display:block;font-size:12px;color:var(--muted);line-height:1.5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .value{font-size:13px;color:var(--muted);white-space:nowrap}
+  .chev{width:18px;height:18px;color:var(--muted);flex-shrink:0;opacity:.7}
+  [dir="rtl"] .chev{transform:scaleX(-1)}
+  .badge{font-size:11px;font-weight:600;background:var(--brand-soft);color:var(--brand);padding:2px 8px;border-radius:999px}
+
+  /* Switch */
+  .switch{position:relative;flex-shrink:0}
+  .switch input{position:absolute;opacity:0;width:1px;height:1px}
+  .track{
+    display:block;width:48px;height:28px;border-radius:999px;background:var(--track);
+    position:relative;transition:background .2s;
+  }
+  .track::after{
+    content:"";position:absolute;top:3px;inset-inline-start:3px;width:22px;height:22px;border-radius:50%;
+    background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .22s cubic-bezier(.3,1.4,.5,1);
+  }
+  .switch input:checked + .track{background:var(--brand)}
+  [dir="rtl"] .switch input:checked + .track::after{transform:translateX(-20px)}
+  [dir="ltr"] .switch input:checked + .track::after{transform:translateX(20px)}
+  label.row{cursor:pointer}
+
+  .logout .label strong{color:var(--danger);font-weight:600}
+  .footer{text-align:center;font-size:12px;color:var(--muted);margin-top:22px}
+
+  /* Dialogs */
+  dialog{
+    border:0;padding:0;background:var(--card);color:var(--text);
+    width:100%;max-width:430px;margin:auto auto 0;border-radius:24px 24px 0 0;
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+  dialog::backdrop{background:rgba(5,12,10,.45);backdrop-filter:blur(2px)}
+  dialog[open]{animation:up .28s cubic-bezier(.2,.9,.3,1)}
+  @keyframes up{from{transform:translateY(40px);opacity:0}}
+  @media (min-width:600px){
+    dialog{margin:auto;border-radius:24px;max-width:380px}
+    dialog[open]{animation:pop .2s ease-out}
+    @keyframes pop{from{transform:scale(.95);opacity:0}}
+  }
+  .sheet{padding:10px 18px 20px}
+  .grab{width:40px;height:4px;border-radius:4px;background:var(--line);margin:0 auto 14px}
+  .sheet h3{font-size:17px;font-weight:700;margin-bottom:4px}
+  .sheet p.sub{font-size:13px;color:var(--muted);margin-bottom:14px}
+  .opt{
+    width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;
+    padding:14px 16px;border:1.5px solid var(--line);border-radius:14px;margin-bottom:10px;
+    font-size:15px;font-weight:500;transition:border-color .15s,background .15s;
+  }
+  .opt .sub-en{font-size:12px;color:var(--muted);font-weight:400}
+  .opt[aria-checked="true"]{border-color:var(--brand);background:var(--brand-soft)}
+  .radio{width:20px;height:20px;border-radius:50%;border:2px solid var(--track);position:relative;flex-shrink:0}
+  .opt[aria-checked="true"] .radio{border-color:var(--brand)}
+  .opt[aria-checked="true"] .radio::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--brand)}
+  .actions{display:flex;gap:10px;margin-top:8px}
+  .btn{flex:1;padding:13px;border-radius:14px;font-weight:600;font-size:15px}
+  .btn.ghost{background:var(--bg)}
+  .btn.danger{background:var(--danger);color:#fff}
+  .confirm-icon{width:52px;height:52px;border-radius:16px;margin:4px auto 12px}
+  .center{text-align:center}
+
+  /* Toast */
+  .toast{
+    position:fixed;bottom:calc(24px + env(safe-area-inset-bottom));left:50%;
+    transform:translate(-50%,20px);opacity:0;pointer-events:none;
+    background:var(--text);color:var(--card);font-size:14px;font-weight:500;
+    padding:10px 18px;border-radius:999px;transition:all .25s;white-space:nowrap;z-index:10;
+  }
+  .toast.show{opacity:1;transform:translate(-50%,0)}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main class="app">
+  <header class="topbar">
+    <h1 data-i18n="title">الإعدادات</h1>
+    <div class="logo"><span>ق</span><b data-i18n="brand">قريب</b></div>
+  </header>
+
+  <section class="profile" aria-label="الملف الشخصي">
+    <div class="avatar" aria-hidden="true">س</div>
+    <div class="profile-info">
+      <h2 data-i18n="name">سارة العتيبي</h2>
+      <p>+966 55 123 4567</p>
+    </div>
+    <button class="edit-btn" data-toast="editing" data-i18n="edit">تعديل</button>
+  </section>
+
+  <section class="section">
+    <h3 class="section-title" data-i18n="secAccount">الحساب</h3>
+    <div class="list">
+      <button class="row" data-toast="addresses">
+        <span class="icon i-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>
+        <span class="label"><strong data-i18n="addresses">العناوين</strong><small data-i18n="addressesSub">المنزل، العمل، و٣ عناوين أخرى</small></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>
+      </button>
+      <button class="row" data-toast="payments">
+        <span class="icon i-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3 10h18M7 15h3"/></svg></span>
+        <span class="label"><strong data-i18n="payments">طرق الدفع</strong><small data-i18n="paymentsSub">مدى •••• 4821</small></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <section class="section">
+    <h3 class="section-title" data-i18n="secPrefs">التفضيلات</h3>
+    <div class="list">
+      <label class="row" for="notif">
+        <span class="icon i-orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></span>
+        <span class="label"><strong data-i18n="notifications">الإشعارات</strong><small data-i18n="notifSub">حالة الطلبات والعروض</small></span>
+        <span class="switch"><input type="checkbox" id="notif" role="switch" checked><span class="track"></span></span>
+      </label>
+      <button class="row" id="langBtn" aria-haspopup="dialog">
+        <span class="icon i-purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+        <span class="label"><strong data-i18n="language">اللغة</strong></span>
+        <span class="value" id="langValue">العربية</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>
+      </button>
+      <label class="row" for="dark">
+        <span class="icon i-slate"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></span>
+        <span class="label"><strong data-i18n="dark">الوضع الداكن</strong></span>
+        <span class="switch"><input type="checkbox" id="dark" role="switch"><span class="track"></span></span>
+      </label>
+    </div>
+  </section>
+
+  <section class="section">
+    <h3 class="section-title" data-i18n="secSupport">الدعم</h3>
+    <div class="list">
+      <button class="row" data-toast="help">
+        <span class="icon i-teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.4"/><circle cx="12" cy="17" r=".6" fill="currentColor"/></svg></span>
+        <span class="label"><strong data-i18n="help">المساعدة</strong><small data-i18n="helpSub">الأسئلة الشائعة والتواصل معنا</small></span>
+        <span class="badge" data-i18n="online">متاح الآن</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="list">
+      <button class="row logout" id="logoutBtn" aria-haspopup="dialog">
+        <span class="icon i-red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5M21 12H9"/></svg></span>
+        <span class="label"><strong data-i18n="logout">تسجيل الخروج</strong></span>
+      </button>
+    </div>
+  </section>
+
+  <p class="footer" data-i18n="version">قريب · الإصدار ٢.٤.١</p>
+</main>
+
+<dialog id="langSheet" aria-labelledby="langTitle">
+  <div class="sheet">
+    <div class="grab"></div>
+    <h3 id="langTitle" data-i18n="chooseLang">اختر اللغة</h3>
+    <p class="sub" data-i18n="chooseLangSub">سيتم تطبيق اللغة على كامل التطبيق</p>
+    <div role="radiogroup">
+      <button class="opt" role="radio" data-lang="ar" aria-checked="true">
+        <span>العربية <span class="sub-en">Arabic</span></span><span class="radio"></span>
+      </button>
+      <button class="opt" role="radio" data-lang="en" aria-checked="false">
+        <span>English <span class="sub-en">الإنجليزية</span></span><span class="radio"></span>
+      </button>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="logoutDialog" aria-labelledby="logoutTitle">
+  <div class="sheet center">
+    <div class="grab"></div>
+    <div class="icon i-red confirm-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5M21 12H9"/></svg></div>
+    <h3 id="logoutTitle" data-i18n="logoutQ">تسجيل الخروج؟</h3>
+    <p class="sub" data-i18n="logoutSub">ستحتاج إلى رقم جوالك للدخول مرة أخرى</p>
+    <div class="actions">
+      <button class="btn ghost" id="cancelLogout" data-i18n="cancel">إلغاء</button>
+      <button class="btn danger" id="confirmLogout" data-i18n="logoutBtn">خروج</button>
+    </div>
+  </div>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const T = {
+  ar:{title:"الإعدادات",brand:"قريب",name:"سارة العتيبي",edit:"تعديل",secAccount:"الحساب",addresses:"العناوين",addressesSub:"المنزل، العمل، و٣ عناوين أخرى",payments:"طرق الدفع",paymentsSub:"مدى •••• 4821",secPrefs:"التفضيلات",notifications:"الإشعارات",notifSub:"حالة الطلبات والعروض",language:"اللغة",dark:"الوضع الداكن",secSupport:"الدعم",help:"المساعدة",helpSub:"الأسئلة الشائعة والتواصل معنا",online:"متاح الآن",logout:"تسجيل الخروج",version:"قريب · الإصدار ٢.٤.١",chooseLang:"اختر اللغة",chooseLangSub:"سيتم تطبيق اللغة على كامل التطبيق",logoutQ:"تسجيل الخروج؟",logoutSub:"ستحتاج إلى رقم جوالك للدخول مرة أخرى",cancel:"إلغاء",logoutBtn:"خروج",langName:"العربية",
+      t_editing:"تعديل الملف الشخصي",t_addresses:"فتح العناوين",t_payments:"فتح طرق الدفع",t_help:"جارٍ فتح مركز المساعدة",t_notifOn:"تم تفعيل الإشعارات",t_notifOff:"تم إيقاف الإشعارات",t_darkOn:"تم تفعيل الوضع الداكن",t_darkOff:"تم تفعيل الوضع الفاتح",t_lang:"تم تغيير اللغة إلى العربية",t_out:"تم تسجيل الخروج"},
+  en:{title:"Settings",brand:"Qareeb",name:"Sara Alotaibi",edit:"Edit",secAccount:"Account",addresses:"Addresses",addressesSub:"Home, Work, and 3 more",payments:"Payment methods",paymentsSub:"mada •••• 4821",secPrefs:"Preferences",notifications:"Notifications",notifSub:"Order updates and offers",language:"Language",dark:"Dark mode",secSupport:"Support",help:"Help",helpSub:"FAQs and contact us",online:"Online",logout:"Log out",version:"Qareeb · Version 2.4.1",chooseLang:"Choose language",chooseLangSub:"Applies across the whole app",logoutQ:"Log out?",logoutSub:"You'll need your phone number to sign in again",cancel:"Cancel",logoutBtn:"Log out",langName:"English",
+      t_editing:"Edit profile",t_addresses:"Opening addresses",t_payments:"Opening payment methods",t_help:"Opening help center",t_notifOn:"Notifications on",t_notifOff:"Notifications off",t_darkOn:"Dark mode on",t_darkOff:"Light mode on",t_lang:"Language changed to English",t_out:"Logged out"}
+};
+const root = document.documentElement;
+const $ = s => document.querySelector(s);
+let lang = localStorage.getItem("q-lang") || "ar";
+const t = k => T[lang][k];
+
+let toastTimer;
+function toast(key){
+  const el = $("#toast");
+  el.textContent = t(key);
+  el.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove("show"), 1900);
+}
+
+function applyLang(){
+  root.lang = lang;
+  root.dir = lang === "ar" ? "rtl" : "ltr";
+  document.querySelectorAll("[data-i18n]").forEach(el => el.textContent = t(el.dataset.i18n));
+  $("#langValue").textContent = t("langName");
+  document.title = t("title") + " — " + t("brand");
+  document.querySelectorAll(".opt").forEach(o => o.setAttribute("aria-checked", o.dataset.lang === lang));
+}
+
+function applyTheme(dark){
+  root.dataset.theme = dark ? "dark" : "light";
+  $("#dark").checked = dark;
+}
+
+// Init
+const savedTheme = localStorage.getItem("q-theme");
+applyTheme(savedTheme ? savedTheme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches);
+$("#notif").checked = localStorage.getItem("q-notif") !== "off";
+applyLang();
+
+// Toggles
+$("#dark").addEventListener("change", e => {
+  applyTheme(e.target.checked);
+  localStorage.setItem("q-theme", e.target.checked ? "dark" : "light");
+  toast(e.target.checked ? "t_darkOn" : "t_darkOff");
+});
+$("#notif").addEventListener("change", e => {
+  localStorage.setItem("q-notif", e.target.checked ? "on" : "off");
+  toast(e.target.checked ? "t_notifOn" : "t_notifOff");
+});
+
+// Simple rows
+document.querySelectorAll("[data-toast]").forEach(b => b.addEventListener("click", () => toast("t_" + b.dataset.toast)));
+
+// Dialogs: close on backdrop click
+document.querySelectorAll("dialog").forEach(d => d.addEventListener("click", e => { if (e.target === d) d.close(); }));
+
+// Language
+$("#langBtn").addEventListener("click", () => $("#langSheet").showModal());
+document.querySelectorAll(".opt").forEach(o => o.addEventListener("click", () => {
+  const changed = o.dataset.lang !== lang;
+  lang = o.dataset.lang;
+  localStorage.setItem("q-lang", lang);
+  applyLang();
+  setTimeout(() => { $("#langSheet").close(); if (changed) toast("t_lang"); }, 180);
+}));
+
+// Logout
+$("#logoutBtn").addEventListener("click", () => $("#logoutDialog").showModal());
+$("#cancelLogout").addEventListener("click", () => $("#logoutDialog").close());
+$("#confirmLogout").addEventListener("click", () => { $("#logoutDialog").close(); toast("t_out"); });
+</script>
+</body>
+</html>

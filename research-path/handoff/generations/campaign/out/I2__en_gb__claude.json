@@ -1,0 +1,12 @@
+{
+  "line": "I2",
+  "market": "en_gb",
+  "model": "claude",
+  "source": "Rise and grind.",
+  "raw": "```json\n{\n  \"literal\": \"Rise and grind.\",\n  \"adaptation\": \"Rise and grind.\",\n  \"back_translation\": \"Rise and grind.\",\n  \"approach\": \"keep_english\",\n  \"notes\": \"The line needs no translation because the 'rise and shine' pun and the coffee-bean meaning of 'grind' land naturally in the UK, though I watched for British wariness of earnest American hustle culture and would lean on the playful coffee reading in visuals rather than a work-harder message.\"\n}\n```",
+  "literal": "Rise and grind.",
+  "adaptation": "Rise and grind.",
+  "back_translation": "Rise and grind.",
+  "approach": "keep_english",
+  "notes": "The line needs no translation because the 'rise and shine' pun and the coffee-bean meaning of 'grind' land naturally in the UK, though I watched for British wariness of earnest American hustle culture and would lean on the playful coffee reading in visuals rather than a work-harder message."
+}

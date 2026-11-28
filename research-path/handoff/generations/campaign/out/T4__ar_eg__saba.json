@@ -1,0 +1,12 @@
+{
+  "line": "T4",
+  "market": "ar_eg",
+  "model": "saba",
+  "source": "Red Bull gives you wings",
+  "raw": "```json\n{\n  \"literal\": \"ريد بول يمنحك أجنحة\",\n  \"adaptation\": \"حدودك تبدأ مع ريد بول؟\",\n  \"back_translation\": \"Where do your limits start with Red Bull?\",\n  \"approach\": \"replaced\",\n  \"notes\": \"The original line plays on a literal and metaphorical meaning, but in Egyptian Arabic, a more relatable motivational phrase was used to reflect the brand's energy-boosting appeal without direct translation.\"\n}\n```",
+  "literal": "ريد بول يمنحك أجنحة",
+  "adaptation": "حدودك تبدأ مع ريد بول؟",
+  "back_translation": "Where do your limits start with Red Bull?",
+  "approach": "replaced",
+  "notes": "The original line plays on a literal and metaphorical meaning, but in Egyptian Arabic, a more relatable motivational phrase was used to reflect the brand's energy-boosting appeal without direct translation."
+}

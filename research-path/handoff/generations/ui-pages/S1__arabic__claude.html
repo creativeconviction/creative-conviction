@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B7A55">
+<title>إنشاء حساب جديد | قريب</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#0B7A55;
+    --green-700:#08603F;
+    --green-50:#EAF6F0;
+    --lime:#C9F27B;
+    --ink:#14211C;
+    --muted:#5D6B65;
+    --line:#D9E1DD;
+    --bg:#F5F7F6;
+    --surface:#FFFFFF;
+    --danger:#C0362C;
+    --danger-50:#FDF0EF;
+    --radius:14px;
+    --focus:0 0 0 4px rgba(11,122,85,.18);
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  body{
+    font-family:"IBM Plex Sans Arabic",system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  a{color:var(--green);font-weight:600;text-decoration:none}
+  a:hover{text-decoration:underline}
+  :focus-visible{outline:none;box-shadow:var(--focus)}
+
+  .shell{min-height:100%;display:flex;justify-content:center}
+
+  /* ===== Brand panel (desktop only) ===== */
+  .brand{display:none}
+
+  /* ===== Screen ===== */
+  .screen{
+    width:100%;
+    max-width:480px;
+    background:var(--surface);
+    min-height:100vh;
+    padding:0 20px calc(28px + env(safe-area-inset-bottom));
+    display:flex;
+    flex-direction:column;
+  }
+
+  .topbar{
+    position:sticky;top:0;z-index:5;
+    display:flex;align-items:center;justify-content:space-between;
+    height:60px;
+    margin:0 -20px;padding:0 12px;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+  }
+  .icon-btn{
+    width:44px;height:44px;border-radius:12px;
+    display:grid;place-items:center;
+    border:0;background:transparent;color:var(--ink);cursor:pointer;
+    transition:background .15s;
+  }
+  .icon-btn:hover{background:var(--bg)}
+  .icon-btn svg{width:24px;height:24px}
+
+  .logo{display:flex;align-items:center;gap:8px;font-weight:700;font-size:18px;color:var(--ink)}
+  .logo-mark{
+    width:32px;height:32px;border-radius:10px;background:var(--green);
+    display:grid;place-items:center;color:#fff;font-size:18px;line-height:1;
+  }
+  .topbar-spacer{width:44px}
+
+  .intro{margin:12px 0 24px}
+  .intro h1{font-size:26px;line-height:1.3;margin:0 0 6px;font-weight:700}
+  .intro p{margin:0;color:var(--muted);font-size:15px}
+
+  /* ===== Form ===== */
+  form{display:flex;flex-direction:column;gap:18px}
+  .field{display:flex;flex-direction:column;gap:6px}
+  .field label{font-size:14px;font-weight:600}
+
+  .control{
+    position:relative;
+    display:flex;align-items:center;
+    height:52px;
+    border:1.5px solid var(--line);
+    border-radius:var(--radius);
+    background:var(--surface);
+    transition:border-color .15s, box-shadow .15s;
+  }
+  .control:hover{border-color:#BCC8C2}
+  .control:focus-within{border-color:var(--green);box-shadow:var(--focus)}
+  .control input{
+    flex:1;min-width:0;height:100%;
+    border:0;background:transparent;outline:none;
+    padding:0 14px;
+    font:inherit;font-size:16px;color:var(--ink);
+  }
+  .control input::placeholder{color:#9AA6A1}
+  .control input:focus-visible{box-shadow:none}
+  .ltr-right{text-align:right}
+
+  .phone{direction:ltr}
+  .phone .prefix{
+    display:flex;align-items:center;gap:6px;
+    height:100%;padding:0 12px;
+    border-right:1.5px solid var(--line);
+    font-weight:600;font-size:15px;color:var(--ink);
+    white-space:nowrap;
+  }
+  .phone input{text-align:left;letter-spacing:.3px}
+
+  .toggle{
+    flex:none;margin-inline-end:4px;
+    width:44px;height:44px;border-radius:10px;
+    border:0;background:transparent;color:var(--muted);cursor:pointer;
+    display:grid;place-items:center;
+  }
+  .toggle:hover{color:var(--ink);background:var(--bg)}
+  .toggle svg{width:22px;height:22px}
+  .toggle .eye-off{display:none}
+  .toggle[aria-pressed="true"] .eye{display:none}
+  .toggle[aria-pressed="true"] .eye-off{display:block}
+
+  .hint{font-size:13px;color:var(--muted);margin:0}
+  .error{
+    display:none;align-items:center;gap:6px;
+    font-size:13px;color:var(--danger);margin:0;font-weight:500;
+  }
+  .error::before{
+    content:"!";flex:none;
+    width:16px;height:16px;border-radius:50%;
+    background:var(--danger);color:#fff;
+    font-size:11px;font-weight:700;display:grid;place-items:center;
+  }
+  .field.invalid .control{border-color:var(--danger);background:var(--danger-50)}
+  .field.invalid .control:focus-within{box-shadow:0 0 0 4px rgba(192,54,44,.15)}
+  .field.invalid .error{display:flex}
+  .field.invalid .hint{display:none}
+
+  /* ===== Terms ===== */
+  .terms{display:flex;flex-direction:column;gap:6px;margin-top:2px}
+  .check{display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-size:14px;color:var(--ink)}
+  .check input{
+    appearance:none;-webkit-appearance:none;flex:none;
+    width:22px;height:22px;margin:1px 0 0;
+    border:1.5px solid #AEBBB5;border-radius:7px;background:#fff;
+    display:grid;place-items:center;cursor:pointer;
+    transition:background .15s,border-color .15s;
+  }
+  .check input::after{
+    content:"";width:11px;height:6px;
+    border:2.5px solid #fff;border-top:0;border-right:0;
+    transform:rotate(-45deg) translate(1px,-1px) scale(0);
+    transition:transform .15s;
+  }
+  .check input:checked{background:var(--green);border-color:var(--green)}
+  .check input:checked::after{transform:rotate(-45deg) translate(1px,-1px) scale(1)}
+  .check input:focus-visible{box-shadow:var(--focus)}
+  .terms.invalid .check input{border-color:var(--danger)}
+  .terms.invalid .error{display:flex}
+
+  /* ===== Actions ===== */
+  .primary{
+    position:relative;
+    margin-top:6px;
+    height:54px;width:100%;
+    border:0;border-radius:var(--radius);
+    background:var(--green);color:#fff;
+    font:inherit;font-size:17px;font-weight:700;
+    cursor:pointer;
+    box-shadow:0 6px 16px -6px rgba(11,122,85,.55);
+    transition:background .15s,transform .1s;
+  }
+  .primary:hover{background:var(--green-700)}
+  .primary:active{transform:scale(.99)}
+  .primary[disabled]{cursor:progress;opacity:.85}
+  .primary .spinner{
+    display:none;width:22px;height:22px;margin:auto;
+    border:3px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;
+    animation:spin .8s linear infinite;
+  }
+  .primary.loading .label{display:none}
+  .primary.loading .spinner{display:block}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  .switch{margin:22px 0 0;text-align:center;font-size:15px;color:var(--muted)}
+
+  .toast{
+    position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));
+    transform:translate(-50%,140%);
+    background:var(--ink);color:#fff;
+    padding:12px 18px;border-radius:12px;
+    font-size:15px;font-weight:500;
+    display:flex;align-items:center;gap:8px;
+    box-shadow:0 10px 30px -10px rgba(0,0,0,.4);
+    transition:transform .3s ease;
+    max-width:calc(100% - 32px);
+  }
+  .toast.show{transform:translate(-50%,0)}
+  .toast .dot{width:20px;height:20px;border-radius:50%;background:var(--lime);color:var(--ink);display:grid;place-items:center;font-size:12px;font-weight:700}
+
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+  /* ===== Desktop ===== */
+  @media (min-width:960px){
+    body{background:var(--surface)}
+    .shell{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);min-height:100vh}
+    .brand{
+      display:flex;flex-direction:column;justify-content:space-between;
+      position:relative;overflow:hidden;
+      padding:48px 56px;
+      background:var(--green);color:#fff;
+    }
+    .brand::before,.brand::after{
+      content:"";position:absolute;border-radius:50%;
+      background:rgba(255,255,255,.06);
+    }
+    .brand::before{width:520px;height:520px;bottom:-180px;left:-160px}
+    .brand::after{width:260px;height:260px;top:-80px;right:-60px;background:rgba(201,242,123,.12)}
+    .brand .logo{color:#fff;font-size:22px}
+    .brand .logo-mark{background:var(--lime);color:var(--green-700)}
+    .brand-body{position:relative;z-index:1;max-width:440px}
+    .brand-body h2{font-size:40px;line-height:1.25;margin:0 0 14px;font-weight:700}
+    .brand-body h2 span{color:var(--lime)}
+    .brand-body p{margin:0 0 32px;font-size:17px;opacity:.85}
+    .perks{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+    .perks li{display:flex;align-items:center;gap:12px;font-size:16px;font-weight:500}
+    .perks .ic{
+      width:40px;height:40px;border-radius:12px;flex:none;
+      background:rgba(255,255,255,.12);display:grid;place-items:center;font-size:20px;
+    }
+    .brand small{position:relative;z-index:1;opacity:.7;font-size:13px}
+
+    .screen{
+      max-width:none;min-height:auto;
+      padding:0 48px 48px;
+      align-items:center;justify-content:center;
+    }
+    .screen > *{width:100%;max-width:420px}
+    .topbar{position:static;margin:0;padding:0;height:auto;margin-bottom:28px;background:none;backdrop-filter:none}
+    .topbar .logo{visibility:hidden}
+    .intro h1{font-size:30px}
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <aside class="brand" aria-hidden="true">
+    <div class="logo"><span class="logo-mark">ق</span>قريب</div>
+    <div class="brand-body">
+      <h2>مقاضيك <span>أقرب</span><br>مما تتوقع</h2>
+      <p>خضار وفواكه طازجة ومقاضي البيت كلها توصلك لباب البيت.</p>
+      <ul class="perks">
+        <li><span class="ic">⚡</span>توصيل خلال ٣٠ دقيقة</li>
+        <li><span class="ic">🥬</span>منتجات طازجة يومياً</li>
+        <li><span class="ic">💳</span>ادفع بمدى أو Apple Pay أو كاش</li>
+      </ul>
+    </div>
+    <small>© ٢٠٢٥ قريب. جميع الحقوق محفوظة.</small>
+  </aside>
+
+  <main class="screen">
+    <header class="topbar">
+      <button type="button" class="icon-btn" id="backBtn" aria-label="رجوع">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+      <div class="logo"><span class="logo-mark" aria-hidden="true">ق</span>قريب</div>
+      <span class="topbar-spacer" aria-hidden="true"></span>
+    </header>
+
+    <div class="intro">
+      <h1>إنشاء حساب جديد</h1>
+      <p>سجّل الحين وخلّ مقاضيك توصلك بدقائق.</p>
+    </div>
+
+    <form id="signup" novalidate>
+      <div class="field" id="f-name">
+        <label for="name">الاسم الكامل</label>
+        <div class="control">
+          <input id="name" name="name" type="text" autocomplete="name" placeholder="مثال: محمد العتيبي" aria-describedby="name-err" required>
+        </div>
+        <p class="error" id="name-err" aria-live="polite">الرجاء إدخال اسمك الكامل</p>
+      </div>
+
+      <div class="field" id="f-phone">
+        <label for="phone">رقم الجوال</label>
+        <div class="control phone">
+          <span class="prefix" aria-hidden="true"><span>🇸🇦</span>+966</span>
+          <input id="phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="5X XXX XXXX" maxlength="12" aria-describedby="phone-hint phone-err" required>
+        </div>
+        <p class="hint" id="phone-hint">سنرسل لك رمز تحقق على هذا الرقم</p>
+        <p class="error" id="phone-err" aria-live="polite">أدخل رقم جوال سعودي صحيح يبدأ بـ 5</p>
+      </div>
+
+      <div class="field" id="f-email">
+        <label for="email">البريد الإلكتروني</label>
+        <div class="control">
+          <input id="email" name="email" type="email" dir="ltr" class="ltr-right" inputmode="email" autocomplete="email" placeholder="name@example.com" aria-describedby="email-err" required>
+        </div>
+        <p class="error" id="email-err" aria-live="polite">أدخل بريداً إلكترونياً صحيحاً</p>
+      </div>
+
+      <div class="field" id="f-password">
+        <label for="password">كلمة المرور</label>
+        <div class="control">
+          <input id="password" name="password" type="password" autocomplete="new-password" placeholder="أدخل كلمة المرور" aria-describedby="pw-hint pw-err" required>
+          <button type="button" class="toggle" id="pwToggle" aria-pressed="false" aria-controls="password" aria-label="إظهار كلمة المرور">
+            <svg class="eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+            <svg class="eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.6 5.1A10.4 10.4 0 0 1 12 5c6.5 0 10 7 10 7a17.6 17.6 0 0 1-3.2 4.2M6.6 6.6C3.8 8.4 2 12 2 12s3.5 7 10 7c1.9 0 3.6-.6 5-1.5"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/><path d="M3 3l18 18"/></svg>
+          </button>
+        </div>
+        <p class="hint" id="pw-hint">٨ أحرف على الأقل</p>
+        <p class="error" id="pw-err" aria-live="polite">كلمة المرور يجب أن تكون ٨ أحرف على الأقل</p>
+      </div>
+
+      <div class="terms" id="f-terms">
+        <label class="check">
+          <input type="checkbox" id="terms" name="terms" aria-describedby="terms-err" required>
+          <span>أوافق على <a href="#" target="_blank" rel="noopener">الشروط والأحكام</a> و<a href="#" target="_blank" rel="noopener">سياسة الخصوصية</a></span>
+        </label>
+        <p class="error" id="terms-err" aria-live="polite">يجب الموافقة على الشروط للمتابعة</p>
+      </div>
+
+      <button type="submit" class="primary" id="submitBtn">
+        <span class="label">إنشاء حساب</span>
+        <span class="spinner" aria-hidden="true"></span>
+        <span class="sr-only" id="loadingText"></span>
+      </button>
+    </form>
+
+    <p class="switch">لديك حساب؟ <a href="#">تسجيل الدخول</a></p>
+  </main>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"><span class="dot">✓</span><span>تم إنشاء حسابك بنجاح!</span></div>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var form = $('signup');
+
+  // Back button
+  $('backBtn').addEventListener('click', function(){
+    if (history.length > 1) history.back();
+  });
+
+  // Password toggle
+  var pw = $('password'), tg = $('pwToggle');
+  tg.addEventListener('click', function(){
+    var show = pw.type === 'password';
+    pw.type = show ? 'text' : 'password';
+    tg.setAttribute('aria-pressed', show);
+    tg.setAttribute('aria-label', show ? 'إخفاء كلمة المرور' : 'إظهار كلمة المرور');
+  });
+
+  // Normalize Arabic-Indic digits & format phone
+  var toLatin = function(s){
+    return s.replace(/[٠-٩]/g, function(d){ return d.charCodeAt(0) - 1632; })
+            .replace(/[۰-۹]/g, function(d){ return d.charCodeAt(0) - 1776; });
+  };
+  var phoneDigits = function(){
+    var d = toLatin($('phone').value).replace(/\D/g, '');
+    if (d.indexOf('966') === 0) d = d.slice(3);
+    if (d.charAt(0) === '0') d = d.slice(1);
+    return d.slice(0, 9);
+  };
+  $('phone').addEventListener('input', function(){
+    var d = phoneDigits();
+    var out = d.slice(0,2);
+    if (d.length > 2) out += ' ' + d.slice(2,5);
+    if (d.length > 5) out += ' ' + d.slice(5,9);
+    this.value = out;
+  });
+
+  // Validation rules
+  var rules = {
+    name:     function(){ return $('name').value.trim().length >= 3; },
+    phone:    function(){ return /^5\d{8}$/.test(phoneDigits()); },
+    email:    function(){ return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test($('email').value.trim()); },
+    password: function(){ return pw.value.length >= 8; },
+    terms:    function(){ return $('terms').checked; }
+  };
+  var setState = function(key){
+    var ok = rules[key]();
+    var wrap = $('f-' + key);
+    var input = $(key);
+    wrap.classList.toggle('invalid', !ok);
+    input.setAttribute('aria-invalid', !ok);
+    return ok;
+  };
+
+  // Validate after a field has been touched
+  Object.keys(rules).forEach(function(key){
+    var el = $(key);
+    el.addEventListener('blur', function(){ if (el.value || key === 'terms') { el.dataset.touched = 1; setState(key); } });
+    el.addEventListener(key === 'terms' ? 'change' : 'input', function(){ if (el.dataset.touched) setState(key); });
+  });
+
+  // Submit
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var firstBad = null;
+    Object.keys(rules).forEach(function(key){
+      $(key).dataset.touched = 1;
+      if (!setState(key) && !firstBad) firstBad = $(key);
+    });
+    if (firstBad){ firstBad.focus(); return; }
+
+    var btn = $('submitBtn');
+    btn.classList.add('loading');
+    btn.disabled = true;
+    $('loadingText').textContent = 'جارٍ إنشاء الحساب';
+
+    setTimeout(function(){
+      btn.classList.remove('loading');
+      btn.disabled = false;
+      $('loadingText').textContent = '';
+      var t = $('toast');
+      t.classList.add('show');
+      setTimeout(function(){ t.classList.remove('show'); }, 3000);
+    }, 1200);
+  });
+})();
+</script>
+</body>
+</html>

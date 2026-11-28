@@ -1,0 +1,12 @@
+{
+  "line": "C3",
+  "market": "en_gb",
+  "model": "deepseek",
+  "source": "Thanksgiving dinner, sorted. Order your turkey today.",
+  "raw": "{\n  \"literal\": \"Thanksgiving dinner, sorted. Order your turkey today.\",\n  \"adaptation\": \"Christmas dinner, sorted. Order your turkey today.\",\n  \"back_translation\": \"Christmas dinner, sorted. Order your turkey today.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Thanksgiving is not celebrated in the UK, so the holiday was changed to Christmas, which is the primary occasion for a turkey dinner.\"\n}",
+  "literal": "Thanksgiving dinner, sorted. Order your turkey today.",
+  "adaptation": "Christmas dinner, sorted. Order your turkey today.",
+  "back_translation": "Christmas dinner, sorted. Order your turkey today.",
+  "approach": "adapted",
+  "notes": "Thanksgiving is not celebrated in the UK, so the holiday was changed to Christmas, which is the primary occasion for a turkey dinner."
+}

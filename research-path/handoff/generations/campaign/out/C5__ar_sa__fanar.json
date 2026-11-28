@@ -1,0 +1,12 @@
+{
+  "line": "C5",
+  "market": "ar_sa",
+  "model": "fanar",
+  "source": "Your Friday night date starts here.",
+  "raw": "{\n\"literal\": \"مباراة الجمعة المسائية الخاصة بك تبدأ هنا.\",\n\"adaptation\": \"احتفظ باللحظات المميزة، ابدأ مغامراتك هنا على تطبيق مواعدتنا.\",\n\"back_translation\": \"Keep special moments, start your adventures here on our dating app.\",\n\"approach\": \"adapted\",\n\"notes\": \"The original implies a weekend activity, which may not be universally relatable in a context where Friday nights might be reserved for more traditional activities. The adapted version retains the idea of starting something special but frames it in a way that could be more generally accepted in Saudi Arabia.\"\n}",
+  "literal": "مباراة الجمعة المسائية الخاصة بك تبدأ هنا.",
+  "adaptation": "احتفظ باللحظات المميزة، ابدأ مغامراتك هنا على تطبيق مواعدتنا.",
+  "back_translation": "Keep special moments, start your adventures here on our dating app.",
+  "approach": "adapted",
+  "notes": "The original implies a weekend activity, which may not be universally relatable in a context where Friday nights might be reserved for more traditional activities. The adapted version retains the idea of starting something special but frames it in a way that could be more generally accepted in Saudi Arabia."
+}

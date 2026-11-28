@@ -1,0 +1,13 @@
+{
+  "scenario": "M8",
+  "lang": "ar_ma",
+  "model": "gemini",
+  "message": "تقطعو ليا الفلوس جوج مرات على نفس الكوموند، 300 درهم جوج مرات من الكارطة",
+  "raw": "{\n  \"intent\": \"billing_issue\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"The customer reports being double-charged 300 Dirhams on their card for a single order.\"\n}",
+  "intent": "billing_issue",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "The customer reports being double-charged 300 Dirhams on their card for a single order."
+}

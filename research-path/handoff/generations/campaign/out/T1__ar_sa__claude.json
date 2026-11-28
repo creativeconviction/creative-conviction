@@ -1,0 +1,12 @@
+{
+  "line": "T1",
+  "market": "ar_sa",
+  "model": "claude",
+  "source": "I'm lovin' it",
+  "raw": "```json\n{\n  \"literal\": \"أنا أحبه\",\n  \"adaptation\": \"أحبه\",\n  \"back_translation\": \"Love it\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Arabic has no casual progressive like 'lovin'', so I used the short, upbeat 'أحبه', which reads naturally in both Modern Standard Arabic and Gulf dialect, and avoided stronger words like 'أعشقه' (I adore/am infatuated with it) because their romantic intensity would feel inappropriate for a family brand in Saudi Arabia.\"\n}\n```",
+  "literal": "أنا أحبه",
+  "adaptation": "أحبه",
+  "back_translation": "Love it",
+  "approach": "adapted",
+  "notes": "Arabic has no casual progressive like 'lovin'', so I used the short, upbeat 'أحبه', which reads naturally in both Modern Standard Arabic and Gulf dialect, and avoided stronger words like 'أعشقه' (I adore/am infatuated with it) because their romantic intensity would feel inappropriate for a family brand in Saudi Arabia."
+}

@@ -1,0 +1,41 @@
+{
+  "big_idea": "في الرياض، البقالة اللي على راس الحارة كانت دايم جزء من يومنا، و\"قريب\" يرجّع هالإحساس بشكل أسرع. الحملة تقدّم \"قريب\" كأنه جارك اللي يعرف وش تحتاج ويوصّله لك خلال ٢٠ دقيقة، بدون مشوار وبدون زحمة وبسعر يناسب كل يوم. الفكرة باختصار: \"قريب منك… مثل الجار.\"",
+  "key_visual": "عند باب شقة في حي سكني بالرياض وقت العصرية، مندوب \"قريب\" مبتسم يسلّم كيس بقالة لأب شاب، وطفلته الصغيرة تطل من وراه. يظهر من الكيس خبز وحليب وتمر وخضار طازجة، وفي الخلفية شارع الحارة والبقالة الصغيرة على الزاوية والضوء ذهبي دافئ. الإحساس العام قرب وألفة وحياة يومية حقيقية، بعيد عن الفخامة.",
+  "image_prompt": "Warm lifestyle photograph at golden hour in a residential neighborhood of Riyadh, Saudi Arabia. A smiling young Saudi delivery rider wearing a casual orange and green branded polo and cap hands a paper grocery bag to a young Saudi father in a white thobe standing at the door of a modern beige apartment building. His little daughter peeks shyly from behind him. The bag shows fresh bread, a milk carton, dates, tomatoes and leafy greens. In the softly blurred background are a quiet neighborhood street, palm trees, and a small corner grocery shop with warm lights. The mood is authentic, friendly and everyday rather than luxury. Natural skin tones, sandy beige and warm orange tones, shallow depth of field, eye-level 35mm lens, candid documentary style, clean composition with negative space on the left for text, no text, no logos.",
+  "palette": [
+    "#F28C28",
+    "#1F7A4D",
+    "#F6EDDF",
+    "#1E2A32"
+  ],
+  "typography": {
+    "headline": "IBM Plex Sans Arabic – Bold، لعناوين واضحة وعصرية وودودة",
+    "body": "Tajawal – Regular و Medium، للنصوص وواجهة التطبيق لسهولة قراءتها على الجوال",
+    "latin_fallback": "IBM Plex Sans، للأرقام والنصوص الإنجليزية بانسجام مع الخط العربي"
+  },
+  "tone_words": [
+    "قريب",
+    "عفوي",
+    "ودود",
+    "عملي",
+    "خفيف دم"
+  ],
+  "headline": "بقالة حارتك صارت عند بابك",
+  "subhead": "كل اللي يحتاجه بيتك من محلات الحي، يوصلك خلال ٢٠ دقيقة وبأسعار كل يوم",
+  "cta": "اطلب الحين",
+  "ad_lines": [
+    "الحليب خلص؟ لا تطلع، \"قريب\" يجيبه لك بـ٢٠ دقيقة 🥛",
+    "من بقالة الحارة لباب بيتك، والدفع بطاقة أو كاش عند الاستلام",
+    "كل طلب عاشر توصيله علينا، لأن الجار ما ينسى جاره 🧡"
+  ],
+  "app_store_blurb": "\"قريب\" يوصّل لك البقالة من محلات حيّك في الرياض خلال ٢٠ دقيقة تقريباً. ادفع بالبطاقة أو نقداً عند الاستلام، وتوصيل طلبك العاشر مجاني. مقاضي البيت اليومية صارت أسهل وأقرب.",
+  "push_notifications": [
+    "قبل العشا؟ 🍞 خبز وحليب يوصلونك خلال ٢٠ دقيقة، اطلب من \"قريب\" الحين",
+    "باقي لك طلب واحد ويصير توصيلك الجاي علينا 🎉"
+  ],
+  "onboarding": [
+    "هلا بك في \"قريب\"! بقالة حارتك صارت في جوالك",
+    "اطلب وارتاح، طلبك يوصلك خلال ٢٠ دقيقة تقريباً",
+    "ادفع بالطريقة اللي تناسبك، وكل طلب عاشر توصيله مجاني"
+  ]
+}

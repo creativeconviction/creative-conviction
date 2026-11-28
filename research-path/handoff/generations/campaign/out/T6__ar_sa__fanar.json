@@ -1,0 +1,12 @@
+{
+  "line": "T6",
+  "market": "ar_sa",
+  "model": "fanar",
+  "source": "Got milk?",
+  "raw": "{\n\"literal\": \"هل لديك الحليب؟\",\n\"adaptation\": \"تِلكّشْ مَلَك؟!\",\r\n\"back_translation\": \"Did you drink milk?!\",\r\n\"approach\": \"adapted\",\r\n\"notes\": \"The adaptation plays on the Arabic verb 'تِلكَشْ' (meaning to drink) to make it more conversational and engaging for the Saudi audience.\"\n}",
+  "literal": "هل لديك الحليب؟",
+  "adaptation": "تِلكّشْ مَلَك؟!",
+  "back_translation": "Did you drink milk?!",
+  "approach": "adapted",
+  "notes": "The adaptation plays on the Arabic verb 'تِلكَشْ' (meaning to drink) to make it more conversational and engaging for the Saudi audience."
+}

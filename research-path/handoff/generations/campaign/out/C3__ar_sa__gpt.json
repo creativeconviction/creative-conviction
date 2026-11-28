@@ -1,0 +1,12 @@
+{
+  "line": "C3",
+  "market": "ar_sa",
+  "model": "gpt",
+  "source": "Thanksgiving dinner, sorted. Order your turkey today.",
+  "raw": "{\n  \"literal\": \"عشاء عيد الشكر، جاهز. اطلب ديكك الرومي اليوم.\",\n  \"adaptation\": \"عزومتك جاهزة. اطلب مقاضيك اليوم.\",\n  \"back_translation\": \"Your gathering is sorted. Order your groceries today.\",\n  \"approach\": \"replaced\",\n  \"notes\": \"استُبدل عيد الشكر بفكرة العزومة لأنها أكثر ارتباطًا بالثقافة السعودية والمناسبات المحلية.\"\n}",
+  "literal": "عشاء عيد الشكر، جاهز. اطلب ديكك الرومي اليوم.",
+  "adaptation": "عزومتك جاهزة. اطلب مقاضيك اليوم.",
+  "back_translation": "Your gathering is sorted. Order your groceries today.",
+  "approach": "replaced",
+  "notes": "استُبدل عيد الشكر بفكرة العزومة لأنها أكثر ارتباطًا بالثقافة السعودية والمناسبات المحلية."
+}

@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Rabat",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Rabat. Write marketing copy for it in Moroccan Arabic (Darija), the way people in Rabat actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 1,
+  "prompt_lang": "en",
+  "city": "Rabat",
+  "target_region": "Morocco",
+  "target_city_code": "RAB",
+  "model": "gemini",
+  "id": "C__Rabat__gemini__s1",
+  "model_id": "google/gemini-3.1-pro-preview",
+  "output": "**الشعار (Tagline):**\nقريب... تقديتك تال باب الدار، دغيا وبلا تمارة.\n\n**إعلانات إنستغرام (Instagram Ads):**\n1. معكاز تخرج تقدى؟ تطبيق قريب يجيب ليك كلشي تال باب الدار، غير رتاح مع راسك! 📱🛒\n2. الخضرة طرية، الديسير، وكاع داكشي لي خاصك للكوزينة... كوموندي دابا من قريب ونوصلوك فالبلاصة. 🍅🥑\n3. بلا ما توحل مع الزحام ولا تقلب فين تبلاسي فـ أكدال ولا حسان. قريب يهنيك من تمارة ديال التقضية! 🚗🙅‍♂️\n\n**إشعار (Push Notification):**\nسالات ليك التقضية؟ 🤔 دخل لـ قريب، عزل لي بغيتي، وحنا نجيبوه ليك تال الدار دابا! 🛵💨",
+  "at": "2026-11-18T05:55:39.901Z"
+}

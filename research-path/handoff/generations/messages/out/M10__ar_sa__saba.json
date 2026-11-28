@@ -1,0 +1,13 @@
+{
+  "scenario": "M10",
+  "lang": "ar_sa",
+  "model": "saba",
+  "message": "توصلون حي النرجس؟ وفيه حد أدنى للطلب؟",
+  "raw": "```json\n{\n  \"intent\": \"question\",\n  \"sentiment\": \"neutral\",\n  \"urgency\": \"low\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"Customer is asking if the app delivers to Narges area and if there is a minimum order requirement.\"\n}\n```",
+  "intent": "question",
+  "sentiment": "neutral",
+  "urgency": "low",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "Customer is asking if the app delivers to Narges area and if there is a minimum order requirement."
+}

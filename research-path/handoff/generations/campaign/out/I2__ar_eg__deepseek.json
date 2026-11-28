@@ -1,0 +1,12 @@
+{
+  "line": "I2",
+  "market": "ar_eg",
+  "model": "deepseek",
+  "source": "Rise and grind.",
+  "raw": "{\n  \"literal\": \"انهض واطحن\",\n  \"adaptation\": \"اصحى واطحن\",\n  \"back_translation\": \"Wake up and grind\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Changed 'rise' to colloquial 'wake up' (اصحى) and kept 'grind' (اطحن) for the double meaning of coffee grinding and hustling, avoiding a literal 'rise and shine' equivalent.\"\n}",
+  "literal": "انهض واطحن",
+  "adaptation": "اصحى واطحن",
+  "back_translation": "Wake up and grind",
+  "approach": "adapted",
+  "notes": "Changed 'rise' to colloquial 'wake up' (اصحى) and kept 'grind' (اطحن) for the double meaning of coffee grinding and hustling, avoiding a literal 'rise and shine' equivalent."
+}

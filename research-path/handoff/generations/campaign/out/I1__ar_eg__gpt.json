@@ -1,0 +1,12 @@
+{
+  "line": "I1",
+  "market": "ar_eg",
+  "model": "gpt",
+  "source": "We deliver the goods. Literally.",
+  "raw": "{\n  \"literal\": \"نوصّل البضاعة. حرفيًا.\",\n  \"adaptation\": \"طلباتك أوامر... وإحنا بنوصّلها.\",\n  \"back_translation\": \"Your orders are commands... and we deliver them.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"استخدمت اللهجة المصرية ولعبت على ازدواج معنى «طلباتك» للحفاظ على روح التورية في الأصل.\"\n}",
+  "literal": "نوصّل البضاعة. حرفيًا.",
+  "adaptation": "طلباتك أوامر... وإحنا بنوصّلها.",
+  "back_translation": "Your orders are commands... and we deliver them.",
+  "approach": "adapted",
+  "notes": "استخدمت اللهجة المصرية ولعبت على ازدواج معنى «طلباتك» للحفاظ على روح التورية في الأصل."
+}

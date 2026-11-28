@@ -1,0 +1,13 @@
+{
+  "scenario": "M9",
+  "lang": "ar_ma",
+  "model": "deepseek",
+  "message": "بغيت غير نقول بلي الليفرور كان ظريف بزاف وعاوني نطلع كلشي للفوق، شكرا بزاف!",
+  "raw": "{\n  \"intent\": \"praise\",\n  \"sentiment\": \"positive\",\n  \"urgency\": \"low\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"Customer praises the delivery person for being very nice and helping carry items upstairs.\"\n}",
+  "intent": "praise",
+  "sentiment": "positive",
+  "urgency": "low",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "Customer praises the delivery person for being very nice and helping carry items upstairs."
+}

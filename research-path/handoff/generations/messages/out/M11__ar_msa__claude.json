@@ -1,0 +1,13 @@
+{
+  "scenario": "M11",
+  "lang": "ar_msa",
+  "model": "claude",
+  "message": "بصراحة هذه آخر مرة أطلب منكم، كل أسبوع تحدث مشكلة",
+  "raw": "```json\n{\n  \"intent\": \"general_complaint\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"The customer says this is the last time they will order because they have a problem every week, though they don't name a specific issue.\"\n}\n```",
+  "intent": "general_complaint",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "The customer says this is the last time they will order because they have a problem every week, though they don't name a specific issue."
+}

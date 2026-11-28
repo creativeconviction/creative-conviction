@@ -1,0 +1,12 @@
+{
+  "line": "C5",
+  "market": "ar_sa",
+  "model": "claude",
+  "source": "Your Friday night date starts here.",
+  "raw": "```json\n{\n  \"literal\": \"موعدك ليلة الجمعة يبدأ هنا.\",\n  \"adaptation\": \"قصتك مع شريك حياتك تبدأ من هنا.\",\n  \"back_translation\": \"Your story with your life partner starts here.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"I dropped 'Friday night date' because Friday is the holy day in Saudi Arabia and casual dating clashes with local norms, and I reframed the promise around a serious, marriage-minded connection while keeping the 'starts here' hook.\"\n}\n```",
+  "literal": "موعدك ليلة الجمعة يبدأ هنا.",
+  "adaptation": "قصتك مع شريك حياتك تبدأ من هنا.",
+  "back_translation": "Your story with your life partner starts here.",
+  "approach": "adapted",
+  "notes": "I dropped 'Friday night date' because Friday is the holy day in Saudi Arabia and casual dating clashes with local norms, and I reframed the promise around a serious, marriage-minded connection while keeping the 'starts here' hook."
+}

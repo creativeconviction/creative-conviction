@@ -1,0 +1,13 @@
+{
+  "scenario": "M9",
+  "lang": "ar_ma",
+  "model": "allam",
+  "message": "بغيت غير نقول بلي الليفرور كان ظريف بزاف وعاوني نطلع كلشي للفوق، شكرا بزاف!",
+  "raw": "```json\n{\n  \"intent\": \"praise\",\n  \"sentiment\": \"positive\",\n  \"urgency\": \"low\",\n  \"sarcasm\": \"false\",\n  \"churn_risk\": \"false\",\n  \"summary\": \"Customer appreciates the delivery person's help\"\n}\n```",
+  "intent": "praise",
+  "sentiment": "positive",
+  "urgency": "low",
+  "sarcasm": "false",
+  "churn_risk": "false",
+  "summary": "Customer appreciates the delivery person's help"
+}

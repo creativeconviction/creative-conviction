@@ -1,0 +1,208 @@
+{
+  "answers": {
+    "A-L__ar-flux": {
+      "note": "Made up an arabic wrod",
+      "v": "unreadable"
+    },
+    "A-L__ar-gpt-image": {
+      "v": "correct"
+    },
+    "A-L__ar-ideogram": {
+      "v": "correct"
+    },
+    "A-L__ar-nano-banana": {
+      "v": "correct"
+    },
+    "A-L__ar-qwen-image": {
+      "v": "correct"
+    },
+    "A-L__ar-recraft": {
+      "v": "correct"
+    },
+    "A-L__ar-seedream": {
+      "v": "correct"
+    },
+    "A-W__ar__long-flux": {
+      "note": "Made up words",
+      "v": "unreadable"
+    },
+    "A-W__ar__long-gpt-image": {
+      "v": "correct"
+    },
+    "A-W__ar__long-ideogram": {
+      "v": "correct"
+    },
+    "A-W__ar__long-nano-banana": {
+      "v": "correct"
+    },
+    "A-W__ar__long-qwen-image": {
+      "v": "correct"
+    },
+    "A-W__ar__long-recraft": {
+      "note": "The ج has 2 dots under it which is wrong it shoudl be in it",
+      "v": "small"
+    },
+    "A-W__ar__long-seedream": {
+      "v": "correct"
+    },
+    "A-W__ar__short-flux": {
+      "note": "Wrote an unreadable word",
+      "v": "wrong"
+    },
+    "A-W__ar__short-gpt-image": {
+      "v": "correct"
+    },
+    "A-W__ar__short-ideogram": {
+      "v": "correct"
+    },
+    "A-W__ar__short-nano-banana": {
+      "v": "correct"
+    },
+    "A-W__ar__short-qwen-image": {
+      "note": "Write word but the ي is written worng  and visualized incorrectly",
+      "v": "small"
+    },
+    "A-W__ar__short-recraft": {
+      "note": "it chose an N instead of B and the two dots on the Q are not acurrate and jsut one line",
+      "v": "wrong"
+    },
+    "A-W__ar__short-seedream": {
+      "v": "correct"
+    },
+    "B-Egypt-flux": {
+      "v": "fits"
+    },
+    "B-Egypt-gpt-image": {
+      "note": "This is oK it clealry shows fintech and pyramids and has a white to conenct them seamlessly with the flag",
+      "v": "fits"
+    },
+    "B-Egypt-ideogram": {
+      "v": "fits"
+    },
+    "B-Egypt-nano-banana": {
+      "note": "It fits well but is abdly designed",
+      "v": "fits"
+    },
+    "B-Egypt-qwen-image": {
+      "note": "It's bad",
+      "v": "unsure"
+    },
+    "B-Egypt-recraft": {
+      "note": "Really bad nothing to do with egytpy and random ",
+      "v": "unsure"
+    },
+    "B-Egypt-seedream": {
+      "note": "Just money and the pyramids bad design",
+      "v": "cliche"
+    },
+    "B-Morocco-flux": {
+      "note": "It's OK not the best design at all",
+      "v": "fits"
+    },
+    "B-Morocco-gpt-image": {
+      "note": "It's comminicative",
+      "v": "fits"
+    },
+    "B-Morocco-ideogram": {
+      "note": "The arrow is bad",
+      "v": "unsure"
+    },
+    "B-Morocco-nano-banana": {
+      "note": "It's ok not the ebst design but oK",
+      "v": "fits"
+    },
+    "B-Morocco-qwen-image": {
+      "note": "No fintech note",
+      "v": "unsure"
+    },
+    "B-Morocco-recraft": {
+      "note": "Radnom nothing fintechy",
+      "v": "unsure"
+    },
+    "B-Morocco-seedream": {
+      "note": "Star of David",
+      "v": "wrong"
+    },
+    "B-Saudi-Arabia-flux": {
+      "note": "Bad",
+      "v": "unsure"
+    },
+    "B-Saudi-Arabia-gpt-image": {
+      "note": "It's OK",
+      "v": "fits"
+    },
+    "B-Saudi-Arabia-ideogram": {
+      "v": "fits"
+    },
+    "B-Saudi-Arabia-nano-banana": {
+      "note": "This isn't bad beacuse it's not te most innovative but connects teh stocks tot he palm tree seamlessly and. is at leat logicalt",
+      "v": "fits"
+    },
+    "B-Saudi-Arabia-qwen-image": {
+      "note": "Confusing design doesn'tt reall ymake sense no fit other than the colors",
+      "v": "unsure"
+    },
+    "B-Saudi-Arabia-recraft": {
+      "note": "This is bad na drandom and has nothing to do with the country",
+      "v": "unsure"
+    },
+    "B-Saudi-Arabia-seedream": {
+      "note": "Bad nothig to do with saudi or fintech",
+      "v": ""
+    },
+    "D-C-C__Riyadh__claude__s1-vs-C-C__Riyadh__gpt__s1": {
+      "v": "a"
+    },
+    "E-M1-ar_sa": {
+      "v": "natural"
+    },
+    "E-M10-ar_sa": {
+      "v": "natural"
+    },
+    "E-M11-ar_sa": {
+      "v": "natural"
+    },
+    "E-M12-ar_sa": {
+      "v": "natural"
+    },
+    "E-M2-ar_sa": {
+      "note": "The \"شي يفشل\" is random contextual why would it be emabrassic",
+      "v": "off"
+    },
+    "E-M3-ar_sa": {
+      "note": "This is really good",
+      "v": "natural"
+    },
+    "E-M4-ar_sa": {
+      "v": "natural"
+    },
+    "E-M5-ar_sa": {
+      "v": "natural"
+    },
+    "E-M6-ar_sa": {
+      "v": "natural"
+    },
+    "E-M7-ar_sa": {
+      "v": "natural"
+    },
+    "E-M8-ar_sa": {
+      "v": "natural"
+    },
+    "E-M9-ar_sa": {
+      "v": "natural"
+    },
+    "F-C5-ar_sa-claude": {
+      "note": "It doesnt' ",
+      "v": "no"
+    }
+  },
+  "profile": {
+    "initials": "Rayouf",
+    "level": "native",
+    "regions": [
+      "gulf"
+    ],
+    "role": "yes"
+  },
+  "updatedAt": "2026-11-22T04:25:16.778Z"
+}

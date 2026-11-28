@@ -1,0 +1,13 @@
+{
+  "scenario": "M4",
+  "lang": "ar_msa",
+  "model": "gemini",
+  "message": "سامحكم الله، هذه ثالث مرة يصلني الطلب خطأ",
+  "raw": "{\n  \"intent\": \"wrong_item\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"The customer is expressing frustration because they received the wrong order for the third time.\"\n}",
+  "intent": "wrong_item",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "The customer is expressing frustration because they received the wrong order for the third time."
+}

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل حساب جديد - قريب</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2E6B43;
+            --primary-dark: #1F4A2A;
+            --text-color: #333333;
+            --light-gray: #F5F5F5;
+            --border-color: #E0E0E0;
+            --error-color: #E74C3C;
+            --success-color: #2ECC71;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--light-gray);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 390px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header .back-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .header h1 {
+            color: white;
+            font-size: 20px;
+            font-weight: 500;
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .form-container {
+            padding: 24px 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: var(--light-gray);
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .form-control::placeholder {
+            color: #AAA;
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #888;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .checkbox-container input[type="checkbox"] {
+            margin-top: 4px;
+            width: 18px;
+            height: 18px;
+        }
+
+        .checkbox-container label {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .checkbox-container label a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .checkbox-container label a:hover {
+            text-decoration: underline;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 16px 0;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 16px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .login-link a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header class="header">
+            <button class="back-btn" aria-label="العودة">←</button>
+            <h1>تسجيل حساب جديد</h1>
+        </header>
+
+        <div class="form-container">
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="fullName">الاسم الكامل</label>
+                    <input type="text" id="fullName" class="form-control" placeholder="ادخل الاسم الكامل">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">رقم الجوال</label>
+                    <div style="display: flex; align-items: center;">
+                        <span style="background-color: #e9ecef; padding: 14px 16px; border: 1px solid #dee2e6; border-radius: 8px 0 0 8px; border-right: none; font-size: 16px;">+966</span>
+                        <input type="tel" id="phone" class="form-control" placeholder="5XXXXXXXX" style="border-left: none; flex-grow: 1;" dir="ltr">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">البريد الإلكتروني</label>
+                    <input type="email" id="email" class="form-control" placeholder="ادخل بريدك الإلكتروني">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">كلمة المرور</label>
+                    <div class="password-container">
+                        <input type="password" id="password" class="form-control" placeholder="ادخل كلمة المرور">
+                        <button type="button" class="toggle-password" id="togglePassword">👁</button>
+                    </div>
+                </div>
+
+                <div class="checkbox-container">
+                    <input type="checkbox" id="terms">
+                    <label for="terms">أوافق على جميع <a href="#">الشروط والأحكام والسياسةPrivacy Policy</a></label>
+                </div>
+
+                <button type="submit" class="btn btn-primary">إنشاء حساب</button>
+
+                <div class="login-link">
+                    لديك حساب مسبقاً؟ <a href="#">تسجيل الدخول</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Functionality for showing/hiding password
+        const togglePassword = document.getElementById('togglePassword');
+        const password = document.getElementById('password');
+
+        togglePassword.addEventListener('click', function (e) {
+            // toggle the type attribute
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            // toggle the eye slash icon
+            this.textContent = type === 'password' ? '👁' : '👁‍🗨';
+        });
+
+        // Form submission handler
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here you would typically handle form submission, e.g., send data to a server.
+            alert('تم إرسال النموذج بنجاح (هذا مثال وليس نظام فعال)');
+        });
+
+        // Back button handler
+        document.querySelector('.back-btn').addEventListener('click', function() {
+            window.history.back();
+        });
+    </script>
+
+</body>
+</html>

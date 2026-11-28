@@ -1,0 +1,13 @@
+{
+  "scenario": "M1",
+  "lang": "ar_eg",
+  "model": "gpt",
+  "message": "أهلاً، الأوردر وصل بس اللبن والعيش مش موجودين",
+  "raw": "{\"intent\":\"missing_item\",\"sentiment\":\"negative\",\"urgency\":\"medium\",\"sarcasm\":false,\"churn_risk\":false,\"summary\":\"The order arrived, but the milk and bread were missing.\"}",
+  "intent": "missing_item",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The order arrived, but the milk and bread were missing."
+}

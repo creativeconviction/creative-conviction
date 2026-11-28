@@ -1,0 +1,13 @@
+{
+  "scenario": "M8",
+  "lang": "arabizi",
+  "model": "fanar",
+  "message": "et5asam menny marteen 3ala nafs el order, 450 geneh marteen men el card",
+  "raw": "{\n\"intent\": \"billing_issue\",\n\"sentiment\": \"negative\",\n\"urgency\": \"high\",\n\"sarcasm\": false,\n\"churn_risk\": true,\n\"summary\": \"Customer reports being charged twice for the same order.\"\n}",
+  "intent": "billing_issue",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Customer reports being charged twice for the same order."
+}

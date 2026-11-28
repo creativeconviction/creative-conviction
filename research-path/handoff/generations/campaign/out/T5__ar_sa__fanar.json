@@ -1,0 +1,8 @@
+{
+  "line": "T5",
+  "market": "ar_sa",
+  "model": "fanar",
+  "source": "Because you're worth it",
+  "raw": "{\n\"literal\": \"لأنك تستحقها\",\n\"adaptation\": \"لأنه يستحق جيل جديد منك\"،\n\"back_translation\": \"Because it deserves a new generation of you\",\n\"approach\": \"adapted\",\n\"notes\": \"In the Saudi context, maintaining the brand's empowering message but adapting it to include a forward-looking element that resonates with the values of progress and self-improvement.\"\n}",
+  "_parse_error": true
+}

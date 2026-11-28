@@ -1,0 +1,12 @@
+{
+  "line": "T2",
+  "market": "ar_sa",
+  "model": "deepseek",
+  "source": "Just Do It",
+  "raw": "{\n  \"literal\": \"فقط افعلها\",\n  \"adaptation\": \"تحدَّ نفسك\",\n  \"back_translation\": \"Challenge yourself\",\n  \"approach\": \"replaced\",\n  \"notes\": \"Replaced the direct command with a culturally resonant phrase emphasizing self-improvement, better suited to the Saudi market's motivational tone.\"\n}",
+  "literal": "فقط افعلها",
+  "adaptation": "تحدَّ نفسك",
+  "back_translation": "Challenge yourself",
+  "approach": "replaced",
+  "notes": "Replaced the direct command with a culturally resonant phrase emphasizing self-improvement, better suited to the Saudi market's motivational tone."
+}

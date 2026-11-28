@@ -1,0 +1,12 @@
+{
+  "line": "T1",
+  "market": "en_gb",
+  "model": "allam",
+  "source": "I'm lovin' it",
+  "raw": "{\n  \"literal\": \"I’m grovelling it\",\n  \"adaptation\": \"Feeling FAB at Maccies - getting hungry yet?\",\n  \"back_translation\": \"I'm lovin' it\",\n  \"approach\": \"literal\",\n  \"notes\": \"Adopted a more familiar British way of saying 'lovin' it', which emphasizes colloquialism and tends to use slightly different phrasings.\"\n}",
+  "literal": "I’m grovelling it",
+  "adaptation": "Feeling FAB at Maccies - getting hungry yet?",
+  "back_translation": "I'm lovin' it",
+  "approach": "literal",
+  "notes": "Adopted a more familiar British way of saying 'lovin' it', which emphasizes colloquialism and tends to use slightly different phrasings."
+}

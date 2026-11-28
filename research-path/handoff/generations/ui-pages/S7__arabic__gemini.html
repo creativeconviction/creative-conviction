@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شاشات ترحيب - تطبيق قريب</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #00b4d8;
+            --primary-hover: #0096b4;
+            --text-dark: #2b2d42;
+            --text-light: #8d99ae;
+            --bg-color: #f8f9fa;
+            --dot-inactive: #e9ecef;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #e0e5ec;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* حاوية التطبيق - مصممة لعرض 390 بكسل */
+        .app-container {
+            width: 100%;
+            max-width: 390px;
+            height: 100vh;
+            max-height: 844px;
+            background-color: #ffffff;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        @media (min-width: 400px) {
+            .app-container {
+                height: 844px;
+                border-radius: 30px;
+            }
+        }
+
+        /* الرأس (زر التخطي) */
+        .header {
+            padding: 20px 24px;
+            display: flex;
+            justify-content: flex-end;
+            z-index: 10;
+        }
+
+        .skip-btn {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: color 0.2s;
+            background: none;
+            border: none;
+        }
+
+        .skip-btn:hover {
+            color: var(--text-dark);
+        }
+
+        /* منطقة الشرائح */
+        .slider-wrapper {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slider-track {
+            display: flex;
+            width: 300%; /* 3 slides */
+            height: 100%;
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .slide {
+            width: 33.3333%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 30px;
+        }
+
+        /* الرسم التوضيحي */
+        .illustration-placeholder {
+            width: 100%;
+            max-width: 280px;
+            aspect-ratio: 1/1;
+            background-color: var(--bg-color);
+            border-radius: 50%;
+            margin-bottom: 40px;
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--primary-color);
+        }
+
+        .illustration-placeholder svg {
+            width: 50%;
+            height: 50%;
+            opacity: 0.8;
+        }
+
+        /* النصوص */
+        .text-content {
+            text-align: center;
+            width: 100%;
+        }
+
+        .slide-title {
+            color: var(--text-dark);
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .slide-desc {
+            color: var(--text-light);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* التذييل (النقاط والأزرار) */
+        .footer {
+            padding: 30px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* نقاط التقدم */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 4px;
+            background-color: var(--dot-inactive);
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            width: 24px;
+            background-color: var(--primary-color);
+        }
+
+        /* أزرار التحكم */
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 50px;
+        }
+
+        .btn {
+            height: 48px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn-prev {
+            background-color: transparent;
+            color: var(--text-light);
+            padding: 0 15px;
+            visibility: hidden; /* مخفي في الشريحة الأولى */
+            opacity: 0;
+        }
+
+        .btn-prev.show {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .btn-prev:hover {
+            color: var(--text-dark);
+        }
+
+        .btn-next {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0 30px;
+            box-shadow: 0 4px 15px rgba(0, 180, 216, 0.3);
+        }
+
+        .btn-next:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-start {
+            background-color: var(--primary-color);
+            color: white;
+            width: 100%;
+            display: none;
+            box-shadow: 0 4px 15px rgba(0, 180, 216, 0.3);
+        }
+
+        .btn-start:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .controls.last-slide .btn-prev,
+        .controls.last-slide .btn-next {
+            display: none;
+        }
+
+        .controls.last-slide .btn-start {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- الرأس -->
+        <header class="header">
+            <button class="skip-btn" id="skipBtn" onclick="finishOnboarding()">تخطي</button>
+        </header>
+
+        <!-- منطقة الشرائح -->
+        <div class="slider-wrapper">
+            <div class="slider-track" id="sliderTrack">
+                
+                <!-- الشريحة الأولى -->
+                <div class="slide">
+                    <div class="illustration-placeholder">
+                        <!-- أيقونة تعبيرية (مكان الرسم) -->
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                    </div>
+                    <div class="text-content">
+                        <h2 class="slide-title">اكتشف ما حولك</h2>
+                        <p class="slide-desc">تطبيق «قريب» يساعدك في العثور على أفضل الأماكن والخدمات المتاحة بالقرب منك بكل سهولة وسرعة.</p>
+                    </div>
+                </div>
+
+                <!-- الشريحة الثانية -->
+                <div class="slide">
+                    <div class="illustration-placeholder">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                            <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                        </svg>
+                    </div>
+                    <div class="text-content">
+                        <h2 class="slide-title">عروض حصرية</h2>
+                        <p class="slide-desc">احصل على تنبيهات فورية بخصومات وعروض خاصة من المتاجر والمطاعم المتواجدة في حيك.</p>
+                    </div>
+                </div>
+
+                <!-- الشريحة الثالثة -->
+                <div class="slide">
+                    <div class="illustration-placeholder">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                        </svg>
+                    </div>
+                    <div class="text-content">
+                        <h2 class="slide-title">تواصل سريع</h2>
+                        <p class="slide-desc">اطلب ما تحتاجه وتواصل مع مقدمي الخدمات مباشرة بخطوات بسيطة وآمنة تماماً.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- التذييل -->
+        <footer class="footer">
+            <!-- النقاط -->
+            <div class="pagination" id="pagination">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+
+            <!-- أزرار التحكم -->
+            <div class="controls" id="controls">
+                <button class="btn btn-prev" id="prevBtn" onclick="prevSlide()">السابق</button>
+                <button class="btn btn-next" id="nextBtn" onclick="nextSlide()">التالي</button>
+                <button class="btn btn-start" id="startBtn" onclick="finishOnboarding()">ابدأ الآن</button>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const totalSlides = 3;
+        
+        const track = document.getElementById('sliderTrack');
+        const dots = document.querySelectorAll('.dot');
+        const prevBtn = document.getElementById('prevBtn');
+        const controls = document.getElementById('controls');
+        const skipBtn = document.getElementById('skipBtn');
+
+        function updateUI() {
+            // تحريك مسار الشرائح (قيمة موجبة لأن الاتجاه RTL)
+            track.style.transform = `translateX(${currentSlide * 33.3333}%)`;
+
+            // تحديث النقاط
+            dots.forEach((dot, index) => {
+                if (index === currentSlide) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+
+            // إظهار/إخفاء زر السابق
+            if (currentSlide > 0) {
+                prevBtn.classList.add('show');
+            } else {
+                prevBtn.classList.remove('show');
+            }
+
+            // تبديل أزرار التالي / ابدأ الآن
+            if (currentSlide === totalSlides - 1) {
+                controls.classList.add('last-slide');
+                skipBtn.style.visibility = 'hidden';
+            } else {
+                controls.classList.remove('last-slide');
+                skipBtn.style.visibility = 'visible';
+            }
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateUI();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateUI();
+            }
+        }
+
+        function finishOnboarding() {
+            // يمكن استبدال هذا التنبيه برابط للتوجيه للصفحة الرئيسية للتطبيق
+            alert('أهلاً بك في تطبيق قريب!');
+        }
+    </script>
+</body>
+</html>

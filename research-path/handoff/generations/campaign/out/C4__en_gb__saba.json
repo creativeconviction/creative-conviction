@@ -1,0 +1,12 @@
+{
+  "line": "C4",
+  "market": "en_gb",
+  "model": "saba",
+  "source": "Get beach-body ready this summer.",
+  "raw": "```json\n{\n  \"literal\": \"Get beach-body ready this summer.\",\n  \"adaptation\": \"Get summer-ready in our gym.\",\n  \"back_translation\": \"Get summer-ready at our gym.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Replaced 'beach-body' with 'summer-ready' as the former can feel overly restrictive or body-focused for UK audiences.\"\n}\n```",
+  "literal": "Get beach-body ready this summer.",
+  "adaptation": "Get summer-ready in our gym.",
+  "back_translation": "Get summer-ready at our gym.",
+  "approach": "adapted",
+  "notes": "Replaced 'beach-body' with 'summer-ready' as the former can feel overly restrictive or body-focused for UK audiences."
+}

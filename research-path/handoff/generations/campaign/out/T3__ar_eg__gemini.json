@@ -1,0 +1,12 @@
+{
+  "line": "T3",
+  "market": "ar_eg",
+  "model": "gemini",
+  "source": "Have a break, have a KitKat",
+  "raw": "{\n  \"literal\": \"خذ استراحة، تناول كيت كات\",\n  \"adaptation\": \"خدلك بريك، خدلك كيت كات\",\n  \"back_translation\": \"Take a break, have a KitKat\",\n  \"approach\": \"adapted\",\n  \"notes\": \"I used the casual Egyptian vernacular 'خدلك' (have/take) and retained the English loanword 'بريك' (break), which is universally used in Egyptian colloquial Arabic, completely avoiding the stiff and unnatural tone of formal Arabic.\"\n}",
+  "literal": "خذ استراحة، تناول كيت كات",
+  "adaptation": "خدلك بريك، خدلك كيت كات",
+  "back_translation": "Take a break, have a KitKat",
+  "approach": "adapted",
+  "notes": "I used the casual Egyptian vernacular 'خدلك' (have/take) and retained the English loanword 'بريك' (break), which is universally used in Egyptian colloquial Arabic, completely avoiding the stiff and unnatural tone of formal Arabic."
+}

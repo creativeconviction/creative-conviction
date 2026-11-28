@@ -1,0 +1,13 @@
+{
+  "scenario": "M10",
+  "lang": "ar_sa",
+  "model": "claude",
+  "message": "توصلون حي النرجس؟ وفيه حد أدنى للطلب؟",
+  "raw": "```json\n{\n  \"intent\": \"question\",\n  \"sentiment\": \"neutral\",\n  \"urgency\": \"low\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"The customer asks whether the app delivers to the Al-Narjis neighborhood and whether there is a minimum order amount.\"\n}\n```",
+  "intent": "question",
+  "sentiment": "neutral",
+  "urgency": "low",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer asks whether the app delivers to the Al-Narjis neighborhood and whether there is a minimum order amount."
+}

@@ -1,0 +1,13 @@
+{
+  "scenario": "M6",
+  "lang": "en",
+  "model": "fanar",
+  "message": "cancel my order NOW please, I ordered to the wrong address",
+  "raw": "{\n\"intent\": \"cancel_order\",\n\"sentiment\": \"negative\",\n\"urgency\": \"high\",\n\"sarcasm\": false,\n\"churn_risk\": true,\n\"summary\": \"Request to cancel an order due to delivery to the wrong address.\"\n}",
+  "intent": "cancel_order",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Request to cancel an order due to delivery to the wrong address."
+}

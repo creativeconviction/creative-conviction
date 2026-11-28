@@ -1,0 +1,13 @@
+{
+  "scenario": "M3",
+  "lang": "ar_ma",
+  "model": "allam",
+  "message": "واو سيرفيس زوين بزاف، غير جوج سوايع ديال الروطار مرة أخرى 👏👏",
+  "raw": "```json\n{\n  \"intent\": \"late_delivery\",\n  \"sentiment\": \"positive\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"Appreciates the service but complains about the delay.\"\n}\n```",
+  "intent": "late_delivery",
+  "sentiment": "positive",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "Appreciates the service but complains about the delay."
+}

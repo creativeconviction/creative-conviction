@@ -1,0 +1,13 @@
+{
+  "scenario": "M1",
+  "lang": "ar_ma",
+  "model": "saba",
+  "message": "السلام، الكوموند وصلات ولكن الحليب والخبز ماكاينينش",
+  "raw": "```json\n{\n  \"intent\": \"missing_item\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"The customer did not receive milk and bread in their order.\"\n}\n```",
+  "intent": "missing_item",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "The customer did not receive milk and bread in their order."
+}

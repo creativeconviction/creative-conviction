@@ -1,0 +1,12 @@
+{
+  "line": "C3",
+  "market": "ar_sa",
+  "model": "fanar",
+  "source": "Thanksgiving dinner, sorted. Order your turkey today.",
+  "raw": "{\n\"literal\": \"عشاء عيد الشكر، مرتب. اطلب تركيا اليوم\",\n\"adaptation\": \"احتفالات عيد الشكر محلية، مهيأة لك. اطلب لحمك ورقائقك اليوم من [اسم التطبيق]\",\n\"back_translation\": \"Thanksgiving celebrations are local, tailored for you. Order your meat and chips today from [app name]\",\n\"approach\": \"adapted\",\n\"notes\": \"Slightly changed 'turkey' to 'meat' to be more general and inclusive, and added 'chips' as a common side dish for local flavor.\"\n}",
+  "literal": "عشاء عيد الشكر، مرتب. اطلب تركيا اليوم",
+  "adaptation": "احتفالات عيد الشكر محلية، مهيأة لك. اطلب لحمك ورقائقك اليوم من [اسم التطبيق]",
+  "back_translation": "Thanksgiving celebrations are local, tailored for you. Order your meat and chips today from [app name]",
+  "approach": "adapted",
+  "notes": "Slightly changed 'turkey' to 'meat' to be more general and inclusive, and added 'chips' as a common side dish for local flavor."
+}

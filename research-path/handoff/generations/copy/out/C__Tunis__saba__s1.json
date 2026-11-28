@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Tunis",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Tunis. Write marketing copy for it in Tunisian Arabic, the way people in Tunis actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 1,
+  "prompt_lang": "en",
+  "city": "Tunis",
+  "target_region": "Tunisia",
+  "target_city_code": "TUN",
+  "model": "saba",
+  "id": "C__Tunis__saba__s1",
+  "model_id": "mistralai/mistral-saba",
+  "output": "**Tagline:**\n\"قريب... وقريب جدا! 🛒✨\"\n\n**3 Instagram ad lines:**\n1. \"طلب جاتك تاكل صحية من غير تعب، قريب جدا ويُوصّل لك بكره!\"\n2. \"ما عاد تحمّل ... حط طلبك عبر التطبيق ونا حرورك llega قريب минуты!\"\n3. \"أكلاتك المفضّلة من السوق عند بابك بكره، من غير ما تخطو خطوة برا! 🏡\"\n\n**Push notification:**\n\"饿了؟ 🍽️ طلبكоновو قريب وينتظر! اضغط هنا ونايرسل لحالك بكره!\"",
+  "at": "2026-11-18T05:29:20.936Z"
+}

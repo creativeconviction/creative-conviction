@@ -1,0 +1,101 @@
+{
+  "literalness_by_market": {
+    "ar_sa": 0.55,
+    "ar_eg": 0.49,
+    "en_gb": 0.9
+  },
+  "approach_by_market": {
+    "ar_sa": {
+      "adapted": 46,
+      "replaced": 6,
+      "literal": 4
+    },
+    "ar_eg": {
+      "adapted": 49,
+      "replaced": 5,
+      "literal": 1,
+      "undefined": 1
+    },
+    "en_gb": {
+      "keep_english": 33,
+      "adapted": 20,
+      "replaced": 1,
+      "literal": 1,
+      "undefined": 1
+    }
+  },
+  "by_type": {
+    "famous tagline": {
+      "ar_sa": 0.61,
+      "ar_eg": 0.54,
+      "en_gb": 0.99
+    },
+    "idiom / pun": {
+      "ar_sa": 0.36,
+      "ar_eg": 0.38,
+      "en_gb": 0.84
+    },
+    "culturally loaded": {
+      "ar_sa": 0.58,
+      "ar_eg": 0.5,
+      "en_gb": 0.83
+    }
+  },
+  "saudi_alcohol_pork": {
+    "I3": {
+      "n": 4,
+      "contains": 0,
+      "examples": [
+        "claude: رزقك يوصلك كامل… بدون أي رسوم",
+        "deepseek: اجلب الرزق بدون رسوم",
+        "gemini: احصد أرباحك بصفر رسوم.",
+        "gpt: خلّ فلوسك لك... برسوم صفرية."
+      ]
+    },
+    "C2": {
+      "n": 4,
+      "contains": 0,
+      "examples": [
+        "claude: وقت الانتعاش: اطلب أي عصير أو قهوة مثلّجة والثاني علينا، من ٥ إلى ٧ مساءً.",
+        "deepseek: عرض خاص: مشروبان بسعر واحد من 5 إلى 7 مساءً",
+        "gemini: الساعة الذهبية: مشروبين بسعر واحد من 5 إلى 7 مساءً.",
+        "gpt: عرض المساء: اطلب مشروبًا واحصل على الثاني مجانًا من 5 إلى 7 مساءً."
+      ]
+    }
+  },
+  "black_friday": {
+    "ar_sa": {
+      "kept_black_friday": 0,
+      "white_friday": 4,
+      "n": 4,
+      "examples": [
+        "claude: عروض الجمعة البيضاء: خصومات تصل إلى ٧٠٪ على كل شيء!",
+        "deepseek: الجمعة البيضاء: خصومات تصل إلى 70% على كل المنتجات",
+        "gemini: الجمعة البيضاء: خصم يصل إلى 70% على كل شيء.",
+        "gpt: الجمعة البيضاء: خصومات تصل إلى 70٪ على جميع المنتجات."
+      ]
+    },
+    "ar_eg": {
+      "kept_black_friday": 0,
+      "white_friday": 4,
+      "n": 4,
+      "examples": [
+        "claude: الجمعة البيضاء: خصومات لحد ٧٠٪ على كل حاجة!",
+        "deepseek: الجمعة البيضاء: خصومات تصل إلى 70% على كل المنتجات",
+        "gemini: الجمعة البيضاء: خصم بيوصل لـ 70% على كل حاجة.",
+        "gpt: الجمعة البيضاء: خصومات تصل لـ70% على كل حاجة!"
+      ]
+    },
+    "en_gb": {
+      "kept_black_friday": 4,
+      "white_friday": 0,
+      "n": 4,
+      "examples": [
+        "claude: Black Friday: up to 70% off everything.",
+        "deepseek: Black Friday: up to 70% off everything.",
+        "gemini: Black Friday: up to 70% off everything.",
+        "gpt: Black Friday: up to 70% off everything."
+      ]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "line": "T1",
+  "market": "ar_sa",
+  "model": "deepseek",
+  "source": "I'm lovin' it",
+  "raw": "{\n  \"literal\": \"أنا أحبها\",\n  \"adaptation\": \"أنا أحبها\",\n  \"back_translation\": \"I love it\",\n  \"approach\": \"adapted\",\n  \"notes\": \"The continuous sense of 'I'm lovin' it' was adapted to Arabic's timeless present tense, and the feminine pronoun 'ها' aligns with the culturally implied reference to a meal or experience.\"\n}",
+  "literal": "أنا أحبها",
+  "adaptation": "أنا أحبها",
+  "back_translation": "I love it",
+  "approach": "adapted",
+  "notes": "The continuous sense of 'I'm lovin' it' was adapted to Arabic's timeless present tense, and the feminine pronoun 'ها' aligns with the culturally implied reference to a meal or experience."
+}

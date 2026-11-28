@@ -1,0 +1,12 @@
+{
+  "line": "C4",
+  "market": "ar_sa",
+  "model": "allam",
+  "source": "Get beach-body ready this summer.",
+  "raw": "{\n  \"literal\": \"استعد لجسم الشاطئ هذا الصيف.\",\n  \"adaptation\": \"احصل على جسد جاهز للشاطئ مع مركز اللياقة\",\n  \"back_translation\": \"Get your beach body ready this summer with our gym.\",\n  \"approach\": \"literal\",\n  \"notes\": \"Adopted a more neutral and general term for summer activities, such as 'استعد لجسم الشاطئ' to be more inclusive for all ages and genders.\"\n}",
+  "literal": "استعد لجسم الشاطئ هذا الصيف.",
+  "adaptation": "احصل على جسد جاهز للشاطئ مع مركز اللياقة",
+  "back_translation": "Get your beach body ready this summer with our gym.",
+  "approach": "literal",
+  "notes": "Adopted a more neutral and general term for summer activities, such as 'استعد لجسم الشاطئ' to be more inclusive for all ages and genders."
+}

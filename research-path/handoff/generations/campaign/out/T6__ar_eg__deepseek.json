@@ -1,0 +1,12 @@
+{
+  "line": "T6",
+  "market": "ar_eg",
+  "model": "deepseek",
+  "source": "Got milk?",
+  "raw": "{\n  \"literal\": \"عندك لبن؟\",\n  \"adaptation\": \"فيه لبن؟\",\n  \"back_translation\": \"Is there milk?\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Switched from possessive 'you have' to existential 'is there' to better reflect how Egyptians casually check for milk in a shared household setting.\"\n}",
+  "literal": "عندك لبن؟",
+  "adaptation": "فيه لبن؟",
+  "back_translation": "Is there milk?",
+  "approach": "adapted",
+  "notes": "Switched from possessive 'you have' to existential 'is there' to better reflect how Egyptians casually check for milk in a shared household setting."
+}

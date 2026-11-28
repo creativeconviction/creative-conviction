@@ -1,0 +1,12 @@
+{
+  "line": "T3",
+  "market": "ar_eg",
+  "model": "saba",
+  "source": "Have a break, have a KitKat",
+  "raw": "```json\n{\n  \"literal\": \"خد ق Halt، خد KitKat\",\n  \"adaptation\": \"خد ق Halt، خد KitKat - cookie لكل حال! Hot و विद्युत\",\n  \"back_translation\": \"Take a break, have a KitKat – a cookie for every situation! Hot and electric\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Incorporated local Arabic expressions ('coffee break' literal) and added energetic phrasing ('Hot و বিদ्युत') to align with KitKat's playful, active positioning in the market.\"\n}\n```",
+  "literal": "خد ق Halt، خد KitKat",
+  "adaptation": "خد ق Halt، خد KitKat - cookie لكل حال! Hot و विद्युत",
+  "back_translation": "Take a break, have a KitKat – a cookie for every situation! Hot and electric",
+  "approach": "adapted",
+  "notes": "Incorporated local Arabic expressions ('coffee break' literal) and added energetic phrasing ('Hot و বিদ्युत') to align with KitKat's playful, active positioning in the market."
+}

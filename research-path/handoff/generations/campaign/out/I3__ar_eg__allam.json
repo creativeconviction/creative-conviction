@@ -1,0 +1,12 @@
+{
+  "line": "I3",
+  "market": "ar_eg",
+  "model": "allam",
+  "source": "Bring home the bacon with zero fees.",
+  "raw": "{\n  \"literal\": \"خذ النقود إلى المنزل بدون أي رسوم.\",\n  \"adaptation\": \"احصل على أموالك مجانًا في كل مرة.\",\n  \"back_translation\": \"احضر النقود إلى المنزل بدون رسوم\",\n  \"approach\": \"replaced\",\n  \"notes\": \"Adapted the phrase to emphasize the bank's role as a trusted source of money management, rather than solely focusing on fees.\"\n}",
+  "literal": "خذ النقود إلى المنزل بدون أي رسوم.",
+  "adaptation": "احصل على أموالك مجانًا في كل مرة.",
+  "back_translation": "احضر النقود إلى المنزل بدون رسوم",
+  "approach": "replaced",
+  "notes": "Adapted the phrase to emphasize the bank's role as a trusted source of money management, rather than solely focusing on fees."
+}

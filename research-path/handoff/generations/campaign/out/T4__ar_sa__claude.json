@@ -1,0 +1,12 @@
+{
+  "line": "T4",
+  "market": "ar_sa",
+  "model": "claude",
+  "source": "Red Bull gives you wings",
+  "raw": "```json\n{\n  \"literal\": \"ريد بُل يعطيك أجنحة\",\n  \"adaptation\": \"ريد بُل يمنحك أجنحة\",\n  \"back_translation\": \"Red Bull grants you wings\",\n  \"approach\": \"literal\",\n  \"notes\": \"The wings metaphor reads naturally in Arabic, so I only swapped the plain 'يعطيك' for the more elevated 'يمنحك' (the form Red Bull has used in the region), and any placement should be checked against Saudi rules on energy-drink advertising, health claims and targeting of minors.\"\n}\n```",
+  "literal": "ريد بُل يعطيك أجنحة",
+  "adaptation": "ريد بُل يمنحك أجنحة",
+  "back_translation": "Red Bull grants you wings",
+  "approach": "literal",
+  "notes": "The wings metaphor reads naturally in Arabic, so I only swapped the plain 'يعطيك' for the more elevated 'يمنحك' (the form Red Bull has used in the region), and any placement should be checked against Saudi rules on energy-drink advertising, health claims and targeting of minors."
+}

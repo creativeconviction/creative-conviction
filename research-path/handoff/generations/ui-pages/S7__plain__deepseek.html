@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قريب - Qareeb</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0D7C66;
+            --primary-dark: #095E4E;
+            --primary-light: #E8F5F2;
+            --accent: #F59E0B;
+            --accent-hover: #D97706;
+            --text-dark: #111827;
+            --text-secondary: #6B7280;
+            --bg: #F3F4F6;
+            --white: #FFFFFF;
+            --dot-inactive: #D1D5DB;
+            --dot-active: #0D7C66;
+            --shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.12);
+            --radius-lg: 28px;
+            --radius-md: 16px;
+            --radius-sm: 10px;
+            --radius-full: 50%;
+            --transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+            --transition-btn: 0.25s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: #E8EDF2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 16px;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        /* Subtle background decoration */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -120px;
+            right: -80px;
+            width: 320px;
+            height: 320px;
+            background: radial-gradient(circle, rgba(13, 124, 102, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -100px;
+            left: -60px;
+            width: 280px;
+            height: 280px;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Carousel container */
+        .carousel-wrapper {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 390px;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 620px;
+            max-height: 92vh;
+            min-height: 520px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .carousel-wrapper:hover {
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.14);
+        }
+
+        /* Header with skip */
+        .carousel-header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 16px 20px 8px;
+            flex-shrink: 0;
+            min-height: 48px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .skip-link {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            cursor: pointer;
+            padding: 8px 14px;
+            border-radius: 20px;
+            transition: all var(--transition-btn);
+            letter-spacing: 0.01em;
+            background: transparent;
+            border: none;
+            font-family: 'Tajawal', sans-serif;
+        }
+        .skip-link:hover {
+            color: var(--primary);
+            background: var(--primary-light);
+        }
+        .skip-link:active {
+            transform: scale(0.95);
+        }
+        .skip-link.hidden {
+            opacity: 0;
+            pointer-events: none;
+            visibility: hidden;
+        }
+
+        /* Slides viewport */
+        .slides-viewport {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+            min-height: 0;
+        }
+
+        .slides-track {
+            display: flex;
+            flex-direction: row;
+            height: 100%;
+            transition: transform var(--transition);
+            will-change: transform;
+        }
+
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 28px 20px;
+            text-align: center;
+        }
+
+        /* Illustration area */
+        .illustration-container {
+            width: 100%;
+            max-width: 260px;
+            aspect-ratio: 1 / 1;
+            margin-bottom: 10px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .illustration-container svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Text content */
+        .slide-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            line-height: 1.35;
+            letter-spacing: -0.01em;
+        }
+        .slide-description {
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        /* CTA button inside slide */
+        .slide-cta {
+            display: inline-block;
+            margin-top: 22px;
+            padding: 14px 40px;
+            background: var(--accent);
+            color: #fff;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 17px;
+            font-weight: 700;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all var(--transition-btn);
+            letter-spacing: 0.02em;
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.35);
+            text-decoration: none;
+        }
+        .slide-cta:hover {
+            background: var(--accent-hover);
+            box-shadow: 0 8px 26px rgba(245, 158, 11, 0.45);
+            transform: translateY(-2px);
+        }
+        .slide-cta:active {
+            transform: scale(0.96);
+            box-shadow: 0 3px 12px rgba(245, 158, 11, 0.3);
+        }
+
+        /* Bottom navigation */
+        .carousel-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 20px 20px;
+            flex-shrink: 0;
+            gap: 12px;
+            min-height: 64px;
+        }
+
+        .nav-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-full);
+            border: 2px solid #E5E7EB;
+            background: var(--white);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-btn);
+            flex-shrink: 0;
+            color: var(--text-dark);
+        }
+        .nav-btn:hover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+        .nav-btn:active {
+            transform: scale(0.9);
+            background: var(--primary-light);
+        }
+        .nav-btn.hidden {
+            opacity: 0;
+            pointer-events: none;
+            visibility: hidden;
+        }
+        .nav-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* Dots */
+        .dots-container {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            flex-shrink: 0;
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: var(--radius-full);
+            background: var(--dot-inactive);
+            cursor: pointer;
+            transition: all var(--transition-btn);
+            border: none;
+            padding: 0;
+        }
+        .dot.active {
+            background: var(--dot-active);
+            width: 28px;
+            border-radius: 14px;
+            cursor: default;
+        }
+        .dot:hover:not(.active) {
+            background: #B0B7C3;
+            transform: scale(1.15);
+        }
+        .dot:active:not(.active) {
+            transform: scale(0.9);
+        }
+
+        /* Placeholder spacer for symmetry when a nav button is hidden */
+        .nav-spacer {
+            width: 44px;
+            height: 44px;
+            flex-shrink: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .nav-spacer.hidden {
+            display: none;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 410px) {
+            .carousel-wrapper {
+                border-radius: 24px;
+                height: 100vh;
+                max-height: 100vh;
+                min-height: 100vh;
+            }
+            body {
+                padding: 0;
+                align-items: stretch;
+            }
+            .slide {
+                padding: 12px 22px 16px;
+            }
+            .slide-title {
+                font-size: 22px;
+            }
+            .slide-description {
+                font-size: 14px;
+                max-width: 280px;
+            }
+            .illustration-container {
+                max-width: 220px;
+                margin-bottom: 6px;
+            }
+            .carousel-nav {
+                padding: 10px 16px 16px;
+            }
+            .carousel-header {
+                padding: 12px 16px 6px;
+            }
+            .slide-cta {
+                margin-top: 16px;
+                padding: 13px 34px;
+                font-size: 16px;
+            }
+        }
+        @media (max-width: 340px) {
+            .slide {
+                padding: 8px 16px 12px;
+            }
+            .slide-title {
+                font-size: 20px;
+            }
+            .slide-description {
+                font-size: 13px;
+                max-width: 250px;
+            }
+            .illustration-container {
+                max-width: 180px;
+                margin-bottom: 2px;
+            }
+            .nav-btn {
+                width: 38px;
+                height: 38px;
+            }
+            .nav-btn svg {
+                width: 17px;
+                height: 17px;
+            }
+            .nav-spacer {
+                width: 38px;
+                height: 38px;
+            }
+            .dot {
+                width: 8px;
+                height: 8px;
+            }
+            .dot.active {
+                width: 24px;
+            }
+            .slide-cta {
+                margin-top: 12px;
+                padding: 11px 28px;
+                font-size: 15px;
+                border-radius: 26px;
+            }
+        }
+        @media (min-width: 768px) {
+            .carousel-wrapper {
+                height: 640px;
+            }
+            .slide {
+                padding: 20px 36px 24px;
+            }
+            .slide-title {
+                font-size: 26px;
+            }
+            .slide-description {
+                font-size: 16px;
+                max-width: 320px;
+            }
+            .illustration-container {
+                max-width: 270px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="carousel-wrapper" id="carouselWrapper">
+        <!-- Header with skip link -->
+        <div class="carousel-header">
+            <button class="skip-link" id="skipLink" aria-label="تخطي">تخطي</button>
+        </div>
+
+        <!-- Slides viewport -->
+        <div class="slides-viewport" id="slidesViewport">
+            <div class="slides-track" id="slidesTrack">
+
+                <!-- Slide 1: Welcome -->
+                <div class="slide" data-index="0">
+                    <div class="illustration-container">
+                        <svg viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Background circle -->
+                            <circle cx="130" cy="130" r="120" fill="#E8F5F2"/>
+                            <circle cx="130" cy="130" r="95" fill="#D5EDE6" opacity="0.6"/>
+                            <!-- Phone body -->
+                            <rect x="95" y="62" rx="18" ry="18" width="70" height="120" fill="white" stroke="#0D7C66" stroke-width="2.5"/>
+                            <!-- Phone screen -->
+                            <rect x="102" y="76" rx="8" ry="8" width="56" height="80" fill="#F0F9F6"/>
+                            <!-- Screen heart icon -->
+                            <path d="M130 108c-3-5-9-9-15-9-9 0-16 7-16 16 0 11 14 21 31 33 17-12 31-22 31-33 0-9-7-16-16-16-6 0-12 4-15 9z" fill="#0D7C66" opacity="0.7"/>
+                            <!-- Screen dots -->
+                            <circle cx="118" cy="138" r="2.5" fill="#0D7C66" opacity="0.4"/>
+                            <circle cx="130" cy="138" r="2.5" fill="#0D7C66" opacity="0.7"/>
+                            <circle cx="142" cy="138" r="2.5" fill="#0D7C66" opacity="0.4"/>
+                            <!-- Phone notch/camera -->
+                            <circle cx="130" cy="72" r="3.5" fill="#0D7C66" opacity="0.5"/>
+                            <!-- Sparkle near phone -->
+                            <circle cx="185" cy="55" r="4" fill="#F59E0B" opacity="0.6"/>
+                            <circle cx="192" cy="68" r="2.5" fill="#F59E0B" opacity="0.4"/>
+                            <circle cx="72" cy="175" r="3.5" fill="#0D7C66" opacity="0.3"/>
+                            <circle cx="65" cy="188" r="2" fill="#0D7C66" opacity="0.25"/>
+                        </svg>
+                    </div>
+                    <h2 class="slide-title">مرحباً بك في قريب</h2>
+                    <p class="slide-description">تطبيقك المفضل للتواصل مع أقرب الخدمات إليك بكل سهولة وسرعة</p>
+                </div>
+
+                <!-- Slide 2: Location services -->
+                <div class="slide" data-index="1">
+                    <div class="illustration-container">
+                        <svg viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Background shape -->
+                            <circle cx="130" cy="130" r="120" fill="#FEF7E7"/>
+                            <circle cx="130" cy="130" r="90" fill="#FDF0D0" opacity="0.5"/>
+                            <!-- Map base shape -->
+                            <path d="M75 100 Q95 70 130 65 Q165 70 185 100 Q195 135 175 170 Q155 200 130 210 Q105 200 85 170 Q65 135 75 100Z" fill="white" stroke="#F59E0B" stroke-width="2.5"/>
+                            <!-- Roads -->
+                            <line x1="100" y1="90" x2="160" y2="140" stroke="#FDE68A" stroke-width="6" stroke-linecap="round"/>
+                            <line x1="85" y1="140" x2="140" y2="100" stroke="#FDE68A" stroke-width="5" stroke-linecap="round"/>
+                            <line x1="120" y1="80" x2="130" y2="180" stroke="#FDE68A" stroke-width="5" stroke-linecap="round"/>
+                            <!-- Pin 1 -->
+                            <circle cx="110" cy="108" r="9" fill="#F59E0B"/>
+                            <circle cx="110" cy="108" r="4.5" fill="white"/>
+                            <!-- Pin 2 -->
+                            <circle cx="148" cy="145" r="9" fill="#0D7C66"/>
+                            <circle cx="148" cy="145" r="4.5" fill="white"/>
+                            <!-- Pin 3 smaller -->
+                            <circle cx="95" cy="152" r="6.5" fill="#EF4444" opacity="0.8"/>
+                            <circle cx="95" cy="152" r="3.2" fill="white"/>
+                            <!-- Small decorative dots -->
+                            <circle cx="200" cy="75" r="3" fill="#F59E0B" opacity="0.5"/>
+                            <circle cx="60" cy="195" r="2.5" fill="#0D7C66" opacity="0.35"/>
+                        </svg>
+                    </div>
+                    <h2 class="slide-title">خدمات قريبة منك</h2>
+                    <p class="slide-description">اكتشف أفضل الخدمات والمحلات التجارية القريبة من موقعك في أي وقت وبكل سهولة</p>
+                </div>
+
+                <!-- Slide 3: Get Started -->
+                <div class="slide" data-index="2">
+                    <div class="illustration-container">
+                        <svg viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Background -->
+                            <circle cx="130" cy="130" r="120" fill="#E8F5F2"/>
+                            <circle cx="130" cy="130" r="88" fill="#D5EDE6" opacity="0.45"/>
+                            <!-- Celebration burst rays -->
+                            <g opacity="0.5">
+                                <line x1="130" y1="130" x2="130" y2="28" stroke="#0D7C66" stroke-width="3" stroke-linecap="round"/>
+                                <line x1="130" y1="130" x2="130" y2="232" stroke="#0D7C66" stroke-width="3" stroke-linecap="round"/>
+                                <line x1="130" y1="130" x2="28" y2="130" stroke="#0D7C66" stroke-width="3" stroke-linecap="round"/>
+                                <line x1="130" y1="130" x2="232" y2="130" stroke="#0D7C66" stroke-width="3" stroke-linecap="round"/>
+                                <line x1="130" y1="130" x2="60" y2="60" stroke="#0D7C66" stroke-width="2.5" stroke-linecap="round"/>
+                                <line x1="130" y1="130" x2="200" y2="60" stroke="#0D7C66" stroke-width="2.5" stroke-linecap="round"/>
+                                <line x1="130" y1="130" x2="60" y2="200" stroke="#0D7C66" stroke-width="2.5" stroke-linecap="round"/>
+                                <line x1="130" y1="130" x2="200" y2="200" stroke="#0D7C66" stroke-width="2.5" stroke-linecap="round"/>
+                            </g>
+                            <!-- Central badge circle -->
+                            <circle cx="130" cy="130" r="48" fill="white" stroke="#0D7C66" stroke-width="3"/>
+                            <!-- Checkmark -->
+                            <path d="M110 130l12 14 28-28" stroke="#0D7C66" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                            <!-- Small stars -->
+                            <circle cx="195" cy="45" r="4.5" fill="#F59E0B" opacity="0.7"/>
+                            <circle cx="55" cy="50" r="3.5" fill="#F59E0B" opacity="0.55"/>
+                            <circle cx="200" cy="200" r="3" fill="#0D7C66" opacity="0.4"/>
+                            <circle cx="60" cy="210" r="4" fill="#F59E0B" opacity="0.5"/>
+                        </svg>
+                    </div>
+                    <h2 class="slide-title">أنت الآن جاهز للانطلاق</h2>
+                    <p class="slide-description">أنشئ حسابك وابدأ في استخدام قريب للوصول إلى كل ما تحتاجه بالقرب منك</p>
+                    <button class="slide-cta" id="getStartedBtn" aria-label="ابدأ الآن">ابدأ الآن</button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Bottom navigation -->
+        <div class="carousel-nav">
+            <!-- Back button -->
+            <button class="nav-btn hidden" id="backBtn" aria-label="السابق">
+                <svg viewBox="0 0 24 24">
+                    <polyline points="15 5 7 12 15 19"/>
+                </svg>
+            </button>
+            <div class="nav-spacer" id="navSpacerLeft"></div>
+
+            <!-- Dots -->
+            <div class="dots-container" id="dotsContainer">
+                <button class="dot active" data-slide="0" aria-label="الشريحة 1"></button>
+                <button class="dot" data-slide="1" aria-label="الشريحة 2"></button>
+                <button class="dot" data-slide="2" aria-label="الشريحة 3"></button>
+            </div>
+
+            <!-- Next button -->
+            <button class="nav-btn" id="nextBtn" aria-label="التالي">
+                <svg viewBox="0 0 24 24">
+                    <polyline points="9 5 17 12 9 19"/>
+                </svg>
+            </button>
+            <div class="nav-spacer hidden" id="navSpacerRight"></div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            const slidesTrack = document.getElementById('slidesTrack');
+            const backBtn = document.getElementById('backBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const skipLink = document.getElementById('skipLink');
+            const dots = document.querySelectorAll('.dot');
+            const navSpacerLeft = document.getElementById('navSpacerLeft');
+            const navSpacerRight = document.getElementById('navSpacerRight');
+            const getStartedBtn = document.getElementById('getStartedBtn');
+            const slidesViewport = document.getElementById('slidesViewport');
+
+            const totalSlides = 3;
+            let currentSlide = 0;
+            let isTransitioning = false;
+
+            function updateTransform() {
+                // In RTL flex row, slides flow right-to-left.
+                // translateX(0) shows slide 0 (rightmost),
+                // translateX(100%) shows slide 1,
+                // translateX(200%) shows slide 2.
+                slidesTrack.style.transform = `translateX(${currentSlide * 100}%)`;
+            }
+
+            function updateUI() {
+                // Update dots
+                dots.forEach((dot, index) => {
+                    if (index === currentSlide) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+
+                // Handle back button visibility
+                if (currentSlide === 0) {
+                    backBtn.classList.add('hidden');
+                    navSpacerLeft.classList.remove('hidden');
+                } else {
+                    backBtn.classList.remove('hidden');
+                    navSpacerLeft.classList.add('hidden');
+                }
+
+                // Handle next button visibility & skip link
+                if (currentSlide === totalSlides - 1) {
+                    nextBtn.classList.add('hidden');
+                    navSpacerRight.classList.remove('hidden');
+                    skipLink.classList.add('hidden');
+                } else {
+                    nextBtn.classList.remove('hidden');
+                    navSpacerRight.classList.add('hidden');
+                    skipLink.classList.remove('hidden');
+                }
+            }
+
+            function goToSlide(index) {
+                if (isTransitioning) return;
+                if (index < 0 || index >= totalSlides) return;
+                if (index === currentSlide) return;
+
+                isTransitioning = true;
+                currentSlide = index;
+                updateTransform();
+                updateUI();
+
+                // Unlock after transition completes
+                setTimeout(() => {
+                    isTransitioning = false;
+                }, 420);
+            }
+
+            function nextSlide() {
+                goToSlide(currentSlide + 1);
+            }
+
+            function prevSlide() {
+                goToSlide(currentSlide - 1);
+            }
+
+            // Button event listeners
+            nextBtn.addEventListener('click', nextSlide);
+            backBtn.addEventListener('click', prevSlide);
+
+            // Skip link
+            skipLink.addEventListener('click', () => {
+                goToSlide(totalSlides - 1);
+            });
+
+            // Dot navigation
+            dots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    const targetIndex = parseInt(dot.getAttribute('data-slide'), 10);
+                    goToSlide(targetIndex);
+                });
+            });
+
+            // Get Started button
+            getStartedBtn.addEventListener('click', () => {
+                // Animate button press
+                getStartedBtn.style.transform = 'scale(0.92)';
+                getStartedBtn.style.boxShadow = '0 2px 8px rgba(245, 158, 11, 0.25)';
+                setTimeout(() => {
+                    getStartedBtn.style.transform = '';
+                    getStartedBtn.style.boxShadow = '';
+                }, 200);
+                // Placeholder action - could redirect or close onboarding
+                console.log('🚀 ابدأ الآن - Get Started clicked!');
+                alert('أهلاً بك في قريب! 🎉\nWelcome to Qareeb!');
+            });
+
+            // Touch/swipe support
+            let touchStartX = 0;
+            let touchEndX = 0;
+            const swipeThreshold = 50;
+
+            slidesViewport.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            slidesViewport.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, { passive: true });
+
+            function handleSwipe() {
+                const deltaX = touchEndX - touchStartX;
+                if (Math.abs(deltaX) < swipeThreshold) return;
+
+                // In RTL: swiping left (finger moves left, deltaX negative) = next slide
+                // Swiping right (finger moves right, deltaX positive) = previous slide
+                if (deltaX < -swipeThreshold) {
+                    // Swiped left → next
+                    goToSlide(currentSlide + 1);
+                } else if (deltaX > swipeThreshold) {
+                    // Swiped right → previous
+                    goToSlide(currentSlide - 1);
+                }
+            }
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') {
+                    // ArrowRight in RTL context = previous slide (go back to right-side slide)
+                    e.preventDefault();
+                    prevSlide();
+                } else if (e.key === 'ArrowLeft') {
+                    // ArrowLeft in RTL context = next slide (advance to left-side slide)
+                    e.preventDefault();
+                    nextSlide();
+                }
+            });
+
+            // Initialize
+            updateTransform();
+            updateUI();
+        })();
+    </script>
+</body>
+</html>

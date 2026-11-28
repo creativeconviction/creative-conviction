@@ -1,0 +1,13 @@
+{
+  "scenario": "M7",
+  "lang": "arabizi",
+  "model": "allam",
+  "message": "ba3atoo baskot be zebdet el fool el soudany badal el 3ady, w ebny 3ando 7asaseya men el mekassarat w kal wa7da 5alas",
+  "raw": "```json\n{\n  \"intent\": \"missing_item\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"Missing item in the delivery, replaced with a different brand\"\n}\n```",
+  "intent": "missing_item",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "Missing item in the delivery, replaced with a different brand"
+}

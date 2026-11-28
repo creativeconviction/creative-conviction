@@ -1,0 +1,12 @@
+{
+  "line": "T2",
+  "market": "en_gb",
+  "model": "deepseek",
+  "source": "Just Do It",
+  "raw": "{\n  \"literal\": \"Just Do It\",\n  \"adaptation\": \"Just Do It\",\n  \"back_translation\": \"Just Do It\",\n  \"approach\": \"keep_english\",\n  \"notes\": \"The tagline is already in English and universally recognised in the UK, so no cultural adaptation was necessary.\"\n}",
+  "literal": "Just Do It",
+  "adaptation": "Just Do It",
+  "back_translation": "Just Do It",
+  "approach": "keep_english",
+  "notes": "The tagline is already in English and universally recognised in the UK, so no cultural adaptation was necessary."
+}

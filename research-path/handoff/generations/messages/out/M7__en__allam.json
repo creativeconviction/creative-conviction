@@ -1,0 +1,13 @@
+{
+  "scenario": "M7",
+  "lang": "en",
+  "model": "allam",
+  "message": "you sent peanut butter cookies instead of the plain ones and my son has a nut allergy, he already ate one",
+  "raw": "```json\n{\n  \"intent\": \"wrong_item\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"Customer received wrong item with nut allergy concern\"\n}\n```",
+  "intent": "wrong_item",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "Customer received wrong item with nut allergy concern"
+}

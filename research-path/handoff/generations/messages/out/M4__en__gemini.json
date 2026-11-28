@@ -1,0 +1,13 @@
+{
+  "scenario": "M4",
+  "lang": "en",
+  "model": "gemini",
+  "message": "Bless your heart, you got my order wrong for the third time",
+  "raw": "{\n  \"intent\": \"wrong_item\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": true,\n  \"churn_risk\": true,\n  \"summary\": \"The customer is sarcastically expressing frustration because their grocery order was incorrect for the third time.\"\n}",
+  "intent": "wrong_item",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": true,
+  "churn_risk": true,
+  "summary": "The customer is sarcastically expressing frustration because their grocery order was incorrect for the third time."
+}

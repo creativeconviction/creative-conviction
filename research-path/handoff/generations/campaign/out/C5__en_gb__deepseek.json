@@ -1,0 +1,12 @@
+{
+  "line": "C5",
+  "market": "en_gb",
+  "model": "deepseek",
+  "source": "Your Friday night date starts here.",
+  "raw": "{\n  \"literal\": \"Your Friday night date starts here.\",\n  \"adaptation\": \"Your Friday night date starts here.\",\n  \"back_translation\": \"Your Friday night date starts here.\",\n  \"approach\": \"keep_english\",\n  \"notes\": \"The original line is already in English and uses no US-specific spelling or cultural references that would need adjustment for a UK audience.\"\n}",
+  "literal": "Your Friday night date starts here.",
+  "adaptation": "Your Friday night date starts here.",
+  "back_translation": "Your Friday night date starts here.",
+  "approach": "keep_english",
+  "notes": "The original line is already in English and uses no US-specific spelling or cultural references that would need adjustment for a UK audience."
+}

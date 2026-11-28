@@ -1,0 +1,13 @@
+{
+  "scenario": "M8",
+  "lang": "ar_ma",
+  "model": "saba",
+  "message": "تقطعو ليا الفلوس جوج مرات على نفس الكوموند، 300 درهم جوج مرات من الكارطة",
+  "raw": "```json\n{\n  \"intent\": \"billing_issue\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"Customer reports being charged twice for the same order totaling 300 MAD.\"\n}\n```",
+  "intent": "billing_issue",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Customer reports being charged twice for the same order totaling 300 MAD."
+}

@@ -1,0 +1,13 @@
+{
+  "scenario": "M8",
+  "lang": "ar_sa",
+  "model": "saba",
+  "message": "انخصم مني المبلغ مرتين على نفس الطلب، 150 ريال مرتين من البطاقة",
+  "raw": "```json\n{\n  \"intent\": \"billing_issue\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"The customer reports being charged twice for the same order, totaling 300 SAR.\"\n}\n```",
+  "intent": "billing_issue",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "The customer reports being charged twice for the same order, totaling 300 SAR."
+}

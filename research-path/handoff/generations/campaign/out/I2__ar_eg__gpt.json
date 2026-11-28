@@ -1,0 +1,12 @@
+{
+  "line": "I2",
+  "market": "ar_eg",
+  "model": "gpt",
+  "source": "Rise and grind.",
+  "raw": "{\n  \"literal\": \"قوم واطحن.\",\n  \"adaptation\": \"اصحى وفوّق.\",\n  \"back_translation\": \"Wake up and perk up.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"استبدلنا الترجمة الحرفية غير الطبيعية بتعبير مصري خفيف يربط القهوة بالنشاط والصحيان.\"\n}",
+  "literal": "قوم واطحن.",
+  "adaptation": "اصحى وفوّق.",
+  "back_translation": "Wake up and perk up.",
+  "approach": "adapted",
+  "notes": "استبدلنا الترجمة الحرفية غير الطبيعية بتعبير مصري خفيف يربط القهوة بالنشاط والصحيان."
+}

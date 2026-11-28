@@ -1,0 +1,13 @@
+{
+  "scenario": "M5",
+  "lang": "ar_eg",
+  "model": "deepseek",
+  "message": "السلام عليكم، عايز أسترجع فلوس الأوردر 48213 لو سمحت. الحاجات مش زي الوصف.",
+  "raw": "{\"intent\":\"refund_request\",\"sentiment\":\"negative\",\"urgency\":\"medium\",\"sarcasm\":false,\"churn_risk\":false,\"summary\":\"Customer requests a refund for order 48213 because the items did not match the description.\"}",
+  "intent": "refund_request",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "Customer requests a refund for order 48213 because the items did not match the description."
+}

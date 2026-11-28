@@ -1,0 +1,12 @@
+{
+  "line": "C2",
+  "market": "ar_sa",
+  "model": "saba",
+  "source": "Happy hour: 2-for-1 drinks from 5 to 7pm.",
+  "raw": "```json\n{\n  \"literal\": \"ساعة سعيدة: مشروبان بسعر واحد من 5 إلى 7 مساءً\",\n  \"adaptation\": \"ساعة المميز: مشروبان بسعر واحد من 5 إلى 7 مساءً\",\n  \"back_translation\": \"Special hour: Two drinks for the price of one from 5 to 7 PM\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Replaced 'Happy hour' with 'ساعة المميز' (Special hour) to avoid Western cultural connotations and sound more natural in Saudi.\"\n}\n```",
+  "literal": "ساعة سعيدة: مشروبان بسعر واحد من 5 إلى 7 مساءً",
+  "adaptation": "ساعة المميز: مشروبان بسعر واحد من 5 إلى 7 مساءً",
+  "back_translation": "Special hour: Two drinks for the price of one from 5 to 7 PM",
+  "approach": "adapted",
+  "notes": "Replaced 'Happy hour' with 'ساعة المميز' (Special hour) to avoid Western cultural connotations and sound more natural in Saudi."
+}

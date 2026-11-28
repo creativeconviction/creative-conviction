@@ -1,0 +1,12 @@
+{
+  "line": "T1",
+  "market": "en_gb",
+  "model": "fanar",
+  "source": "I'm lovin' it",
+  "raw": "{\n\"literal\": \"I am adoring it\",\n\"adaptation\": \"I'm diggin' it\",\n\"back_translation\": \"I'm digging it\",\n\"approach\": \"adapted\",\n\"notes\": \"While a literal translation is possible, 'diggin'' is a more colloquial, relatable expression used in British English to convey enjoyment.\"\n}",
+  "literal": "I am adoring it",
+  "adaptation": "I'm diggin' it",
+  "back_translation": "I'm digging it",
+  "approach": "adapted",
+  "notes": "While a literal translation is possible, 'diggin'' is a more colloquial, relatable expression used in British English to convey enjoyment."
+}

@@ -1,0 +1,12 @@
+{
+  "line": "I2",
+  "market": "ar_eg",
+  "model": "gemini",
+  "source": "Rise and grind.",
+  "raw": "{\n  \"literal\": \"استيقظ واطحن\",\n  \"adaptation\": \"فوق وعافر\",\n  \"back_translation\": \"Perk up and strive\",\n  \"approach\": \"adapted\",\n  \"notes\": \"The literal verb for 'grind' lacks the 'hustle' double meaning in Arabic, so we used 'فوق' (Egyptian slang for getting alert, inherently linked to drinking coffee) and 'عافر' (striving/hustling) to capture the exact coffee-fueled motivational vibe.\"\n}",
+  "literal": "استيقظ واطحن",
+  "adaptation": "فوق وعافر",
+  "back_translation": "Perk up and strive",
+  "approach": "adapted",
+  "notes": "The literal verb for 'grind' lacks the 'hustle' double meaning in Arabic, so we used 'فوق' (Egyptian slang for getting alert, inherently linked to drinking coffee) and 'عافر' (striving/hustling) to capture the exact coffee-fueled motivational vibe."
+}

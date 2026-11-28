@@ -1,0 +1,12 @@
+{
+  "line": "T6",
+  "market": "en_gb",
+  "model": "allam",
+  "source": "Got milk?",
+  "raw": "{\n  \"literal\": \"Do you have milk?\",\n  \"adaptation\": \"Do you have milk in?\",\n  \"back_translation\": \"Do you have milk?\",\n  \"approach\": \"keep_english\",\n  \"notes\": \"Changed 'grab' to 'have milk in' as it sounds more natural and casual in UK English, whilst still conveying the message.\"\n}",
+  "literal": "Do you have milk?",
+  "adaptation": "Do you have milk in?",
+  "back_translation": "Do you have milk?",
+  "approach": "keep_english",
+  "notes": "Changed 'grab' to 'have milk in' as it sounds more natural and casual in UK English, whilst still conveying the message."
+}

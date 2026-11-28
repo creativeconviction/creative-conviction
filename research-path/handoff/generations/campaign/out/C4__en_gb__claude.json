@@ -1,0 +1,12 @@
+{
+  "line": "C4",
+  "market": "en_gb",
+  "model": "claude",
+  "source": "Get beach-body ready this summer.",
+  "raw": "```json\n{\n  \"literal\": \"Get beach-body ready this summer.\",\n  \"adaptation\": \"Feel your strongest this summer, wherever it takes you.\",\n  \"back_translation\": \"Feel your strongest this summer, wherever it takes you.\",\n  \"approach\": \"replaced\",\n  \"notes\": \"The 'beach body ready' framing is notorious in the UK after Protein World's 2015 London Underground campaign drew mass protests, petitions and an ASA investigation, and TfL now restricts body-shaming ads, so the line swaps appearance pressure for strength and how you feel.\"\n}\n```",
+  "literal": "Get beach-body ready this summer.",
+  "adaptation": "Feel your strongest this summer, wherever it takes you.",
+  "back_translation": "Feel your strongest this summer, wherever it takes you.",
+  "approach": "replaced",
+  "notes": "The 'beach body ready' framing is notorious in the UK after Protein World's 2015 London Underground campaign drew mass protests, petitions and an ASA investigation, and TfL now restricts body-shaming ads, so the line swaps appearance pressure for strength and how you feel."
+}

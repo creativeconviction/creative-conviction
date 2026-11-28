@@ -1,0 +1,13 @@
+{
+  "scenario": "M7",
+  "lang": "ar_ma",
+  "model": "allam",
+  "message": "صيفطتو بيسكوي فيه زبدة الكاوكاو بلاصة العادي، وولدي عندو الحساسية ديال الكاوكاو وكلا وحدة",
+  "raw": "```json\n{\n  \"intent\": \"wrong_item\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"Received incorrect item with peanut butter instead of regular butter, causing a potential health issue.\"\n}\n```",
+  "intent": "wrong_item",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "Received incorrect item with peanut butter instead of regular butter, causing a potential health issue."
+}

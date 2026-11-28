@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Tripoli",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Tripoli. Write marketing copy for it in Libyan Arabic, the way people in Tripoli actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 2,
+  "prompt_lang": "en",
+  "city": "Tripoli",
+  "target_region": "Libya",
+  "target_city_code": "TRI",
+  "model": "deepseek",
+  "id": "C__Tripoli__deepseek__s2",
+  "model_id": "deepseek/deepseek-v4-pro",
+  "output": "قريب... دايمًا حدّاك\n\nالجوع دق الباب؟ قريب يوصل الأكل لدارك سخن و سريع.\n\nخضرة، لحم، وكل شي من السوق، في قريب تلاقيه ويوصلك فرش.\n\nتعبت من الزحمة؟ اطلب على قريب و هو يجيب طلباتك وانت في بيتك مرتاح.\n\nمقاضيك ناقصة؟ قريب يوصلك ياها لعند الباب في شوي. افتح التطبيق و اطلب دابا!",
+  "at": "2026-11-18T05:46:27.799Z"
+}

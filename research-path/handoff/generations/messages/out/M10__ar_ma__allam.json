@@ -1,0 +1,13 @@
+{
+  "scenario": "M10",
+  "lang": "ar_ma",
+  "model": "allam",
+  "message": "واش كتوصلو لمعاريف؟ وكاين شي حد أدنى للكوموند؟",
+  "raw": "```json\n{\n  \"intent\": \"question\",\n  \"sentiment\": \"neutral\",\n  \"urgency\": \"low\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"Asking about delivery times and minimum order requirements.\"\n}\n```",
+  "intent": "question",
+  "sentiment": "neutral",
+  "urgency": "low",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "Asking about delivery times and minimum order requirements."
+}

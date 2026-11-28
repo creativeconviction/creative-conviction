@@ -1,0 +1,37 @@
+{
+  "big_idea": "Qareeb makes grocery shopping as quick and reliable as walking to your neighborhood shop—just faster and without the hassle. By connecting local vendors to customers in under 20 minutes, we bring affordability, convenience, and community together in one seamless app. This isn’t just delivery; it’s rediscovering the shops you love, made effortless.",
+  "key_visual": "A bustling Cairo street scene gently transformed into a fast-forward moment with motion blur around a young father and his toddler holding a bag of fresh groceries. In the background, a small shopkeeper smiles while packing an order labeled 'قريب' (Qareeb). The focus is warm and human, blending everyday authenticity with dynamic energy.",
+  "image_prompt": "A cinematic street scene in Cairo at golden hour, showing a young father and toddler running hand-in-hand while holding a green reusable Qareeb grocery tote. The background is blurred with motion streaks showing vendors, motorcycles, and colorful storefronts. Text 'قريب' is subtly glowing in Arabic calligraphy on a sign. Colorful yet warm, highly detailed, photorealistic, shot on 35mm film with soft sunset light.",
+  "palette": [
+    "#E85D5D",
+    "#FF8A5B",
+    "#F5F5F5",
+    "#2E3A59"
+  ],
+  "typography": "Primary: 'Segoe UI' (Headings) — clean, modern, reliable. Secondary: 'Amiri' — traditional yet friendly. Accents (script/arabic): 'Kufam' — local calligraphic touch.",
+  "tone_words": [
+    "affordable",
+    "familiar",
+    "fast",
+    "trustworthy",
+    "Egyptian-hearted"
+  ],
+  "headline": "غذائك في ٢٠ دقيقة، من nearest shop بجوارك",
+  "subhead": "قولنا إيه اللي محتاج تعرفه! شحناتك delivered في وقت قياسي من المحلات اللي حوالينا.",
+  "cta": "اطلب دلوقتي",
+  "ad_lines": [
+    " from 5 min ago to your door! ٢٠ دقيقة — شريت حاجتك من ٣٠ ثانية",
+    " نيو ترب الباذنجان من محل شرق! ٢٠ دقيقة رحلة – ١٠ ثانية طلب",
+    "طول ما_queue_anchor النهاردة at 10:30AM — ٢٠ دقيقة؟Nearest shop بقى features"
+  ],
+  "app_store_blurb": "اشحن احتياجاتك اليومية في ٢٠ دقيقة من أقرب محلاتك. bilir card أو كاش قبض، програм loyalty مجانية، زي كل ١٠ طلبات.. توصيل مجانًا. нуре every day.",
+  "push_notifications": [
+    "بشوفاك اتططلقت! قوم واختر حاجتك من أقرب محل واطلب شهادة (20 دقيقة زمانها جاية 😉)",
+    "طلبك رقم ٦ — ٤ طلبات وحتوصيل مجانًا! قوم, واختار بس طلبك"
+  ],
+  "onboarding": [
+    "20 دقيقة وشحنك يصل؟.. من أقرب محل لك أوي، قولنا specs ازاي عاوز",
+    "ادفع safe طريقة: card داحencaional — أو فاتورة جنب الباب",
+    " Loyalty البرنامج: كل ١٠ طلب توصيل مجانًا — 9 وطلبات! كل طلب دة مجان"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Riyadh",
+  "s": 2,
+  "prompt_lang": "en",
+  "city": "Riyadh",
+  "target_region": "Gulf",
+  "target_city_code": "RIY",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Riyadh. Write marketing copy for it in Saudi (Najdi) Arabic, the way people in Riyadh actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "model": "fanar",
+  "id": "C__Riyadh__fanar__s2",
+  "model_id": "QCRI/Fanar-1-9B-Instruct",
+  "output": "**Tagline:** \"أكل كل يوم بوجه جديد. قريب جاب لك كل ما تحتاجش. فقط بإطبعي زر.\"\n\n**3 Short Instagram Ad Lines:**\n1. \"قريب جايبك كل ما تحب من سوبرماركتك المفضل. خليك في البيت، الدليفري عندنا.\"\n2. \"وقتنا مالهوش وقت! قريب يوصللك الطلب في دقائق، غيّري وضعياتك هجري.\"\n3. \"كمل كوميديته حتى في طلب الأكل! حجز قريب بس مش الضحك، كلشي يسلم ويسلم ع الضمان.\"\n\n**Push Notification:** \"كنا بنقول الحاجة تبين لك أين قريب! 20% خصم على أول طلباتك، عدك دقايق ع الغادي!\"\n\n(Translation: These are written in a friendly, Riyadh-based dialect. They emphasize the convenience of Qareeb's service, targeting users who value time-saving and quality food delivery.)",
+  "at": "2026-11-28T00:49:47.551657+00:00"
+}

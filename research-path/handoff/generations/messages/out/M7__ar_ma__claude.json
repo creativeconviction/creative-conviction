@@ -1,0 +1,13 @@
+{
+  "scenario": "M7",
+  "lang": "ar_ma",
+  "model": "claude",
+  "message": "صيفطتو بيسكوي فيه زبدة الكاوكاو بلاصة العادي، وولدي عندو الحساسية ديال الكاوكاو وكلا وحدة",
+  "raw": "```json\n{\n  \"intent\": \"wrong_item\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"The customer received peanut butter biscuits instead of the regular ones they ordered, and their son, who has a peanut allergy, ate one, creating a potential medical emergency that needs immediate escalation.\"\n}\n```",
+  "intent": "wrong_item",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "The customer received peanut butter biscuits instead of the regular ones they ordered, and their son, who has a peanut allergy, ate one, creating a potential medical emergency that needs immediate escalation."
+}

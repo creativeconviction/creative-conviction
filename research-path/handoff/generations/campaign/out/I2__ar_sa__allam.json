@@ -1,0 +1,12 @@
+{
+  "line": "I2",
+  "market": "ar_sa",
+  "model": "allam",
+  "source": "Rise and grind.",
+  "raw": "{\n  \"literal\": \"استيقظ وابدأ العمل\",\n  \"adaptation\": \"قوة في كوب - استيقظ وابدأ العمل\",\n  \"back_translation\": \"Rise and grind - قوة في كوب\",\n  \"approach\": \"replaced\",\n  \"notes\": \"Adapted the phrase to the local culture by adding 'قوة في كوب' which means coffee gives you strength, which resonates better with Saudis' preference for coffee as a daily ritual\"\n}",
+  "literal": "استيقظ وابدأ العمل",
+  "adaptation": "قوة في كوب - استيقظ وابدأ العمل",
+  "back_translation": "Rise and grind - قوة في كوب",
+  "approach": "replaced",
+  "notes": "Adapted the phrase to the local culture by adding 'قوة في كوب' which means coffee gives you strength, which resonates better with Saudis' preference for coffee as a daily ritual"
+}

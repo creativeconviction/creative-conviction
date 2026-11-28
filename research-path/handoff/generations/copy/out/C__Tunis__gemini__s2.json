@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Tunis",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Tunis. Write marketing copy for it in Tunisian Arabic, the way people in Tunis actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 2,
+  "prompt_lang": "en",
+  "city": "Tunis",
+  "target_region": "Tunisia",
+  "target_city_code": "TUN",
+  "model": "gemini",
+  "id": "C__Tunis__gemini__s2",
+  "model_id": "google/gemini-3.1-pro-preview",
+  "output": "**Tagline:**\nقريب.. قضيتك للدار، أسرع مالعطار!\n\n**Instagram Ads:**\n1. باخل بش تهبط تقضي؟ \"قريب\" يجيبلك كل شي لباب الدار. هبط الـ appli وارتاح!\n2. ناقصتك حاجة فالفريجيدار؟ ما تكسرش راسك، أطلب من \"قريب\" وقضيتك تجيك توا توا!\n3. ضياف جاوك على غفلة؟ \"قريب\" يمنّعك.. كومندي الي تحب عليه وكل شي يجيك طاير!\n\n**Push Notification:**\nفريجيدارك يصفر؟ 🤔 أعمل طلة على \"قريب\"، كومندي توا وقضيتك توصلك قبل ما تكمل قهوتك! ☕🛵",
+  "at": "2026-11-18T05:54:38.525Z"
+}

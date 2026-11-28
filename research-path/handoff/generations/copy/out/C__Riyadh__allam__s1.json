@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Riyadh",
+  "s": 1,
+  "prompt_lang": "en",
+  "city": "Riyadh",
+  "target_region": "Gulf",
+  "target_city_code": "RIY",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Riyadh. Write marketing copy for it in Saudi (Najdi) Arabic, the way people in Riyadh actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "model": "allam",
+  "id": "C__Riyadh__allam__s1",
+  "model_id": "humain-ai/ALLaM-7B-Instruct-preview",
+  "output": "#خليج_واحد_مجتمع_واحد\n\n## **Qareeb** - توصيل سريع وكأنها ثلاجتك وأنت في البيت!\n\n*   **الهاتف موضح، الثوم مقطع**\n*   **عروض حصرية فقط على Qareeb**\n*   **بنت جاه، مثل رحت وسوق معاك**\n\nأتشتيك على واتساب! مع تطبيق Qareeb، غايتنا راحتكم وسلامتكم! لتسوق بنظافة، لتوصيل سريع، وخصومات حصرية. لا تنسى تسجيلنا عندك الحين، تراول الكل يتنافس! \n\nعندما تفتح تطبيق Qareeb، قل السلام واتبع التعليمات! طلبك بيوصلك مثل ما جاك، بالضبط! تتبع طلبك خطوة بخطوة عندنا، في يدك بالهاتف كل شيء يصير واضح وسلس! اطلب الحين، بينما الكل مستعجل. \n\n### **مربع عرض التنبيهات:**\n\nتم توصيل طلبك بالسلامة! ترى عرض حصري هناك لك على التطبيق. تحديث وخصم خاص الك. استلمه الحين لو حبيت أو احفظه لوقت ثاني. خصم قاهر ومضمون عند Qareeb.",
+  "at": "2026-11-28T00:49:47.543208+00:00"
+}

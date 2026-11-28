@@ -1,0 +1,12 @@
+{
+  "line": "T1",
+  "market": "ar_eg",
+  "model": "fanar",
+  "source": "I'm lovin' it",
+  "raw": "{\n\"literal\": \"أنا معجب به\",\n\"adaptation\": \"أنا مِحبّشها\", \n\"back_translation\": \"I'm loving it\",\n\"approach\": \"adapted\",\n\"notes\": \"The original slogan is kept in spirit but adapted to the colloquial Arabic speech pattern. 'حبّشها' in Egyptian dialect literally means 'I really like it', which fits better with the informal tone of the slogan.\"\n}",
+  "literal": "أنا معجب به",
+  "adaptation": "أنا مِحبّشها",
+  "back_translation": "I'm loving it",
+  "approach": "adapted",
+  "notes": "The original slogan is kept in spirit but adapted to the colloquial Arabic speech pattern. 'حبّشها' in Egyptian dialect literally means 'I really like it', which fits better with the informal tone of the slogan."
+}

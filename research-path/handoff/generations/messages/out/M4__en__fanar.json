@@ -1,0 +1,13 @@
+{
+  "scenario": "M4",
+  "lang": "en",
+  "model": "fanar",
+  "message": "Bless your heart, you got my order wrong for the third time",
+  "raw": "{\n\"intent\": \"wrong_item\",\n\"sentiment\": \"negative\",\n\"urgency\": \"medium\",\n\"sarcasm\": false,\n\"churn_risk\": true,\n\"summary\": \"Customer is expressing dissatisfaction with repeated delivery errors.\"\n}",
+  "intent": "wrong_item",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Customer is expressing dissatisfaction with repeated delivery errors."
+}

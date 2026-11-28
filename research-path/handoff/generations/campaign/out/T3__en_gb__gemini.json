@@ -1,0 +1,12 @@
+{
+  "line": "T3",
+  "market": "en_gb",
+  "model": "gemini",
+  "source": "Have a break, have a KitKat",
+  "raw": "{\n  \"literal\": \"Have a break, have a KitKat\",\n  \"adaptation\": \"Have a break, have a KitKat\",\n  \"back_translation\": \"Have a break, have a KitKat\",\n  \"approach\": \"keep_english\",\n  \"notes\": \"The original slogan was actually coined by a London advertising agency in 1957, making it an iconic, culturally ingrained, and perfectly native British English marketing line.\"\n}",
+  "literal": "Have a break, have a KitKat",
+  "adaptation": "Have a break, have a KitKat",
+  "back_translation": "Have a break, have a KitKat",
+  "approach": "keep_english",
+  "notes": "The original slogan was actually coined by a London advertising agency in 1957, making it an iconic, culturally ingrained, and perfectly native British English marketing line."
+}

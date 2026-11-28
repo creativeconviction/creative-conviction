@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Doha",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Doha. Write marketing copy for it in Qatari Arabic, the way people in Doha actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 1,
+  "prompt_lang": "en",
+  "city": "Doha",
+  "target_region": "Gulf",
+  "target_city_code": "DOH",
+  "model": "deepseek",
+  "id": "C__Doha__deepseek__s1",
+  "model_id": "deepseek/deepseek-v4-pro",
+  "output": "قريب… واصل لين دياركم\n\nالفرق بين طلبيتك وبيتك؟ قريب.\n\nمقاضيك توصل قبل لا تخلص قهوتك.\n\nقريب يوصلك لين عتبة بابك.\n\nترى طلبيتك قربت! قريب واصل الباب 🛍️",
+  "at": "2026-11-18T05:36:19.572Z"
+}

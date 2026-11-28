@@ -1,0 +1,12 @@
+{
+  "line": "C3",
+  "market": "ar_eg",
+  "model": "gemini",
+  "source": "Thanksgiving dinner, sorted. Order your turkey today.",
+  "raw": "{\n  \"literal\": \"عشاء عيد الشكر، تم ترتيبه. اطلب الديك الرومي اليوم.\",\n  \"adaptation\": \"عزومتك خلصانة. اطلب الديك الرومي دلوقتي.\",\n  \"back_translation\": \"Your feast is sorted. Order the turkey right now.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Thanksgiving is not celebrated in Egypt, so the occasion was adapted to an 'Azouma' (a large family feast), which is when Egyptians typically serve turkey.\"\n}",
+  "literal": "عشاء عيد الشكر، تم ترتيبه. اطلب الديك الرومي اليوم.",
+  "adaptation": "عزومتك خلصانة. اطلب الديك الرومي دلوقتي.",
+  "back_translation": "Your feast is sorted. Order the turkey right now.",
+  "approach": "adapted",
+  "notes": "Thanksgiving is not celebrated in Egypt, so the occasion was adapted to an 'Azouma' (a large family feast), which is when Egyptians typically serve turkey."
+}

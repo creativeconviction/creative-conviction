@@ -1,0 +1,8 @@
+{
+  "line": "I3",
+  "market": "en_gb",
+  "model": "gemini",
+  "source": "Bring home the bacon with zero fees.",
+  "raw": "```json\n{\n  \"literal\": \"Bring home the bacon with zero fees.\",\n  \"adaptation\": \"Keep more of your hard-earned cash, fee-free.\",\n  \"back_translation\": \"Keep more of your hard-earned cash, with no fees.\",\n  \"approach\": \"replaced\",\n  \"notes\": \"Replaced the idiom with a transparent benefit ('hard-earned cash') and used 'fee-free', a phrasing heavily favoured by modern UK retail banks to comply",
+  "_parse_error": true
+}

@@ -1,0 +1,13 @@
+{
+  "scenario": "M10",
+  "lang": "ar_ma",
+  "model": "gemini",
+  "message": "واش كتوصلو لمعاريف؟ وكاين شي حد أدنى للكوموند؟",
+  "raw": "{\n  \"intent\": \"question\",\n  \"sentiment\": \"neutral\",\n  \"urgency\": \"low\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"The customer is asking if delivery is available to the Maarif area and if there is a minimum order requirement.\"\n}",
+  "intent": "question",
+  "sentiment": "neutral",
+  "urgency": "low",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer is asking if delivery is available to the Maarif area and if there is a minimum order requirement."
+}

@@ -1,0 +1,12 @@
+{
+  "line": "C1",
+  "market": "en_gb",
+  "model": "claude",
+  "source": "Black Friday: up to 70% off everything.",
+  "raw": "```json\n{\n  \"literal\": \"Black Friday: up to 70% off everything.\",\n  \"adaptation\": \"Black Friday: up to 70% off everything.\",\n  \"back_translation\": \"Black Friday: up to 70% off everything.\",\n  \"approach\": \"keep_english\",\n  \"notes\": \"Black Friday is well established in the UK and the line already reads as natural British English, but under ASA/CAP guidance 'up to 70%' needs a meaningful share of products at the full 70% discount and 'everything' must mean every item is reduced; otherwise switch to 'across the site' or 'on selected lines'.\"\n}\n```",
+  "literal": "Black Friday: up to 70% off everything.",
+  "adaptation": "Black Friday: up to 70% off everything.",
+  "back_translation": "Black Friday: up to 70% off everything.",
+  "approach": "keep_english",
+  "notes": "Black Friday is well established in the UK and the line already reads as natural British English, but under ASA/CAP guidance 'up to 70%' needs a meaningful share of products at the full 70% discount and 'everything' must mean every item is reduced; otherwise switch to 'across the site' or 'on selected lines'."
+}

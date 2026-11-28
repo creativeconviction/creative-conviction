@@ -1,0 +1,12 @@
+{
+  "line": "I1",
+  "market": "en_gb",
+  "model": "allam",
+  "source": "We deliver the goods. Literally.",
+  "raw": "{\n  \"literal\": \"We deliver the goods. حرفياً.\",\n  \"adaptation\": \"We've got groceries delivered - right to your door.\",\n  \"back_translation\": \"We deliver the goods - quite literally. We've simply added a supermarket delivery service to our range. Our same-day delivery service on groceries means that you can get your food and shop delivered from us, at your door.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Changed the phrase 'We deliver the goods. Literally.' to 'We've got groceries delivered - right to your door.' to suit British English, and made the service description clearer for a more localized appeal.\"\n}",
+  "literal": "We deliver the goods. حرفياً.",
+  "adaptation": "We've got groceries delivered - right to your door.",
+  "back_translation": "We deliver the goods - quite literally. We've simply added a supermarket delivery service to our range. Our same-day delivery service on groceries means that you can get your food and shop delivered from us, at your door.",
+  "approach": "adapted",
+  "notes": "Changed the phrase 'We deliver the goods. Literally.' to 'We've got groceries delivered - right to your door.' to suit British English, and made the service description clearer for a more localized appeal."
+}

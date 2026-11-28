@@ -1,0 +1,12 @@
+{
+  "line": "I1",
+  "market": "ar_eg",
+  "model": "fanar",
+  "source": "We deliver the goods. Literally.",
+  "raw": "{\n\"literal\": \"نحن نُحضر البضائع. حرفيًا.\",\n\"adaptation\": \"بقالتك في الطريق. حرفيًا.\",\n\"back_translation\": \"Your groceries are on their way. Literally.\",\n\"approach\": \"adapted\",\n\"notes\": \"The adaptation keeps the play on words and core message while using more familiar Egyptian Arabic for a stronger connection with the audience.\"\n}",
+  "literal": "نحن نُحضر البضائع. حرفيًا.",
+  "adaptation": "بقالتك في الطريق. حرفيًا.",
+  "back_translation": "Your groceries are on their way. Literally.",
+  "approach": "adapted",
+  "notes": "The adaptation keeps the play on words and core message while using more familiar Egyptian Arabic for a stronger connection with the audience."
+}

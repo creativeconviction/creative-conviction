@@ -1,0 +1,14 @@
+{
+  "part": "B",
+  "cond": "darija-Cairo",
+  "prompt": "عندنا واحد التطبيق جديد ديال توصيل القضية سميتو «قريب». بغيتك تكتب ليا كلام ديال الماركوتينغ ليه: شعار، و٣ ديال الإعلانات قصار للإنستغرام، وإشعار واحد. كتب غير الكلام ديال الماركوتينغ، بلا حتى حاجة أخرى. التطبيق غادي يخرج فالقاهرة.",
+  "s": 2,
+  "prompt_lang": "darija",
+  "city": "Cairo",
+  "target_region": "Egypt",
+  "model": "saba",
+  "id": "B__darija-Cairo__saba__s2",
+  "model_id": "mistralai/mistral-saba",
+  "output": "### **شعار التطبيق:**\n**\"قريب...Solution بين يديك!\"**\n*(بالخط العربي الحديث + أيقونة بسيطة: أيقونةDelivery or pin على الخريطة)*\n\n---\n\n### **3 إعلانات قصيرة للإنستغرام:**\n\n#### **1️⃣ الإعلان الأول ( focu على السرعة & سهولة ):\n📌 **\"بيضيعش وقتك في الطرق؟\"**\n✅ **قريب** ينْجيك delivers طلباتك **فوقت قياسي** بفلوس قليلا.\n🔥 **كنت ف القاهرة؟**Application هنا ف asleep.\n👉 **Uoload Faster** من الأول مرة.\n#قريب_السريع #قاهرة_داخلة\n\n---\n\n#### **2️⃣ الإعلان الثاني ( focu على الخصوصية & Malak النزاهة ):\n📌 **\"انت بتثق في Need yoS؟\"**\n✅ مع **قريب** ايش مونت خاي **safe** وخddd**おや!** (لسَمر أرخص معشش الأسعار).\n🔍 **Dont miss control** على طلبات + تخ naturales.\n👉 ** Join Cairo** هادوك الناس اللي فزعان من **الغش**.\n#قريب_آمن #Cairo_secure\n\n---\n\n#### **3️⃣ إعلان الثالث ( focu sur l’expérience utilisateur ):\n📌 **\"Ghad sorting طلباتكي فال20رة؟\"**\n✅ **قريب** ينْجيك **service smooth** و**professional** شهر، وكلشي **Guesss** في 1.\n💵 **SavE 30%** مقارنة بال Dienstleister التقليدية.\n👉 **Install now** قبل ما تتحرق راسي!\n#قريب_مريح #Cairo_easy\n\n---\n\n### **إشعار واحد (Notification) للتطبيق:**\n📱 **\"قريب فdienstleister! 🚀**\nطلبتك جلبتهاو **لقرب من الباب**! **Follow** ترقب التسليم.\n(تطبيقنا: شعار + WRITEEmoji: 📦)\"\n\n---\n**Note:** Kass hna drt b 3iawni dial 3arabi bezafin b \"loanwords\" hadchi lma3rifa dial lMarketing hadchi Fred.лад",
+  "at": "2026-11-18T05:27:59.654Z"
+}

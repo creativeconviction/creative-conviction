@@ -1,0 +1,13 @@
+{
+  "scenario": "M3",
+  "lang": "arabizi",
+  "model": "fanar",
+  "message": "la begad service to7fa, met2a5areen sa3teen bas zay kol marra 👏👏",
+  "raw": "{\n\"intent\": \"praise\",\n\"sentiment\": \"positive\",\n\"urgency\": \"low\",\n\"sarcasm\": \"false\",\n\"churn_risk\": \"false\",\n\"summary\": \"The customer is expressing satisfaction with the service.\"\n}",
+  "intent": "praise",
+  "sentiment": "positive",
+  "urgency": "low",
+  "sarcasm": "false",
+  "churn_risk": "false",
+  "summary": "The customer is expressing satisfaction with the service."
+}

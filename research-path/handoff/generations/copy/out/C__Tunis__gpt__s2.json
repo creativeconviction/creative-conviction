@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Tunis",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Tunis. Write marketing copy for it in Tunisian Arabic, the way people in Tunis actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 2,
+  "prompt_lang": "en",
+  "city": "Tunis",
+  "target_region": "Tunisia",
+  "target_city_code": "TUN",
+  "model": "gpt",
+  "id": "C__Tunis__gpt__s2",
+  "model_id": "openai/gpt-5.6-sol",
+  "output": "قريب: قضيّة الدار تجيك لبابك.\n\nما عادش تضيع وقتك في الصفّ… قريب يوصّلك قضيّتك.\n\nخضرة، غلّة وحوايج الدار… الكلّ بكليكة.\n\nإنت اختار، وقريب يوصّل.\n\nناقصك حاجة؟ اطلبها تو من قريب وتوصلك لباب الدار 🛵",
+  "at": "2026-11-18T05:29:17.260Z"
+}

@@ -1,0 +1,13 @@
+{
+  "scenario": "M3",
+  "lang": "ar_sa",
+  "model": "allam",
+  "message": "ما شاء الله عليكم خدمة ولا أروع، بس ساعتين تأخير مرة ثانية 👏👏",
+  "raw": "```json\n{\n  \"intent\": \"late_delivery\",\n  \"sentiment\": \"mixed\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"Appreciates the service but complains about the delay.\"\n}\n```",
+  "intent": "late_delivery",
+  "sentiment": "mixed",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "Appreciates the service but complains about the delay."
+}

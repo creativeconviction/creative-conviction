@@ -1,0 +1,13 @@
+{
+  "scenario": "M8",
+  "lang": "arabizi",
+  "model": "claude",
+  "message": "et5asam menny marteen 3ala nafs el order, 450 geneh marteen men el card",
+  "raw": "```json\n{\n  \"intent\": \"billing_issue\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"The customer says they were charged twice for the same order, with 450 EGP deducted from their card two times.\"\n}\n```",
+  "intent": "billing_issue",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer says they were charged twice for the same order, with 450 EGP deducted from their card two times."
+}

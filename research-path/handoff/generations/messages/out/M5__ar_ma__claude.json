@@ -1,0 +1,13 @@
+{
+  "scenario": "M5",
+  "lang": "ar_ma",
+  "model": "claude",
+  "message": "السلام، بغيت نرجع الفلوس ديال الكوموند 48213 عافاك. السلعة ماشي بحال الوصف.",
+  "raw": "```json\n{\n  \"intent\": \"refund_request\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"The customer is politely requesting a refund for order 48213 because the products received do not match their description.\"\n}\n```",
+  "intent": "refund_request",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer is politely requesting a refund for order 48213 because the products received do not match their description."
+}

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>قريب — مرحبًا بك</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F4F1EA;
+    --surface:#FFFFFF;
+    --ink:#1B2A2F;
+    --muted:#5C6B70;
+    --primary:#0F7B6C;
+    --primary-ink:#FFFFFF;
+    --primary-soft:#DDF0EC;
+    --accent:#F2A541;
+    --line:#E3DED3;
+    --radius:20px;
+    --ease:cubic-bezier(.22,.8,.24,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    display:flex;
+    justify-content:center;
+    align-items:stretch;
+    min-height:100dvh;
+  }
+
+  .app{
+    width:100%;
+    max-width:440px;
+    min-height:100dvh;
+    background:var(--surface);
+    display:flex;
+    flex-direction:column;
+    position:relative;
+    overflow:hidden;
+  }
+
+  /* Header */
+  .top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:calc(16px + env(safe-area-inset-top)) 20px 8px;
+    min-height:64px;
+  }
+  .brand{
+    display:flex;align-items:center;gap:8px;
+    font-weight:700;font-size:20px;color:var(--primary);
+  }
+  .brand-mark{
+    width:30px;height:30px;border-radius:10px;
+    background:var(--primary);
+    display:grid;place-items:center;
+  }
+  .brand-mark svg{width:16px;height:16px}
+  .skip{
+    font:inherit;font-size:15px;font-weight:500;
+    color:var(--muted);
+    background:none;border:0;cursor:pointer;
+    padding:10px 12px;border-radius:10px;
+    text-decoration:underline;text-underline-offset:4px;text-decoration-color:transparent;
+    transition:color .2s, text-decoration-color .2s, opacity .25s;
+  }
+  .skip:hover{color:var(--ink);text-decoration-color:currentColor}
+  .skip[hidden]{display:block;visibility:hidden;opacity:0}
+
+  /* Carousel */
+  .carousel{flex:1;display:flex;flex-direction:column;min-height:0}
+  .viewport{
+    flex:1;overflow:hidden;
+    touch-action:pan-y;
+  }
+  .track{
+    display:flex;height:100%;
+    transition:transform .5s var(--ease);
+    will-change:transform;
+  }
+  .slide{
+    flex:0 0 100%;
+    display:flex;flex-direction:column;
+    padding:8px 24px 0;
+  }
+
+  .art{
+    flex:1;
+    min-height:260px;
+    max-height:400px;
+    border-radius:var(--radius);
+    border:2px dashed var(--line);
+    background:var(--tint, var(--primary-soft));
+    position:relative;
+    display:grid;place-items:center;
+    overflow:hidden;
+  }
+  .art .blob{
+    position:absolute;border-radius:50%;
+    filter:blur(2px);opacity:.55;
+  }
+  .art .b1{width:180px;height:180px;background:var(--c1);top:-40px;inset-inline-start:-40px}
+  .art .b2{width:120px;height:120px;background:var(--c2);bottom:-20px;inset-inline-end:-10px}
+  .art .icon{
+    position:relative;
+    width:112px;height:112px;border-radius:32px;
+    background:var(--surface);
+    display:grid;place-items:center;
+    box-shadow:0 12px 30px rgba(27,42,47,.12);
+  }
+  .art .icon svg{width:56px;height:56px}
+  .art .label{
+    position:absolute;bottom:14px;inset-inline:0;
+    text-align:center;font-size:12px;color:var(--muted);
+    letter-spacing:.2px;
+  }
+
+  .text{padding:28px 4px 8px;text-align:center}
+  .slide h2{
+    font-size:26px;line-height:1.35;font-weight:700;
+    margin-bottom:12px;
+  }
+  .slide p{
+    font-size:16px;line-height:1.8;color:var(--muted);
+    max-width:32ch;margin-inline:auto;
+  }
+
+  /* Footer */
+  .controls{
+    padding:16px 24px calc(24px + env(safe-area-inset-bottom));
+    display:flex;flex-direction:column;gap:22px;
+  }
+  .dots{display:flex;justify-content:center;gap:8px}
+  .dot{
+    width:8px;height:8px;border-radius:99px;border:0;
+    background:var(--line);cursor:pointer;padding:0;
+    transition:width .35s var(--ease), background .35s;
+    position:relative;
+  }
+  .dot::after{content:"";position:absolute;inset:-10px}
+  .dot[aria-current="true"]{width:26px;background:var(--primary)}
+
+  .nav{display:flex;align-items:center;gap:12px}
+  .btn{
+    font:inherit;font-size:16px;font-weight:600;
+    height:54px;border-radius:16px;border:0;cursor:pointer;
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    transition:background .2s, color .2s, transform .1s, opacity .25s, flex-grow .35s var(--ease);
+  }
+  .btn:active{transform:scale(.98)}
+  .btn svg{width:18px;height:18px;flex-shrink:0}
+  .btn-back{
+    background:transparent;color:var(--ink);
+    padding:0 18px;border:1.5px solid var(--line);
+  }
+  .btn-back:hover{background:var(--bg)}
+  .btn-back.is-hidden{visibility:hidden;opacity:0;pointer-events:none}
+  .btn-next{
+    flex:1;background:var(--primary);color:var(--primary-ink);
+    padding:0 22px;
+  }
+  .btn-next:hover{background:#0B6457}
+  .btn-next.is-final{background:var(--ink)}
+  .btn-next.is-final:hover{background:#0E181B}
+
+  :focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+
+  .sr-only{
+    position:absolute;width:1px;height:1px;overflow:hidden;
+    clip:rect(0 0 0 0);white-space:nowrap;
+  }
+
+  /* Done screen */
+  .done{
+    position:absolute;inset:0;background:var(--surface);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:16px;padding:32px;text-align:center;
+    opacity:0;visibility:hidden;transition:opacity .35s, visibility .35s;
+  }
+  .done.show{opacity:1;visibility:visible}
+  .done .check{
+    width:88px;height:88px;border-radius:50%;
+    background:var(--primary-soft);display:grid;place-items:center;
+  }
+  .done .check svg{width:40px;height:40px}
+  .done h2{font-size:24px}
+  .done p{color:var(--muted);line-height:1.8;max-width:30ch}
+  .done .btn{padding:0 24px;margin-top:8px}
+
+  /* Desktop */
+  @media (min-width:600px){
+    body{align-items:center;padding:32px}
+    .app{
+      min-height:0;height:min(820px, calc(100dvh - 64px));
+      border-radius:32px;
+      box-shadow:0 30px 80px rgba(27,42,47,.14), 0 0 0 1px rgba(27,42,47,.04);
+    }
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .track,.dot,.btn,.done{transition:none}
+  }
+</style>
+</head>
+<body>
+<main class="app">
+  <header class="top">
+    <div class="brand" aria-label="قريب">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.2"/></svg>
+      </span>
+      قريب
+    </div>
+    <button class="skip" id="skip" type="button">تخطٍّ</button>
+  </header>
+
+  <section class="carousel" aria-roledescription="carousel" aria-label="جولة تعريفية بتطبيق قريب">
+    <div class="viewport" id="viewport">
+      <div class="track" id="track">
+
+        <div class="slide" role="group" aria-roledescription="شريحة" aria-label="١ من ٣">
+          <div class="art" style="--tint:#DDF0EC;--c1:#9FD8CC;--c2:#F7D39B" aria-hidden="true">
+            <span class="blob b1"></span><span class="blob b2"></span>
+            <div class="icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#0F7B6C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+            </div>
+            <span class="label">مساحة الرسم التوضيحي</span>
+          </div>
+          <div class="text">
+            <h2>كل ما تحتاجه، قريب منك</h2>
+            <p>اكتشف المتاجر والمطاعم والخدمات في حيّك بلمسة واحدة، دون عناء البحث الطويل.</p>
+          </div>
+        </div>
+
+        <div class="slide" role="group" aria-roledescription="شريحة" aria-label="٢ من ٣">
+          <div class="art" style="--tint:#FBEBD3;--c1:#F7C783;--c2:#A9DCD1" aria-hidden="true">
+            <span class="blob b1"></span><span class="blob b2"></span>
+            <div class="icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#C7791A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14.2A5 5 0 0 1 21 19"/></svg>
+            </div>
+            <span class="label">مساحة الرسم التوضيحي</span>
+          </div>
+          <div class="text">
+            <h2>تواصل مع جيرانك</h2>
+            <p>شارك التوصيات واطرح أسئلتك وتعرّف على مجتمعك المحلي بسهولة وأمان.</p>
+          </div>
+        </div>
+
+        <div class="slide" role="group" aria-roledescription="شريحة" aria-label="٣ من ٣">
+          <div class="art" style="--tint:#E4E9F6;--c1:#B6C4EA;--c2:#9FD8CC" aria-hidden="true">
+            <span class="blob b1"></span><span class="blob b2"></span>
+            <div class="icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#3B55A6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16V11a6 6 0 1 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg>
+            </div>
+            <span class="label">مساحة الرسم التوضيحي</span>
+          </div>
+          <div class="text">
+            <h2>تنبيهات تهمّك فقط</h2>
+            <p>فعّل الإشعارات لتصلك العروض والفعاليات القريبة منك أولًا بأول.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="controls">
+      <div class="dots" id="dots" aria-label="اختر الشريحة"></div>
+      <div class="nav">
+        <button class="btn btn-back" id="back" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+          السابق
+        </button>
+        <button class="btn btn-next" id="next" type="button">
+          <span id="nextLabel">التالي</span>
+          <svg id="nextIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+        </button>
+      </div>
+    </div>
+    <p class="sr-only" id="status" aria-live="polite"></p>
+  </section>
+
+  <div class="done" id="done" role="dialog" aria-modal="true" aria-labelledby="doneTitle">
+    <div class="check" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#0F7B6C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+    </div>
+    <h2 id="doneTitle">أهلًا بك في قريب</h2>
+    <p>كل شيء جاهز. لنبدأ باستكشاف ما حولك.</p>
+    <button class="btn btn-back" id="restart" type="button">إعادة الجولة</button>
+  </div>
+</main>
+
+<script>
+(function(){
+  const track = document.getElementById('track');
+  const slides = [...track.children];
+  const dotsWrap = document.getElementById('dots');
+  const back = document.getElementById('back');
+  const next = document.getElementById('next');
+  const nextLabel = document.getElementById('nextLabel');
+  const nextIcon = document.getElementById('nextIcon');
+  const skip = document.getElementById('skip');
+  const status = document.getElementById('status');
+  const done = document.getElementById('done');
+  const restart = document.getElementById('restart');
+  const viewport = document.getElementById('viewport');
+  const ar = n => n.toLocaleString('ar-EG');
+  const last = slides.length - 1;
+  let i = 0;
+
+  const dots = slides.map((_, n) => {
+    const d = document.createElement('button');
+    d.type = 'button';
+    d.className = 'dot';
+    d.setAttribute('aria-label', 'الشريحة ' + ar(n + 1));
+    d.addEventListener('click', () => go(n));
+    dotsWrap.appendChild(d);
+    return d;
+  });
+
+  function go(n){
+    i = Math.max(0, Math.min(last, n));
+    // RTL: following slides sit to the left, so move the track right
+    track.style.transform = 'translateX(' + (i * 100) + '%)';
+
+    slides.forEach((s, k) => {
+      const active = k === i;
+      s.setAttribute('aria-hidden', String(!active));
+      s.inert = !active;
+    });
+    dots.forEach((d, k) => d.setAttribute('aria-current', String(k === i)));
+
+    const first = i === 0;
+    if (first && document.activeElement === back) next.focus();
+    back.classList.toggle('is-hidden', first);
+    back.setAttribute('aria-hidden', String(first));
+    back.tabIndex = first ? -1 : 0;
+
+    const isLast = i === last;
+    next.classList.toggle('is-final', isLast);
+    nextLabel.textContent = isLast ? 'ابدأ الآن' : 'التالي';
+    nextIcon.style.display = isLast ? 'none' : '';
+    skip.hidden = isLast;
+
+    status.textContent = 'الشريحة ' + ar(i + 1) + ' من ' + ar(slides.length) + ': ' + slides[i].querySelector('h2').textContent;
+  }
+
+  function finish(){
+    done.classList.add('show');
+    restart.focus();
+  }
+
+  next.addEventListener('click', () => i === last ? finish() : go(i + 1));
+  back.addEventListener('click', () => go(i - 1));
+  skip.addEventListener('click', finish);
+  restart.addEventListener('click', () => {
+    done.classList.remove('show');
+    go(0);
+    next.focus();
+  });
+
+  // Keyboard (RTL: left arrow = forward)
+  document.addEventListener('keydown', e => {
+    if (done.classList.contains('show')) return;
+    if (e.key === 'ArrowLeft') go(i + 1);
+    else if (e.key === 'ArrowRight') go(i - 1);
+  });
+
+  // Swipe (RTL: swipe right reveals the next slide)
+  let x0 = null, y0 = null;
+  viewport.addEventListener('pointerdown', e => { x0 = e.clientX; y0 = e.clientY; });
+  viewport.addEventListener('pointerup', e => {
+    if (x0 === null) return;
+    const dx = e.clientX - x0, dy = e.clientY - y0;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) go(dx > 0 ? i + 1 : i - 1);
+    x0 = y0 = null;
+  });
+  viewport.addEventListener('pointercancel', () => { x0 = y0 = null; });
+
+  go(0);
+})();
+</script>
+</body>
+</html>

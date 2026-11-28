@@ -1,0 +1,13 @@
+{
+  "scenario": "M1",
+  "lang": "ar_sa",
+  "model": "fanar",
+  "message": "هلا، طلبي وصل بس ما جاني الحليب والخبز",
+  "raw": "{\n\"intent\": \"missing_item\",\n\"sentiment\": \"negative\",\n\"urgency\": \"medium\",\n\"sarcasm\": false,\n\"churn_risk\": true,\n\"summary\": \"Customer reports missing items (milk and bread) from their grocery delivery.\"\n}",
+  "intent": "missing_item",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Customer reports missing items (milk and bread) from their grocery delivery."
+}

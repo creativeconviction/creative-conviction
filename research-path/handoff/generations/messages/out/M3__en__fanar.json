@@ -1,0 +1,13 @@
+{
+  "scenario": "M3",
+  "lang": "en",
+  "model": "fanar",
+  "message": "wow amazing service, only 2 hours late again 👏👏",
+  "raw": "{\n\"intent\": \"late_delivery\",\n\"sentiment\": \"mixed\",\n\"urgency\": \"medium\",\n\"sarcasm\": false,\n\"churn_risk\": true,\n\"summary\": \"Customer expresses frustration with repeated late deliveries.\"\n}",
+  "intent": "late_delivery",
+  "sentiment": "mixed",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Customer expresses frustration with repeated late deliveries."
+}

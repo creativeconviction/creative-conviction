@@ -1,0 +1,12 @@
+{
+  "line": "C2",
+  "market": "ar_sa",
+  "model": "gemini",
+  "source": "Happy hour: 2-for-1 drinks from 5 to 7pm.",
+  "raw": "{\n  \"literal\": \"ساعة سعيدة: مشروبان مقابل واحد من 5 إلى 7 مساءً.\",\n  \"adaptation\": \"الساعة الذهبية: مشروبين بسعر واحد من 5 إلى 7 مساءً.\",\n  \"back_translation\": \"Golden hour: Two drinks for the price of one from 5 to 7pm.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Replaced 'Happy hour' with 'Golden hour' (الساعة الذهبية) to avoid Western alcohol connotations while maintaining the promotional appeal in the Saudi F&B market.\"\n}",
+  "literal": "ساعة سعيدة: مشروبان مقابل واحد من 5 إلى 7 مساءً.",
+  "adaptation": "الساعة الذهبية: مشروبين بسعر واحد من 5 إلى 7 مساءً.",
+  "back_translation": "Golden hour: Two drinks for the price of one from 5 to 7pm.",
+  "approach": "adapted",
+  "notes": "Replaced 'Happy hour' with 'Golden hour' (الساعة الذهبية) to avoid Western alcohol connotations while maintaining the promotional appeal in the Saudi F&B market."
+}

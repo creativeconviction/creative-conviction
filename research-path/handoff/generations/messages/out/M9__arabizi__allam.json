@@ -1,0 +1,13 @@
+{
+  "scenario": "M9",
+  "lang": "arabizi",
+  "model": "allam",
+  "message": "7abbeit a2ool en el tayar kan zoo2 gedan w sa3edny atala3 el 7agat fo2, metshakreen!",
+  "raw": "```json\n{\n  \"intent\": \"missing_item\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"Missing item in the delivery.\"\n}\n```",
+  "intent": "missing_item",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "Missing item in the delivery."
+}

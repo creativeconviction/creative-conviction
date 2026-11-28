@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>إعدادات - تطبيق قريب</title>
+    
+    <!-- Google Fonts: Tajawal -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* CSS Variables for Light/Dark Mode */
+        :root {
+            --bg-body: #f3f4f6;
+            --bg-app: #f9fafb;
+            --surface: #ffffff;
+            --text-primary: #111827;
+            --text-secondary: #6b7280;
+            --text-muted: #9ca3af;
+            --border: #e5e7eb;
+            --primary: #0ea5e9;
+            --danger: #ef4444;
+            --icon-bg: #f3f4f6;
+            --icon-color: #4b5563;
+            --header-bg: rgba(255, 255, 255, 0.9);
+        }
+
+        [data-theme="dark"] {
+            --bg-body: #030712;
+            --bg-app: #111827;
+            --surface: #1f2937;
+            --text-primary: #f9fafb;
+            --text-secondary: #9ca3af;
+            --text-muted: #6b7280;
+            --border: #374151;
+            --primary: #38bdf8;
+            --danger: #f87171;
+            --icon-bg: #374151;
+            --icon-color: #d1d5db;
+            --header-bg: rgba(31, 41, 55, 0.9);
+        }
+
+        /* Reset & Base Setup */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Desktop Container (Simulating Mobile 390px) */
+        .app-container {
+            width: 100%;
+            max-width: 390px;
+            height: 100vh;
+            background-color: var(--bg-app);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow-y: auto;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Responsive adjustments for Desktop */
+        @media (min-width: 450px) {
+            .app-container {
+                height: 844px; /* iPhone 12/13/14 Pro height */
+                border-radius: 40px;
+                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+                border: 8px solid #374151;
+            }
+            [data-theme="dark"] .app-container {
+                border-color: #1f2937;
+            }
+        }
+
+        /* Hide scrollbar */
+        .app-container::-webkit-scrollbar { display: none; }
+        .app-container { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background-color: var(--header-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        header h1 {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        main {
+            padding: 24px 20px;
+            flex: 1;
+        }
+
+        /* Profile Section */
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+            padding: 0 4px;
+        }
+
+        .avatar {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(14, 165, 233, 0.2);
+            object-fit: cover;
+            border: 2px solid var(--surface);
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .profile-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .profile-phone {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            direction: ltr;
+            text-align: right;
+        }
+
+        /* Settings Sections */
+        .section-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            padding: 0 16px;
+        }
+
+        .settings-group {
+            background-color: var(--surface);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .setting-item {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            text-decoration: none;
+            color: var(--text-primary);
+            background-color: transparent;
+            border: none;
+            width: 100%;
+            font-family: inherit;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .setting-item:active {
+            background-color: var(--bg-app);
+        }
+
+        .setting-item:not(:last-child) {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .item-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background-color: var(--icon-bg);
+            color: var(--icon-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 16px;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .item-label {
+            flex: 1;
+            font-weight: 500;
+            text-align: right;
+        }
+
+        .item-value {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-left: 12px;
+        }
+
+        .item-arrow {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .logout-item {
+            color: var(--danger);
+        }
+
+        .logout-item .item-icon {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+        }
+
+        /* Toggle Switch */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 48px;
+            height: 28px;
+            direction: ltr; /* Force LTR for the visual switch */
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--border);
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        input:checked + .slider {
+            background-color: var(--primary);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(20px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <header>
+            <h1>الإعدادات</h1>
+        </header>
+
+        <main>
+            <!-- Profile Section -->
+            <div class="profile-header">
+                <!-- Using a solid color with initials as a reliable placeholder image -->
+                <div class="avatar">أ</div>
+                <div class="profile-info">
+                    <h2 class="profile-name">أحمد محمد</h2>
+                    <p class="profile-phone">+966 50 123 4567</p>
+                </div>
+            </div>
+
+            <!-- Account Group -->
+            <div class="section-title">الحساب</div>
+            <div class="settings-group">
+                <a href="#" class="setting-item">
+                    <div class="item-icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <span class="item-label">العناوين</span>
+                    <i class="fa-solid fa-chevron-left item-arrow"></i>
+                </a>
+                
+                <a href="#" class="setting-item">
+                    <div class="item-icon"><i class="fa-regular fa-credit-card"></i></div>
+                    <span class="item-label">طرق الدفع</span>
+                    <i class="fa-solid fa-chevron-left item-arrow"></i>
+                </a>
+            </div>
+
+            <!-- Preferences Group -->
+            <div class="section-title">التفضيلات</div>
+            <div class="settings-group">
+                <div class="setting-item">
+                    <div class="item-icon"><i class="fa-regular fa-bell"></i></div>
+                    <span class="item-label">الإشعارات</span>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <a href="#" class="setting-item">
+                    <div class="item-icon"><i class="fa-solid fa-globe"></i></div>
+                    <span class="item-label">اللغة</span>
+                    <span class="item-value">العربية</span>
+                    <i class="fa-solid fa-chevron-left item-arrow"></i>
+                </a>
+
+                <div class="setting-item">
+                    <div class="item-icon"><i class="fa-regular fa-moon"></i></div>
+                    <span class="item-label">الوضع الداكن</span>
+                    <label class="switch">
+                        <input type="checkbox" id="darkModeToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Support Group -->
+            <div class="section-title">أخرى</div>
+            <div class="settings-group">
+                <a href="#" class="setting-item">
+                    <div class="item-icon"><i class="fa-regular fa-circle-question"></i></div>
+                    <span class="item-label">المساعدة</span>
+                    <i class="fa-solid fa-chevron-left item-arrow"></i>
+                </a>
+
+                <button class="setting-item logout-item">
+                    <div class="item-icon"><i class="fa-solid fa-arrow-right-from-bracket"></i></div>
+                    <span class="item-label">تسجيل الخروج</span>
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Minimal JavaScript for Dark Mode Toggle functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const htmlElement = document.documentElement;
+            
+            // Check system preference on load
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                htmlElement.setAttribute('data-theme', 'dark');
+                darkModeToggle.checked = true;
+            }
+
+            // Toggle listener
+            darkModeToggle.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    htmlElement.setAttribute('data-theme', 'dark');
+                } else {
+                    htmlElement.removeAttribute('data-theme');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

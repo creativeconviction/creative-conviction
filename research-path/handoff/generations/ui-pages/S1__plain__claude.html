@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>إنشاء حساب | قريب</title>
+<meta name="theme-color" content="#0B6B45">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green-800:#08573A;
+    --green-700:#0B6B45;
+    --green-600:#0E8A5A;
+    --green-100:#D7EFE2;
+    --green-50:#EEF8F2;
+    --sun:#F5B83D;
+    --ink:#13201A;
+    --muted:#5B6B63;
+    --border:#D5DFD9;
+    --bg:#F4F7F5;
+    --surface:#FFFFFF;
+    --error:#C0362C;
+    --error-bg:#FDF1F0;
+    --radius:14px;
+    --focus:0 0 0 3px rgba(14,138,90,.28);
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    font-family:"IBM Plex Sans Arabic",system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;
+    color:var(--ink);
+    background:var(--surface);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--green-700);font-weight:600;text-underline-offset:3px}
+  a:hover{color:var(--green-800)}
+  :focus-visible{outline:none;box-shadow:var(--focus)}
+  .visually-hidden{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+  /* ---------- Layout ---------- */
+  .layout{min-height:100vh;min-height:100dvh;display:flex}
+  .screen{
+    width:100%;
+    max-width:480px;
+    margin-inline:auto;
+    padding:0 20px max(28px, env(safe-area-inset-bottom));
+    display:flex;flex-direction:column;
+  }
+
+  /* ---------- Header ---------- */
+  .topbar{
+    position:sticky;top:0;z-index:5;
+    display:grid;grid-template-columns:44px 1fr 44px;align-items:center;
+    height:60px;margin-inline:-20px;padding-inline:12px;
+    background:rgba(255,255,255,.94);
+    backdrop-filter:saturate(1.4) blur(8px);
+  }
+  .icon-btn{
+    width:44px;height:44px;border-radius:12px;border:0;
+    display:grid;place-items:center;
+    background:transparent;color:var(--ink);cursor:pointer;
+    transition:background .15s;
+  }
+  .icon-btn:hover{background:var(--green-50)}
+  .icon-btn svg{width:24px;height:24px}
+  .logo{
+    justify-self:center;display:flex;align-items:center;gap:8px;
+    font-weight:700;font-size:1.15rem;color:var(--green-700);
+  }
+  .logo-mark{
+    width:28px;height:28px;border-radius:9px;background:var(--green-700);
+    display:grid;place-items:center;
+  }
+  .logo-mark svg{width:17px;height:17px}
+
+  /* ---------- Intro ---------- */
+  .intro{padding:12px 0 24px}
+  .intro h1{font-size:1.6rem;line-height:1.35;margin:0 0 6px;font-weight:700}
+  .intro p{margin:0;color:var(--muted);font-size:.98rem}
+
+  /* ---------- Form ---------- */
+  form{display:flex;flex-direction:column;gap:18px}
+  .field{display:flex;flex-direction:column;gap:6px}
+  .field > label{font-weight:600;font-size:.94rem}
+  .hint{font-size:.83rem;color:var(--muted);margin:0}
+  .error{
+    display:none;align-items:center;gap:6px;
+    font-size:.85rem;color:var(--error);margin:0;font-weight:500;
+  }
+  .error.show{display:flex}
+  .error svg{width:16px;height:16px;flex:none}
+
+  .control{
+    width:100%;height:52px;
+    border:1.5px solid var(--border);border-radius:var(--radius);
+    background:var(--surface);
+    font:inherit;font-size:16px;color:var(--ink);
+    padding:0 14px;
+    transition:border-color .15s, box-shadow .15s;
+  }
+  .control::placeholder{color:#97A59E}
+  .control:hover{border-color:#B8C7BF}
+  .control:focus{outline:none;border-color:var(--green-600);box-shadow:var(--focus)}
+  .ltr{direction:ltr;text-align:right}
+  .ltr::placeholder{text-align:right}
+
+  /* Phone */
+  .phone{
+    direction:ltr;display:flex;align-items:stretch;
+    height:52px;border:1.5px solid var(--border);border-radius:var(--radius);
+    background:var(--surface);overflow:hidden;
+    transition:border-color .15s, box-shadow .15s;
+  }
+  .phone:hover{border-color:#B8C7BF}
+  .phone:focus-within{border-color:var(--green-600);box-shadow:var(--focus)}
+  .phone .prefix{
+    display:flex;align-items:center;gap:8px;
+    padding:0 12px 0 14px;background:var(--green-50);
+    border-right:1.5px solid var(--border);
+    font-weight:600;color:var(--ink);font-size:15px;white-space:nowrap;
+  }
+  .flag{width:22px;height:15px;border-radius:3px;display:block}
+  .phone input{
+    flex:1;min-width:0;border:0;background:transparent;
+    font:inherit;font-size:16px;color:var(--ink);
+    padding:0 14px;letter-spacing:.04em;text-align:left;
+  }
+  .phone input:focus{outline:none}
+  .phone input::placeholder{color:#97A59E;letter-spacing:.04em}
+
+  /* Password */
+  .password-wrap{position:relative}
+  .password-wrap .control{padding-left:56px}
+  .toggle-pw{
+    position:absolute;left:4px;top:50%;transform:translateY(-50%);
+    width:44px;height:44px;border:0;border-radius:11px;background:transparent;
+    color:var(--muted);cursor:pointer;display:grid;place-items:center;
+  }
+  .toggle-pw:hover{color:var(--ink);background:var(--green-50)}
+  .toggle-pw svg{width:22px;height:22px}
+  .toggle-pw .eye-off{display:none}
+  .toggle-pw[aria-pressed="true"] .eye{display:none}
+  .toggle-pw[aria-pressed="true"] .eye-off{display:block}
+
+  /* Invalid states */
+  .invalid .control,.invalid .phone{border-color:var(--error);background:var(--error-bg)}
+  .invalid .phone .prefix{background:#FBE4E2;border-right-color:#F0C3BF}
+  .invalid .control:focus,.invalid .phone:focus-within{box-shadow:0 0 0 3px rgba(192,54,44,.2)}
+
+  /* Terms */
+  .terms{display:flex;align-items:flex-start;gap:12px;padding-top:2px}
+  .check{
+    position:relative;flex:none;width:24px;height:24px;margin-top:2px;
+  }
+  .check input{
+    appearance:none;-webkit-appearance:none;margin:0;
+    width:24px;height:24px;border:1.5px solid #A9B8B0;border-radius:7px;
+    background:var(--surface);cursor:pointer;
+    transition:background .15s,border-color .15s;
+  }
+  .check input:checked{background:var(--green-700);border-color:var(--green-700)}
+  .check input:focus-visible{box-shadow:var(--focus)}
+  .check svg{
+    position:absolute;inset:0;margin:auto;width:16px;height:16px;
+    color:#fff;pointer-events:none;opacity:0;transform:scale(.6);
+    transition:opacity .12s, transform .12s;
+  }
+  .check input:checked + svg{opacity:1;transform:scale(1)}
+  .terms label{font-size:.92rem;color:#33433B;cursor:pointer}
+  .terms.invalid .check input{border-color:var(--error);background:var(--error-bg)}
+  .terms-field .error{margin-inline-start:36px;margin-top:6px}
+
+  /* Button */
+  .btn-primary{
+    position:relative;width:100%;height:56px;margin-top:6px;
+    border:0;border-radius:var(--radius);
+    background:var(--green-700);color:#fff;
+    font:inherit;font-size:1.05rem;font-weight:700;cursor:pointer;
+    box-shadow:0 6px 16px -6px rgba(11,107,69,.55);
+    transition:background .15s, transform .08s;
+  }
+  .btn-primary:hover{background:var(--green-800)}
+  .btn-primary:active{transform:translateY(1px)}
+  .btn-primary:focus-visible{box-shadow:0 0 0 3px #fff,0 0 0 6px var(--green-600)}
+  .btn-primary[aria-busy="true"]{cursor:progress;background:var(--green-600)}
+  .btn-primary[aria-busy="true"] .label{visibility:hidden}
+  .spinner{
+    display:none;position:absolute;inset:0;margin:auto;
+    width:24px;height:24px;border-radius:50%;
+    border:3px solid rgba(255,255,255,.35);border-top-color:#fff;
+    animation:spin .8s linear infinite;
+  }
+  .btn-primary[aria-busy="true"] .spinner{display:block}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  .login{
+    text-align:center;margin:24px 0 0;color:var(--muted);font-size:.95rem;
+  }
+  .login a{display:inline-block;padding:10px 4px}
+
+  /* Toast */
+  .toast{
+    position:fixed;inset-inline:16px;bottom:max(20px, env(safe-area-inset-bottom));
+    max-width:420px;margin-inline:auto;z-index:20;
+    display:flex;align-items:center;gap:10px;
+    background:var(--ink);color:#fff;border-radius:14px;padding:14px 16px;
+    font-weight:500;box-shadow:0 12px 30px -10px rgba(0,0,0,.4);
+    opacity:0;transform:translateY(16px);pointer-events:none;
+    transition:opacity .25s, transform .25s;
+  }
+  .toast.show{opacity:1;transform:none}
+  .toast svg{width:22px;height:22px;color:#6EE0A6;flex:none}
+
+  /* ---------- Brand panel (desktop) ---------- */
+  .brand-panel{display:none}
+
+  @media (min-width:640px){
+    body{background:var(--bg)}
+    .layout{align-items:center;padding:32px 16px}
+    .screen{
+      background:var(--surface);border-radius:24px;
+      padding:8px 32px 32px;
+      box-shadow:0 1px 2px rgba(19,32,26,.06),0 20px 50px -24px rgba(19,32,26,.25);
+    }
+    .topbar{margin-inline:-20px;border-radius:24px 24px 0 0;position:static}
+  }
+
+  @media (min-width:1000px){
+    body{background:var(--surface)}
+    .layout{padding:0;align-items:stretch}
+    .screen{
+      flex:1 1 50%;max-width:none;border-radius:0;box-shadow:none;
+      padding:24px clamp(32px,6vw,96px) 40px;justify-content:center;
+    }
+    .screen > *{width:100%;max-width:420px;margin-inline:auto}
+    .topbar{background:transparent;backdrop-filter:none;margin-inline:auto;padding-inline:0}
+    .brand-panel{
+      flex:1 1 50%;display:flex;flex-direction:column;justify-content:center;
+      position:relative;overflow:hidden;
+      padding:48px clamp(40px,5vw,80px);
+      background:
+        radial-gradient(600px 400px at 85% 10%, rgba(245,184,61,.22), transparent 60%),
+        linear-gradient(160deg,var(--green-700),var(--green-800));
+      color:#fff;
+    }
+    .brand-panel h2{font-size:2.1rem;line-height:1.35;margin:28px 0 12px;max-width:16ch}
+    .brand-panel p{color:rgba(255,255,255,.82);margin:0 0 28px;max-width:40ch;font-size:1.05rem}
+    .perks{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+    .perks li{display:flex;align-items:center;gap:12px;font-weight:500}
+    .perks span{
+      width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.12);
+      display:grid;place-items:center;flex:none;
+    }
+    .perks svg{width:20px;height:20px}
+    .illus{width:min(320px,80%)}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none!important;animation-duration:1.5s!important}
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+  <main class="screen">
+    <header class="topbar">
+      <button type="button" class="icon-btn" id="backBtn" aria-label="رجوع">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+      </button>
+      <div class="logo" aria-label="قريب">
+        <span class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h16l-1.5 11a2 2 0 0 1-2 1.7h-9A2 2 0 0 1 5.5 19z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+        </span>
+        <span aria-hidden="true">قريب</span>
+      </div>
+      <span aria-hidden="true"></span>
+    </header>
+
+    <div class="intro">
+      <h1>أنشئ حسابك</h1>
+      <p>سجّل الآن واطلب مقاضيك لتصلك إلى باب بيتك خلال دقائق.</p>
+    </div>
+
+    <form id="signupForm" novalidate>
+      <div class="field" id="f-name">
+        <label for="name">الاسم الكامل</label>
+        <input class="control" id="name" name="name" type="text" autocomplete="name" placeholder="مثال: سارة العتيبي" aria-describedby="name-error" required>
+        <p class="error" id="name-error" aria-live="polite"></p>
+      </div>
+
+      <div class="field" id="f-phone">
+        <label for="phone">رقم الجوال</label>
+        <div class="phone">
+          <span class="prefix" id="phone-prefix">
+            <svg class="flag" viewBox="0 0 22 15" aria-hidden="true"><rect width="22" height="15" rx="2" fill="#0B6B45"/><path d="M6 6.2h10M7 8.2h8" stroke="#fff" stroke-width="1" stroke-linecap="round"/><path d="M7 10.6h8" stroke="#fff" stroke-width=".9" stroke-linecap="round"/></svg>
+            <span><span class="visually-hidden">رمز الدولة السعودية </span>+966</span>
+          </span>
+          <input id="phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="5X XXX XXXX" maxlength="11" aria-describedby="phone-prefix phone-hint phone-error" required>
+        </div>
+        <p class="hint" id="phone-hint">سنرسل لك رمز تحقق عبر رسالة نصية.</p>
+        <p class="error" id="phone-error" aria-live="polite"></p>
+      </div>
+
+      <div class="field" id="f-email">
+        <label for="email">البريد الإلكتروني</label>
+        <input class="control ltr" id="email" name="email" type="email" inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" placeholder="name@example.com" aria-describedby="email-error" required>
+        <p class="error" id="email-error" aria-live="polite"></p>
+      </div>
+
+      <div class="field" id="f-password">
+        <label for="password">كلمة المرور</label>
+        <div class="password-wrap">
+          <input class="control ltr" id="password" name="password" type="password" autocomplete="new-password" placeholder="أدخل كلمة المرور" aria-describedby="pw-hint pw-error" required minlength="8">
+          <button type="button" class="toggle-pw" id="togglePw" aria-pressed="false" aria-label="إظهار كلمة المرور" aria-controls="password">
+            <svg class="eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+            <svg class="eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.6 5.1A10.4 10.4 0 0 1 12 5c6.4 0 10 7 10 7a17.6 17.6 0 0 1-2.6 3.6"/><path d="M6.6 6.6C3.7 8.5 2 12 2 12s3.6 7 10 7a9.7 9.7 0 0 0 5.4-1.6"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/><path d="M3 3l18 18"/></svg>
+          </button>
+        </div>
+        <p class="hint" id="pw-hint">8 أحرف على الأقل، وتتضمن حرفًا ورقمًا.</p>
+        <p class="error" id="pw-error" aria-live="polite"></p>
+      </div>
+
+      <div class="terms-field" id="f-terms">
+        <div class="terms">
+          <span class="check">
+            <input type="checkbox" id="terms" name="terms" aria-describedby="terms-error" required>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+          </span>
+          <label for="terms">أوافق على <a href="#terms" target="_blank" rel="noopener">الشروط والأحكام</a> و<a href="#privacy" target="_blank" rel="noopener">سياسة الخصوصية</a> الخاصة بقريب.</label>
+        </div>
+        <p class="error" id="terms-error" aria-live="polite"></p>
+      </div>
+
+      <button type="submit" class="btn-primary" id="submitBtn">
+        <span class="label">إنشاء حساب</span>
+        <span class="spinner" aria-hidden="true"></span>
+      </button>
+    </form>
+
+    <p class="login">لديك حساب بالفعل؟ <a href="#login">تسجيل الدخول</a></p>
+  </main>
+
+  <aside class="brand-panel" aria-hidden="true">
+    <svg class="illus" viewBox="0 0 320 220" fill="none">
+      <ellipse cx="160" cy="200" rx="120" ry="12" fill="rgba(0,0,0,.18)"/>
+      <circle cx="118" cy="78" r="30" fill="#F5B83D"/>
+      <circle cx="170" cy="66" r="34" fill="#E8553E"/>
+      <path d="M170 32c4-10 14-14 22-12-3 9-12 14-22 12z" fill="#6EE0A6"/>
+      <ellipse cx="218" cy="84" rx="20" ry="34" transform="rotate(25 218 84)" fill="#9BD86A"/>
+      <path d="M60 100h200l-18 86a12 12 0 0 1-12 10H90a12 12 0 0 1-12-10z" fill="#fff"/>
+      <path d="M60 100h200" stroke="#fff" stroke-width="10" stroke-linecap="round"/>
+      <path d="M110 120v54M160 120v54M210 120v54" stroke="#D7EFE2" stroke-width="8" stroke-linecap="round"/>
+    </svg>
+    <h2>كل احتياجات بيتك، أقرب مما تتوقع</h2>
+    <p>خضار وفواكه طازجة، ومنتجات يومية من متاجر حيّك، تصلك أينما كنت في المملكة.</p>
+    <ul class="perks">
+      <li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>توصيل خلال 30 دقيقة</li>
+      <li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 4 13c0-5 4-9 16-9 0 12-4 16-9 16z"/><path d="M4 20c3-5 6-8 10-10"/></svg></span>منتجات طازجة يوميًا</li>
+      <li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span>دفع آمن ومدى وApple Pay</li>
+    </ul>
+  </aside>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.8 2.8L16 10"/></svg>
+  <span id="toastText"></span>
+</div>
+
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const form = $('signupForm');
+  const errIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5M12 16.5v.01"/></svg>';
+
+  // Convert Arabic-Indic / Persian digits to Western
+  const toLatin = s => s.replace(/[\u0660-\u0669]/g, d => d.charCodeAt(0) - 0x0660)
+                        .replace(/[\u06F0-\u06F9]/g, d => d.charCodeAt(0) - 0x06F0);
+
+  // Back button
+  $('backBtn').addEventListener('click', () => {
+    if (history.length > 1) history.back();
+  });
+
+  // Password toggle
+  const pw = $('password'), toggle = $('togglePw');
+  toggle.addEventListener('click', () => {
+    const show = pw.type === 'password';
+    pw.type = show ? 'text' : 'password';
+    toggle.setAttribute('aria-pressed', String(show));
+    toggle.setAttribute('aria-label', show ? 'إخفاء كلمة المرور' : 'إظهار كلمة المرور');
+    pw.focus({preventScroll:true});
+    const len = pw.value.length; pw.setSelectionRange(len, len);
+  });
+
+  // Phone formatting: 5X XXX XXXX
+  const phone = $('phone');
+  phone.addEventListener('input', () => {
+    let d = toLatin(phone.value).replace(/\D/g, '');
+    if (d.startsWith('966')) d = d.slice(3);
+    if (d.startsWith('0')) d = d.slice(1);
+    d = d.slice(0, 9);
+    const parts = [d.slice(0,2), d.slice(2,5), d.slice(5,9)].filter(Boolean);
+    phone.value = parts.join(' ');
+  });
+
+  // Validators
+  const rules = {
+    name: () => {
+      const v = $('name').value.trim();
+      if (!v) return 'يرجى إدخال اسمك الكامل.';
+      if (v.split(/\s+/).length < 2) return 'يرجى إدخال الاسم الأول واسم العائلة.';
+      return '';
+    },
+    phone: () => {
+      const d = phone.value.replace(/\D/g, '');
+      if (!d) return 'يرجى إدخال رقم الجوال.';
+      if (!/^5\d{8}$/.test(d)) return 'رقم الجوال يجب أن يبدأ بـ 5 ويتكون من 9 أرقام.';
+      return '';
+    },
+    email: () => {
+      const v = toLatin($('email').value.trim());
+      if (!v) return 'يرجى إدخال البريد الإلكتروني.';
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) return 'صيغة البريد الإلكتروني غير صحيحة.';
+      return '';
+    },
+    password: () => {
+      const v = pw.value;
+      if (!v) return 'يرجى إدخال كلمة المرور.';
+      if (v.length < 8) return 'كلمة المرور قصيرة، استخدم 8 أحرف على الأقل.';
+      if (!/[A-Za-z\u0600-\u06FF]/.test(v) || !/\d/.test(v)) return 'يجب أن تتضمن كلمة المرور حرفًا ورقمًا على الأقل.';
+      return '';
+    },
+    terms: () => $('terms').checked ? '' : 'يجب الموافقة على الشروط والأحكام للمتابعة.'
+  };
+  const map = {
+    name:     {wrap:'f-name',     input:'name',     err:'name-error'},
+    phone:    {wrap:'f-phone',    input:'phone',    err:'phone-error'},
+    email:    {wrap:'f-email',    input:'email',    err:'email-error'},
+    password: {wrap:'f-password', input:'password', err:'pw-error'},
+    terms:    {wrap:'f-terms',    input:'terms',    err:'terms-error'}
+  };
+
+  function check(key){
+    const msg = rules[key]();
+    const m = map[key];
+    const wrap = key === 'terms' ? $(m.wrap).querySelector('.terms') : $(m.wrap);
+    const err = $(m.err), input = $(m.input);
+    wrap.classList.toggle('invalid', !!msg);
+    input.setAttribute('aria-invalid', msg ? 'true' : 'false');
+    err.innerHTML = msg ? errIcon + '<span>' + msg + '</span>' : '';
+    err.classList.toggle('show', !!msg);
+    return !msg;
+  }
+
+  // Validate after the user leaves a field; re-validate live once touched
+  Object.keys(map).forEach(key => {
+    const input = $(map[key].input);
+    const evt = key === 'terms' ? 'change' : 'blur';
+    input.addEventListener(evt, () => { if (input.value || key === 'terms') { input.dataset.touched = '1'; check(key); } });
+    input.addEventListener('input', () => { if (input.dataset.touched) check(key); });
+  });
+
+  const btn = $('submitBtn');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    if (btn.getAttribute('aria-busy') === 'true') return;
+    let firstInvalid = null;
+    Object.keys(map).forEach(key => {
+      $(map[key].input).dataset.touched = '1';
+      if (!check(key) && !firstInvalid) firstInvalid = $(map[key].input);
+    });
+    if (firstInvalid){ firstInvalid.focus(); return; }
+
+    btn.setAttribute('aria-busy', 'true');
+    btn.setAttribute('aria-label', 'جارٍ إنشاء الحساب');
+    setTimeout(() => {
+      btn.removeAttribute('aria-busy');
+      btn.removeAttribute('aria-label');
+      showToast('تم إنشاء حسابك بنجاح! أرسلنا رمز التحقق إلى جوالك.');
+    }, 1400);
+  });
+
+  let toastTimer;
+  function showToast(text){
+    $('toastText').textContent = text;
+    const t = $('toast');
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 3800);
+  }
+})();
+</script>
+</body>
+</html>

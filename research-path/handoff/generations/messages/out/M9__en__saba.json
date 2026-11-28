@@ -1,0 +1,13 @@
+{
+  "scenario": "M9",
+  "lang": "en",
+  "model": "saba",
+  "message": "just wanted to say the driver was super kind and helped me carry everything upstairs, thank you!",
+  "raw": "```json\n{\n  \"intent\": \"praise\",\n  \"sentiment\": \"positive\",\n  \"urgency\": \"low\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"The customer expressed gratitude for the driver's kindness and assistance.\"\n}\n```",
+  "intent": "praise",
+  "sentiment": "positive",
+  "urgency": "low",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer expressed gratitude for the driver's kindness and assistance."
+}

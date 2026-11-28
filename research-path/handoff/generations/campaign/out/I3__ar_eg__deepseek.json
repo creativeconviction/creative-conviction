@@ -1,0 +1,12 @@
+{
+  "line": "I3",
+  "market": "ar_eg",
+  "model": "deepseek",
+  "source": "Bring home the bacon with zero fees.",
+  "raw": "{\n  \"literal\": \"أحضر لحم الخنزير إلى البيت بدون رسوم\",\n  \"adaptation\": \"جيب الرزق لبيتك بدون رسوم\",\n  \"back_translation\": \"Bring livelihood home with zero fees\",\n  \"approach\": \"adapted\",\n  \"notes\": \"The pork reference in 'bring home the bacon' was replaced with the culturally resonant term 'رزق' (livelihood/provision) to avoid religious sensitivity in Egypt.\"\n}",
+  "literal": "أحضر لحم الخنزير إلى البيت بدون رسوم",
+  "adaptation": "جيب الرزق لبيتك بدون رسوم",
+  "back_translation": "Bring livelihood home with zero fees",
+  "approach": "adapted",
+  "notes": "The pork reference in 'bring home the bacon' was replaced with the culturally resonant term 'رزق' (livelihood/provision) to avoid religious sensitivity in Egypt."
+}

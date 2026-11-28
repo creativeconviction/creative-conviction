@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قريب - الخضار والفواكه</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f5f5f0;
+            color: #2c2c2c;
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+
+        /* ========== الحاوية الرئيسية ========== */
+        .app-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.03);
+        }
+
+        /* ========== الترويسة ========== */
+        .header {
+            background: #ffffff;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid #e8e8e0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #2e7d32;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+        .logo svg {
+            width: 34px;
+            height: 34px;
+        }
+
+        .search-wrapper {
+            flex: 1;
+            min-width: 140px;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .search-wrapper input {
+            width: 100%;
+            padding: 10px 42px 10px 14px;
+            border: 2px solid #e0e0d5;
+            border-radius: 30px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 14px;
+            background: #f9f9f6;
+            transition: all 0.25s;
+            outline: none;
+            color: #333;
+        }
+        .search-wrapper input:focus {
+            border-color: #4caf50;
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.06);
+        }
+        .search-wrapper .search-icon {
+            position: absolute;
+            right: 14px;
+            pointer-events: none;
+            color: #888;
+            display: flex;
+        }
+        .search-wrapper .search-icon svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .cart-icon-wrapper {
+            position: relative;
+            flex-shrink: 0;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 12px;
+            transition: background 0.2s;
+        }
+        .cart-icon-wrapper:hover {
+            background: #f0f0ea;
+        }
+        .cart-icon-wrapper svg {
+            width: 26px;
+            height: 26px;
+            color: #3e3e3e;
+        }
+        .cart-badge {
+            position: absolute;
+            top: 2px;
+            left: -2px;
+            background: #e53935;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            min-width: 20px;
+            height: 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 5px;
+            box-shadow: 0 2px 6px rgba(229, 57, 53, 0.3);
+        }
+
+        /* ========== مسار التنقل ========== */
+        .breadcrumb {
+            padding: 12px 16px;
+            font-size: 13px;
+            color: #777;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+            background: #fafaf7;
+            border-bottom: 1px solid #eee;
+        }
+        .breadcrumb a {
+            color: #4caf50;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        .breadcrumb span.separator {
+            color: #bbb;
+            font-size: 11px;
+        }
+        .breadcrumb .current {
+            color: #333;
+            font-weight: 600;
+        }
+
+        /* ========== المحتوى الرئيسي ========== */
+        .main-content {
+            display: flex;
+            flex: 1;
+            position: relative;
+        }
+
+        /* ========== زر الفلتر للجوال ========== */
+        .filter-toggle-btn {
+            display: none;
+            margin: 10px 16px;
+            padding: 10px 18px;
+            background: #fff;
+            border: 2px solid #e0e0d5;
+            border-radius: 30px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            color: #444;
+            gap: 6px;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        .filter-toggle-btn:hover {
+            border-color: #4caf50;
+            color: #2e7d32;
+        }
+        .filter-toggle-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* ========== الشريط الجانبي ========== */
+        .sidebar {
+            width: 260px;
+            flex-shrink: 0;
+            background: #ffffff;
+            border-left: 1px solid #e8e8e0;
+            padding: 20px 16px;
+            overflow-y: auto;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .sidebar h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 18px;
+            color: #2e7d32;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .sidebar h3 svg {
+            width: 20px;
+            height: 20px;
+        }
+        .filter-group {
+            margin-bottom: 24px;
+            border-bottom: 1px solid #f0f0ea;
+            padding-bottom: 18px;
+        }
+        .filter-group:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .filter-group label {
+            display: block;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #444;
+        }
+        .price-range-inputs {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .price-range-inputs input {
+            width: 100%;
+            padding: 9px 10px;
+            border: 2px solid #e0e0d5;
+            border-radius: 10px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 13px;
+            text-align: center;
+            background: #f9f9f6;
+            outline: none;
+            transition: border 0.2s;
+        }
+        .price-range-inputs input:focus {
+            border-color: #4caf50;
+        }
+        .price-range-inputs span {
+            color: #888;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            padding: 6px 8px;
+            border-radius: 8px;
+            transition: background 0.15s;
+        }
+        .checkbox-item:hover {
+            background: #f9f9f6;
+        }
+        .checkbox-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #4caf50;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .checkbox-item .brand-count {
+            color: #999;
+            font-size: 12px;
+            margin-right: auto;
+        }
+
+        /* ========== منطقة المنتجات ========== */
+        .products-area {
+            flex: 1;
+            padding: 16px;
+        }
+        .products-area .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .products-area .results-count {
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 16px;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        /* ========== بطاقة المنتج ========== */
+        .product-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.25s;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .product-card:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+            border-color: #d5d5cc;
+        }
+        .product-card .image-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            background: #fafaf7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .product-card .image-container img {
+            width: 85%;
+            height: 85%;
+            object-fit: contain;
+            transition: transform 0.3s;
+        }
+        .product-card:hover .image-container img {
+            transform: scale(1.06);
+        }
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #e53935;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            z-index: 2;
+            box-shadow: 0 2px 8px rgba(229, 57, 53, 0.3);
+            letter-spacing: 0.3px;
+        }
+        .product-card .info {
+            padding: 12px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            flex: 1;
+        }
+        .product-card .product-name {
+            font-weight: 700;
+            font-size: 14px;
+            color: #222;
+            line-height: 1.3;
+        }
+        .product-card .product-weight {
+            font-size: 12px;
+            color: #888;
+        }
+        .product-card .price-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 4px;
+            flex-wrap: wrap;
+        }
+        .product-card .current-price {
+            font-weight: 800;
+            font-size: 18px;
+            color: #2e7d32;
+        }
+        .product-card .old-price {
+            font-size: 13px;
+            color: #aaa;
+            text-decoration: line-through;
+            font-weight: 500;
+        }
+        .product-card .add-to-cart-btn {
+            margin-top: 10px;
+            width: 100%;
+            padding: 10px 0;
+            background: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            letter-spacing: 0.2px;
+        }
+        .product-card .add-to-cart-btn:hover {
+            background: #388e3c;
+            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+            transform: translateY(-1px);
+        }
+        .product-card .add-to-cart-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* ========== ترقيم الصفحات ========== */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 28px;
+            padding: 10px 0;
+        }
+        .pagination button {
+            padding: 10px 20px;
+            border: 2px solid #e0e0d5;
+            background: #fff;
+            border-radius: 25px;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            color: #444;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .pagination button:hover {
+            border-color: #4caf50;
+            color: #2e7d32;
+            background: #f9fdf9;
+        }
+        .pagination button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+        .pagination .page-indicator {
+            font-weight: 600;
+            color: #666;
+            font-size: 14px;
+            padding: 0 8px;
+        }
+        .pagination button svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* ========== التجاوب: سطح المكتب المتوسط ========== */
+        @media (max-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .sidebar {
+                width: 240px;
+            }
+        }
+
+        /* ========== التجاوب: الجوال (390px أساسي) ========== */
+        @media (max-width: 768px) {
+            .header {
+                padding: 10px 12px;
+                gap: 8px;
+            }
+            .logo {
+                font-size: 20px;
+            }
+            .logo svg {
+                width: 28px;
+                height: 28px;
+            }
+            .search-wrapper input {
+                font-size: 13px;
+                padding: 9px 38px 9px 10px;
+            }
+            .cart-icon-wrapper svg {
+                width: 24px;
+                height: 24px;
+            }
+            .cart-badge {
+                font-size: 10px;
+                min-width: 17px;
+                height: 17px;
+                top: 0;
+            }
+
+            .breadcrumb {
+                font-size: 12px;
+                padding: 10px 12px;
+            }
+
+            .filter-toggle-btn {
+                display: flex;
+            }
+
+            .main-content {
+                flex-direction: column;
+                position: relative;
+            }
+
+            .sidebar {
+                position: fixed;
+                top: 0;
+                right: 0;
+                height: 100vh;
+                width: 280px;
+                z-index: 200;
+                box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+                transform: translateX(100%);
+                opacity: 0;
+                pointer-events: none;
+                border-left: 1px solid #ddd;
+                border-radius: 0 0 0 0;
+            }
+            .sidebar.open {
+                transform: translateX(0);
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            .sidebar-overlay {
+                display: none;
+                position: fixed;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.4);
+                z-index: 199;
+            }
+            .sidebar-overlay.active {
+                display: block;
+            }
+
+            .sidebar-close-btn {
+                display: flex;
+                position: absolute;
+                top: 12px;
+                left: 12px;
+                background: none;
+                border: none;
+                cursor: pointer;
+                padding: 6px;
+                border-radius: 50%;
+                color: #666;
+                z-index: 201;
+            }
+            .sidebar-close-btn:hover {
+                background: #f0f0ea;
+            }
+            .sidebar-close-btn svg {
+                width: 22px;
+                height: 22px;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            .products-area {
+                padding: 10px 12px;
+            }
+            .product-card .info {
+                padding: 10px;
+            }
+            .product-card .product-name {
+                font-size: 13px;
+            }
+            .product-card .current-price {
+                font-size: 16px;
+            }
+            .product-card .old-price {
+                font-size: 11px;
+            }
+            .product-card .add-to-cart-btn {
+                font-size: 13px;
+                padding: 8px 0;
+            }
+            .discount-badge {
+                font-size: 10px;
+                padding: 3px 8px;
+                top: 6px;
+                right: 6px;
+            }
+            .pagination button {
+                padding: 8px 14px;
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 390px) {
+            .products-grid {
+                gap: 8px;
+            }
+            .product-card .info {
+                padding: 8px;
+            }
+            .product-card .product-name {
+                font-size: 12px;
+            }
+            .product-card .current-price {
+                font-size: 14px;
+            }
+            .product-card .add-to-cart-btn {
+                font-size: 12px;
+                padding: 7px 0;
+            }
+            .search-wrapper input {
+                font-size: 12px;
+                padding: 8px 34px 8px 8px;
+            }
+            .logo {
+                font-size: 18px;
+            }
+            .logo svg {
+                width: 24px;
+                height: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- ==================== الترويسة ==================== -->
+        <header class="header">
+            <a href="#" class="logo" aria-label="قريب - الرئيسية">
+                <!-- أيقونة متجر خضار وفواكه -->
+                <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="20" cy="20" r="18" fill="#4caf50" stroke="#2e7d32" stroke-width="2.5"/>
+                    <path d="M12 22c2-6 4-10 8-10s6 4 8 10" stroke="#fff" stroke-width="3" stroke-linecap="round" fill="none"/>
+                    <circle cx="20" cy="16" r="3" fill="#fff"/>
+                    <line x1="20" y1="13" x2="20" y2="9" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                قريب
+            </a>
+            <div class="search-wrapper">
+                <input type="text" placeholder="ابحث عن منتج..." aria-label="بحث">
+                <span class="search-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <circle cx="11" cy="11" r="7.5"/>
+                        <line x1="16.5" y1="16.5" x2="21" y2="21" stroke-linecap="round"/>
+                    </svg>
+                </span>
+            </div>
+            <div class="cart-icon-wrapper" aria-label="سلة التسوق - 3 عناصر">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" stroke-linecap="round" stroke-linejoin="round"/>
+                    <line x1="3" y1="6" x2="21" y2="6" stroke-linecap="round"/>
+                    <path d="M16 10a4 4 0 0 1-8 0" stroke-linecap="round"/>
+                </svg>
+                <span class="cart-badge">3</span>
+            </div>
+        </header>
+
+        <!-- ==================== مسار التنقل ==================== -->
+        <nav class="breadcrumb" aria-label="مسار التنقل">
+            <a href="#">الرئيسية</a>
+            <span class="separator">›</span>
+            <a href="#">الخضار والفواكه</a>
+            <span class="separator">›</span>
+            <span class="current">الفواكه</span>
+        </nav>
+
+        <!-- ==================== زر الفلتر للجوال ==================== -->
+        <button class="filter-toggle-btn" id="filterToggleBtn" aria-label="فتح خيارات التصفية">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <line x1="4" y1="6" x2="20" y2="6" stroke-linecap="round"/>
+                <line x1="8" y1="12" x2="16" y2="12" stroke-linecap="round"/>
+                <line x1="6" y1="18" x2="18" y2="18" stroke-linecap="round"/>
+                <circle cx="16" cy="6" r="2" fill="currentColor" stroke="none"/>
+                <circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/>
+                <circle cx="9" cy="18" r="2" fill="currentColor" stroke="none"/>
+            </svg>
+            تصفية
+        </button>
+
+        <!-- ==================== المحتوى الرئيسي ==================== -->
+        <div class="main-content">
+            <!-- طبقة تغطية للجوال عند فتح الشريط الجانبي -->
+            <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+            <!-- الشريط الجانبي للتصفية -->
+            <aside class="sidebar" id="sidebar">
+                <button class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="إغلاق التصفية" style="display:none;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <line x1="18" y1="6" x2="6" y2="18" stroke-linecap="round"/>
+                        <line x1="6" y1="6" x2="18" y2="18" stroke-linecap="round"/>
+                    </svg>
+                </button>
+                <h3>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                        <line x1="4" y1="6" x2="20" y2="6" stroke-linecap="round"/>
+                        <line x1="8" y1="12" x2="16" y2="12" stroke-linecap="round"/>
+                        <line x1="6" y1="18" x2="18" y2="18" stroke-linecap="round"/>
+                        <circle cx="16" cy="6" r="2" fill="currentColor" stroke="none"/>
+                        <circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/>
+                        <circle cx="9" cy="18" r="2" fill="currentColor" stroke="none"/>
+                    </svg>
+                    تصفية النتائج
+                </h3>
+
+                <!-- نطاق السعر -->
+                <div class="filter-group">
+                    <label>نطاق السعر (ر.س)</label>
+                    <div class="price-range-inputs">
+                        <input type="number" placeholder="من" value="5" min="0" aria-label="الحد الأدنى للسعر">
+                        <span>-</span>
+                        <input type="number" placeholder="إلى" value="50" min="0" aria-label="الحد الأعلى للسعر">
+                    </div>
+                </div>
+
+                <!-- العلامات التجارية -->
+                <div class="filter-group">
+                    <label>العلامات التجارية</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox" checked> مزارع الجنوب
+                            <span class="brand-count">(12)</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox"> فواكه طازجة
+                            <span class="brand-count">(8)</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox"> الريف الذهبي
+                            <span class="brand-count">(6)</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox"> بساتين
+                            <span class="brand-count">(9)</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox"> عضوي
+                            <span class="brand-count">(4)</span>
+                        </label>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- منطقة المنتجات -->
+            <section class="products-area">
+                <h2 class="section-title">🍎 فواكه طازجة</h2>
+                <p class="results-count">عرض 8 من 24 منتج</p>
+
+                <div class="products-grid">
+                    <!-- بطاقة 1: تفاح أحمر -->
+                    <article class="product-card">
+                        <div class="image-container">
+                            <span class="discount-badge">-25%</span>
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='38' fill='%23e53935'/%3E%3Cellipse cx='50' cy='40' rx='28' ry='32' fill='%23ef5350'/%3E%3Cpath d='M50 18c-4 0-8 3-10 8l-2 6c0 3 2 6 6 8' stroke='%235d4037' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='50' cy='50' r='5' fill='%23fff9c4' opacity='0.6'/%3E%3C/svg%3E" alt="تفاح أحمر" loading="lazy">
+                        </div>
+                        <div class="info">
+                            <h3 class="product-name">تفاح أحمر فاخر</h3>
+                            <span class="product-weight">1 كجم</span>
+                            <div class="price-row">
+                                <span class="current-price">11.25 ر.س</span>
+                                <span class="old-price">15.00 ر.س</span>
+                            </div>
+                            <button class="add-to-cart-btn" aria-label="إضافة تفاح أحمر إلى السلة">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <line x1="12" y1="5" x2="12" y2="19" stroke-linecap="round"/>
+                                    <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+                                </svg>
+                                أضف للسلة
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- بطاقة 2: موز -->
+                    <article class="product-card">
+                        <div class="image-container">
+                            <span class="discount-badge">-15%</span>
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M40 20c-10 15-15 35-10 55 3 12 15 18 25 10' fill='%23fdd835' stroke='%23f9a825' stroke-width='3'/%3E%3Cpath d='M55 20c10 15 15 35 10 55-3 12-15 18-25 10' fill='%23ffeb3b' stroke='%23f9a825' stroke-width='3'/%3E%3Ccircle cx='50' cy='18' r='5' fill='%23795548'/%3E%3C/svg%3E" alt="موز" loading="lazy">
+                        </div>
+                        <div class="info">
+                            <h3 class="product-name">موز إكوادوري</h3>
+                            <span class="product-weight">1 كجم</span>
+                            <div class="price-row">
+                                <span class="current-price">8.50 ر.س</span>
+                                <span class="old-price">10.00 ر.س</span>
+                            </div>
+                            <button class="add-to-cart-btn" aria-label="إضافة موز إلى السلة">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <line x1="12" y1="5" x2="12" y2="19" stroke-linecap="round"/>
+                                    <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+                                </svg>
+                                أضف للسلة
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- بطاقة 3: برتقال -->
+                    <article class="product-card">
+                        <div class="image-container">
+                            <span class="discount-badge">-20%</span>
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='36' fill='%23ff9800'/%3E%3Ccircle cx='50' cy='50' r='36' fill='%23ffa726'/%3E%3Ccircle cx='50' cy='28' r='8' fill='%234caf50'/%3E%3Ccircle cx='42' cy='48' r='4' fill='%23fff' opacity='0.4'/%3E%3C/svg%3E" alt="برتقال" loading="lazy">
+                        </div>
+                        <div class="info">
+                            <h3 class="product-name">برتقال سكري</h3>
+                            <span class="product-weight">2 كجم</span>
+                            <div class="price-row">
+                                <span class="current-price">12.00 ر.س</span>
+                                <span class="old-price">15.00 ر.س</span>
+                            </div>
+                            <button class="add-to-cart-btn" aria-label="إضافة برتقال إلى السلة">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <line x1="12" y1="5" x2="12" y2="19" stroke-linecap="round"/>
+                                    <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+                                </svg>
+                                أضف للسلة
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- بطاقة 4: عنب -->
+                    <article class="product-card">
+                        <div class="image-container">
+                            <span class="discount-badge">-10%</span>
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='30' cy='55' r='12' fill='%238e24aa'/%3E%3Ccircle cx='50' cy='50' r='12' fill='%239c27b0'/%3E%3Ccircle cx='70' cy='55' r='12' fill='%238e24aa'/%3E%3Ccircle cx='40' cy='40' r='10' fill='%237b1fa2'/%3E%3Ccircle cx='60' cy='40' r='10' fill='%239c27b0'/%3E%3Ccircle cx='50' cy='30' r='9' fill='%23ab47bc'/%3E%3C/svg%3E" alt="عنب" loading="lazy">
+                        </div>
+                        <div class="info">
+                            <h3 class="product-name">عنب بناتي أسود</h3>
+                            <span class="product-weight">500 جم</span>
+                            <div class="price-row">
+                                <span class="current-price">13.50 ر.س</span>
+                                <span class="old-price">15.00 ر.س</span>
+                            </div>
+                            <button class="add-to-cart-btn" aria-label="إضافة عنب إلى السلة">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <line x1="12" y1="5" x2="12" y2="19" stroke-linecap="round"/>
+                                    <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+                                </svg>
+                                أضف للسلة
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- بطاقة 5: فراولة -->
+                    <article class="product-card">
+                        <div class="image-container">
+                            <span class="discount-badge">-30%</span>
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 25c-15 5-28 20-28 35 0 12 10 22 22 18 8-3 14-10 20-18 6 8 12 15 20 18 12 4 22-6 22-18 0-15-13-30-28-35-4 0-8 0-12 0z' fill='%23e53935'/%3E%3Ccircle cx='38' cy='48' r='3' fill='%23ffcdd2'/%3E%3Ccircle cx='58' cy='44' r='3' fill='%23ffcdd2'/%3E%3Ccircle cx='48' cy='55' r='2.5' fill='%23ffcdd2'/%3E%3C/svg%3E" alt="فراولة" loading="lazy">
+                        </div>
+                        <div class="info">
+                            <h3 class="product-name">فراولة طازجة</h3>
+                            <span class="product-weight">250 جم</span>
+                            <div class="price-row">
+                                <span class="current-price">10.50 ر.س</span>
+                                <span class="old-price">15.00 ر.س</span>
+                            </div>
+                            <button class="add-to-cart-btn" aria-label="إضافة فراولة إلى السلة">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <line x1="12" y1="5" x2="12" y2="19" stroke-linecap="round"/>
+                                    <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+                                </svg>
+                                أضف للسلة
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- بطاقة 6: كيوي -->
+                    <article class="product-card">
+                        <div class="image-container">
+                            <span class="discount-badge">-18%</span>
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cellipse cx='50' cy='50' rx='28' ry='36' fill='%237cb342'/%3E%3Cellipse cx='50' cy='50' rx='28' ry='36' fill='%238bc34a'/%3E%3Ccircle cx='50' cy='50' r='14' fill='%23cddc39' opacity='0.5'/%3E%3Ccircle cx='46' cy='46' r='2' fill='%23333'/%3E%3Ccircle cx='54' cy='46' r='2' fill='%23333'/%3E%3Ccircle cx='50' cy='54' r='2' fill='%23333'/%3E%3C/svg%3E" alt="كيوي" loading="lazy">
+                        </div>
+                        <div class="info">
+                            <h3 class="product-name">كيوي ذهبي</h3>
+                            <span class="product-weight">500 جم</span>
+                            <div class="price-row">
+                                <span class="current-price">14.80 ر.س</span>
+                                <span class="old-price">18.00 ر.س</span>
+                            </div>
+                            <button class="add-to-cart-btn" aria-label="إضافة كيوي إلى السلة">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <line x1="12" y1="5" x2="12" y2="19" stroke-linecap="round"/>
+                                    <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+                                </svg>
+                                أضف للسلة
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- بطاقة 7: مانجو -->
+                    <article class="product-card">
+                        <div class="image-container">
+                            <span class="discount-badge">-22%</span>
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cellipse cx='50' cy='52' rx='30' ry='35' fill='%23ff9800'/%3E%3Cellipse cx='50' cy='50' rx='28' ry='33' fill='%23ffb74d'/%3E%3Cpath d='M50 20c-8 0-15 6-18 15-4 12-2 28 8 38' fill='%23ffcc80' opacity='0.6'/%3E%3C/svg%3E" alt="مانجو" loading="lazy">
+                        </div>
+                        <div class="info">
+                            <h3 class="product-name">مانجو باكستاني</h3>
+                            <span class="product-weight">1 كجم</span>
+                            <div class="price-row">
+                                <span class="current-price">19.50 ر.س</span>
+                                <span class="old-price">25.00 ر.س</span>
+                            </div>
+                            <button class="add-to-cart-btn" aria-label="إضافة مانجو إلى السلة">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <line x1="12" y1="5" x2="12" y2="19" stroke-linecap="round"/>
+                                    <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+                                </svg>
+                                أضف للسلة
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- بطاقة 8: أناناس -->
+                    <article class="product-card">
+                        <div class="image-container">
+                            <span class="discount-badge">-12%</span>
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cellipse cx='50' cy='55' rx='28' ry='32' fill='%23f9a825'/%3E%3Cpath d='M40 28l10-12 10 12' fill='%234caf50'/%3E%3Cpath d='M35 32l6-6m24 6l-6-6' stroke='%23336b1e' stroke-width='2' fill='none'/%3E%3Ccircle cx='50' cy='50' r='4' fill='%23fff' opacity='0.5'/%3E%3C/svg%3E" alt="أناناس" loading="lazy">
+                        </div>
+                        <div class="info">
+                            <h3 class="product-name">أناناس فلبيني</h3>
+                            <span class="product-weight">حبة كاملة</span>
+                            <div class="price-row">
+                                <span class="current-price">17.60 ر.س</span>
+                                <span class="old-price">20.00 ر.س</span>
+                            </div>
+                            <button class="add-to-cart-btn" aria-label="إضافة أناناس إلى السلة">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <line x1="12" y1="5" x2="12" y2="19" stroke-linecap="round"/>
+                                    <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+                                </svg>
+                                أضف للسلة
+                            </button>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- أزرار التنقل بين الصفحات -->
+                <nav class="pagination" aria-label="تنقل بين الصفحات">
+                    <button disabled aria-label="الصفحة السابقة">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <polyline points="15 18 9 12 15 6" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        السابق
+                    </button>
+                    <span class="page-indicator">صفحة 1 من 3</span>
+                    <button aria-label="الصفحة التالية">
+                        التالي
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <polyline points="9 18 15 12 9 6" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </nav>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            const filterToggleBtn = document.getElementById('filterToggleBtn');
+            const sidebar = document.getElementById('sidebar');
+            const sidebarOverlay = document.getElementById('sidebarOverlay');
+            const sidebarCloseBtn = document.getElementById('sidebarCloseBtn');
+
+            function openSidebar() {
+                sidebar.classList.add('open');
+                sidebarOverlay.classList.add('active');
+                if (sidebarCloseBtn) sidebarCloseBtn.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeSidebar() {
+                sidebar.classList.remove('open');
+                sidebarOverlay.classList.remove('active');
+                if (sidebarCloseBtn) sidebarCloseBtn.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+
+            if (filterToggleBtn) {
+                filterToggleBtn.addEventListener('click', openSidebar);
+            }
+            if (sidebarCloseBtn) {
+                sidebarCloseBtn.addEventListener('click', closeSidebar);
+            }
+            if (sidebarOverlay) {
+                sidebarOverlay.addEventListener('click', closeSidebar);
+            }
+
+            // إغلاق الشريط الجانبي عند النقر على زر Escape
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+                    closeSidebar();
+                }
+            });
+
+            // محاكاة بسيطة لأزرار الإضافة إلى السلة
+            const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+            addToCartButtons.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    const originalText = btn.textContent.trim();
+                    btn.textContent = '✓ تمت الإضافة';
+                    btn.style.background = '#2e7d32';
+                    btn.style.pointerEvents = 'none';
+                    setTimeout(function() {
+                        btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:18px;height:18px;"><line x1="12" y1="5" x2="12" y2="19" stroke-linecap="round"/><line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/></svg> أضف للسلة`;
+                        btn.style.background = '#4caf50';
+                        btn.style.pointerEvents = 'auto';
+                    }, 1500);
+                });
+            });
+
+            // محاكاة بسيطة لزر السلة
+            const cartIcon = document.querySelector('.cart-icon-wrapper');
+            const cartBadge = document.querySelector('.cart-badge');
+            let cartCount = 3;
+            if (cartIcon) {
+                cartIcon.addEventListener('click', function() {
+                    alert('سلة التسوق تحتوي على ' + cartCount + ' عناصر.');
+                });
+            }
+        })();
+    </script>
+</body>
+</html>

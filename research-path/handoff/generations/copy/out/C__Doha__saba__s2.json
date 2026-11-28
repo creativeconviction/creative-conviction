@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Doha",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Doha. Write marketing copy for it in Qatari Arabic, the way people in Doha actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 2,
+  "prompt_lang": "en",
+  "city": "Doha",
+  "target_region": "Gulf",
+  "target_city_code": "DOH",
+  "model": "saba",
+  "id": "C__Doha__saba__s2",
+  "model_id": "mistralai/mistral-saba",
+  "output": "**Tagline:**\n\"قارِيبْ يُوصَّل كل حَاجَه.. دقِيقْهُ جَرْي!\"\n\n**3 Instagram Ads:**\n1. \"دِيليڤري أُسْرَع من ما تِفَكّر.. أدنى 15 دقيقة!\" 🚀\n\n2. \"مأكولاتك، مشترياتك، حتى هدوم الصغِيْر… قريب يُوصّلها إليك وأنت قاعدة في بيتك! 🏠\"\n\n3. \"تلاقي كُل всёClose.. تنزّل التطبيق و استمتع بوقتك،نا نحن نوصلك!\" ⏳\n\n**Push Notification:**\n\"تحياتنا.. طلبك وصل! 🎉 شوف عِند باب البيت. وقت Ted؟\"",
+  "at": "2026-11-18T05:28:33.247Z"
+}

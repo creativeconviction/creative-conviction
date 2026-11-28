@@ -1,0 +1,13 @@
+{
+  "scenario": "M5",
+  "lang": "arabizi",
+  "model": "allam",
+  "message": "el salamo 3aleekom, 3ayez asterga3 felous el order 48213 law sama7t. el 7agat mesh zay el wasf.",
+  "raw": "```json\n{\n  \"intent\": \"missing_item\",\n  \"sentiment\": \"neutral\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"Customer requests missing item in order 48213\"\n}\n```",
+  "intent": "missing_item",
+  "sentiment": "neutral",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "Customer requests missing item in order 48213"
+}

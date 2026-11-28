@@ -1,0 +1,12 @@
+{
+  "line": "C3",
+  "market": "ar_eg",
+  "model": "claude",
+  "source": "Thanksgiving dinner, sorted. Order your turkey today.",
+  "raw": "```json\n{\n  \"literal\": \"عشاء عيد الشكر، تم ترتيبه. اطلب الديك الرومي الخاص بك اليوم.\",\n  \"adaptation\": \"عزومة الفطار؟ اعتبرها اتظبطت. اطلب كل طلبات رمضان من النهارده.\",\n  \"back_translation\": \"The iftar feast for guests? Consider it sorted. Order all your Ramadan groceries starting today.\",\n  \"approach\": \"replaced\",\n  \"notes\": \"Thanksgiving isn't celebrated in Egypt and turkey isn't a holiday centerpiece for most people, so I swapped in the Ramadan iftar 'عزومة' (hosted family feast), Egypt's biggest grocery-shopping moment, and wrote it in Egyptian colloquial Arabic for a warm, local tone.\"\n}\n```",
+  "literal": "عشاء عيد الشكر، تم ترتيبه. اطلب الديك الرومي الخاص بك اليوم.",
+  "adaptation": "عزومة الفطار؟ اعتبرها اتظبطت. اطلب كل طلبات رمضان من النهارده.",
+  "back_translation": "The iftar feast for guests? Consider it sorted. Order all your Ramadan groceries starting today.",
+  "approach": "replaced",
+  "notes": "Thanksgiving isn't celebrated in Egypt and turkey isn't a holiday centerpiece for most people, so I swapped in the Ramadan iftar 'عزومة' (hosted family feast), Egypt's biggest grocery-shopping moment, and wrote it in Egyptian colloquial Arabic for a warm, local tone."
+}

@@ -1,0 +1,12 @@
+{
+  "line": "C1",
+  "market": "ar_eg",
+  "model": "saba",
+  "source": "Black Friday: up to 70% off everything.",
+  "raw": "```json\n{\n  \"literal\": \"الجمعة السوداء: خصم يصل إلى 70% على كل شيء.\",\n  \"adaptation\": \"الجمعة السوداء: خصومات جنونية تصل إلى 70% على كل المنتجات\",\n  \"back_translation\": \"Black Friday: Crazy discounts up to 70% on all products.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Added 'جنونية' (crazy) to emphasize urgency and excitement, which resonates with Egyptian shoppers.\"\n}\n```",
+  "literal": "الجمعة السوداء: خصم يصل إلى 70% على كل شيء.",
+  "adaptation": "الجمعة السوداء: خصومات جنونية تصل إلى 70% على كل المنتجات",
+  "back_translation": "Black Friday: Crazy discounts up to 70% on all products.",
+  "approach": "adapted",
+  "notes": "Added 'جنونية' (crazy) to emphasize urgency and excitement, which resonates with Egyptian shoppers."
+}

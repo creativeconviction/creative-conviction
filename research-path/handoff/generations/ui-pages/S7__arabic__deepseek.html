@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قريب - تطبيق</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4F5EF7;
+            --primary-dark: #3D4BD6;
+            --primary-light: #EEF0FF;
+            --accent-1: #FF8C52;
+            --accent-2: #2EC4B6;
+            --accent-3: #F759AB;
+            --bg: #F0F2F8;
+            --white: #FFFFFF;
+            --text-dark: #1A1D2E;
+            --text-gray: #6B7280;
+            --text-light: #9CA3AF;
+            --dot-inactive: #CFD3E0;
+            --shadow-sm: 0 2px 8px rgba(26, 29, 46, 0.06);
+            --shadow-md: 0 8px 32px rgba(26, 29, 46, 0.10);
+            --shadow-lg: 0 20px 48px rgba(26, 29, 46, 0.14);
+            --radius-sm: 10px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+            --transition: 0.45s cubic-bezier(0.32, 0.72, 0, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: #E8EBF4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            min-height: 100dvh;
+            padding: 0;
+            margin: 0;
+            user-select: none;
+            -webkit-user-select: none;
+            background-image: radial-gradient(ellipse at 50% 30%, #EFF1FA 0%, #E0E3F0 60%, #D5D9E8 100%);
+        }
+
+        /* الهيكل الرئيسي - إطار الهاتف */
+        .phone-frame {
+            width: 100%;
+            max-width: 390px;
+            height: 100vh;
+            height: 100dvh;
+            background: var(--white);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: none;
+            border-radius: 0;
+        }
+
+        /* شريط الحالة الوهمي */
+        .status-bar {
+            height: 48px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            background: var(--white);
+            z-index: 10;
+            position: relative;
+        }
+        .status-bar .time {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+            letter-spacing: 0.3px;
+        }
+        .status-bar .icons {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+        .status-bar .icons span {
+            display: block;
+            width: 16px;
+            height: 10px;
+            border: 1.5px solid var(--text-dark);
+            border-radius: 2px;
+            position: relative;
+        }
+        .status-bar .icons span::after {
+            content: '';
+            position: absolute;
+            right: 2px;
+            top: 2px;
+            bottom: 2px;
+            width: 5px;
+            background: var(--text-dark);
+            border-radius: 1px;
+        }
+        .status-bar .icons .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--text-dark);
+            border: none;
+        }
+        .status-bar .icons .dot::after {
+            display: none;
+        }
+
+        /* رابط التخطي */
+        .skip-link {
+            position: absolute;
+            top: 56px;
+            left: 20px;
+            z-index: 20;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-gray);
+            text-decoration: none;
+            cursor: pointer;
+            padding: 8px 14px;
+            border-radius: 20px;
+            transition: all 0.25s ease;
+            letter-spacing: 0.2px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+        }
+        .skip-link:hover {
+            color: var(--text-dark);
+            background: rgba(240, 242, 248, 0.85);
+        }
+        .skip-link.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-8px);
+        }
+
+        /* حاوية الشرائح */
+        .slides-outer {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+        }
+        .slides-track {
+            display: flex;
+            height: 100%;
+            transition: transform var(--transition);
+            will-change: transform;
+            direction: ltr;
+        }
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 16px 28px 0;
+            direction: rtl;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        /* منطقة الرسم التوضيحي */
+        .illustration-area {
+            width: 100%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 8px;
+        }
+        .illustration-area .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .slide-0 .bg-circle {
+            width: 200px;
+            height: 200px;
+            background: #EEF1FF;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .slide-1 .bg-circle {
+            width: 210px;
+            height: 210px;
+            background: #E8FAF8;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .slide-2 .bg-circle {
+            width: 200px;
+            height: 200px;
+            background: #FFF0F5;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .illustration-area svg {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* النصوص */
+        .slide-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin: 0 0 10px;
+            letter-spacing: -0.2px;
+            line-height: 1.3;
+            flex-shrink: 0;
+        }
+        .slide-desc {
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--text-gray);
+            line-height: 1.65;
+            max-width: 300px;
+            margin: 0 auto;
+            flex-shrink: 0;
+        }
+
+        /* الشريط السفلي */
+        .bottom-nav {
+            flex-shrink: 0;
+            padding: 20px 28px 32px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 18px;
+            background: var(--white);
+            position: relative;
+            z-index: 5;
+        }
+
+        /* النقاط */
+        .dots-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--dot-inactive);
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+            flex-shrink: 0;
+        }
+        .dot.active {
+            width: 28px;
+            border-radius: 12px;
+            background: var(--primary);
+            cursor: default;
+            box-shadow: 0 2px 8px rgba(79, 94, 247, 0.35);
+        }
+        .dot:hover:not(.active) {
+            background: #BCC1D8;
+            transform: scale(1.15);
+        }
+
+        /* أزرار التنقل */
+        .buttons-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            gap: 14px;
+            direction: rtl;
+        }
+        .btn {
+            font-family: 'Tajawal', sans-serif;
+            font-weight: 600;
+            font-size: 15px;
+            border: none;
+            cursor: pointer;
+            border-radius: var(--radius-xl);
+            transition: all 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+            outline: none;
+            letter-spacing: 0.1px;
+            white-space: nowrap;
+        }
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        .btn-prev {
+            background: transparent;
+            color: var(--text-gray);
+            padding: 12px 20px;
+            border: 2px solid #E5E7EB;
+            min-width: 90px;
+            text-align: center;
+        }
+        .btn-prev:hover {
+            border-color: #C5C9D6;
+            color: var(--text-dark);
+            background: #FAFBFC;
+        }
+        .btn-prev.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateX(10px);
+        }
+
+        .btn-next {
+            background: var(--primary);
+            color: #fff;
+            padding: 12px 28px;
+            min-width: 110px;
+            text-align: center;
+            box-shadow: 0 4px 16px rgba(79, 94, 247, 0.30);
+            flex-shrink: 0;
+        }
+        .btn-next:hover {
+            background: var(--primary-dark);
+            box-shadow: 0 6px 22px rgba(79, 94, 247, 0.40);
+            transform: translateY(-1px);
+        }
+        .btn-next:active {
+            transform: scale(0.94) translateY(0);
+        }
+        .btn-start {
+            background: linear-gradient(135deg, #4F5EF7 0%, #6B3FF5 100%);
+            padding: 14px 36px;
+            font-size: 16px;
+            font-weight: 700;
+            min-width: 160px;
+            box-shadow: 0 6px 24px rgba(79, 94, 247, 0.38);
+            letter-spacing: 0.2px;
+            animation: pulse-btn 2.2s ease-in-out infinite;
+        }
+        @keyframes pulse-btn {
+            0%,
+            100% {
+                box-shadow: 0 6px 24px rgba(79, 94, 247, 0.38);
+            }
+            50% {
+                box-shadow: 0 10px 32px rgba(79, 94, 247, 0.55);
+            }
+        }
+        .btn-start:hover {
+            box-shadow: 0 10px 30px rgba(79, 94, 247, 0.50);
+            transform: translateY(-2px);
+        }
+
+        /* تأثيرات إضافية للشرائح */
+        .slide {
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+        .slide.visible {
+            opacity: 1;
+        }
+
+        /* للشاشات الأكبر - إظهار إطار الهاتف */
+        @media (min-width: 430px) {
+            body {
+                padding: 20px;
+                background-image: radial-gradient(ellipse at 50% 40%, #E8ECF5 0%, #DCE0ED 55%, #CDD2E2 100%);
+            }
+            .phone-frame {
+                height: 740px;
+                max-height: 95vh;
+                max-height: 95dvh;
+                border-radius: var(--radius-xl);
+                box-shadow: var(--shadow-lg), 0 0 0 1px rgba(0, 0, 0, 0.04);
+                border: 1px solid rgba(255, 255, 255, 0.6);
+            }
+            .status-bar {
+                border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+            }
+            .skip-link {
+                top: 58px;
+                left: 16px;
+            }
+        }
+        @media (min-width: 430px) and (max-height: 780px) {
+            .phone-frame {
+                height: 92vh;
+                height: 92dvh;
+                max-height: 700px;
+            }
+            .illustration-area svg {
+                transform: scale(0.88);
+            }
+            .slide-title {
+                font-size: 22px;
+            }
+            .slide-desc {
+                font-size: 14px;
+            }
+            .bottom-nav {
+                padding: 14px 28px 24px;
+                gap: 14px;
+            }
+        }
+        @media (min-width: 430px) and (min-height: 900px) {
+            .phone-frame {
+                height: 760px;
+            }
+        }
+
+        /* شاشات صغيرة جداً */
+        @media (max-width: 350px) {
+            .slide {
+                padding: 8px 16px 0;
+            }
+            .slide-title {
+                font-size: 20px;
+            }
+            .slide-desc {
+                font-size: 13px;
+                max-width: 260px;
+            }
+            .illustration-area svg {
+                transform: scale(0.78);
+            }
+            .bottom-nav {
+                padding: 12px 16px 22px;
+                gap: 12px;
+            }
+            .btn-next {
+                padding: 10px 20px;
+                min-width: 90px;
+                font-size: 14px;
+            }
+            .btn-prev {
+                padding: 10px 16px;
+                min-width: 70px;
+                font-size: 14px;
+            }
+            .skip-link {
+                font-size: 13px;
+                top: 50px;
+                left: 10px;
+                padding: 6px 10px;
+            }
+            .status-bar {
+                height: 40px;
+                padding: 0 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="phone-frame" id="phoneFrame">
+        <!-- شريط الحالة -->
+        <div class="status-bar">
+            <span class="time">٩:٤١</span>
+            <span class="icons">
+                <span></span>
+                <span class="dot"></span>
+            </span>
+        </div>
+
+        <!-- رابط التخطي -->
+        <a class="skip-link" id="skipLink" role="button" aria-label="تخطي">تخطي</a>
+
+        <!-- الشرائح -->
+        <div class="slides-outer" id="slidesOuter">
+            <div class="slides-track" id="slidesTrack">
+                <!-- الشريحة الأولى -->
+                <div class="slide slide-0 visible" data-index="0">
+                    <div class="illustration-area" style="height:260px;">
+                        <div class="bg-circle"></div>
+                        <svg width="190" height="190" viewBox="0 0 190 190" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="pinGrad" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0%" stop-color="#4F5EF7"/>
+                                    <stop offset="100%" stop-color="#7B6CF6"/>
+                                </linearGradient>
+                                <filter id="shadow1" x="-20%" y="-10%" width="140%" height="140%">
+                                    <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#4F5EF7" flood-opacity="0.25"/>
+                                </filter>
+                            </defs>
+                            <!-- ظل الدبوس -->
+                            <ellipse cx="95" cy="168" rx="32" ry="8" fill="#DDE0EE" opacity="0.7"/>
+                            <!-- جسم الدبوس -->
+                            <path d="M95 28 C68 28 48 52 48 80 C48 108 72 136 95 158 C118 136 142 108 142 80 C142 52 122 28 95 28Z"
+                            fill="url(#pinGrad)" filter="url(#shadow1)"/>
+                            <!-- الدائرة الداخلية -->
+                            <circle cx="95" cy="80" r="36" fill="white" opacity="0.92"/>
+                            <!-- قلب -->
+                            <path d="M95 94 C95 94 80 78 80 68 C80 60 87 55 95 62 C103 55 110 60 110 68 C110 78 95 94 95 94Z"
+                            fill="#FF6B81" stroke="#FF4D63" stroke-width="1.5"/>
+                            <!-- نقاط صغيرة حول الدبوس -->
+                            <circle cx="38" cy="55" r="4" fill="#FFB84D" opacity="0.8"/>
+                            <circle cx="152" cy="70" r="5" fill="#2EC4B6" opacity="0.7"/>
+                            <circle cx="50" cy="115" r="3.5" fill="#FF8C52" opacity="0.75"/>
+                            <circle cx="145" cy="125" r="4.5" fill="#F759AB" opacity="0.65"/>
+                            <circle cx="30" cy="90" r="3" fill="#4F5EF7" opacity="0.5"/>
+                            <circle cx="158" cy="42" r="3" fill="#FFB84D" opacity="0.6"/>
+                        </svg>
+                    </div>
+                    <h2 class="slide-title">اكتشف كل ما هو قريب منك</h2>
+                    <p class="slide-desc">يساعدك تطبيق <strong>قريب</strong> في العثور على أفضل الخدمات والمتاجر والأماكن من حولك بكل سهولة ويسر.</p>
+                </div>
+
+                <!-- الشريحة الثانية -->
+                <div class="slide slide-1" data-index="1">
+                    <div class="illustration-area" style="height:260px;">
+                        <div class="bg-circle"></div>
+                        <svg width="190" height="190" viewBox="0 0 190 190" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <filter id="shadow2" x="-15%" y="-10%" width="130%" height="130%">
+                                    <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#2EC4B6" flood-opacity="0.22"/>
+                                </filter>
+                            </defs>
+                            <!-- ظل -->
+                            <ellipse cx="95" cy="170" rx="38" ry="7" fill="#DDE5E8" opacity="0.65"/>
+                            <!-- شخص 1 -->
+                            <circle cx="70" cy="62" r="24" fill="#2EC4B6" filter="url(#shadow2)"/>
+                            <rect x="54" y="90" width="32" height="50" rx="16" fill="#2EC4B6" opacity="0.85"/>
+                            <!-- شخص 2 -->
+                            <circle cx="120" cy="72" r="26" fill="#4F5EF7" filter="url(#shadow2)"/>
+                            <rect x="103" y="102" width="34" height="46" rx="17" fill="#4F5EF7" opacity="0.85"/>
+                            <!-- جسر الاتصال -->
+                            <path d="M92 80 Q95 72 100 80" stroke="#FF8C52" stroke-width="3" fill="none" stroke-linecap="round"/>
+                            <path d="M88 88 Q95 76 102 88" stroke="#FFB84D" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+                            <!-- نقاط التواصل -->
+                            <circle cx="95" cy="78" r="5" fill="#FF8C52" opacity="0.9"/>
+                            <circle cx="88" cy="68" r="3" fill="#F759AB" opacity="0.7"/>
+                            <circle cx="102" cy="70" r="3.5" fill="#FFB84D" opacity="0.75"/>
+                            <!-- فقاعات -->
+                            <rect x="36" y="36" width="22" height="16" rx="8" fill="white" opacity="0.8" stroke="#E0E5F0" stroke-width="1"/>
+                            <rect x="128" y="42" width="26" height="17" rx="8.5" fill="white" opacity="0.8" stroke="#E0E5F0" stroke-width="1"/>
+                        </svg>
+                    </div>
+                    <h2 class="slide-title">تواصل مع مجتمعك المحلي</h2>
+                    <p class="slide-desc">تفاعل مع جيرانك وأصحاب المتاجر القريبة، وشارك التوصيات والتقييمات لتبني مجتمعاً متماسكاً حولك.</p>
+                </div>
+
+                <!-- الشريحة الثالثة -->
+                <div class="slide slide-2" data-index="2">
+                    <div class="illustration-area" style="height:260px;">
+                        <div class="bg-circle"></div>
+                        <svg width="190" height="190" viewBox="0 0 190 190" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="starGrad" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0%" stop-color="#FFB84D"/>
+                                    <stop offset="100%" stop-color="#FF8C52"/>
+                                </linearGradient>
+                                <filter id="shadow3" x="-20%" y="-15%" width="140%" height="140%">
+                                    <feDropShadow dx="0" dy="3" stdDeviation="7" flood-color="#FF8C52" flood-opacity="0.28"/>
+                                </filter>
+                            </defs>
+                            <!-- ظل -->
+                            <ellipse cx="95" cy="168" rx="34" ry="8" fill="#EDE4E8" opacity="0.6"/>
+                            <!-- دائرة النجاح -->
+                            <circle cx="95" cy="82" r="52" fill="white" stroke="#E8ECF3" stroke-width="2.5"/>
+                            <circle cx="95" cy="82" r="44" fill="#FFF8F0" stroke="#FFE4CC" stroke-width="1.5"/>
+                            <!-- علامة الصح -->
+                            <path d="M72 84 L89 100 L118 66" stroke="url(#starGrad)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none" filter="url(#shadow3)"/>
+                            <!-- نجوم صغيرة -->
+                            <circle cx="42" cy="44" r="4" fill="#FFB84D" opacity="0.8"/>
+                            <circle cx="148" cy="38" r="5" fill="#F759AB" opacity="0.7"/>
+                            <circle cx="155" cy="115" r="3.5" fill="#2EC4B6" opacity="0.75"/>
+                            <circle cx="34" cy="110" r="4.5" fill="#4F5EF7" opacity="0.65"/>
+                            <circle cx="55" cy="30" r="3" fill="#FF8C52" opacity="0.6"/>
+                            <circle cx="140" cy="55" r="3" fill="#FFB84D" opacity="0.7"/>
+                            <!-- قصاصات -->
+                            <rect x="38" y="125" width="8" height="2.5" rx="1.25" fill="#F759AB" opacity="0.55" transform="rotate(-20 42 126)"/>
+                            <rect x="145" y="130" width="9" height="2.5" rx="1.25" fill="#2EC4B6" opacity="0.5" transform="rotate(15 149 131)"/>
+                            <rect x="50" y="38" width="7" height="2" rx="1" fill="#FFB84D" opacity="0.5" transform="rotate(-30 53 39)"/>
+                        </svg>
+                    </div>
+                    <h2 class="slide-title">أنت جاهز للانطلاق!</h2>
+                    <p class="slide-desc">انضم إلى آلاف المستخدمين الذين يثقون في <strong>قريب</strong> لتلبية احتياجاتهم اليومية. رحلتك تبدأ الآن!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- الشريط السفلي -->
+        <div class="bottom-nav" id="bottomNav">
+            <div class="dots-row" id="dotsRow">
+                <span class="dot active" data-dot="0" aria-label="الشريحة ١"></span>
+                <span class="dot" data-dot="1" aria-label="الشريحة ٢"></span>
+                <span class="dot" data-dot="2" aria-label="الشريحة ٣"></span>
+            </div>
+            <div class="buttons-row" id="buttonsRow">
+                <button class="btn btn-prev hidden" id="btnPrev" aria-label="السابق">السابق</button>
+                <button class="btn btn-next" id="btnNext" aria-label="التالي">التالي</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            const slidesTrack = document.getElementById('slidesTrack');
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.dot');
+            const btnPrev = document.getElementById('btnPrev');
+            const btnNext = document.getElementById('btnNext');
+            const skipLink = document.getElementById('skipLink');
+            const buttonsRow = document.getElementById('buttonsRow');
+            const totalSlides = slides.length;
+            let currentIndex = 0;
+            let isTransitioning = false;
+
+            // متغيرات للسحب باللمس
+            let touchStartX = 0;
+            let touchEndX = 0;
+            let touchStartY = 0;
+            let touchEndY = 0;
+            const swipeThreshold = 50;
+            const swipeVerticalThreshold = 70;
+
+            function updateUI(index) {
+                // تحديث النقاط
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+
+                // تحديث الأزرار
+                if (index === 0) {
+                    btnPrev.classList.add('hidden');
+                } else {
+                    btnPrev.classList.remove('hidden');
+                }
+
+                if (index === totalSlides - 1) {
+                    // الشريحة الأخيرة
+                    btnNext.textContent = 'ابدأ الآن';
+                    btnNext.classList.add('btn-start');
+                    skipLink.classList.add('hidden');
+                    // تعديل صف الأزرار ليجعل زر ابدأ الآن يأخذ المساحة كاملة
+                    buttonsRow.style.justifyContent = 'center';
+                    btnPrev.style.display = 'none';
+                } else {
+                    btnNext.textContent = 'التالي';
+                    btnNext.classList.remove('btn-start');
+                    skipLink.classList.remove('hidden');
+                    buttonsRow.style.justifyContent = 'space-between';
+                    btnPrev.style.display = '';
+                }
+
+                // تحديث حالة الظهور للشرائح
+                slides.forEach((slide, i) => {
+                    slide.classList.toggle('visible', i === index);
+                });
+
+                // تحريك المسار
+                const slideWidthPercent = 100 / totalSlides;
+                slidesTrack.style.transform = `translateX(-${index * slideWidthPercent}%)`;
+            }
+
+            function goToSlide(index) {
+                if (isTransitioning || index === currentIndex) return;
+                if (index < 0 || index >= totalSlides) return;
+                isTransitioning = true;
+                currentIndex = index;
+                updateUI(index);
+                setTimeout(() => {
+                    isTransitioning = false;
+                }, 480);
+            }
+
+            function goNext() {
+                if (currentIndex < totalSlides - 1) {
+                    goToSlide(currentIndex + 1);
+                } else {
+                    // الزر في الشريحة الأخيرة - ابدأ الآن
+                    handleStartNow();
+                }
+            }
+
+            function goPrev() {
+                if (currentIndex > 0) {
+                    goToSlide(currentIndex - 1);
+                }
+            }
+
+            function handleStartNow() {
+                // تأثير بسيط قبل التنفيذ
+                btnNext.style.transform = 'scale(0.9)';
+                btnNext.style.opacity = '0.8';
+                setTimeout(() => {
+                    btnNext.style.transform = '';
+                    btnNext.style.opacity = '';
+                    alert('🎉 أهلاً بك في تطبيق قريب! رحلتك تبدأ الآن.');
+                    console.log('تم بدء التطبيق - انتقال إلى الشاشة الرئيسية');
+                }, 200);
+            }
+
+            function handleSkip() {
+                if (currentIndex < totalSlides - 1) {
+                    goToSlide(totalSlides - 1);
+                } else {
+                    handleStartNow();
+                }
+            }
+
+            // مستمعو الأحداث للأزرار
+            btnNext.addEventListener('click', goNext);
+            btnPrev.addEventListener('click', goPrev);
+            skipLink.addEventListener('click', handleSkip);
+
+            // النقر على النقاط للتنقل المباشر
+            dots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    const targetIndex = parseInt(this.getAttribute('data-dot'));
+                    goToSlide(targetIndex);
+                });
+            });
+
+            // دعم السحب باللمس
+            const slidesOuter = document.getElementById('slidesOuter');
+            slidesOuter.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+                touchStartY = e.changedTouches[0].screenY;
+            }, { passive: true });
+
+            slidesOuter.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                touchEndY = e.changedTouches[0].screenY;
+                handleSwipe();
+            }, { passive: true });
+
+            // دعم السحب بالفأرة (للسطح المكتب)
+            let mouseDown = false;
+            let mouseStartX = 0;
+            let mouseStartY = 0;
+
+            slidesOuter.addEventListener('mousedown', function(e) {
+                mouseDown = true;
+                mouseStartX = e.screenX;
+                mouseStartY = e.screenY;
+                slidesOuter.style.cursor = 'grab';
+            });
+
+            slidesOuter.addEventListener('mouseup', function(e) {
+                if (!mouseDown) return;
+                mouseDown = false;
+                slidesOuter.style.cursor = '';
+                const diffX = e.screenX - mouseStartX;
+                const diffY = e.screenY - mouseStartY;
+                if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > swipeThreshold) {
+                    if (diffX < -swipeThreshold) {
+                        // سحب لليسار -> التالي
+                        goNext();
+                    } else if (diffX > swipeThreshold) {
+                        // سحب لليمين -> السابق
+                        goPrev();
+                    }
+                }
+            });
+
+            slidesOuter.addEventListener('mouseleave', function() {
+                if (mouseDown) {
+                    mouseDown = false;
+                    slidesOuter.style.cursor = '';
+                }
+            });
+
+            function handleSwipe() {
+                const diffX = touchEndX - touchStartX;
+                const diffY = Math.abs(touchEndY - touchStartY);
+                if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > swipeThreshold) {
+                    if (diffX < -swipeThreshold) {
+                        // سحب لليسار -> التالي
+                        goNext();
+                    } else if (diffX > swipeThreshold) {
+                        // سحب لليمين -> السابق
+                        goPrev();
+                    }
+                }
+            }
+
+            // دعم لوحة المفاتيح
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    goNext();
+                } else if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    goPrev();
+                }
+            });
+
+            // الحالة الابتدائية
+            updateUI(0);
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "scenario": "M4",
+  "lang": "ar_msa",
+  "model": "gpt",
+  "message": "سامحكم الله، هذه ثالث مرة يصلني الطلب خطأ",
+  "raw": "{\"intent\":\"wrong_item\",\"sentiment\":\"negative\",\"urgency\":\"medium\",\"sarcasm\":false,\"churn_risk\":true,\"summary\":\"The customer says this is the third time they have received an incorrect order.\"}",
+  "intent": "wrong_item",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "The customer says this is the third time they have received an incorrect order."
+}

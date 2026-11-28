@@ -1,0 +1,13 @@
+{
+  "scenario": "M12",
+  "lang": "ar_sa",
+  "model": "allam",
+  "message": "مشكورين على سرعة التوصيل! بس الخبز كان يابس والطماط مفعوص",
+  "raw": "```json\n{\n  \"intent\": \"quality_issue\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": \"false\",\n  \"churn_risk\": \"false\",\n  \"summary\": \"Customer complains about the quality of the delivered items.\"\n}\n```",
+  "intent": "quality_issue",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": "false",
+  "churn_risk": "false",
+  "summary": "Customer complains about the quality of the delivered items."
+}

@@ -1,0 +1,12 @@
+{
+  "line": "T1",
+  "market": "ar_eg",
+  "model": "gpt",
+  "source": "I'm lovin' it",
+  "raw": "{\n  \"literal\": \"أنا أحبه\",\n  \"adaptation\": \"أنا بحبّه\",\n  \"back_translation\": \"I’m lovin’ it\",\n  \"approach\": \"adapted\",\n  \"notes\": \"استخدمنا العامية المصرية لتبدو العبارة طبيعية وقريبة من الجمهور مع الحفاظ على روح الشعار الأصلي.\"\n}",
+  "literal": "أنا أحبه",
+  "adaptation": "أنا بحبّه",
+  "back_translation": "I’m lovin’ it",
+  "approach": "adapted",
+  "notes": "استخدمنا العامية المصرية لتبدو العبارة طبيعية وقريبة من الجمهور مع الحفاظ على روح الشعار الأصلي."
+}

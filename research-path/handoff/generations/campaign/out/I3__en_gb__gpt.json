@@ -1,0 +1,12 @@
+{
+  "line": "I3",
+  "market": "en_gb",
+  "model": "gpt",
+  "source": "Bring home the bacon with zero fees.",
+  "raw": "{\n  \"literal\": \"Bring home the bacon with zero fees.\",\n  \"adaptation\": \"Make your money go further with zero fees.\",\n  \"back_translation\": \"Make your money go further with zero fees.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"The bacon idiom is understood in the UK, but a straightforward money-saving message feels more natural and inclusive for a British bank.\"\n}",
+  "literal": "Bring home the bacon with zero fees.",
+  "adaptation": "Make your money go further with zero fees.",
+  "back_translation": "Make your money go further with zero fees.",
+  "approach": "adapted",
+  "notes": "The bacon idiom is understood in the UK, but a straightforward money-saving message feels more natural and inclusive for a British bank."
+}

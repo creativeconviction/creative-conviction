@@ -1,0 +1,12 @@
+{
+  "line": "T6",
+  "market": "ar_sa",
+  "model": "gpt",
+  "source": "Got milk?",
+  "raw": "{\n  \"literal\": \"هل لديك حليب؟\",\n  \"adaptation\": \"عندك حليب؟\",\n  \"back_translation\": \"Got milk?\",\n  \"approach\": \"adapted\",\n  \"notes\": \"استخدمنا صياغة سعودية محكية وبسيطة بدلًا من الترجمة الفصحى الرسمية.\"\n}",
+  "literal": "هل لديك حليب؟",
+  "adaptation": "عندك حليب؟",
+  "back_translation": "Got milk?",
+  "approach": "adapted",
+  "notes": "استخدمنا صياغة سعودية محكية وبسيطة بدلًا من الترجمة الفصحى الرسمية."
+}

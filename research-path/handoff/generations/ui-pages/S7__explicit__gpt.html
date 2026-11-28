@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#F7F5EF">
+  <title>مرحبًا بك في قريب</title>
+  <style>
+    :root {
+      --primary: #286B62;
+      --primary-dark: #194E48;
+      --primary-soft: #DDEDE8;
+      --accent: #F3B65A;
+      --ink: #173B37;
+      --muted: #6D7F7C;
+      --surface: #FFFFFF;
+      --background: #F7F5EF;
+      --border: #E2E8E5;
+      --shadow: 0 24px 70px rgba(25, 78, 72, 0.14);
+      --radius-lg: 32px;
+      --radius-md: 20px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      color-scheme: light;
+      background: var(--background);
+    }
+
+    body {
+      min-width: 320px;
+      min-height: 100vh;
+      min-height: 100dvh;
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 15% 15%, rgba(243, 182, 90, 0.14), transparent 24rem),
+        radial-gradient(circle at 85% 85%, rgba(40, 107, 98, 0.12), transparent 28rem),
+        var(--background);
+      font-family: "Tajawal", "Noto Sans Arabic", "Segoe UI", Tahoma, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button,
+    a {
+      font: inherit;
+    }
+
+    button {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .app {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      min-height: 100vh;
+      min-height: 100dvh;
+      padding:
+        max(20px, env(safe-area-inset-top))
+        max(22px, env(safe-area-inset-right))
+        max(22px, env(safe-area-inset-bottom))
+        max(22px, env(safe-area-inset-left));
+      overflow: hidden;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 42px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--primary-dark);
+      font-weight: 800;
+      font-size: 1.12rem;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      inline-size: 36px;
+      block-size: 36px;
+      color: white;
+      background: var(--primary);
+      border-radius: 12px 12px 12px 4px;
+      box-shadow: 0 8px 20px rgba(40, 107, 98, 0.22);
+    }
+
+    .skip {
+      min-block-size: 42px;
+      padding-inline: 8px;
+      border: 0;
+      color: var(--muted);
+      background: transparent;
+      cursor: pointer;
+      font-weight: 700;
+      border-radius: 10px;
+    }
+
+    .skip:hover {
+      color: var(--primary);
+      background: rgba(40, 107, 98, 0.07);
+    }
+
+    .skip[hidden] {
+      display: block;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .slides {
+      display: grid;
+      flex: 1;
+      align-items: center;
+      padding-block: 12px 6px;
+    }
+
+    .slide {
+      display: none;
+      grid-area: 1 / 1;
+      text-align: center;
+      animation: reveal 320ms ease both;
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    @keyframes reveal {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .illustration {
+      display: grid;
+      place-items: center;
+      width: min(100%, 310px);
+      aspect-ratio: 1 / 0.88;
+      margin-inline: auto;
+      margin-block-end: clamp(20px, 4vh, 34px);
+      overflow: hidden;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.75), rgba(221, 237, 232, 0.65));
+      border: 1px solid rgba(40, 107, 98, 0.09);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 18px 45px rgba(25, 78, 72, 0.09);
+    }
+
+    .illustration svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .slide h1 {
+      max-width: 330px;
+      margin: 0 auto 12px;
+      font-size: clamp(1.65rem, 7vw, 2rem);
+      line-height: 1.35;
+      letter-spacing: -0.025em;
+    }
+
+    .slide p {
+      max-width: 340px;
+      min-height: 3.4em;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+
+    .bottom {
+      padding-block-start: 18px;
+    }
+
+    .dots {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      min-height: 26px;
+      margin-block-end: 20px;
+    }
+
+    .dot {
+      inline-size: 9px;
+      block-size: 9px;
+      padding: 0;
+      border: 0;
+      border-radius: 999px;
+      background: #C9D5D2;
+      cursor: pointer;
+      transition: inline-size 220ms ease, background-color 220ms ease;
+    }
+
+    .dot[aria-current="step"] {
+      inline-size: 28px;
+      background: var(--primary);
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 56px;
+    }
+
+    .nav-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-block-size: 54px;
+      border-radius: 17px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      font-weight: 800;
+      transition: transform 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .nav-button:active {
+      transform: scale(0.98);
+    }
+
+    .back {
+      flex: 0 0 auto;
+      padding-inline: 16px;
+      color: var(--primary);
+      background: transparent;
+      border-color: var(--border);
+    }
+
+    .back:hover {
+      background: var(--primary-soft);
+    }
+
+    .back[hidden] {
+      display: none;
+    }
+
+    .next {
+      flex: 1;
+      padding-inline: 24px;
+      color: #fff;
+      background: var(--primary);
+      box-shadow: 0 12px 26px rgba(40, 107, 98, 0.25);
+    }
+
+    .next:hover {
+      background: var(--primary-dark);
+      box-shadow: 0 14px 30px rgba(40, 107, 98, 0.3);
+    }
+
+    .arrow {
+      width: 20px;
+      height: 20px;
+      flex: 0 0 auto;
+    }
+
+    .toast {
+      position: fixed;
+      z-index: 10;
+      inset-inline: 20px;
+      inset-block-end: max(20px, env(safe-area-inset-bottom));
+      max-width: 390px;
+      margin-inline: auto;
+      padding: 14px 18px;
+      color: white;
+      background: var(--primary-dark);
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      font-weight: 700;
+      opacity: 0;
+      transform: translateY(18px);
+      pointer-events: none;
+      transition: opacity 220ms ease, transform 220ms ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    :focus-visible {
+      outline: 3px solid rgba(243, 182, 90, 0.85);
+      outline-offset: 3px;
+    }
+
+    @media (min-width: 560px) {
+      body {
+        display: grid;
+        place-items: center;
+        padding: 28px;
+      }
+
+      .app {
+        width: min(100%, 440px);
+        min-height: min(820px, calc(100dvh - 56px));
+        border: 1px solid rgba(40, 107, 98, 0.1);
+        border-radius: 38px;
+        background: rgba(255, 255, 255, 0.78);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(12px);
+      }
+    }
+
+    @media (max-height: 700px) {
+      .illustration {
+        width: min(100%, 235px);
+        margin-block-end: 16px;
+      }
+
+      .slide h1 {
+        font-size: 1.45rem;
+        margin-block-end: 7px;
+      }
+
+      .slide p {
+        font-size: 0.94rem;
+      }
+
+      .bottom {
+        padding-block-start: 8px;
+      }
+
+      .dots {
+        margin-block-end: 10px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 1ms !important;
+        transition-duration: 1ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app" aria-label="التعريف بتطبيق قريب">
+    <header class="topbar">
+      <div class="brand" aria-label="قريب">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="21" height="21" fill="none">
+            <path d="M12 20s6-5.1 6-11a6 6 0 1 0-12 0c0 5.9 6 11 6 11Z" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="9" r="2.2" fill="currentColor"/>
+          </svg>
+        </span>
+        <span>قريب</span>
+      </div>
+
+      <button class="skip" id="skipButton" type="button">تخطّي</button>
+    </header>
+
+    <section class="slides" id="slides" aria-live="polite">
+      <article class="slide active" data-slide="0" aria-hidden="false">
+        <div class="illustration" aria-hidden="true">
+          <svg viewBox="0 0 320 282" role="img">
+            <defs>
+              <linearGradient id="ground1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#E7F2EF"/>
+                <stop offset="1" stop-color="#CDE4DE"/>
+              </linearGradient>
+            </defs>
+            <circle cx="264" cy="48" r="22" fill="#F8D89F"/>
+            <circle cx="55" cy="67" r="9" fill="#BBD8D1"/>
+            <path d="M35 220c36-48 84-62 132-47 46 14 73 4 119-25v85H35Z" fill="url(#ground1)"/>
+            <path d="M71 178c29-27 53-36 79-27 35 12 66-2 99-31" fill="none" stroke="#9FC9BE" stroke-width="8" stroke-linecap="round" stroke-dasharray="2 18"/>
+            <g transform="translate(196 48)">
+              <path d="M39 0C17.5 0 0 17.1 0 38.2 0 75.7 39 106 39 106s39-30.3 39-67.8C78 17.1 60.5 0 39 0Z" fill="#286B62"/>
+              <circle cx="39" cy="38" r="15" fill="#fff"/>
+              <circle cx="39" cy="38" r="7" fill="#F3B65A"/>
+            </g>
+            <g transform="translate(75 105)">
+              <rect x="0" y="21" width="72" height="71" rx="15" fill="#fff"/>
+              <path d="M-6 28 36 0l42 28" fill="#F3B65A"/>
+              <rect x="27" y="57" width="19" height="35" rx="7" fill="#286B62"/>
+              <rect x="9" y="39" width="14" height="14" rx="4" fill="#DDEDE8"/>
+              <rect x="50" y="39" width="14" height="14" rx="4" fill="#DDEDE8"/>
+            </g>
+            <g transform="translate(34 197)">
+              <circle cx="24" cy="0" r="18" fill="#78AD9F"/>
+              <rect x="20" y="10" width="8" height="35" rx="4" fill="#557A70"/>
+            </g>
+          </svg>
+        </div>
+        <h1>كل ما تحتاجه، أقرب إليك</h1>
+        <p>اكتشف الخدمات والمتاجر والأماكن المهمة حولك بسهولة، وفي الوقت الذي يناسبك.</p>
+      </article>
+
+      <article class="slide" data-slide="1" aria-hidden="true">
+        <div class="illustration" aria-hidden="true">
+          <svg viewBox="0 0 320 282" role="img">
+            <circle cx="62" cy="53" r="25" fill="#F8D89F"/>
+            <circle cx="274" cy="86" r="11" fill="#BBD8D1"/>
+            <path d="M35 225c38-22 72-28 106-17 48 15 83 4 145-38v63H35Z" fill="#D9EBE6"/>
+            <g transform="translate(48 42)">
+              <rect width="224" height="166" rx="26" fill="#fff" stroke="#DCEAE6" stroke-width="3"/>
+              <path d="M29 128c27-18 42-47 70-54 35-9 50 19 83-4 17-12 20-29 26-43" fill="none" stroke="#A8CEC5" stroke-width="7" stroke-linecap="round" stroke-dasharray="3 16"/>
+              <g transform="translate(30 107)">
+                <path d="M18 0C8 0 0 8 0 18c0 18 18 33 18 33s18-15 18-33C36 8 28 0 18 0Z" fill="#F3B65A"/>
+                <circle cx="18" cy="18" r="6" fill="#fff"/>
+              </g>
+              <g transform="translate(169 18)">
+                <path d="M22 0C10 0 0 9.7 0 21.7 0 43 22 60 22 60s22-17 22-38.3C44 9.7 34 0 22 0Z" fill="#286B62"/>
+                <circle cx="22" cy="22" r="8" fill="#fff"/>
+              </g>
+              <g transform="translate(87 63)">
+                <circle cx="24" cy="24" r="24" fill="#E4F1ED"/>
+                <path d="m14 25 7 7 14-17" fill="none" stroke="#286B62" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+            </g>
+            <rect x="105" y="219" width="110" height="15" rx="7.5" fill="#9BC6BB"/>
+          </svg>
+        </div>
+        <h1>اكتشف ما حولك بسرعة</h1>
+        <p>تصفّح الخيارات القريبة، قارن بينها، واعثر على وجهتك التالية بخطوات بسيطة.</p>
+      </article>
+
+      <article class="slide" data-slide="2" aria-hidden="true">
+        <div class="illustration" aria-hidden="true">
+          <svg viewBox="0 0 320 282" role="img">
+            <circle cx="61" cy="60" r="17" fill="#BBD8D1"/>
+            <circle cx="267" cy="53" r="28" fill="#F8D89F"/>
+            <path d="M30 225c31-38 74-49 119-27 49 24 91 1 141-35v70H30Z" fill="#DDEDE8"/>
+            <g transform="translate(74 31)">
+              <rect x="28" width="116" height="205" rx="26" fill="#194E48"/>
+              <rect x="36" y="11" width="100" height="181" rx="19" fill="#fff"/>
+              <rect x="73" y="18" width="28" height="5" rx="2.5" fill="#C9D5D2"/>
+              <circle cx="86" cy="72" r="34" fill="#DDEDE8"/>
+              <path d="M86 47c-13 0-24 10.5-24 23.5C62 93 86 111 86 111s24-18 24-40.5C110 57.5 99 47 86 47Z" fill="#286B62"/>
+              <circle cx="86" cy="70" r="9" fill="#fff"/>
+              <rect x="55" y="123" width="62" height="9" rx="4.5" fill="#286B62"/>
+              <rect x="48" y="141" width="76" height="7" rx="3.5" fill="#D8E1DF"/>
+              <rect x="60" y="156" width="52" height="7" rx="3.5" fill="#D8E1DF"/>
+              <circle cx="86" cy="181" r="4" fill="#88A69F"/>
+            </g>
+            <g transform="translate(35 130)">
+              <circle cx="30" cy="30" r="30" fill="#F3B65A"/>
+              <path d="m18 31 8 8 17-19" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            <g transform="translate(228 147)">
+              <circle cx="26" cy="26" r="26" fill="#fff"/>
+              <path d="M26 13v26M13 26h26" stroke="#286B62" stroke-width="5" stroke-linecap="round"/>
+            </g>
+          </svg>
+        </div>
+        <h1>ابدأ رحلتك مع قريب</h1>
+        <p>فعّل موقعك واكتشف تجربة محلية أسهل، أسرع، ومصممة لتبقي كل شيء قريبًا منك.</p>
+      </article>
+    </section>
+
+    <footer class="bottom">
+      <div class="dots" role="group" aria-label="شرائح المقدمة">
+        <button class="dot" type="button" data-go="0" aria-label="الانتقال إلى الشريحة الأولى" aria-current="step"></button>
+        <button class="dot" type="button" data-go="1" aria-label="الانتقال إلى الشريحة الثانية"></button>
+        <button class="dot" type="button" data-go="2" aria-label="الانتقال إلى الشريحة الثالثة"></button>
+      </div>
+
+      <div class="actions">
+        <button class="nav-button back" id="backButton" type="button" hidden>
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="m9 5 7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>السابق</span>
+        </button>
+
+        <button class="nav-button next" id="nextButton" type="button">
+          <span id="nextLabel">التالي</span>
+          <svg class="arrow" id="nextArrow" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="m15 5-7 7 7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    أهلًا بك في قريب! أصبحت جاهزًا للانطلاق.
+  </div>
+
+  <script>
+    (() => {
+      const slides = [...document.querySelectorAll(".slide")];
+      const dots = [...document.querySelectorAll(".dot")];
+      const skipButton = document.getElementById("skipButton");
+      const backButton = document.getElementById("backButton");
+      const nextButton = document.getElementById("nextButton");
+      const nextLabel = document.getElementById("nextLabel");
+      const nextArrow = document.getElementById("nextArrow");
+      const toast = document.getElementById("toast");
+
+      let current = 0;
+      let toastTimer;
+
+      function showSlide(index) {
+        current = Math.max(0, Math.min(index, slides.length - 1));
+
+        slides.forEach((slide, i) => {
+          const active = i === current;
+          slide.classList.toggle("active", active);
+          slide.setAttribute("aria-hidden", String(!active));
+        });
+
+        dots.forEach((dot, i) => {
+          if (i === current) {
+            dot.setAttribute("aria-current", "step");
+          } else {
+            dot.removeAttribute("aria-current");
+          }
+        });
+
+        const isFirst = current === 0;
+        const isLast = current === slides.length - 1;
+
+        backButton.hidden = isFirst;
+        skipButton.hidden = isLast;
+        nextLabel.textContent = isLast ? "ابدأ الآن" : "التالي";
+        nextArrow.style.display = isLast ? "none" : "";
+        nextButton.setAttribute(
+          "aria-label",
+          isLast ? "ابدأ استخدام قريب" : "الانتقال إلى الشريحة التالية"
+        );
+      }
+
+      function completeOnboarding() {
+        nextButton.disabled = true;
+        nextLabel.textContent = "تمّ بنجاح";
+        toast.classList.add("show");
+
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          toast.classList.remove("show");
+          nextButton.disabled = false;
+          nextLabel.textContent = "ابدأ الآن";
+        }, 2800);
+      }
+
+      nextButton.addEventListener("click", () => {
+        if (current < slides.length - 1) {
+          showSlide(current + 1);
+        } else {
+          completeOnboarding();
+        }
+      });
+
+      backButton.addEventListener("click", () => showSlide(current - 1));
+      skipButton.addEventListener("click", () => showSlide(slides.length - 1));
+
+      dots.forEach(dot => {
+        dot.addEventListener("click", () => showSlide(Number(dot.dataset.go)));
+      });
+
+      document.addEventListener("keydown", event => {
+        if (event.key === "ArrowLeft" && current < slides.length - 1) {
+          showSlide(current + 1);
+        }
+
+        if (event.key === "ArrowRight" && current > 0) {
+          showSlide(current - 1);
+        }
+      });
+
+      showSlide(0);
+    })();
+  </script>
+</body>
+</html>

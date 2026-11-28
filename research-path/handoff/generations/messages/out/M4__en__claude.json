@@ -1,0 +1,13 @@
+{
+  "scenario": "M4",
+  "lang": "en",
+  "model": "claude",
+  "message": "Bless your heart, you got my order wrong for the third time",
+  "raw": "```json\n{\n  \"intent\": \"wrong_item\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": true,\n  \"churn_risk\": true,\n  \"summary\": \"The customer sarcastically complains that their order has been filled incorrectly for the third time.\"\n}\n```",
+  "intent": "wrong_item",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": true,
+  "churn_risk": true,
+  "summary": "The customer sarcastically complains that their order has been filled incorrectly for the third time."
+}

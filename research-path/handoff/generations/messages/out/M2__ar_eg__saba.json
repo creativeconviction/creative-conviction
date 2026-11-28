@@ -1,0 +1,13 @@
+{
+  "scenario": "M2",
+  "lang": "ar_eg",
+  "model": "saba",
+  "message": "الأوردر فين؟؟ بقاله ساعتين، ده تهريج",
+  "raw": "```json\n{\n  \"intent\": \"late_delivery\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": true,\n  \"churn_risk\": true,\n  \"summary\": \"Customer is angrily complaining about a delayed order, questioning its whereabouts after two hours.\"\n}\n```",
+  "intent": "late_delivery",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": true,
+  "churn_risk": true,
+  "summary": "Customer is angrily complaining about a delayed order, questioning its whereabouts after two hours."
+}

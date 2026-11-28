@@ -1,0 +1,12 @@
+{
+  "line": "C1",
+  "market": "ar_sa",
+  "model": "saba",
+  "source": "Black Friday: up to 70% off everything.",
+  "raw": "```json\n{\n  \"literal\": \" الجمعة السوداء: خصومات تصل إلى 70% على كل شيء\",\n  \"adaptation\": \" الجمعة السوداء: خصومات استثنائية تصل إلى 70% على جميع المنتجات\",\n  \"back_translation\": \"Black Friday: exceptional discounts up to 70% on all products\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Added 'استثنائية' (exceptional) to emphasize the scarcity and boost appeal in Saudi consumer culture.\"\n}\n```",
+  "literal": " الجمعة السوداء: خصومات تصل إلى 70% على كل شيء",
+  "adaptation": " الجمعة السوداء: خصومات استثنائية تصل إلى 70% على جميع المنتجات",
+  "back_translation": "Black Friday: exceptional discounts up to 70% on all products",
+  "approach": "adapted",
+  "notes": "Added 'استثنائية' (exceptional) to emphasize the scarcity and boost appeal in Saudi consumer culture."
+}

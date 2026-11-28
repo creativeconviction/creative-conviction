@@ -1,0 +1,31 @@
+{
+  "big_idea": "For Riyadh's busy families and professionals, Qareeb turns the familiar corner shop into a 20-minute tap. No markups, no luxury—just the everyday groceries you need, delivered from your own neighbourhood, with a simple free delivery reward every tenth time you order.",
+  "key_visual": "A hand holding a smartphone in the foreground, the screen showing a grocery basket. The items—fresh vegetables, bread, and nappies—appear to leap out and land in a real Riyadh residential street, where a smiling young family receives bags from a delivery bike. A neighbourhood shop front and a 20-minute timer in the corner anchor the scene.",
+  "image_prompt": "Photorealistic image, a hand holding a smartphone in the foreground, app interface displays a grocery basket with items like tomatoes, flatbread, milk, and diapers. The items visually flow from the screen into a sunlit Riyadh residential street with traditional Najdi architecture, a delivery cyclist handing a bag to a smiling Saudi couple with a child, a local ‘dokan’ shop front in the background, a digital clock showing ‘20 min’ floating like a halo, warm golden hour light, cinematic composition, 4k sharp focus.",
+  "palette": [
+    "#FF6B35",
+    "#2A9D8F",
+    "#F4F1EA",
+    "#1E3A5F"
+  ],
+  "typography": "Poppins (Latin headlines and body) paired with Cairo (Arabic headlines and body, a clean modern geometric sans-serif that reads beautifully in Arabic).",
+  "tone_words": "Warm, direct, neighbourly, unpretentious, helpful",
+  "headline": "قريب… طلبات حارتك لبيتك بـ ٢٠ دقيقة",
+  "subhead": "الدفع كاش أو كارد، والتوصيل المجاني مع كل ١٠ طلبات",
+  "cta": "حمّل التطبيق",
+  "ad_lines": [
+    "مقاضي البيت من دكّان حارتك، توصل لك ب٢٠ دقيقة",
+    "كل عاشر طلب توصيله علينا! اجمع طلباتك",
+    "ادفع كاش ولا كارد، وخلّي وقتك لأهلك"
+  ],
+  "app_store_blurb": "قريب يوصّل مقاضي بيتك من دكاكين حيّك المفضّلة في ٢٠ دقيقة. ادفع كاش أو كارد، ومع برنامج الولاء كل عاشر طلب توصيله مجاناً. حمّله الآن وخلّي وقتك لعيالك!",
+  "push_notifications": [
+    "مقاضيك من حارتك تنتظر! اطلب من قريب واستلمها في ٢٠ دقيقة 🛒",
+    "وصلت للطلب العاشر! توصيلتك اليوم مجاناً 🎉"
+  ],
+  "onboarding": [
+    "اختار دكّان حارتك المفضّل",
+    "اطلب مقاضيك وادفع كاش أو كارد",
+    "استلم طلبك في ٢٠ دقيقة، وكل ١٠ طلبات توصيلها مجاناً"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "scenario": "M9",
+  "lang": "ar_eg",
+  "model": "claude",
+  "message": "حبيت أقول إن الطيار كان ذوق جداً وساعدني أطلع الحاجات فوق، متشكرين!",
+  "raw": "```json\n{\n  \"intent\": \"praise\",\n  \"sentiment\": \"positive\",\n  \"urgency\": \"low\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"The customer is thanking the delivery driver for being very courteous and helping carry the groceries upstairs.\"\n}\n```",
+  "intent": "praise",
+  "sentiment": "positive",
+  "urgency": "low",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer is thanking the delivery driver for being very courteous and helping carry the groceries upstairs."
+}

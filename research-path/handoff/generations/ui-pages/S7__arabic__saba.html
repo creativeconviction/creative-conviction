@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قريب - دليلك قبل التماسه</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            direction: rtl;
+            background-color: #f8f6f1;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .slider-container {
+            width: 100%;
+            height: 75%;
+            position: relative;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        .slide-content {
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .illustration {
+            width: 200px;
+            height: 200px;
+            margin-bottom: 20px;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 16px;
+        }
+
+        .description {
+            font-size: 16px;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        .pagination {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #cbd5e0;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background-color: #4a5568;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 360px;
+        }
+
+        .skip {
+            font-size: 16px;
+            color: #718096;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .nav-button {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .nav-button.prev {
+            color: #4a5568;
+            background-color: #edf2f7;
+        }
+
+        .nav-button.next {
+            background-color: #76a97a;
+            color: white;
+        }
+
+        .start-now {
+            padding: 14px 30px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+            background-color: #2d3748;
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+
+        @media (max-width: 390px) {
+            .title {
+                font-size: 20px;
+            }
+
+            .description {
+                font-size: 14px;
+            }
+
+            .controls {
+                max-width: calc(100% - 40px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="slider-container">
+            <div class="slide active" data-index="0">
+                <div class="slide-content">
+                    <div class="illustration">
+                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <g fill="none" stroke="#2d3748" stroke-width="2">
+                                <circle cx="100" cy="80" r="15"/>
+                                <circle cx="85" cy="100" r="10"/>
+                                <circle cx="115" cy="100" r="10"/>
+                                <path d="M 85 120 Q 100 150 115 120"/>
+                                <circle cx="110" cy="130" r="3"/>
+                                <circle cx="90" cy="130" r="3"/>
+                                <path d="M 100 150 Q 80 165 65 150"/>
+                            </g>
+                            <g fill="#76a97a" opacity="0.7">
+                                <rect x="30" y="170" width="140" height="20" rx="5"/>
+                                <rect x="40" y="180" width="120" height="10" rx="3"/>
+                                <rect x="40" y="190" width="100" height="5" rx="2"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <h1 class="title">ابحث عن معارفك قبل التماسه</h1>
+                    <p class="description">استكشف قائمة الأصدقاء والزملاء الوصول لمعرفة مواقعهم الحالية قبل مقابلتك لهم وتحديد الوقت المثالي للقاء.</p>
+                </div>
+            </div>
+
+            <div class="slide" data-index="1">
+                <div class="slide-content">
+                    <div class="illustration">
+                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <g fill="none" stroke="#2d3748" stroke-width="2">
+                                <circle cx="100" cy="60" r="25"/>
+                                <path d="M 100 100 L 100 140 L 90 140 L 100 160 L 110 140 L 100 140 Z"/>
+                                <path d="M 60 100 Q 50 120 60 140"/>
+                                <path d="M 140 100 Q 150 120 140 140"/>
+                                <circle cx="75" cy="110" r="3"/>
+                                <circle cx="125" cy="110" r="3"/>
+                            </g>
+                            <g fill="#76a97a" opacity="0.7">
+                                <rect x="35" y="150" width="130" height="30" rx="5"/>
+                                <rect x="45" y="160" width="30" height="15" rx="3"/>
+                                <rect x="85" y="155" width="70" height="10" rx="2"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <h1 class="title">تحديد موقعك بدقة</h1>
+                    <p class="description">يساعدك تطبيق «قريب» في رؤية موقع معارفك على الخريطة بدقة عالية، محدد الوقت والمسافة بينهم وبينك.</p>
+                </div>
+            </div>
+
+            <div class="slide" data-index="2">
+                <div class="slide-content">
+                    <div class="illustration">
+                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <g fill="none" stroke="#2d3748" stroke-width="2">
+                                <path d="M 50 150 L 70 130 L 90 150"/>
+                                <path d="M 110 150 L 130 130 L 150 150"/>
+                                <circle cx="100" cy="80" r="12"/>
+                                <path d="M 100 100 L 100 120"/>
+                            </g>
+                            <g fill="#76a97a" opacity="0.7">
+                                <rect x="40" y="110" width="120" height="40" rx="8"/>
+                                <circle cx="60" cy="130" r="6"/>
+                                <circle cx="100" cy="130" r="6"/>
+                                <circle cx="140" cy="130" r="6"/>
+                                <circle cx="60" cy="170" r="5"/>
+                                <circle cx="100" cy="170" r="5"/>
+                                <circle cx="140" cy="170" r="5"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <h1 class="title">تنبيهات تلقائية للقاءات</h1>
+                    <p class="description">يمكنك التفكير في طرق المقابلة المناسبة وحساب الوقت المبحوح، مع تلقي التنبيهات عند اقترابك من الموقع.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="pagination" id="pagination"></div>
+
+        <div class="controls">
+            <a href="#" class="skip" id="skipBtn">تخطي</a>
+
+            <div class="nav-buttons">
+                <button class="nav-button prev" id="prevBtn">السابق</button>
+                <button class="nav-button next" id="nextBtn">التالي</button>
+                <button class="start-now" id="startBtn" style="display: none;">ابدأ الآن</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.slide');
+            const pagination = document.getElementById('pagination');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const skipBtn = document.getElementById('skipBtn');
+            const startBtn = document.getElementById('startBtn');
+
+            let currentIndex = 0;
+
+            // Create pagination dots
+            slides.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                if (index === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(index));
+                pagination.appendChild(dot);
+            });
+
+            const dots = document.querySelectorAll('.dot');
+
+            function updateSlider() {
+                slides.forEach((slide, index) => {
+                    slide.classList.toggle('active', index === currentIndex);
+                });
+
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentIndex);
+                });
+
+                prevBtn.style.display = currentIndex === 0 ? 'none' : 'block';
+                nextBtn.style.display = currentIndex === slides.length - 1 ? 'none' : 'block';
+                startBtn.style.display = currentIndex === slides.length - 1 ? 'block' : 'none';
+
+                if (currentIndex === slides.length - 1) {
+                    skipBtn.style.display = 'none';
+                }
+            }
+
+            function goToSlide(index) {
+                currentIndex = index;
+                updateSlider();
+            }
+
+            prevBtn.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateSlider();
+                }
+            });
+
+            nextBtn.addEventListener('click', () => {
+                if (currentIndex < slides.length - 1) {
+                    currentIndex++;
+                    updateSlider();
+                }
+            });
+
+            skipBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                goToSlide(slides.length - 1);
+                updateSlider();
+            });
+
+            // Initialize
+            updateSlider();
+        });
+    </script>
+</body>
+</html>

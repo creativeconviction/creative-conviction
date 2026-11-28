@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>قريب – مرحباً بك</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #0F766E;
+    --primary-dark: #0B5C56;
+    --primary-soft: #E3F2EF;
+    --accent: #F59E0B;
+    --accent-soft: #FEF3DC;
+    --ink: #10201E;
+    --muted: #5B6B69;
+    --bg: #F5F7F4;
+    --surface: #FFFFFF;
+    --line: #DCE5E2;
+    --radius: 20px;
+    --ease: cubic-bezier(.22,.8,.26,1);
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    block-size: 100%;
+  }
+
+  body {
+    font-family: "IBM Plex Sans Arabic", system-ui, -apple-system, "Segoe UI", Tahoma, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Embedded Latin text / numbers */
+  .ltr { direction: ltr; unicode-bidi: isolate; display: inline-block; }
+  bdi[lang="en"], .en { font-family: "IBM Plex Sans Arabic", system-ui, sans-serif; letter-spacing: .01em; }
+
+  .app {
+    min-block-size: 100vh;
+    min-block-size: 100dvh;
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    padding-block: max(16px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-bottom));
+  }
+
+  /* ---------- Header ---------- */
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 20px;
+    min-block-size: 48px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .brand-mark {
+    inline-size: 36px;
+    block-size: 36px;
+    border-radius: 11px;
+    background: var(--primary);
+    display: grid;
+    place-items: center;
+  }
+  .brand-name {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+  }
+  .brand-name strong { font-size: 1.1rem; font-weight: 700; }
+  .brand-name small { font-size: .72rem; color: var(--muted); font-weight: 500; }
+
+  .skip {
+    font: inherit;
+    font-weight: 600;
+    font-size: .95rem;
+    color: var(--primary);
+    background: none;
+    border: 0;
+    padding-block: 10px;
+    padding-inline: 14px;
+    margin-inline-end: -14px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background-color .2s, opacity .2s, visibility .2s;
+  }
+  .skip:hover { background: var(--primary-soft); }
+  .skip[hidden-visually] { visibility: hidden; opacity: 0; }
+
+  /* ---------- Carousel ---------- */
+  .carousel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-block-size: 0;
+  }
+
+  .viewport {
+    flex: 1;
+    overflow: hidden;
+    /* -1 moves the track toward the left (LTR), +1 toward the right (RTL) */
+    --s: -1;
+    touch-action: pan-y;
+  }
+  [dir="rtl"] .viewport { --s: 1; }
+
+  .track {
+    --i: 0;
+    display: flex;
+    block-size: 100%;
+    transform: translateX(calc(var(--i) * 100% * var(--s)));
+    transition: transform .5s var(--ease);
+    will-change: transform;
+  }
+  .track.dragging { transition: none; }
+
+  .slide {
+    flex: 0 0 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-block: 12px 8px;
+    padding-inline: 24px;
+    text-align: center;
+  }
+
+  .illustration {
+    position: relative;
+    inline-size: min(100%, 320px);
+    aspect-ratio: 1 / 1;
+    border-radius: 32px;
+    background:
+      radial-gradient(circle at 30% 25%, rgba(255,255,255,.7) 0 18%, transparent 19%),
+      var(--tint, var(--primary-soft));
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    margin-block-end: 28px;
+    transition: transform .6s var(--ease), opacity .6s var(--ease);
+  }
+  .slide[aria-hidden="true"] .illustration { transform: scale(.94); opacity: .5; }
+
+  .illustration::after {
+    content: attr(data-label);
+    position: absolute;
+    inset-block-end: 14px;
+    inset-inline-start: 50%;
+    transform: translateX(-50%);
+    font-size: .7rem;
+    font-weight: 500;
+    color: var(--muted);
+    background: rgba(255,255,255,.8);
+    border: 1px dashed var(--line);
+    padding-block: 2px;
+    padding-inline: 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  [dir="rtl"] .illustration::after { transform: translateX(50%); }
+
+  .illustration svg { inline-size: 62%; block-size: auto; }
+
+  .slide h2 {
+    margin: 0 0 10px;
+    font-size: 1.55rem;
+    font-weight: 700;
+    line-height: 1.4;
+    max-inline-size: 22ch;
+  }
+  .slide p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 1rem;
+    max-inline-size: 34ch;
+  }
+  .slide p .hl { color: var(--primary-dark); font-weight: 600; }
+
+  /* ---------- Dots ---------- */
+  .dots {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    padding-block: 18px 6px;
+    margin: 0;
+    list-style: none;
+  }
+  .dot {
+    inline-size: 24px;
+    block-size: 24px;
+    display: grid;
+    place-items: center;
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    border-radius: 999px;
+  }
+  .dot span {
+    display: block;
+    inline-size: 8px;
+    block-size: 8px;
+    border-radius: 999px;
+    background: var(--line);
+    transition: inline-size .35s var(--ease), background-color .35s;
+  }
+  .dot[aria-current="step"] span {
+    inline-size: 24px;
+    background: var(--primary);
+  }
+  .dot[aria-current="step"] { inline-size: 36px; }
+
+  /* ---------- Controls ---------- */
+  .controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-inline: 20px;
+    padding-block-start: 14px;
+  }
+
+  .btn {
+    font: inherit;
+    font-weight: 600;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-block-size: 52px;
+    border-radius: 16px;
+    border: 0;
+    cursor: pointer;
+    transition: background-color .2s, color .2s, box-shadow .2s, opacity .2s, visibility .2s, transform .1s;
+  }
+  .btn:active { transform: scale(.98); }
+
+  .btn-back {
+    background: transparent;
+    color: var(--ink);
+    padding-inline: 14px 18px;
+    border: 1.5px solid var(--line);
+  }
+  .btn-back:hover { background: var(--bg); }
+  .btn-back[hidden-visually] { visibility: hidden; opacity: 0; }
+
+  .btn-next {
+    background: var(--primary);
+    color: #fff;
+    padding-inline: 22px 16px;
+    min-inline-size: 132px;
+    box-shadow: 0 8px 20px -10px rgba(15,118,110,.7);
+  }
+  .btn-next:hover { background: var(--primary-dark); }
+  .btn-next.is-final {
+    flex: 1;
+    max-inline-size: 260px;
+    background: var(--accent);
+    color: #3B2300;
+    box-shadow: 0 8px 20px -10px rgba(245,158,11,.8);
+  }
+  .btn-next.is-final:hover { background: #E08E06; }
+
+  .icon { inline-size: 20px; block-size: 20px; flex: none; }
+  /* Directional icons are drawn for LTR and mirrored in RTL */
+  [dir="rtl"] .icon-dir { transform: scaleX(-1); }
+
+  .counter {
+    font-size: .85rem;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .sr-only {
+    position: absolute !important;
+    inline-size: 1px; block-size: 1px;
+    overflow: hidden; clip: rect(0 0 0 0);
+    white-space: nowrap; margin: -1px; padding: 0; border: 0;
+  }
+
+  /* ---------- Done screen ---------- */
+  .done {
+    flex: 1;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-inline: 28px;
+    gap: 14px;
+  }
+  .app.is-done .carousel, .app.is-done .skip { display: none; }
+  .app.is-done .done { display: flex; animation: rise .5s var(--ease); }
+  .done-badge {
+    inline-size: 88px; block-size: 88px;
+    border-radius: 50%;
+    background: var(--primary-soft);
+    display: grid; place-items: center;
+  }
+  .done h2 { margin: 6px 0 0; font-size: 1.5rem; }
+  .done p { margin: 0; color: var(--muted); max-inline-size: 32ch; }
+  .link-btn {
+    font: inherit; font-weight: 600; color: var(--primary);
+    background: none; border: 0; cursor: pointer;
+    padding-block: 10px; padding-inline: 14px; border-radius: 999px;
+  }
+  .link-btn:hover { background: var(--primary-soft); }
+
+  @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+  /* ---------- Desktop ---------- */
+  @media (min-width: 768px) {
+    body {
+      display: grid;
+      place-items: center;
+      padding: 32px;
+      background:
+        radial-gradient(60% 50% at 85% 10%, #DDEFEA 0, transparent 70%),
+        radial-gradient(50% 40% at 10% 90%, #FCEFD6 0, transparent 70%),
+        var(--bg);
+    }
+    .app {
+      inline-size: 420px;
+      min-block-size: 0;
+      block-size: min(820px, calc(100vh - 64px));
+      border-radius: 32px;
+      box-shadow: 0 30px 80px -30px rgba(16,32,30,.35), 0 0 0 1px rgba(16,32,30,.05);
+      padding-block: 22px 26px;
+      overflow: hidden;
+    }
+  }
+
+  @media (max-height: 680px) {
+    .illustration { inline-size: min(100%, 240px); margin-block-end: 18px; }
+    .slide h2 { font-size: 1.35rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition-duration: 0s !important; animation-duration: 0s !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="app" id="app">
+  <header class="top">
+    <a class="brand" href="#" aria-label="قريب">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z" fill="#fff"/>
+          <circle cx="12" cy="10" r="2.6" fill="#0F766E"/>
+        </svg>
+      </span>
+      <span class="brand-name">
+        <strong>قريب</strong>
+        <small><bdi lang="en">Qareeb</bdi></small>
+      </span>
+    </a>
+    <button class="skip" id="skip" type="button">تخطٍّ</button>
+  </header>
+
+  <section class="carousel" id="carousel"
+           aria-roledescription="عرض تعريفي"
+           aria-label="التعريف بتطبيق قريب">
+
+    <div class="viewport" id="viewport">
+      <div class="track" id="track">
+
+        <!-- Slide 1 -->
+        <article class="slide" role="group" aria-roledescription="شريحة" aria-label="1 من 3">
+          <div class="illustration" data-label="مساحة الرسم التوضيحي" aria-hidden="true">
+            <svg viewBox="0 0 200 200" fill="none">
+              <circle cx="100" cy="112" r="70" stroke="#0F766E" stroke-opacity=".18" stroke-width="2" stroke-dasharray="4 6"/>
+              <circle cx="100" cy="112" r="44" stroke="#0F766E" stroke-opacity=".28" stroke-width="2"/>
+              <rect x="34" y="58" width="34" height="28" rx="8" fill="#fff"/>
+              <rect x="40" y="66" width="22" height="4" rx="2" fill="#F59E0B"/>
+              <rect x="40" y="74" width="14" height="4" rx="2" fill="#DCE5E2"/>
+              <rect x="138" y="128" width="34" height="28" rx="8" fill="#fff"/>
+              <rect x="144" y="136" width="22" height="4" rx="2" fill="#0F766E"/>
+              <rect x="144" y="144" width="14" height="4" rx="2" fill="#DCE5E2"/>
+              <path d="M100 150s30-26 30-50a30 30 0 1 0-60 0c0 24 30 50 30 50Z" fill="#0F766E"/>
+              <circle cx="100" cy="100" r="11" fill="#fff"/>
+              <ellipse cx="100" cy="160" rx="18" ry="4" fill="#0F766E" fill-opacity=".2"/>
+            </svg>
+          </div>
+          <h2>كل ما تحتاجه، قريب منك</h2>
+          <p>اكتشف أكثر من <span class="hl">500</span> متجر وخدمة في حيّك، من البقالة إلى الصيدلية، في تطبيق واحد.</p>
+        </article>
+
+        <!-- Slide 2 -->
+        <article class="slide" role="group" aria-roledescription="شريحة" aria-label="2 من 3" style="--tint: var(--accent-soft)">
+          <div class="illustration" data-label="مساحة الرسم التوضيحي" aria-hidden="true">
+            <svg viewBox="0 0 200 200" fill="none">
+              <circle cx="104" cy="96" r="58" fill="#fff"/>
+              <circle cx="104" cy="96" r="58" stroke="#F59E0B" stroke-width="6" stroke-dasharray="270 400" stroke-linecap="round" transform="rotate(-90 104 96)"/>
+              <path d="M104 64v34l20 12" stroke="#10201E" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="104" cy="98" r="5" fill="#10201E"/>
+              <rect x="22" y="150" width="44" height="6" rx="3" fill="#F59E0B" fill-opacity=".5"/>
+              <rect x="34" y="164" width="30" height="6" rx="3" fill="#F59E0B" fill-opacity=".3"/>
+              <rect x="80" y="150" width="96" height="26" rx="13" fill="#0F766E"/>
+              <circle cx="98" cy="163" r="6" fill="#fff"/>
+              <rect x="110" y="160" width="54" height="6" rx="3" fill="#fff" fill-opacity=".8"/>
+            </svg>
+          </div>
+          <h2>توصيل خلال <span class="ltr">30</span> دقيقة</h2>
+          <p>اطلب الآن وتابع مندوبك لحظة بلحظة على الخريطة حتى يصل الطلب إلى باب بيتك.</p>
+        </article>
+
+        <!-- Slide 3 -->
+        <article class="slide" role="group" aria-roledescription="شريحة" aria-label="3 من 3">
+          <div class="illustration" data-label="مساحة الرسم التوضيحي" aria-hidden="true">
+            <svg viewBox="0 0 200 200" fill="none">
+              <rect x="30" y="44" width="104" height="66" rx="18" fill="#fff"/>
+              <path d="M52 110l-6 22 26-22" fill="#fff"/>
+              <rect x="48" y="64" width="66" height="8" rx="4" fill="#0F766E"/>
+              <rect x="48" y="80" width="44" height="8" rx="4" fill="#DCE5E2"/>
+              <rect x="86" y="104" width="88" height="56" rx="18" fill="#0F766E"/>
+              <path d="M156 160l8 18-24-18" fill="#0F766E"/>
+              <circle cx="110" cy="132" r="5" fill="#fff"/>
+              <circle cx="130" cy="132" r="5" fill="#fff"/>
+              <circle cx="150" cy="132" r="5" fill="#fff"/>
+              <circle cx="160" cy="54" r="16" fill="#F59E0B"/>
+              <path d="M153 54l5 5 9-10" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h2>دعم معك على مدار الساعة</h2>
+          <p>فريقنا جاهز لمساعدتك <bdi class="hl">24/7</bdi> عبر الدردشة أو على الرقم <a class="hl ltr" href="tel:+9668001234567" dir="ltr" style="text-decoration:none">+966 800 123 4567</a></p>
+        </article>
+
+      </div>
+    </div>
+
+    <ol class="dots" id="dots" aria-label="اختر الشريحة">
+      <li><button class="dot" type="button" aria-label="الشريحة 1 من 3"><span></span></button></li>
+      <li><button class="dot" type="button" aria-label="الشريحة 2 من 3"><span></span></button></li>
+      <li><button class="dot" type="button" aria-label="الشريحة 3 من 3"><span></span></button></li>
+    </ol>
+
+    <div class="controls">
+      <button class="btn btn-back" id="back" type="button">
+        <!-- drawn pointing "backward" in LTR (left); mirrored in RTL -->
+        <svg class="icon icon-dir" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>السابق</span>
+      </button>
+
+      <span class="counter" id="counter" aria-hidden="true">1 من 3</span>
+
+      <button class="btn btn-next" id="next" type="button">
+        <span id="nextLabel">التالي</span>
+        <!-- drawn pointing "forward" in LTR (right); mirrored in RTL -->
+        <svg class="icon icon-dir" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <p class="sr-only" id="status" aria-live="polite"></p>
+  </section>
+
+  <section class="done" id="done" aria-labelledby="doneTitle" tabindex="-1">
+    <div class="done-badge" aria-hidden="true">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+        <path d="M5 12.5l4.5 4.5L19 7.5" stroke="#0F766E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <h2 id="doneTitle">أهلاً بك في <bdi lang="en">Qareeb</bdi></h2>
+    <p>كل شيء جاهز. سنأخذك الآن إلى إنشاء حسابك.</p>
+    <button class="link-btn" id="restart" type="button">عرض التعريف مرة أخرى</button>
+  </section>
+</div>
+
+<script>
+(function () {
+  const app = document.getElementById('app');
+  const track = document.getElementById('track');
+  const viewport = document.getElementById('viewport');
+  const slides = Array.from(track.children);
+  const dots = Array.from(document.querySelectorAll('.dot'));
+  const back = document.getElementById('back');
+  const next = document.getElementById('next');
+  const nextLabel = document.getElementById('nextLabel');
+  const skip = document.getElementById('skip');
+  const counter = document.getElementById('counter');
+  const status = document.getElementById('status');
+  const done = document.getElementById('done');
+  const restart = document.getElementById('restart');
+  const last = slides.length - 1;
+  const isRTL = () => getComputedStyle(document.documentElement).direction === 'rtl';
+  let index = 0;
+
+  function go(n, announce = true) {
+    index = Math.max(0, Math.min(last, n));
+    track.style.setProperty('--i', index);
+
+    slides.forEach((s, i) => {
+      const active = i === index;
+      s.setAttribute('aria-hidden', String(!active));
+      s.inert = !active;
+    });
+    dots.forEach((d, i) => {
+      if (i === index) d.setAttribute('aria-current', 'step');
+      else d.removeAttribute('aria-current');
+    });
+
+    const first = index === 0;
+    const final = index === last;
+
+    toggleVisible(back, !first);
+    toggleVisible(skip, !final);
+
+    next.classList.toggle('is-final', final);
+    nextLabel.textContent = final ? 'ابدأ الآن' : 'التالي';
+    counter.textContent = (index + 1) + ' من ' + slides.length;
+
+    if (announce) {
+      status.textContent = 'الشريحة ' + (index + 1) + ' من ' + slides.length + ': ' +
+        slides[index].querySelector('h2').textContent;
+    }
+  }
+
+  function toggleVisible(el, show) {
+    if (show) {
+      el.removeAttribute('hidden-visually');
+      el.removeAttribute('aria-hidden');
+      el.tabIndex = 0;
+      el.disabled = false;
+    } else {
+      if (document.activeElement === el) next.focus();
+      el.setAttribute('hidden-visually', '');
+      el.setAttribute('aria-hidden', 'true');
+      el.tabIndex = -1;
+      el.disabled = true;
+    }
+  }
+
+  function finish() {
+    app.classList.add('is-done');
+    done.focus();
+  }
+
+  next.addEventListener('click', () => index === last ? finish() : go(index + 1));
+  back.addEventListener('click', () => go(index - 1));
+  skip.addEventListener('click', finish);
+  dots.forEach((d, i) => d.addEventListener('click', () => go(i)));
+  restart.addEventListener('click', () => {
+    app.classList.remove('is-done');
+    go(0);
+    next.focus();
+  });
+
+  /* Keyboard: arrow keys follow visual direction (in RTL, ← = next) */
+  document.addEventListener('keydown', (e) => {
+    if (app.classList.contains('is-done')) return;
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    const forwardKey = isRTL() ? 'ArrowLeft' : 'ArrowRight';
+    go(e.key === forwardKey ? index + 1 : index - 1);
+  });
+
+  /* Swipe: in RTL, the next slide sits to the left, so dragging right reveals it */
+  let startX = 0, startY = 0, dx = 0, dragging = false, locked = null;
+
+  viewport.addEventListener('pointerdown', (e) => {
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+    dragging = true; locked = null; dx = 0;
+    startX = e.clientX; startY = e.clientY;
+  });
+
+  viewport.addEventListener('pointermove', (e) => {
+    if (!dragging) return;
+    const mx = e.clientX - startX, my = e.clientY - startY;
+    if (locked === null && (Math.abs(mx) > 6 || Math.abs(my) > 6)) {
+      locked = Math.abs(mx) > Math.abs(my) ? 'x' : 'y';
+      if (locked === 'x') {
+        track.classList.add('dragging');
+        viewport.setPointerCapture(e.pointerId);
+      }
+    }
+    if (locked !== 'x') return;
+    dx = mx;
+    const sign = isRTL() ? 1 : -1;
+    const base = index * viewport.clientWidth * sign;
+    track.style.transform = 'translateX(' + (base + dx * 0.9) + 'px)';
+  });
+
+  function endDrag() {
+    if (!dragging) return;
+    dragging = false;
+    track.classList.remove('dragging');
+    track.style.transform = '';
+    if (locked !== 'x') return;
+    const threshold = Math.min(80, viewport.clientWidth * 0.18);
+    const forward = isRTL() ? dx > threshold : dx < -threshold;
+    const backward = isRTL() ? dx < -threshold : dx > threshold;
+    if (forward) go(index + 1);
+    else if (backward) go(index - 1);
+    else go(index, false);
+  }
+  viewport.addEventListener('pointerup', endDrag);
+  viewport.addEventListener('pointercancel', endDrag);
+  viewport.addEventListener('lostpointercapture', endDrag);
+
+  go(0, false);
+})();
+</script>
+</body>
+</html>

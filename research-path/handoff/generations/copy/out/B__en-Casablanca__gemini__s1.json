@@ -1,0 +1,14 @@
+{
+  "part": "B",
+  "cond": "en-Casablanca",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب). Write marketing copy for it in Arabic: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy. It is launching in Casablanca.",
+  "s": 1,
+  "prompt_lang": "en",
+  "city": "Casablanca",
+  "target_region": "Morocco",
+  "model": "gemini",
+  "id": "B__en-Casablanca__gemini__s1",
+  "model_id": "google/gemini-3.1-pro-preview",
+  "output": "**الشعار:**\nقريب.. تقديتك ديما قريبة ليك.\n\n**إعلانات إنستغرام:**\n1. عييتي من زحام كازا؟ ارتاح مع راسك، وتطبيق \"قريب\" يجيب ليك تقديتك كاملة حتى لباب الدار. 🛵💨\n2. نسيتي شي حاجة ولا الثلاجة خوات؟ لي حتاجيتيها ولات قريبة ليك، اطلب دابا وتوصلك فالبلاصة! 🛒📱\n3. خضرة، ديسير، ومقضية السيمانة.. كولشي طري وكولشي قريب. حمل تطبيق \"قريب\" وهني راسك! 🍅🍞\n\n**إشعار (Push Notification):**\nالثلاجة خوات؟ 🥶 متبرزطش راسك مع زحام كازا! 🚦 اطلب لي بغيتي من \"قريب\" دابا، وتقديتك توصلك حتى لباب الدار فالبلاصة. 🛍️💨",
+  "at": "2026-11-18T05:30:55.896Z"
+}

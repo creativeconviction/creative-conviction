@@ -1,0 +1,12 @@
+{
+  "line": "C5",
+  "market": "ar_eg",
+  "model": "gpt",
+  "source": "Your Friday night date starts here.",
+  "raw": "{\n  \"literal\": \"موعدك ليلة الجمعة يبدأ من هنا.\",\n  \"adaptation\": \"خروجة الجمعة بتبدأ من هنا.\",\n  \"back_translation\": \"Your Friday outing starts here.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"استخدمنا «خروجة» بدل «موعد غرامي» لأنها أخف وأكثر طبيعية في اللهجة المصرية.\"\n}",
+  "literal": "موعدك ليلة الجمعة يبدأ من هنا.",
+  "adaptation": "خروجة الجمعة بتبدأ من هنا.",
+  "back_translation": "Your Friday outing starts here.",
+  "approach": "adapted",
+  "notes": "استخدمنا «خروجة» بدل «موعد غرامي» لأنها أخف وأكثر طبيعية في اللهجة المصرية."
+}

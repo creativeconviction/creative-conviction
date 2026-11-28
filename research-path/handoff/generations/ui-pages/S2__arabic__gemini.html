@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إتمام الطلب - قريب</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #10B981; /* Green/Teal */
+            --primary-dark: #059669;
+            --bg-color: #F3F4F6;
+            --card-bg: #FFFFFF;
+            --text-main: #1F2937;
+            --text-muted: #6B7280;
+            --border-color: #E5E7EB;
+            --danger: #EF4444;
+            --radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #E5E7EB; /* Darker bg for desktop to show app boundaries */
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+        }
+
+        /* App Wrapper for Mobile-First & Desktop simulation */
+        .app-container {
+            width: 100%;
+            max-width: 480px; /* Constrain on desktop */
+            background-color: var(--bg-color);
+            min-height: 100vh;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            padding-bottom: 90px; /* Space for fixed bottom bar */
+        }
+
+        @media (min-width: 481px) {
+            body { padding: 20px 0; }
+            .app-container { border-radius: 24px; min-height: calc(100vh - 40px); overflow: hidden; }
+            .bottom-bar { position: absolute !important; } /* Anchor to container instead of viewport */
+        }
+
+        /* Header */
+        header {
+            background: var(--card-bg);
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        header h1 {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        header .back-btn {
+            position: absolute;
+            right: 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            display: flex;
+        }
+
+        /* Layout & Cards */
+        .section {
+            padding: 16px 20px 0;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+            border: 1px solid var(--border-color);
+        }
+
+        .section-title {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .edit-link {
+            color: var(--primary);
+            font-size: 13px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Address */
+        .address-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .address-content svg {
+            color: var(--primary);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .address-text h4 { font-size: 14px; margin-bottom: 4px; }
+        .address-text p { font-size: 13px; color: var(--text-muted); line-height: 1.4; }
+
+        /* Delivery Time */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--card-bg);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: all 0.2s;
+        }
+        .tab-btn.active {
+            border-color: var(--primary);
+            background: #ECFDF5;
+            color: var(--primary);
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .time-slot input { display: none; }
+        .time-slot label {
+            display: block;
+            padding: 10px 5px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--text-main);
+        }
+        .time-slot input:checked + label {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Cart Items */
+        .product {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+            gap: 12px;
+        }
+        .product:last-child { border-bottom: none; padding-bottom: 0; }
+        
+        .prod-img {
+            width: 60px;
+            height: 60px;
+            background: #F9FAFB;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            border: 1px solid var(--border-color);
+            flex-shrink: 0;
+        }
+        .prod-info { flex: 1; }
+        .prod-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+        .prod-price { font-size: 14px; color: var(--primary); font-weight: 700; }
+        
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            background: #F9FAFB;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+        .qty-btn {
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: transparent;
+            font-size: 18px;
+            cursor: pointer;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .qty-value {
+            width: 24px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Promo Code */
+        .promo-wrapper {
+            display: flex;
+            gap: 10px;
+        }
+        .promo-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+        }
+        .promo-input:focus { border-color: var(--primary); }
+        .promo-btn {
+            background: var(--text-main);
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        /* Payment */
+        .payment-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .payment-label {
+            display: flex;
+            align-items: center;
+            padding: 14px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            gap: 12px;
+            transition: all 0.2s;
+        }
+        .payment-label input {
+            accent-color: var(--primary);
+            width: 18px;
+            height: 18px;
+        }
+        .payment-label:has(input:checked) {
+            border-color: var(--primary);
+            background: #ECFDF5;
+        }
+        .payment-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .payment-text { font-size: 14px; font-weight: 600; flex: 1; }
+
+        /* Summary */
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+        .summary-row.total {
+            border-top: 1px dashed var(--border-color);
+            padding-top: 12px;
+            margin-bottom: 0;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+        .summary-row.total .val { color: var(--primary); }
+
+        /* Bottom Bar */
+        .bottom-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: var(--card-bg);
+            padding: 16px 20px;
+            box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 20;
+            border-top: 1px solid var(--border-color);
+        }
+        .bottom-total { display: flex; flex-direction: column; }
+        .bottom-total span { font-size: 12px; color: var(--text-muted); }
+        .bottom-total strong { font-size: 18px; font-weight: 700; color: var(--primary); }
+        
+        .confirm-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: var(--radius);
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+            transition: background 0.2s;
+        }
+        .confirm-btn:active { background: var(--primary-dark); }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    
+    <header>
+        <button class="back-btn" aria-label="رجوع">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+        <h1>إتمام الطلب</h1>
+    </header>
+
+    <div class="section">
+        <!-- Address Card -->
+        <div class="card">
+            <div class="section-title">
+                <span>عنوان التوصيل</span>
+                <a href="#" class="edit-link">تعديل</a>
+            </div>
+            <div class="address-content">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <div class="address-text">
+                    <h4>المنزل</h4>
+                    <p>شارع الملك فهد، حي العليا، مبنى ٤٥<br>الرياض، المملكة العربية السعودية</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delivery Time -->
+        <div class="card">
+            <div class="section-title">وقت التوصيل</div>
+            <div class="tabs">
+                <div class="tab-btn active" onclick="switchTab(this)">اليوم</div>
+                <div class="tab-btn" onclick="switchTab(this)">غداً</div>
+            </div>
+            <div class="time-slots">
+                <div class="time-slot">
+                    <input type="radio" name="time" id="t1" checked>
+                    <label for="t1">١٠:٠٠ ص - ١٢:٠٠ م</label>
+                </div>
+                <div class="time-slot">
+                    <input type="radio" name="time" id="t2">
+                    <label for="t2">١٢:٠٠ م - ٠٢:٠٠ م</label>
+                </div>
+                <div class="time-slot">
+                    <input type="radio" name="time" id="t3">
+                    <label for="t3">٠٢:٠٠ م - ٠٤:٠٠ م</label>
+                </div>
+                <div class="time-slot">
+                    <input type="radio" name="time" id="t4">
+                    <label for="t4">٠٤:٠٠ م - ٠٦:٠٠ م</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cart Summary -->
+        <div class="card">
+            <div class="section-title">ملخص الطلب (٣ منتجات)</div>
+            
+            <div class="product">
+                <div class="prod-img">🍎</div>
+                <div class="prod-info">
+                    <div class="prod-title">تفاح جالا أحمر (١ كجم)</div>
+                    <div class="prod-price">٨.٥٠ ر.س</div>
+                </div>
+                <div class="qty-controls">
+                    <button class="qty-btn" onclick="updateQty(0, -1)">-</button>
+                    <div class="qty-value" id="qty-0">1</div>
+                    <button class="qty-btn" onclick="updateQty(0, 1)">+</button>
+                </div>
+            </div>
+
+            <div class="product">
+                <div class="prod-img">🥛</div>
+                <div class="prod-info">
+                    <div class="prod-title">حليب المراعي طازج (٢ لتر)</div>
+                    <div class="prod-price">١٠.٠٠ ر.س</div>
+                </div>
+                <div class="qty-controls">
+                    <button class="qty-btn" onclick="updateQty(1, -1)">-</button>
+                    <div class="qty-value" id="qty-1">2</div>
+                    <button class="qty-btn" onclick="updateQty(1, 1)">+</button>
+                </div>
+            </div>
+
+            <div class="product">
+                <div class="prod-img">🍞</div>
+                <div class="prod-info">
+                    <div class="prod-title">خبز توست أبيض لوزين</div>
+                    <div class="prod-price">٤.٥٠ ر.س</div>
+                </div>
+                <div class="qty-controls">
+                    <button class="qty-btn" onclick="updateQty(2, -1)">-</button>
+                    <div class="qty-value" id="qty-2">1</div>
+                    <button class="qty-btn" onclick="updateQty(2, 1)">+</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Promo Code -->
+        <div class="card">
+            <div class="section-title">رمز الخصم</div>
+            <div class="promo-wrapper">
+                <input type="text" class="promo-input" placeholder="أدخل رمز الخصم هنا">
+                <button class="promo-btn">تطبيق</button>
+            </div>
+        </div>
+
+        <!-- Payment Options -->
+        <div class="card">
+            <div class="section-title">طريقة الدفع</div>
+            <div class="payment-options">
+                <label class="payment-label">
+                    <input type="radio" name="payment" checked>
+                    <div class="payment-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1F2937" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                    </div>
+                    <div class="payment-text">البطاقة الائتمانية / مدى</div>
+                </label>
+                
+                <label class="payment-label">
+                    <input type="radio" name="payment">
+                    <div class="payment-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1F2937" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"></path><path d="M14.41 15c-.41 0-1.07-.31-1.89-.31s-1.48.3-1.88.3c-.41 0-1.92-1.39-2.31-2.92-.45-1.74.24-3.4 1.25-4.22.68-.55 1.54-.88 2.38-.88.76 0 1.48.27 1.95.53.46-.27 1.23-.58 2.06-.58.84 0 1.6.28 2.15.73-.89.56-1.12 1.65-.63 2.5.47.8 1.4 1.05 2.1 1.05-.09 1.48-.96 2.72-2.12 3.32-.42.22-1.2.66-2.06.66z"></path><path d="M13.29 6.8c-.03-1.25.96-2.3 2.11-2.52.17 1.2-.82 2.36-2.11 2.52z"></path></svg>
+                    </div>
+                    <div class="payment-text">Apple Pay</div>
+                </label>
+
+                <label class="payment-label">
+                    <input type="radio" name="payment">
+                    <div class="payment-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1F2937" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    </div>
+                    <div class="payment-text">الدفع عند الاستلام</div>
+                </label>
+            </div>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="card" style="margin-bottom: 30px;">
+            <div class="section-title">تفاصيل الفاتورة</div>
+            <div class="summary-row">
+                <span>المجموع الفرعي</span>
+                <span id="subtotal">٣٣.٠٠ ر.س</span>
+            </div>
+            <div class="summary-row">
+                <span>رسوم التوصيل</span>
+                <span id="delivery">١٢.٠٠ ر.س</span>
+            </div>
+            <div class="summary-row">
+                <span>ضريبة القيمة المضافة (١٥٪)</span>
+                <span id="vat">٦.٧٥ ر.س</span>
+            </div>
+            <div class="summary-row total">
+                <span>الإجمالي</span>
+                <span class="val" id="total">٥١.٧٥ ر.س</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Action Bar -->
+    <div class="bottom-bar">
+        <div class="bottom-total">
+            <span>المبلغ الإجمالي</span>
+            <strong id="btn-total">٥١.٧٥ ر.س</strong>
+        </div>
+        <button class="confirm-btn">تأكيد الطلب</button>
+    </div>
+
+</div>
+
+<script>
+    // State
+    const items = [
+        { id: 0, price: 8.50, qty: 1 },
+        { id: 1, price: 10.00, qty: 2 },
+        { id: 2, price: 4.50, qty: 1 }
+    ];
+    const deliveryFee = 12.00;
+    const vatRate = 0.15;
+
+    // Convert standard numbers to Arabic numbers for display (optional touch)
+    function toArabicNum(str) {
+        const arabicNumbers = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+        return String(str).replace(/[0-9]/g, function(w) {
+            return arabicNumbers[+w];
+        });
+    }
+
+    function calculateTotals() {
+        let subtotal = items.reduce((sum, item) => sum + (item.price * item.qty), 0);
+        
+        // Assuming VAT is added to (Subtotal + Delivery) based on prompt requirements
+        let vat = (subtotal + deliveryFee) * vatRate;
+        let total = subtotal + deliveryFee + vat;
+
+        // Update DOM
+        document.getElementById('subtotal').innerText = toArabicNum(subtotal.toFixed(2)) + ' ر.س';
+        document.getElementById('delivery').innerText = toArabicNum(deliveryFee.toFixed(2)) + ' ر.س';
+        document.getElementById('vat').innerText = toArabicNum(vat.toFixed(2)) + ' ر.س';
+        document.getElementById('total').innerText = toArabicNum(total.toFixed(2)) + ' ر.س';
+        document.getElementById('btn-total').innerText = toArabicNum(total.toFixed(2)) + ' ر.س';
+    }
+
+    function updateQty(index, delta) {
+        let newQty = items[index].qty + delta;
+        if (newQty >= 1) {
+            items[index].qty = newQty;
+            document.getElementById('qty-' + index).innerText = newQty; // Kept standard for layout consistency
+            calculateTotals();
+        }
+    }
+
+    function switchTab(element) {
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        element.classList.add('active');
+    }
+
+    // Initialize
+    calculateTotals();
+</script>
+
+</body>
+</html>

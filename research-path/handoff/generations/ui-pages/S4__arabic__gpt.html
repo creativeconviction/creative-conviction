@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <title>محادثة خدمة العملاء — قريب</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #5b3fd3;
+      --primary-dark: #452db3;
+      --primary-soft: #eeeaff;
+      --surface: #ffffff;
+      --background: #f5f6fa;
+      --text: #171822;
+      --muted: #777b8d;
+      --line: #e9eaf0;
+      --agent-bubble: #ffffff;
+      --customer-bubble: #5b3fd3;
+      --online: #21b573;
+      --shadow: 0 18px 55px rgba(30, 23, 69, 0.13);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      margin: 0;
+    }
+
+    body {
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(91, 63, 211, 0.09), transparent 28rem),
+        radial-gradient(circle at 85% 85%, rgba(45, 182, 128, 0.08), transparent 24rem),
+        #eef0f6;
+      color: var(--text);
+      font-family: "Tajawal", Arial, sans-serif;
+    }
+
+    button,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .chat-app {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      width: min(100%, 430px);
+      height: min(100dvh, 860px);
+      overflow: hidden;
+      background: var(--background);
+      box-shadow: var(--shadow);
+    }
+
+    .chat-header {
+      position: relative;
+      z-index: 5;
+      display: grid;
+      grid-template-columns: 44px minmax(0, 1fr) 44px;
+      align-items: center;
+      min-height: 84px;
+      padding: max(12px, env(safe-area-inset-top)) 14px 12px;
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+    }
+
+    .icon-button {
+      display: inline-grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      padding: 0;
+      border: 0;
+      border-radius: 14px;
+      color: #252638;
+      background: transparent;
+      cursor: pointer;
+      transition: background-color 160ms ease, transform 160ms ease;
+    }
+
+    .icon-button:hover {
+      background: #f1effa;
+    }
+
+    .icon-button:active {
+      transform: scale(0.94);
+    }
+
+    .agent {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 0;
+      gap: 10px;
+    }
+
+    .avatar-wrap {
+      position: relative;
+      flex: 0 0 auto;
+    }
+
+    .avatar {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 15px;
+      color: #ffffff;
+      background: linear-gradient(145deg, #7257e8, #4b2dbf);
+      box-shadow: 0 7px 18px rgba(91, 63, 211, 0.25);
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .online-dot {
+      position: absolute;
+      bottom: -1px;
+      left: -1px;
+      width: 12px;
+      height: 12px;
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+      background: var(--online);
+    }
+
+    .agent-info {
+      min-width: 0;
+      text-align: right;
+    }
+
+    .agent-name {
+      margin: 0 0 3px;
+      overflow: hidden;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.2;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .connection-status {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin: 0;
+      color: var(--online);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .connection-status::before {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+      content: "";
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      justify-self: left;
+      border-radius: 12px;
+      color: var(--primary);
+      background: var(--primary-soft);
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    .messages {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      padding: 20px 16px 24px;
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      scrollbar-color: #d7d4e4 transparent;
+    }
+
+    .messages::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    .messages::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background: #d7d4e4;
+    }
+
+    .day-label {
+      width: max-content;
+      margin: 0 auto 20px;
+      padding: 6px 12px;
+      border: 1px solid rgba(225, 226, 234, 0.85);
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.82);
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .message-row {
+      display: flex;
+      margin-bottom: 14px;
+    }
+
+    .message-row.agent-message {
+      justify-content: flex-start;
+    }
+
+    .message-row.customer-message {
+      justify-content: flex-end;
+    }
+
+    .message {
+      max-width: 82%;
+    }
+
+    .bubble {
+      padding: 11px 13px 9px;
+      border-radius: 18px;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.7;
+      overflow-wrap: anywhere;
+    }
+
+    .agent-message .bubble {
+      color: #262735;
+      background: var(--agent-bubble);
+      border: 1px solid #eaebf0;
+      border-top-right-radius: 6px;
+      box-shadow: 0 5px 16px rgba(29, 31, 48, 0.05);
+    }
+
+    .customer-message .bubble {
+      color: #ffffff;
+      background: linear-gradient(145deg, #684be0, var(--customer-bubble));
+      border-top-left-radius: 6px;
+      box-shadow: 0 7px 18px rgba(91, 63, 211, 0.18);
+    }
+
+    .message-meta {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 5px;
+      padding-inline: 4px;
+      color: #8a8d9c;
+      font-size: 10.5px;
+      line-height: 1;
+    }
+
+    .customer-message .message-meta {
+      justify-content: flex-start;
+    }
+
+    .agent-message .message-meta {
+      justify-content: flex-start;
+    }
+
+    .read-mark {
+      display: inline-flex;
+      color: var(--primary);
+    }
+
+    .ltr {
+      display: inline-block;
+      direction: ltr;
+      unicode-bidi: isolate;
+      font-family: "Tajawal", Arial, sans-serif;
+      font-weight: 600;
+    }
+
+    .composer-area {
+      position: relative;
+      z-index: 5;
+      padding: 10px 12px max(10px, env(safe-area-inset-bottom));
+      background: rgba(255, 255, 255, 0.97);
+      border-top: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+    }
+
+    .composer {
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .message-field {
+      display: flex;
+      flex: 1;
+      align-items: center;
+      min-height: 48px;
+      padding: 7px 8px 7px 13px;
+      border: 1px solid #e5e6ec;
+      border-radius: 18px;
+      background: #f7f7fa;
+      transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+    }
+
+    .message-field:focus-within {
+      border-color: rgba(91, 63, 211, 0.5);
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(91, 63, 211, 0.08);
+    }
+
+    .message-field textarea {
+      width: 100%;
+      height: 32px;
+      max-height: 90px;
+      resize: none;
+      overflow-y: auto;
+      padding: 6px 5px;
+      border: 0;
+      outline: 0;
+      color: var(--text);
+      background: transparent;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .message-field textarea::placeholder {
+      color: #9a9cab;
+    }
+
+    .attach-button {
+      flex: 0 0 auto;
+      width: 34px;
+      height: 34px;
+      color: #777a89;
+      border-radius: 11px;
+    }
+
+    .send-button {
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      width: 48px;
+      height: 48px;
+      padding: 0;
+      border: 0;
+      border-radius: 16px;
+      color: #ffffff;
+      background: linear-gradient(145deg, #6b4de0, #4e31bd);
+      box-shadow: 0 8px 20px rgba(91, 63, 211, 0.28);
+      cursor: pointer;
+      transition: transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .send-button:hover {
+      box-shadow: 0 10px 24px rgba(91, 63, 211, 0.36);
+    }
+
+    .send-button:active {
+      transform: scale(0.94);
+    }
+
+    svg {
+      display: block;
+    }
+
+    @media (max-width: 520px) {
+      body {
+        display: block;
+        background: var(--background);
+      }
+
+      .chat-app {
+        width: 100%;
+        height: 100dvh;
+        max-height: none;
+        box-shadow: none;
+      }
+    }
+
+    @media (min-width: 521px) {
+      .chat-app {
+        border: 1px solid rgba(225, 226, 235, 0.9);
+        border-radius: 28px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .messages {
+        padding-inline: 12px;
+      }
+
+      .message {
+        max-width: 87%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="chat-app" aria-label="محادثة خدمة العملاء">
+    <header class="chat-header">
+      <button class="icon-button" type="button" aria-label="رجوع">
+        <svg width="23" height="23" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M9 5L16 12L9 19" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <div class="agent">
+        <div class="avatar-wrap" aria-hidden="true">
+          <div class="avatar">ن</div>
+          <span class="online-dot"></span>
+        </div>
+        <div class="agent-info">
+          <h1 class="agent-name">نورة — خدمة العملاء</h1>
+          <p class="connection-status">متصلة الآن</p>
+        </div>
+      </div>
+
+      <div class="brand-mark" aria-label="قريب">ق</div>
+    </header>
+
+    <section class="messages" aria-label="الرسائل">
+      <div class="day-label">اليوم</div>
+
+      <article class="message-row agent-message">
+        <div class="message">
+          <div class="bubble">
+            أهلاً بك في «قريب» 👋 أنا نورة من خدمة العملاء، كيف يمكنني مساعدتك؟
+          </div>
+          <div class="message-meta">
+            <time datetime="2025-05-18T10:14">١٠:١٤ ص</time>
+          </div>
+        </div>
+      </article>
+
+      <article class="message-row customer-message">
+        <div class="message">
+          <div class="bubble">
+            مرحباً، أحتاج مساعدة بخصوص الطلب
+            <span class="ltr">#QR-48213</span>.
+          </div>
+          <div class="message-meta">
+            <time datetime="2025-05-18T10:15">١٠:١٥ ص</time>
+            <span class="read-mark" aria-label="تمت القراءة">
+              <svg width="17" height="12" viewBox="0 0 18 12" fill="none" aria-hidden="true">
+                <path d="M1.5 6.2L4.4 9L9.4 3.5M7.2 8.5L8 9.2L16.4 1.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <article class="message-row agent-message">
+        <div class="message">
+          <div class="bubble">
+            بالتأكيد، راجعت تفاصيل الطلب. هل يمكنك توضيح المشكلة التي واجهتك؟
+          </div>
+          <div class="message-meta">
+            <time datetime="2025-05-18T10:16">١٠:١٦ ص</time>
+          </div>
+        </div>
+      </article>
+
+      <article class="message-row customer-message">
+        <div class="message">
+          <div class="bubble">
+            المنتج <span class="ltr">Almarai Fresh Milk 1L</span> لم يصل ضمن الطلب.
+          </div>
+          <div class="message-meta">
+            <time datetime="2025-05-18T10:17">١٠:١٧ ص</time>
+            <span class="read-mark" aria-label="تمت القراءة">
+              <svg width="17" height="12" viewBox="0 0 18 12" fill="none" aria-hidden="true">
+                <path d="M1.5 6.2L4.4 9L9.4 3.5M7.2 8.5L8 9.2L16.4 1.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <article class="message-row agent-message">
+        <div class="message">
+          <div class="bubble">
+            أعتذر لك عن ذلك. سأرفع طلب تعويض فوراً، هل رقم التواصل
+            <span class="ltr">+966 55 123 4567</span>
+            صحيح؟
+          </div>
+          <div class="message-meta">
+            <time datetime="2025-05-18T10:19">١٠:١٩ ص</time>
+          </div>
+        </div>
+      </article>
+
+      <article class="message-row customer-message">
+        <div class="message">
+          <div class="bubble">
+            نعم، الرقم صحيح. بانتظار تحديثكم، شكراً لك.
+          </div>
+          <div class="message-meta">
+            <time datetime="2025-05-18T10:20">١٠:٢٠ ص</time>
+            <span class="read-mark" aria-label="تمت القراءة">
+              <svg width="17" height="12" viewBox="0 0 18 12" fill="none" aria-hidden="true">
+                <path d="M1.5 6.2L4.4 9L9.4 3.5M7.2 8.5L8 9.2L16.4 1.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <footer class="composer-area">
+      <form class="composer" onsubmit="return false;">
+        <div class="message-field">
+          <button class="icon-button attach-button" type="button" aria-label="إرفاق ملف">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M8.2 12.7L13.9 7C15.3 5.6 17.5 5.6 18.9 7C20.3 8.4 20.3 10.6 18.9 12L11 19.9C8.9 22 5.5 22 3.4 19.9C1.3 17.8 1.3 14.4 3.4 12.3L11.6 4.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <textarea aria-label="اكتب رسالتك" placeholder="اكتب رسالتك..." rows="1"></textarea>
+        </div>
+
+        <button class="send-button" type="submit" aria-label="إرسال الرسالة">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M21 3L10.7 13.3M21 3L14.4 21L10.7 13.3L3 9.6L21 3Z" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </form>
+    </footer>
+  </main>
+</body>
+</html>

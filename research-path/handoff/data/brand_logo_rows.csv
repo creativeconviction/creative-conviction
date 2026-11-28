@@ -1,0 +1,95 @@
+file,part,model,script,requested,read,scores,exact,best_similarity,joined,garbled,native_similarity,english_similarity,country,tropes,motifs,has_text
+C__ar__long.jpg,C,browser,ar,السوق الطازج,السوق الطازج,[1],True,1,yes,False,,,,,,
+C__ar__short.jpg,C,browser,ar,قريب,قريب,[1],True,1,yes,False,,,,,,
+C__en__long.jpg,C,browser,en,Fresh Market,Fresh Market,[1],True,1,n/a,False,,,,,,
+C__en__short.jpg,C,browser,en,Nearby,Nearby,[1],True,1,n/a,False,,,,,,
+C__fa__long.jpg,C,browser,fa,بازار تازه,بازار تازه,[1],True,1,yes,False,,,,,,
+C__fa__short.jpg,C,browser,fa,نزدیک,نزدیک,[1],True,1,yes,False,,,,,,
+C__he__long.jpg,C,browser,he,השוק הטרי,השוק הטרי,[1],True,1,n/a,False,,,,,,
+C__he__short.jpg,C,browser,he,קרוב,קרוב,[1],True,1,n/a,False,,,,,,
+C__hi__long.jpg,C,browser,hi,ताज़ा बाज़ार,ताज़ा बाज़ार,[1],True,1,n/a,False,,,,,,
+C__hi__short.jpg,C,browser,hi,नज़दीक,नज़दीक,[1],True,1,n/a,False,,,,,,
+C__ja__long.jpg,C,browser,ja,新鮮市場,新鮮市場,[1],True,1,n/a,False,,,,,,
+C__ja__short.jpg,C,browser,ja,ちかく,ちかく,[1],True,1,n/a,False,,,,,,
+C__ru__long.jpg,C,browser,ru,Свежий рынок,Свежий рынок,[1],True,1,n/a,False,,,,,,
+C__ru__short.jpg,C,browser,ru,Рядом,Рядом,[1],True,1,n/a,False,,,,,,
+C__th__long.jpg,C,browser,th,ตลาดสด,ตลาดสด,[1],True,1,n/a,False,,,,,,
+C__th__short.jpg,C,browser,th,ใกล้,ใกล้,[1],True,1,n/a,False,,,,,,
+C__zh__long.jpg,C,browser,zh,新鲜市场,新鲜市场,[1],True,1,n/a,False,,,,,,
+C__zh__short.jpg,C,browser,zh,近邻,近邻,[1],True,1,n/a,False,,,,,,
+L__ar__flux.jpg,L,flux,ar,قريب | Nearby,الحييئ | Nearby,"[0.167, 1]",False,0.584,yes,True,0.167,1,,,,
+L__ar__gpt-image.jpg,L,gpt-image,ar,قريب | Nearby,قريب | Nearby,"[1, 1]",True,1,yes,False,1,1,,,,
+L__ar__ideogram.jpg,L,ideogram,ar,قريب | Nearby,قريب | Nearby,"[1, 1]",True,1,yes,False,1,1,,,,
+L__ar__nano-banana.jpg,L,nano-banana,ar,قريب | Nearby,قريب | Nearby,"[1, 1]",True,1,yes,False,1,1,,,,
+L__ar__qwen-image.jpg,L,qwen-image,ar,قريب | Nearby,قررب | Nearby,"[0.75, 1]",False,0.875,yes,True,0.75,1,,,,
+L__ar__recraft.jpg,L,recraft,ar,قريب | Nearby,قريٮب | Nearby,"[0.8, 1]",False,0.9,yes,True,0.8,1,,,,
+L__ar__seedream.jpg,L,seedream,ar,قريب | Nearby,قريب | Nearby,"[1, 1]",True,1,yes,False,1,1,,,,
+M__Egypt__flux.jpg,M,flux,,,,,,,,,,,Egypt,pyramid|generic_abstract,two-faced triangular pyramid shape; letter A form; split triangle facets; flowing path or river cutout; circuit board traces; circuit nodes with open circle terminals; small solid squares; small solid circles/dots; tech connector lines,False
+M__Egypt__gpt-image.jpg,M,gpt-image,,,,,,,,,,,Egypt,pyramid|flag_colors,two golden pyramids; payment card; EMV chip; contactless payment waves; red swoosh ring; white swoosh ring; black swoosh ring; orbital swoosh,False
+M__Egypt__ideogram.jpg,M,ideogram,,,,,,,,,,,Egypt,pyramid|generic_abstract,slanted diagonal stroke with hooked top; stylized letter A; gold triangle with two-tone shading; faceted pyramid-like shape; roofline/peak form; negative-space gap between shapes,False
+M__Egypt__nano-banana.jpg,M,nano-banana,,,,,,,,,,,Egypt,pyramid|generic_abstract,pyramid; faceted triangular segments; circuit board traces; circuit nodes; upward arrow; nested inner triangle; flowing wavy lines; small diamond accents,False
+M__Egypt__qwen-image.jpg,M,qwen-image,,,,,,,,,,,Egypt,crescent|generic_abstract,lightning bolt; zigzag stylized letter N; broken circular ring; crescent-shaped inner arc; beveled 3D faceted surfaces; diagonal upward arrow-like stroke,False
+M__Egypt__recraft.jpg,M,recraft,,,,,,,,,,,Egypt,generic_abstract,stylized letter E with rounded pill-shaped arms; pill-shaped rounded bar above the letter; orange circle behind the letter; small rounded black bar cutting into the circle; negative-space white notches; overlapping black and orange forms,True
+M__Egypt__seedream.jpg,M,seedream,,,,,,,,,,,Egypt,pyramid|desert_dunes,circular ring outline; three pyramids; desert dune wave; dollar sign coin; circuit node connector line with dots; horizontal ground stripes; gradient fades,False
+M__Morocco__flux.jpg,M,flux,,,,,,,,,,,Morocco,star|flag_colors,five-pointed star; upward trending arrow; zigzag line graph; vertical bar chart columns; angled bar cutouts; negative space separation,False
+M__Morocco__gpt-image.jpg,M,gpt-image,,,,,,,,,,,Morocco,star|crescent,wallet; contactless payment waves; wallet clasp with circular button; yellow card; green card; red crescent-shaped swoosh; green eight-pointed star outline,False
+M__Morocco__ideogram.jpg,M,ideogram,,,,,,,,,,,Morocco,star|generic_abstract,eight-pointed star outline; overlapping rotated squares; diagonal upward arrow; growth arrow; geometric star frame,False
+M__Morocco__nano-banana.jpg,M,nano-banana,,,,,,,,,,,Morocco,star|calligraphy|generic_abstract,eight-pointed star silhouette; chevron corner segments; network node graph; connected circles and lines; circuit-like branching structure; upward trending arrow; stylized angular Kufic-like letterforms; geometric square and diamond shapes; split two-half composition,False
+M__Morocco__qwen-image.jpg,M,qwen-image,,,,,,,,,,,Morocco,star,five-pointed star; interlaced pentagram outline; solid circle background; overlapping line strokes,False
+M__Morocco__recraft.jpg,M,recraft,,,,,,,,,,,Morocco,generic_abstract,vertical rounded pill shape; quarter-circle segments; half-circle segments; semicircle bowls; solid circle dot; geometric modular blocks; stacked geometric letterforms,False
+M__Morocco__seedream.jpg,M,seedream,,,,,,,,,,,Morocco,star,Star of David (hexagram); interlaced triangles; hexagonal frame; inner triangular cutouts; rising zigzag arrow; upward trend line,False
+M__Saudi-Arabia__flux.jpg,M,flux,,,,,,,,,,,Saudi Arabia,generic_abstract,half shield outline; curved shield edge; gold shield tip segment; circuit board traces; circuit nodes; right-angle connector lines; split shield-circuit composition,False
+M__Saudi-Arabia__gpt-image.jpg,M,gpt-image,,,,,,,,,,,Saudi Arabia,palm_tree|flag_colors,skyscraper with arched cutout at top (resembling Riyadh's Kingdom Centre); palm tree; ascending bar chart with three rounded bars; elliptical swoosh orbit; payment card shape; EMV chip icon,False
+M__Saudi-Arabia__ideogram.jpg,M,ideogram,,,,,,,,,,,Saudi Arabia,falcon|generic_abstract,V-shaped chevron; stylized bird wings; hooked-beak bird head; golden wheat or grass sprigs; folded paper shading; geometric angular shapes,False
+M__Saudi-Arabia__nano-banana.jpg,M,nano-banana,,,,,,,,,,,Saudi Arabia,crescent|star|palm_tree,stylized palm tree; curved palm fronds; circuit-board lines with nodes forming fronds; crescent moon; four-pointed star; ascending bar chart; palm trunk formed by tallest bar; horizontal baseline,False
+M__Saudi-Arabia__qwen-image.jpg,M,qwen-image,,,,,,,,,,,Saudi Arabia,generic_abstract,solid green circle; white angular stylized letterforms resembling 'LK' or '4K'; folded paper or ribbon effect; diagonal intersecting strokes; small detached accent mark; subtle gray shading on the fold,True
+M__Saudi-Arabia__recraft.jpg,M,recraft,,,,,,,,,,,Saudi Arabia,generic_abstract,stylized numeral 5; stylized letter G or numeral 6; abstract bird head silhouette; circular eye cutout; rounded geometric shapes; flat bar shape; curved semicircular forms,True
+M__Saudi-Arabia__seedream.jpg,M,seedream,,,,,,,,,,,Saudi Arabia,generic_abstract|flag_colors,circular ring border; green arc segment on left of ring; black upward chevron arrow; stacked gold chevron bands; rounded arch/roof shape; gold segmented circle; vertical pillar-like bars; branching Y-shaped lines; circuit-like channel pattern; symmetrical geometric composition,False
+M__United-Kingdom__flux.jpg,M,flux,,,,,,,,,,,United Kingdom,none,shield; pound sterling symbol; vertically split shield halves; inverted color split currency symbol; small circle dot; teal outline border,False
+M__United-Kingdom__gpt-image.jpg,M,gpt-image,,,,,,,,,,,United Kingdom,flag_colors,rounded square card shape; Union Jack flag segment; curved swoosh divider; green upward trending arrow; three ascending bar chart columns; blue sloping wave base; white payment card chip icon; white outline borders,False
+M__United-Kingdom__ideogram.jpg,M,ideogram,,,,,,,,,,,United Kingdom,flag_colors|generic_abstract,shield shape; diagonal upward arrow; radiating white stripes; union jack-style diagonal lines; rounded shield base,False
+M__United-Kingdom__nano-banana.jpg,M,nano-banana,,,,,,,,,,,United Kingdom,flag_colors,pound sterling symbol; upward arrow; curved swoosh forming the base of the pound sign; two-tone split shading; growth trend line,False
+M__United-Kingdom__qwen-image.jpg,M,qwen-image,,,,,,,,,,,United Kingdom,flag_colors,circular emblem; Union Jack flag pattern; split circular ring; blue left arc; red right arc; red central cross; diagonal saltire stripes; blue triangular segments; white border fimbriation,False
+M__United-Kingdom__recraft.jpg,M,recraft,,,,,,,,,,,United Kingdom,generic_abstract,abstract letter K; rounded circular lobes; teardrop shapes; interlocking blob forms; modular geometric construction; negative space curves; two-tone color blocking,False
+M__United-Kingdom__seedream.jpg,M,seedream,,,,,,,,,,,United Kingdom,generic_abstract,concentric circular rings; segmented quadrant arcs; crosshair-like gaps; central diamond; rotated square outline; interlocking triangles; negative-space square center; geometric parallelogram bands; four-way symmetry,False
+M__United-States__flux.jpg,M,flux,,,,,,,,,,,United States,generic_abstract,shield; ascending bar chart; upward trending arrow; three vertical bars; split two-tone shield; geometric angular cuts,False
+M__United-States__gpt-image.jpg,M,gpt-image,,,,,,,,,,,United States,flag_colors,overlapping credit cards; EMV chip; upward curved arrow; ascending bar chart; wavy red stripes; flag-like waving bands,False
+M__United-States__ideogram.jpg,M,ideogram,,,,,,,,,,,United States,generic_abstract,shield outline; upward arrow; zigzag line graph; growth trend line; broken outline segments,False
+M__United-States__nano-banana.jpg,M,nano-banana,,,,,,,,,,,United States,star|flag_colors,partial circular ring (C-shape); upward-trending arrow; zigzag line graph; bar chart columns; circuit-board traces with node dots; star points; red and white stripes; checkmark-like shape,False
+M__United-States__qwen-image.jpg,M,qwen-image,,,,,,,,,,,United States,crescent|generic_abstract,lowercase letter n; stylized letter e formed from a circle; blue circular globe-like shape; horizontal bar cutout inside the circle; gold crescent-shaped arc wrapping the circle; small notch or leaf-like cutouts along the circle edge; white negative space separating the shapes,True
+M__United-States__recraft.jpg,M,recraft,,,,,,,,,,,United States,generic_abstract,interlocking ribbon shapes; continuous rounded line; U-shaped curve; inverted U arch; loop resembling letter P; overlapping bands; monogram-like letterforms; wave pattern,False
+M__United-States__seedream.jpg,M,seedream,,,,,,,,,,,United States,generic_abstract,suspension bridge silhouette; rounded blue shield/canopy shape; speech bubble with three dots (ellipsis); upward trending zigzag arrow; growth chart line; negative space white cutouts,False
+W__ar__long__flux.jpg,W,flux,ar,السوق الطازج,العيلة وممة,[0.182],False,0.182,yes,True,,,,,,
+W__ar__long__gpt-image.jpg,W,gpt-image,ar,السوق الطازج,السوق الطازج,[1],True,1,yes,False,,,,,,
+W__ar__long__ideogram.jpg,W,ideogram,ar,السوق الطازج,السوق الطازج,[1],True,1,yes,False,,,,,,
+W__ar__long__nano-banana.jpg,W,nano-banana,ar,السوق الطازج,السوق الطازج,[1],True,1,yes,False,,,,,,
+W__ar__long__qwen-image.jpg,W,qwen-image,ar,السوق الطازج,السوق الطازج,[1],True,1,yes,False,,,,,,
+W__ar__long__recraft.jpg,W,recraft,ar,السوق الطازج,السوق الطازج,[1],True,1,yes,True,,,,,,
+W__ar__long__seedream.jpg,W,seedream,ar,السوق الطازج,السوق الطازج,[1],True,1,yes,False,,,,,,
+W__ar__short__flux.jpg,W,flux,ar,قريب,خلية,[0.25],False,0.25,yes,False,,,,,,
+W__ar__short__gpt-image.jpg,W,gpt-image,ar,قريب,قريب,[1],True,1,yes,False,,,,,,
+W__ar__short__ideogram.jpg,W,ideogram,ar,قريب,قريٮب,[0.8],False,0.8,yes,True,,,,,,
+W__ar__short__nano-banana.jpg,W,nano-banana,ar,قريب,قريب,[1],True,1,yes,False,,,,,,
+W__ar__short__qwen-image.jpg,W,qwen-image,ar,قريب,قررٻ,[0.5],False,0.5,partly,True,,,,,,
+W__ar__short__recraft.jpg,W,recraft,ar,قريب,ڡَرين,[0.5],False,0.5,yes,True,,,,,,
+W__ar__short__seedream.jpg,W,seedream,ar,قريب,قريىب,[0.8],False,0.8,yes,True,,,,,,
+W__en__long__flux.jpg,W,flux,en,Fresh Market,Fresh Market,[1],True,1,n/a,False,,,,,,
+W__en__long__gpt-image.jpg,W,gpt-image,en,Fresh Market,Fresh | Market,[1],True,1,n/a,False,,,,,,
+W__en__long__ideogram.jpg,W,ideogram,en,Fresh Market,Fresh Market,[1],True,1,n/a,False,,,,,,
+W__en__long__nano-banana.jpg,W,nano-banana,en,Fresh Market,Fresh | Market,[1],True,1,n/a,False,,,,,,
+W__en__long__qwen-image.jpg,W,qwen-image,en,Fresh Market,Fresh Market,[1],True,1,n/a,False,,,,,,
+W__en__long__recraft.jpg,W,recraft,en,Fresh Market,Fresh Market,[1],True,1,n/a,False,,,,,,
+W__en__long__seedream.jpg,W,seedream,en,Fresh Market,Fresh Market,[1],True,1,n/a,False,,,,,,
+W__en__short__flux.jpg,W,flux,en,Nearby,Nearby,[1],True,1,n/a,False,,,,,,
+W__en__short__gpt-image.jpg,W,gpt-image,en,Nearby,Nearby,[1],True,1,n/a,False,,,,,,
+W__en__short__ideogram.jpg,W,ideogram,en,Nearby,Nearby,[1],True,1,n/a,False,,,,,,
+W__en__short__nano-banana.jpg,W,nano-banana,en,Nearby,Nearby,[1],True,1,n/a,False,,,,,,
+W__en__short__qwen-image.jpg,W,qwen-image,en,Nearby,Nearby,[1],True,1,n/a,False,,,,,,
+W__en__short__recraft.jpg,W,recraft,en,Nearby,Nearby,[1],True,1,n/a,False,,,,,,
+W__en__short__seedream.jpg,W,seedream,en,Nearby,Nearby,[1],True,1,n/a,False,,,,,,
+W__fa__long__ideogram.jpg,W,ideogram,fa,بازار تازه,بازار تازه,[1],True,1,yes,False,,,,,,
+W__fa__long__recraft.jpg,W,recraft,fa,بازار تازه,بازار تازو,[0.889],False,0.889,partly,True,,,,,,
+W__fa__short__ideogram.jpg,W,ideogram,fa,نزدیک,نزدیک,[1],True,1,yes,False,,,,,,
+W__fa__short__recraft.jpg,W,recraft,fa,نزدیک,نزدیک,[1],True,1,partly,False,,,,,,
+W__he__long__ideogram.jpg,W,ideogram,he,השוק הטרי,השוק הטרי,[1],True,1,n/a,False,,,,,,
+W__he__short__ideogram.jpg,W,ideogram,he,קרוב,קרוב,[1],True,1,n/a,False,,,,,,

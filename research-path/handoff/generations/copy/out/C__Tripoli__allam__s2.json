@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Tripoli",
+  "s": 2,
+  "prompt_lang": "en",
+  "city": "Tripoli",
+  "target_region": "Libya",
+  "target_city_code": "TRI",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Tripoli. Write marketing copy for it in Libyan Arabic, the way people in Tripoli actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "model": "allam",
+  "id": "C__Tripoli__allam__s2",
+  "model_id": "humain-ai/ALLaM-7B-Instruct-preview",
+  "output": "#التسوق_في_خدمتك\n\n## شعار التطبيق\nما تنشدش عالكبيرة، ما الك إلا قريب! (لا تبحث عن الكبيرة، لديك قريب!)\n\n## إعلانات Instagram\n1. بالله، مين إلي ما يحب زيارات السوبرماركت الطويلة؟ قريب، محل نزولك، مشوار سريع! 🚙\n2. لا وجع راس ولا زحمة،#قريب غايتك في دقيقة! 💯 \n3. خربشات بسبب السمانه! 🤕 اراحتك مع#قريب قريبه مره. دغق هادا اخر انشغل عليك! 🤭\n\n## إشعار الدفع\nعندك لسه مشوار للسوبرماركت؟ ما فيها، اصبر قليل، قريب مزعج. ولا تنسى، قريب يحفظ خصوصيتك وأمانك — 100% ثقة بيك!",
+  "at": "2026-11-28T00:49:47.543788+00:00"
+}

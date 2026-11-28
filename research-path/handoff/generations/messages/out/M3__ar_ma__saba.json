@@ -1,0 +1,13 @@
+{
+  "scenario": "M3",
+  "lang": "ar_ma",
+  "model": "saba",
+  "message": "واو سيرفيس زوين بزاف، غير جوج سوايع ديال الروطار مرة أخرى 👏👏",
+  "raw": "```json\n{\n  \"intent\": \"praise\",\n  \"sentiment\": \"positive\",\n  \"urgency\": \"low\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"The customer is praising the service despite mentioning a repeated delivery delay.\"\n}\n```",
+  "intent": "praise",
+  "sentiment": "positive",
+  "urgency": "low",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer is praising the service despite mentioning a repeated delivery delay."
+}

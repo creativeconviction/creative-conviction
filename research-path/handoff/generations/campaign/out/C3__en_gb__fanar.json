@@ -1,0 +1,12 @@
+{
+  "line": "C3",
+  "market": "en_gb",
+  "model": "fanar",
+  "source": "Thanksgiving dinner, sorted. Order your turkey today.",
+  "raw": "{\n\"literal\": \"Thanksgiving dinner, sorted. Order your turkey today.\",\n\"adaptation\": \"Christmas Dinner Sorted. Order your turkey this week!\",\n\"back_translation\": \"Christmas dinner sorted. Order your turkey this week!\",\n\"approach\": \"adapted\",\n\"notes\": \"Changed 'Thanksgiving' to 'Christmas' as Thanksgiving is not celebrated in the UK, opting for a UK-specific holiday to increase relevance.\"\n}",
+  "literal": "Thanksgiving dinner, sorted. Order your turkey today.",
+  "adaptation": "Christmas Dinner Sorted. Order your turkey this week!",
+  "back_translation": "Christmas dinner sorted. Order your turkey this week!",
+  "approach": "adapted",
+  "notes": "Changed 'Thanksgiving' to 'Christmas' as Thanksgiving is not celebrated in the UK, opting for a UK-specific holiday to increase relevance."
+}

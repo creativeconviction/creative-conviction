@@ -1,0 +1,12 @@
+{
+  "line": "I1",
+  "market": "en_gb",
+  "model": "gemini",
+  "source": "We deliver the goods. Literally.",
+  "raw": "{\n  \"literal\": \"We deliver the goods. Literally.\",\n  \"adaptation\": \"We deliver the goods. Literally.\",\n  \"back_translation\": \"We deliver the goods. Literally.\",\n  \"approach\": \"literal\",\n  \"notes\": \"The idiom 'deliver the goods' operates identically in British English, preserving the clever double meaning regarding grocery delivery without any need for localisation.\"\n}",
+  "literal": "We deliver the goods. Literally.",
+  "adaptation": "We deliver the goods. Literally.",
+  "back_translation": "We deliver the goods. Literally.",
+  "approach": "literal",
+  "notes": "The idiom 'deliver the goods' operates identically in British English, preserving the clever double meaning regarding grocery delivery without any need for localisation."
+}

@@ -1,0 +1,13 @@
+{
+  "scenario": "M7",
+  "lang": "ar_sa",
+  "model": "allam",
+  "message": "أرسلتوا بسكوت فيه زبدة فول سوداني بدال العادي، وولدي عنده حساسية مكسرات وأكل وحدة",
+  "raw": "```json\n{\n  \"intent\": \"wrong_item\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"Customer received wrong item with potential health risk.\"\n}\n```",
+  "intent": "wrong_item",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "Customer received wrong item with potential health risk."
+}

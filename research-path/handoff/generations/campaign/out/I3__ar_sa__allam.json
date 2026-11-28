@@ -1,0 +1,12 @@
+{
+  "line": "I3",
+  "market": "ar_sa",
+  "model": "allam",
+  "source": "Bring home the bacon with zero fees.",
+  "raw": "{\n  \"literal\": \"خذ النقود إلى المنزل بدون رسوم.\",\n  \"adaptation\": \"احصل على نقودك بدون رسوم.\",\n  \"back_translation\": \"Get your money without fees.\",\n  \"approach\": \"literal\",\n  \"notes\": \"بسبب الثقافة، تجنبنا استخدام كلمة 'bacon'\"\n}",
+  "literal": "خذ النقود إلى المنزل بدون رسوم.",
+  "adaptation": "احصل على نقودك بدون رسوم.",
+  "back_translation": "Get your money without fees.",
+  "approach": "literal",
+  "notes": "بسبب الثقافة، تجنبنا استخدام كلمة 'bacon'"
+}

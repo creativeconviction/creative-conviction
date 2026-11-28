@@ -1,0 +1,12 @@
+{
+  "line": "C2",
+  "market": "ar_eg",
+  "model": "deepseek",
+  "source": "Happy hour: 2-for-1 drinks from 5 to 7pm.",
+  "raw": "{\n  \"literal\": \"ساعة السعادة: مشروبين بسعر واحد من الساعة 5 إلى 7 مساءً\",\n  \"adaptation\": \"عرض Happy Hour: اشتري مشروب واحصل على الثاني مجانًا من ٥ إلى ٧ مساءً\",\n  \"back_translation\": \"Happy Hour offer: buy one drink and get the second free from 5 to 7 PM\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Kept 'Happy Hour' in English as it's widely recognized in urban Egypt, and avoided specifying alcohol by using the generic 'مشروب' (drink) to ensure cultural appropriateness.\"\n}",
+  "literal": "ساعة السعادة: مشروبين بسعر واحد من الساعة 5 إلى 7 مساءً",
+  "adaptation": "عرض Happy Hour: اشتري مشروب واحصل على الثاني مجانًا من ٥ إلى ٧ مساءً",
+  "back_translation": "Happy Hour offer: buy one drink and get the second free from 5 to 7 PM",
+  "approach": "adapted",
+  "notes": "Kept 'Happy Hour' in English as it's widely recognized in urban Egypt, and avoided specifying alcohol by using the generic 'مشروب' (drink) to ensure cultural appropriateness."
+}

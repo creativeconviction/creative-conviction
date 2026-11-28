@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Doha",
+  "s": 2,
+  "prompt_lang": "en",
+  "city": "Doha",
+  "target_region": "Gulf",
+  "target_city_code": "DOH",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Doha. Write marketing copy for it in Qatari Arabic, the way people in Doha actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "model": "allam",
+  "id": "C__Doha__allam__s2",
+  "model_id": "humain-ai/ALLaM-7B-Instruct-preview",
+  "output": "#خليج_واحد_مخدمتك\n\n## شعار قريب\nما أصبحنا اليوم بغير حاجة لـ (قريب)! هانا هنه هنا لكثرررتك في أي وقت، تعال شوف تميزنا وشا يجعلنا أقرب منك بنفسك.\n\n## إعلانات انستغرام\n1. قعقوع السوبر ماركت، مثل رحت الريال.. بس بدون ما تروح!\n2. قريب.. طعام مغروس من قلب قلبك، مو من قلب المطبخ!\n3. ما ننزل طلبيات إلا بسبب، تجي ونزبط على طلبك بالضبط!\n\n## إشعار دفع\nدلالك علينا، دغق هادا طلبك من قريب، حياك سلم على القلب، شف الجايات إن شاء الله!",
+  "at": "2026-11-28T00:49:47.543288+00:00"
+}

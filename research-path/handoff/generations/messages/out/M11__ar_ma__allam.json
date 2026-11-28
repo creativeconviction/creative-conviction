@@ -1,0 +1,13 @@
+{
+  "scenario": "M11",
+  "lang": "ar_ma",
+  "model": "allam",
+  "message": "بصراحة هادي آخر مرة نطلب منكم، كل سيمانة كاين شي مشكل",
+  "raw": "```json\n{\n  \"intent\": \"general_complaint\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": \"true\",\n  \"churn_risk\": \"true\",\n  \"summary\": \"The customer is unhappy and likely to cancel their subscription.\"\n}\n```",
+  "intent": "general_complaint",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": "true",
+  "churn_risk": "true",
+  "summary": "The customer is unhappy and likely to cancel their subscription."
+}

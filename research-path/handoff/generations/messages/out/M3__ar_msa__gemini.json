@@ -1,0 +1,13 @@
+{
+  "scenario": "M3",
+  "lang": "ar_msa",
+  "model": "gemini",
+  "message": "يا لها من خدمة رائعة، تأخير ساعتين فقط مرة أخرى 👏👏",
+  "raw": "{\n  \"intent\": \"late_delivery\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": true,\n  \"churn_risk\": true,\n  \"summary\": \"The customer is sarcastically complaining about their grocery delivery being two hours late yet again.\"\n}",
+  "intent": "late_delivery",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": true,
+  "churn_risk": true,
+  "summary": "The customer is sarcastically complaining about their grocery delivery being two hours late yet again."
+}

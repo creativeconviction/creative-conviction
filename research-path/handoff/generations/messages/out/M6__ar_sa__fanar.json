@@ -1,0 +1,13 @@
+{
+  "scenario": "M6",
+  "lang": "ar_sa",
+  "model": "fanar",
+  "message": "تكفون ألغوا طلبي الحين، طلبته على عنوان غلط",
+  "raw": "{\n\"intent\": \"cancel_order\",\n\"sentiment\": \"negative\",\n\"urgency\": \"high\",\n\"sarcasm\": false,\n\"churn_risk\": true,\n\"summary\": \"Request to cancel an order due to incorrect address.\"\n}",
+  "intent": "cancel_order",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Request to cancel an order due to incorrect address."
+}

@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لوحة تحكم قريب</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #5b4cf0;
+      --primary-dark: #4638d8;
+      --primary-light: #eeecff;
+      --background: #f5f6fa;
+      --surface: #ffffff;
+      --text: #1d2030;
+      --muted: #7b8094;
+      --border: #e9eaf0;
+      --green: #1faa73;
+      --green-bg: #e8f8f1;
+      --red: #e65353;
+      --red-bg: #fff0f0;
+      --orange: #e99b31;
+      --orange-bg: #fff5e7;
+      --blue: #3f83e9;
+      --blue-bg: #edf5ff;
+      --sidebar-width: 252px;
+      --radius: 18px;
+      --shadow: 0 8px 30px rgba(34, 39, 75, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      background: var(--background);
+      color: var(--text);
+      font-family: "Tajawal", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    svg {
+      display: block;
+    }
+
+    .sidebar {
+      position: fixed;
+      inset: 0 0 0 auto;
+      z-index: 50;
+      display: flex;
+      width: min(82vw, var(--sidebar-width));
+      flex-direction: column;
+      padding: 24px 16px;
+      overflow-y: auto;
+      background: #17162b;
+      color: #fff;
+      transform: translateX(105%);
+      transition: transform 0.25s ease;
+    }
+
+    .sidebar.open {
+      transform: translateX(0);
+    }
+
+    .sidebar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 8px 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 41px;
+      height: 41px;
+      place-items: center;
+      border-radius: 13px;
+      background: linear-gradient(145deg, #786cf8, #5143e5);
+      box-shadow: 0 8px 20px rgba(91, 76, 240, 0.34);
+    }
+
+    .brand-name {
+      font-size: 23px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .close-menu {
+      display: grid;
+      width: 36px;
+      height: 36px;
+      place-items: center;
+      padding: 0;
+      border: 0;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+    }
+
+    .nav-label {
+      margin: 6px 13px 10px;
+      color: #7f7d9a;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .nav-list {
+      display: grid;
+      gap: 7px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .nav-link {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      min-height: 48px;
+      padding: 11px 14px;
+      border-radius: 13px;
+      color: #aaa8be;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.2s ease;
+    }
+
+    .nav-link:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .nav-link.active {
+      color: #fff;
+      background: linear-gradient(100deg, #5d4ef1, #6d60f6);
+      box-shadow: 0 10px 22px rgba(38, 31, 116, 0.35);
+    }
+
+    .nav-link svg {
+      width: 21px;
+      height: 21px;
+      flex: 0 0 auto;
+    }
+
+    .nav-count {
+      margin-inline-start: auto;
+      min-width: 23px;
+      padding: 3px 7px;
+      border-radius: 20px;
+      background: #f16868;
+      color: white;
+      font-size: 11px;
+      line-height: 1.3;
+      text-align: center;
+    }
+
+    .sidebar-spacer {
+      flex: 1;
+      min-height: 30px;
+    }
+
+    .store-card {
+      padding: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.055);
+    }
+
+    .store-card strong,
+    .store-card span {
+      display: block;
+    }
+
+    .store-card strong {
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+
+    .store-card span {
+      color: #aaa8be;
+      font-size: 12px;
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      visibility: hidden;
+      background: rgba(13, 12, 27, 0.46);
+      opacity: 0;
+      transition: 0.25s ease;
+    }
+
+    .overlay.visible {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .app {
+      min-height: 100vh;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      display: flex;
+      min-height: 72px;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(227, 228, 235, 0.85);
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+    }
+
+    .menu-button,
+    .icon-button {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      flex: 0 0 auto;
+      place-items: center;
+      padding: 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #fff;
+      color: #555a6f;
+    }
+
+    .menu-button svg,
+    .icon-button svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .search {
+      position: relative;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .search svg {
+      position: absolute;
+      top: 50%;
+      right: 13px;
+      width: 18px;
+      height: 18px;
+      color: #989bad;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    .search input {
+      width: 100%;
+      height: 42px;
+      padding: 0 40px 0 12px;
+      outline: 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #f8f9fb;
+      color: var(--text);
+      font-size: 13px;
+      transition: 0.2s ease;
+    }
+
+    .search input:focus {
+      border-color: #afa8fa;
+      background: #fff;
+      box-shadow: 0 0 0 3px var(--primary-light);
+    }
+
+    .notification {
+      position: relative;
+    }
+
+    .notification::after {
+      position: absolute;
+      top: 8px;
+      right: 9px;
+      width: 7px;
+      height: 7px;
+      border: 2px solid white;
+      border-radius: 50%;
+      background: #f05d5d;
+      content: "";
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .avatar {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      flex: 0 0 auto;
+      place-items: center;
+      overflow: hidden;
+      border-radius: 13px;
+      background: linear-gradient(145deg, #dfd9ff, #b7adff);
+      color: #4c3cce;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .profile-copy {
+      display: none;
+      line-height: 1.3;
+    }
+
+    .profile-copy strong,
+    .profile-copy span {
+      display: block;
+      white-space: nowrap;
+    }
+
+    .profile-copy strong {
+      font-size: 13px;
+    }
+
+    .profile-copy span {
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .content {
+      width: 100%;
+      max-width: 1540px;
+      margin: 0 auto;
+      padding: 22px 14px 32px;
+    }
+
+    .page-heading {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .page-heading h1 {
+      margin: 0 0 4px;
+      font-size: 24px;
+      letter-spacing: -0.6px;
+    }
+
+    .page-heading p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .date-filter {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 12px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--surface);
+      color: #555a6d;
+      font-size: 12px;
+      font-weight: 600;
+      box-shadow: 0 3px 12px rgba(33, 38, 70, 0.03);
+    }
+
+    .date-filter svg {
+      width: 17px;
+      height: 17px;
+      color: var(--primary);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .stat-card {
+      position: relative;
+      min-width: 0;
+      padding: 15px 13px;
+      overflow: hidden;
+      border: 1px solid rgba(230, 231, 238, 0.9);
+      border-radius: 16px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .stat-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .stat-icon {
+      display: grid;
+      width: 38px;
+      height: 38px;
+      flex: 0 0 auto;
+      place-items: center;
+      border-radius: 12px;
+    }
+
+    .stat-icon svg {
+      width: 19px;
+      height: 19px;
+    }
+
+    .stat-icon.purple {
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .stat-icon.green {
+      background: var(--green-bg);
+      color: var(--green);
+    }
+
+    .stat-icon.blue {
+      background: var(--blue-bg);
+      color: var(--blue);
+    }
+
+    .stat-icon.orange {
+      background: var(--orange-bg);
+      color: var(--orange);
+    }
+
+    .stat-title {
+      margin: 12px 0 6px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .stat-value {
+      display: flex;
+      min-width: 0;
+      align-items: baseline;
+      gap: 4px;
+      margin: 0;
+      color: var(--text);
+      font-size: 21px;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.4px;
+      white-space: nowrap;
+    }
+
+    .stat-value small {
+      color: #656a7d;
+      font-size: 10px;
+      font-weight: 600;
+    }
+
+    .trend {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      padding: 4px 6px;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .trend svg {
+      width: 11px;
+      height: 11px;
+    }
+
+    .trend.up {
+      background: var(--green-bg);
+      color: var(--green);
+    }
+
+    .trend.down {
+      background: var(--red-bg);
+      color: var(--red);
+    }
+
+    .stat-note {
+      margin: 9px 0 0;
+      color: #a0a3b1;
+      font-size: 10px;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .panel {
+      min-width: 0;
+      border: 1px solid rgba(230, 231, 238, 0.9);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 17px 17px 10px;
+    }
+
+    .panel-header h2 {
+      margin: 0 0 4px;
+      font-size: 16px;
+    }
+
+    .panel-header p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .chart-legend {
+      display: flex;
+      flex: 0 0 auto;
+      align-items: center;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .legend-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 3px;
+      background: var(--primary);
+    }
+
+    .chart-wrap {
+      padding: 4px 8px 14px;
+      overflow: hidden;
+    }
+
+    .chart-wrap svg {
+      width: 100%;
+      min-height: 235px;
+      font-family: "Tajawal", sans-serif;
+    }
+
+    .table-panel {
+      overflow: hidden;
+    }
+
+    .view-all {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .view-all svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .table-scroll {
+      overflow-x: auto;
+      border-top: 1px solid var(--border);
+      scrollbar-width: thin;
+    }
+
+    table {
+      width: 100%;
+      min-width: 720px;
+      border-collapse: collapse;
+      text-align: right;
+    }
+
+    th,
+    td {
+      padding: 14px 17px;
+      border-bottom: 1px solid #f0f1f5;
+      white-space: nowrap;
+    }
+
+    th {
+      background: #fafafd;
+      color: #777c8e;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    td {
+      color: #4a4f61;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: 0;
+    }
+
+    tbody tr:hover {
+      background: #fbfbfe;
+    }
+
+    .sort-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      font-weight: inherit;
+    }
+
+    .sort-arrows {
+      display: inline-grid;
+      gap: 0;
+      color: #b0b3c0;
+    }
+
+    .sort-arrows svg {
+      width: 10px;
+      height: 8px;
+    }
+
+    .order-number {
+      color: var(--primary);
+      font-weight: 800;
+    }
+
+    .customer {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .customer-avatar {
+      display: grid;
+      width: 31px;
+      height: 31px;
+      flex: 0 0 auto;
+      place-items: center;
+      border-radius: 10px;
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .customer-avatar.c1 { background: #edeaff; color: #5b4cf0; }
+    .customer-avatar.c2 { background: #e7f6ff; color: #2783bd; }
+    .customer-avatar.c3 { background: #fff1e5; color: #c97824; }
+    .customer-avatar.c4 { background: #e5f8ef; color: #23815a; }
+    .customer-avatar.c5 { background: #ffecef; color: #c84f64; }
+
+    .amount {
+      color: var(--text);
+      font-weight: 800;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 9px;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .status::before {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      content: "";
+    }
+
+    .status.completed {
+      background: var(--green-bg);
+      color: #17835a;
+    }
+
+    .status.completed::before {
+      background: var(--green);
+    }
+
+    .status.preparing {
+      background: var(--orange-bg);
+      color: #a76a17;
+    }
+
+    .status.preparing::before {
+      background: var(--orange);
+    }
+
+    .status.shipping {
+      background: var(--blue-bg);
+      color: #286eb8;
+    }
+
+    .status.shipping::before {
+      background: var(--blue);
+    }
+
+    .status.cancelled {
+      background: var(--red-bg);
+      color: #bc4141;
+    }
+
+    .status.cancelled::before {
+      background: var(--red);
+    }
+
+    @media (min-width: 600px) {
+      .topbar {
+        padding-inline: 22px;
+      }
+
+      .content {
+        padding: 28px 22px 40px;
+      }
+
+      .profile-copy {
+        display: block;
+      }
+
+      .page-heading {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .stats-grid {
+        gap: 14px;
+      }
+
+      .stat-card {
+        padding: 18px;
+      }
+
+      .stat-title {
+        font-size: 12px;
+      }
+
+      .stat-value {
+        font-size: 26px;
+      }
+
+      .chart-wrap {
+        padding-inline: 16px;
+      }
+    }
+
+    @media (min-width: 900px) {
+      .sidebar {
+        width: var(--sidebar-width);
+        transform: translateX(0);
+      }
+
+      .close-menu,
+      .menu-button,
+      .overlay {
+        display: none;
+      }
+
+      .app {
+        margin-right: var(--sidebar-width);
+      }
+
+      .topbar {
+        min-height: 78px;
+        padding-inline: 28px;
+      }
+
+      .search {
+        max-width: 440px;
+      }
+
+      .search input {
+        height: 44px;
+      }
+
+      .content {
+        padding: 30px 28px 44px;
+      }
+
+      .page-heading h1 {
+        font-size: 28px;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        margin-bottom: 20px;
+      }
+
+      .dashboard-grid {
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.5fr);
+        align-items: stretch;
+      }
+
+      .chart-panel {
+        grid-column: 1 / -1;
+      }
+
+      .table-panel {
+        grid-column: 1 / -1;
+      }
+
+      .panel-header {
+        padding: 21px 22px 13px;
+      }
+
+      .panel-header h2 {
+        font-size: 18px;
+      }
+
+      .chart-wrap svg {
+        min-height: 300px;
+      }
+    }
+
+    @media (min-width: 1280px) {
+      .dashboard-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .chart-panel,
+      .table-panel {
+        grid-column: auto;
+      }
+
+      .stat-card {
+        padding: 20px;
+      }
+
+      .stat-icon {
+        width: 43px;
+        height: 43px;
+      }
+
+      .stat-value {
+        font-size: 28px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <aside class="sidebar" id="sidebar" aria-label="القائمة الرئيسية">
+    <div class="sidebar-header">
+      <a class="brand" href="#">
+        <span class="brand-mark">
+          <svg width="25" height="25" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M5.5 10.5V18.5H18.5V10.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
+            <path d="M4 10.5L6.1 5.5H17.9L20 10.5C20 12 18.9 13 17.5 13C16.4 13 15.5 12.3 15.2 11.3C14.9 12.3 14 13 12.9 13C11.8 13 10.9 12.3 10.6 11.3C10.3 12.3 9.4 13 8.3 13C6.9 13 5.8 12 5.8 10.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="brand-name">قريب</span>
+      </a>
+      <button class="close-menu" id="closeMenu" type="button" aria-label="إغلاق القائمة">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <span class="nav-label">إدارة المتجر</span>
+    <nav>
+      <ul class="nav-list">
+        <li>
+          <a class="nav-link active" href="#">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M4 13H10V20H4V13ZM14 4H20V20H14V4ZM4 4H10V9H4V4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            </svg>
+            <span>لوحة التحكم</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link" href="#">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M7 3V6M17 3V6M4 9H20M6 5H18C19.1 5 20 5.9 20 7V19C20 20.1 19.1 21 18 21H6C4.9 21 4 20.1 4 19V7C4 5.9 4.9 5 6 5Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M8 13H12V17H8V13Z" stroke="currentColor" stroke-width="1.8"/>
+            </svg>
+            <span>الطلبات</span>
+            <span class="nav-count">12</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link" href="#">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M4 8.5L12 4L20 8.5L12 13L4 8.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M4 13L12 17.5L20 13M4 17.5L12 22L20 17.5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            </svg>
+            <span>المنتجات</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link" href="#">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M16 21V19C16 16.8 14.2 15 12 15H7C4.8 15 3 16.8 3 19V21M9.5 11C11.4 11 13 9.4 13 7.5C13 5.6 11.4 4 9.5 4C7.6 4 6 5.6 6 7.5C6 9.4 7.6 11 9.5 11ZM16 11L18 13L22 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>العملاء</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link" href="#">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M4 19V11M10 19V5M16 19V9M22 19H2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+            <span>التقارير</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <span class="nav-label" style="margin-top: 24px;">الإعدادات</span>
+    <nav>
+      <ul class="nav-list">
+        <li>
+          <a class="nav-link" href="#">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 15.5C13.9 15.5 15.5 13.9 15.5 12C15.5 10.1 13.9 8.5 12 8.5C10.1 8.5 8.5 10.1 8.5 12C8.5 13.9 10.1 15.5 12 15.5Z" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M19.4 15C19.8 15.8 19.7 16.8 19 17.5L17.5 19C16.8 19.7 15.8 19.8 15 19.4L13.9 18.8C13.3 19 12.7 19.1 12 19.1C11.3 19.1 10.7 19 10.1 18.8L9 19.4C8.2 19.8 7.2 19.7 6.5 19L5 17.5C4.3 16.8 4.2 15.8 4.6 15L5.2 13.9C5 13.3 4.9 12.7 4.9 12C4.9 11.3 5 10.7 5.2 10.1L4.6 9C4.2 8.2 4.3 7.2 5 6.5L6.5 5C7.2 4.3 8.2 4.2 9 4.6L10.1 5.2C10.7 5 11.3 4.9 12 4.9C12.7 4.9 13.3 5 13.9 5.2L15 4.6C15.8 4.2 16.8 4.3 17.5 5L19 6.5C19.7 7.2 19.8 8.2 19.4 9L18.8 10.1C19 10.7 19.1 11.3 19.1 12C19.1 12.7 19 13.3 18.8 13.9L19.4 15Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            </svg>
+            <span>إعدادات المتجر</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link" href="#">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M9.2 9C9.5 7.8 10.5 7 12 7C13.7 7 15 8 15 9.5C15 11.5 12 11.5 12 14M12 17H12.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+            <span>المساعدة</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-spacer"></div>
+    <div class="store-card">
+      <strong>متجر دار القهوة</strong>
+      <span>الفرع الرئيسي · الرياض</span>
+    </div>
+  </aside>
+
+  <div class="overlay" id="overlay"></div>
+
+  <div class="app">
+    <header class="topbar">
+      <button class="menu-button" id="openMenu" type="button" aria-label="فتح القائمة">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M4 7H20M4 12H20M4 17H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <div class="search">
+        <svg viewBox="0 0 24 24" fill="none">
+          <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/>
+          <path d="M16.2 16.2L21 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <input type="search" placeholder="ابحث عن طلب أو عميل..." aria-label="البحث">
+      </div>
+
+      <button class="icon-button notification" type="button" aria-label="الإشعارات">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M18 8C18 6.4 17.4 4.9 16.2 3.8C15.1 2.6 13.6 2 12 2C10.4 2 8.9 2.6 7.8 3.8C6.6 4.9 6 6.4 6 8C6 15 3 15 3 17H21C21 15 18 15 18 8ZM10 21H14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <div class="profile">
+        <div class="avatar" aria-hidden="true">م ع</div>
+        <div class="profile-copy">
+          <strong>محمد العتيبي</strong>
+          <span>صاحب المتجر</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="content">
+      <section class="page-heading">
+        <div>
+          <h1>مرحباً محمد 👋</h1>
+          <p>إليك ملخص أداء متجرك اليوم.</p>
+        </div>
+        <button class="date-filter" type="button">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M7 3V6M17 3V6M4 9H20M6 5H18C19.1 5 20 5.9 20 7V19C20 20.1 19.1 21 18 21H6C4.9 21 4 20.1 4 19V7C4 5.9 4.9 5 6 5Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          اليوم، ٢٤ يونيو ٢٠٢٤
+        </button>
+      </section>
+
+      <section class="stats-grid" aria-label="مؤشرات الأداء">
+        <article class="stat-card">
+          <div class="stat-top">
+            <div class="stat-icon purple">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M6 7H18L19 21H5L6 7Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                <path d="M9 9V6C9 4.3 10.3 3 12 3C13.7 3 15 4.3 15 6V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span class="trend up">
+              <svg viewBox="0 0 12 12" fill="none">
+                <path d="M6 10V2M2.5 5.5L6 2L9.5 5.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              ١٢٫٥٪
+            </span>
+          </div>
+          <p class="stat-title">طلبات اليوم</p>
+          <p class="stat-value">١٢٨</p>
+          <p class="stat-note">مقارنةً بالأمس</p>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-top">
+            <div class="stat-icon green">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M4 7H20V19H4V7Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                <path d="M7 7V5H17V7M12 11V15M10 13H14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span class="trend up">
+              <svg viewBox="0 0 12 12" fill="none">
+                <path d="M6 10V2M2.5 5.5L6 2L9.5 5.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              ٨٫٢٪
+            </span>
+          </div>
+          <p class="stat-title">الإيرادات</p>
+          <p class="stat-value">١٨٬٤٢٠ <small>ر.س</small></p>
+          <p class="stat-note">مقارنةً بالأمس</p>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-top">
+            <div class="stat-icon blue">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M3 4H5L7.2 15H18.3L21 8H6.2M9 20C9.6 20 10 19.6 10 19C10 18.4 9.6 18 9 18C8.4 18 8 18.4 8 19C8 19.6 8.4 20 9 20ZM17 20C17.6 20 18 19.6 18 19C18 18.4 17.6 18 17 18C16.4 18 16 18.4 16 19C16 19.6 16.4 20 17 20Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <span class="trend up">
+              <svg viewBox="0 0 12 12" fill="none">
+                <path d="M6 10V2M2.5 5.5L6 2L9.5 5.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              ٣٫٤٪
+            </span>
+          </div>
+          <p class="stat-title">متوسط السلة</p>
+          <p class="stat-value">١٤٣٫٩ <small>ر.س</small></p>
+          <p class="stat-note">مقارنةً بالأمس</p>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-top">
+            <div class="stat-icon orange">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M8.5 8.5L15.5 15.5M15.5 8.5L8.5 15.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span class="trend down">
+              <svg viewBox="0 0 12 12" fill="none">
+                <path d="M6 2V10M2.5 6.5L6 10L9.5 6.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              ١٫١٪
+            </span>
+          </div>
+          <p class="stat-title">نسبة الإلغاء</p>
+          <p class="stat-value">٢٫٤٪</p>
+          <p class="stat-note">انخفاض عن الأمس</p>
+        </article>
+      </section>
+
+      <section class="dashboard-grid">
+        <article class="panel chart-panel">
+          <div class="panel-header">
+            <div>
+              <h2>مبيعات آخر ٧ أيام</h2>
+              <p>إجمالي المبيعات اليومية بالريال السعودي</p>
+            </div>
+            <div class="chart-legend">
+              <span class="legend-dot"></span>
+              المبيعات
+            </div>
+          </div>
+
+          <div class="chart-wrap">
+            <svg viewBox="0 0 900 310" role="img" aria-labelledby="chartTitle chartDesc" preserveAspectRatio="none">
+              <title id="chartTitle">رسم بياني لمبيعات آخر سبعة أيام</title>
+              <desc id="chartDesc">أعمدة توضح المبيعات من يوم السبت حتى الجمعة</desc>
+              <defs>
+                <linearGradient id="barGradient" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#6d5ff5"/>
+                  <stop offset="100%" stop-color="#5143df"/>
+                </linearGradient>
+                <filter id="barShadow" x="-30%" y="-20%" width="160%" height="150%">
+                  <feDropShadow dx="0" dy="6" stdDeviation="5" flood-color="#5b4cf0" flood-opacity=".18"/>
+                </filter>
+              </defs>
+
+              <g stroke="#ececf2" stroke-width="1">
+                <line x1="68" y1="35" x2="875" y2="35"/>
+                <line x1="68" y1="90" x2="875" y2="90"/>
+                <line x1="68" y1="145" x2="875" y2="145"/>
+                <line x1="68" y1="200" x2="875" y2="200"/>
+                <line x1="68" y1="255" x2="875" y2="255"/>
+              </g>
+
+              <g fill="#9699aa" font-size="12" text-anchor="end">
+                <text x="55" y="39">٤٠ ألف</text>
+                <text x="55" y="94">٣٠ ألف</text>
+                <text x="55" y="149">٢٠ ألف</text>
+                <text x="55" y="204">١٠ آلاف</text>
+                <text x="55" y="259">٠</text>
+              </g>
+
+              <g fill="#dcd9ff">
+                <rect x="93" y="161" width="65" height="94" rx="10"/>
+                <rect x="205" y="116" width="65" height="139" rx="10"/>
+                <rect x="317" y="139" width="65" height="116" rx="10"/>
+                <rect x="429" y="79" width="65" height="176" rx="10"/>
+                <rect x="541" y="100" width="65" height="155" rx="10"/>
+                <rect x="653" y="62" width="65" height="193" rx="10"/>
+              </g>
+
+              <g fill="url(#barGradient)" filter="url(#barShadow)">
+                <rect x="765" y="42" width="65" height="213" rx="10"/>
+              </g>
+
+              <g fill="#6f7386" font-size="13" text-anchor="middle">
+                <text x="125" y="285">السبت</text>
+                <text x="237" y="285">الأحد</text>
+                <text x="349" y="285">الاثنين</text>
+                <text x="461" y="285">الثلاثاء</text>
+                <text x="573" y="285">الأربعاء</text>
+                <text x="685" y="285">الخميس</text>
+                <text x="797" y="285" fill="#5b4cf0" font-weight="700">الجمعة</text>
+              </g>
+
+              <g>
+                <rect x="748" y="6" width="99" height="28" rx="9" fill="#1d2030"/>
+                <path d="M793 34L798 40L803 34" fill="#1d2030"/>
+                <text x="797" y="25" fill="white" font-size="11" font-weight="700" text-anchor="middle">٣٨٬٧٥٠ ر.س</text>
+              </g>
+            </svg>
+          </div>
+        </article>
+
+        <article class="panel table-panel">
+          <div class="panel-header">
+            <div>
+              <h2>أحدث الطلبات</h2>
+              <p>آخر الطلبات الواردة إلى متجرك</p>
+            </div>
+            <a class="view-all" href="#">
+              عرض الكل
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M15 5L8 12L15 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>
+                    <button class="sort-button" type="button">
+                      رقم الطلب
+                      <span class="sort-arrows">
+                        <svg viewBox="0 0 10 8"><path d="M5 1L9 6H1L5 1Z" fill="currentColor"/></svg>
+                        <svg viewBox="0 0 10 8"><path d="M5 7L1 2H9L5 7Z" fill="currentColor"/></svg>
+                      </span>
+                    </button>
+                  </th>
+                  <th>
+                    <button class="sort-button" type="button">
+                      العميل
+                      <span class="sort-arrows">
+                        <svg viewBox="0 0 10 8"><path d="M5 1L9 6H1L5 1Z" fill="currentColor"/></svg>
+                        <svg viewBox="0 0 10 8"><path d="M5 7L1 2H9L5 7Z" fill="currentColor"/></svg>
+                      </span>
+                    </button>
+                  </th>
+                  <th>
+                    <button class="sort-button" type="button">
+                      التاريخ
+                      <span class="sort-arrows">
+                        <svg viewBox="0 0 10 8"><path d="M5 1L9 6H1L5 1Z" fill="currentColor"/></svg>
+                        <svg viewBox="0 0 10 8"><path d="M5 7L1 2H9L5 7Z" fill="currentColor"/></svg>
+                      </span>
+                    </button>
+                  </th>
+                  <th>
+                    <button class="sort-button" type="button">
+                      المبلغ
+                      <span class="sort-arrows">
+                        <svg viewBox="0 0 10 8"><path d="M5 1L9 6H1L5 1Z" fill="currentColor"/></svg>
+                        <svg viewBox="0 0 10 8"><path d="M5 7L1 2H9L5 7Z" fill="currentColor"/></svg>
+                      </span>
+                    </button>
+                  </th>
+                  <th>
+                    <button class="sort-button" type="button">
+                      الحالة
+                      <span class="sort-arrows">
+                        <svg viewBox="0 0 10 8"><path d="M5 1L9 6H1L5 1Z" fill="currentColor"/></svg>
+                        <svg viewBox="0 0 10 8"><path d="M5 7L1 2H9L5 7Z" fill="currentColor"/></svg>
+                      </span>
+                    </button>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="order-number">#QR-1048</td>
+                  <td>
+                    <div class="customer">
+                      <span class="customer-avatar c1">س م</span>
+                      <span>سارة محمد</span>
+                    </div>
+                  </td>
+                  <td>اليوم، ١٠:٣٥ ص</td>
+                  <td class="amount">٢٨٤٫٠٠ ر.س</td>
+                  <td><span class="status completed">مكتمل</span></td>
+                </tr>
+                <tr>
+                  <td class="order-number">#QR-1047</td>
+                  <td>
+                    <div class="customer">
+                      <span class="customer-avatar c2">ع أ</span>
+                      <span>عبدالله أحمد</span>
+                    </div>
+                  </td>
+                  <td>اليوم، ١٠:١٢ ص</td>
+                  <td class="amount">١٥٧٫٥٠ ر.س</td>
+                  <td><span class="status preparing">قيد التجهيز</span></td>
+                </tr>
+                <tr>
+                  <td class="order-number">#QR-1046</td>
+                  <td>
+                    <div class="customer">
+                      <span class="customer-avatar c3">ن خ</span>
+                      <span>نورة خالد</span>
+                    </div>
+                  </td>
+                  <td>اليوم، ٩:٤٥ ص</td>
+                  <td class="amount">٣٩٢٫٠٠ ر.س</td>
+                  <td><span class="status shipping">في الطريق</span></td>
+                </tr>
+                <tr>
+                  <td class="order-number">#QR-1045</td>
+                  <td>
+                    <div class="customer">
+                      <span class="customer-avatar c4">ف ع</span>
+                      <span>فهد العتيبي</span>
+                    </div>
+                  </td>
+                  <td>اليوم، ٩:١٨ ص</td>
+                  <td class="amount">١١٩٫٧٥ ر.س</td>
+                  <td><span class="status completed">مكتمل</span></td>
+                </tr>
+                <tr>
+                  <td class="order-number">#QR-1044</td>
+                  <td>
+                    <div class="customer">
+                      <span class="customer-avatar c5">ر س</span>
+                      <span>ريم سالم</span>
+                    </div>
+                  </td>
+                  <td>اليوم، ٨:٥٦ ص</td>
+                  <td class="amount">٢٠٨٫٠٠ ر.س</td>
+                  <td><span class="status cancelled">ملغي</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+    const openMenu = document.getElementById("openMenu");
+    const closeMenu = document.getElementById("closeMenu");
+
+    function setMenu(open) {
+      sidebar.classList.toggle("open", open);
+      overlay.classList.toggle("visible", open);
+      document.body.style.overflow = open ? "hidden" : "";
+      openMenu.setAttribute("aria-expanded", String(open));
+    }
+
+    openMenu.addEventListener("click", () => setMenu(true));
+    closeMenu.addEventListener("click", () => setMenu(false));
+    overlay.addEventListener("click", () => setMenu(false));
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") setMenu(false);
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth >= 900) setMenu(false);
+    });
+  </script>
+</body>
+</html>

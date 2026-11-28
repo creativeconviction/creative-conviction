@@ -1,0 +1,13 @@
+{
+  "scenario": "M12",
+  "lang": "en",
+  "model": "gpt",
+  "message": "thanks for the fast delivery! but the bread was stale and the tomatoes were squashed",
+  "raw": "{\"intent\":\"quality_issue\",\"sentiment\":\"mixed\",\"urgency\":\"medium\",\"sarcasm\":false,\"churn_risk\":false,\"summary\":\"The customer appreciated the fast delivery but reported stale bread and squashed tomatoes.\"}",
+  "intent": "quality_issue",
+  "sentiment": "mixed",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer appreciated the fast delivery but reported stale bread and squashed tomatoes."
+}

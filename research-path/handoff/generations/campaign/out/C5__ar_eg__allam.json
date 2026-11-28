@@ -1,0 +1,12 @@
+{
+  "line": "C5",
+  "market": "ar_eg",
+  "model": "allam",
+  "source": "Your Friday night date starts here.",
+  "raw": "{\n  \"literal\": \"ليلة الجمعة تبدأ هنا الموعد\",\n  \"adaptation\": \"اكتشف شريك حياتك مع (اسم التطبيق) - بداية قصص حب جديدة.\",\n  \"back_translation\": \"Your Friday night date starts here. Find the love of your life with (name of app).\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Changed the focus from 'date' to 'شريك حياتك' (love partner) to align with cultural norms, and replaced 'Friday night' with an Egyptian-specific catchphrase 'بدايات جديدة' to make the line more relatable and exciting.\"\n}",
+  "literal": "ليلة الجمعة تبدأ هنا الموعد",
+  "adaptation": "اكتشف شريك حياتك مع (اسم التطبيق) - بداية قصص حب جديدة.",
+  "back_translation": "Your Friday night date starts here. Find the love of your life with (name of app).",
+  "approach": "adapted",
+  "notes": "Changed the focus from 'date' to 'شريك حياتك' (love partner) to align with cultural norms, and replaced 'Friday night' with an Egyptian-specific catchphrase 'بدايات جديدة' to make the line more relatable and exciting."
+}

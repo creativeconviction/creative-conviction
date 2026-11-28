@@ -1,0 +1,13 @@
+{
+  "scenario": "M8",
+  "lang": "ar_eg",
+  "model": "saba",
+  "message": "اتخصم مني مرتين على نفس الأوردر، 450 جنيه مرتين من الكارت",
+  "raw": "```json\n{\n  \"intent\": \"billing_issue\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"Customer reports being charged twice for the same order, totaling 450 EGP.\"\n}\n```",
+  "intent": "billing_issue",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Customer reports being charged twice for the same order, totaling 450 EGP."
+}

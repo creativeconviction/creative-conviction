@@ -1,0 +1,12 @@
+{
+  "line": "C2",
+  "market": "en_gb",
+  "model": "saba",
+  "source": "Happy hour: 2-for-1 drinks from 5 to 7pm.",
+  "raw": "```json\n{\n  \"literal\": \"Happy hour: 2-for-1 drinks from 5 to 7pm.\",\n  \"adaptation\": \"Early evening offer: 2-for-1 cocktails from 5 to 7pm.\",\n  \"back_translation\": \"Early evening offer: 2-for-1 cocktails from 5 to 7pm.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Replaced 'happy hour' with 'early evening offer' as the term is less common in the UK and can sound overly American.\"\n}\n```",
+  "literal": "Happy hour: 2-for-1 drinks from 5 to 7pm.",
+  "adaptation": "Early evening offer: 2-for-1 cocktails from 5 to 7pm.",
+  "back_translation": "Early evening offer: 2-for-1 cocktails from 5 to 7pm.",
+  "approach": "adapted",
+  "notes": "Replaced 'happy hour' with 'early evening offer' as the term is less common in the UK and can sound overly American."
+}

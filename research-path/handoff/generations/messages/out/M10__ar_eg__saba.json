@@ -1,0 +1,13 @@
+{
+  "scenario": "M10",
+  "lang": "ar_eg",
+  "model": "saba",
+  "message": "بتوصلوا التجمع الخامس؟ وفيه حد أدنى للأوردر؟",
+  "raw": "```json\n{\n  \"intent\": \"question\",\n  \"sentiment\": \"neutral\",\n  \"urgency\": \"low\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"Customer is asking if the service delivers to Fifth Settlement and if there is a minimum order amount.\"\n}\n```",
+  "intent": "question",
+  "sentiment": "neutral",
+  "urgency": "low",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "Customer is asking if the service delivers to Fifth Settlement and if there is a minimum order amount."
+}

@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم قارب</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --info: #3b82f6;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --border: #e5e7eb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            direction: rtl;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text);
+            font-size: 1rem;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header Styles */
+        .top-bar {
+            background-color: #fff;
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            background-color: var(--bg-light);
+            border-radius: 0.5rem;
+            padding: 0.5rem 1rem;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .search-container input {
+            border: none;
+            background: transparent;
+            outline: none;
+            width: 100%;
+            padding: 0 0.5rem;
+            direction: ltr;
+        }
+
+        .search-container input::placeholder {
+            color: var(--text-light);
+        }
+
+        .search-container svg {
+            color: var(--text-light);
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .profile img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* Main Content Layout */
+        .main-content {
+            display: flex;
+            flex: 1;
+            gap: 1rem;
+            padding: 1rem;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            background-color: #fff;
+            border-radius: 0.5rem;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+            padding: 1.5rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            min-width: 80px;
+            width: 80px;
+        }
+
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .sidebar-nav li a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem;
+            text-decoration: none;
+            color: var(--text-light);
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar-nav li a.active,
+        .sidebar-nav li a:hover {
+            background-color: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+        }
+
+        .sidebar-nav li a svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .sidebar-nav li a span {
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* Main Panel */
+        .main-panel {
+            flex: 1;
+            background-color: #fff;
+            border-radius: 0.5rem;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .kpi-card {
+            background-color: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .kpi-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .kpi-label {
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+
+        .kpi-change {
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .kpi-change.pos {
+            color: var(--success);
+        }
+
+        .kpi-change.neg {
+            color: var(--danger);
+        }
+
+        .chart-container {
+            min-height: 200px;
+        }
+
+        .chart-container h3 {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            color: var(--text-light);
+        }
+
+        .sales-chart {
+            width: 100%;
+            height: 150px;
+        }
+
+        /* Orders Table */
+        .orders-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .orders-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .orders-table th {
+            padding: 0.75rem;
+            text-align: right;
+            border-bottom: 2px solid var(--border);
+            font-weight: 500;
+            color: var(--text-light);
+            font-size: 0.875rem;
+        }
+
+        .orders-table th.sortable {
+            cursor: pointer;
+        }
+
+        .orders-table th.sortable:hover {
+            color: var(--text);
+        }
+
+        .orders-table th.sort-asc:after {
+            content: " ↑";
+            color: var(--text-light);
+        }
+
+        .orders-table th.sort-desc:after {
+            content: " ↓";
+            color: var(--text-light);
+        }
+
+        .orders-table td {
+            padding: 1rem 0.75rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .orders-table tbody tr:hover {
+            background-color: rgba(37, 99, 235, 0.05);
+        }
+
+        .customer-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .customer-name {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .customer-email {
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .status-shipped {
+            background-color: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+        }
+
+        .status-delivered {
+            background-color: rgba(10, 104, 188, 0.1);
+            color: var(--info);
+        }
+
+        .status-canceled {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+        }
+
+        .status-pending {
+            background-color: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+        }
+
+        .status-badge.paid {
+            background-color: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+        }
+
+        /* Responsive Styles */
+        @media (min-width: 768px) {
+            .sidebar {
+                width: 250px;
+            }
+
+            .sidebar-nav {
+                flex-direction: row;
+                justify-content: space-around;
+            }
+
+            .sidebar-nav li a {
+                flex-direction: row;
+                gap: 0.75rem;
+            }
+
+            .sidebar-nav li a span {
+                font-size: 1rem;
+            }
+
+            .kpi-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                flex-direction: row;
+            }
+
+            .top-bar {
+                display: none; /* Hide top bar on desktop in favor of expanded sidebar */
+            }
+
+            .sidebar {
+                position: sticky;
+                top: 0;
+                height: 100vh;
+                min-height: 100vh;
+            }
+
+            .main-content {
+                padding: 1rem;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Top Bar for Mobile -->
+        <header class="top-bar">
+            <div class="search-container">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 12.7128 3.61162 14.2825 4.64841 15.5312L5.87868 16.7615C6.30921 17.1921 6.86328 17.5 7.4543 17.5C8.56604 17.5 9.5 16.566 9.5 15.4543C9.5 14.8633 9.21499 14.3093 8.78447 13.8787L11 11.6634L13.2155 13.8787C13.6907 14.3093 14.1367 14.71 14.5457 15.4543C15.7085 17.2426 17.9682 17.5 20 16.2462" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <input type="search" placeholder="ابحث عن شيء...">
+            </div>
+            <div class="profile">
+                <span>محمد الكريمي</span>
+                <img src="https://i.pravatar.cc/32?u=muhammad" alt="صورة الملف الشخصي">
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <nav class="sidebar-nav">
+                    <li>
+                        <a href="#" class="active">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 13.125C3 12.5043 3.42071 12.0836 4.04142 12.0836H20.9586C21.5793 12.0836 21.9957 12.5043 21.9957 13.125V21H13.125V13.125H4.04142V13.125C4.04142 13.125 3 13.125 3 13.125Z" fill="#2563EB"/>
+                                <path d="M3 10.8334H21" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>لوحة التحكم</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M2 17L12 22L22 17" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M2 12L12 17L22 12" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>المبيعات</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16 21V17" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M8 21V13" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M3 10H21" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M18 5L21 2L18 5Z" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M3 5L6 2L3 5Z" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 10L12 15" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>المنتجات</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17 21V17" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M7 21V13" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 3V6.34" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 17.66V21" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M5.33962 5.33984L2.5 8L5.33962 10.6602L8.17923 7.82056L5.33962 5.33984Z" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M19.5 8L16.6604 5.33984L13.8208 8.17944L16.6604 10.6602L19.5 8Z" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="12" cy="12" r="3" stroke="#6B7280" stroke-width="2"/>
+                            </svg>
+                            <span>العملاء</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17 21V17" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M7 21V13" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M3 10H21" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>التقارير</span>
+                        </a>
+                    </li>
+                </nav>
+            </aside>
+
+            <!-- Main Panel -->
+            <div class="main-panel">
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <div class="kpi-value">521</div>
+                        <div class="kpi-label">طلبيات اليوم</div>
+                        <div class="kpi-change pos">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13 19L7 13L9.5 10.5" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M17 19L13 15L11.5 16.5" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>+16%</span>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-value">45,230.50 ر.س</div>
+                        <div class="kpi-label">الإيرادات اليوم</div>
+                        <div class="kpi-change pos">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13 19L7 13L9.5 10.5" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M17 19L13 15L11.5 16.5" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>+22%</span>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-value">142.8 ر.س</div>
+                        <div class="kpi-label">متوسط سلة الشراء</div>
+                        <div class="kpi-change neg">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M19 19L5 13L8.5 9.5" stroke="#EF4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>-5%</span>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-value">3.2%</div>
+                        <div class="kpi-label">معدل الإلغاء</div>
+                        <div class="kpi-change pos">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13 19L7 13L9.5 10.5" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M17 19L13 15L11.5 16.5" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>+1%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <h3>مبيعات آخر 7 أيام</h3>
+                    <svg class="sales-chart" viewBox="0 0 800 150" preserveAspectRatio="none">
+                        <defs>
+                            <linearGradient id="salesGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.2" />
+                                <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:0" />
+                            </linearGradient>
+                        </defs>
+                        <!-- Grid lines -->
+                        <line x1="0" y1="125" x2="800" y2="125" stroke="#e5e7eb" stroke-width="1"/>
+                        <line x1="0" y1="100" x2="800" y2="100" stroke="#e5e7eb" stroke-width="1"/>
+                        <line x1="0" y1="75" x2="800" y2="75" stroke="#e5e7eb" stroke-width="1"/>
+                        <line x1="0" y1="50" x2="800" y2="50" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="5,5"/>
+
+                        <!-- Y-axis labels -->
+                        <text x="10" y="10" font-size="8" fill="#9ca3af">0 ر.س</text>
+                        <text x="10" y="35" font-size="8" fill="#9ca3af">5,000</text>
+                        <text x="10" y="60" font-size="8" fill="#9ca3af">10,000</text>
+                        <text x="10" y="85" font-size="8" fill="#9ca3af">15,000</text>
+                        <text x="10" y="110" font-size="8" fill="#9ca3af">20,000</text>
+                        <text x="10" y="135" font-size="8" fill="#9ca3af">25,000</text>
+
+                        <!-- Sales bars -->
+                        <g fill="#3b82f6" opacity="0.8">
+                            <rect x="40" y="130" width="60" height="0" />
+                            <rect x="130" y="120" width="60" height="10" />
+                            <rect x="220" y="100" width="60" height="30" />
+                            <rect x="310" y="80" width="60" height="50" />
+                            <rect x="400" y="125" width="60" height="5" />
+                            <rect x="490" y="105" width="60" height="25" />
+                            <rect x="580" y="90" width="60" height="40" />
+                        </g>
+
+                        <!-- Bar values -->
+                        <text x="70" y="155" font-size="9" fill="#1f2937" text-anchor="middle">السبت</text>
+                        <text x="160" y="155" font-size="9" fill="#1f2937" text-anchor="middle">الأحد</text>
+                        <text x="250" y="155" font-size="9" fill="#1f2937" text-anchor="middle">الإثنين</text>
+                        <text x="340" y="155" font-size="9" fill="#1f2937" text-anchor="middle">الثلاثاء</text>
+                        <text x="430" y="155" font-size="9" fill="#1f2937" text-anchor="middle">الأربعاء</text>
+                        <text x="520" y="155" font-size="9" fill="#1f2937" text-anchor="middle">الخميس</text>
+                        <text x="610" y="155" font-size="9" fill="#1f2937" text-anchor="middle">الجمعة</text>
+
+                        <g font-size="10" fill="#1f2937">
+                            <text x="70" y="125" text-anchor="middle">5,200</text>
+                            <text x="160" y="115" text-anchor="middle">9,800</text>
+                            <text x="250" y="95" text-anchor="middle">14,500</text>
+                            <text x="340" y="75" text-anchor="middle">18,200</text>
+                            <text x="430" y="125" text-anchor="middle">6,100</text>
+                            <text x="520" y="105" text-anchor="middle">12,300</text>
+                            <text x="610" y="90" text-anchor="middle">15,600</text>
+                        </g>
+                    </svg>
+                </div>
+
+                <div class="orders-container">
+                    <div class="orders-header">
+                        <h3>آخر الطلبيات</h3>
+                        <a href="#" style="color: var(--primary); font-size: 0.875rem; text-decoration: none;">عرض الكل</a>
+                    </div>
+                    <table class="orders-table">
+                        <thead>
+                            <tr>
+                                <th class="sortable" style="text-align: right;">رقم الطلبية <span>↕</span></th>
+                                <th>الزبون</th>
+                                <th style="text-align: right;">التاريخ</th>
+                                <th style="text-align: right;">المبلغ</th>
+                                <th>الحالة</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#ORD-20549</td>
+                                <td>
+                                    <div class="customer-info">
+                                        <div class="customer-name">ليلىəf مهدي</div>
+                                        <div class="customer-email">leila@example.com</div>
+                                    </div>
+                                </td>
+                                <td style="text-align: right;">15 أكتوبر 2023</td>
+                                <td style="text-align: right;">2,450 ر.س</td>
+                                <td><span class="status-badge status-delivered">تم التوصيل</span></td>
+                            </tr>
+                            <tr>
+                                <td>#ORD-20548</td>
+                                <td>
+                                    <div class="customer-info">
+                                        <div class="customer-name">عليⱯ يوسف</div>
+                                        <div class="customer-email">ali@example.com</div>
+                                    </div>
+                                </td>
+                                <td style="text-align: right;">15 أكتوبر 2023</td>
+                                <td style="text-align: right;">1,890 ر.س</td>
+                                <td><span class="status-badge status-shipped">تم الشحن</span></td>
+                            </tr>
+                            <tr>
+                                <td>#ORD-20547</td>
+                                <td>
+                                    <div class="customer-info">
+                                        <div class="customer-name">أحمدⱯⱯⱯ ناصر</div>
+                                        <div class="customer-email">ahmad@example.com</div>
+                                    </div>
+                                </td>
+                                <td style="text-align: right;">14 أكتوبر 2023</td>
+                                <td style="text-align: right;">3,200 ر.س</td>
+                                <td><span class="status-badge status-canceled">ملغاة</span></td>
+                            </tr>
+                            <tr>
+                                <td>#ORD-20546</td>
+                                <td>
+                                    <div class="customer-info">
+                                        <div class="customer-name">مريمⱯⱯⱯⱯⱯ فاطمة</div>
+                                        <div class="customer-email">mariam@example.com</div>
+                                    </div>
+                                </td>
+                                <td style="text-align: right;">14 أكتوبر 2023</td>
+                                <td style="text-align: right;">1,560 ر.س</td>
+                                <td><span class="status-badge status-pending">قيد الانتظار</span></td>
+                            </tr>
+                            <tr>
+                                <td>#ORD-20545</td>
+                                <td>
+                                    <div class="customer-info">
+                                        <div class="customer-name">يوسفⱯⱯⱯⱯ خالد</div>
+                                        <div class="customer-email">youssef@example.com</div>
+                                    </div>
+                                </td>
+                                <td style="text-align: right;">13 أكتوبر 2023</td>
+                                <td style="text-align: right;">4,120 ر.س</td>
+                                <td><span class="status-badge status-delivered">تم التوصيل</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

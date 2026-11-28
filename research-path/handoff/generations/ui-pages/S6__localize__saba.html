@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لوحة تحكم متجر قريب</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #1c8b62;
+      --green-dark: #126847;
+      --green-light: #e9f6f0;
+      --orange: #f59e0b;
+      --red: #dc5a5a;
+      --blue: #3978d3;
+      --ink: #17211d;
+      --muted: #728079;
+      --line: #e8ece9;
+      --surface: #ffffff;
+      --background: #f5f7f6;
+      --sidebar: #102b22;
+      --shadow: 0 8px 24px rgba(20, 48, 38, 0.055);
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      color: var(--ink);
+      background: var(--background);
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      color: inherit;
+    }
+
+    .icon {
+      width: 20px;
+      height: 20px;
+      display: block;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .sidebar {
+      position: fixed;
+      inset: 0 auto 0 0;
+      z-index: 50;
+      display: flex;
+      width: 254px;
+      padding: 28px 18px 20px;
+      color: #d8e9e2;
+      background: var(--sidebar);
+      flex-direction: column;
+      transform: translateX(-100%);
+      transition: transform 220ms ease;
+    }
+
+    .sidebar.open {
+      transform: translateX(0);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      margin: 0 10px 34px;
+      color: #fff;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .brand-mark {
+      position: relative;
+      display: grid;
+      width: 34px;
+      height: 34px;
+      color: var(--sidebar);
+      background: #63d6a9;
+      border-radius: 11px;
+      place-items: center;
+    }
+
+    .brand-mark::after {
+      position: absolute;
+      right: 3px;
+      bottom: 2px;
+      width: 9px;
+      height: 9px;
+      background: #63d6a9;
+      border-radius: 1px 1px 5px;
+      content: "";
+      transform: rotate(35deg);
+    }
+
+    .brand-mark span {
+      position: relative;
+      z-index: 1;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .nav-label {
+      margin: 0 12px 10px;
+      color: #78988b;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+
+    .nav-list {
+      display: grid;
+      gap: 7px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .nav-link {
+      display: flex;
+      min-height: 48px;
+      padding: 0 13px;
+      color: #a9c0b7;
+      border-radius: 11px;
+      text-decoration: none;
+      align-items: center;
+      gap: 13px;
+      transition: 160ms ease;
+    }
+
+    .nav-link:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .nav-link.active {
+      color: #fff;
+      background: rgba(85, 207, 160, 0.14);
+    }
+
+    .nav-link.active .icon {
+      color: #68d8ad;
+    }
+
+    .nav-link span {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .nav-link .count {
+      min-width: 22px;
+      height: 22px;
+      margin-left: auto;
+      padding: 0 6px;
+      color: #12392c;
+      background: #62d3a7;
+      border-radius: 11px;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 22px;
+      text-align: center;
+    }
+
+    .sidebar-footer {
+      margin-top: auto;
+    }
+
+    .support-card {
+      margin-bottom: 13px;
+      padding: 15px;
+      color: #d6e9e1;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 13px;
+    }
+
+    .support-card strong {
+      display: block;
+      margin-bottom: 5px;
+      color: #fff;
+      font-size: 13px;
+    }
+
+    .support-card p {
+      margin: 0 0 12px;
+      color: #8da99e;
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+    .support-card a {
+      color: #6ed8af;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      visibility: hidden;
+      background: rgba(4, 20, 14, 0.48);
+      opacity: 0;
+      transition: 220ms ease;
+    }
+
+    .overlay.visible {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .app {
+      min-height: 100vh;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      display: flex;
+      min-height: 74px;
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 11px;
+    }
+
+    .menu-button,
+    .icon-button {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      padding: 0;
+      color: #526159;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      cursor: pointer;
+      place-items: center;
+    }
+
+    .mobile-brand {
+      display: flex;
+      margin-right: auto;
+      font-size: 18px;
+      font-weight: 700;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mobile-brand .brand-mark {
+      width: 29px;
+      height: 29px;
+      border-radius: 9px;
+    }
+
+    .mobile-brand .brand-mark span {
+      font-size: 15px;
+    }
+
+    .search {
+      position: relative;
+      order: 5;
+      width: 100%;
+    }
+
+    .search .icon {
+      position: absolute;
+      top: 50%;
+      left: 14px;
+      width: 18px;
+      height: 18px;
+      color: #89948f;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    .search input {
+      width: 100%;
+      height: 42px;
+      padding: 0 15px 0 42px;
+      color: var(--ink);
+      background: #f6f8f7;
+      border: 1px solid #edf0ee;
+      border-radius: 11px;
+      outline: none;
+      direction: rtl;
+      text-align: right;
+    }
+
+    .search input::placeholder {
+      color: #98a39e;
+    }
+
+    .search input:focus {
+      background: #fff;
+      border-color: #8bcbb2;
+      box-shadow: 0 0 0 3px rgba(28, 139, 98, 0.09);
+    }
+
+    .notification {
+      position: relative;
+    }
+
+    .notification::after {
+      position: absolute;
+      top: 8px;
+      right: 9px;
+      width: 7px;
+      height: 7px;
+      background: #ee695f;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      content: "";
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .avatar {
+      display: grid;
+      width: 40px;
+      height: 40px;
+      color: #205c46;
+      background: #dcefe7;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      box-shadow: 0 0 0 1px var(--line);
+      font-size: 12px;
+      font-weight: 700;
+      place-items: center;
+    }
+
+    .profile-copy {
+      display: none;
+      line-height: 1.25;
+    }
+
+    .profile-copy strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .profile-copy span {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    main {
+      padding: 22px 16px 36px;
+    }
+
+    .page-heading {
+      display: flex;
+      margin-bottom: 20px;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .page-heading h1 {
+      margin: 0 0 6px;
+      font-size: 23px;
+      letter-spacing: -0.65px;
+    }
+
+    .page-heading p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .date-pill {
+      display: none;
+      padding: 9px 12px;
+      color: #5b6962;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 500;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .date-pill .icon {
+      width: 16px;
+      height: 16px;
+      color: var(--green);
+    }
+
+    .kpi-grid {
+      display: grid;
+      margin-bottom: 18px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 11px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .kpi-card {
+      min-width: 0;
+      padding: 15px 14px;
+    }
+
+    .kpi-top {
+      display: flex;
+      margin-bottom: 16px;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .kpi-label {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    .kpi-icon {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      flex: 0 0 34px;
+      border-radius: 10px;
+      place-items: center;
+    }
+
+    .kpi-icon .icon {
+      width: 17px;
+      height: 17px;
+    }
+
+    .kpi-icon.green {
+      color: var(--green);
+      background: var(--green-light);
+    }
+
+    .kpi-icon.blue {
+      color: var(--blue);
+      background: #edf4fd;
+    }
+
+    .kpi-icon.orange {
+      color: #d58509;
+      background: #fff5df;
+    }
+
+    .kpi-icon.red {
+      color: var(--red);
+      background: #fceeee;
+    }
+
+    .kpi-value {
+      margin-bottom: 8px;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.7px;
+      white-space: nowrap;
+    }
+
+    .change-row {
+      display: flex;
+      color: #8a958f;
+      font-size: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .change {
+      display: inline-flex;
+      font-weight: 700;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .change.up {
+      color: var(--green);
+    }
+
+    .change.down {
+      color: var(--red);
+    }
+
+    .change .icon {
+      width: 12px;
+      height: 12px;
+      stroke-width: 2.2;
+    }
+
+    .chart-card,
+    .orders-card {
+      overflow: hidden;
+    }
+
+    .chart-card {
+      margin-bottom: 18px;
+      padding: 18px 14px 10px;
+    }
+
+    .card-header {
+      display: flex;
+      margin-bottom: 18px;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .card-title h2 {
+      margin: 0 0 5px;
+      font-size: 16px;
+      letter-spacing: -0.3px;
+    }
+
+    .card-title p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .select-control {
+      height: 35px;
+      padding: 0 9px;
+      color: #5c6963;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      font-size: 11px;
+      outline: none;
+    }
+
+    .chart-summary {
+      display: flex;
+      margin-bottom: 5px;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    .chart-summary strong {
+      font-size: 25px;
+      letter-spacing: -0.7px;
+    }
+
+    .chart-summary span {
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .sales-chart {
+      display: block;
+      width: 100%;
+      height: 238px;
+      overflow: visible;
+    }
+
+    .grid-line {
+      stroke: #edf0ee;
+      stroke-width: 1;
+      stroke-dasharray: 4 5;
+    }
+
+    .axis-label,
+    .day-label {
+      fill: #8c9792;
+      font-family: "Inter", sans-serif;
+      font-size: 10px;
+    }
+
+    .bar {
+      fill: #87d1b3;
+    }
+
+    .bar.active {
+      fill: var(--green);
+    }
+
+    .chart-tooltip {
+      fill: #173d30;
+    }
+
+    .tooltip-text {
+      fill: white;
+      font-family: "Inter", sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      text-anchor: middle;
+    }
+
+    .orders-header {
+      padding: 18px 16px 0;
+    }
+
+    .view-all {
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      min-width: 720px;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    th {
+      height: 44px;
+      padding: 0 16px;
+      color: #7b8781;
+      background: #fafbfa;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      font-size: 10px;
+      font-weight: 600;
+      text-align: right;
+      text-transform: uppercase;
+      letter-spacing: 0.45px;
+      white-space: nowrap;
+    }
+
+    th button {
+      display: inline-flex;
+      padding: 0;
+      color: inherit;
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      align-items: center;
+      gap: 5px;
+      text-transform: inherit;
+      letter-spacing: inherit;
+    }
+
+    .sort-icon {
+      display: inline-grid;
+      color: #aab2ae;
+      font-size: 8px;
+      line-height: 6px;
+    }
+
+    th[aria-sort="ascending"] .sort-icon span:last-child,
+    th[aria-sort="descending"] .sort-icon span:first-child {
+      color: var(--green);
+    }
+
+    td {
+      height: 64px;
+      padding: 0 16px;
+      color: #49564f;
+      border-bottom: 1px solid #edf0ee;
+      white-space: nowrap;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: 0;
+    }
+
+    tbody tr:hover {
+      background: #fbfcfb;
+    }
+
+    .order-id {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .customer {
+      display: flex;
+      color: #28342f;
+      font-weight: 500;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .customer-avatar {
+      display: grid;
+      width: 30px;
+      height: 30px;
+      color: #416358;
+      background: #e9f1ee;
+      border-radius: 9px;
+      font-size: 10px;
+      font-weight: 700;
+      place-items: center;
+    }
+
+    .amount {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .status {
+      display: inline-flex;
+      min-width: 76px;
+      padding: 6px 9px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 600;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .status::before {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      content: "";
+    }
+
+    .status.delivered {
+      color: #217653;
+      background: #e9f7f1;
+    }
+
+    .status.delivered::before {
+      background: #2f9b70;
+    }
+
+    .status.processing {
+      color: #a0660d;
+      background: #fff5df;
+    }
+
+    .status.processing::before {
+      background: #eca72c;
+    }
+
+    .status.cancelled {
+      color: #b04d4d;
+      background: #fcecec;
+    }
+
+    .status.cancelled::before {
+      background: #d95d5d;
+    }
+
+    .status.ready {
+      color: #3c6da8;
+      background: #edf4fc;
+    }
+
+    .status.ready::before {
+      background: #4e83c2;
+    }
+
+    @media (min-width: 600px) {
+      .profile-copy {
+        display: block;
+      }
+
+      .date-pill {
+        display: inline-flex;
+      }
+
+      main {
+        padding: 28px 24px 44px;
+      }
+
+      .kpi-card {
+        padding: 18px;
+      }
+
+      .kpi-label {
+        font-size: 12px;
+      }
+
+      .kpi-value {
+        font-size: 25px;
+      }
+
+      .chart-card {
+        padding: 21px 20px 12px;
+      }
+    }
+
+    @media (min-width: 900px) {
+      .sidebar {
+        transform: translateX(0);
+      }
+
+      .overlay,
+      .overlay.visible {
+        display: none;
+      }
+
+      .app {
+        margin-left: 254px;
+      }
+
+      .topbar {
+        min-height: 76px;
+        padding: 0 30px;
+        flex-wrap: nowrap;
+      }
+
+      .menu-button,
+      .mobile-brand {
+        display: none;
+      }
+
+      .search {
+        order: initial;
+        width: min(420px, 45vw);
+        margin-right: auto;
+      }
+
+      main {
+        padding: 30px;
+      }
+
+      .page-heading {
+        margin-bottom: 24px;
+      }
+
+      .page-heading h1 {
+        font-size: 26px;
+      }
+
+      .kpi-grid {
+        margin-bottom: 22px;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .chart-card {
+        margin-bottom: 22px;
+      }
+
+      .orders-header {
+        padding: 21px 20px 0;
+      }
+
+      th,
+      td {
+        padding-right: 20px;
+        padding-left: 20px;
+      }
+    }
+
+    @media (min-width: 1280px) {
+      main {
+        padding: 34px 38px 50px;
+      }
+
+      .kpi-card {
+        padding: 20px;
+      }
+
+      .kpi-icon {
+        width: 38px;
+        height: 38px;
+        flex-basis: 38px;
+      }
+
+      .kpi-value {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute">
+    <symbol id="i-grid" viewBox="0 0 24 24">
+      <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+      <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+      <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+      <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+    </symbol>
+    <symbol id="i-bag" viewBox="0 0 24 24">
+      <path d="M6 8h12l1 13H5L6 8Z"></path>
+      <path d="M9 9V6a3 3 0 0 1 6 0v3"></path>
+    </symbol>
+    <symbol id="i-box" viewBox="0 0 24 24">
+      <path d="m4 7 8-4 8 4-8 4-8-4Z"></path>
+      <path d="M4 7v10l8 4 8-4V7"></path>
+      <path d="M12 11v10"></path>
+    </symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24">
+      <path d="M4 20V10"></path>
+      <path d="M10 20V4"></path>
+      <path d="M16 20v-7"></path>
+      <path d="M22 20H2"></path>
+    </symbol>
+    <symbol id="i-users" viewBox="0 0 24 24">
+      <circle cx="9" cy="8" r="4"></circle>
+      <path d="M2.5 21a6.5 6.5 0 0 1 13 0"></path>
+      <path d="M16 4.5a4 4 0 0 1 0 7"></path>
+      <path d="M18 15a6 6 0 0 1 4 6"></path>
+    </symbol>
+    <symbol id="i-settings" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="3"></circle>
+      <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-2.83 2.83-.06-.06a1.7 1.7 0 0 0-1.88-.34 1.7 1.7 0 0 0-1.03 1.56V21h-4v-.08A1.7 1.7 0 0 0 9 19.37a1.7 1.7 0 0 0-1.88.34l-.06.06-2.83-2.83.06-.06A1.7 1.7 0 0 0 4.63 15 1.7 1.7 0 0 0 3.07 14H3v-4h.08A1.7 1.7 0 0 0 4.63 9a1.7 1.7 0 0 0-.34-1.88l-.06-.06 2.83-2.83.06.06A1.7 1.7 0 0 0 9 4.63a1.7 1.7 0 0 0 1-1.56V3h4v.08A1.7 1.7 0 0 0 15 4.63a1.7 1.7 0 0 0 1.88-.34l.06-.06 2.83 2.83-.06.06A1.7 1.7 0 0 0 19.37 9a1.7 1.7 0 0 0 1.56 1H21v4h-.08A1.7 1.7 0 0 0 19.4 15Z"></path>
+    </symbol>
+    <symbol id="i-search" viewBox="0 0 24 24">
+      <circle cx="11" cy="11" r="7"></circle>
+      <path d="m20 20-4-4"></path>
+    </symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24">
+      <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
+      <path d="M10 21h4"></path>
+    </symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24">
+      <path d="M4 7h16M4 12h16M4 17h16"></path>
+    </symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24">
+      <rect x="3" y="5" width="18" height="16" rx="2"></rect>
+      <path d="M8 3v4M16 3v4M3 10h18"></path>
+    </symbol>
+    <symbol id="i-dollar" viewBox="0 0 24 24">
+      <path d="M12 2v20"></path>
+      <path d="M17 6.5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H7"></path>
+    </symbol>
+    <symbol id="i-basket" viewBox="0 0 24 24">
+      <path d="m6 10 4-7M18 10l-4-7"></path>
+      <path d="M3 10h18l-2 10H5L3 10Z"></path>
+      <path d="M9 14v3M15 14v3"></path>
+    </symbol>
+    <symbol id="i-percent" viewBox="0 0 24 24">
+      <path d="m19 5-14 14"></path>
+      <circle cx="7" cy="7" r="2"></circle>
+      <circle cx="17" cy="17" r="2"></circle>
+    </symbol>
+    <symbol id="i-up" viewBox="0 0 24 24">
+      <path d="m6 15 6-6 6 6"></path>
+    </symbol>
+    <symbol id="i-down" viewBox="0 0 24 24">
+      <path d="m6 9 6 6 6-6"></path>
+    </symbol>
+  </svg>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-mark"><span>ق</span></div>
+      قريب
+    </div>
+
+    <p class="nav-label">مساحة العمل</p>
+    <nav aria-label="Main navigation">
+      <ul class="nav-list">
+        <li>
+          <a href="#" class="nav-link active">
+            <svg class="icon"><use href="#i-grid"></use></svg>
+            <span>نظرة عامة</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link">
+            <svg class="icon"><use href="#i-bag"></use></svg>
+            <span>الطلبات</span>
+            <span class="count">8</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link">
+            <svg class="icon"><use href="#i-box"></use></svg>
+            <span>المنتجات</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link">
+            <svg class="icon"><use href="#i-chart"></use></svg>
+            <span>التحليلات</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link">
+            <svg class="icon"><use href="#i-users"></use></svg>
+            <span>العملاء</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <p class="nav-label" style="margin-top:28px">المتجر</p>
+    <nav aria-label="Store navigation">
+      <ul class="nav-list">
+        <li>
+          <a href="#" class="nav-link">
+            <svg class="icon"><use href="#i-settings"></use></svg>
+            <span>الإعدادات</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="support-card">
+        <strong>هل تحتاج لمساعدة؟</strong>
+        <p>فريق الدعم جاهز لمساعدتك في متجرك.</p>
+        <a href="#">تواصل مع الدعم →</a>
+      </div>
+    </div>
+  </aside>
+
+  <div class="overlay" id="overlay"></div>
+
+  <div class="app">
+    <header class="topbar">
+      <button class="menu-button" id="menuButton" aria-label="فتح القائمة" aria-expanded="false">
+        <svg class="icon"><use href="#i-menu"></use></svg>
+      </button>
+
+      <div class="mobile-brand">
+        <div class="brand-mark"><span>ق</span></div>
+        قريب
+      </div>
+
+      <div class="search">
+        <svg class="icon"><use href="#i-search"></use></svg>
+        <input type="search" placeholder="البحث عن طلبات أو منتجات أو عملاء..." aria-label="بحث">
+      </div>
+
+      <button class="icon-button notification" aria-label="الإشعارات">
+        <svg class="icon"><use href="#i-bell"></use></svg>
+      </button>
+
+      <div class="profile">
+        <div class="avatar">أك</div>
+        <div class="profile-copy">
+          <strong>أحمد خان</strong>
+          <span>مالك المتجر</span>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="page-heading">
+        <div>
+          <h1>صباح الخير أحمد</h1>
+          <p>إليك ما يحدث في متجرك اليوم.</p>
+        </div>
+        <div class="date-pill">
+          <svg class="icon"><use href="#i-calendar"></use></svg>
+          18 يونيو، 2025
+        </div>
+      </div>
+
+      <section class="kpi-grid" aria-label="مؤشرات الأداء الرئيسية">
+        <article class="card kpi-card">
+          <div class="kpi-top">
+            <span class="kpi-label">الطلبات اليوم</span>
+            <span class="kpi-icon green">
+              <svg class="icon"><use href="#i-bag"></use></svg>
+            </span>
+          </div>
+          <div class="kpi-value">128</div>
+          <div class="change-row">
+            <span class="change up">
+              <svg class="icon"><use href="#i-up"></use></svg>
+              12.5%
+            </span>
+            <span>مقارنة بالأمس</span>
+          </div>
+        </article>
+
+        <article class="card kpi-card">
+          <div class="kpi-top">
+            <span class="kpi-label">الإيرادات</span>
+            <span class="kpi-icon blue">
+              <svg class="icon"><use href="#i-dollar"></use></svg>
+            </span>
+          </div>
+          <div class="kpi-value">$8,420</div>
+          <div class="change-row">
+            <span class="change up">
+              <svg class="icon"><use href="#i-up"></use></svg>
+              8.2%
+            </span>
+            <span>مقارنة بالأمس</span>
+          </div>
+        </article>
+
+        <article class="card kpi-card">
+          <div class="kpi-top">
+            <span class="kpi-label">متوسط قيمة السلة</span>
+            <span class="kpi-icon orange">
+              <svg class="icon"><use href="#i-basket"></use></svg>
+            </span>
+          </div>
+          <div class="kpi-value">$65.78</div>
+          <div class="change-row">
+            <span class="change up">
+              <svg class="icon"><use href="#i-up"></use></svg>
+              3.4%
+            </span>
+            <span>مقارنة بالأمس</span>
+          </div>
+        </article>
+
+        <article class="card kpi-card">
+          <div class="kpi-top">
+            <span class="kpi-label">معدل الإلغاء</span>
+            <span class="kpi-icon red">
+              <svg class="icon"><use href="#i-percent"></use></svg>
+            </span>
+          </div>
+          <div class="kpi-value">2.8%</div>
+          <div class="change-row">
+            <span class="change down">
+              <svg class="icon"><use href="#i-down"></use></svg>
+              0.6%
+            </span>
+            <span>مقارنة بالأمس</span>
+          </div>
+        </article>
+      </section>
+
+      <section class="card chart-card">
+        <div class="card-header">
+          <div class="card-title">
+            <h2>نظرة عامة على المبيعات</h2>
+            <p>أداء المبيعات خلال آخر 7 أيام</p>
+          </div>
+          <select class="select-control" aria-label="الفترة الزمنية للرسم البياني">
+            <option>آخر 7 أيام</option>
+            <option>آخر 30 يوماً</option>
+            <option>آخر 90 يوماً</option>
+          </select>
+        </div>
+
+        <div class="chart-summary">
+          <strong>$52,480</strong>
+          <span>↑ 9.4%</span>
+        </div>
+
+        <svg class="sales-chart" role="img" aria-labelledby="chartTitle chartDescription">
+          <title id="chartTitle">المبيعات خلال سبعة أيام</title>
+          <desc id="chartDescription">رسم بياني أعمدة يوضح المبيعات اليومية من يوم الخميس إلى يوم الأربعاء، حيث كان يوم الثلاثاء أعلى مبيعات.</desc>
+
+          <line class="grid-line" x1="7%" x2="98%" y1="30" y2="30"></line>
+          <line class="grid-line" x1="7%" x2="98%" y1="75" y2="75"></line>
+          <line class="grid-line" x1="7%" x2="98%" y1="120" y2="120"></line>
+          <line class="grid-line" x1="7%" x2="98%" y1="165" y2="165"></line>
+          <line class="grid-line" x1="7%" x2="98%" y1="210" y2="210"></line>
+
+          <text class="axis-label" x="0" y="34">$12k</text>
+          <text class="axis-label" x="0" y="79">$9k</text>
+          <text class="axis-label" x="0" y="124">$6k</text>
+          <text class="axis-label" x="0" y="169">$3k</text>
+          <text class="axis-label" x="1%" y="214">$0</text>
+
+          <rect class="bar" x="10%" y="113" width="7.5%" height="97" rx="7"></rect>
+          <rect class="bar" x="23%" y="93" width="7.5%" height="117" rx="7"></rect>
+          <rect class="bar" x="36%" y="124" width="7.5%" height="86" rx="7"></rect>
+          <rect class="bar" x="49%" y="69" width="7.5%" height="141" rx="7"></rect>
+          <rect class="bar" x="62%" y="83" width="7.5%" height="127" rx="7"></rect>
+          <rect class="bar active" x="75%" y="46" width="7.5%" height="164" rx="7"></rect>
+          <rect class="bar" x="88%" y="63" width="7.5%" height="147" rx="7"></rect>
+
+          <g>
+            <rect class="chart-tooltip" x="73.2%" y="9" width="11%" height="27" rx="7"></rect>
+            <path class="chart-tooltip" d="M78.7% 40 l-5 -6 h10 z"></path>
+            <text class="tooltip-text" x="78.7%" y="27">$10,920</text>
+          </g>
+
+          <text class="day-label" x="13.75%" y="232" text-anchor="middle">خم</text>
+          <text class="day-label" x="26.75%" y="232" text-anchor="middle">جم</text>
+          <text class="day-label" x="39.75%" y="232" text-anchor="middle">سب</text>
+          <text class="day-label" x="52.75%" y="232" text-anchor="middle">أحد</text>
+          <text class="day-label" x="65.75%" y="232" text-anchor="middle">إث</text>
+          <text class="day-label" x="78.75%" y="232" text-anchor="middle">ثلا</text>
+          <text class="day-label" x="91.75%" y="232" text-anchor="middle">أربع</text>
+        </svg>
+      </section>
+
+      <section class="card orders-card">
+        <div class="card-header orders-header">
+          <div class="card-title">
+            <h2>الطلبات الأخيرة</h2>
+            <p>آخر طلبات العملاء عبر متجرك</p>
+          </div>
+          <a class="view-all" href="#">عرض جميع الطلبات →</a>
+        </div>
+
+        <div class="table-wrap">
+          <table id="ordersTable">
+            <thead>
+              <tr>
+                <th data-type="text" aria-sort="none">
+                  <button type="button"> رقم الطلب <span class="sort-icon"><span>▲</span><span>▼</span></span></button>
+                </th>
+                <th data-type="text" aria-sort="none">
+                  <button type="button">العميل <span class="sort-icon"><span>▲</span><span>▼</span></span></button>
+                </th>
+                <th data-type="date" aria-sort="none">
+                  <button type="button">التاريخ <span class="sort-icon"><span>▲</span><span>▼</span></span></button>
+                </th>
+                <th data-type="number" aria-sort="none">
+                  <button type="button">المبلغ <span class="sort-icon"><span>▲</span><span>▼</span></span></button>
+                </th>
+                <th data-type="text" aria-sort="none">
+                  <button type="button">الحالة <span class="sort-icon"><span>▲</span><span>▼</span></span></button>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="order-id" data-value="10482">#QR-10482</td>
+                <td data-value="ميا تومبسون">
+                  <div class="customer"><span class="customer-avatar">م ت</span>ميا تومبسون</div>
+                </td>
+                <td data-value="2025-06-18T10:42">10:42 ص، 18 يونيو</td>
+                <td class="amount" data-value="126.40">$126.40</td>
+                <td data-value="تجهيز"><span class="status processing">قيد التجهيز</span></td>
+              </tr>
+              <tr>
+                <td class="order-id" data-value="10481">#QR-10481</td>
+                <td data-value="نوح ويليامز">
+                  <div class="customer"><span class="customer-avatar">ن و</span>نوح ويليامز</div>
+                </td>
+                <td data-value="2025-06-18T10:18">10:18 ص، 18 يونيو</td>
+                <td class="amount" data-value="84.25">$84.25</td>
+                <td data-value="تم التوصيل"><span class="status delivered">تم التوصيل</span></td>
+              </tr>
+              <tr>
+                <td class="order-id" data-value="10480">#QR-10480</td>
+                <td data-value="سارة ميلر">
+                  <div class="customer"><span class="customer-avatar">س م</span>سارة ميلر</div>
+                </td>
+                <td data-value="2025-06-18T09:54">9:54 ص، 18 يونيو</td>
+                <td class="amount" data-value="59.80">$59.80</td>
+                <td data-value="جاهز"><span class="status ready">جاهز</span></td>
+              </tr>
+              <tr>
+                <td class="order-id" data-value="10479">#QR-10479</td>
+                <td data-value="إيثان كلارك">
+                  <div class="customer"><span class="customer-avatar">إ ك</span>إيثان كلارك</div>
+                </td>
+                <td data-value="2025-06-18T09:20">9:20 ص، 18 يونيو</td>
+                <td class="amount" data-value="42.15">$42.15</td>
+                <td data-value="ملغى"><span class="status cancelled">ملغى</span></td>
+              </tr>
+              <tr>
+                <td class="order-id" data-value="10478">#QR-10478</td>
+                <td data-value="أليفيا مارتن">
+                  <div class="customer"><span class="customer-avatar">أ م</span>أليفيا مارتن</div>
+                </td>
+                <td data-value="2025-06-18T08:48">8:48 ص، 18 يونيو</td>
+                <td class="amount" data-value="97.60">$97.60</td>
+                <td data-value="تم التوصيل"><span class="status delivered">تم التوصيل</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+    const menuButton = document.getElementById("menuButton");
+
+    function setSidebar(open) {
+      sidebar.classList.toggle("open", open);
+      overlay.classList.toggle("visible", open);
+      menuButton.setAttribute("aria-expanded", String(open));
+      document.body.style.overflow = open ? "hidden" : "";
+    }
+
+    menuButton.addEventListener("click", () => {
+      setSidebar(!sidebar.classList.contains("open"));
+    });
+
+    overlay.addEventListener("click", () => setSidebar(false));
+
+    window.addEventListener("keydown", event => {
+      if (event.key === "Escape") setSidebar(false);
+    });
+
+    const table = document.getElementById("ordersTable");
+    const headers = [...table.querySelectorAll("th")];
+
+    headers.forEach((header, columnIndex) => {
+      header.querySelector("button").addEventListener("click", () => {
+        const ascending = header.getAttribute("aria-sort") !== "ascending";
+
+        headers.forEach(item => item.setAttribute("aria-sort", "none"));
+        header.setAttribute("aria-sort", ascending ? "ascending" : "descending");
+
+        const type = header.dataset.type;
+        const rows = [...table.tBodies[0].rows];
+
+        rows.sort((a, b) => {
+          let aValue = a.cells[columnIndex].dataset.value || a.cells[columnIndex].textContent.trim();
+          let bValue = b.cells[columnIndex].dataset.value || b.cells[columnIndex].textContent.trim();
+
+          if (type === "number") {
+            aValue = Number(aValue);
+            bValue = Number(bValue);
+          } else if (type === "date") {
+            aValue = new Date(aValue).getTime();
+            bValue = new Date(bValue).getTime();
+          } else {
+            aValue = aValue.toLowerCase();
+            bValue = bValue.toLowerCase();
+          }
+
+          if (aValue < bValue) return ascending ? -1 : 1;
+          if (aValue > bValue) return ascending ? 1 : -1;
+          return 0;
+        });
+
+        rows.forEach(row => table.tBodies[0].appendChild(row));
+      });
+    });
+  </script>
+</body>
+</html>

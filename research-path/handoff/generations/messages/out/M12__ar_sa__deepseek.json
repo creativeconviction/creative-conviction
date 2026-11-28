@@ -1,0 +1,13 @@
+{
+  "scenario": "M12",
+  "lang": "ar_sa",
+  "model": "deepseek",
+  "message": "مشكورين على سرعة التوصيل! بس الخبز كان يابس والطماط مفعوص",
+  "raw": "{\n  \"intent\": \"quality_issue\",\n  \"sentiment\": \"mixed\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"The customer thanks for the fast delivery but complains that the bread was dry and the tomato was squashed.\"\n}",
+  "intent": "quality_issue",
+  "sentiment": "mixed",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer thanks for the fast delivery but complains that the bread was dry and the tomato was squashed."
+}

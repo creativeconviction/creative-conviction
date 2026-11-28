@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Rabat",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Rabat. Write marketing copy for it in Moroccan Arabic (Darija), the way people in Rabat actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 1,
+  "prompt_lang": "en",
+  "city": "Rabat",
+  "target_region": "Morocco",
+  "target_city_code": "RAB",
+  "model": "saba",
+  "id": "C__Rabat__saba__s1",
+  "model_id": "mistralai/mistral-saba",
+  "output": "**Tagline:**\n**\"قريبُك alles. Qareeb Alles.\"**\n\n**Instagram Ads:**\n1. \"قريبُك alles بشقاطك! توصيلة فورب 30 دقيقة⏱️\"\n2. \"كل المنتجات الطازجة... قاعدين حالاً بجيبك🛒\"\n3. \" شحال تاكل؟ قريب সব রেসিপি عل الموك جرّلك تاكل 🍕🔥\"\n\n**Push Notification:**\n\"DAWJ! قريب you على بابك🚚- 50% خصم على أول طلب🎉\"",
+  "at": "2026-11-18T05:29:32.747Z"
+}

@@ -1,0 +1,13 @@
+{
+  "scenario": "M10",
+  "lang": "en",
+  "model": "saba",
+  "message": "do you deliver to Maple Heights? and is there a minimum order?",
+  "raw": "```json\n{\n  \"intent\": \"question\",\n  \"sentiment\": \"neutral\",\n  \"urgency\": \"low\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"Customer is asking about delivery availability and minimum order requirements for Maple Heights.\"\n}\n```",
+  "intent": "question",
+  "sentiment": "neutral",
+  "urgency": "low",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "Customer is asking about delivery availability and minimum order requirements for Maple Heights."
+}

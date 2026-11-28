@@ -1,0 +1,13 @@
+{
+  "scenario": "M11",
+  "lang": "ar_ma",
+  "model": "gpt",
+  "message": "بصراحة هادي آخر مرة نطلب منكم، كل سيمانة كاين شي مشكل",
+  "raw": "{\"intent\":\"general_complaint\",\"sentiment\":\"negative\",\"urgency\":\"medium\",\"sarcasm\":false,\"churn_risk\":true,\"summary\":\"The customer says recurring weekly problems have made them decide not to order again.\"}",
+  "intent": "general_complaint",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "The customer says recurring weekly problems have made them decide not to order again."
+}

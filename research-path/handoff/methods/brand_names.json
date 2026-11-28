@@ -1,0 +1,32 @@
+{
+  "_note": "Same two brand names in English (control) and Arabic. short = \"nearby\", long = \"Fresh Market\".",
+  "scripts": {
+    "en": {
+      "label": "English (control)",
+      "font": "Inter",
+      "short": "Nearby",
+      "long": "Fresh Market"
+    },
+    "ar": {
+      "label": "Arabic",
+      "font": "Noto Sans Arabic",
+      "short": "قريب",
+      "long": "السوق الطازج"
+    }
+  },
+  "lockups": [
+    "ar"
+  ],
+  "motif_countries": [
+    "Saudi Arabia",
+    "Egypt",
+    "Morocco",
+    "United Kingdom",
+    "United States"
+  ],
+  "prompts": {
+    "wordmark": "A clean, modern wordmark logo for a grocery delivery app. The logo is only the brand name «{text}», set in a custom typeface, flat design, on a plain white background. The text must be spelled exactly as given.",
+    "lockup": "A clean logo lockup for a grocery delivery app showing the brand name in two languages, «{native}» and «{english}», on a plain white background. Both must be spelled exactly as given.",
+    "motif": "A logo for a new fintech startup from {country}. Flat vector style on a plain white background, no text."
+  }
+}

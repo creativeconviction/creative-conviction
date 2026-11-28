@@ -1,0 +1,12 @@
+{
+  "line": "C4",
+  "market": "ar_eg",
+  "model": "claude",
+  "source": "Get beach-body ready this summer.",
+  "raw": "```json\n{\n  \"literal\": \"كن جاهزًا بجسم الشاطئ هذا الصيف\",\n  \"adaptation\": \"فورمة الساحل بتبدأ من عندنا الصيف ده\",\n  \"back_translation\": \"Your Sahel shape starts with us this summer\",\n  \"approach\": \"adapted\",\n  \"notes\": \"I swapped the Western 'beach body' idea, which can read as immodest or body-shaming and is especially sensitive for women in Egypt, for the local summer ritual of going to the North Coast (الساحل) and the colloquial word 'فورمة' (fitness shape), and I phrased it without a gendered imperative so it speaks to both men and women.\"\n}\n```",
+  "literal": "كن جاهزًا بجسم الشاطئ هذا الصيف",
+  "adaptation": "فورمة الساحل بتبدأ من عندنا الصيف ده",
+  "back_translation": "Your Sahel shape starts with us this summer",
+  "approach": "adapted",
+  "notes": "I swapped the Western 'beach body' idea, which can read as immodest or body-shaming and is especially sensitive for women in Egypt, for the local summer ritual of going to the North Coast (الساحل) and the colloquial word 'فورمة' (fitness shape), and I phrased it without a gendered imperative so it speaks to both men and women."
+}

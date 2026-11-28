@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Rabat",
+  "s": 2,
+  "prompt_lang": "en",
+  "city": "Rabat",
+  "target_region": "Morocco",
+  "target_city_code": "RAB",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Rabat. Write marketing copy for it in Moroccan Arabic (Darija), the way people in Rabat actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "model": "fanar",
+  "id": "C__Rabat__fanar__s2",
+  "model_id": "QCRI/Fanar-1-9B-Instruct",
+  "output": "**Tagline:** \"قربيك من كل شي يلي بحاجو ليه\" (Meaning: \"Close to everything you need\")\n\n**Instagram Ad Lines:**\n\n1. \"شايخا زيت الزيتون وتسالي أختك في #قريب داز الازمة\" (Translation: \"Run out of olive oil and your sister's snacks? #Qareeb to the rescue!\")\n\n2. \"غدا غير هكا باش تيخدم? جرّبوا ديالنا لفة ماتندخوش الصباح\" (Translation: \"Same old breakfast routine? Try our delivery, you won't regret it in the morning\")\n\n3. \"مازالت عادين كتبرات الحاجة؟ #قريب حبابك باش تكون غدىك جاهز\" (Translation: \"Still packing your groceries? #Qareeb to get your food ready for you\")\n\n**Push Notification:**\n\n\"بالبارد، زيت الزيتون غايلان عليك؟ #قريب شيقت ليلي عندك بــ30 دقيقة\" (Translation: \"Ran out of olive oil? #Qareeb delivers it to you in 30 minutes\")",
+  "at": "2026-11-28T00:49:47.552304+00:00"
+}

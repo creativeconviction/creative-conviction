@@ -1,0 +1,12 @@
+{
+  "line": "T6",
+  "market": "en_gb",
+  "model": "saba",
+  "source": "Got milk?",
+  "raw": "```json\n{\n  \"literal\": \"Got milk?\",\n  \"adaptation\": \"Fancy some milk?\",\n  \"back_translation\": \"Feel like some milk?\",\n  \"approach\": \"adapted\",\n  \"notes\": \"British English favours a more conversational invitation over a direct question for milk consumption.\"\n}\n```",
+  "literal": "Got milk?",
+  "adaptation": "Fancy some milk?",
+  "back_translation": "Feel like some milk?",
+  "approach": "adapted",
+  "notes": "British English favours a more conversational invitation over a direct question for milk consumption."
+}

@@ -1,0 +1,13 @@
+{
+  "scenario": "M10",
+  "lang": "arabizi",
+  "model": "gemini",
+  "message": "betwasalo el tagamo3 el 5ames? w fe 7ad adna lel order?",
+  "raw": "{\n  \"intent\": \"question\",\n  \"sentiment\": \"neutral\",\n  \"urgency\": \"low\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"The customer is asking if delivery is available to the 5th Settlement and if there is a minimum order amount.\"\n}",
+  "intent": "question",
+  "sentiment": "neutral",
+  "urgency": "low",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer is asking if delivery is available to the 5th Settlement and if there is a minimum order amount."
+}

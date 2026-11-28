@@ -1,0 +1,12 @@
+{
+  "line": "C4",
+  "market": "ar_sa",
+  "model": "gpt",
+  "source": "Get beach-body ready this summer.",
+  "raw": "{\n  \"literal\": \"استعد للحصول على جسم الشاطئ هذا الصيف.\",\n  \"adaptation\": \"استعد لصيف أكثر لياقة.\",\n  \"back_translation\": \"Get ready for a fitter summer.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"We replaced the beach-body reference with a fitness-focused message that feels more culturally appropriate and inclusive in Saudi Arabia.\"\n}",
+  "literal": "استعد للحصول على جسم الشاطئ هذا الصيف.",
+  "adaptation": "استعد لصيف أكثر لياقة.",
+  "back_translation": "Get ready for a fitter summer.",
+  "approach": "adapted",
+  "notes": "We replaced the beach-body reference with a fitness-focused message that feels more culturally appropriate and inclusive in Saudi Arabia."
+}

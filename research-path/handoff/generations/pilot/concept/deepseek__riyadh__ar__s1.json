@@ -1,0 +1,31 @@
+{
+  "big_idea": "فكرة الحملة تقوم على أن 'قريب' هو تطبيق يومي بسيط يوصّل بقالة حيّك إلى باب بيتك في لمح البصر، ليمنح الأسر الشابة والموظفين وقتًا أكثر لحياتهم. ليس فخمًا ولا مكلفًا، بل عملي، سريع، ودافئ مثل جارك الطيب.",
+  "key_visual": "صورة هاتف ذكي في حي سكني بالرياض، يخرج من شاشته كيس بقالة طازج إلى يد سيدة مبتسمة على عتبة بابها، وتندمج خريطة الحيّ مع طبق كبسة شهي. المشهد دافئ ومليء بالحياة اليومية.",
+  "image_prompt": "A smartphone floating in a cozy Riyadh residential neighborhood, a grocery bag filled with fresh vegetables, bread, and milk emerging from the screen into the hands of a smiling Saudi woman at her doorstep. The neighborhood map subtly transforms into a traditional plate of Kabsa. Warm golden hour lighting, low-rise buildings with palm trees in the background. Photorealistic, vibrant, inviting, capturing a sense of speed and local connection.",
+  "palette": [
+    "#F4A261",
+    "#2A9D8F",
+    "#F9F6F0",
+    "#264653"
+  ],
+  "typography": "Cairo, Tajawal",
+  "tone_words": "قريبة، سريعة، بسيطة، دافئة، موثوقة",
+  "headline": "قريب.. أقرب من أي مشوار.",
+  "subhead": "تسوق من بقالة حيّك وخلّي وقتك لأهلك.",
+  "cta": "حمّل التطبيق الآن",
+  "ad_lines": [
+    "ودّع زحمة الطلعات .. بقالة حيّك عند بابك بدقايق.",
+    "كل طلب عاشر توصيله مجاناً، عشان نفرحك.",
+    "ادفع كاش أو بطاقة، زي ما تفضّل."
+  ],
+  "app_store_blurb": "قريب يوصلك بقالة حيّك في الرياض خلال 20 دقيقة. تسوق بكل سهولة، ادفع نقدًا أو بالبطاقة، واستمتع بتوصيل مجاني لكل عاشر طلب. حياتك اليومية صارت أقرب وأريح.",
+  "push_notifications": [
+    "يا هلا! عروض بقالة حيّك اليوم واصلة. اطلب الآن 🛒",
+    "بركة العاشر واصلتك! توصيلتك الجاية علينا 🎁"
+  ],
+  "onboarding": [
+    "أهلًا بك في قريب!",
+    "اختار بقالة حيّك المفضلة واطلب.",
+    "كل عشر طلبات توصيلها مجانًا، كرمًا من جيرانك."
+  ]
+}

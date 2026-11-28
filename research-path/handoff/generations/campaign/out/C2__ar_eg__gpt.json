@@ -1,0 +1,12 @@
+{
+  "line": "C2",
+  "market": "ar_eg",
+  "model": "gpt",
+  "source": "Happy hour: 2-for-1 drinks from 5 to 7pm.",
+  "raw": "{\n  \"literal\": \"الساعة السعيدة: مشروبان بسعر مشروب واحد من 5 إلى 7 مساءً.\",\n  \"adaptation\": \"من 5 لـ7 مساءً: اطلب مشروبين وادفع تمن واحد!\",\n  \"back_translation\": \"From 5 to 7pm: Order two drinks and pay for one!\",\n  \"approach\": \"adapted\",\n  \"notes\": \"استخدمنا صياغة مصرية طبيعية وكلمة «مشروبات» المحايدة لتجنّب الإيحاء بأن العرض خاص بالمشروبات الكحولية.\"\n}",
+  "literal": "الساعة السعيدة: مشروبان بسعر مشروب واحد من 5 إلى 7 مساءً.",
+  "adaptation": "من 5 لـ7 مساءً: اطلب مشروبين وادفع تمن واحد!",
+  "back_translation": "From 5 to 7pm: Order two drinks and pay for one!",
+  "approach": "adapted",
+  "notes": "استخدمنا صياغة مصرية طبيعية وكلمة «مشروبات» المحايدة لتجنّب الإيحاء بأن العرض خاص بالمشروبات الكحولية."
+}

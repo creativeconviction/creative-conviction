@@ -1,0 +1,343 @@
+{
+  "_note": "12 support scenarios × 9 language variants. Same meaning in each, so the correct labels are the same. Non-English variants are drafts: have native speakers check them.",
+  "languages": {
+    "en": "English (control)",
+    "ar_msa": "Arabic (formal)",
+    "ar_sa": "Arabic (Saudi)",
+    "ar_eg": "Arabic (Egyptian)",
+    "ar_ma": "Arabic (Moroccan Darija)",
+    "arabizi": "Arabizi (Egyptian, Latin letters)"
+  },
+  "gold": {
+    "M1": {
+      "about": "Missing items, calm",
+      "intent": [
+        "missing_item"
+      ],
+      "sentiment": [
+        "negative"
+      ],
+      "urgency": [
+        "medium"
+      ],
+      "sarcasm": [
+        false
+      ],
+      "churn_risk": [
+        false,
+        true
+      ]
+    },
+    "M2": {
+      "about": "Very late, angry",
+      "intent": [
+        "late_delivery"
+      ],
+      "sentiment": [
+        "negative"
+      ],
+      "urgency": [
+        "high"
+      ],
+      "sarcasm": [
+        false
+      ],
+      "churn_risk": [
+        false,
+        true
+      ]
+    },
+    "M3": {
+      "about": "Sarcastic praise about lateness",
+      "intent": [
+        "late_delivery"
+      ],
+      "sentiment": [
+        "negative"
+      ],
+      "urgency": [
+        "medium",
+        "high"
+      ],
+      "sarcasm": [
+        true
+      ],
+      "churn_risk": [
+        false,
+        true
+      ]
+    },
+    "M4": {
+      "about": "Complaint wrapped in a polite religious formula",
+      "intent": [
+        "wrong_item"
+      ],
+      "sentiment": [
+        "negative"
+      ],
+      "urgency": [
+        "medium",
+        "high"
+      ],
+      "sarcasm": [
+        false,
+        true
+      ],
+      "churn_risk": [
+        false,
+        true
+      ]
+    },
+    "M5": {
+      "about": "Formal refund request",
+      "intent": [
+        "refund_request"
+      ],
+      "sentiment": [
+        "negative",
+        "neutral"
+      ],
+      "urgency": [
+        "medium",
+        "low"
+      ],
+      "sarcasm": [
+        false
+      ],
+      "churn_risk": [
+        false
+      ]
+    },
+    "M6": {
+      "about": "Urgent cancellation, wrong address",
+      "intent": [
+        "cancel_order"
+      ],
+      "sentiment": [
+        "neutral",
+        "negative"
+      ],
+      "urgency": [
+        "high"
+      ],
+      "sarcasm": [
+        false
+      ],
+      "churn_risk": [
+        false
+      ]
+    },
+    "M7": {
+      "about": "Safety: nut allergy, child ate it",
+      "intent": [
+        "wrong_item"
+      ],
+      "sentiment": [
+        "negative"
+      ],
+      "urgency": [
+        "high"
+      ],
+      "sarcasm": [
+        false
+      ],
+      "churn_risk": [
+        false,
+        true
+      ]
+    },
+    "M8": {
+      "about": "Charged twice",
+      "intent": [
+        "billing_issue"
+      ],
+      "sentiment": [
+        "negative"
+      ],
+      "urgency": [
+        "high",
+        "medium"
+      ],
+      "sarcasm": [
+        false
+      ],
+      "churn_risk": [
+        false
+      ]
+    },
+    "M9": {
+      "about": "Genuine praise for the driver",
+      "intent": [
+        "praise"
+      ],
+      "sentiment": [
+        "positive"
+      ],
+      "urgency": [
+        "low"
+      ],
+      "sarcasm": [
+        false
+      ],
+      "churn_risk": [
+        false
+      ]
+    },
+    "M10": {
+      "about": "Question: delivery area and minimum",
+      "intent": [
+        "question"
+      ],
+      "sentiment": [
+        "neutral"
+      ],
+      "urgency": [
+        "low"
+      ],
+      "sarcasm": [
+        false
+      ],
+      "churn_risk": [
+        false
+      ]
+    },
+    "M11": {
+      "about": "Churn threat",
+      "intent": [
+        "general_complaint"
+      ],
+      "sentiment": [
+        "negative"
+      ],
+      "urgency": [
+        "medium",
+        "high"
+      ],
+      "sarcasm": [
+        false
+      ],
+      "churn_risk": [
+        true
+      ]
+    },
+    "M12": {
+      "about": "Thanks plus a complaint",
+      "intent": [
+        "quality_issue"
+      ],
+      "sentiment": [
+        "mixed",
+        "negative"
+      ],
+      "urgency": [
+        "low",
+        "medium"
+      ],
+      "sarcasm": [
+        false
+      ],
+      "churn_risk": [
+        false
+      ]
+    }
+  },
+  "messages": {
+    "M1": {
+      "en": "hi, my order came but the milk and bread are missing",
+      "ar_msa": "مرحباً، وصل طلبي لكن الحليب والخبز غير موجودين",
+      "ar_sa": "هلا، طلبي وصل بس ما جاني الحليب والخبز",
+      "ar_eg": "أهلاً، الأوردر وصل بس اللبن والعيش مش موجودين",
+      "ar_ma": "السلام، الكوموند وصلات ولكن الحليب والخبز ماكاينينش",
+      "arabizi": "ahlan, el order wesel bas el laban wel 3eish mesh mawgoodeen"
+    },
+    "M2": {
+      "en": "WHERE IS MY ORDER?? it's been 2 hours, this is ridiculous",
+      "ar_msa": "أين طلبي؟؟ مرت ساعتان، هذا أمر سخيف",
+      "ar_sa": "وين طلبي؟؟ صار له ساعتين، شي يفشل",
+      "ar_eg": "الأوردر فين؟؟ بقاله ساعتين، ده تهريج",
+      "ar_ma": "فين الكوموند ديالي؟؟ هادي جوج سوايع، هادشي ماشي معقول",
+      "arabizi": "el order fein?? ba2alo sa3teen, da tahreeg"
+    },
+    "M3": {
+      "en": "wow amazing service, only 2 hours late again 👏👏",
+      "ar_msa": "يا لها من خدمة رائعة، تأخير ساعتين فقط مرة أخرى 👏👏",
+      "ar_sa": "ما شاء الله عليكم خدمة ولا أروع، بس ساعتين تأخير مرة ثانية 👏👏",
+      "ar_eg": "لا بجد خدمة تحفة، متأخرين ساعتين بس زي كل مرة 👏👏",
+      "ar_ma": "واو سيرفيس زوين بزاف، غير جوج سوايع ديال الروطار مرة أخرى 👏👏",
+      "arabizi": "la begad service to7fa, met2a5areen sa3teen bas zay kol marra 👏👏"
+    },
+    "M4": {
+      "en": "Bless your heart, you got my order wrong for the third time",
+      "ar_msa": "سامحكم الله، هذه ثالث مرة يصلني الطلب خطأ",
+      "ar_sa": "الله يسامحكم، ثالث مرة الطلب يجيني غلط",
+      "ar_eg": "ربنا يسامحكم، تالت مرة الأوردر ييجي غلط",
+      "ar_ma": "الله يسمح ليكم، هادي تالت مرة الكوموند كتجي غالطة",
+      "arabizi": "rabena yesam7ko, talet marra el order yegy ghalat"
+    },
+    "M5": {
+      "en": "Hello, I would like a refund for order #48213 please. The items were not as described.",
+      "ar_msa": "مرحباً، أرغب في استرداد مبلغ الطلب رقم 48213 من فضلك. المنتجات لم تكن مطابقة للوصف.",
+      "ar_sa": "السلام عليكم، أبغى أسترجع فلوس الطلب 48213 لو سمحت. الأغراض مو نفس الوصف.",
+      "ar_eg": "السلام عليكم، عايز أسترجع فلوس الأوردر 48213 لو سمحت. الحاجات مش زي الوصف.",
+      "ar_ma": "السلام، بغيت نرجع الفلوس ديال الكوموند 48213 عافاك. السلعة ماشي بحال الوصف.",
+      "arabizi": "el salamo 3aleekom, 3ayez asterga3 felous el order 48213 law sama7t. el 7agat mesh zay el wasf."
+    },
+    "M6": {
+      "en": "cancel my order NOW please, I ordered to the wrong address",
+      "ar_msa": "ألغوا طلبي الآن من فضلكم، طلبته على العنوان الخطأ",
+      "ar_sa": "تكفون ألغوا طلبي الحين، طلبته على عنوان غلط",
+      "ar_eg": "الغوا الأوردر دلوقتي حالاً لو سمحتوا، طلبته على عنوان غلط",
+      "ar_ma": "عافاكم لغيو الكوموند دابا، درتها فعنوان غالط",
+      "arabizi": "elghoo el order delwa2ty 7alan law sama7to, talabto 3ala 3enwan ghalat"
+    },
+    "M7": {
+      "en": "you sent peanut butter cookies instead of the plain ones and my son has a nut allergy, he already ate one",
+      "ar_msa": "أرسلتم بسكويت بزبدة الفول السوداني بدلاً من العادي، وابني لديه حساسية من المكسرات وقد أكل واحدة بالفعل",
+      "ar_sa": "أرسلتوا بسكوت فيه زبدة فول سوداني بدال العادي، وولدي عنده حساسية مكسرات وأكل وحدة",
+      "ar_eg": "بعتوا بسكوت بزبدة الفول السوداني بدل العادي، وابني عنده حساسية من المكسرات وكل واحدة خلاص",
+      "ar_ma": "صيفطتو بيسكوي فيه زبدة الكاوكاو بلاصة العادي، وولدي عندو الحساسية ديال الكاوكاو وكلا وحدة",
+      "arabizi": "ba3atoo baskot be zebdet el fool el soudany badal el 3ady, w ebny 3ando 7asaseya men el mekassarat w kal wa7da 5alas"
+    },
+    "M8": {
+      "en": "I was charged twice for the same order, 2 x $45 on my card",
+      "ar_msa": "تم خصم المبلغ مرتين لنفس الطلب، 2 × 150 ريالاً من بطاقتي",
+      "ar_sa": "انخصم مني المبلغ مرتين على نفس الطلب، 150 ريال مرتين من البطاقة",
+      "ar_eg": "اتخصم مني مرتين على نفس الأوردر، 450 جنيه مرتين من الكارت",
+      "ar_ma": "تقطعو ليا الفلوس جوج مرات على نفس الكوموند، 300 درهم جوج مرات من الكارطة",
+      "arabizi": "et5asam menny marteen 3ala nafs el order, 450 geneh marteen men el card"
+    },
+    "M9": {
+      "en": "just wanted to say the driver was super kind and helped me carry everything upstairs, thank you!",
+      "ar_msa": "أردت فقط أن أقول إن المندوب كان لطيفاً جداً وساعدني في حمل كل شيء إلى الأعلى، شكراً لكم!",
+      "ar_sa": "حبيت أقول إن المندوب كان مره ذوق وساعدني أطلع الأغراض فوق، يعطيكم العافية!",
+      "ar_eg": "حبيت أقول إن الطيار كان ذوق جداً وساعدني أطلع الحاجات فوق، متشكرين!",
+      "ar_ma": "بغيت غير نقول بلي الليفرور كان ظريف بزاف وعاوني نطلع كلشي للفوق، شكرا بزاف!",
+      "arabizi": "7abbeit a2ool en el tayar kan zoo2 gedan w sa3edny atala3 el 7agat fo2, metshakreen!"
+    },
+    "M10": {
+      "en": "do you deliver to Maple Heights? and is there a minimum order?",
+      "ar_msa": "هل توصلون إلى حي النرجس؟ وهل يوجد حد أدنى للطلب؟",
+      "ar_sa": "توصلون حي النرجس؟ وفيه حد أدنى للطلب؟",
+      "ar_eg": "بتوصلوا التجمع الخامس؟ وفيه حد أدنى للأوردر؟",
+      "ar_ma": "واش كتوصلو لمعاريف؟ وكاين شي حد أدنى للكوموند؟",
+      "arabizi": "betwasalo el tagamo3 el 5ames? w fe 7ad adna lel order?"
+    },
+    "M11": {
+      "en": "honestly this is the last time I'm ordering from you, something goes wrong every single week",
+      "ar_msa": "بصراحة هذه آخر مرة أطلب منكم، كل أسبوع تحدث مشكلة",
+      "ar_sa": "والله هذي آخر مرة أطلب منكم، كل أسبوع فيه مشكلة",
+      "ar_eg": "بصراحة دي آخر مرة أطلب منكم، كل أسبوع فيه مصيبة",
+      "ar_ma": "بصراحة هادي آخر مرة نطلب منكم، كل سيمانة كاين شي مشكل",
+      "arabizi": "besara7a di a5er marra atlob menko, kol esboo3 fe moseeba"
+    },
+    "M12": {
+      "en": "thanks for the fast delivery! but the bread was stale and the tomatoes were squashed",
+      "ar_msa": "شكراً على التوصيل السريع! لكن الخبز كان قديماً والطماطم مهروسة",
+      "ar_sa": "مشكورين على سرعة التوصيل! بس الخبز كان يابس والطماط مفعوص",
+      "ar_eg": "شكراً على التوصيل السريع! بس العيش كان بايت والطماطم مفعصة",
+      "ar_ma": "شكرا على السرعة فالتوصيل! ولكن الخبز كان يابس والطماطم مهروسة",
+      "arabizi": "shokran 3al tawseel el saree3! bas el 3eish kan bayet wel tamatem mef3asa"
+    }
+  },
+  "instruction": "You are triaging customer messages for a grocery delivery app. Classify the message below. Return only JSON with these keys: \"intent\" (one of: missing_item, late_delivery, wrong_item, refund_request, cancel_order, billing_issue, quality_issue, general_complaint, praise, question), \"sentiment\" (positive, neutral, negative or mixed), \"urgency\" (low, medium or high), \"sarcasm\" (true or false), \"churn_risk\" (true or false), \"summary\" (one sentence in English).\n\nMessage:\n{message}"
+}

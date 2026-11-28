@@ -1,0 +1,380 @@
+{
+ "token_tax": {
+  "GPT (o200k)": {
+   "visible_text_ratio": 1.31,
+   "whole_page_ratio": 1.02,
+   "pairs": 40
+  },
+  "DeepSeek V3": {
+   "visible_text_ratio": 1.58,
+   "whole_page_ratio": 1.02,
+   "pairs": 40
+  },
+  "Qwen 2.5": {
+   "visible_text_ratio": 1.58,
+   "whole_page_ratio": 1.02,
+   "pairs": 40
+  },
+  "Mistral Small": {
+   "visible_text_ratio": 1.24,
+   "whole_page_ratio": 1.01,
+   "pairs": 40
+  },
+  "Jais (Arabic-first)": {
+   "visible_text_ratio": 1.03,
+   "whole_page_ratio": 1.01,
+   "pairs": 40
+  },
+  "Fanar (Arabic-first)": {
+   "visible_text_ratio": 1.43,
+   "whole_page_ratio": 1.02,
+   "pairs": 40
+  }
+ },
+ "fragmentation": {
+  "GPT (o200k)": {
+   "arabic_tokens_per_word": 2.45,
+   "english_tokens_per_word": 1.1,
+   "arabic_words_split_3plus": 0.45
+  },
+  "DeepSeek V3": {
+   "arabic_tokens_per_word": 2.71,
+   "english_tokens_per_word": 1.15,
+   "arabic_words_split_3plus": 0.59
+  },
+  "Qwen 2.5": {
+   "arabic_tokens_per_word": 2.47,
+   "english_tokens_per_word": 1.13,
+   "arabic_words_split_3plus": 0.45
+  },
+  "Mistral Small": {
+   "arabic_tokens_per_word": 2.42,
+   "english_tokens_per_word": 1.17,
+   "arabic_words_split_3plus": 0.43
+  },
+  "Jais (Arabic-first)": {
+   "arabic_tokens_per_word": 1.96,
+   "english_tokens_per_word": 1.21,
+   "arabic_words_split_3plus": 0.17
+  },
+  "Fanar (Arabic-first)": {
+   "arabic_tokens_per_word": 2.48,
+   "english_tokens_per_word": 1.11,
+   "arabic_words_split_3plus": 0.47
+  }
+ },
+ "word_check": {
+  "distinct_arabic_words": 1784,
+  "unrecognized": 40,
+  "unrecognized_share": 0.022,
+  "gpt_tokens_per_word_recognized": 2.43,
+  "gpt_tokens_per_word_unrecognized": 3.1,
+  "examples": [
+   {
+    "word": "برجر",
+    "count": 6,
+    "pages": [
+     "S2__explicit__gpt",
+     "S5__arabic__gemini",
+     "S5__arabic__gpt"
+    ]
+   },
+   {
+    "word": "كيوي",
+    "count": 5,
+    "pages": [
+     "S3__arabic__claude",
+     "S3__arabic__deepseek",
+     "S3__arabic__gemini"
+    ]
+   },
+   {
+    "word": "قاريب",
+    "count": 3,
+    "pages": [
+     "S1__explicit__saba",
+     "S3__plain__saba"
+    ]
+   },
+   {
+    "word": "وماستركارد",
+    "count": 3,
+    "pages": [
+     "S2__localize__claude",
+     "S2__localize__deepseek",
+     "S2__localize__gpt"
+    ]
+   },
+   {
+    "word": "ماستركارد",
+    "count": 3,
+    "pages": [
+     "S2__localize__gemini",
+     "S2__plain__deepseek",
+     "S2__plain__gpt"
+    ]
+   },
+   {
+    "word": "إيثان",
+    "count": 3,
+    "pages": [
+     "S6__localize__deepseek",
+     "S6__localize__gemini",
+     "S6__localize__saba"
+    ]
+   },
+   {
+    "word": "جاريب",
+    "count": 3,
+    "pages": [
+     "S7__explicit__saba"
+    ]
+   },
+   {
+    "word": "التوضيحي",
+    "count": 3,
+    "pages": [
+     "S7__plain__claude"
+    ]
+   },
+   {
+    "word": "كويرب",
+    "count": 2,
+    "pages": [
+     "S3__explicit__saba"
+    ]
+   },
+   {
+    "word": "كويكر",
+    "count": 2,
+    "pages": [
+     "S3__explicit__saba"
+    ]
+   },
+   {
+    "word": "الفلاتر",
+    "count": 2,
+    "pages": [
+     "S3__plain__claude",
+     "S3__plain__saba"
+    ]
+   },
+   {
+    "word": "أوليفيا",
+    "count": 2,
+    "pages": [
+     "S6__localize__deepseek",
+     "S6__localize__gemini"
+    ]
+   },
+   {
+    "word": "تومبسون",
+    "count": 2,
+    "pages": [
+     "S6__localize__gemini",
+     "S6__localize__saba"
+    ]
+   },
+   {
+    "word": "الطزاجة",
+    "count": 1,
+    "pages": [
+     "S1__localize__claude"
+    ]
+   },
+   {
+    "word": "المقاضي",
+    "count": 1,
+    "pages": [
+     "S1__localize__gemini"
+    ]
+   },
+   {
+    "word": "تشيز",
+    "count": 1,
+    "pages": [
+     "S2__arabic__deepseek"
+    ]
+   },
+   {
+    "word": "بوصالح",
+    "count": 1,
+    "pages": [
+     "S2__explicit__saba"
+    ]
+   },
+   {
+    "word": "شوتز",
+    "count": 1,
+    "pages": [
+     "S2__explicit__saba"
+    ]
+   },
+   {
+    "word": "فايزل",
+    "count": 1,
+    "pages": [
+     "S2__explicit__saba"
+    ]
+   },
+   {
+    "word": "مراجحة",
+    "count": 1,
+    "pages": [
+     "S2__localize__saba"
+    ]
+   },
+   {
+    "word": "البرغر",
+    "count": 1,
+    "pages": [
+     "S2__plain__saba"
+    ]
+   },
+   {
+    "word": "أفوكادو",
+    "count": 1,
+    "pages": [
+     "S3__explicit__gpt"
+    ]
+   },
+   {
+    "word": "باريلا",
+    "count": 1,
+    "pages": [
+     "S3__explicit__saba"
+    ]
+   },
+   {
+    "word": "نودلز",
+    "count": 1,
+    "pages": [
+     "S3__explicit__saba"
+    ]
+   },
+   {
+    "word": "والخضراوات",
+    "count": 1,
+    "pages": [
+     "S3__localize__gpt"
+    ]
+   },
+   {
+    "word": "خضراوات",
+    "count": 1,
+    "pages": [
+     "S3__localize__saba"
+    ]
+   },
+   {
+    "word": "نافيل",
+    "count": 1,
+    "pages": [
+     "S3__localize__saba"
+    ]
+   },
+   {
+    "word": "روزماري",
+    "count": 1,
+    "pages": [
+     "S3__plain__gemini"
+    ]
+   },
+   {
+    "word": "العماري",
+    "count": 1,
+    "pages": [
+     "S4__explicit__deepseek"
+    ]
+   },
+   {
+    "word": "الحاربي",
+    "count": 1,
+    "pages": [
+     "S4__localize__saba"
+    ]
+   },
+   {
+    "word": "الماراي",
+    "count": 1,
+    "pages": [
+     "S4__plain__saba"
+    ]
+   },
+   {
+    "word": "للوصو",
+    "count": 1,
+    "pages": [
+     "S5__explicit__saba"
+    ]
+   },
+   {
+    "word": "كورولا",
+    "count": 1,
+    "pages": [
+     "S5__plain__gpt"
+    ]
+   },
+   {
+    "word": "أع",
+    "count": 1,
+    "pages": [
+     "S6__explicit__gpt"
+    ]
+   },
+   {
+    "word": "نع",
+    "count": 1,
+    "pages": [
+     "S6__localize__gpt"
+    ]
+   },
+   {
+    "word": "خغ",
+    "count": 1,
+    "pages": [
+     "S6__localize__gpt"
+    ]
+   },
+   {
+    "word": "أليفيا",
+    "count": 1,
+    "pages": [
+     "S6__localize__saba"
+    ]
+   },
+   {
+    "word": "بخصومات",
+    "count": 1,
+    "pages": [
+     "S7__arabic__gemini"
+    ]
+   },
+   {
+    "word": "واستفد",
+    "count": 1,
+    "pages": [
+     "S7__localize__gpt"
+    ]
+   },
+   {
+    "word": "قاربيب",
+    "count": 1,
+    "pages": [
+     "S8__plain__saba"
+    ]
+   }
+  ]
+ },
+ "cut_off": {
+  "cond:arabic": "0/40",
+  "cond:explicit": "0/40",
+  "cond:localize": "0/40",
+  "cond:plain": "0/40",
+  "model:claude": "0/32",
+  "model:deepseek": "0/32",
+  "model:gemini": "0/32",
+  "model:gpt": "0/32",
+  "model:saba": "0/32"
+ }
+}

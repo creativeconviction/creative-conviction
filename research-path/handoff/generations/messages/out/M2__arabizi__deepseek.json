@@ -1,0 +1,13 @@
+{
+  "scenario": "M2",
+  "lang": "arabizi",
+  "model": "deepseek",
+  "message": "el order fein?? ba2alo sa3teen, da tahreeg",
+  "raw": "{\n  \"intent\": \"late_delivery\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"Customer is angrily asking where their order is, saying it's been two hours and calling it a disaster.\"\n}",
+  "intent": "late_delivery",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Customer is angrily asking where their order is, saying it's been two hours and calling it a disaster."
+}

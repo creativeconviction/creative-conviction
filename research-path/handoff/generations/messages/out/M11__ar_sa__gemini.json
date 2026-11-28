@@ -1,0 +1,13 @@
+{
+  "scenario": "M11",
+  "lang": "ar_sa",
+  "model": "gemini",
+  "message": "والله هذي آخر مرة أطلب منكم، كل أسبوع فيه مشكلة",
+  "raw": "```json\n{\n  \"intent\": \"general_complaint\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"The customer is extremely frustrated with recurring weekly issues and explicitly states they will never order from the app again.\"\n}\n```",
+  "intent": "general_complaint",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "The customer is extremely frustrated with recurring weekly issues and explicitly states they will never order from the app again."
+}

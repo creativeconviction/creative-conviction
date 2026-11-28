@@ -1,0 +1,12 @@
+{
+  "line": "C3",
+  "market": "en_gb",
+  "model": "gpt",
+  "source": "Thanksgiving dinner, sorted. Order your turkey today.",
+  "raw": "{\n  \"literal\": \"Thanksgiving dinner, sorted. Order your turkey today.\",\n  \"adaptation\": \"Christmas dinner, sorted. Order your turkey today.\",\n  \"back_translation\": \"Christmas dinner, sorted. Order your turkey today.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Thanksgiving is not widely celebrated in the UK, so it was replaced with Christmas, when turkey is traditionally served.\"\n}",
+  "literal": "Thanksgiving dinner, sorted. Order your turkey today.",
+  "adaptation": "Christmas dinner, sorted. Order your turkey today.",
+  "back_translation": "Christmas dinner, sorted. Order your turkey today.",
+  "approach": "adapted",
+  "notes": "Thanksgiving is not widely celebrated in the UK, so it was replaced with Christmas, when turkey is traditionally served."
+}

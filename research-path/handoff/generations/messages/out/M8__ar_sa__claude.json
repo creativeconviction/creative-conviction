@@ -1,0 +1,13 @@
+{
+  "scenario": "M8",
+  "lang": "ar_sa",
+  "model": "claude",
+  "message": "انخصم مني المبلغ مرتين على نفس الطلب، 150 ريال مرتين من البطاقة",
+  "raw": "```json\n{\n  \"intent\": \"billing_issue\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"The customer reports their card was charged twice (150 riyals each time) for the same order.\"\n}\n```",
+  "intent": "billing_issue",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer reports their card was charged twice (150 riyals each time) for the same order."
+}

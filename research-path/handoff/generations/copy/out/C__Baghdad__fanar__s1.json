@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Baghdad",
+  "s": 1,
+  "prompt_lang": "en",
+  "city": "Baghdad",
+  "target_region": "Iraq",
+  "target_city_code": "BAG",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Baghdad. Write marketing copy for it in Iraqi (Baghdadi) Arabic, the way people in Baghdad actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "model": "fanar",
+  "id": "C__Baghdad__fanar__s1",
+  "model_id": "QCRI/Fanar-1-9B-Instruct",
+  "output": "**Tagline:** \"كل حاجة تبيها يلي بابك.. قريب\" (Everything you need, right at your doorstep.. Qareeb)\n\n**Instagram Ad Lines:**\n\n1. \"ما بتضطرش لتدور على السوق. طلباتك منتظرنا يوصلهالك. #قريب_وقت_الاكل\" (You don't have to look for the market. Your orders are waiting for us to deliver. #Qareeb_Meal_Time)\n\n2. \"عبرنا، يخفف عليك. طلباتك يلي بابك. #قريب_وقت_راحة\" (We make it easier for you. Your orders, right at your doorstep. #Qareeb_Time_to_Relax)\n\n3. \"شركةك لا تمنعك من الأكل الحلو. دقنا يخلصلك المهمة. #قريب_وقت_لذيذ\" (Your busy day doesn't have to prevent you from enjoying delicious food. We're here to help. #Qareeb_Delicious_Time)\n\n**Push Notification:**\n\n\"اللي ريحك، بلا تعب. #{جودة_الحياة} جاهز حالاً. #قريب_طلباتك\" (Ease for you, no hassle. #{Quality_of_life} ready now. #Qareeb_Your_Orders)",
+  "at": "2026-11-28T00:49:47.551828+00:00"
+}

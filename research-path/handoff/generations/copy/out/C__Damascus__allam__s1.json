@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Damascus",
+  "s": 1,
+  "prompt_lang": "en",
+  "city": "Damascus",
+  "target_region": "Levant",
+  "target_city_code": "DAM",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Damascus. Write marketing copy for it in Syrian (Damascene) Arabic, the way people in Damascus actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "model": "allam",
+  "id": "C__Damascus__allam__s1",
+  "model_id": "humain-ai/ALLaM-7B-Instruct-preview",
+  "output": "#حار_واجد_داق\n\n##صباح الخير #Qareeb #قريب _نوصل إلك#\n\n###إعلانات على إنستغرام:\n- هلا، تعال شوف #ختيارات_قريب الخاصة لسوريا فقط  \n- قرب. قريب. وصلولنا. استنى فالخدمة كلنا.  \n- قريباً أسواق الشيخ محي الدين ورحابة طعامها#قريب غايته#  \n\n###ملاحظة:\nقهوتك ووجبتك وفطورتك اللي على الطاير وصلولك. ريح بالك مع #Qareeb#قربك_قريب.  \nطبعاً الطعام الساخن ما في منو ولا شوي ولا أكل بايت!  \nولو عندنا جيران في خدمتكم أيضاً كل الطلبيات بتوصل للعرب والإغريق والأتراك. #اللحمة_ول",
+  "at": "2026-11-28T00:49:47.543664+00:00"
+}

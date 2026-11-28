@@ -1,0 +1,12 @@
+{
+  "line": "I3",
+  "market": "en_gb",
+  "model": "deepseek",
+  "source": "Bring home the bacon with zero fees.",
+  "raw": "{\n  \"literal\": \"Bring home the bacon with zero fees.\",\n  \"adaptation\": \"Bring home the bacon with no fees.\",\n  \"back_translation\": \"Bring home the bacon with no fees.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Changed 'zero fees' to 'no fees' as it is more natural in British banking marketing, while 'bring home the bacon' is already widely understood in the UK.\"\n}",
+  "literal": "Bring home the bacon with zero fees.",
+  "adaptation": "Bring home the bacon with no fees.",
+  "back_translation": "Bring home the bacon with no fees.",
+  "approach": "adapted",
+  "notes": "Changed 'zero fees' to 'no fees' as it is more natural in British banking marketing, while 'bring home the bacon' is already widely understood in the UK."
+}

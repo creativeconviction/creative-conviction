@@ -1,0 +1,12 @@
+{
+  "line": "C2",
+  "market": "en_gb",
+  "model": "claude",
+  "source": "Happy hour: 2-for-1 drinks from 5 to 7pm.",
+  "raw": "```json\n{\n  \"literal\": \"Happy hour: 2-for-1 drinks from 5 to 7pm.\",\n  \"adaptation\": \"Happy hour: two-for-one drinks, 5–7pm. Please drink responsibly.\",\n  \"back_translation\": \"Happy hour: two-for-one drinks, 5–7pm. Please drink responsibly.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"I adopted UK time and number styling and added a responsible-drinking line because UK licensing rules restrict 'irresponsible' drinks promotions, and Scotland bans happy hours and multi-buy drink deals outright, so this offer cannot run in Scottish venues.\"\n}\n```",
+  "literal": "Happy hour: 2-for-1 drinks from 5 to 7pm.",
+  "adaptation": "Happy hour: two-for-one drinks, 5–7pm. Please drink responsibly.",
+  "back_translation": "Happy hour: two-for-one drinks, 5–7pm. Please drink responsibly.",
+  "approach": "adapted",
+  "notes": "I adopted UK time and number styling and added a responsible-drinking line because UK licensing rules restrict 'irresponsible' drinks promotions, and Scotland bans happy hours and multi-buy drink deals outright, so this offer cannot run in Scottish venues."
+}

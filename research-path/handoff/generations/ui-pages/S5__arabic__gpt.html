@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تتبّع الطلب — قريب</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #157f73;
+      --primary-dark: #0e675e;
+      --primary-soft: #e7f5f2;
+      --accent: #ffb547;
+      --ink: #172321;
+      --muted: #71807d;
+      --line: #e3eae8;
+      --surface: #ffffff;
+      --background: #f5f8f7;
+      --shadow: 0 12px 32px rgba(25, 67, 61, .09);
+      --radius: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: var(--background);
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 90% 0%, rgba(21, 127, 115, .09), transparent 28rem),
+        var(--background);
+      font-family: "Tajawal", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button,
+    a {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 1060px;
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 0 16px 28px;
+    }
+
+    .topbar {
+      min-height: 76px;
+      display: grid;
+      grid-template-columns: 44px 1fr 44px;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .topbar h1 {
+      margin: 0;
+      text-align: center;
+      font-size: 19px;
+      font-weight: 800;
+    }
+
+    .icon-button {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      color: var(--ink);
+      background: rgba(255, 255, 255, .88);
+      box-shadow: 0 5px 16px rgba(25, 67, 61, .05);
+    }
+
+    .icon-button:hover,
+    .icon-button:focus-visible {
+      border-color: var(--primary);
+      color: var(--primary);
+      outline: none;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      justify-self: end;
+      color: white;
+      background: var(--primary);
+      border-radius: 12px 12px 12px 4px;
+      font-size: 19px;
+      font-weight: 800;
+    }
+
+    .card {
+      border: 1px solid rgba(216, 228, 225, .9);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .status-card {
+      padding: 22px 16px 20px;
+      margin-bottom: 16px;
+    }
+
+    .order-label {
+      margin: 0 0 4px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .status-title {
+      margin: 0;
+      text-align: center;
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -.25px;
+    }
+
+    .status-title span {
+      color: var(--primary);
+    }
+
+    .eta {
+      width: max-content;
+      max-width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 14px auto 24px;
+      padding: 9px 13px;
+      color: var(--primary-dark);
+      background: var(--primary-soft);
+      border-radius: 13px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .eta strong {
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    .progress {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      direction: rtl;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .progress::before,
+    .progress::after {
+      content: "";
+      position: absolute;
+      z-index: 0;
+      top: 15px;
+      right: 12.5%;
+      height: 3px;
+      border-radius: 999px;
+    }
+
+    .progress::before {
+      left: 12.5%;
+      background: #e2e9e7;
+    }
+
+    .progress::after {
+      width: 50%;
+      background: var(--primary);
+    }
+
+    .progress li {
+      position: relative;
+      z-index: 1;
+      min-width: 0;
+      text-align: center;
+      color: #99a4a1;
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 1.45;
+    }
+
+    .progress .dot {
+      width: 31px;
+      height: 31px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 9px;
+      border: 3px solid white;
+      border-radius: 50%;
+      color: white;
+      background: #d9e1df;
+      box-shadow: 0 0 0 1px #dfe7e5;
+    }
+
+    .progress li.done {
+      color: var(--primary-dark);
+    }
+
+    .progress li.done .dot {
+      background: var(--primary);
+      box-shadow: 0 0 0 1px var(--primary);
+    }
+
+    .progress li.current {
+      color: var(--ink);
+      font-weight: 800;
+    }
+
+    .progress li.current .dot {
+      background: var(--primary);
+      box-shadow:
+        0 0 0 1px var(--primary),
+        0 0 0 6px rgba(21, 127, 115, .14);
+    }
+
+    .content-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .map-card {
+      position: relative;
+      min-height: 286px;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .map-card svg.map {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .map-top {
+      position: absolute;
+      z-index: 3;
+      top: 14px;
+      right: 14px;
+      left: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+
+    .map-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 12px;
+      border: 1px solid rgba(219, 229, 227, .9);
+      border-radius: 13px;
+      color: var(--ink);
+      background: rgba(255, 255, 255, .92);
+      box-shadow: 0 8px 18px rgba(30, 65, 60, .1);
+      backdrop-filter: blur(8px);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #2bb673;
+      box-shadow: 0 0 0 4px rgba(43, 182, 115, .14);
+    }
+
+    .recenter {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(219, 229, 227, .9);
+      border-radius: 12px;
+      color: var(--primary);
+      background: rgba(255, 255, 255, .94);
+      box-shadow: 0 8px 18px rgba(30, 65, 60, .1);
+      pointer-events: auto;
+    }
+
+    .destination {
+      position: absolute;
+      z-index: 2;
+      bottom: 43px;
+      left: 16%;
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      color: white;
+      background: var(--ink);
+      border: 4px solid white;
+      border-radius: 50% 50% 50% 10%;
+      box-shadow: 0 6px 14px rgba(23, 35, 33, .25);
+      transform: rotate(-45deg);
+    }
+
+    .destination svg {
+      transform: rotate(45deg);
+    }
+
+    .courier-marker {
+      position: absolute;
+      z-index: 2;
+      top: 47%;
+      right: 33%;
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      color: white;
+      background: var(--primary);
+      border: 4px solid white;
+      border-radius: 50%;
+      box-shadow:
+        0 7px 18px rgba(14, 103, 94, .3),
+        0 0 0 8px rgba(21, 127, 115, .12);
+    }
+
+    .side-column {
+      display: grid;
+      gap: 16px;
+      align-content: start;
+    }
+
+    .courier-card {
+      padding: 18px;
+    }
+
+    .section-label {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .courier-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .avatar {
+      position: relative;
+      flex: 0 0 auto;
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      color: var(--primary-dark);
+      background: linear-gradient(145deg, #d8f0ec, #bfe4de);
+      border: 3px solid white;
+      border-radius: 18px;
+      box-shadow: 0 0 0 1px var(--line);
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .avatar::after {
+      content: "";
+      position: absolute;
+      bottom: -13px;
+      width: 47px;
+      height: 30px;
+      background: rgba(21, 127, 115, .18);
+      border-radius: 50% 50% 0 0;
+    }
+
+    .courier-text {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .courier-text h2 {
+      margin: 0 0 5px;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .rating {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .star {
+      color: var(--accent);
+      font-size: 17px;
+      line-height: 1;
+    }
+
+    .plate {
+      flex: 0 0 auto;
+      min-width: 96px;
+      padding: 7px 8px;
+      border: 2px solid #cbd5d3;
+      border-radius: 8px;
+      text-align: center;
+      background: #fbfcfc;
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.55;
+      letter-spacing: .45px;
+    }
+
+    .plate span {
+      display: block;
+      direction: ltr;
+    }
+
+    .plate span + span {
+      direction: rtl;
+      border-top: 1px solid #dce3e2;
+    }
+
+    .contact-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 17px;
+    }
+
+    .action {
+      min-height: 47px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 1px solid var(--primary);
+      border-radius: 14px;
+      text-decoration: none;
+      color: var(--primary);
+      background: white;
+      font-weight: 800;
+      transition: .2s ease;
+    }
+
+    .action.primary {
+      color: white;
+      background: var(--primary);
+    }
+
+    .action:hover,
+    .action:focus-visible {
+      outline: none;
+      transform: translateY(-1px);
+      box-shadow: 0 7px 16px rgba(21, 127, 115, .15);
+    }
+
+    .order-details {
+      overflow: hidden;
+    }
+
+    .order-details summary {
+      min-height: 66px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 18px;
+      list-style: none;
+      cursor: pointer;
+      font-weight: 800;
+      user-select: none;
+    }
+
+    .order-details summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .bag-icon {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      color: var(--primary);
+      background: var(--primary-soft);
+      border-radius: 12px;
+    }
+
+    .summary-copy {
+      flex: 1;
+    }
+
+    .summary-copy small {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .chevron {
+      color: var(--muted);
+      transition: transform .2s ease;
+    }
+
+    details[open] .chevron {
+      transform: rotate(180deg);
+    }
+
+    .details-body {
+      padding: 0 18px 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    .item-row,
+    .total-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .item-row {
+      padding: 14px 0;
+      color: #43504e;
+      border-bottom: 1px dashed var(--line);
+      font-size: 14px;
+    }
+
+    .item-row span:last-child,
+    .total-row span:last-child {
+      white-space: nowrap;
+    }
+
+    .total-row {
+      padding-top: 15px;
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .delivery-note {
+      margin: 14px 0 0;
+      padding: 11px 12px;
+      color: #51605d;
+      background: #f7f9f8;
+      border-radius: 12px;
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    @media (min-width: 760px) {
+      .app {
+        padding: 0 28px 40px;
+      }
+
+      .topbar {
+        min-height: 88px;
+      }
+
+      .status-card {
+        padding-inline: 34px;
+      }
+
+      .content-grid {
+        grid-template-columns: minmax(0, 1.55fr) minmax(320px, .85fr);
+        align-items: start;
+      }
+
+      .map-card {
+        min-height: 470px;
+      }
+
+      .progress li {
+        font-size: 13px;
+      }
+    }
+
+    @media (max-width: 370px) {
+      .app {
+        padding-inline: 10px;
+      }
+
+      .status-card {
+        padding-inline: 10px;
+      }
+
+      .status-title {
+        font-size: 22px;
+      }
+
+      .progress li {
+        font-size: 10px;
+      }
+
+      .courier-card {
+        padding-inline: 14px;
+      }
+
+      .plate {
+        min-width: 88px;
+        font-size: 10px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <button class="icon-button" type="button" aria-label="الرجوع" onclick="history.back()">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <h1>تتبّع الطلب</h1>
+      <div class="brand-mark" aria-label="قريب">ق</div>
+    </header>
+
+    <section class="card status-card" aria-labelledby="order-status">
+      <p class="order-label">الطلب رقم #QRB-2841</p>
+      <h2 class="status-title" id="order-status">طلبك <span>في الطريق</span></h2>
+
+      <div class="eta" aria-label="وقت الوصول المتوقع من 18 إلى 22 دقيقة">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+          <path d="M12 7v5l3 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span>الوصول المتوقع</span>
+        <strong>١٨–٢٢ دقيقة</strong>
+      </div>
+
+      <ol class="progress" aria-label="مراحل الطلب">
+        <li class="done">
+          <span class="dot" aria-hidden="true">
+            <svg width="15" height="15" viewBox="0 0 20 20" fill="none">
+              <path d="M4 10.5l3.5 3.5L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          تم استلام<br>الطلب
+        </li>
+        <li class="done">
+          <span class="dot" aria-hidden="true">
+            <svg width="15" height="15" viewBox="0 0 20 20" fill="none">
+              <path d="M4 10.5l3.5 3.5L16 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          قيد<br>التجهيز
+        </li>
+        <li class="current" aria-current="step">
+          <span class="dot" aria-hidden="true">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+              <path d="M4 15h12l3-5h-5l-2-3H8l-1 8M7 18.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm10 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          في<br>الطريق
+        </li>
+        <li>
+          <span class="dot" aria-hidden="true"></span>
+          تم<br>التوصيل
+        </li>
+      </ol>
+    </section>
+
+    <div class="content-grid">
+      <section class="card map-card" aria-label="موقع المندوب على الخريطة">
+        <svg class="map" viewBox="0 0 700 470" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="700" height="470" fill="#eaf0ed"/>
+          <g fill="#dce8df">
+            <path d="M18 36h112v76H18zM164 18h126v99H164zM324 30h103v84H324zM471 14h207v93H471z"/>
+            <path d="M22 152h154v98H22zM216 144h109v83H216zM369 150h136v95H369zM544 137h137v105H544z"/>
+            <path d="M9 289h117v159H9zM165 281h149v76H165zM164 389h154v69H164zM356 285h126v160H356zM522 280h160v75H522zM529 389h152v70H529z"/>
+          </g>
+          <g fill="#f6f8f7">
+            <path d="M0 118h700v25H0z"/>
+            <path d="M0 252h700v29H0z"/>
+            <path d="M132 0h31v470h-31z"/>
+            <path d="M319 0h35v470h-35z"/>
+            <path d="M488 0h34v470h-34z"/>
+          </g>
+          <g fill="none" stroke="#fff" stroke-width="7">
+            <path d="M-20 420C105 360 132 330 236 330s171-52 231-126S578 93 724 84"/>
+            <path d="M43-20c29 102 84 147 174 172s149 91 160 174 56 117 129 165"/>
+          </g>
+          <g fill="none" stroke="#99cec5" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M607 89c-69 17-107 64-143 117-45 66-67 88-133 111-70 24-139 45-215 92"/>
+          </g>
+          <g fill="#cadbd3" font-family="Tajawal, sans-serif" font-size="16">
+            <text x="47" y="190">شارع الندى</text>
+            <text x="529" y="319">حي الروضة</text>
+            <text x="217" y="92">طريق الملك</text>
+          </g>
+        </svg>
+
+        <div class="map-top">
+          <div class="map-badge">
+            <span class="live-dot"></span>
+            تحديث مباشر
+          </div>
+          <button class="recenter" type="button" aria-label="تحديد موقعي">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+              <path d="M12 3v3m0 12v3M3 12h3m12 0h3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="courier-marker" aria-label="موقع المندوب">
+          <svg width="25" height="25" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M3 15h13l3-5h-5l-2.5-3H8L6.5 15M7 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm10 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <div class="destination" aria-label="عنوان التوصيل">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M5 11.5 12 6l7 5.5V19H5v-7.5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </section>
+
+      <div class="side-column">
+        <section class="card courier-card" aria-labelledby="courier-heading">
+          <p class="section-label">مندوب التوصيل</p>
+
+          <div class="courier-info">
+            <div class="avatar" aria-hidden="true">م</div>
+
+            <div class="courier-text">
+              <h2 id="courier-heading">محمد العتيبي</h2>
+              <div class="rating" aria-label="التقييم 4.9 من 5">
+                <span class="star">★</span>
+                <strong>٤٫٩</strong>
+                <span>• ٢٣٨ توصيلة</span>
+              </div>
+            </div>
+
+            <div class="plate" aria-label="لوحة السيارة ABC 1234، أ ب ج ١٢٣٤">
+              <span>ABC 1234</span>
+              <span>أ ب ج ١٢٣٤</span>
+            </div>
+          </div>
+
+          <div class="contact-actions">
+            <a class="action primary" href="tel:+966500000000" aria-label="الاتصال بالمندوب">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M8.2 4.2 10 8.3 7.8 10c1.2 2.7 3.4 4.9 6.2 6.2l1.7-2.2 4.1 1.8v3c0 1.1-.9 2-2 2C9.7 20.8 3.2 14.3 3.2 6.2c0-1.1.9-2 2-2h3Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              اتصال
+            </a>
+
+            <a class="action" href="sms:+966500000000" aria-label="مراسلة المندوب">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M5 18.5 3.5 21l4-1.2c1.3.7 2.8 1.2 4.5 1.2 5 0 9-3.8 9-8.5S17 4 12 4s-9 3.8-9 8.5c0 2.3.9 4.4 2 6Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8 12.5h8M8 9.5h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+              مراسلة
+            </a>
+          </div>
+        </section>
+
+        <details class="card order-details">
+          <summary>
+            <span class="bag-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M5 8h14l-1 12H6L5 8Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                <path d="M9 9V6a3 3 0 0 1 6 0v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="summary-copy">
+              تفاصيل الطلب
+              <small>٣ أصناف • ٨٧٫٥٠ ر.س</small>
+            </span>
+            <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </summary>
+
+          <div class="details-body">
+            <div class="item-row">
+              <span>١ × برجر دجاج حار</span>
+              <span>٣٢٫٠٠ ر.س</span>
+            </div>
+            <div class="item-row">
+              <span>١ × بطاطس مقلية</span>
+              <span>١٣٫٥٠ ر.س</span>
+            </div>
+            <div class="item-row">
+              <span>٢ × عصير برتقال</span>
+              <span>٢٤٫٠٠ ر.س</span>
+            </div>
+            <div class="item-row">
+              <span>رسوم التوصيل والضريبة</span>
+              <span>١٨٫٠٠ ر.س</span>
+            </div>
+            <div class="total-row">
+              <span>الإجمالي</span>
+              <span>٨٧٫٥٠ ر.س</span>
+            </div>
+            <p class="delivery-note"><strong>ملاحظة التوصيل:</strong> يرجى الاتصال عند الوصول وترك الطلب عند الباب.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "line": "T1",
+  "market": "ar_sa",
+  "model": "allam",
+  "source": "I'm lovin' it",
+  "raw": "{\n  \"literal\": \"أنا أحبها\",\n  \"adaptation\": \"عشان ماكدونالدز طعم الحياة أحلى\",\n  \"back_translation\": \"I'm loving it\",\n  \"approach\": \"adapted\",\n  \"notes\": \"بسبب الحساسية الثقافية تجاه words 'I', تم استبدالها بكلمة 'أنا' والتي تعني 'أنا'\"\n}",
+  "literal": "أنا أحبها",
+  "adaptation": "عشان ماكدونالدز طعم الحياة أحلى",
+  "back_translation": "I'm loving it",
+  "approach": "adapted",
+  "notes": "بسبب الحساسية الثقافية تجاه words 'I', تم استبدالها بكلمة 'أنا' والتي تعني 'أنا'"
+}

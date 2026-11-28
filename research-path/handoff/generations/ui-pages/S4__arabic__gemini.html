@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>محادثة خدمة العملاء - تطبيق قريب</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #00BFA5; /* لون قريب الأساسي */
+            --primary-dark: #009688;
+            --bg-color: #f0f2f5;
+            --chat-bg: #F5F7F9;
+            --sent-bg: #E8F5E9;
+            --received-bg: #FFFFFF;
+            --text-dark: #2C3E50;
+            --text-light: #7F8C8D;
+            --border-color: #E0E0E0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #d1d7db;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* حاوية التطبيق (محاكاة 390 بكسل) */
+        .app-container {
+            width: 100%;
+            max-width: 390px;
+            height: 100dvh;
+            background-color: var(--chat-bg);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        @media (min-width: 400px) {
+            .app-container {
+                height: 844px; /* ارتفاع الآيفون */
+                max-height: 90vh;
+                border-radius: 24px;
+            }
+        }
+
+        /* الترويسة */
+        .chat-header {
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+            border-radius: 50%;
+            transition: background 0.2s;
+        }
+
+        .icon-btn:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .back-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+            transform: scaleX(-1); /* عكس السهم للغة العربية */
+        }
+
+        .agent-info {
+            display: flex;
+            align-items: center;
+            margin-right: 12px;
+            flex: 1;
+        }
+
+        .agent-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid white;
+            background-color: #fff;
+        }
+
+        .agent-details {
+            margin-right: 12px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .agent-name {
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .agent-status {
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            margin-top: 2px;
+            opacity: 0.9;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #4CAF50;
+            border-radius: 50%;
+            margin-left: 6px;
+            border: 1px solid white;
+        }
+
+        /* منطقة المحادثة */
+        .chat-body {
+            flex: 1;
+            padding: 20px 16px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            scroll-behavior: smooth;
+        }
+
+        /* الرسائل */
+        .message-wrapper {
+            display: flex;
+            flex-direction: column;
+            max-width: 85%;
+        }
+
+        .message-wrapper.sent {
+            align-self: flex-start;
+        }
+
+        .message-wrapper.received {
+            align-self: flex-end;
+        }
+
+        .message {
+            padding: 10px 14px;
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--text-dark);
+            position: relative;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .sent .message {
+            background-color: var(--sent-bg);
+            border-radius: 16px 16px 4px 16px;
+            border: 1px solid #C8E6C9;
+        }
+
+        .received .message {
+            background-color: var(--received-bg);
+            border-radius: 16px 16px 16px 4px;
+            border: 1px solid var(--border-color);
+        }
+
+        .ltr-text {
+            direction: ltr;
+            unicode-bidi: embed;
+            display: inline-block;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .msg-meta {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 4px;
+            margin-top: 4px;
+            font-size: 11px;
+            color: var(--text-light);
+        }
+
+        .sent .msg-meta {
+            justify-content: flex-start;
+        }
+
+        .ticks svg {
+            width: 16px;
+            height: 16px;
+            fill: #34B7F1; /* لون الصحين الأزرق */
+        }
+
+        /* حقل الإدخال */
+        .chat-footer {
+            background-color: #FFFFFF;
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-top: 1px solid var(--border-color);
+            padding-bottom: calc(10px + env(safe-area-inset-bottom));
+        }
+
+        .input-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            background-color: #F0F2F5;
+            border-radius: 24px;
+            padding: 0 16px;
+            height: 44px;
+        }
+
+        .chat-input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            outline: none;
+            font-size: 14px;
+            color: var(--text-dark);
+            padding: 10px 0;
+        }
+
+        .chat-input::placeholder {
+            color: #95A5A6;
+        }
+
+        .attach-btn {
+            color: #7F8C8D;
+            padding: 8px 0 8px 8px;
+        }
+
+        .attach-btn svg {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+        }
+
+        .send-btn {
+            background-color: var(--primary-color);
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            padding: 0;
+            flex-shrink: 0;
+        }
+
+        .send-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+            transform: scaleX(-1); /* عكس اتجاه الطائرة الورقية للغة العربية */
+            margin-right: 4px;
+        }
+
+        .send-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- الترويسة -->
+        <header class="chat-header">
+            <button class="icon-btn back-btn" aria-label="رجوع">
+                <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+            </button>
+            <div class="agent-info">
+                <img src="https://ui-avatars.com/api/?name=خالد+عبدالله&background=ffffff&color=00BFA5&bold=true" alt="صورة الموظف" class="agent-avatar">
+                <div class="agent-details">
+                    <span class="agent-name">خالد عبدالله</span>
+                    <span class="agent-status"><span class="status-dot"></span> متصل الآن</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- منطقة الرسائل -->
+        <main class="chat-body" id="chatBody">
+            
+            <!-- الرسالة 1: العميل -->
+            <div class="message-wrapper sent">
+                <div class="message">
+                    السلام عليكم، عندي استفسار بخصوص طلبي من تطبيق قريب.
+                </div>
+                <div class="msg-meta">
+                    <span class="time">10:00 ص</span>
+                    <span class="ticks">
+                        <svg viewBox="0 0 24 24"><path d="M18 7l-1.41-1.41-6.34 6.34 1.41 1.41L18 7zm4.24-1.41L11.66 16.17 7.48 12l-1.41 1.41L11.66 19l12-12-1.42-1.41zM.41 13.41L6 19l1.41-1.41L1.83 12 .41 13.41z"/></svg>
+                    </span>
+                </div>
+            </div>
+
+            <!-- الرسالة 2: الموظف -->
+            <div class="message-wrapper received">
+                <div class="message">
+                    وعليكم السلام، أهلاً بك في خدمة عملاء "قريب". تفضل أخي الكريم، كيف يمكنني مساعدتك اليوم؟
+                </div>
+                <div class="msg-meta">
+                    <span class="time">10:01 ص</span>
+                </div>
+            </div>
+
+            <!-- الرسالة 3: العميل -->
+            <div class="message-wrapper sent">
+                <div class="message">
+                    طلبي رقم <span class="ltr-text">#QR-48213</span> وصلني قبل قليل لكن ناقص منتج، ما وصلني <span class="ltr-text">Almarai Fresh Milk 1L</span>.
+                </div>
+                <div class="msg-meta">
+                    <span class="time">10:02 ص</span>
+                    <span class="ticks">
+                        <svg viewBox="0 0 24 24"><path d="M18 7l-1.41-1.41-6.34 6.34 1.41 1.41L18 7zm4.24-1.41L11.66 16.17 7.48 12l-1.41 1.41L11.66 19l12-12-1.42-1.41zM.41 13.41L6 19l1.41-1.41L1.83 12 .41 13.41z"/></svg>
+                    </span>
+                </div>
+            </div>
+
+            <!-- الرسالة 4: الموظف -->
+            <div class="message-wrapper received">
+                <div class="message">
+                    نعتذر منك بشدة على هذا الخطأ غير المقصود. جاري التحقق من الطلب... هل يمكنك تأكيد رقم الجوال المسجل بالطلب؟
+                </div>
+                <div class="msg-meta">
+                    <span class="time">10:04 ص</span>
+                </div>
+            </div>
+
+            <!-- الرسالة 5: العميل -->
+            <div class="message-wrapper sent">
+                <div class="message">
+                    نعم أكيد، الرقم هو <span class="ltr-text">+966 55 123 4567</span>.
+                </div>
+                <div class="msg-meta">
+                    <span class="time">10:05 ص</span>
+                    <span class="ticks">
+                        <svg viewBox="0 0 24 24"><path d="M18 7l-1.41-1.41-6.34 6.34 1.41 1.41L18 7zm4.24-1.41L11.66 16.17 7.48 12l-1.41 1.41L11.66 19l12-12-1.42-1.41zM.41 13.41L6 19l1.41-1.41L1.83 12 .41 13.41z"/></svg>
+                    </span>
+                </div>
+            </div>
+
+            <!-- الرسالة 6: الموظف -->
+            <div class="message-wrapper received">
+                <div class="message">
+                    شكراً لك. تم التحقق، وسيتم إرسال المنتج الناقص مع المندوب فوراً، وسيكون عندك خلال نصف ساعة. هل هناك أي خدمة أخرى؟
+                </div>
+                <div class="msg-meta">
+                    <span class="time">10:06 ص</span>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- حقل الإدخال -->
+        <footer class="chat-footer">
+            <div class="input-wrapper">
+                <input type="text" class="chat-input" id="messageInput" placeholder="اكتب رسالتك هنا..." autocomplete="off">
+                <button class="icon-btn attach-btn" aria-label="إرفاق ملف">
+                    <svg viewBox="0 0 24 24"><path d="M16.5 6v11.5c0 2.21-1.79 4-4 4s-4-1.79-4-4V5a2.5 2.5 0 0 1 5 0v10.5c0 .55-.45 1-1 1s-1-.45-1-1V6H10v9.5a2.5 2.5 0 0 0 5 0V5c0-2.21-1.79-4-4-4S7 2.79 7 5v12.5c0 3.04 2.46 5.5 5.5 5.5s5.5-2.46 5.5-5.5V6h-1.5z"/></svg>
+                </button>
+            </div>
+            <button class="icon-btn send-btn" id="sendBtn" aria-label="إرسال">
+                <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+            </button>
+        </footer>
+    </div>
+
+    <script>
+        // سكربت بسيط للنزول لآخر المحادثة وإضافة وظيفة إرسال وهمية
+        const chatBody = document.getElementById('chatBody');
+        const sendBtn = document.getElementById('sendBtn');
+        const messageInput = document.getElementById('messageInput');
+
+        // النزول لأسفل المحادثة عند الفتح
+        chatBody.scrollTop = chatBody.scrollHeight;
+
+        function sendMessage() {
+            const text = messageInput.value.trim();
+            if(text !== "") {
+                const now = new Date();
+                const timeStr = now.toLocaleTimeString('ar-SA', { hour: 'numeric', minute: '2-digit' });
+                
+                const msgHTML = `
+                <div class="message-wrapper sent">
+                    <div class="message">${text}</div>
+                    <div class="msg-meta">
+                        <span class="time">${timeStr}</span>
+                        <span class="ticks">
+                            <svg viewBox="0 0 24 24" style="fill: #9E9E9E"><path d="M18 7l-1.41-1.41-6.34 6.34 1.41 1.41L18 7zm4.24-1.41L11.66 16.17 7.48 12l-1.41 1.41L11.66 19l12-12-1.42-1.41zM.41 13.41L6 19l1.41-1.41L1.83 12 .41 13.41z"/></svg>
+                        </span>
+                    </div>
+                </div>`;
+                
+                chatBody.insertAdjacentHTML('beforeend', msgHTML);
+                messageInput.value = "";
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }
+        }
+
+        sendBtn.addEventListener('click', sendMessage);
+        messageInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>

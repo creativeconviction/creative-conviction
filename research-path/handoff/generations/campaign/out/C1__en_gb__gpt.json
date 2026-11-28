@@ -1,0 +1,12 @@
+{
+  "line": "C1",
+  "market": "en_gb",
+  "model": "gpt",
+  "source": "Black Friday: up to 70% off everything.",
+  "raw": "{\n  \"literal\": \"Black Friday: up to 70% off everything.\",\n  \"adaptation\": \"Black Friday: up to 70% off everything.\",\n  \"back_translation\": \"Black Friday: up to 70% off everything.\",\n  \"approach\": \"keep_english\",\n  \"notes\": \"‘Black Friday’ is widely understood in the UK, but the claim ‘everything’ must apply to all products and the ‘up to’ saving must be substantiated.\"\n}",
+  "literal": "Black Friday: up to 70% off everything.",
+  "adaptation": "Black Friday: up to 70% off everything.",
+  "back_translation": "Black Friday: up to 70% off everything.",
+  "approach": "keep_english",
+  "notes": "‘Black Friday’ is widely understood in the UK, but the claim ‘everything’ must apply to all products and the ‘up to’ saving must be substantiated."
+}

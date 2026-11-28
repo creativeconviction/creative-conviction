@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>إنشاء حساب — قريب</title>
+<meta name="theme-color" content="#0E7C4A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brand:#0E7C4A;
+    --brand-dark:#0A5F38;
+    --brand-tint:#E7F4EC;
+    --accent:#F5A524;
+    --ink:#14211A;
+    --muted:#5E6B64;
+    --line:#D9E1DC;
+    --bg:#F6F8F6;
+    --surface:#FFFFFF;
+    --danger:#C62828;
+    --danger-tint:#FDECEC;
+    --radius:14px;
+    --focus:0 0 0 3px rgba(14,124,74,.25);
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    font-family:"IBM Plex Sans Arabic",system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    min-block-size:100vh;
+  }
+  /* Latin snippets inside Arabic text */
+  .latin{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+
+  /* Directional icons mirror automatically in RTL */
+  [dir="rtl"] .icon-directional{transform:scaleX(-1)}
+
+  .layout{
+    min-block-size:100vh;
+    display:grid;
+    grid-template-columns:1fr;
+  }
+
+  /* Brand panel (desktop only) */
+  .brand-panel{display:none}
+
+  .screen{
+    inline-size:100%;
+    max-inline-size:480px;
+    margin-inline:auto;
+    padding-block:0 32px;
+    padding-inline:20px;
+    display:flex;
+    flex-direction:column;
+  }
+
+  /* Header */
+  .app-header{
+    position:sticky;
+    inset-block-start:0;
+    z-index:5;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding-block:12px;
+    padding-block-start:max(12px, env(safe-area-inset-top));
+    background:var(--bg);
+  }
+  .back-btn{
+    inline-size:44px;block-size:44px;
+    display:grid;place-items:center;
+    border:1px solid var(--line);
+    border-radius:12px;
+    background:var(--surface);
+    color:var(--ink);
+    cursor:pointer;
+    transition:background .15s, border-color .15s;
+  }
+  .back-btn:hover{background:var(--brand-tint);border-color:var(--brand)}
+  .back-btn:focus-visible{outline:none;box-shadow:var(--focus);border-color:var(--brand)}
+  .app-header .header-title{
+    flex:1;
+    text-align:center;
+    font-size:17px;
+    font-weight:600;
+    margin:0;
+    margin-inline-end:44px; /* balance the back button so the title is centered */
+  }
+
+  /* Intro */
+  .intro{margin-block:12px 24px}
+  .logo{
+    display:inline-flex;align-items:center;gap:10px;
+    margin-block-end:16px;
+  }
+  .logo-mark{
+    inline-size:44px;block-size:44px;border-radius:12px;
+    background:var(--brand);
+    display:grid;place-items:center;
+    color:#fff;
+  }
+  .logo-text{display:flex;flex-direction:column;line-height:1.15}
+  .logo-text strong{font-size:20px;font-weight:700;color:var(--brand)}
+  .logo-text span{font-size:12px;color:var(--muted);letter-spacing:.04em}
+  .intro h2{font-size:24px;font-weight:700;margin:0 0 4px}
+  .intro p{margin:0;color:var(--muted);font-size:15px}
+
+  /* Form */
+  form{display:flex;flex-direction:column;gap:18px}
+  .field{display:flex;flex-direction:column;gap:6px}
+  .field label{font-weight:500;font-size:14px}
+  .field .optional{color:var(--muted);font-weight:400}
+
+  .control{
+    position:relative;
+    display:flex;
+    align-items:center;
+    background:var(--surface);
+    border:1.5px solid var(--line);
+    border-radius:var(--radius);
+    transition:border-color .15s, box-shadow .15s;
+    min-block-size:52px;
+  }
+  .control:focus-within{border-color:var(--brand);box-shadow:var(--focus)}
+  .field.invalid .control{border-color:var(--danger);background:#fff}
+  .field.invalid .control:focus-within{box-shadow:0 0 0 3px rgba(198,40,40,.18)}
+
+  .control input{
+    flex:1;
+    min-inline-size:0;
+    border:0;
+    outline:0;
+    background:transparent;
+    font:inherit;
+    color:inherit;
+    padding-block:13px;
+    padding-inline:14px;
+    border-radius:var(--radius);
+  }
+  .control input::placeholder{color:#97A39C}
+
+  .control .lead-icon{
+    flex:none;
+    color:var(--muted);
+    margin-inline-start:14px;
+    display:grid;place-items:center;
+  }
+  .control .lead-icon + input{padding-inline-start:10px}
+
+  /* LTR content (email/phone/password) right-aligned to match the Arabic layout
+     while keeping correct LTR character order */
+  .control input[dir="ltr"]{text-align:end}
+  .control input[dir="ltr"]::placeholder{text-align:end}
+
+  /* Phone: whole group is LTR so "+966 5X XXX XXXX" reads correctly */
+  .phone-control{direction:ltr}
+  .phone-control .cc{
+    flex:none;
+    display:flex;align-items:center;gap:8px;
+    padding-inline:14px 12px;
+    block-size:100%;
+    border-inline-end:1.5px solid var(--line);
+    font-weight:600;
+    color:var(--ink);
+    font-variant-numeric:tabular-nums;
+  }
+  .phone-control input{
+    text-align:start;
+    letter-spacing:.03em;
+    font-variant-numeric:tabular-nums;
+  }
+  .phone-control input::placeholder{text-align:start}
+  .flag{
+    inline-size:22px;block-size:16px;border-radius:3px;overflow:hidden;flex:none;
+    box-shadow:0 0 0 1px rgba(0,0,0,.06);
+  }
+
+  /* Password toggle */
+  .toggle-pass{
+    flex:none;
+    margin-inline-end:6px;
+    inline-size:40px;block-size:40px;
+    display:grid;place-items:center;
+    border:0;border-radius:10px;
+    background:transparent;
+    color:var(--muted);
+    cursor:pointer;
+  }
+  .toggle-pass:hover{background:var(--brand-tint);color:var(--brand)}
+  .toggle-pass:focus-visible{outline:none;box-shadow:var(--focus)}
+  .toggle-pass .eye-off{display:none}
+  .toggle-pass[aria-pressed="true"] .eye{display:none}
+  .toggle-pass[aria-pressed="true"] .eye-off{display:block}
+
+  .hint{font-size:13px;color:var(--muted);margin:0}
+  .error{
+    font-size:13px;color:var(--danger);margin:0;
+    display:none;align-items:center;gap:6px;
+  }
+  .field.invalid .error{display:flex}
+  .field.invalid .hint{display:none}
+
+  /* Strength meter */
+  .strength{display:flex;gap:6px;margin-block-start:2px}
+  .strength span{flex:1;block-size:4px;border-radius:4px;background:var(--line);transition:background .2s}
+  .strength[data-level="1"] span:nth-child(-n+1){background:var(--danger)}
+  .strength[data-level="2"] span:nth-child(-n+2){background:var(--accent)}
+  .strength[data-level="3"] span:nth-child(-n+3){background:#7CB342}
+  .strength[data-level="4"] span{background:var(--brand)}
+
+  /* Terms */
+  .terms{
+    display:flex;align-items:flex-start;gap:10px;
+    font-size:14px;
+    color:var(--ink);
+  }
+  .terms input{
+    appearance:none;-webkit-appearance:none;
+    flex:none;
+    inline-size:22px;block-size:22px;
+    margin:0;margin-block-start:1px;
+    border:1.5px solid var(--line);
+    border-radius:6px;
+    background:var(--surface);
+    display:grid;place-items:center;
+    cursor:pointer;
+    transition:background .15s,border-color .15s;
+  }
+  .terms input::after{
+    content:"";
+    inline-size:6px;block-size:11px;
+    border:solid #fff;border-width:0 2.5px 2.5px 0;
+    transform:rotate(45deg) translate(-1px,-1px);
+    opacity:0;
+  }
+  .terms input:checked{background:var(--brand);border-color:var(--brand)}
+  .terms input:checked::after{opacity:1}
+  .terms input:focus-visible{outline:none;box-shadow:var(--focus)}
+  .terms label{cursor:pointer}
+  .field.invalid .terms input{border-color:var(--danger)}
+  a{color:var(--brand);font-weight:600;text-decoration:none}
+  a:hover{text-decoration:underline}
+  a:focus-visible{outline:2px solid var(--brand);outline-offset:2px;border-radius:4px}
+
+  /* Buttons */
+  .btn-primary{
+    margin-block-start:6px;
+    inline-size:100%;
+    min-block-size:54px;
+    border:0;border-radius:var(--radius);
+    background:var(--brand);
+    color:#fff;
+    font:inherit;font-size:17px;font-weight:600;
+    cursor:pointer;
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    transition:background .15s, transform .05s;
+    box-shadow:0 6px 16px -6px rgba(14,124,74,.55);
+  }
+  .btn-primary:hover{background:var(--brand-dark)}
+  .btn-primary:active{transform:translateY(1px)}
+  .btn-primary:focus-visible{outline:none;box-shadow:0 0 0 3px #fff,0 0 0 6px var(--brand)}
+  .btn-primary[aria-busy="true"]{opacity:.85;cursor:progress}
+  .spinner{
+    inline-size:18px;block-size:18px;border-radius:50%;
+    border:2.5px solid rgba(255,255,255,.4);border-block-start-color:#fff;
+    animation:spin .8s linear infinite;display:none;
+  }
+  .btn-primary[aria-busy="true"] .spinner{display:block}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  .login-row{
+    text-align:center;
+    margin-block-start:22px;
+    color:var(--muted);
+    font-size:15px;
+  }
+
+  .toast{
+    position:fixed;
+    inset-inline:16px;
+    inset-block-end:max(16px, env(safe-area-inset-bottom));
+    max-inline-size:420px;margin-inline:auto;
+    background:var(--ink);color:#fff;
+    padding:14px 16px;border-radius:12px;
+    display:flex;align-items:center;gap:10px;
+    font-size:15px;
+    transform:translateY(140%);
+    transition:transform .3s ease;
+    z-index:10;
+  }
+  .toast.show{transform:none}
+
+  .sr-only{
+    position:absolute;inline-size:1px;block-size:1px;padding:0;margin:-1px;
+    overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
+  }
+
+  /* Desktop */
+  @media (min-width:960px){
+    .layout{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr)}
+    .brand-panel{
+      display:flex;flex-direction:column;justify-content:space-between;
+      padding:48px;
+      background:
+        radial-gradient(circle at 85% 15%, rgba(245,165,36,.35), transparent 40%),
+        linear-gradient(160deg,#0E7C4A 0%,#095A35 100%);
+      color:#fff;
+      position:sticky;inset-block-start:0;block-size:100vh;
+    }
+    .brand-panel .logo-mark{background:#fff;color:var(--brand)}
+    .brand-panel .logo-text strong{color:#fff}
+    .brand-panel .logo-text span{color:rgba(255,255,255,.75)}
+    .brand-panel h2{font-size:36px;line-height:1.35;margin:0 0 12px;max-inline-size:14ch}
+    .brand-panel p{margin:0;opacity:.85;font-size:17px;max-inline-size:36ch}
+    .perks{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:14px}
+    .perks li{display:flex;align-items:center;gap:12px;font-size:16px}
+    .perks .dot{
+      inline-size:36px;block-size:36px;border-radius:10px;
+      background:rgba(255,255,255,.14);display:grid;place-items:center;flex:none;
+    }
+    .brand-panel small{opacity:.7}
+    .screen{padding-block:24px 48px;justify-content:center}
+    .form-card{
+      background:var(--surface);
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:32px;
+      box-shadow:0 20px 40px -24px rgba(20,33,26,.25);
+    }
+    .screen .intro .logo{display:none}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none!important;animation:none!important}
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+
+  <!-- Desktop brand panel (appears on the inline-start / right side in RTL) -->
+  <aside class="brand-panel" aria-hidden="true">
+    <div class="logo">
+      <div class="logo-mark">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6 5 3H2"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg>
+      </div>
+      <div class="logo-text"><strong>قريب</strong><span class="latin" lang="en" dir="ltr">Qareeb</span></div>
+    </div>
+    <div>
+      <h2>مقاضيك توصلك خلال دقائق</h2>
+      <p>آلاف المنتجات الطازجة من أقرب متجر لك، مع توصيل سريع في جميع مدن المملكة.</p>
+      <ul class="perks">
+        <li><span class="dot"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>توصيل خلال <bdi>30</bdi> دقيقة</li>
+        <li><span class="dot"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12V8H6a2 2 0 0 1 0-4h12v4"/><path d="M4 6v12a2 2 0 0 0 2 2h14v-4"/><path d="M18 12a2 2 0 0 0 0 4h4v-4z"/></svg></span>دفع آمن عبر <span class="latin" lang="en" dir="ltr">Apple Pay</span> ومدى</li>
+        <li><span class="dot"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></span>خصم <bdi>15%</bdi> على أول طلب</li>
+      </ul>
+    </div>
+    <small>© <bdi>2025</bdi> قريب. جميع الحقوق محفوظة.</small>
+  </aside>
+
+  <main class="screen">
+    <header class="app-header">
+      <button type="button" class="back-btn" aria-label="رجوع" onclick="history.length > 1 ? history.back() : null">
+        <!-- Drawn as a "back" (left) chevron; mirrored to point right in RTL -->
+        <svg class="icon-directional" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <h1 class="header-title">إنشاء حساب</h1>
+    </header>
+
+    <div class="form-card">
+      <div class="intro">
+        <div class="logo">
+          <div class="logo-mark" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6 5 3H2"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg>
+          </div>
+          <div class="logo-text"><strong>قريب</strong><span class="latin" lang="en" dir="ltr">Qareeb</span></div>
+        </div>
+        <h2>أهلاً بك في قريب 👋</h2>
+        <p>أنشئ حسابك وابدأ التسوّق من أقرب متجر لك.</p>
+      </div>
+
+      <form id="signup" novalidate>
+        <!-- Full name -->
+        <div class="field" id="f-name">
+          <label for="name">الاسم الكامل</label>
+          <div class="control">
+            <span class="lead-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+            </span>
+            <input id="name" name="name" type="text" autocomplete="name" dir="auto" placeholder="مثال: سارة العتيبي" aria-describedby="name-err" required>
+          </div>
+          <p class="error" id="name-err" role="alert">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+            <span>يرجى إدخال الاسم الكامل (اسمين على الأقل)</span>
+          </p>
+        </div>
+
+        <!-- Mobile -->
+        <div class="field" id="f-phone">
+          <label for="phone">رقم الجوال</label>
+          <div class="control phone-control" dir="ltr">
+            <span class="cc">
+              <svg class="flag" viewBox="0 0 22 16" aria-hidden="true"><rect width="22" height="16" fill="#006C35"/><rect x="5" y="10.5" width="12" height="1.2" rx=".6" fill="#fff"/><path d="M6 6.5h10M7 8h8" stroke="#fff" stroke-width=".9" stroke-linecap="round"/></svg>
+              <span>+966</span>
+            </span>
+            <input id="phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" dir="ltr" maxlength="12" placeholder="5X XXX XXXX" aria-describedby="phone-hint phone-err" required>
+          </div>
+          <p class="hint" id="phone-hint">سنرسل لك رمز تحقق عبر رسالة نصية.</p>
+          <p class="error" id="phone-err" role="alert">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+            <span>رقم الجوال يجب أن يبدأ بـ <bdi dir="ltr">5</bdi> ويتكوّن من <bdi>9</bdi> أرقام</span>
+          </p>
+        </div>
+
+        <!-- Email -->
+        <div class="field" id="f-email">
+          <label for="email">البريد الإلكتروني</label>
+          <div class="control">
+            <span class="lead-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            </span>
+            <input id="email" name="email" type="email" inputmode="email" autocomplete="email" dir="ltr" class="latin" placeholder="name@example.com" aria-describedby="email-err" required>
+          </div>
+          <p class="error" id="email-err" role="alert">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+            <span>يرجى إدخال بريد إلكتروني صحيح</span>
+          </p>
+        </div>
+
+        <!-- Password -->
+        <div class="field" id="f-pass">
+          <label for="password">كلمة المرور</label>
+          <div class="control">
+            <span class="lead-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+            </span>
+            <input id="password" name="password" type="password" autocomplete="new-password" dir="ltr" class="latin" placeholder="••••••••" aria-describedby="pass-hint pass-err" required>
+            <button type="button" class="toggle-pass" id="togglePass" aria-pressed="false" aria-controls="password" aria-label="إظهار كلمة المرور">
+              <svg class="eye" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+              <svg class="eye-off" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.9 17.9A10.4 10.4 0 0 1 12 19c-6.5 0-10-7-10-7a18.5 18.5 0 0 1 5.1-5.9M9.9 5.2A9.7 9.7 0 0 1 12 5c6.5 0 10 7 10 7a18.6 18.6 0 0 1-2.2 3.2M14.1 14.1a3 3 0 1 1-4.2-4.2"/><path d="m2 2 20 20"/></svg>
+            </button>
+          </div>
+          <div class="strength" id="strength" data-level="0" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+          <p class="hint" id="pass-hint"><bdi>8</bdi> أحرف على الأقل، وتتضمن حرفًا ورقمًا.</p>
+          <p class="error" id="pass-err" role="alert">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+            <span>كلمة المرور يجب أن تكون <bdi>8</bdi> أحرف على الأقل وتتضمن حرفًا ورقمًا</span>
+          </p>
+        </div>
+
+        <!-- Terms -->
+        <div class="field" id="f-terms">
+          <div class="terms">
+            <input type="checkbox" id="terms" name="terms" aria-describedby="terms-err" required>
+            <label for="terms">أوافق على <a href="#terms" target="_blank" rel="noopener">الشروط والأحكام</a> و<a href="#privacy" target="_blank" rel="noopener">سياسة الخصوصية</a> الخاصة بقريب.</label>
+          </div>
+          <p class="error" id="terms-err" role="alert">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+            <span>يجب الموافقة على الشروط والأحكام للمتابعة</span>
+          </p>
+        </div>
+
+        <button type="submit" class="btn-primary" id="submitBtn">
+          <span class="spinner" aria-hidden="true"></span>
+          <span class="btn-label">إنشاء الحساب</span>
+        </button>
+      </form>
+
+      <p class="login-row">لديك حساب بالفعل؟ <a href="#login">تسجيل الدخول</a></p>
+    </div>
+  </main>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7BE0A6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+  <span id="toastMsg"></span>
+</div>
+
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const form = $('signup');
+  const phone = $('phone'), pass = $('password'), toggle = $('togglePass');
+
+  // Convert Arabic-Indic / Persian digits to Western digits
+  const toWestern = s => s.replace(/[\u0660-\u0669]/g, d => d.charCodeAt(0) - 0x0660)
+                          .replace(/[\u06F0-\u06F9]/g, d => d.charCodeAt(0) - 0x06F0);
+
+  // Phone: normalize digits, strip leading 0 / 966, format as "5X XXX XXXX"
+  phone.addEventListener('input', () => {
+    let d = toWestern(phone.value).replace(/\D/g, '');
+    if (d.startsWith('966')) d = d.slice(3);
+    if (d.startsWith('0')) d = d.slice(1);
+    d = d.slice(0, 9);
+    const parts = [d.slice(0,2), d.slice(2,5), d.slice(5,9)].filter(Boolean);
+    phone.value = parts.join(' ');
+    clear('f-phone');
+  });
+
+  // Show / hide password
+  toggle.addEventListener('click', () => {
+    const show = pass.type === 'password';
+    pass.type = show ? 'text' : 'password';
+    toggle.setAttribute('aria-pressed', show);
+    toggle.setAttribute('aria-label', show ? 'إخفاء كلمة المرور' : 'إظهار كلمة المرور');
+    pass.focus({preventScroll:true});
+  });
+
+  // Strength meter
+  pass.addEventListener('input', () => {
+    const v = pass.value; let s = 0;
+    if (v.length >= 8) s++;
+    if (/[A-Za-z\u0600-\u06FF]/.test(v) && /\d/.test(v)) s++;
+    if (/[A-Z]/.test(v) && /[a-z]/.test(v)) s++;
+    if (/[^A-Za-z0-9]/.test(v) && v.length >= 10) s++;
+    $('strength').dataset.level = v ? Math.max(1, s) : 0;
+    clear('f-pass');
+  });
+
+  ['name','email'].forEach(id => $(id).addEventListener('input', () => clear('f-' + id)));
+  $('terms').addEventListener('change', () => clear('f-terms'));
+
+  function clear(fid){ const f = $(fid); f.classList.remove('invalid'); f.querySelector('input').removeAttribute('aria-invalid'); }
+  function fail(fid){ const f = $(fid); f.classList.add('invalid'); f.querySelector('input').setAttribute('aria-invalid','true'); }
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const checks = [
+      ['f-name',  $('name').value.trim().split(/\s+/).filter(Boolean).length >= 2],
+      ['f-phone', /^5\d{8}$/.test(phone.value.replace(/\s/g,''))],
+      ['f-email', /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test($('email').value.trim())],
+      ['f-pass',  pass.value.length >= 8 && /\d/.test(pass.value) && /\D/.test(pass.value)],
+      ['f-terms', $('terms').checked]
+    ];
+    let first = null;
+    checks.forEach(([fid, ok]) => { if (ok) clear(fid); else { fail(fid); first = first || fid; } });
+    if (first) { $(first).querySelector('input').focus(); return; }
+
+    const btn = $('submitBtn');
+    btn.setAttribute('aria-busy','true'); btn.disabled = true;
+    btn.querySelector('.btn-label').textContent = 'جارٍ إنشاء الحساب…';
+    setTimeout(() => {
+      btn.removeAttribute('aria-busy'); btn.disabled = false;
+      btn.querySelector('.btn-label').textContent = 'إنشاء الحساب';
+      const num = '+966 ' + phone.value;
+      $('toastMsg').innerHTML = 'تم إنشاء حسابك! أرسلنا رمز التحقق إلى <bdi dir="ltr">' + num + '</bdi>';
+      $('toast').classList.add('show');
+      setTimeout(() => $('toast').classList.remove('show'), 4000);
+    }, 1200);
+  });
+})();
+</script>
+</body>
+</html>

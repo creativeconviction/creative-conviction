@@ -1,0 +1,12 @@
+{
+  "line": "C2",
+  "market": "ar_eg",
+  "model": "saba",
+  "source": "Happy hour: 2-for-1 drinks from 5 to 7pm.",
+  "raw": "```json\n{\n  \"literal\": \"الساعة السعيدة: مشروبان بسعر مشروب واحد من ٥ إلى ٧ مساء\",\n  \"adaptation\": \"ساعة السَّمْر: ٢ ب٢ مختلفين من ٥ إلى ٧ مساء\",\n  \"back_translation\": \"'Fun hour': 2-for-2 different drinks from 5 to 7 PM\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Assumed 'happy hour' is culturally understood in Egypt; shifted to 'ساعة السَّمْر' (fun hour) for broader appeal and replaced 'for-1' with '2-for-2 different' to emphasize variety.\"\n}\n```",
+  "literal": "الساعة السعيدة: مشروبان بسعر مشروب واحد من ٥ إلى ٧ مساء",
+  "adaptation": "ساعة السَّمْر: ٢ ب٢ مختلفين من ٥ إلى ٧ مساء",
+  "back_translation": "'Fun hour': 2-for-2 different drinks from 5 to 7 PM",
+  "approach": "adapted",
+  "notes": "Assumed 'happy hour' is culturally understood in Egypt; shifted to 'ساعة السَّمْر' (fun hour) for broader appeal and replaced 'for-1' with '2-for-2 different' to emphasize variety."
+}

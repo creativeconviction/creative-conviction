@@ -1,0 +1,12 @@
+{
+  "line": "I3",
+  "market": "ar_sa",
+  "model": "gpt",
+  "source": "Bring home the bacon with zero fees.",
+  "raw": "{\n  \"literal\": \"أحضر لحم الخنزير إلى المنزل برسوم صفرية.\",\n  \"adaptation\": \"خلّ فلوسك لك... برسوم صفرية.\",\n  \"back_translation\": \"Keep your money yours—with zero fees.\",\n  \"approach\": \"replaced\",\n  \"notes\": \"استُبدلت الإشارة إلى لحم الخنزير، غير الملائمة ثقافيًا ودينيًا في السعودية، برسالة واضحة عن التوفير.\"\n}",
+  "literal": "أحضر لحم الخنزير إلى المنزل برسوم صفرية.",
+  "adaptation": "خلّ فلوسك لك... برسوم صفرية.",
+  "back_translation": "Keep your money yours—with zero fees.",
+  "approach": "replaced",
+  "notes": "استُبدلت الإشارة إلى لحم الخنزير، غير الملائمة ثقافيًا ودينيًا في السعودية، برسالة واضحة عن التوفير."
+}

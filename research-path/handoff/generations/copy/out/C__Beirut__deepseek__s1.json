@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Beirut",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Beirut. Write marketing copy for it in Lebanese Arabic, the way people in Beirut actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 1,
+  "prompt_lang": "en",
+  "city": "Beirut",
+  "target_region": "Levant",
+  "target_city_code": "BEI",
+  "model": "deepseek",
+  "id": "C__Beirut__deepseek__s1",
+  "model_id": "deepseek/deepseek-v4-pro",
+  "output": "قريب… كل شي بيوصلك عالطاير\n\nجوعان وما فيك تنزل؟ قريب بيوصّلك كل شي لباب البيت.\n\nنسيت حليب ولا خبز؟ ولا يهمك، قريب بيوصّلك ياهم قبل ما تفتح التلاجة.\n\nتسوّق من تلفونك، ومنوصّلك أغراضك بلا زحمة. قريب.\n\nأهلين فيك بقريب! صار عنا، وأول توصيلة علينا. اطلب هلق وخلّي أغراضك توصلك.",
+  "at": "2026-11-18T05:43:59.148Z"
+}

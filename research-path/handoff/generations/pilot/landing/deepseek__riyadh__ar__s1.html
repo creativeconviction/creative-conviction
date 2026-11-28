@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>قريب | توصيل البقالة من حيّك في ٢٠ دقيقة</title>
+  <!-- Google Fonts: Tajawal for clean, modern Arabic feel -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background-color: #ffffff;
+      color: #1e2b2e;
+      line-height: 1.6;
+      direction: rtl;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header / Nav */
+    header {
+      background-color: #ffffff;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(8px);
+      background-color: rgba(255, 255, 255, 0.92);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 28px;
+      font-weight: 900;
+      color: #0e4b3b;
+      letter-spacing: -0.3px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      background: #f4c542;
+      width: 44px;
+      height: 44px;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      color: #0e4b3b;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.06);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #2d3e3f;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #0e4b3b;
+    }
+
+    .btn-outline {
+      border: 2px solid #0e4b3b;
+      background: transparent;
+      color: #0e4b3b;
+      padding: 10px 24px;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.25s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-outline:hover {
+      background: #0e4b3b;
+      color: white;
+    }
+
+    /* Hero section */
+    .hero {
+      padding: 56px 0 40px;
+    }
+
+    .hero-grid {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .hero-text {
+      flex: 1 1 400px;
+    }
+
+    .hero-badge {
+      background: #fef7e0;
+      color: #b45f2b;
+      display: inline-block;
+      padding: 6px 18px;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+      letter-spacing: 0.3px;
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 7vw, 4.2rem);
+      font-weight: 900;
+      color: #0c2e25;
+      line-height: 1.2;
+      margin-bottom: 18px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-sub {
+      font-size: 1.25rem;
+      color: #3e5550;
+      margin-bottom: 32px;
+      font-weight: 500;
+      max-width: 500px;
+    }
+
+    .cta-primary {
+      background: #f4c542;
+      color: #0e4b3b;
+      border: none;
+      padding: 16px 36px;
+      font-size: 1.2rem;
+      font-weight: 800;
+      border-radius: 48px;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      box-shadow: 0 10px 20px rgba(244, 197, 66, 0.3);
+    }
+
+    .cta-primary:hover {
+      background: #eab835;
+      transform: translateY(-2px);
+    }
+
+    .hero-image-placeholder {
+      flex: 1 1 400px;
+      background: linear-gradient(145deg, #e9f2ef, #d0e4dd);
+      border-radius: 48px;
+      height: 340px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #2b5b4c;
+      font-weight: 700;
+      font-size: 1.2rem;
+      box-shadow: 0 20px 30px rgba(0,0,0,0.05);
+      border: 2px dashed #80a99a;
+      letter-spacing: 1px;
+    }
+
+    /* How it works */
+    .how-section {
+      background: #f9fbfa;
+      padding: 64px 0;
+      margin: 20px 0 0;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #0e4b3b;
+      margin-bottom: 48px;
+    }
+
+    .steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      justify-content: center;
+    }
+
+    .step-card {
+      background: white;
+      border-radius: 32px;
+      padding: 28px 20px;
+      flex: 1 1 220px;
+      text-align: center;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.04);
+      transition: transform 0.2s;
+      border: 1px solid rgba(0,0,0,0.02);
+    }
+
+    .step-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .step-icon {
+      background: #e7f3ef;
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 20px;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      color: #0e4b3b;
+    }
+
+    .step-card h3 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      color: #1e3b32;
+    }
+
+    .step-card p {
+      color: #4a625a;
+      font-weight: 500;
+    }
+
+    /* Loyalty program */
+    .loyalty {
+      padding: 60px 0;
+      background: #ffffff;
+    }
+
+    .loyalty-box {
+      background: #fef7e0;
+      border-radius: 48px;
+      padding: 40px 32px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 32px;
+      justify-content: space-between;
+      box-shadow: 0 14px 32px rgba(244, 197, 66, 0.2);
+    }
+
+    .loyalty-text h2 {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: #0e4b3b;
+      margin-bottom: 12px;
+    }
+
+    .loyalty-text p {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #3b4e46;
+    }
+
+    .loyalty-badge {
+      background: #ffffff;
+      border-radius: 100px;
+      padding: 24px 38px;
+      font-weight: 800;
+      font-size: 1.8rem;
+      color: #0e4b3b;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      white-space: nowrap;
+    }
+
+    /* Register form */
+    .register {
+      background: #f4fbf8;
+      padding: 60px 0;
+    }
+
+    .form-card {
+      background: white;
+      max-width: 600px;
+      margin: 0 auto;
+      border-radius: 40px;
+      padding: 40px 28px;
+      box-shadow: 0 24px 44px rgba(0,0,0,0.06);
+      text-align: center;
+    }
+
+    .form-card h2 {
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: #0e4b3b;
+      margin-bottom: 10px;
+    }
+
+    .form-card p {
+      color: #435e55;
+      margin-bottom: 28px;
+      font-weight: 500;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+
+    .form-input {
+      background: #f5f8f7;
+      border: 1.5px solid #dce5e1;
+      border-radius: 48px;
+      padding: 16px 24px;
+      font-size: 1rem;
+      font-family: 'Tajawal', sans-serif;
+      outline: none;
+      transition: 0.2s;
+    }
+
+    .form-input:focus {
+      border-color: #0e4b3b;
+      background: white;
+      box-shadow: 0 0 0 4px rgba(14, 75, 59, 0.1);
+    }
+
+    .submit-btn {
+      background: #0e4b3b;
+      color: white;
+      border: none;
+      padding: 16px 32px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      border-radius: 48px;
+      cursor: pointer;
+      width: 100%;
+      transition: 0.2s;
+      font-family: 'Tajawal', sans-serif;
+    }
+
+    .submit-btn:hover {
+      background: #0a382c;
+    }
+
+    .note {
+      font-size: 0.85rem;
+      color: #6f7e79;
+      margin-top: 18px;
+    }
+
+    /* Footer */
+    footer {
+      background: #1e2b2e;
+      color: #cbdad4;
+      padding: 44px 0 28px;
+      margin-top: 8px;
+    }
+
+    .footer-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .footer-logo {
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: white;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #cbdad4;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .footer-links a:hover {
+      color: #f4c542;
+    }
+
+    .copyright {
+      margin-top: 32px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #8aa39a;
+      border-top: 1px solid #2a3c3e;
+      padding-top: 20px;
+    }
+
+    @media (max-width: 700px) {
+      .header-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav-links {
+        gap: 18px;
+      }
+      .hero-grid {
+        flex-direction: column;
+      }
+      .hero-image-placeholder {
+        height: 240px;
+        width: 100%;
+      }
+      .loyalty-box {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-inner">
+      <a href="#" class="logo">
+        <span class="logo-icon">📦</span>
+        قريب
+      </a>
+      <ul class="nav-links">
+        <li><a href="#">الرئيسية</a></li>
+        <li><a href="#">كيف يعمل</a></li>
+        <li><a href="#">المتاجر</a></li>
+        <li><a href="#" class="btn-outline">حمّل التطبيق</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <span class="hero-badge">🥇 الرياض أولاً</span>
+          <h1 class="hero-title">بقالة حيّك خلال ٢٠ دقيقة</h1>
+          <p class="hero-sub">تطبيق قريب يوصّل لك مقاضي البقالة من محلات الحي، بسرعة وسعر مناسب. ادفع بالبطاقة أو نقداً عند الاستلام.</p>
+          <a href="#" class="cta-primary">
+            <span>📱</span> ابدأ طلبك الأول
+          </a>
+        </div>
+        <div class="hero-image-placeholder">
+          📷<br>صورة التطبيق / توصيل البقالة
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="how-section">
+      <div class="container">
+        <h2 class="section-title">كيف يعمل قريب؟</h2>
+        <div class="steps">
+          <div class="step-card">
+            <div class="step-icon">📍</div>
+            <h3>اختر حيّك</h3>
+            <p>نعرض لك المتاجر القريبة من موقعك في الرياض</p>
+          </div>
+          <div class="step-card">
+            <div class="step-icon">🛒</div>
+            <h3>تسوّق بسهولة</h3>
+            <p>أضف المنتجات من بقالة الحي المفضلة</p>
+          </div>
+          <div class="step-card">
+            <div class="step-icon">⚡</div>
+            <h3>توصيل خلال ٢٠ دقيقة</h3>
+            <p>من الباب للباب، مباشرة من المحل</p>
+          </div>
+          <div class="step-card">
+            <div class="step-icon">💳</div>
+            <h3>ادفع براحتك</h3>
+            <p>بطاقة أو نقداً عند الاستلام</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Loyalty Program -->
+    <section class="loyalty">
+      <div class="container">
+        <div class="loyalty-box">
+          <div class="loyalty-text">
+            <h2>🎁 برنامج الولاء</h2>
+            <p>كل طلب عاشر توصيله مجاني. بدون تعقيد، تلقائياً مع كل حساب.</p>
+          </div>
+          <div class="loyalty-badge">
+            <span>🔟</span> الطلب العاشر علينا
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Register / Signup form -->
+    <section class="register">
+      <div class="container">
+        <div class="form-card">
+          <h2>سجّل الآن في قريب</h2>
+          <p>أدخل رقم جوالك وبريدك الإلكتروني لتصلك أحدث العروض وتجربة التوصيل</p>
+          <form action="#" method="post">
+            <div class="input-group">
+              <input type="tel" class="form-input" placeholder="رقم الجوال (مثال: 05xxxxxxxx)" required dir="ltr" style="text-align: right;">
+              <input type="email" class="form-input" placeholder="البريد الإلكتروني" required dir="ltr" style="text-align: right;">
+            </div>
+            <button type="submit" class="submit-btn">تسجيل ومتابعة</button>
+            <p class="note">بتسجيلك توافق على شروط الاستخدام. سنرسل لك رسالة تأكيد.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-logo">قريب</div>
+        <div class="footer-links">
+          <a href="#">عن قريب</a>
+          <a href="#">المتاجر الشريكة</a>
+          <a href="#">الدعم</a>
+          <a href="#">الخصوصية</a>
+        </div>
+      </div>
+      <div class="copyright">
+        © 2025 قريب – جميع الحقوق محفوظة. توصيل البقالة في الرياض، السعودية.
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "line": "T1",
+  "market": "en_gb",
+  "model": "gemini",
+  "source": "I'm lovin' it",
+  "raw": "{\n  \"literal\": \"I'm lovin' it\",\n  \"adaptation\": \"I'm lovin' it\",\n  \"back_translation\": \"I'm lovin' it\",\n  \"approach\": \"keep_english\",\n  \"notes\": \"The global tagline is culturally and linguistically identical in British English, so it is retained as-is to preserve international brand consistency and its iconic sonic branding.\"\n}",
+  "literal": "I'm lovin' it",
+  "adaptation": "I'm lovin' it",
+  "back_translation": "I'm lovin' it",
+  "approach": "keep_english",
+  "notes": "The global tagline is culturally and linguistically identical in British English, so it is retained as-is to preserve international brand consistency and its iconic sonic branding."
+}

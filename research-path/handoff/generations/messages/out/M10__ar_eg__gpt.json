@@ -1,0 +1,13 @@
+{
+  "scenario": "M10",
+  "lang": "ar_eg",
+  "model": "gpt",
+  "message": "بتوصلوا التجمع الخامس؟ وفيه حد أدنى للأوردر؟",
+  "raw": "{\"intent\":\"question\",\"sentiment\":\"neutral\",\"urgency\":\"low\",\"sarcasm\":false,\"churn_risk\":false,\"summary\":\"The customer asks whether delivery is available to the Fifth Settlement and if there is a minimum order amount.\"}",
+  "intent": "question",
+  "sentiment": "neutral",
+  "urgency": "low",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer asks whether delivery is available to the Fifth Settlement and if there is a minimum order amount."
+}

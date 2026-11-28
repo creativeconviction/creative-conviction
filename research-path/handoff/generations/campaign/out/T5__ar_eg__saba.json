@@ -1,0 +1,12 @@
+{
+  "line": "T5",
+  "market": "ar_eg",
+  "model": "saba",
+  "source": "Because you're worth it",
+  "raw": "```json\n{\n  \"literal\": \"لأنك تستحقينه\",\n  \"adaptation\": \"جمالك worth it\",\n  \"back_translation\": \"Your beauty is worth it\",\n  \"approach\": \"replaced\",\n  \"notes\": \"The original tagline was western-focused; 'جمالك worth it' blends Arabic flattery with the original concept, making it more culturally resonant.\"\n}\n```",
+  "literal": "لأنك تستحقينه",
+  "adaptation": "جمالك worth it",
+  "back_translation": "Your beauty is worth it",
+  "approach": "replaced",
+  "notes": "The original tagline was western-focused; 'جمالك worth it' blends Arabic flattery with the original concept, making it more culturally resonant."
+}

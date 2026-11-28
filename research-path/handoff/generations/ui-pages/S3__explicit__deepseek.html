@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>قريب - فواكه طازجة | Qareeb</title>
+  <!-- Google Fonts for Arabic and Latin -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background-color: #f9fafb;
+      color: #1f2937;
+      line-height: 1.5;
+      direction: rtl;
+      padding: 0 12px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    /* Mobile-first: 390px base */
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 12px 0;
+    }
+
+    /* ----- Header ----- */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: white;
+      padding: 10px 12px;
+      border-radius: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: #0f3b3b;
+      letter-spacing: -0.5px;
+    }
+
+    .logo span {
+      color: #e67e22;
+    }
+
+    .search-cart {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+      justify-content: flex-end;
+    }
+
+    .search-wrapper {
+      flex: 1;
+      max-width: 320px;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 10px 40px 10px 16px;
+      border: 1px solid #e5e7eb;
+      border-radius: 30px;
+      font-family: 'Tajawal', sans-serif;
+      font-size: 0.95rem;
+      background: #f3f4f6;
+      text-align: right;
+      transition: all 0.2s;
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: #0f3b3b;
+      background: white;
+      box-shadow: 0 0 0 3px rgba(15,59,59,0.1);
+    }
+
+    .search-icon {
+      position: absolute;
+      right: 14px;
+      background: none;
+      border: none;
+      color: #6b7280;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+
+    .cart-btn {
+      background: none;
+      border: none;
+      position: relative;
+      font-size: 1.7rem;
+      cursor: pointer;
+      color: #1f2937;
+      display: flex;
+      align-items: center;
+      padding: 4px;
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: -4px;
+      left: -8px;
+      background: #e67e22;
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid white;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      color: #4b5563;
+      background: white;
+      padding: 8px 12px;
+      border-radius: 12px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+    }
+
+    .breadcrumb a {
+      text-decoration: none;
+      color: #0f3b3b;
+      font-weight: 500;
+    }
+
+    .breadcrumb span {
+      color: #9ca3af;
+      margin: 0 2px;
+    }
+
+    .current-page {
+      color: #e67e22;
+      font-weight: 600;
+    }
+
+    /* Main layout: sidebar + grid */
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* Sidebar filter */
+    .filter-sidebar {
+      background: white;
+      border-radius: 20px;
+      padding: 18px 14px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .filter-section h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #0f3b3b;
+      border-bottom: 1px solid #f0f0f0;
+      padding-bottom: 6px;
+    }
+
+    .price-range {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .price-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: #6b7280;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: #0f3b3b;
+    }
+
+    .brand-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .brand-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+    }
+
+    .brand-item input[type="checkbox"] {
+      accent-color: #0f3b3b;
+      width: 18px;
+      height: 18px;
+      margin: 0;
+    }
+
+    /* Product grid - mobile first 2 columns */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 20px;
+      padding: 12px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s;
+      position: relative;
+    }
+
+    .product-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .img-placeholder {
+      background: #f3f4f6;
+      aspect-ratio: 1 / 1;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #9ca3af;
+      font-size: 2.4rem;
+      margin-bottom: 10px;
+      background: linear-gradient(145deg, #f0f4f0, #e6e9e6);
+    }
+
+    .discount-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: #e67e22;
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 20px;
+      letter-spacing: 0.3px;
+    }
+
+    .product-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin: 4px 0 2px;
+      color: #1f2937;
+    }
+
+    .product-weight {
+      font-size: 0.7rem;
+      color: #6b7280;
+      margin-bottom: 6px;
+    }
+
+    .price-section {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin: 6px 0 12px;
+    }
+
+    .current-price {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #0f3b3b;
+    }
+
+    .old-price {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      text-decoration: line-through;
+      margin-right: 4px;
+    }
+
+    .add-to-cart-btn {
+      background: #0f3b3b;
+      color: white;
+      border: none;
+      padding: 10px 12px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      font-family: 'Tajawal', sans-serif;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-top: auto;
+      transition: background 0.2s;
+    }
+
+    .add-to-cart-btn:hover {
+      background: #1e5b5b;
+    }
+
+    /* Pagination */
+    .pagination {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 20px 0 10px;
+      flex-wrap: wrap;
+    }
+
+    .page-btn {
+      background: white;
+      border: 1px solid #e5e7eb;
+      padding: 8px 16px;
+      border-radius: 30px;
+      font-weight: 600;
+      color: #0f3b3b;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-family: 'Tajawal', sans-serif;
+      transition: 0.2s;
+    }
+
+    .page-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .page-btn:hover:not(:disabled) {
+      background: #f3f4f6;
+      border-color: #0f3b3b;
+    }
+
+    .page-numbers {
+      display: flex;
+      gap: 4px;
+    }
+
+    .page-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      border: none;
+      background: white;
+      font-weight: 600;
+      color: #4b5563;
+      cursor: pointer;
+    }
+
+    .page-num.active {
+      background: #0f3b3b;
+      color: white;
+    }
+
+    /* Desktop adjustments */
+    @media (min-width: 768px) {
+      body {
+        padding: 0 24px;
+      }
+      .main-content {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+      .filter-sidebar {
+        width: 240px;
+        flex-shrink: 0;
+      }
+      .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+        flex: 1;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .products-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    /* RTL fine-tune */
+    .cart-badge {
+      left: auto;
+      right: -8px; /* mirrored for RTL */
+    }
+
+    .search-icon {
+      right: 14px;
+      left: auto;
+    }
+
+    .add-to-cart-btn i, .page-btn i {
+      transform: scaleX(-1); /* mirror icons for RTL if needed, but we use text symbols */
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">قريب<span>.</span></div>
+    <div class="search-cart">
+      <div class="search-wrapper">
+        <input type="search" class="search-input" placeholder="ابحث عن منتج...">
+        <button class="search-icon" aria-label="بحث">🔍</button>
+      </div>
+      <button class="cart-btn" aria-label="عربة التسوق">
+        🛒
+        <span class="cart-badge">٣</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="مسار التنقل">
+    <a href="#">الرئيسية</a>
+    <span>›</span>
+    <a href="#">فواكه وخضروات</a>
+    <span>›</span>
+    <span class="current-page">فواكه</span>
+  </nav>
+
+  <!-- Main content: sidebar + product grid -->
+  <div class="main-content">
+    
+    <!-- Filter Sidebar -->
+    <aside class="filter-sidebar">
+      <div class="filter-section">
+        <h3>نطاق السعر</h3>
+        <div class="price-range">
+          <input type="range" min="5" max="150" value="80" step="1" aria-label="شريط السعر">
+          <div class="price-labels">
+            <span>٥ ر.س</span>
+            <span>١٥٠ ر.س</span>
+          </div>
+          <div style="text-align: center; font-weight: 600; color: #0f3b3b;">حتى ٨٠ ر.س</div>
+        </div>
+      </div>
+
+      <div class="filter-section">
+        <h3>العلامات التجارية</h3>
+        <div class="brand-list">
+          <label class="brand-item">
+            <input type="checkbox" checked> مزارع قريب
+          </label>
+          <label class="brand-item">
+            <input type="checkbox"> جنى
+          </label>
+          <label class="brand-item">
+            <input type="checkbox"> طبيعة
+          </label>
+          <label class="brand-item">
+            <input type="checkbox"> عضوي
+          </label>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Products Grid 8 cards -->
+    <section class="products-grid" id="productsGrid">
+      <!-- Cards generated via JS to keep HTML cleaner, but we'll write inline for clarity -->
+    </section>
+  </div>
+
+  <!-- Pagination -->
+  <nav class="pagination" aria-label="صفحات المنتجات">
+    <button class="page-btn" id="prevPage" disabled>‹ السابق</button>
+    <div class="page-numbers" id="pageNumbers">
+      <button class="page-num active">١</button>
+      <button class="page-num">٢</button>
+      <button class="page-num">٣</button>
+    </div>
+    <button class="page-btn" id="nextPage">التالي ›</button>
+  </nav>
+</div>
+
+<script>
+  (function() {
+    // Product data in Arabic with RTL-friendly numbers (Arabic-Indic digits used in text)
+    const products = [
+      { name: "تفاح أحمر", weight: "١ كجم", price: "١٢.٩٥", oldPrice: "١٥.٠٠", discount: "١٥٪", img: "🍎" },
+      { name: "موز طازج", weight: "١ كجم", price: "٩.٥٠", oldPrice: "١٢.٠٠", discount: "٢٠٪", img: "🍌" },
+      { name: "عنب بناتي", weight: "٥٠٠ جم", price: "١٤.٧٥", oldPrice: "١٨.٥٠", discount: "٢٠٪", img: "🍇" },
+      { name: "برتقال عصير", weight: "١ كجم", price: "٨.٢٥", oldPrice: "١٠.٠٠", discount: "١٨٪", img: "🍊" },
+      { name: "فراولة", weight: "٢٥٠ جم", price: "١٦.٩٩", oldPrice: "٢٢.٠٠", discount: "٢٣٪", img: "🍓" },
+      { name: "كيوي", weight: "٥٠٠ جم", price: "١٣.٥٠", oldPrice: "١٦.٠٠", discount: "١٥٪", img: "🥝" },
+      { name: "خوخ", weight: "١ كجم", price: "١٩.٩٥", oldPrice: "٢٥.٠٠", discount: "٢٠٪", img: "🍑" },
+      { name: "مانجو", weight: "١ كجم", price: "٢٢.٠٠", oldPrice: "٢٨.٠٠", discount: "٢٢٪", img: "🥭" }
+    ];
+
+    const grid = document.getElementById('productsGrid');
+    
+    function renderProducts() {
+      if (!grid) return;
+      grid.innerHTML = products.map(p => `
+        <div class="product-card">
+          <div class="img-placeholder">${p.img}</div>
+          <span class="discount-badge">-${p.discount}</span>
+          <div class="product-name">${p.name}</div>
+          <div class="product-weight">${p.weight}</div>
+          <div class="price-section">
+            <span class="current-price">${p.price} ر.س</span>
+            <span class="old-price">${p.oldPrice} ر.س</span>
+          </div>
+          <button class="add-to-cart-btn">
+            <span>🛒</span> أضف للسلة
+          </button>
+        </div>
+      `).join('');
+    }
+
+    renderProducts();
+
+    // Simple pagination active state (static demo)
+    const pageNums = document.querySelectorAll('.page-num');
+    const prevBtn = document.getElementById('prevPage');
+    const nextBtn = document.getElementById('nextPage');
+
+    function updatePagination(activeIndex) {
+      pageNums.forEach((btn, idx) => {
+        if (idx === activeIndex) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+      // Disable prev/next based on index
+      if (prevBtn) prevBtn.disabled = (activeIndex === 0);
+      if (nextBtn) nextBtn.disabled = (activeIndex === pageNums.length - 1);
+    }
+
+    pageNums.forEach((btn, index) => {
+      btn.addEventListener('click', function(e) {
+        updatePagination(index);
+      });
+    });
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function() {
+        const active = document.querySelector('.page-num.active');
+        if (!active) return;
+        const currentIndex = Array.from(pageNums).indexOf(active);
+        if (currentIndex > 0) {
+          updatePagination(currentIndex - 1);
+        }
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function() {
+        const active = document.querySelector('.page-num.active');
+        if (!active) return;
+        const currentIndex = Array.from(pageNums).indexOf(active);
+        if (currentIndex < pageNums.length - 1) {
+          updatePagination(currentIndex + 1);
+        }
+      });
+    }
+
+    // Cart badge counter interaction (just for show)
+    const cartBtn = document.querySelector('.cart-btn');
+    if (cartBtn) {
+      cartBtn.addEventListener('click', () => {
+        alert("عربة التسوق تحتوي على ٣ عناصر");
+      });
+    }
+
+    // Add to cart buttons feedback
+    document.addEventListener('click', function(e) {
+      if (e.target.closest('.add-to-cart-btn')) {
+        const btn = e.target.closest('.add-to-cart-btn');
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '✓ تمت الإضافة';
+        btn.style.background = '#e67e22';
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.style.background = '#0f3b3b';
+        }, 1000);
+      }
+    });
+
+  })();
+</script>
+</body>
+</html>

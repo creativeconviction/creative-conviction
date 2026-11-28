@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Tripoli",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Tripoli. Write marketing copy for it in Libyan Arabic, the way people in Tripoli actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 1,
+  "prompt_lang": "en",
+  "city": "Tripoli",
+  "target_region": "Libya",
+  "target_city_code": "TRI",
+  "model": "gpt",
+  "id": "C__Tripoli__gpt__s1",
+  "model_id": "openai/gpt-5.6-sol",
+  "output": "قريب… مقاضيك لين باب حوشك.\n\nناقصك شي؟ اطلبه من قريب ويوصلك توا.\n\nمن الخضرة للحليب، مقاضي حوشك تجيك في السريع.\n\nوفّر دوّارتك، وخلي قريب يجيبهالك.\n\nشن ناقص الحوش؟ اطلبه توا من قريب وخليه يوصلك لين عندك.",
+  "at": "2026-11-18T05:29:05.567Z"
+}

@@ -1,0 +1,13 @@
+{
+  "scenario": "M10",
+  "lang": "arabizi",
+  "model": "saba",
+  "message": "betwasalo el tagamo3 el 5ames? w fe 7ad adna lel order?",
+  "raw": "```json\n{\n  \"intent\": \"question\",\n  \"sentiment\": \"neutral\",\n  \"urgency\": \"low\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"Customer is asking about the status of their order and if someone has been assigned to it.\"\n}\n```",
+  "intent": "question",
+  "sentiment": "neutral",
+  "urgency": "low",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "Customer is asking about the status of their order and if someone has been assigned to it."
+}

@@ -1,0 +1,13 @@
+{
+  "scenario": "M2",
+  "lang": "ar_ma",
+  "model": "claude",
+  "message": "فين الكوموند ديالي؟؟ هادي جوج سوايع، هادشي ماشي معقول",
+  "raw": "```json\n{\n  \"intent\": \"late_delivery\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"The customer is frustrated that their order still hasn't arrived after two hours and says this is unacceptable.\"\n}\n```",
+  "intent": "late_delivery",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer is frustrated that their order still hasn't arrived after two hours and says this is unacceptable."
+}

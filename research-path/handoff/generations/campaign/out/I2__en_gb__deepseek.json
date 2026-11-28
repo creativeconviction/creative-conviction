@@ -1,0 +1,12 @@
+{
+  "line": "I2",
+  "market": "en_gb",
+  "model": "deepseek",
+  "source": "Rise and grind.",
+  "raw": "{\n  \"literal\": \"Rise and grind.\",\n  \"adaptation\": \"Rise and brew.\",\n  \"back_translation\": \"Rise and brew.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Swapped 'grind' for 'brew' because 'brew' is a widely understood British term for a hot drink (tea or coffee), making the pun immediately local and avoiding the less familiar American collocation of 'grind' for hard work or coffee preparation.\"\n}",
+  "literal": "Rise and grind.",
+  "adaptation": "Rise and brew.",
+  "back_translation": "Rise and brew.",
+  "approach": "adapted",
+  "notes": "Swapped 'grind' for 'brew' because 'brew' is a widely understood British term for a hot drink (tea or coffee), making the pun immediately local and avoiding the less familiar American collocation of 'grind' for hard work or coffee preparation."
+}

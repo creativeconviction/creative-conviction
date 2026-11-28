@@ -1,0 +1,12 @@
+{
+  "line": "I3",
+  "market": "en_gb",
+  "model": "allam",
+  "source": "Bring home the bacon with zero fees.",
+  "raw": "{\n  \"literal\": \"Receive the bacon without any charges.\",\n  \"adaptation\": \"Start enjoying everyday banking with no hidden fees\",\n  \"back_translation\": \"Bring home the bacon with zero fees.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Adopted a more familiar British idiom instead of a direct translation, 'bring home the bacon,' to appeal to local audience.\"\n}",
+  "literal": "Receive the bacon without any charges.",
+  "adaptation": "Start enjoying everyday banking with no hidden fees",
+  "back_translation": "Bring home the bacon with zero fees.",
+  "approach": "adapted",
+  "notes": "Adopted a more familiar British idiom instead of a direct translation, 'bring home the bacon,' to appeal to local audience."
+}

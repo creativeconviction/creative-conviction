@@ -1,0 +1,12 @@
+{
+  "line": "T1",
+  "market": "ar_eg",
+  "model": "deepseek",
+  "source": "I'm lovin' it",
+  "raw": "{\n  \"literal\": \"أنا بحبها\",\n  \"adaptation\": \"أنا بحبها\",\n  \"back_translation\": \"I love it\",\n  \"approach\": \"literal\",\n  \"notes\": \"The English present continuous was changed to a simple present as Arabic does not have a direct continuous form; the Egyptian dialect makes it colloquial and catchy.\"\n}",
+  "literal": "أنا بحبها",
+  "adaptation": "أنا بحبها",
+  "back_translation": "I love it",
+  "approach": "literal",
+  "notes": "The English present continuous was changed to a simple present as Arabic does not have a direct continuous form; the Egyptian dialect makes it colloquial and catchy."
+}

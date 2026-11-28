@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Doha",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Doha. Write marketing copy for it in Qatari Arabic, the way people in Doha actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 1,
+  "prompt_lang": "en",
+  "city": "Doha",
+  "target_region": "Gulf",
+  "target_city_code": "DOH",
+  "model": "gemini",
+  "id": "C__Doha__gemini__s1",
+  "model_id": "google/gemini-3.1-pro-preview",
+  "output": "شعار التطبيق:\nقريب.. يوّفر عنوتك، وماجلتك عند بابك.\n\nإعلانات إنستغرام:\n- زحمة الكورنيش وطابور الجمعية؟ أزهل الماجلة علينا.. اطلب من \"قريب\" وتوصلك للبيت في دقايق!\n- ناقصك شي فالمطبخ؟ مقاضيك كلها فريش وزاهبة.. اطلب اللي بخاطرك من \"قريب\" وفالك طيب.\n- ريّح راسك وخل مشوار الجمعية علينا.. حمّل تطبيق \"قريب\" واطلب كل اللي تحتاجه بكبسة زر.\n\nإشعار (Push Notification):\nيا هلا! 👋 وفرنا عليك الطلعة في هالزحمة 🚗.. اطلب ماجلتك الحين من \"قريب\" وتوصلك لي حد بابك!",
+  "at": "2026-11-18T05:46:16.814Z"
+}

@@ -1,0 +1,13 @@
+{
+  "scenario": "M3",
+  "lang": "ar_eg",
+  "model": "gpt",
+  "message": "لا بجد خدمة تحفة، متأخرين ساعتين بس زي كل مرة 👏👏",
+  "raw": "{\"intent\":\"late_delivery\",\"sentiment\":\"negative\",\"urgency\":\"high\",\"sarcasm\":true,\"churn_risk\":true,\"summary\":\"The customer sarcastically complains that the delivery is two hours late, as it is every time.\"}",
+  "intent": "late_delivery",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": true,
+  "churn_risk": true,
+  "summary": "The customer sarcastically complains that the delivery is two hours late, as it is every time."
+}

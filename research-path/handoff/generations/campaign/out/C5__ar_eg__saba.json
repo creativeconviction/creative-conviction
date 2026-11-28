@@ -1,0 +1,12 @@
+{
+  "line": "C5",
+  "market": "ar_eg",
+  "model": "saba",
+  "source": "Your Friday night date starts here.",
+  "raw": "```json\n{\n  \"literal\": \"تصادفك ليلة الجمعة هنا.\",\n  \"adaptation\": \"ليلة الجمعة، أينما كنت، تجد موعدك في ثانية.\",\n  \"back_translation\": \"Friday night, wherever you are, find your date in seconds.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Egyptian Arabic prefers a more active and colloquial phrasing to resonate with youthful dating app users.\"\n}\n```",
+  "literal": "تصادفك ليلة الجمعة هنا.",
+  "adaptation": "ليلة الجمعة، أينما كنت، تجد موعدك في ثانية.",
+  "back_translation": "Friday night, wherever you are, find your date in seconds.",
+  "approach": "adapted",
+  "notes": "Egyptian Arabic prefers a more active and colloquial phrasing to resonate with youthful dating app users."
+}

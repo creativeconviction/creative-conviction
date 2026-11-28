@@ -1,0 +1,13 @@
+{
+  "scenario": "M2",
+  "lang": "ar_sa",
+  "model": "allam",
+  "message": "وين طلبي؟؟ صار له ساعتين، شي يفشل",
+  "raw": "```json\n{\n  \"intent\": \"missing_item\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"The customer's order is missing and has been delayed.\"\n}\n```",
+  "intent": "missing_item",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer's order is missing and has been delayed."
+}

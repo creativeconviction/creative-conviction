@@ -1,0 +1,13 @@
+{
+  "scenario": "M3",
+  "lang": "ar_sa",
+  "model": "claude",
+  "message": "ما شاء الله عليكم خدمة ولا أروع، بس ساعتين تأخير مرة ثانية 👏👏",
+  "raw": "```json\n{\n  \"intent\": \"late_delivery\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": true,\n  \"churn_risk\": true,\n  \"summary\": \"The customer sarcastically praises the service while complaining that their delivery was two hours late again, which points to a repeated problem.\"\n}\n```",
+  "intent": "late_delivery",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": true,
+  "churn_risk": true,
+  "summary": "The customer sarcastically praises the service while complaining that their delivery was two hours late again, which points to a repeated problem."
+}

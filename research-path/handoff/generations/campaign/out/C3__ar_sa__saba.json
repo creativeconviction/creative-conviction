@@ -1,0 +1,12 @@
+{
+  "line": "C3",
+  "market": "ar_sa",
+  "model": "saba",
+  "source": "Thanksgiving dinner, sorted. Order your turkey today.",
+  "raw": "```json\n{\n  \"literal\": \"عشاء عيد الشكر، جاهز. طلب الديك الرومي اليوم.\",\n  \"adaptation\": \"عشاء عيد الأضحية، جاهز. اطلب طيورك اليوم.\",\n  \"back_translation\": \"Eid al-Adha dinner, sorted. Order your turkey today.\",\n  \"approach\": \"replaced\",\n  \"notes\": \"Replaced 'Thanksgiving' with 'Eid al-Adha' to align with a major Saudi holiday and religious tradition.\"\n}\n```",
+  "literal": "عشاء عيد الشكر، جاهز. طلب الديك الرومي اليوم.",
+  "adaptation": "عشاء عيد الأضحية، جاهز. اطلب طيورك اليوم.",
+  "back_translation": "Eid al-Adha dinner, sorted. Order your turkey today.",
+  "approach": "replaced",
+  "notes": "Replaced 'Thanksgiving' with 'Eid al-Adha' to align with a major Saudi holiday and religious tradition."
+}

@@ -1,0 +1,13 @@
+{
+  "scenario": "M10",
+  "lang": "ar_eg",
+  "model": "gemini",
+  "message": "بتوصلوا التجمع الخامس؟ وفيه حد أدنى للأوردر؟",
+  "raw": "```json\n{\n  \"intent\": \"question\",\n  \"sentiment\": \"neutral\",\n  \"urgency\": \"low\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"The customer is asking if delivery is available to the Fifth Settlement and if there is a minimum order amount.\"\n}\n```",
+  "intent": "question",
+  "sentiment": "neutral",
+  "urgency": "low",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer is asking if delivery is available to the Fifth Settlement and if there is a minimum order amount."
+}

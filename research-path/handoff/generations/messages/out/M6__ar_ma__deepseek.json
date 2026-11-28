@@ -1,0 +1,13 @@
+{
+  "scenario": "M6",
+  "lang": "ar_ma",
+  "model": "deepseek",
+  "message": "عافاكم لغيو الكوموند دابا، درتها فعنوان غالط",
+  "raw": "{\n  \"intent\": \"cancel_order\",\n  \"sentiment\": \"neutral\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"Customer requests to cancel the order because they entered the wrong address.\"\n}",
+  "intent": "cancel_order",
+  "sentiment": "neutral",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "Customer requests to cancel the order because they entered the wrong address."
+}

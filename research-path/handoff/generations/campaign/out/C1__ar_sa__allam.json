@@ -1,0 +1,12 @@
+{
+  "line": "C1",
+  "market": "ar_sa",
+  "model": "allam",
+  "source": "Black Friday: up to 70% off everything.",
+  "raw": "{\n  \"literal\": \"الجمعة السوداء: خصم 70% على كل شيء\",\n  \"adaptation\": \"عروض الجمعة السوداء: تصل الخصومات إلى 70% على كل المنتجات\",\n  \"back_translation\": \"Black Friday: خصم 70% على كل شيء\",\n  \"approach\": \"literal\",\n  \"notes\": \"The translation was adapted to better suit the Saudi audience, as 'Friday Black' is commonly referred to as 'الجمعة السوداء' in Arabic and is known in the market. 'Up to 70% off' is translated to 'تصل الخصومات إلى 70%' to indicate a greater percentage of discounts and to make the offer more appealing.\"\n}",
+  "literal": "الجمعة السوداء: خصم 70% على كل شيء",
+  "adaptation": "عروض الجمعة السوداء: تصل الخصومات إلى 70% على كل المنتجات",
+  "back_translation": "Black Friday: خصم 70% على كل شيء",
+  "approach": "literal",
+  "notes": "The translation was adapted to better suit the Saudi audience, as 'Friday Black' is commonly referred to as 'الجمعة السوداء' in Arabic and is known in the market. 'Up to 70% off' is translated to 'تصل الخصومات إلى 70%' to indicate a greater percentage of discounts and to make the offer more appealing."
+}

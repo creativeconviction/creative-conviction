@@ -1,0 +1,12 @@
+{
+  "line": "T3",
+  "market": "ar_eg",
+  "model": "deepseek",
+  "source": "Have a break, have a KitKat",
+  "raw": "{\n  \"literal\": \"خذ استراحة، خذ كيت كات\",\n  \"adaptation\": \"خدلك بريك، خدلك كيت كات\",\n  \"back_translation\": \"Take yourself a break, take yourself a KitKat\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Used Egyptian colloquial 'خدلك' and the loanword 'بريك' for 'break', which feels native and matches the brand's existing rhythmic, friendly tone in the market.\"\n}",
+  "literal": "خذ استراحة، خذ كيت كات",
+  "adaptation": "خدلك بريك، خدلك كيت كات",
+  "back_translation": "Take yourself a break, take yourself a KitKat",
+  "approach": "adapted",
+  "notes": "Used Egyptian colloquial 'خدلك' and the loanword 'بريك' for 'break', which feels native and matches the brand's existing rhythmic, friendly tone in the market."
+}

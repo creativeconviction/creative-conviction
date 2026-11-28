@@ -1,0 +1,13 @@
+{
+  "scenario": "M6",
+  "lang": "ar_ma",
+  "model": "allam",
+  "message": "عافاكم لغيو الكوموند دابا، درتها فعنوان غالط",
+  "raw": "```json\n{\n  \"intent\": \"missing_item\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"Item missing from order\"\n}\n```",
+  "intent": "missing_item",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "Item missing from order"
+}

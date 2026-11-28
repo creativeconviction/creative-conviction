@@ -1,0 +1,12 @@
+{
+  "line": "T1",
+  "market": "ar_eg",
+  "model": "saba",
+  "source": "I'm lovin' it",
+  "raw": "```json\n{\n  \"literal\": \"أحبها\",\n  \"adaptation\": \"دي麦当劳\",\n  \"back_translation\": \"This McDonald's\",\n  \"approach\": \"replaced\",\n  \"notes\": \"McDonald’s in Egypt rarely uses English slogans in advertising; a localized phrase that ties the brand to its identity was chosen instead.\"\n}\n```",
+  "literal": "أحبها",
+  "adaptation": "دي麦当劳",
+  "back_translation": "This McDonald's",
+  "approach": "replaced",
+  "notes": "McDonald’s in Egypt rarely uses English slogans in advertising; a localized phrase that ties the brand to its identity was chosen instead."
+}

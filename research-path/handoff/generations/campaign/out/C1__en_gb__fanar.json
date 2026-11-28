@@ -1,0 +1,12 @@
+{
+  "line": "C1",
+  "market": "en_gb",
+  "model": "fanar",
+  "source": "Black Friday: up to 70% off everything.",
+  "raw": "{\n\"literal\": \"Black Friday: up to 70% off everything.\",\n\"adaptation\": \"Black Friday Sale: Save up to 70% on everything\",\n\"back_translation\": \"Black Friday Sale: Save up to 70% on everything\",\n\"approach\": \"adapted\",\n\"notes\": \"Changed 'off' to 'save' to align with more common phrasing in British English.\"\n}",
+  "literal": "Black Friday: up to 70% off everything.",
+  "adaptation": "Black Friday Sale: Save up to 70% on everything",
+  "back_translation": "Black Friday Sale: Save up to 70% on everything",
+  "approach": "adapted",
+  "notes": "Changed 'off' to 'save' to align with more common phrasing in British English."
+}

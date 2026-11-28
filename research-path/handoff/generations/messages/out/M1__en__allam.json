@@ -1,0 +1,13 @@
+{
+  "scenario": "M1",
+  "lang": "en",
+  "model": "allam",
+  "message": "hi, my order came but the milk and bread are missing",
+  "raw": "```json\n{\n  \"intent\": \"missing_item\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"Missing items in the order\"\n}\n```",
+  "intent": "missing_item",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "Missing items in the order"
+}

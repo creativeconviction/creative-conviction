@@ -1,0 +1,13 @@
+{
+  "scenario": "M1",
+  "lang": "arabizi",
+  "model": "claude",
+  "message": "ahlan, el order wesel bas el laban wel 3eish mesh mawgoodeen",
+  "raw": "```json\n{\n  \"intent\": \"missing_item\",\n  \"sentiment\": \"neutral\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"The customer says their order arrived but the milk (laban) and bread (3eish) were missing.\"\n}\n```",
+  "intent": "missing_item",
+  "sentiment": "neutral",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer says their order arrived but the milk (laban) and bread (3eish) were missing."
+}

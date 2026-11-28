@@ -1,0 +1,13 @@
+{
+  "scenario": "M9",
+  "lang": "ar_ma",
+  "model": "gpt",
+  "message": "بغيت غير نقول بلي الليفرور كان ظريف بزاف وعاوني نطلع كلشي للفوق، شكرا بزاف!",
+  "raw": "{\"intent\":\"praise\",\"sentiment\":\"positive\",\"urgency\":\"low\",\"sarcasm\":false,\"churn_risk\":false,\"summary\":\"The customer praises the delivery person for being very kind and helping carry everything upstairs.\"}",
+  "intent": "praise",
+  "sentiment": "positive",
+  "urgency": "low",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer praises the delivery person for being very kind and helping carry everything upstairs."
+}

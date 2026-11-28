@@ -1,0 +1,13 @@
+{
+  "scenario": "M2",
+  "lang": "ar_sa",
+  "model": "gpt",
+  "message": "وين طلبي؟؟ صار له ساعتين، شي يفشل",
+  "raw": "{\"intent\":\"late_delivery\",\"sentiment\":\"negative\",\"urgency\":\"high\",\"sarcasm\":false,\"churn_risk\":false,\"summary\":\"The customer is upset that their order is two hours late and asks where it is.\"}",
+  "intent": "late_delivery",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer is upset that their order is two hours late and asks where it is."
+}

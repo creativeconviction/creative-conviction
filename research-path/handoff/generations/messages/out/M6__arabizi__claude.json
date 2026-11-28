@@ -1,0 +1,13 @@
+{
+  "scenario": "M6",
+  "lang": "arabizi",
+  "model": "claude",
+  "message": "elghoo el order delwa2ty 7alan law sama7to, talabto 3ala 3enwan ghalat",
+  "raw": "```json\n{\n  \"intent\": \"cancel_order\",\n  \"sentiment\": \"neutral\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"The customer politely asks to cancel their order immediately because they placed it to the wrong address.\"\n}\n```",
+  "intent": "cancel_order",
+  "sentiment": "neutral",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer politely asks to cancel their order immediately because they placed it to the wrong address."
+}

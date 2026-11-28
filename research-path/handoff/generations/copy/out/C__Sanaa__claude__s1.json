@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Sanaa",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Sanaa. Write marketing copy for it in Yemeni (Sanaani) Arabic, the way people in Sanaa actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 1,
+  "prompt_lang": "en",
+  "city": "Sanaa",
+  "target_region": "Yemen",
+  "target_city_code": "SAN",
+  "model": "claude",
+  "id": "C__Sanaa__claude__s1",
+  "model_id": "anthropic/claude-opus-5.5",
+  "output": "**التاجلاين:**\nقريب.. مقاضيك لا عند بابك\n\n**إعلانات إنستغرام:**\n1. ليش تتعنّى لا البقالة؟ اطلب من قريب وبانوصّلها لك لا عند الباب يا خبير 🛒\n2. أمك تشتي طماط وبصل ذلحين؟ قريب يجيبهن قبل ما يبرد الشاهي ☕\n3. من الحصبة لا حدة، قريب معك. خلّيك مرتاح في البيت واحنا بانجيب لك كل شي 🏠\n\n**إشعار الدفع:**\nيا خبير، الصبوح قده جاهز؟ 🍳 اطلب روتي وبيض وجبن من قريب وبانوصّلهن لك ذلحين!",
+  "at": "2026-11-18T05:37:08.083Z"
+}

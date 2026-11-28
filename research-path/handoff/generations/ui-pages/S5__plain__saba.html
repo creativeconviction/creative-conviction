@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تتبع الطلب - قارب</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2D5A3D;
+            --primary-light: #3a6b4a;
+            --text: #1a1a1a;
+            --text-light: #5a5a5a;
+            --border: #e0e0e0;
+            --bg: #f8f9fa;
+            --success: #38c175;
+            --white: #ffffff;
+            --shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            color: var(--text);
+            background-color: var(--bg);
+            line-height: 1.6;
+            direction: rtl;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--white);
+            min-height: 100vh;
+            box-shadow: var(--shadow);
+        }
+
+        header {
+            padding: 20px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 24px;
+            transform: rotate(180deg);
+        }
+
+        h1 {
+            font-size: 20px;
+            font-weight: 700;
+            flex-grow: 1;
+        }
+
+        .page-content {
+            padding: 0 16px 24px;
+        }
+
+        /* Stepper */
+        .stepper {
+            position: relative;
+            padding: 24px 0;
+        }
+
+        .stepper::before {
+            content: '';
+            position: absolute;
+            top: 24px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            border-bottom: 1px dashed var(--border);
+            z-index: 1;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 24px;
+        }
+
+        .step:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-number {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background-color: var(--text-light);
+            color: var(--white);
+            font-weight: 700;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-left: 8px;
+        }
+
+        .step.current .step-number {
+            background-color: var(--primary);
+        }
+
+        .step-text {
+            font-size: 14px;
+            font-weight: 500;
+            margin-left: 12px;
+        }
+
+        .step.current .step-text {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .step-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 12px;
+            font-size: 14px;
+        }
+
+        .step.current .step-icon {
+            color: var(--primary);
+            background-color: rgba(45, 90, 61, 0.1);
+            border-radius: 50%;
+        }
+
+        .timeline-line {
+            position: absolute;
+            top: 38px;
+            right: 14px;
+            bottom: 24px;
+            width: 2px;
+            background-color: var(--primary);
+            z-index: 2;
+        }
+
+        .step.completed .step-number {
+            background-color: var(--success);
+        }
+
+        .step.completed .step-text {
+            color: var(--text-light);
+        }
+
+        /* Est. Delivery */
+        .est-delivery {
+            background-color: var(--bg);
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .est-icon {
+            font-size: 24px;
+            color: var(--primary);
+        }
+
+        .est-text {
+            font-size: 14px;
+        }
+
+        .est-time {
+            font-weight: 700;
+            margin-left: 4px;
+        }
+
+        /* Map */
+        .map-placeholder {
+            height: 180px;
+            background-color: #e9ecef;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .map-placeholder svg {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 8px;
+        }
+
+        .map-action-btns {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .map-btn {
+            padding: 8px 16px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background-color: var(--white);
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .map-btn svg {
+            font-size: 16px;
+        }
+
+        /* Driver Card */
+        .driver-card {
+            display: flex;
+            gap: 16px;
+            padding: 16px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 24px;
+        }
+
+        .driver-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background-color: #e9ecef;
+            flex-shrink: 0;
+        }
+
+        .driver-info {
+            flex-grow: 1;
+        }
+
+        .driver-name {
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .driver-rating {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .rating-star {
+            color: #ffc107;
+        }
+
+        .driver-car {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        .driver-contact {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .contact-btn {
+            background: none;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            cursor: pointer;
+            color: var(--primary-light);
+        }
+
+        .contact-btn.call {
+            background-color: rgba(45, 90, 61, 0.1);
+        }
+
+        .contact-btn.msg {
+            background-color: rgba(45, 90, 61, 0.1);
+        }
+
+        /* Order Details */
+        .order-details-header {
+            background-color: var(--bg);
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+
+        .order-details-title {
+            font-weight: 700;
+        }
+
+        .order-details-icon {
+            transition: transform 0.2s ease;
+        }
+
+        .order-details-icon.rotated {
+            transform: rotate(90deg);
+        }
+
+        .order-details-content {
+            padding: 0 16px 16px;
+            display: none;
+        }
+
+        .order-details-item {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .order-details-item:first-child {
+            padding-top: 0;
+        }
+
+        .order-details-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-label {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        .item-value {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Back button */
+        .fixed-back-btn {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            background-color: var(--white);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            body {
+                background-color: rgba(0,0,0,0.3);
+            }
+            .container {
+                margin: 24px auto;
+                box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+            }
+            .page-content {
+                padding: 0 24px 32px;
+            }
+            .stepper {
+                padding: 32px 0;
+            }
+            .stepper::before {
+                top: 32px;
+            }
+            .timeline-line {
+                right: 20px;
+                width: 2px;
+            }
+            .step {
+                margin-bottom: 32px;
+            }
+            .est-delivery {
+                padding: 20px;
+                gap: 16px;
+            }
+            .map-placeholder {
+                height: 200px;
+            }
+            .driver-card {
+                padding: 20px;
+                gap: 20px;
+            }
+            .order-details-header {
+                padding: 20px;
+            }
+            .order-details-item {
+                padding: 12px 0;
+            }
+            .fixed-back-btn {
+                bottom: 32px;
+                left: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <button class="back-btn">↩</button>
+            <h1>تتبع الطلب</h1>
+        </header>
+
+        <main class="page-content">
+            <section class="stepper">
+                <div class="step completed">
+                    <div class="step-number">1</div>
+                    <div class="step-text">تم تقديم الطلب</div>
+                    <div class="step-icon">✓</div>
+                    <div class="timeline-line" style="height: 32px; top: 38px;"></div>
+                </div>
+                <div class="step completed">
+                    <div class="step-number">2</div>
+                    <div class="step-text">قيد التحضير</div>
+                    <div class="step-icon">👨‍🍳</div>
+                    <div class="timeline-line" style="height: 32px; top: 102px;"></div>
+                </div>
+                <div class="step current">
+                    <div class="step-number">3</div>
+                    <div class="step-text">قيد التوصيل</div>
+                    <div class="step-icon">🛴</div>
+                    <div class="timeline-line" style="height: 32px; top: 170px;"></div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-text">تم التسليم</div>
+                    <div class="step-icon">🚛</div>
+                </div>
+            </section>
+
+            <section class="est-delivery">
+                <div class="est-icon">📦</div>
+                <div class="est-text">تاريخ التسليم المتوقع
+                    <span class="est-time">خلال 30 دقيقة</span>
+                </div>
+            </section>
+
+            <div class="map-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.68629 2 8.125 3 6.5 5.5C5.625 7 5.25 8.125 5.5 10.5C5.75 12 6.5 12.5 12 22C17.5 12.5 18.25 12 18.5 10.5C18.75 8.125 18.375 7 17.5 5.5C15.875 3 15.3137 2 12 2Z" stroke="#ADB5BD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span>خريطة التوصيل</span>
+                <div class="map-action-btns">
+                    <button class="map-btn">√ الوصول</button>
+                    <button class="map-btn">📍 التوجيه</button>
+                </div>
+            </div>
+
+            <div class="driver-card">
+                <div class="driver-avatar"></div>
+                <div class="driver-info">
+                    <div class="driver-name">محمد أحمد</div>
+                    <div class="driver-rating">
+                        <span class="rating-star">★</span>
+                        <span>4.8</span>
+                    </div>
+                    <div class="driver-car">سيارة: <span dir="ltr" lang="en">ABC 1234 / أ ب ج ١٢٣٤</span></div>
+                </div>
+                <div class="driver-contact">
+                    <button class="contact-btn call">📞</button>
+                    <button class="contact-btn msg">💬</button>
+                </div>
+            </div>
+
+            <div class="order-details">
+                <div class="order-details-header" id="details-header">
+                    <span class="order-details-title">تفاصيل الطلب</span>
+                    <span class="order-details-icon">›</span>
+                </div>
+                <div class="order-details-content" id="details-content">
+                    <div class="order-details-item">
+                        <span class="item-label">رقم الطلب</span>
+                        <span class="item-value">#ORD123456</span>
+                    </div>
+                    <div class="order-details-item">
+                        <span class="item-label">المنتجات</span>
+                        <span class="item-value">ساندويتش دجاج، بطاطس، صلصة</span>
+                    </div>
+                    <div class="order-details-item">
+                        <span class="item-label">طريقة الدفع</span>
+                        <span class="item-value">كاش عند الاستلام</span>
+                    </div>
+                    <div class="order-details-item">
+                        <span class="item-label">العنوان</span>
+                        <span class="item-value">شارع فلسطين، مبنى 5، الرياض</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <button class="fixed-back-btn">↩</button>
+
+    <script>
+        const header = document.getElementById('details-header');
+        const content = document.getElementById('details-content');
+        const icon = document.querySelector('.order-details-icon');
+
+        header.addEventListener('click', () => {
+            if (content.style.display === 'block') {
+                content.style.display = 'none';
+                icon.classList.remove('rotated');
+            } else {
+                content.style.display = 'block';
+                icon.classList.add('rotated');
+            }
+        });
+        // Default to open
+        content.style.display = 'block';
+        icon.classList.add('rotated');
+
+        document.querySelectorAll('.back-btn, .fixed-back-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                window.history.back();
+            });
+        });
+    </script>
+
+</body>
+</html>

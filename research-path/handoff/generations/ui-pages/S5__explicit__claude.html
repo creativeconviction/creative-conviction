@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>تتبع الطلب · قريب</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brand:#0E8A6A;
+    --brand-600:#0B7259;
+    --brand-50:#E7F6F1;
+    --ink:#14211D;
+    --ink-2:#4B5A55;
+    --ink-3:#8A9792;
+    --line:#E4EAE7;
+    --bg:#F4F7F6;
+    --card:#FFFFFF;
+    --star:#F5A524;
+    --radius:18px;
+    --shadow:0 1px 2px rgba(20,33,29,.05),0 6px 20px rgba(20,33,29,.06);
+    --font:"IBM Plex Sans Arabic","Inter",system-ui,sans-serif;
+    --font-latin:"Inter","IBM Plex Sans Arabic",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    font-family:var(--font);
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  /* Latin snippets keep a Latin face */
+  [lang="en"]{font-family:var(--font-latin)}
+  button{font:inherit;color:inherit}
+  .sr-only{position:absolute;inline-size:1px;block-size:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+  /* Directional icons mirror in RTL */
+  [dir="rtl"] .icon-dir{transform:scaleX(-1)}
+
+  .app{
+    max-inline-size:480px;
+    margin-inline:auto;
+    min-block-size:100vh;
+    padding-block-end:32px;
+  }
+
+  /* ---------- Header ---------- */
+  .topbar{
+    position:sticky;inset-block-start:0;z-index:10;
+    display:flex;align-items:center;gap:12px;
+    padding-block:12px;padding-inline:16px;
+    background:rgba(244,247,246,.92);
+    backdrop-filter:blur(10px);
+  }
+  .icon-btn{
+    inline-size:42px;block-size:42px;flex:none;
+    display:grid;place-items:center;
+    border:1px solid var(--line);border-radius:12px;
+    background:var(--card);cursor:pointer;
+    transition:background .15s;
+  }
+  .icon-btn:hover{background:var(--brand-50)}
+  .icon-btn:focus-visible,.btn:focus-visible,.details-toggle:focus-visible{outline:3px solid rgba(14,138,106,.35);outline-offset:2px}
+  .topbar h1{font-size:1.125rem;margin:0;font-weight:700}
+  .topbar .sub{font-size:.8rem;color:var(--ink-3)}
+  .topbar .titles{flex:1;min-inline-size:0}
+
+  main{padding-inline:16px;display:grid;gap:14px}
+
+  .card{
+    background:var(--card);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:18px;
+  }
+
+  /* ---------- ETA ---------- */
+  .eta{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .eta-label{font-size:.85rem;color:var(--ink-2);margin:0}
+  .eta-time{font-size:2rem;font-weight:700;line-height:1.2;margin:2px 0 0}
+  .eta-time small{font-size:1rem;font-weight:600;color:var(--ink-2);margin-inline-start:4px}
+  .eta-chip{
+    display:inline-flex;align-items:center;gap:6px;
+    background:var(--brand-50);color:var(--brand-600);
+    font-weight:600;font-size:.85rem;
+    padding-block:8px;padding-inline:12px;border-radius:999px;
+    white-space:nowrap;
+  }
+  .live-dot{inline-size:8px;block-size:8px;border-radius:50%;background:var(--brand);animation:pulse 1.6s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(14,138,106,.5)}100%{box-shadow:0 0 0 8px rgba(14,138,106,0)}}
+
+  /* ---------- Stepper ---------- */
+  .stepper{
+    list-style:none;margin:18px 0 0;padding:0;
+    display:grid;grid-template-columns:repeat(4,1fr);
+    position:relative;
+  }
+  .track{
+    position:absolute;
+    inset-block-start:15px;
+    inset-inline:12.5%;          /* from centre of first dot to centre of last */
+    block-size:4px;border-radius:4px;
+    background:var(--line);
+  }
+  .track-fill{
+    position:absolute;inset-block:0;inset-inline-start:0;  /* grows from the start side (right in RTL) */
+    inline-size:var(--progress,0%);
+    background:var(--brand);border-radius:inherit;
+    transition:inline-size .6s ease;
+  }
+  .step{
+    position:relative;z-index:1;
+    display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;
+    padding-inline:2px;
+  }
+  .dot{
+    inline-size:34px;block-size:34px;border-radius:50%;
+    display:grid;place-items:center;
+    background:var(--card);border:2px solid var(--line);color:var(--ink-3);
+    font-size:.85rem;font-weight:700;
+  }
+  .step.done .dot{background:var(--brand);border-color:var(--brand);color:#fff}
+  .step.current .dot{
+    background:#fff;border-color:var(--brand);color:var(--brand);
+    box-shadow:0 0 0 5px var(--brand-50);
+  }
+  .step-label{font-size:.78rem;font-weight:600;color:var(--ink-3);line-height:1.35}
+  .step.done .step-label{color:var(--ink-2)}
+  .step.current .step-label{color:var(--brand-600);font-weight:700}
+  .step-time{font-size:.72rem;color:var(--ink-3)}
+
+  /* ---------- Map ---------- */
+  .map{
+    position:relative;overflow:hidden;
+    padding:0;block-size:230px;
+    background:#E9F0EC;
+  }
+  .map svg{display:block;inline-size:100%;block-size:100%}
+  .map-badge{
+    position:absolute;inset-block-start:12px;inset-inline-start:12px;
+    background:var(--card);border-radius:999px;
+    padding-block:6px;padding-inline:12px;
+    font-size:.8rem;font-weight:600;box-shadow:var(--shadow);
+    display:flex;align-items:center;gap:6px;
+  }
+  .map-note{
+    position:absolute;inset-block-end:10px;inset-inline-end:12px;
+    font-size:.7rem;color:var(--ink-3);
+    background:rgba(255,255,255,.8);padding-block:2px;padding-inline:8px;border-radius:6px;
+  }
+
+  /* ---------- Driver ---------- */
+  .driver{display:grid;gap:16px}
+  .driver-top{display:flex;align-items:center;gap:12px}
+  .avatar{
+    inline-size:56px;block-size:56px;border-radius:50%;flex:none;
+    display:grid;place-items:center;
+    background:linear-gradient(135deg,#0E8A6A,#34C79A);color:#fff;
+    font-weight:700;font-size:1.2rem;
+  }
+  .driver-info{flex:1;min-inline-size:0}
+  .driver-name{margin:0;font-size:1.05rem;font-weight:700}
+  .driver-meta{margin:2px 0 0;font-size:.82rem;color:var(--ink-2);display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center}
+  .rating{display:inline-flex;align-items:center;gap:4px;font-weight:600;color:var(--ink)}
+  .rating svg{color:var(--star)}
+
+  /* Saudi-style plate: Arabic row on top, Latin row below */
+  .plate{
+    flex:none;
+    border:2px solid var(--ink);border-radius:8px;
+    background:#fff;overflow:hidden;
+    text-align:center;min-inline-size:96px;
+  }
+  .plate-row{padding-block:2px;padding-inline:8px;font-weight:700;letter-spacing:.04em;font-size:.95rem;line-height:1.4}
+  .plate-row + .plate-row{border-block-start:1.5px solid var(--ink)}
+  .plate-row[lang="en"]{letter-spacing:.12em;font-size:.88rem}
+
+  .actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    block-size:48px;border-radius:14px;
+    font-weight:600;font-size:.95rem;text-decoration:none;cursor:pointer;
+    border:1px solid transparent;transition:background .15s,transform .1s;
+  }
+  .btn:active{transform:scale(.98)}
+  .btn-primary{background:var(--brand);color:#fff}
+  .btn-primary:hover{background:var(--brand-600)}
+  .btn-ghost{background:var(--brand-50);color:var(--brand-600)}
+  .btn-ghost:hover{background:#d6efe6}
+
+  /* ---------- Order details ---------- */
+  .details{padding:0}
+  .details-toggle{
+    inline-size:100%;
+    display:flex;align-items:center;gap:12px;
+    background:none;border:0;cursor:pointer;
+    padding:18px;text-align:start;border-radius:var(--radius);
+  }
+  .details-toggle .t{flex:1}
+  .details-toggle strong{display:block;font-size:1rem}
+  .details-toggle span.s{font-size:.82rem;color:var(--ink-3)}
+  .chev{transition:transform .25s ease;color:var(--ink-2)}
+  .details-toggle[aria-expanded="true"] .chev{transform:rotate(180deg)}
+  .collapse{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease}
+  .collapse.open{grid-template-rows:1fr}
+  .collapse > div{overflow:hidden}
+  .details-body{padding-inline:18px;padding-block-end:18px}
+  .divider{border:0;border-block-start:1px dashed var(--line);margin-block:12px}
+  .items{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+  .item{display:flex;align-items:baseline;gap:10px}
+  .qty{
+    flex:none;min-inline-size:30px;text-align:center;
+    background:var(--bg);border-radius:8px;font-size:.8rem;font-weight:700;padding-block:2px;
+  }
+  .item-name{flex:1;font-size:.92rem}
+  .item-name small{display:block;color:var(--ink-3);font-size:.78rem}
+  .price{font-weight:600;white-space:nowrap;font-size:.92rem}
+  .rows{display:grid;gap:6px;font-size:.9rem}
+  .row{display:flex;justify-content:space-between;gap:12px;color:var(--ink-2)}
+  .row.total{color:var(--ink);font-weight:700;font-size:1rem;margin-block-start:4px}
+  .meta-grid{display:grid;gap:10px;font-size:.88rem}
+  .meta-grid dt{color:var(--ink-3);font-size:.78rem}
+  .meta-grid dd{margin:0;font-weight:500}
+  .ltr{direction:ltr;unicode-bidi:isolate}
+
+  .toast{
+    position:fixed;inset-inline:16px;inset-block-end:20px;
+    max-inline-size:440px;margin-inline:auto;
+    background:var(--ink);color:#fff;border-radius:12px;
+    padding-block:12px;padding-inline:16px;font-size:.9rem;
+    opacity:0;transform:translateY(12px);pointer-events:none;
+    transition:opacity .2s,transform .2s;z-index:50;
+  }
+  .toast.show{opacity:1;transform:none}
+
+  /* ---------- Desktop ---------- */
+  @media (min-width:960px){
+    .app{max-inline-size:1100px;padding-block-start:16px}
+    .topbar{padding-inline:24px;background:transparent;backdrop-filter:none;position:static}
+    main{
+      padding-inline:24px;
+      grid-template-columns:1.1fr 1fr;
+      grid-template-areas:
+        "map status"
+        "map driver"
+        "map details";
+      align-items:start;column-gap:20px;
+    }
+    .status-card{grid-area:status}
+    .map{grid-area:map;block-size:calc(100vh - 120px);min-block-size:520px;position:sticky;inset-block-start:16px}
+    .driver{grid-area:driver}
+    .details{grid-area:details}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header class="topbar">
+    <button class="icon-btn" type="button" aria-label="رجوع" onclick="history.length > 1 ? history.back() : null">
+      <!-- Drawn pointing left (LTR "back"); mirrored to point right in RTL -->
+      <svg class="icon-dir" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+    </button>
+    <div class="titles">
+      <h1>تتبع الطلب</h1>
+      <div class="sub">طلب رقم <bdi lang="en" dir="ltr">#QRB-48213</bdi></div>
+    </div>
+    <button class="icon-btn" type="button" aria-label="المساعدة" data-toast="فريق الدعم متاح ٢٤ ساعة">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+    </button>
+  </header>
+
+  <main>
+    <!-- Status: ETA + stepper -->
+    <section class="card status-card" aria-labelledby="eta-heading">
+      <div class="eta">
+        <div>
+          <p class="eta-label" id="eta-heading">الوصول المتوقع</p>
+          <p class="eta-time"><time datetime="20:45">٨:٤٥</time><small>م</small></p>
+        </div>
+        <span class="eta-chip" role="status" aria-live="polite">
+          <span class="live-dot" aria-hidden="true"></span>
+          خلال <span id="eta-min">١٢</span> دقيقة
+        </span>
+      </div>
+
+      <ol class="stepper" aria-label="مراحل الطلب" style="--progress:66.666%">
+        <div class="track" aria-hidden="true"><div class="track-fill"></div></div>
+        <li class="step done">
+          <span class="dot" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+          <span class="step-label">تم الطلب</span>
+          <span class="step-time">٨:١٢ م</span>
+          <span class="sr-only">(مكتملة)</span>
+        </li>
+        <li class="step done">
+          <span class="dot" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+          <span class="step-label">قيد التحضير</span>
+          <span class="step-time">٨:١٥ م</span>
+          <span class="sr-only">(مكتملة)</span>
+        </li>
+        <li class="step current" aria-current="step">
+          <span class="dot" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14v-5l-2-5H7l-2 5z"/><circle cx="8" cy="17" r="2"/><circle cx="16" cy="17" r="2"/></svg>
+          </span>
+          <span class="step-label">في الطريق</span>
+          <span class="step-time">٨:٣٣ م</span>
+          <span class="sr-only">(المرحلة الحالية)</span>
+        </li>
+        <li class="step">
+          <span class="dot" aria-hidden="true">٤</span>
+          <span class="step-label">تم التوصيل</span>
+          <span class="step-time">—</span>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Map placeholder -->
+    <section class="card map" aria-label="خريطة موقع السائق (عرض توضيحي)">
+      <svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <rect width="400" height="260" fill="#E9F0EC"/>
+        <g fill="#DCE7E1">
+          <rect x="20" y="20" width="90" height="60" rx="6"/><rect x="140" y="20" width="110" height="60" rx="6"/>
+          <rect x="280" y="20" width="100" height="60" rx="6"/><rect x="20" y="110" width="90" height="70" rx="6"/>
+          <rect x="140" y="110" width="110" height="70" rx="6"/><rect x="280" y="110" width="100" height="70" rx="6"/>
+          <rect x="20" y="210" width="90" height="50" rx="6"/><rect x="140" y="210" width="110" height="50" rx="6"/>
+          <rect x="280" y="210" width="100" height="50" rx="6"/>
+        </g>
+        <rect x="290" y="120" width="70" height="50" rx="8" fill="#CDE8D6"/>
+        <g stroke="#fff" stroke-width="14" stroke-linecap="round">
+          <path d="M0 95H400"/><path d="M0 195H400"/><path d="M125 0V260"/><path d="M265 0V260"/>
+        </g>
+        <path id="route" d="M60 195 H125 V95 H265 V45" fill="none" stroke="#0E8A6A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1 10"/>
+        <path d="M60 195 H125 V140" fill="none" stroke="#0E8A6A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- store -->
+        <circle cx="60" cy="195" r="9" fill="#fff" stroke="#0E8A6A" stroke-width="3"/>
+        <!-- destination pin -->
+        <g transform="translate(265 45)">
+          <circle r="16" fill="#0E8A6A" opacity=".15"/>
+          <path d="M0 -2c-7 0-12-5-12-11s5-11 12-11 12 5 12 11-5 11-12 11z" transform="translate(0 2)" fill="#14211D"/>
+          <circle cx="0" cy="-11" r="4.5" fill="#fff"/>
+        </g>
+        <!-- driver -->
+        <g transform="translate(125 140)">
+          <circle r="18" fill="#0E8A6A" opacity=".18"><animate attributeName="r" values="14;22;14" dur="2s" repeatCount="indefinite"/></circle>
+          <circle r="12" fill="#0E8A6A" stroke="#fff" stroke-width="3"/>
+          <path d="M-4 3l4-9 4 9-4-2z" fill="#fff"/>
+        </g>
+      </svg>
+      <div class="map-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0E8A6A" aria-hidden="true"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+        السائق على بُعد ٢٫٣ كم
+      </div>
+      <span class="map-note">خريطة توضيحية</span>
+    </section>
+
+    <!-- Driver card -->
+    <section class="card driver" aria-labelledby="driver-name">
+      <div class="driver-top">
+        <div class="avatar" aria-hidden="true">خ</div>
+        <div class="driver-info">
+          <h2 class="driver-name" id="driver-name">خالد العتيبي</h2>
+          <p class="driver-meta">
+            <span class="rating" aria-label="التقييم ٤٫٩ من ٥">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              ٤٫٩
+            </span>
+            <span>(١٬٢٣٠ تقييم)</span>
+            <span>تويوتا <bdi lang="en">Camry</bdi> · أبيض</span>
+          </p>
+        </div>
+        <div class="plate" role="img" aria-label="رقم اللوحة: أ ب ج ١٢٣٤، ABC 1234">
+          <div class="plate-row" lang="ar" dir="rtl"><bdi>أ ب ج ١٢٣٤</bdi></div>
+          <div class="plate-row" lang="en" dir="ltr">ABC 1234</div>
+        </div>
+      </div>
+      <div class="actions">
+        <a class="btn btn-primary" href="tel:+966501234567" aria-label="اتصال بالسائق خالد">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+          اتصال
+        </a>
+        <button class="btn btn-ghost" type="button" data-toast="جارٍ فتح المحادثة مع خالد…" aria-label="مراسلة السائق خالد">
+          <svg class="icon-dir" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          رسالة
+        </button>
+      </div>
+    </section>
+
+    <!-- Order details (expandable) -->
+    <section class="card details">
+      <button class="details-toggle" type="button" aria-expanded="false" aria-controls="details-panel" id="details-btn">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="t">
+          <strong>تفاصيل الطلب</strong>
+          <span class="s">مخبز السنابل · ٣ منتجات · ٦٨٫٥٠ ر.س</span>
+        </span>
+        <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="collapse" id="details-panel" role="region" aria-labelledby="details-btn">
+        <div>
+          <div class="details-body" id="details-inner" hidden>
+            <ul class="items">
+              <li class="item"><span class="qty">٢×</span><span class="item-name">كرواسون بالزعتر<small>إضافة جبنة</small></span><span class="price">٢٤٫٠٠ ر.س</span></li>
+              <li class="item"><span class="qty">١×</span><span class="item-name">قهوة لاتيه (<bdi lang="en">Latte</bdi>)<small>حليب الشوفان · حجم كبير</small></span><span class="price">١٨٫٥٠ ر.س</span></li>
+              <li class="item"><span class="qty">١×</span><span class="item-name">كعكة التمر</span><span class="price">١٩٫٠٠ ر.س</span></li>
+            </ul>
+            <hr class="divider">
+            <div class="rows">
+              <div class="row"><span>المجموع الفرعي</span><span>٦١٫٥٠ ر.س</span></div>
+              <div class="row"><span>رسوم التوصيل</span><span>٧٫٠٠ ر.س</span></div>
+              <div class="row total"><span>الإجمالي</span><span>٦٨٫٥٠ ر.س</span></div>
+            </div>
+            <hr class="divider">
+            <dl class="meta-grid">
+              <div><dt>عنوان التوصيل</dt><dd>حي النرجس، شارع الأمير سعود، مبنى ١٤، شقة ٣</dd></div>
+              <div><dt>رقم التواصل</dt><dd><a href="tel:+966551234567" style="color:inherit"><bdi class="ltr" dir="ltr" lang="en">+966 55 123 4567</bdi></a></dd></div>
+              <div><dt>طريقة الدفع</dt><dd><bdi lang="en">Apple Pay</bdi> · مدفوع</dd></div>
+              <div><dt>رقم الطلب</dt><dd><bdi dir="ltr" lang="en">#QRB-48213</bdi></dd></div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+  // Expandable order details
+  const btn = document.getElementById('details-btn');
+  const panel = document.getElementById('details-panel');
+  const inner = document.getElementById('details-inner');
+  btn.addEventListener('click', () => {
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    if (!open) { inner.hidden = false; requestAnimationFrame(() => panel.classList.add('open')); }
+    else { panel.classList.remove('open'); setTimeout(() => { if (btn.getAttribute('aria-expanded') === 'false') inner.hidden = true; }, 300); }
+  });
+
+  // Toast
+  const toast = document.getElementById('toast');
+  let t;
+  document.querySelectorAll('[data-toast]').forEach(el => el.addEventListener('click', () => {
+    toast.textContent = el.dataset.toast;
+    toast.classList.add('show');
+    clearTimeout(t); t = setTimeout(() => toast.classList.remove('show'), 2200);
+  }));
+
+  // ETA countdown with Arabic-Indic digits
+  const fmt = new Intl.NumberFormat('ar', { numberingSystem: 'arab' });
+  const etaEl = document.getElementById('eta-min');
+  let mins = 12;
+  setInterval(() => { if (mins > 1) { mins--; etaEl.textContent = fmt.format(mins); } }, 60000);
+</script>
+</body>
+</html>

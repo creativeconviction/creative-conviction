@@ -1,0 +1,13 @@
+{
+  "scenario": "M8",
+  "lang": "en",
+  "model": "claude",
+  "message": "I was charged twice for the same order, 2 x $45 on my card",
+  "raw": "```json\n{\n  \"intent\": \"billing_issue\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"The customer reports being charged twice ($45 each) on their card for the same order.\"\n}\n```",
+  "intent": "billing_issue",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer reports being charged twice ($45 each) on their card for the same order."
+}

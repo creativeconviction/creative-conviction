@@ -1,0 +1,8 @@
+{
+  "line": "T5",
+  "market": "en_gb",
+  "model": "fanar",
+  "source": "Because you're worth it",
+  "raw": "{\n\"literal\": \"Because you're worth it\",  // Note: The phrase is already English, so no literal translation needed in this context.\n\"adaptation\": \"Because you're worth the investment, darlin'\",\n\"back_translation\": \"Because you're worth the investment, dear.\",\n\"approach\": \"adapted\",\n\"notes\": \"In a UK context, the word 'darlin'' adds a friendly, informal tone which is well-received in British marketing. This subtle adaptation maintains the core message while adjusting for cultural familiarity.\"\n}",
+  "_parse_error": true
+}

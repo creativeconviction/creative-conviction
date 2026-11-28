@@ -1,0 +1,12 @@
+{
+  "line": "T2",
+  "market": "ar_sa",
+  "model": "claude",
+  "source": "Just Do It",
+  "raw": "```json\n{\n  \"literal\": \"فقط افعلها\",\n  \"adaptation\": \"سوّها وبس\",\n  \"back_translation\": \"Just do it, that's all\",\n  \"approach\": \"adapted\",\n  \"notes\": \"The literal Modern Standard Arabic version reads stiff and textbook-like, so I used the punchy, confident Saudi dialect that young audiences actually speak, while keeping the English 'Just Do It' trademark in the logo lockup for global brand consistency.\"\n}\n```",
+  "literal": "فقط افعلها",
+  "adaptation": "سوّها وبس",
+  "back_translation": "Just do it, that's all",
+  "approach": "adapted",
+  "notes": "The literal Modern Standard Arabic version reads stiff and textbook-like, so I used the punchy, confident Saudi dialect that young audiences actually speak, while keeping the English 'Just Do It' trademark in the logo lockup for global brand consistency."
+}

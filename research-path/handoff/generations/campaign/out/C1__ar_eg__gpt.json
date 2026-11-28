@@ -1,0 +1,12 @@
+{
+  "line": "C1",
+  "market": "ar_eg",
+  "model": "gpt",
+  "source": "Black Friday: up to 70% off everything.",
+  "raw": "{\n  \"literal\": \"الجمعة السوداء: خصم يصل إلى 70% على كل شيء.\",\n  \"adaptation\": \"الجمعة البيضاء: خصومات تصل لـ70% على كل حاجة!\",\n  \"back_translation\": \"White Friday: discounts of up to 70% on everything!\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Used “White Friday,” a familiar regional alternative, and conversational Egyptian Arabic for a more natural retail tone.\"\n}",
+  "literal": "الجمعة السوداء: خصم يصل إلى 70% على كل شيء.",
+  "adaptation": "الجمعة البيضاء: خصومات تصل لـ70% على كل حاجة!",
+  "back_translation": "White Friday: discounts of up to 70% on everything!",
+  "approach": "adapted",
+  "notes": "Used “White Friday,” a familiar regional alternative, and conversational Egyptian Arabic for a more natural retail tone."
+}

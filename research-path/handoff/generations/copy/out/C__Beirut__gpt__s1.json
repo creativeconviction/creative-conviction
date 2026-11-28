@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Beirut",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Beirut. Write marketing copy for it in Lebanese Arabic, the way people in Beirut actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 1,
+  "prompt_lang": "en",
+  "city": "Beirut",
+  "target_region": "Levant",
+  "target_city_code": "BEI",
+  "model": "gpt",
+  "id": "C__Beirut__gpt__s1",
+  "model_id": "openai/gpt-5.6-sol",
+  "output": "قريب — حاجات البيت لعندك عالسريع.\n\nناقصك شي؟ كبسة وبيوصل لعندك.\nمن الخضرة للحليب، كل شي صار قريب.\nإنت اطلب، ونحنا منوصّل لباب البيت.\n\nشو ناقص بالبرّاد؟ اطلبه هلّق من قريب 🛵",
+  "at": "2026-11-18T05:28:38.329Z"
+}

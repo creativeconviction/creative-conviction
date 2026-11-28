@@ -1,0 +1,13 @@
+{
+  "scenario": "M2",
+  "lang": "en",
+  "model": "deepseek",
+  "message": "WHERE IS MY ORDER?? it's been 2 hours, this is ridiculous",
+  "raw": "{\n  \"intent\": \"late_delivery\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"Customer is angrily asking about their order that hasn't arrived after 2 hours, calling it ridiculous.\"\n}",
+  "intent": "late_delivery",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Customer is angrily asking about their order that hasn't arrived after 2 hours, calling it ridiculous."
+}

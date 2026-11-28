@@ -1,0 +1,12 @@
+{
+  "line": "C2",
+  "market": "ar_eg",
+  "model": "claude",
+  "source": "Happy hour: 2-for-1 drinks from 5 to 7pm.",
+  "raw": "```json\n{\n  \"literal\": \"ساعة سعيدة: مشروبان بسعر واحد من الساعة 5 إلى 7 مساءً.\",\n  \"adaptation\": \"ساعة الروقان: اطلب أي عصير أو موكتيل والتاني علينا، من 5 لـ 7 المسا!\",\n  \"back_translation\": \"Chill-out hour: order any juice or mocktail and the second one's on us, from 5 to 7 in the evening!\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Because 'happy hour' strongly implies alcohol, which is sensitive in Muslim-majority Egypt and not served by most restaurants, I reframed it around juices and mocktails in friendly Egyptian colloquial Arabic, and the 5–7pm slot should be revisited during Ramadan since it overlaps with fasting before iftar.\"\n}\n```",
+  "literal": "ساعة سعيدة: مشروبان بسعر واحد من الساعة 5 إلى 7 مساءً.",
+  "adaptation": "ساعة الروقان: اطلب أي عصير أو موكتيل والتاني علينا، من 5 لـ 7 المسا!",
+  "back_translation": "Chill-out hour: order any juice or mocktail and the second one's on us, from 5 to 7 in the evening!",
+  "approach": "adapted",
+  "notes": "Because 'happy hour' strongly implies alcohol, which is sensitive in Muslim-majority Egypt and not served by most restaurants, I reframed it around juices and mocktails in friendly Egyptian colloquial Arabic, and the 5–7pm slot should be revisited during Ramadan since it overlaps with fasting before iftar."
+}

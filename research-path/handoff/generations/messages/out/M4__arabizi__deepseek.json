@@ -1,0 +1,13 @@
+{
+  "scenario": "M4",
+  "lang": "arabizi",
+  "model": "deepseek",
+  "message": "rabena yesam7ko, talet marra el order yegy ghalat",
+  "raw": "{\n  \"intent\": \"wrong_item\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"Customer complains that for the third time, their order arrived wrong.\"\n}",
+  "intent": "wrong_item",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Customer complains that for the third time, their order arrived wrong."
+}

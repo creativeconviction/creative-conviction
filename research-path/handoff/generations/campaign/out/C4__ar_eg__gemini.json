@@ -1,0 +1,12 @@
+{
+  "line": "C4",
+  "market": "ar_eg",
+  "model": "gemini",
+  "source": "Get beach-body ready this summer.",
+  "raw": "{\n  \"literal\": \"احصل على جسم الشاطئ جاهزاً هذا الصيف.\",\n  \"adaptation\": \"اعمل فرمة الساحل الصيف ده.\",\n  \"back_translation\": \"Build your Sahel (North Coast) physique this summer.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Replaced the Western 'beach-body' concept with 'Faramet El Sahel' (Sahel physique), the exact Egyptian colloquial gym slang for getting in shape for the North Coast summer holidays.\"\n}",
+  "literal": "احصل على جسم الشاطئ جاهزاً هذا الصيف.",
+  "adaptation": "اعمل فرمة الساحل الصيف ده.",
+  "back_translation": "Build your Sahel (North Coast) physique this summer.",
+  "approach": "adapted",
+  "notes": "Replaced the Western 'beach-body' concept with 'Faramet El Sahel' (Sahel physique), the exact Egyptian colloquial gym slang for getting in shape for the North Coast summer holidays."
+}

@@ -1,0 +1,12 @@
+{
+  "line": "C5",
+  "market": "en_gb",
+  "model": "saba",
+  "source": "Your Friday night date starts here.",
+  "raw": "```json\n{\n  \"literal\": \"Your Friday night date starts here.\",\n  \"adaptation\": \"Your Friday night date starts here.\",\n  \"back_translation\": \"Your Friday night date starts here.\",\n  \"approach\": \"keep_english\",\n  \"notes\": \"Keeping the English phrase works in the UK as 'date' is commonly understood in this context, though slight localisation could be considered for broader appeal.\"\n}\n```",
+  "literal": "Your Friday night date starts here.",
+  "adaptation": "Your Friday night date starts here.",
+  "back_translation": "Your Friday night date starts here.",
+  "approach": "keep_english",
+  "notes": "Keeping the English phrase works in the UK as 'date' is commonly understood in this context, though slight localisation could be considered for broader appeal."
+}

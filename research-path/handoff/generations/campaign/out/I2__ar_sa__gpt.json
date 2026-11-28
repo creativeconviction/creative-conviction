@@ -1,0 +1,12 @@
+{
+  "line": "I2",
+  "market": "ar_sa",
+  "model": "gpt",
+  "source": "Rise and grind.",
+  "raw": "{\n  \"literal\": \"انهض واطحن.\",\n  \"adaptation\": \"صحصح وابدأها بقهوة.\",\n  \"back_translation\": \"Wake up and start it with coffee.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"تجنبنا الترجمة الحرفية لكلمة «اطحن» لأنها تبدو غريبة بالعربية، واستخدمنا تعبيرًا سعوديًا خفيفًا وطبيعيًا.\"\n}",
+  "literal": "انهض واطحن.",
+  "adaptation": "صحصح وابدأها بقهوة.",
+  "back_translation": "Wake up and start it with coffee.",
+  "approach": "adapted",
+  "notes": "تجنبنا الترجمة الحرفية لكلمة «اطحن» لأنها تبدو غريبة بالعربية، واستخدمنا تعبيرًا سعوديًا خفيفًا وطبيعيًا."
+}

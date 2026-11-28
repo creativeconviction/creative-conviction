@@ -1,0 +1,13 @@
+{
+  "scenario": "M11",
+  "lang": "ar_sa",
+  "model": "deepseek",
+  "message": "والله هذي آخر مرة أطلب منكم، كل أسبوع فيه مشكلة",
+  "raw": "{\n  \"intent\": \"general_complaint\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"medium\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"Customer expresses frustration with recurring problems and threatens to stop ordering.\"\n}",
+  "intent": "general_complaint",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Customer expresses frustration with recurring problems and threatens to stop ordering."
+}

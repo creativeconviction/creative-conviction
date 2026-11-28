@@ -1,0 +1,13 @@
+{
+  "scenario": "M12",
+  "lang": "en",
+  "model": "fanar",
+  "message": "thanks for the fast delivery! but the bread was stale and the tomatoes were squashed",
+  "raw": "{\n\"intent\": \"quality_issue\",\n\"sentiment\": \"negative\",\n\"urgency\": \"medium\",\n\"sarcasm\": false,\n\"churn_risk\": true,\n\"summary\": \"Customer received stale bread and squashed tomatoes, despite appreciating the fast delivery.\"\n}",
+  "intent": "quality_issue",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Customer received stale bread and squashed tomatoes, despite appreciating the fast delivery."
+}

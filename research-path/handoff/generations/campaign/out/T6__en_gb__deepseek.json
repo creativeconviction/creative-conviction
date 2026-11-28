@@ -1,0 +1,12 @@
+{
+  "line": "T6",
+  "market": "en_gb",
+  "model": "deepseek",
+  "source": "Got milk?",
+  "raw": "{\n  \"literal\": \"Got milk?\",\n  \"adaptation\": \"Got milk?\",\n  \"back_translation\": \"Got milk?\",\n  \"approach\": \"keep_english\",\n  \"notes\": \"The original slogan is already in English and so iconic that any British adaptation would lose its punch; no cultural or spelling changes were needed because the phrase works universally in UK English without risking confusion.\"\n}",
+  "literal": "Got milk?",
+  "adaptation": "Got milk?",
+  "back_translation": "Got milk?",
+  "approach": "keep_english",
+  "notes": "The original slogan is already in English and so iconic that any British adaptation would lose its punch; no cultural or spelling changes were needed because the phrase works universally in UK English without risking confusion."
+}

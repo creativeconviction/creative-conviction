@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f7f5">
+  <title>إعدادات قريب</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f5f7f5;
+      --surface: #ffffff;
+      --surface-soft: #edf6f1;
+      --text: #17221d;
+      --muted: #7b8781;
+      --line: #e8ece9;
+      --primary: #1d805f;
+      --primary-dark: #126a4d;
+      --danger: #d84b4b;
+      --danger-soft: #fff0f0;
+      --shadow: 0 15px 45px rgba(27, 62, 48, 0.09);
+    }
+
+    body.dark {
+      --bg: #101713;
+      --surface: #18211c;
+      --surface-soft: #213a2e;
+      --text: #f3f7f4;
+      --muted: #9ca9a1;
+      --line: #2a352f;
+      --primary: #54c598;
+      --primary-dark: #42ad82;
+      --danger: #ff7777;
+      --danger-soft: #3a2022;
+      --shadow: 0 18px 55px rgba(0, 0, 0, 0.28);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: var(--bg);
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Tajawal", system-ui, sans-serif;
+      transition: background-color 0.25s ease, color 0.25s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button {
+      color: inherit;
+      font: inherit;
+    }
+
+    .app {
+      width: 100%;
+      min-height: 100vh;
+      margin: 0 auto;
+      background: var(--bg);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      padding: 12px 20px;
+    }
+
+    .topbar h1 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.4px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 16px;
+    }
+
+    .brand-mark {
+      position: relative;
+      width: 31px;
+      height: 31px;
+      border-radius: 11px 11px 11px 4px;
+      background: var(--primary);
+      box-shadow: 0 6px 15px rgba(29, 128, 95, 0.22);
+    }
+
+    .brand-mark::before,
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      top: 10px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #fff;
+    }
+
+    .brand-mark::before {
+      right: 8px;
+    }
+
+    .brand-mark::after {
+      left: 8px;
+    }
+
+    main {
+      padding: 2px 16px 34px;
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 17px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--surface);
+      box-shadow: 0 8px 24px rgba(29, 80, 60, 0.05);
+    }
+
+    .avatar {
+      display: grid;
+      flex: 0 0 auto;
+      place-items: center;
+      width: 62px;
+      height: 62px;
+      overflow: hidden;
+      border: 3px solid var(--surface);
+      border-radius: 50%;
+      background: linear-gradient(145deg, #72c9a5, #1d805f);
+      color: #fff;
+      font-size: 25px;
+      font-weight: 800;
+      box-shadow: 0 0 0 2px #dceee6, 0 8px 18px rgba(29, 128, 95, 0.18);
+    }
+
+    .profile-info {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .profile-name {
+      margin: 0 0 3px;
+      font-size: 19px;
+      font-weight: 800;
+    }
+
+    .profile-phone {
+      margin: 0;
+      direction: ltr;
+      text-align: right;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .edit-button {
+      display: grid;
+      flex: 0 0 auto;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border: 0;
+      border-radius: 12px;
+      background: var(--surface-soft);
+      color: var(--primary);
+      cursor: pointer;
+    }
+
+    .section {
+      margin-top: 24px;
+    }
+
+    .section-title {
+      margin: 0 7px 9px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: var(--surface);
+      box-shadow: 0 6px 20px rgba(29, 80, 60, 0.035);
+    }
+
+    .row {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      min-height: 65px;
+      gap: 13px;
+      padding: 11px 15px;
+      border: 0;
+      background: transparent;
+      text-align: right;
+      cursor: pointer;
+    }
+
+    .row + .row,
+    .language-panel {
+      border-top: 1px solid var(--line);
+    }
+
+    .row:hover {
+      background: color-mix(in srgb, var(--surface-soft) 45%, transparent);
+    }
+
+    .icon-box {
+      display: grid;
+      flex: 0 0 auto;
+      place-items: center;
+      width: 39px;
+      height: 39px;
+      border-radius: 12px;
+      background: var(--surface-soft);
+      color: var(--primary);
+    }
+
+    .icon-box svg,
+    .edit-button svg,
+    .chevron svg {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .row-copy {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .row-title {
+      display: block;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .row-subtitle {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .chevron {
+      display: grid;
+      place-items: center;
+      color: #a7b0ab;
+    }
+
+    .chevron svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    .switch {
+      position: relative;
+      flex: 0 0 auto;
+      width: 49px;
+      height: 29px;
+      padding: 0;
+      border: 0;
+      border-radius: 999px;
+      background: #d7ddda;
+      cursor: pointer;
+      transition: background-color 0.22s ease;
+    }
+
+    .switch::after {
+      content: "";
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      width: 21px;
+      height: 21px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.18);
+      transition: transform 0.22s ease;
+    }
+
+    .switch[aria-checked="true"] {
+      background: var(--primary);
+    }
+
+    .switch[aria-checked="true"]::after {
+      transform: translateX(-20px);
+    }
+
+    .language-panel {
+      padding: 12px 15px 15px;
+      background: color-mix(in srgb, var(--surface-soft) 35%, var(--surface));
+    }
+
+    .language-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+      padding: 4px;
+      border-radius: 13px;
+      background: var(--bg);
+    }
+
+    .language-option {
+      min-height: 38px;
+      border: 0;
+      border-radius: 10px;
+      background: transparent;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .language-option.active {
+      background: var(--surface);
+      color: var(--primary);
+      box-shadow: 0 3px 10px rgba(29, 80, 60, 0.09);
+    }
+
+    .language-option[lang="en"] {
+      direction: ltr;
+    }
+
+    .logout {
+      color: var(--danger);
+    }
+
+    .logout .icon-box {
+      background: var(--danger-soft);
+      color: var(--danger);
+    }
+
+    .version {
+      margin: 22px 0 0;
+      color: var(--muted);
+      text-align: center;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .toast {
+      position: fixed;
+      right: 50%;
+      bottom: 24px;
+      z-index: 10;
+      min-width: 210px;
+      padding: 12px 18px;
+      border-radius: 13px;
+      background: #18231e;
+      color: #fff;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(50%, 18px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(50%, 0);
+    }
+
+    @media (min-width: 700px) {
+      body {
+        padding: 34px 16px;
+      }
+
+      .app {
+        max-width: 440px;
+        min-height: auto;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 30px;
+        background: var(--bg);
+        box-shadow: var(--shadow);
+      }
+
+      .topbar {
+        padding-right: 23px;
+        padding-left: 23px;
+      }
+
+      main {
+        padding-right: 20px;
+        padding-bottom: 30px;
+        padding-left: 20px;
+      }
+    }
+
+    @media (max-width: 350px) {
+      .topbar {
+        padding-right: 15px;
+        padding-left: 15px;
+      }
+
+      main {
+        padding-right: 12px;
+        padding-left: 12px;
+      }
+
+      .profile {
+        padding: 14px;
+      }
+
+      .avatar {
+        width: 55px;
+        height: 55px;
+      }
+
+      .row {
+        padding-right: 12px;
+        padding-left: 12px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <header class="topbar">
+      <h1>الإعدادات</h1>
+      <div class="brand" aria-label="قريب">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>قريب</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="profile" aria-label="الملف الشخصي">
+        <div class="avatar" aria-hidden="true">س</div>
+        <div class="profile-info">
+          <h2 class="profile-name">سارة أحمد</h2>
+          <p class="profile-phone">+966 50 123 4567</p>
+        </div>
+        <button class="edit-button" type="button" aria-label="تعديل الملف الشخصي" data-message="تعديل الملف الشخصي">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M13.5 6.5 17.5 10.5"></path>
+            <path d="M4.5 19.5 8.3 18.7 18.2 8.8a2 2 0 0 0 0-2.8l-.2-.2a2 2 0 0 0-2.8 0L5.3 15.7Z"></path>
+          </svg>
+        </button>
+      </section>
+
+      <section class="section" aria-labelledby="account-title">
+        <h2 class="section-title" id="account-title">الحساب</h2>
+        <div class="card">
+          <button class="row" type="button" data-message="العناوين المحفوظة">
+            <span class="icon-box">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"></path>
+                <circle cx="12" cy="10" r="2.5"></circle>
+              </svg>
+            </span>
+            <span class="row-copy">
+              <span class="row-title">العناوين</span>
+              <span class="row-subtitle">إدارة عناوين التوصيل</span>
+            </span>
+            <span class="chevron">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+            </span>
+          </button>
+
+          <button class="row" type="button" data-message="طرق الدفع">
+            <span class="icon-box">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="5" width="18" height="14" rx="3"></rect>
+                <path d="M3 10h18M7 15h3"></path>
+              </svg>
+            </span>
+            <span class="row-copy">
+              <span class="row-title">طرق الدفع</span>
+              <span class="row-subtitle">البطاقات ووسائل الدفع</span>
+            </span>
+            <span class="chevron">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+            </span>
+          </button>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="preferences-title">
+        <h2 class="section-title" id="preferences-title">التفضيلات</h2>
+        <div class="card">
+          <div class="row">
+            <span class="icon-box">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z"></path>
+                <path d="M10 21h4"></path>
+              </svg>
+            </span>
+            <span class="row-copy">
+              <span class="row-title">الإشعارات</span>
+              <span class="row-subtitle">تنبيهات الطلبات والعروض</span>
+            </span>
+            <button class="switch" type="button" role="switch" aria-label="تفعيل الإشعارات" aria-checked="true"></button>
+          </div>
+
+          <div class="row">
+            <span class="icon-box">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"></path>
+              </svg>
+            </span>
+            <span class="row-copy">
+              <span class="row-title">اللغة</span>
+              <span class="row-subtitle" id="selected-language">العربية</span>
+            </span>
+          </div>
+
+          <div class="language-panel">
+            <div class="language-options" role="group" aria-label="اختيار اللغة">
+              <button class="language-option active" type="button" data-language="العربية" aria-pressed="true">العربية</button>
+              <button class="language-option" type="button" data-language="English" aria-pressed="false" lang="en">English</button>
+            </div>
+          </div>
+
+          <div class="row">
+            <span class="icon-box">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20.5 15.2A8.5 8.5 0 0 1 8.8 3.5 8.5 8.5 0 1 0 20.5 15.2Z"></path>
+              </svg>
+            </span>
+            <span class="row-copy">
+              <span class="row-title">الوضع الداكن</span>
+              <span class="row-subtitle">مظهر مريح للعين</span>
+            </span>
+            <button id="dark-mode" class="switch" type="button" role="switch" aria-label="تفعيل الوضع الداكن" aria-checked="false"></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="support-title">
+        <h2 class="section-title" id="support-title">الدعم</h2>
+        <div class="card">
+          <button class="row" type="button" data-message="مركز المساعدة">
+            <span class="icon-box">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M9.8 9a2.4 2.4 0 1 1 3.7 2c-1 .6-1.5 1-1.5 2.2M12 17h.01"></path>
+              </svg>
+            </span>
+            <span class="row-copy">
+              <span class="row-title">المساعدة</span>
+              <span class="row-subtitle">الأسئلة الشائعة والتواصل معنا</span>
+            </span>
+            <span class="chevron">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+            </span>
+          </button>
+
+          <button class="row logout" type="button" data-message="تم تسجيل الخروج">
+            <span class="icon-box">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M10 5H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h5M14 8l4 4-4 4M8 12h10"></path>
+              </svg>
+            </span>
+            <span class="row-copy">
+              <span class="row-title">تسجيل الخروج</span>
+            </span>
+            <span class="chevron">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+            </span>
+          </button>
+        </div>
+      </section>
+
+      <p class="version">قريب · الإصدار 2.4.0</p>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const switches = document.querySelectorAll(".switch");
+    const darkMode = document.getElementById("dark-mode");
+    const toast = document.getElementById("toast");
+    let toastTimer;
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("show"), 1800);
+    }
+
+    switches.forEach((toggle) => {
+      toggle.addEventListener("click", () => {
+        const enabled = toggle.getAttribute("aria-checked") !== "true";
+        toggle.setAttribute("aria-checked", String(enabled));
+
+        if (toggle === darkMode) {
+          document.body.classList.toggle("dark", enabled);
+          showToast(enabled ? "تم تفعيل الوضع الداكن" : "تم إيقاف الوضع الداكن");
+        } else {
+          showToast(enabled ? "تم تفعيل الإشعارات" : "تم إيقاف الإشعارات");
+        }
+      });
+    });
+
+    document.querySelectorAll(".language-option").forEach((button) => {
+      button.addEventListener("click", () => {
+        document.querySelectorAll(".language-option").forEach((option) => {
+          const selected = option === button;
+          option.classList.toggle("active", selected);
+          option.setAttribute("aria-pressed", String(selected));
+        });
+
+        document.getElementById("selected-language").textContent = button.dataset.language;
+        showToast(button.dataset.language === "العربية" ? "تم اختيار العربية" : "تم اختيار English");
+      });
+    });
+
+    document.querySelectorAll("[data-message]").forEach((button) => {
+      button.addEventListener("click", () => showToast(button.dataset.message));
+    });
+  </script>
+</body>
+</html>

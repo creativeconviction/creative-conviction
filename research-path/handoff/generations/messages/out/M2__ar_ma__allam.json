@@ -1,0 +1,13 @@
+{
+  "scenario": "M2",
+  "lang": "ar_ma",
+  "model": "allam",
+  "message": "فين الكوموند ديالي؟؟ هادي جوج سوايع، هادشي ماشي معقول",
+  "raw": "```json\n{\n  \"intent\": \"missing_item\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"الزبون يستفسر عن مكان طلبه الذي تأخر لأكثر من ساعتين\"\n}\n```",
+  "intent": "missing_item",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "الزبون يستفسر عن مكان طلبه الذي تأخر لأكثر من ساعتين"
+}

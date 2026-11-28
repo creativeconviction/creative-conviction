@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Muscat",
+  "s": 1,
+  "prompt_lang": "en",
+  "city": "Muscat",
+  "target_region": "Gulf",
+  "target_city_code": "MUS",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Muscat. Write marketing copy for it in Omani Arabic, the way people in Muscat actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "model": "fanar",
+  "id": "C__Muscat__fanar__s1",
+  "model_id": "QCRI/Fanar-1-9B-Instruct",
+  "output": "**Tagline:** \"أكل كل يوم بسهولة. قريب منكم دوماً!\"\n\n**Instagram Ad Lines:**\n\n1. \"ملخبط في الكنب؟ حاب تطلّب اللي تحتاجه من الخضار و الفواكه الطازة? دع Qareeb يرسل لك ماما زعفران بدون تعب!\"\n2. \"لا وقت للبقالة? Qareeb يفهمك. طلباتك في دقايق, مباشر من أقرب محل. #خارج_المنزل\"\n3. \"عميل Qareeb يقرأ الفائده: ١- لا تزااح. ٢- لا حرارة. ٣- لا غبار. ٤- أكل صحي!\"\n\n**Push Notification:**\n\n\"تذكري، لا تنسوا البقالة! Qareeb بينكم وبين أقرب محل في ٢٠ دقيقة. طلبكم جاي.\"",
+  "at": "2026-11-28T00:49:47.551732+00:00"
+}

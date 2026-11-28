@@ -1,0 +1,13 @@
+{
+  "scenario": "M7",
+  "lang": "en",
+  "model": "deepseek",
+  "message": "you sent peanut butter cookies instead of the plain ones and my son has a nut allergy, he already ate one",
+  "raw": "{\n  \"intent\": \"wrong_item\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"Customer received peanut butter cookies instead of plain ones, and their son with a nut allergy has already eaten one, posing a health risk.\"\n}",
+  "intent": "wrong_item",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "Customer received peanut butter cookies instead of plain ones, and their son with a nut allergy has already eaten one, posing a health risk."
+}

@@ -1,0 +1,12 @@
+{
+  "line": "C5",
+  "market": "ar_sa",
+  "model": "saba",
+  "source": "Your Friday night date starts here.",
+  "raw": "```json\n{\n  \"literal\": \"تبدأ سهرة الجمعة المسائية هنا.\",\n  \"adaptation\": \"سهرة الجمعة تنتظرك هنا\",\n  \"back_translation\": \"Your Friday night awaits you here.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Avoided literal translation of 'date' to align with local colloquial speech on dating apps.\"\n}\n```",
+  "literal": "تبدأ سهرة الجمعة المسائية هنا.",
+  "adaptation": "سهرة الجمعة تنتظرك هنا",
+  "back_translation": "Your Friday night awaits you here.",
+  "approach": "adapted",
+  "notes": "Avoided literal translation of 'date' to align with local colloquial speech on dating apps."
+}

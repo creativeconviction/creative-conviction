@@ -1,0 +1,12 @@
+{
+  "line": "T1",
+  "market": "ar_sa",
+  "model": "saba",
+  "source": "I'm lovin' it",
+  "raw": "```json\n{\n  \"literal\": \"أنا أحبها\",\n  \"adaptation\": \"اشتاقت قلبي للحن ارا الحد ولالي\",\n  \"back_translation\": \"My heart misses the sound of the soda bottle fizzing\",\n  \"approach\": \"replaced\",\n  \"notes\": \"Used a sensory, nostalgic phrase referencing McDonald's familiar sound and aroma to evoke warmth and brand familiarity in Saudi culture.\"\n}\n```",
+  "literal": "أنا أحبها",
+  "adaptation": "اشتاقت قلبي للحن ارا الحد ولالي",
+  "back_translation": "My heart misses the sound of the soda bottle fizzing",
+  "approach": "replaced",
+  "notes": "Used a sensory, nostalgic phrase referencing McDonald's familiar sound and aroma to evoke warmth and brand familiarity in Saudi culture."
+}

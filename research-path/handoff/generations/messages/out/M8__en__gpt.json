@@ -1,0 +1,13 @@
+{
+  "scenario": "M8",
+  "lang": "en",
+  "model": "gpt",
+  "message": "I was charged twice for the same order, 2 x $45 on my card",
+  "raw": "{\"intent\":\"billing_issue\",\"sentiment\":\"negative\",\"urgency\":\"high\",\"sarcasm\":false,\"churn_risk\":false,\"summary\":\"The customer was charged twice for the same $45 order.\"}",
+  "intent": "billing_issue",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer was charged twice for the same $45 order."
+}

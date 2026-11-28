@@ -1,0 +1,8 @@
+{
+  "line": "T5",
+  "market": "ar_eg",
+  "model": "gemini",
+  "source": "Because you're worth it",
+  "raw": "{\n  \"literal\": \"لأنكِ تساوين ذلك\",\n  \"adaptation\": \"لأنكِ تستحقين ذلك\",\n  \"back_translation\": \"Because you deserve it\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Shifted the concept from 'worth' to 'deserving', as literal translations of self-worth in Arabic can sound overly transactional; additionally, premium beauty brands in Egypt retain Modern Standard Arabic",
+  "_parse_error": true
+}

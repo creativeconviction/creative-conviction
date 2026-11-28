@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="ar-SA" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#13795b">
+  <title>إتمام الطلب — قريب</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #13795b;
+      --green-dark: #0d6249;
+      --green-soft: #eaf6f1;
+      --orange: #f59e48;
+      --ink: #17221e;
+      --muted: #69756f;
+      --line: #dfe7e3;
+      --surface: #fff;
+      --background: #f6f8f7;
+      --danger: #b84545;
+      --shadow: 0 10px 30px rgba(24, 50, 40, .07);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--background);
+      font-family: "Tajawal", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button, input { font: inherit; }
+
+    button { cursor: pointer; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, .94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+
+    .topbar-inner {
+      width: min(1100px, 100%);
+      height: 68px;
+      margin: auto;
+      padding: 0 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--green);
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      color: white;
+      background: var(--green);
+      border-radius: 12px 12px 4px 12px;
+    }
+
+    .secure {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    main {
+      width: min(1100px, 100%);
+      margin: auto;
+      padding: 22px 16px 40px;
+    }
+
+    .page-heading {
+      margin: 0 0 5px;
+      font-size: 27px;
+      letter-spacing: 0;
+    }
+
+    .page-intro {
+      margin: 0 0 22px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .checkout-layout,
+    .main-column,
+    .side-column {
+      display: grid;
+      gap: 16px;
+    }
+
+    .card {
+      padding: 19px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .section-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0;
+      font-size: 16px;
+      letter-spacing: 0;
+    }
+
+    .section-icon {
+      width: 31px;
+      height: 31px;
+      display: grid;
+      flex: 0 0 auto;
+      place-items: center;
+      color: var(--green);
+      background: var(--green-soft);
+      border-radius: 10px;
+    }
+
+    .text-button {
+      padding: 4px;
+      color: var(--green);
+      background: transparent;
+      border: 0;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .text-button:hover { text-decoration: underline; }
+
+    .address-box {
+      display: flex;
+      gap: 13px;
+      align-items: flex-start;
+    }
+
+    .map-pin {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      flex: 0 0 auto;
+      place-items: center;
+      color: var(--green);
+      background: var(--green-soft);
+      border-radius: 13px;
+    }
+
+    .address-name {
+      margin: 1px 0 5px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .address-text {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .date-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+      margin-bottom: 16px;
+    }
+
+    .date-tab,
+    .time-slot {
+      color: var(--ink);
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      transition: .18s ease;
+    }
+
+    .date-tab {
+      padding: 12px 8px;
+      text-align: center;
+    }
+
+    .date-tab strong,
+    .date-tab span {
+      display: block;
+    }
+
+    .date-tab strong { font-size: 13px; }
+
+    .date-tab span {
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .date-tab.active,
+    .time-slot.active {
+      color: var(--green);
+      background: var(--green-soft);
+      border-color: var(--green);
+      box-shadow: inset 0 0 0 1px var(--green);
+    }
+
+    .time-label {
+      display: block;
+      margin: 0 0 9px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .time-slots {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .time-slot {
+      min-height: 43px;
+      padding: 9px 5px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .item {
+      position: relative;
+      display: grid;
+      grid-template-columns: 58px minmax(0, 1fr);
+      gap: 12px;
+      padding: 15px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .item:first-of-type {
+      padding-top: 0;
+      border-top: 0;
+    }
+
+    .item:last-of-type { padding-bottom: 0; }
+
+    .item-image {
+      width: 58px;
+      height: 64px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      font-size: 29px;
+      background: #f0f5f2;
+      border-radius: 13px;
+    }
+
+    .milk { background: #e9f3fa; }
+    .eggs { background: #fff4df; }
+    .bread { background: #f8ede2; }
+
+    .item-content { min-width: 0; }
+
+    .item-name {
+      max-width: calc(100% - 85px);
+      margin: 1px 0 4px;
+      overflow: hidden;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.35;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .item-detail {
+      margin: 0;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .item-bottom {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 11px;
+    }
+
+    .stepper {
+      display: inline-flex;
+      align-items: center;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+    }
+
+    .stepper button {
+      width: 30px;
+      height: 29px;
+      padding: 0;
+      color: var(--green);
+      background: white;
+      border: 0;
+      font-size: 18px;
+    }
+
+    .stepper button:hover { background: var(--green-soft); }
+
+    .quantity {
+      min-width: 25px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .item-price {
+      margin-inline-start: auto;
+      font-size: 13px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .unit-price {
+      position: absolute;
+      top: 16px;
+      inset-inline-end: 0;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .promo-form {
+      display: flex;
+      gap: 8px;
+    }
+
+    .promo-input,
+    .field-input {
+      min-width: 0;
+      width: 100%;
+      height: 46px;
+      padding: 0 13px;
+      color: var(--ink);
+      outline: 0;
+      background: #fbfcfb;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+
+    .promo-input:focus,
+    .field-input:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px var(--green-soft);
+    }
+
+    .apply-button {
+      padding: 0 17px;
+      color: var(--green);
+      background: var(--green-soft);
+      border: 0;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .promo-message {
+      min-height: 16px;
+      margin: 8px 2px 0;
+      color: var(--green);
+      font-size: 11px;
+    }
+
+    .payment-options {
+      display: grid;
+      gap: 9px;
+    }
+
+    .payment-option {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 57px;
+      padding: 11px 13px;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      cursor: pointer;
+    }
+
+    .payment-option:has(input:checked) {
+      background: var(--green-soft);
+      border-color: var(--green);
+    }
+
+    .payment-option input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .payment-icon {
+      width: 37px;
+      height: 32px;
+      display: grid;
+      flex: 0 0 auto;
+      place-items: center;
+      color: var(--ink);
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      font-weight: 700;
+    }
+
+    .payment-copy {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .payment-copy strong {
+      display: block;
+      font-size: 13px;
+    }
+
+    .payment-copy span {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .radio-circle {
+      width: 19px;
+      height: 19px;
+      display: grid;
+      flex: 0 0 auto;
+      place-items: center;
+      border: 1.5px solid #aab5af;
+      border-radius: 50%;
+    }
+
+    .payment-option:has(input:checked) .radio-circle {
+      border-color: var(--green);
+    }
+
+    .payment-option:has(input:checked) .radio-circle::after {
+      width: 9px;
+      height: 9px;
+      content: "";
+      background: var(--green);
+      border-radius: 50%;
+    }
+
+    .summary-card {
+      background: #fff;
+    }
+
+    .summary-lines {
+      display: grid;
+      gap: 12px;
+    }
+
+    .summary-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .summary-line span:last-child {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .discount-line {
+      display: none;
+      color: var(--green);
+    }
+
+    .discount-line span:last-child { color: var(--green); }
+
+    .total-line {
+      margin-top: 4px;
+      padding-top: 15px;
+      color: var(--ink);
+      border-top: 1px solid var(--line);
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .total-line span:last-child {
+      color: var(--green);
+      font-size: 19px;
+    }
+
+    .order-button {
+      width: 100%;
+      min-height: 53px;
+      margin-top: 18px;
+      color: white;
+      background: var(--green);
+      border: 0;
+      border-radius: 14px;
+      box-shadow: 0 8px 18px rgba(19, 121, 91, .22);
+      font-size: 15px;
+      font-weight: 800;
+      transition: .18s ease;
+    }
+
+    .order-button:hover {
+      background: var(--green-dark);
+      transform: translateY(-1px);
+    }
+
+    .order-button:disabled {
+      cursor: wait;
+      opacity: .75;
+      transform: none;
+    }
+
+    .terms {
+      margin: 11px 8px 0;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    dialog {
+      width: calc(100% - 32px);
+      max-width: 470px;
+      padding: 0;
+      border: 0;
+      border-radius: 20px;
+      box-shadow: 0 24px 70px rgba(0,0,0,.2);
+    }
+
+    dialog::backdrop {
+      background: rgba(16, 28, 23, .5);
+      backdrop-filter: blur(3px);
+    }
+
+    .modal-body { padding: 22px; }
+
+    .modal-title {
+      margin: 0 0 18px;
+      font-size: 19px;
+    }
+
+    .field-label {
+      display: block;
+      margin: 13px 0 6px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .modal-button {
+      min-height: 42px;
+      padding: 0 16px;
+      border: 0;
+      border-radius: 11px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .modal-button.secondary {
+      color: var(--ink);
+      background: #eef2f0;
+    }
+
+    .modal-button.primary {
+      color: white;
+      background: var(--green);
+    }
+
+    .toast {
+      position: fixed;
+      z-index: 50;
+      right: 16px;
+      bottom: 18px;
+      left: 16px;
+      max-width: 380px;
+      margin: auto;
+      padding: 14px 16px;
+      color: white;
+      background: #16392e;
+      border-radius: 13px;
+      box-shadow: 0 16px 35px rgba(0,0,0,.2);
+      font-size: 13px;
+      font-weight: 600;
+      text-align: center;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: .25s ease;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    @media (min-width: 760px) {
+      main { padding: 34px 24px 60px; }
+
+      .checkout-layout {
+        grid-template-columns: minmax(0, 1.3fr) minmax(320px, .8fr);
+        align-items: start;
+        gap: 20px;
+      }
+
+      .side-column {
+        position: sticky;
+        top: 88px;
+      }
+
+      .time-slots { grid-template-columns: repeat(4, 1fr); }
+
+      .card { padding: 22px; }
+
+      .page-heading { font-size: 32px; }
+    }
+
+    @media (max-width: 389px) {
+      .secure span { display: none; }
+      .card { padding: 16px; }
+      .time-slot { font-size: 11px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M12 21s7-5.2 7-12A7 7 0 1 0 5 9c0 6.8 7 12 7 12Z" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="9" r="2.5" fill="currentColor"/>
+          </svg>
+        </span>
+        قريب
+      </div>
+      <div class="secure">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <rect x="5" y="10" width="14" height="11" rx="3" stroke="currentColor" stroke-width="2"/>
+          <path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="2"/>
+        </svg>
+        <span>دفع آمن</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <h1 class="page-heading">إتمام الطلب</h1>
+    <p class="page-intro">راجع طلبك واختر تفاصيل التوصيل المناسبة لك.</p>
+
+    <div class="checkout-layout">
+      <div class="main-column">
+        <section class="card" aria-labelledby="delivery-address-title">
+          <div class="section-title-row">
+            <h2 class="section-title" id="delivery-address-title">
+              <span class="section-icon" aria-hidden="true">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 21s7-5.2 7-12A7 7 0 1 0 5 9c0 6.8 7 12 7 12Z" stroke="currentColor" stroke-width="2"/>
+                  <circle cx="12" cy="9" r="2.3" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </span>
+              عنوان التوصيل
+            </h2>
+            <button class="text-button" type="button" id="editAddress">تعديل</button>
+          </div>
+          <div class="address-box">
+            <div class="map-pin" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M12 21s7-5.2 7-12A7 7 0 1 0 5 9c0 6.8 7 12 7 12Z" stroke="currentColor" stroke-width="2"/>
+                <circle cx="12" cy="9" r="2.2" fill="currentColor"/>
+              </svg>
+            </div>
+            <div>
+              <p class="address-name" id="addressName">المنزل</p>
+              <p class="address-text" id="addressText">مبنى ١٨، شارع العليا<br>حي العليا، الرياض ١٢٢١٣</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="card" aria-labelledby="delivery-time-title">
+          <div class="section-title-row">
+            <h2 class="section-title" id="delivery-time-title">
+              <span class="section-icon" aria-hidden="true">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+                  <path d="M12 7v5l3 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </span>
+              موعد التوصيل
+            </h2>
+          </div>
+
+          <div class="date-tabs" role="group" aria-label="تاريخ التوصيل">
+            <button class="date-tab active" type="button" aria-pressed="true">
+              <strong>اليوم</strong>
+              <span id="todayDate">—</span>
+            </button>
+            <button class="date-tab" type="button" aria-pressed="false">
+              <strong>غدًا</strong>
+              <span id="tomorrowDate">—</span>
+            </button>
+          </div>
+
+          <span class="time-label">الأوقات المتاحة</span>
+          <div class="time-slots" role="group" aria-label="الفترة الزمنية للتوصيل">
+            <button class="time-slot active" type="button" aria-pressed="true">٢:٠٠–٤:٠٠ م</button>
+            <button class="time-slot" type="button" aria-pressed="false">٤:٠٠–٦:٠٠ م</button>
+            <button class="time-slot" type="button" aria-pressed="false">٦:٠٠–٨:٠٠ م</button>
+            <button class="time-slot" type="button" aria-pressed="false">٨:٠٠–١٠:٠٠ م</button>
+          </div>
+        </section>
+
+        <section class="card" aria-labelledby="cart-title">
+          <div class="section-title-row">
+            <h2 class="section-title" id="cart-title">
+              <span class="section-icon" aria-hidden="true">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+                  <path d="M3 4h2l2.2 10h10.9l2-7H6.2M9 20a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm8 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </span>
+              سلة مشترياتك <span style="color:var(--muted);font-weight:500">(٣ منتجات)</span>
+            </h2>
+          </div>
+
+          <article class="item" data-price="12.50" data-quantity="1">
+            <div class="item-image milk" aria-hidden="true">🥛</div>
+            <div class="item-content">
+              <h3 class="item-name">حليب كامل الدسم عضوي</h3>
+              <p class="item-detail">٢ لتر · طازج من المزرعة</p>
+              <div class="item-bottom">
+                <div class="stepper" aria-label="كمية الحليب كامل الدسم العضوي">
+                  <button type="button" class="decrease" aria-label="تقليل الكمية">−</button>
+                  <span class="quantity">١</span>
+                  <button type="button" class="increase" aria-label="زيادة الكمية">+</button>
+                </div>
+                <span class="item-price">١٢٫٥٠ ر.س.</span>
+              </div>
+            </div>
+            <span class="unit-price">١٢٫٥٠ ر.س. للحبة</span>
+          </article>
+
+          <article class="item" data-price="14.50" data-quantity="2">
+            <div class="item-image eggs" aria-hidden="true">🥚</div>
+            <div class="item-content">
+              <h3 class="item-name">بيض بني طازج</h3>
+              <p class="item-detail">١٢ بيضة كبيرة · درجة أولى</p>
+              <div class="item-bottom">
+                <div class="stepper" aria-label="كمية البيض البني الطازج">
+                  <button type="button" class="decrease" aria-label="تقليل الكمية">−</button>
+                  <span class="quantity">٢</span>
+                  <button type="button" class="increase" aria-label="زيادة الكمية">+</button>
+                </div>
+                <span class="item-price">٢٩٫٠٠ ر.س.</span>
+              </div>
+            </div>
+            <span class="unit-price">١٤٫٥٠ ر.س. للعلبة</span>
+          </article>
+
+          <article class="item" data-price="18.00" data-quantity="1">
+            <div class="item-image bread" aria-hidden="true">🥖</div>
+            <div class="item-content">
+              <h3 class="item-name">خبز ساوردو حرفي</h3>
+              <p class="item-detail">٥٠٠ غ · مخبوز اليوم</p>
+              <div class="item-bottom">
+                <div class="stepper" aria-label="كمية خبز الساوردو الحرفي">
+                  <button type="button" class="decrease" aria-label="تقليل الكمية">−</button>
+                  <span class="quantity">١</span>
+                  <button type="button" class="increase" aria-label="زيادة الكمية">+</button>
+                </div>
+                <span class="item-price">١٨٫٠٠ ر.س.</span>
+              </div>
+            </div>
+            <span class="unit-price">١٨٫٠٠ ر.س. للحبة</span>
+          </article>
+        </section>
+
+        <section class="card" aria-labelledby="promo-title">
+          <div class="section-title-row">
+            <h2 class="section-title" id="promo-title">
+              <span class="section-icon" aria-hidden="true">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+                  <path d="m4 12 8-8h7v7l-8 8-7-7Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                  <circle cx="16" cy="7.5" r="1.3" fill="currentColor"/>
+                </svg>
+              </span>
+              رمز العرض
+            </h2>
+          </div>
+          <form class="promo-form" id="promoForm">
+            <input class="promo-input" id="promoInput" type="text" placeholder="أدخل رمز العرض" autocomplete="off" aria-label="رمز العرض" dir="auto">
+            <button class="apply-button" type="submit">تطبيق</button>
+          </form>
+          <p class="promo-message" id="promoMessage" aria-live="polite">جرّب الرمز “QAREEB10” لتحصل على خصم ١٠٪.</p>
+        </section>
+
+        <section class="card" aria-labelledby="payment-title">
+          <div class="section-title-row">
+            <h2 class="section-title" id="payment-title">
+              <span class="section-icon" aria-hidden="true">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+                  <rect x="3" y="5" width="18" height="14" rx="3" stroke="currentColor" stroke-width="2"/>
+                  <path d="M3 10h18" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </span>
+              طريقة الدفع
+            </h2>
+          </div>
+
+          <div class="payment-options">
+            <label class="payment-option">
+              <input type="radio" name="payment" value="card" checked>
+              <span class="payment-icon" aria-hidden="true">
+                <svg width="21" height="16" viewBox="0 0 24 18" fill="none">
+                  <rect x="1" y="1" width="22" height="16" rx="3" stroke="currentColor" stroke-width="1.7"/>
+                  <path d="M1 6h22" stroke="currentColor" stroke-width="1.7"/>
+                  <path d="M5 13h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <span class="payment-copy">
+                <strong>بطاقة ائتمانية أو بطاقة مدى</strong>
+                <span>فيزا وماستركارد ومدى</span>
+              </span>
+              <span class="radio-circle" aria-hidden="true"></span>
+            </label>
+
+            <label class="payment-option">
+              <input type="radio" name="payment" value="apple-pay">
+              <span class="payment-icon" aria-hidden="true">
+                <svg width="23" height="20" viewBox="0 0 26 24" fill="currentColor">
+                  <path d="M17.2 4.2c.9-1.1 1.5-2.6 1.3-4.1-1.4.1-3 .9-4 2-.9 1-1.6 2.5-1.4 4 1.6.1 3.1-.8 4.1-1.9ZM20.6 12.7c0-3 2.5-4.5 2.6-4.6-1.4-2.1-3.7-2.3-4.5-2.3-1.9-.2-3.7 1.1-4.7 1.1-1 0-2.5-1.1-4.1-1-2.1 0-4.1 1.3-5.2 3.2-2.2 3.8-.6 9.5 1.6 12.6 1.1 1.5 2.3 3.2 4 3.1 1.6-.1 2.2-1 4.1-1s2.5 1 4.2 1c1.7 0 2.8-1.5 3.9-3.1 1.2-1.8 1.7-3.5 1.8-3.6-.1 0-3.7-1.5-3.7-5.4Z" transform="scale(.88) translate(1 0)"/>
+                </svg>
+              </span>
+              <span class="payment-copy">
+                <strong>Apple Pay</strong>
+                <span>دفع سريع وآمن</span>
+              </span>
+              <span class="radio-circle" aria-hidden="true"></span>
+            </label>
+
+            <label class="payment-option">
+              <input type="radio" name="payment" value="cash">
+              <span class="payment-icon" aria-hidden="true">
+                <svg width="22" height="17" viewBox="0 0 24 18" fill="none">
+                  <rect x="1" y="1" width="22" height="16" rx="2" stroke="currentColor" stroke-width="1.7"/>
+                  <circle cx="12" cy="9" r="3" stroke="currentColor" stroke-width="1.7"/>
+                  <path d="M4 5c1.3 0 2.3-1 2.3-2M20 13c-1.3 0-2.3 1-2.3 2" stroke="currentColor" stroke-width="1.7"/>
+                </svg>
+              </span>
+              <span class="payment-copy">
+                <strong>الدفع عند الاستلام</strong>
+                <span>ادفع عند وصول طلبك</span>
+              </span>
+              <span class="radio-circle" aria-hidden="true"></span>
+            </label>
+          </div>
+        </section>
+      </div>
+
+      <aside class="side-column">
+        <section class="card summary-card" aria-labelledby="summary-title">
+          <div class="section-title-row">
+            <h2 class="section-title" id="summary-title">ملخص الطلب</h2>
+          </div>
+          <div class="summary-lines">
+            <div class="summary-line">
+              <span>المجموع الفرعي</span>
+              <span id="subtotal">٥٩٫٥٠ ر.س.</span>
+            </div>
+            <div class="summary-line">
+              <span>رسوم التوصيل</span>
+              <span id="deliveryFee">٨٫٠٠ ر.س.</span>
+            </div>
+            <div class="summary-line discount-line" id="discountLine">
+              <span>خصم العرض</span>
+              <span id="discount">− ٠٫٠٠ ر.س.</span>
+            </div>
+            <div class="summary-line">
+              <span>ضريبة القيمة المضافة (١٥٪)</span>
+              <span id="vat">١٠٫١٣ ر.س.</span>
+            </div>
+            <div class="summary-line total-line">
+              <span>الإجمالي</span>
+              <span id="total">٧٧٫٦٣ ر.س.</span>
+            </div>
+          </div>
+          <button class="order-button" type="button" id="placeOrder">تأكيد الطلب</button>
+          <p class="terms">بتأكيد طلبك، فإنك توافق على شروط قريب وسياسة الإلغاء.</p>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <dialog id="addressDialog" dir="rtl">
+    <form class="modal-body" id="addressForm">
+      <h2 class="modal-title">تعديل عنوان التوصيل</h2>
+
+      <label class="field-label" for="labelInput">اسم العنوان</label>
+      <input class="field-input" id="labelInput" value="المنزل" required>
+
+      <label class="field-label" for="streetInput">المبنى والشارع</label>
+      <input class="field-input" id="streetInput" value="مبنى ١٨، شارع العليا" required>
+
+      <label class="field-label" for="areaInput">الحي والمدينة والرمز البريدي</label>
+      <input class="field-input" id="areaInput" value="حي العليا، الرياض ١٢٢١٣" required>
+
+      <div class="modal-actions">
+        <button class="modal-button secondary" type="button" id="cancelAddress">إلغاء</button>
+        <button class="modal-button primary" type="submit">حفظ العنوان</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">تم تأكيد طلبك بنجاح.</div>
+
+  <script>
+    const numberFormat = new Intl.NumberFormat("ar-SA", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+    const integerFormat = new Intl.NumberFormat("ar-SA");
+    const money = value => `${numberFormat.format(value)} ر.س.`;
+    const deliveryFee = 8;
+    let promoApplied = false;
+
+    function updateTotals() {
+      let subtotal = 0;
+
+      document.querySelectorAll(".item").forEach(item => {
+        const price = Number(item.dataset.price);
+        const quantity = Number(item.dataset.quantity);
+        const lineTotal = price * quantity;
+
+        item.querySelector(".quantity").textContent = integerFormat.format(quantity);
+        item.querySelector(".item-price").textContent = money(lineTotal);
+        subtotal += lineTotal;
+      });
+
+      const discount = promoApplied ? subtotal * 0.10 : 0;
+      const taxable = subtotal - discount + deliveryFee;
+      const vat = taxable * 0.15;
+      const total = taxable + vat;
+
+      document.getElementById("subtotal").textContent = money(subtotal);
+      document.getElementById("discount").textContent = `− ${money(discount)}`;
+      document.getElementById("vat").textContent = money(vat);
+      document.getElementById("total").textContent = money(total);
+      document.getElementById("discountLine").style.display = promoApplied ? "flex" : "none";
+    }
+
+    document.querySelectorAll(".item").forEach(item => {
+      item.querySelector(".increase").addEventListener("click", () => {
+        item.dataset.quantity = Number(item.dataset.quantity) + 1;
+        updateTotals();
+      });
+
+      item.querySelector(".decrease").addEventListener("click", () => {
+        const current = Number(item.dataset.quantity);
+        if (current > 1) {
+          item.dataset.quantity = current - 1;
+          updateTotals();
+        }
+      });
+    });
+
+    document.querySelectorAll(".date-tab").forEach(button => {
+      button.addEventListener("click", () => {
+        document.querySelectorAll(".date-tab").forEach(tab => {
+          tab.classList.remove("active");
+          tab.setAttribute("aria-pressed", "false");
+        });
+        button.classList.add("active");
+        button.setAttribute("aria-pressed", "true");
+      });
+    });
+
+    document.querySelectorAll(".time-slot").forEach(button => {
+      button.addEventListener("click", () => {
+        document.querySelectorAll(".time-slot").forEach(slot => {
+          slot.classList.remove("active");
+          slot.setAttribute("aria-pressed", "false");
+        });
+        button.classList.add("active");
+        button.setAttribute("aria-pressed", "true");
+      });
+    });
+
+    const dateFormat = new Intl.DateTimeFormat("ar-SA-u-ca-gregory", {
+      weekday: "short",
+      month: "short",
+      day: "numeric"
+    });
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+    document.getElementById("todayDate").textContent = dateFormat.format(today);
+    document.getElementById("tomorrowDate").textContent = dateFormat.format(tomorrow);
+
+    document.getElementById("promoForm").addEventListener("submit", event => {
+      event.preventDefault();
+      const input = document.getElementById("promoInput");
+      const message = document.getElementById("promoMessage");
+      const code = input.value.trim().toUpperCase();
+
+      if (code === "QAREEB10") {
+        promoApplied = true;
+        input.value = "QAREEB10";
+        input.disabled = true;
+        event.submitter.textContent = "تم التطبيق";
+        event.submitter.disabled = true;
+        message.textContent = "تم تطبيق العرض — وفّرت ١٠٪.";
+        message.style.color = "var(--green)";
+      } else {
+        message.textContent = "رمز العرض غير صالح. جرّب QAREEB10.";
+        message.style.color = "var(--danger)";
+      }
+      updateTotals();
+    });
+
+    const addressDialog = document.getElementById("addressDialog");
+    document.getElementById("editAddress").addEventListener("click", () => addressDialog.showModal());
+    document.getElementById("cancelAddress").addEventListener("click", () => addressDialog.close());
+
+    document.getElementById("addressForm").addEventListener("submit", event => {
+      event.preventDefault();
+      document.getElementById("addressName").textContent =
+        document.getElementById("labelInput").value.trim();
+      document.getElementById("addressText").innerHTML =
+        `${document.getElementById("streetInput").value.trim()}<br>${document.getElementById("areaInput").value.trim()}`;
+      addressDialog.close();
+    });
+
+    addressDialog.addEventListener("click", event => {
+      if (event.target === addressDialog) addressDialog.close();
+    });
+
+    document.getElementById("placeOrder").addEventListener("click", function () {
+      const button = this;
+      const toast = document.getElementById("toast");
+      button.disabled = true;
+      button.textContent = "جارٍ تأكيد الطلب…";
+
+      setTimeout(() => {
+        button.textContent = "تم تأكيد الطلب ✓";
+        toast.classList.add("show");
+        setTimeout(() => toast.classList.remove("show"), 3500);
+      }, 900);
+    });
+
+    updateTotals();
+  </script>
+</body>
+</html>

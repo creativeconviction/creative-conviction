@@ -1,0 +1,12 @@
+{
+  "line": "C5",
+  "market": "ar_eg",
+  "model": "claude",
+  "source": "Your Friday night date starts here.",
+  "raw": "```json\n{\n  \"literal\": \"موعدك الغرامي ليلة الجمعة يبدأ هنا.\",\n  \"adaptation\": \"خروجة الخميس بالليل بتبدأ من هنا.\",\n  \"back_translation\": \"The Thursday night outing starts here.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"In Egypt, Friday is the weekend's holy day, so the big night out is Thursday; I also replaced the explicitly romantic 'date' (موعد غرامي) with the casual, socially comfortable colloquial 'outing' (خروجة) because open dating remains culturally sensitive.\"\n}\n```",
+  "literal": "موعدك الغرامي ليلة الجمعة يبدأ هنا.",
+  "adaptation": "خروجة الخميس بالليل بتبدأ من هنا.",
+  "back_translation": "The Thursday night outing starts here.",
+  "approach": "adapted",
+  "notes": "In Egypt, Friday is the weekend's holy day, so the big night out is Thursday; I also replaced the explicitly romantic 'date' (موعد غرامي) with the casual, socially comfortable colloquial 'outing' (خروجة) because open dating remains culturally sensitive."
+}

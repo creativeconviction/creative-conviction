@@ -1,0 +1,15 @@
+{
+  "part": "C",
+  "cond": "Algiers",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب), launching in Algiers. Write marketing copy for it in Algerian Arabic, the way people in Algiers actually talk: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 1,
+  "prompt_lang": "en",
+  "city": "Algiers",
+  "target_region": "Algeria",
+  "target_city_code": "ALG",
+  "model": "deepseek",
+  "id": "C__Algiers__deepseek__s1",
+  "model_id": "deepseek/deepseek-v4-pro",
+  "output": "قريب... السوق في جيبك!\n\nمع قريب، الطلب يوصلّك قبل ما يغلي الما!\n\nخضرة، فواكه، هلال... كاملين مع قريب، يوصلولك طازة.\n\nانسى الزحمة و الطابور، قريب يوصّل مارشيك للدار بزربة!\n\nيا زهر اللوز! قريب طلق. توصيل المارشي فلمحة. أول طلبية بالمجان. نزلو التطبيق دوكا!",
+  "at": "2026-11-18T05:48:20.483Z"
+}

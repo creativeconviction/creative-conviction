@@ -1,0 +1,12 @@
+{
+  "line": "I3",
+  "market": "ar_sa",
+  "model": "gemini",
+  "source": "Bring home the bacon with zero fees.",
+  "raw": "{\n  \"literal\": \"اجلب لحم الخنزير إلى المنزل بصفر رسوم.\",\n  \"adaptation\": \"احصد أرباحك بصفر رسوم.\",\n  \"back_translation\": \"Reap your profits with zero fees.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"The literal reference to 'bacon' (pork) is strictly forbidden (haram) in Islam and would be deeply offensive, so the English idiom was adapted into a culturally appropriate phrase about securing financial gains.\"\n}",
+  "literal": "اجلب لحم الخنزير إلى المنزل بصفر رسوم.",
+  "adaptation": "احصد أرباحك بصفر رسوم.",
+  "back_translation": "Reap your profits with zero fees.",
+  "approach": "adapted",
+  "notes": "The literal reference to 'bacon' (pork) is strictly forbidden (haram) in Islam and would be deeply offensive, so the English idiom was adapted into a culturally appropriate phrase about securing financial gains."
+}

@@ -1,0 +1,13 @@
+{
+  "scenario": "M5",
+  "lang": "en",
+  "model": "claude",
+  "message": "Hello, I would like a refund for order #48213 please. The items were not as described.",
+  "raw": "{\"intent\": \"refund_request\", \"sentiment\": \"negative\", \"urgency\": \"medium\", \"sarcasm\": false, \"churn_risk\": false, \"summary\": \"Customer politely requests a refund for order #48213 because the items were not as described.\"}",
+  "intent": "refund_request",
+  "sentiment": "negative",
+  "urgency": "medium",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "Customer politely requests a refund for order #48213 because the items were not as described."
+}

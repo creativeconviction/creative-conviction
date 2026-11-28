@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>قريب - تتبع الطلب</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #10B981;
+            --primary-light: #D1FAE5;
+            --secondary: #3B82F6;
+            --dark: #111827;
+            --gray-700: #374151;
+            --gray-500: #6B7280;
+            --gray-300: #D1D5DB;
+            --gray-100: #F3F4F6;
+            --white: #FFFFFF;
+            --bg-color: #E5E7EB;
+            --danger: #EF4444;
+            --warning: #F59E0B;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        /* App Container (Mobile First 390px, Responsive for Desktop) */
+        .app-container {
+            width: 100%;
+            max-width: 420px;
+            background-color: var(--white);
+            min-height: 100vh;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        @media (min-width: 421px) {
+            body { padding: 20px 0; }
+            .app-container { min-height: auto; border-radius: 24px; overflow: hidden; }
+        }
+
+        /* Header */
+        .header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 16px;
+            display: flex;
+            align-items: center;
+            z-index: 20;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.9), rgba(255,255,255,0));
+        }
+
+        .back-btn {
+            background: var(--white);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            color: var(--dark);
+            transition: 0.2s;
+        }
+
+        .back-btn:active { transform: scale(0.95); }
+
+        .header-title {
+            flex: 1;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-left: 40px; /* offset back btn */
+            text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+        }
+
+        /* Map Placeholder */
+        .map-section {
+            height: 320px;
+            width: 100%;
+            background-color: #E2E8F0;
+            background-image: 
+                radial-gradient(var(--gray-300) 2px, transparent 2px),
+                radial-gradient(var(--gray-300) 2px, transparent 2px);
+            background-size: 32px 32px;
+            background-position: 0 0, 16px 16px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .map-pin {
+            width: 50px;
+            height: 50px;
+            background: rgba(16, 185, 129, 0.2);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: pulse 2s infinite;
+        }
+
+        .map-pin svg {
+            color: var(--primary);
+            width: 28px;
+            height: 28px;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+            70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(16, 185, 129, 0); }
+            100% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        /* Main Content Bottom Sheet */
+        .content-sheet {
+            background-color: var(--white);
+            border-radius: 24px 24px 0 0;
+            padding: 24px 20px;
+            margin-top: -30px;
+            z-index: 10;
+            position: relative;
+            flex: 1;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.05);
+        }
+
+        /* ETA Section */
+        .eta-container {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .eta-title {
+            color: var(--gray-500);
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+
+        .eta-time {
+            color: var(--dark);
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        /* Progress Stepper */
+        .stepper {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-bottom: 30px;
+            padding: 0 10px;
+        }
+
+        .stepper::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            left: 20px;
+            height: 3px;
+            background-color: var(--gray-100);
+            z-index: 1;
+        }
+
+        /* Active progress line */
+        .stepper::after {
+            content: '';
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            width: 66%; /* 3rd step active */
+            height: 3px;
+            background-color: var(--primary);
+            z-index: 2;
+            transition: width 0.5s ease;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 3;
+            width: 25%;
+        }
+
+        .step-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: var(--gray-100);
+            border: 3px solid var(--white);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--gray-300);
+            font-size: 14px;
+            margin-bottom: 8px;
+            transition: 0.3s;
+        }
+
+        .step-text {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            font-weight: 700;
+            text-align: center;
+        }
+
+        /* Step States */
+        .step.completed .step-icon {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        
+        .step.completed .step-text {
+            color: var(--primary);
+        }
+
+        .step.active .step-icon {
+            background-color: var(--primary);
+            color: var(--white);
+            box-shadow: 0 0 0 4px var(--primary-light);
+            transform: scale(1.1);
+        }
+
+        .step.active .step-text {
+            color: var(--dark);
+            font-weight: 800;
+        }
+
+        /* Driver Card */
+        .driver-card {
+            background-color: #F8FAFC;
+            border: 1px solid var(--gray-100);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+
+        .driver-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .driver-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background-color: var(--gray-300);
+            margin-left: 12px;
+            object-fit: cover;
+        }
+
+        .driver-details {
+            flex: 1;
+        }
+
+        .driver-name {
+            font-weight: 700;
+            color: var(--dark);
+            font-size: 1.05rem;
+            margin-bottom: 4px;
+        }
+
+        .driver-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--gray-500);
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            color: var(--warning);
+            font-weight: 700;
+        }
+
+        .rating svg { margin-left: 4px; width: 14px; height: 14px; }
+
+        /* License Plate */
+        .license-plate {
+            display: flex;
+            border: 1px solid #333;
+            border-radius: 4px;
+            overflow: hidden;
+            font-family: monospace, sans-serif;
+            background: white;
+            font-size: 0.75rem;
+            font-weight: 800;
+            width: max-content;
+        }
+
+        .plate-side {
+            padding: 2px 6px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+        }
+
+        .plate-ar { border-left: 1px solid #333; }
+        .plate-ksa {
+            background-color: #fff;
+            border-right: 1px solid #333;
+            writing-mode: vertical-rl;
+            font-size: 0.5rem;
+            padding: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .plate-ksa-circle {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            border: 1px solid #333;
+            margin-top: 2px;
+        }
+
+        .driver-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-action {
+            flex: 1;
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-call {
+            background-color: var(--primary);
+            color: var(--white);
+            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.2);
+        }
+
+        .btn-call:active { background-color: #059669; }
+
+        .btn-msg {
+            background-color: var(--white);
+            color: var(--gray-700);
+            border: 1px solid var(--gray-300);
+        }
+
+        .btn-msg:active { background-color: var(--gray-100); }
+
+        /* Expandable Order Details */
+        details {
+            background: var(--white);
+            border: 1px solid var(--gray-100);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        summary {
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            color: var(--dark);
+            cursor: pointer;
+            list-style: none;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .summary-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .summary-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--gray-100);
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--gray-500);
+        }
+
+        .chevron {
+            transition: transform 0.3s;
+            color: var(--gray-500);
+        }
+
+        details[open] .chevron {
+            transform: rotate(180deg);
+        }
+
+        details[open] {
+            border-color: var(--gray-300);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+
+        .details-body {
+            padding: 0 16px 16px 16px;
+            border-top: 1px dashed var(--gray-100);
+            margin-top: 8px;
+            padding-top: 16px;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            color: var(--gray-700);
+        }
+
+        .order-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .qty {
+            color: var(--primary);
+            font-weight: 700;
+            margin-left: 8px;
+        }
+
+        .order-total {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--gray-100);
+            font-weight: 800;
+            color: var(--dark);
+            font-size: 1.05rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    
+    <!-- Header -->
+    <header class="header">
+        <button class="back-btn" onclick="history.back()" aria-label="رجوع">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 18l6-6-6-6"/>
+            </svg>
+        </button>
+        <h1 class="header-title">تتبع الطلب</h1>
+    </header>
+
+    <!-- Map Area -->
+    <div class="map-section">
+        <div class="map-pin">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Content Sheet -->
+    <div class="content-sheet">
+        
+        <!-- ETA -->
+        <div class="eta-container">
+            <h2 class="eta-title">وقت الوصول المتوقع</h2>
+            <div class="eta-time">١٥ - ٢٠ دقيقة</div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="stepper">
+            <div class="step completed">
+                <div class="step-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+                <span class="step-text">تم الاستلام</span>
+            </div>
+            
+            <div class="step completed">
+                <div class="step-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+                <span class="step-text">قيد التجهيز</span>
+            </div>
+
+            <div class="step active">
+                <div class="step-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                </div>
+                <span class="step-text">في الطريق</span>
+            </div>
+
+            <div class="step">
+                <div class="step-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                </div>
+                <span class="step-text">تم التوصيل</span>
+            </div>
+        </div>
+
+        <!-- Driver Card -->
+        <div class="driver-card">
+            <div class="driver-info">
+                <!-- Fallback to a gradient if image not found -->
+                <img src="https://i.pravatar.cc/100?img=11" alt="المندوب" class="driver-avatar" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'50\' height=\'50\'><rect width=\'50\' height=\'50\' fill=\'%23D1D5DB\'/><circle cx=\'25\' cy=\'20\' r=\'8\' fill=\'%239CA3AF\'/><path d=\'M10 45c0-8 8-12 15-12s15 4 15 12\' fill=\'%239CA3AF\'/></svg>'">
+                <div class="driver-details">
+                    <div class="driver-name">أحمد محمد</div>
+                    <div class="driver-meta">
+                        <span class="rating">
+                            ٤.٨ 
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        </span>
+                        <span>•</span>
+                        <!-- Plate Design -->
+                        <div class="license-plate" dir="ltr">
+                            <div class="plate-side plate-en">
+                                <span>ABC</span>
+                                <span>1234</span>
+                            </div>
+                            <div class="plate-side plate-ar" dir="rtl">
+                                <span>أ ب ج</span>
+                                <span>١٢٣٤</span>
+                            </div>
+                            <div class="plate-ksa">
+                                <span>KSA</span>
+                                <div class="plate-ksa-circle"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="driver-actions">
+                <button class="btn-action btn-call" onclick="alert('جاري الاتصال بالمندوب...')">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    اتصال
+                </button>
+                <button class="btn-action btn-msg" onclick="alert('فتح المحادثة...')">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                    مراسلة
+                </button>
+            </div>
+        </div>
+
+        <!-- Order Details (Expandable) -->
+        <details>
+            <summary>
+                <div class="summary-content">
+                    <div class="summary-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    </div>
+                    <span>تفاصيل الطلب (رقم #QR-9821)</span>
+                </div>
+                <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            
+            <div class="details-body">
+                <div class="order-item">
+                    <div><span class="qty">٢x</span> برجر دجاج كلاسيك</div>
+                    <div>٥٠ رس</div>
+                </div>
+                <div class="order-item">
+                    <div><span class="qty">١x</span> بطاطس مبهرة حجم كبير</div>
+                    <div>١٢ رس</div>
+                </div>
+                <div class="order-item">
+                    <div><span class="qty">٢x</span> مشروب غازي</div>
+                    <div>١٠ رس</div>
+                </div>
+                <div class="order-item">
+                    <div>رسوم التوصيل</div>
+                    <div>١٥ رس</div>
+                </div>
+                <div class="order-total">
+                    <div>الإجمالي</div>
+                    <div>٨٧ رس</div>
+                </div>
+            </div>
+        </details>
+
+    </div>
+</div>
+
+<script>
+    // Smooth detail toggle interaction fix for older iOS
+    const details = document.querySelector('details');
+    details.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+    });
+</script>
+
+</body>
+</html>

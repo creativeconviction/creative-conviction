@@ -1,0 +1,13 @@
+{
+  "scenario": "M2",
+  "lang": "ar_msa",
+  "model": "gemini",
+  "message": "أين طلبي؟؟ مرت ساعتان، هذا أمر سخيف",
+  "raw": "{\n  \"intent\": \"late_delivery\",\n  \"sentiment\": \"negative\",\n  \"urgency\": \"high\",\n  \"sarcasm\": false,\n  \"churn_risk\": true,\n  \"summary\": \"The customer is highly frustrated because their grocery delivery is two hours late.\"\n}",
+  "intent": "late_delivery",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": false,
+  "churn_risk": true,
+  "summary": "The customer is highly frustrated because their grocery delivery is two hours late."
+}

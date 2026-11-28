@@ -1,0 +1,12 @@
+{
+  "line": "T6",
+  "market": "ar_sa",
+  "model": "deepseek",
+  "source": "Got milk?",
+  "raw": "{\n  \"literal\": \"هل لديك حليب؟\",\n  \"adaptation\": \"في بيتكم حليب؟\",\n  \"back_translation\": \"Is there milk in your house?\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Adapted to address the household ('بيتكم') rather than the individual, reflecting the family-centric nature of Saudi culture where milk is a hospitality staple.\"\n}",
+  "literal": "هل لديك حليب؟",
+  "adaptation": "في بيتكم حليب؟",
+  "back_translation": "Is there milk in your house?",
+  "approach": "adapted",
+  "notes": "Adapted to address the household ('بيتكم') rather than the individual, reflecting the family-centric nature of Saudi culture where milk is a hospitality staple."
+}

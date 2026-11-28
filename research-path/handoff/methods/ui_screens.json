@@ -1,0 +1,43 @@
+{
+  "_note": "8 product screens, each built to stress a known right-to-left failure. Arabic briefs are drafts in formal Arabic; have a native speaker check them.",
+  "screens": {
+    "S1": { "name": "Sign-up form", "stresses": "field alignment, phone/email/password inputs, back button direction, checkbox + link order",
+      "en": "A sign-up screen for Qareeb, a grocery delivery app in Saudi Arabia. Fields: full name, mobile number (+966), email, password with a show/hide toggle, a terms checkbox with a link, a primary 'Create account' button, and a 'Log in' link. Include a back button in the header.",
+      "ar": "شاشة تسجيل حساب جديد لتطبيق «قريب» لتوصيل البقالة في السعودية. الحقول: الاسم الكامل، رقم الجوال (+966)، البريد الإلكتروني، كلمة المرور مع زر إظهار/إخفاء، مربع اختيار للموافقة على الشروط مع رابط، وزر رئيسي «إنشاء حساب»، ورابط «تسجيل الدخول». أضف زر رجوع في الترويسة." },
+    "S2": { "name": "Checkout", "stresses": "prices and currency, quantity steppers, radio groups, totals table, mixed digits",
+      "en": "A checkout screen for Qareeb: a delivery address card with an edit link, a delivery-time selector (Today/Tomorrow and time slots), a cart summary listing 3 items with quantity steppers and prices in Saudi riyals, a promo code field with an Apply button, payment method options (card, Apple Pay, cash on delivery), and an order total breakdown (subtotal, delivery fee, VAT 15%, total) with a 'Place order' button.",
+      "ar": "شاشة إتمام الطلب لتطبيق «قريب»: بطاقة عنوان التوصيل مع رابط للتعديل، واختيار وقت التوصيل (اليوم/غداً مع فترات زمنية)، وملخص السلة يعرض ٣ منتجات مع أزرار لتغيير الكمية وأسعار بالريال السعودي، وحقل رمز الخصم مع زر «تطبيق»، وخيارات الدفع (بطاقة، Apple Pay، الدفع عند الاستلام)، وتفصيل المبلغ الإجمالي (المجموع الفرعي، رسوم التوصيل، ضريبة القيمة المضافة ١٥٪، الإجمالي) مع زر «تأكيد الطلب»." },
+    "S3": { "name": "Product listing", "stresses": "breadcrumbs, search icon placement, grid order, struck-through prices, pagination arrows, sidebar side",
+      "en": "A product listing page for Qareeb: a header with the logo, a search bar with a search icon, and a cart icon with a count badge; breadcrumbs (Home > Fruits & Vegetables > Fruits); a filter sidebar (price range, brand checkboxes); a grid of 8 product cards with an image placeholder, name, weight, price, old price struck through, a discount badge, and an add-to-cart button; pagination with previous/next.",
+      "ar": "صفحة عرض المنتجات لتطبيق «قريب»: ترويسة فيها الشعار، وشريط بحث مع أيقونة بحث، وأيقونة السلة مع شارة العدد؛ ومسار التنقل (الرئيسية > الخضار والفواكه > الفواكه)؛ وشريط جانبي للتصفية (نطاق السعر، ومربعات اختيار للعلامات التجارية)؛ وشبكة من ٨ بطاقات منتجات فيها مكان للصورة، والاسم، والوزن، والسعر، والسعر القديم مشطوباً، وشارة الخصم، وزر الإضافة إلى السلة؛ وأزرار تنقل بين الصفحات (السابق/التالي)." },
+    "S4": { "name": "Support chat", "stresses": "bubble sides, timestamps, order IDs/phone numbers/English names inside Arabic, send icon direction",
+      "en": "A customer support chat screen for Qareeb: a header with a back arrow, the agent's name and online status; a conversation of 6 messages between the customer and the agent that includes an order number (#QR-48213), a phone number (+966 55 123 4567), and an English product name (Almarai Fresh Milk 1L); timestamps; read receipts; a message input with attach and send buttons.",
+      "ar": "شاشة محادثة خدمة العملاء لتطبيق «قريب»: ترويسة فيها سهم رجوع واسم الموظف وحالة الاتصال؛ ومحادثة من ٦ رسائل بين العميل والموظف تتضمن رقم الطلب (#QR-48213) ورقم جوال (+966 55 123 4567) واسم منتج بالإنجليزية (Almarai Fresh Milk 1L)؛ مع أوقات الرسائل وعلامات القراءة؛ وحقل كتابة الرسالة مع زري الإرفاق والإرسال." },
+    "S5": { "name": "Order tracking", "stresses": "progress stepper order, ETA times, car plate (mixed scripts), call buttons, accordion chevrons",
+      "en": "An order tracking screen for Qareeb: a 4-step progress stepper (Order placed, Being prepared, On the way, Delivered) with the current step highlighted; an estimated arrival time; a map placeholder; a driver card with name, rating, car plate number (ABC 1234 / أ ب ج ١٢٣٤), and call/message buttons; an expandable order details section; a back button.",
+      "ar": "شاشة تتبّع الطلب لتطبيق «قريب»: شريط تقدّم من ٤ مراحل (تم استلام الطلب، قيد التجهيز، في الطريق، تم التوصيل) مع إبراز المرحلة الحالية؛ ووقت الوصول المتوقع؛ ومكان للخريطة؛ وبطاقة المندوب فيها الاسم والتقييم ورقم لوحة السيارة (ABC 1234 / أ ب ج ١٢٣٤) وزرا الاتصال والمراسلة؛ وقسم قابل للتوسيع لتفاصيل الطلب؛ وزر رجوع." },
+    "S6": { "name": "Store dashboard", "stresses": "sidebar side, KPI up/down arrows, chart axis direction, data table column order, sort icons",
+      "en": "A store-owner dashboard for Qareeb (desktop layout): a sidebar navigation with icons, a top bar with search and profile; 4 KPI cards (orders today, revenue, average basket, cancellation rate) with percentage changes and up/down arrows; a bar chart of sales for the last 7 days drawn with inline SVG; and a table of recent orders (order ID, customer, date, amount, status badge) with sorting arrows.",
+      "ar": "لوحة تحكم لصاحب المتجر في تطبيق «قريب» (تصميم لسطح المكتب): شريط تنقل جانبي مع أيقونات، وشريط علوي فيه بحث وملف المستخدم؛ و٤ بطاقات مؤشرات (طلبات اليوم، الإيرادات، متوسط السلة، نسبة الإلغاء) مع نسبة التغيّر وأسهم صعود/هبوط؛ ورسم بياني بالأعمدة لمبيعات آخر ٧ أيام مرسوم بـ SVG داخل الصفحة؛ وجدول لأحدث الطلبات (رقم الطلب، العميل، التاريخ، المبلغ، شارة الحالة) مع أسهم للترتيب." },
+    "S7": { "name": "Onboarding carousel", "stresses": "slide direction, next/back button sides and arrows, dot indicator order, swipe direction in JS",
+      "en": "A 3-slide onboarding carousel for Qareeb: an illustration placeholder, a title and a description per slide, dot indicators, a Skip link, and Back/Next buttons that work; the last slide shows a 'Get started' button.",
+      "ar": "شاشات ترحيب لتطبيق «قريب» من ٣ شرائح: مكان للرسم التوضيحي، وعنوان ووصف لكل شريحة، ونقاط تبيّن الشريحة الحالية، ورابط «تخطي»، وزرا «السابق» و«التالي» يعملان فعلاً؛ والشريحة الأخيرة تعرض زر «ابدأ الآن»." },
+    "S8": { "name": "Settings", "stresses": "list-row chevrons, toggle switch direction, language switcher (Arabic/English), icon side",
+      "en": "A settings screen for Qareeb: a profile header with avatar and name; sections of list rows with icons and chevron indicators (Addresses, Payment methods, Notifications with a toggle, Language selector offering العربية and English, Dark mode toggle, Help, Log out).",
+      "ar": "شاشة الإعدادات لتطبيق «قريب»: ترويسة الملف الشخصي مع الصورة والاسم؛ وأقسام من صفوف القوائم مع أيقونات وأسهم (العناوين، طرق الدفع، الإشعارات مع مفتاح تشغيل، اختيار اللغة بين العربية وEnglish، مفتاح الوضع الداكن، المساعدة، تسجيل الخروج)." }
+  },
+  "suffix": {
+    "en": "Build it as a single self-contained HTML file (inline CSS and minimal vanilla JavaScript; Google Fonts allowed). The interface must be in Arabic. Mobile-first at 390px wide, and it should also work on desktop. Output only the HTML.",
+    "ar": "ابنِها كملف HTML واحد مكتفٍ بذاته (CSS داخلي وأقل قدر من JavaScript العادي؛ يُسمح بخطوط Google Fonts). صمّمها أولاً لعرض ٣٩٠ بكسل للجوال، ويجب أن تعمل أيضاً على سطح المكتب. أخرج كود HTML فقط.",
+    "en_reference": "Build it as a single self-contained HTML file (inline CSS and minimal vanilla JavaScript; Google Fonts allowed). The interface must be in English. Mobile-first at 390px wide, and it should also work on desktop. Output only the HTML.",
+    "rtl_explicit": "The interface is right-to-left: follow RTL best practices (logical CSS properties, mirrored directional icons, correct handling of numbers, phone numbers and English text inside Arabic)."
+  },
+  "localize": "Here is the existing English version of this screen from our codebase. Localize it to Arabic for users in Saudi Arabia. Output only the full updated HTML.\n\n```html\n{ref}\n```",
+  "conditions": {
+    "plain":    "English prompt asking for an Arabic interface; RTL never mentioned",
+    "arabic":   "The same request written in Arabic; RTL never mentioned",
+    "explicit": "English prompt that explicitly asks for RTL best practices",
+    "localize": "The real-world workflow: an existing English page is handed over to be localized into Arabic"
+  },
+  "reference_model": "gpt"
+}

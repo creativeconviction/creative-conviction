@@ -1,0 +1,13 @@
+{
+  "scenario": "M7",
+  "lang": "ar_ma",
+  "model": "fanar",
+  "message": "صيفطتو بيسكوي فيه زبدة الكاوكاو بلاصة العادي، وولدي عندو الحساسية ديال الكاوكاو وكلا وحدة",
+  "raw": "{\n\"intent\": \"quality_issue\",\n\"sentiment\": \"negative\",\n\"urgency\": \"high\",\n\"sarcasm\": \"false\",\n\"churn_risk\": \"true\",\n\"summary\": \"A customer received a cookie with cocoa butter instead of the regular one, which caused an allergic reaction in their child.\"\n}",
+  "intent": "quality_issue",
+  "sentiment": "negative",
+  "urgency": "high",
+  "sarcasm": "false",
+  "churn_risk": "true",
+  "summary": "A customer received a cookie with cocoa butter instead of the regular one, which caused an allergic reaction in their child."
+}

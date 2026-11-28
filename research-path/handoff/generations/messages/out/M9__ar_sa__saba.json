@@ -1,0 +1,13 @@
+{
+  "scenario": "M9",
+  "lang": "ar_sa",
+  "model": "saba",
+  "message": "حبيت أقول إن المندوب كان مره ذوق وساعدني أطلع الأغراض فوق، يعطيكم العافية!",
+  "raw": "```json\n{\n  \"intent\": \"praise\",\n  \"sentiment\": \"positive\",\n  \"urgency\": \"low\",\n  \"sarcasm\": false,\n  \"churn_risk\": false,\n  \"summary\": \"The customer praised the delivery person for their good service and assistance.\"\n}\n```",
+  "intent": "praise",
+  "sentiment": "positive",
+  "urgency": "low",
+  "sarcasm": false,
+  "churn_risk": false,
+  "summary": "The customer praised the delivery person for their good service and assistance."
+}

@@ -1,0 +1,12 @@
+{
+  "line": "T6",
+  "market": "ar_sa",
+  "model": "claude",
+  "source": "Got milk?",
+  "raw": "```json\n{\n  \"literal\": \"هل لديك حليب؟\",\n  \"adaptation\": \"وين الحليب؟\",\n  \"back_translation\": \"Where's the milk?\",\n  \"approach\": \"adapted\",\n  \"notes\": \"A direct 'Do you have milk?' addressed to a person can be read as asking whether someone (especially a woman) is lactating, which is the same trap as the famous Spanish mistranslation and is especially sensitive in Saudi Arabia, so the line shifts to the colloquial Gulf cry of 'Where's the milk?' to keep the original's moment of craving and running out.\"\n}\n```",
+  "literal": "هل لديك حليب؟",
+  "adaptation": "وين الحليب؟",
+  "back_translation": "Where's the milk?",
+  "approach": "adapted",
+  "notes": "A direct 'Do you have milk?' addressed to a person can be read as asking whether someone (especially a woman) is lactating, which is the same trap as the famous Spanish mistranslation and is especially sensitive in Saudi Arabia, so the line shifts to the colloquial Gulf cry of 'Where's the milk?' to keep the original's moment of craving and running out."
+}

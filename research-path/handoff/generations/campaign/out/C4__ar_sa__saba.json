@@ -1,0 +1,12 @@
+{
+  "line": "C4",
+  "market": "ar_sa",
+  "model": "saba",
+  "source": "Get beach-body ready this summer.",
+  "raw": "```json\n{\n  \"literal\": \"استعد الجسم الرشيق هذا الصيف.\",\n  \"adaptation\": \"اجمع جسدك لأحلى فصل الصيف.\",\n  \"back_translation\": \"Prepare your body for the best summer.\",\n  \"approach\": \"adapted\",\n  \"notes\": \"Avoided direct 'beach-body' as outdoor beach culture is less common in Saudi; focused on summer vitality instead.\"\n}\n```",
+  "literal": "استعد الجسم الرشيق هذا الصيف.",
+  "adaptation": "اجمع جسدك لأحلى فصل الصيف.",
+  "back_translation": "Prepare your body for the best summer.",
+  "approach": "adapted",
+  "notes": "Avoided direct 'beach-body' as outdoor beach culture is less common in Saudi; focused on summer vitality instead."
+}

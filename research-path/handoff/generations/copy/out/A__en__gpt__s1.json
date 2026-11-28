@@ -1,0 +1,12 @@
+{
+  "part": "A",
+  "cond": "en",
+  "prompt": "We have a new grocery delivery app called Qareeb (قريب). Write marketing copy for it in Arabic: a tagline, 3 short Instagram ad lines, and 1 push notification. Output only the copy.",
+  "s": 1,
+  "prompt_lang": "en",
+  "model": "gpt",
+  "id": "A__en__gpt__s1",
+  "model_id": "openai/gpt-5.6-sol",
+  "output": "قريب... مقاضيك أقرب مما تتخيّل.\n\nكل احتياجات البيت، لبابك بسرعة.\nطازج، سهل، وقريب منك.\nاطلب مقاضيك بضغطة وخلك مرتاح.\n\nنسيت شي؟ 🛒 اطلبه الآن من قريب وخله يوصلك لبابك.",
+  "at": "2026-11-18T05:23:04.716Z"
+}
