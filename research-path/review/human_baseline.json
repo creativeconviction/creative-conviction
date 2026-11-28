@@ -1,0 +1,82 @@
+{
+  "Riyadh": {
+    "tagline": "ماركت، متاجر وأكثر",
+    "ads": [
+      "أسرع تطبيق توصيل طلبات من البقالات في السعودية",
+      "سهل الاستخدام لا يحتاج إلي شرح فقط حمل واستمتع",
+      "توصيل مجاني لامحدود لمدة سنة للعملاء الجدد"
+    ],
+    "push": "للعمــلاء الجدد ❤️ توصيل مجاني لا محدود لمدة 30 يـوم 😍 حمّل التطبيق واطلب الآن 📲",
+    "sources": [
+      "Jahez App Store subtitle (restaurants removed)",
+      "Jahez App Store (restaurants → groceries)",
+      "Jahez App Store",
+      "HungerStation App Store (restaurant count removed)",
+      "Jahez on X"
+    ]
+  },
+  "Cairo": {
+    "tagline": "كل اللي محتاجه في دقائق",
+    "ads": [
+      "أي حاجة نفسك فيها، تلاقيها على بابك في ٢٠ دقيقة",
+      "محتاج لبن؟ قريب يوصّله في 20 دقيقة.",
+      "حمّل قريب. الـ٢٠ دقيقة الجاية بقت فاضية."
+    ],
+    "push": "نزّل تطبيق قريب وجرّب أول أوردر يوصلك في دقايق!",
+    "sources": [
+      "Breadfast App Store subtitle",
+      "Rabbit website (15 → 20 min)",
+      "Rabbit website (brand + 15 → 20 min)",
+      "Rabbit website (brand + 15 → 20 min)",
+      "Rabbit App Store (brand)"
+    ]
+  },
+  "_review_key": {
+    "dialect": {
+      "C-xfeaa9bba": "Riyadh",
+      "C-xf1f28b2b": "Cairo"
+    },
+    "votes": {
+      "D-xd5c05d6e": {
+        "city": "Cairo",
+        "vs": "C-C__Cairo__deepseek__s1",
+        "human_is": "b"
+      },
+      "D-xd555f3a3": {
+        "city": "Cairo",
+        "vs": "C-C__Cairo__claude__s1",
+        "human_is": "b"
+      },
+      "D-xa349594a": {
+        "city": "Riyadh",
+        "vs": "C-C__Riyadh__claude__s1",
+        "human_is": "a"
+      },
+      "D-xb6e324e5": {
+        "city": "Riyadh",
+        "vs": "C-C__Riyadh__gemini__s1",
+        "human_is": "b"
+      },
+      "D-x88195076": {
+        "city": "Cairo",
+        "vs": "C-C__Cairo__gpt__s1",
+        "human_is": "b"
+      },
+      "D-x3ef7c27f": {
+        "city": "Cairo",
+        "vs": "C-C__Cairo__gemini__s1",
+        "human_is": "a"
+      },
+      "D-x3c699aa2": {
+        "city": "Riyadh",
+        "vs": "C-C__Riyadh__deepseek__s1",
+        "human_is": "a"
+      },
+      "D-x20b454a1": {
+        "city": "Riyadh",
+        "vs": "C-C__Riyadh__gpt__s1",
+        "human_is": "b"
+      }
+    }
+  }
+}
